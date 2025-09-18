@@ -1,0 +1,234 @@
+---
+title: "Error Handling"
+description: "Guide to API error codes and handling"
+---
+
+## Overview
+
+The Explorium API uses standard HTTP response codes to indicate the success or failure of requests. Responses include detailed error information to help you identify and resolve issues quickly.
+
+## Error Response Format
+
+All error responses follow a consistent structure:
+
+```json JSON
+HTTP/1.1 400 Bad Request
+Content-Type: application/json
+
+{
+  "details": "Human-readable error description",
+  "correlation_id": "unique-id-for-troubleshooting",
+}
+```
+
+
+<Note>
+**Important**
+
+The `correlation_id` is crucial for troubleshooting. Always include it when contacting support.
+</Note>
+
+## HTTP Status Codes
+
+| Status Code | Type | Description |
+| :--- | :--- | :--- |
+| :--- | :--- | :--- |
+| **200** | Success | Request completed successfully |
+| **201** | Success | Resource created successfully |
+| **400** | Client Error | Bad request - Invalid request format or parameters |
+| **401** | Client Error | Unauthorized - Authentication failed |
+| **403** | Client Error | Forbidden - Valid request but insufficient permissions |
+| **422** | Client Error | Unprocessable Entity - Request validation failed |
+| **429** | Client Error | Too Many Requests - Rate limit exceeded |
+| **500** | Server Error | Internal Server Error - Unexpected server issue |
+| **503** | Server Error | Service Unavailable - Temporary server issue |
+
+## Error Types
+
+### Authentication Errors (401)
+
+| Error Message | Description | Resolution |
+| :--- | :--- | :--- |
+| `Partner ID is missing. Please set it in one of these headers: X-Context-Partner-ID, partner-id, partner_id.` | Request missing required Partner ID header | Add Partner ID to request headers |
+| `Partner ID is invalid. Please set the Partner ID in one of these headers: X-Context-Partner-ID, partner-id, partner_id.` | Provided Partner ID is not recognized | Verify your Partner ID is correct |
+
+### Credit Errors (403)
+
+| Error Message | Description | Resolution |
+| :--- | :--- | :--- |
+| `You have insufficient credits to perform this operation. Please purchase additional credits.` | Credit balance too low for requested operation | Purchase additional credits or contact your account manager |
+
+### Validation Errors (422)
+
+Validation errors return a detailed structure indicating which fields failed validation:
+
+```json JSON
+HTTP/1.1 422 Unprocessable Entity
+Content-Type: application/json
+
+{
+  "detail": [
+    {
+      "loc": ["body", "field_name"],
+      "msg": "validation error message",
+      "type": "error_type",
+      "ctx": { "additional": "context" }
+    }
+  ]
+}
+```
+
+**Common Validation Errors:**
+
+| Field | Error Type | Message | Resolution |
+| :--- | :--- | :--- | :--- |
+| `size` | `value_error.number.not_le` | `ensure this value is less than or equal to 100` | Reduce the size parameter to ≤ 100 |
+| `page` | `value_error.number.not_ge` | `ensure this value is greater than or equal to 1` | Page numbers start at 1 |
+| `filters` | `value_error.missing` | `field required` | Include the required filters object |
+
+### Client Errors (400)
+
+| Error Message | Description | Resolution |
+| :--- | :--- | :--- |
+| `Client webhook failed on: [details]` | Your webhook endpoint failed to process the event | Check webhook endpoint availability and response |
+
+### Server Errors (500)
+
+| Error Message | Description | Resolution |
+| :--- | :--- | :--- |
+| `An internal server error occurred` | Unexpected server error | Retry with exponential backoff; contact support if persists |
+
+## Rate Limiting
+
+When you exceed API rate limits, you'll receive a `429` response:
+
+```json JSON
+{
+  "code": 429,
+  "message": "Rate limit exceeded. Please retry after the specified time.",
+  "retry_after": 60  // Seconds to wait before retrying
+}
+```
+
+**Rate Limit Headers:**
+
+- `X-RateLimit-Limit`: Maximum requests per window
+- `X-RateLimit-Remaining`: Requests remaining in current window
+- `X-RateLimit-Reset`: Unix timestamp when limit resets
+
+## Best Practices
+
+### <Icon icon="square-check" color="green" size={22} /> DO
+
+- **Log correlation IDs** for all errors to facilitate debugging
+- **Implement retry logic** with exponential backoff for 5xx errors
+- **Monitor credit usage** to avoid unexpected 403 errors
+- **Validate requests** client-side to minimize 422 errors
+- **Handle rate limits** gracefully using the retry\_after value
+
+### <Icon icon="xmark" color="red" size={22} /> DON'T
+
+- Don't retry 4xx errors without fixing the root cause
+- Don't ignore correlation IDs when reporting issues
+- Don't make parallel requests that might exceed rate limits
+- Don't cache error responses
+
+## Error Handling Examples
+
+<CodeGroup>
+```python Python expandable
+import requests
+from time import sleep
+
+def make_api_request(url, headers, data):
+    response = requests.post(url, headers=headers, json=data)
+
+    if response.status_code == 429:
+        retry_after = int(response.headers.get('Retry-After', 60))
+        sleep(retry_after)
+        return make_api_request(url, headers, data)
+
+    if response.status_code >= 500:
+        # Implement exponential backoff
+        for attempt in range(3):
+            sleep(2 ** attempt)
+            response = requests.post(url, headers=headers, json=data)
+            if response.status_code < 500:
+                break
+
+    if response.status_code >= 400:
+        error_data = response.json()
+        print(f"Error: {error_data['message']}")
+        print(f"Correlation ID: {error_data['correlation_id']}")
+
+    return response
+```
+```javascript JavaScript expandable
+async function makeApiRequest(url, headers, data) {
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify(data)
+  });
+
+  if (response.status === 429) {
+    const retryAfter = parseInt(response.headers.get('Retry-After') || '60');
+    await new Promise(resolve => setTimeout(resolve, retryAfter * 1000));
+    return makeApiRequest(url, headers, data);
+  }
+
+  if (!response.ok) {
+    const error = await response.json();
+    console.error(\`Error: ${error.message}\`);
+    console.error(\`Correlation ID: ${error.correlation_id}\`);
+    throw new Error(error.message);
+  }
+
+  return response.json();
+}
+```
+</CodeGroup>
+
+
+
+## Troubleshooting
+
+<Warning>
+**When Contacting Support**
+
+Please provide the following information:
+
+1. **Correlation ID** from the error response
+2. **Request details**:
+	- Endpoint URL
+	- HTTP method
+	- Request headers (excluding sensitive data)
+	- Request body
+3. **Timestamp** of the error
+4. **Error message** and status code
+</Warning>
+
+### Quick Troubleshooting Tips
+
+- **401 Errors**: Double-check your Partner ID and API key
+- **403 Errors**: Verify your credit balance in the dashboard
+- **422 Errors**: Review the validation error details and adjust your request
+- **429 Errors**: Implement rate limiting in your application
+- **500 Errors**: These are usually temporary - retry with exponential backoff
+
+## Change Log
+
+| Version | Date | Changes |
+| :--- | :--- | :--- |
+| **v1.5** | June 2025 | Enhanced error handling with specific error codes and improved messages |
+| **v1.4** | - | Added 10K enrichments |
+| **v1.3** | - | Added prospects match |
+| **v1.2** | - | Added Social media posts and workforce trends |
+| **v1.1** | - | Added events pipelines |
+| **v1.0** | - | Initial release |
+
+<Info>
+**Need Help?**
+
+Contact our support team through your dedicated Slack channel with Explorium.
+</Info>

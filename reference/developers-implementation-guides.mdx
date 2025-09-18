@@ -1,0 +1,221 @@
+---
+title: "Developers Implementation Guides"
+sidebarTitle: "Overview"
+description: "Choose the right implementation method for integrating AgentSource MCP into your applications and workflows."
+---
+
+## Overview
+
+AgentSource MCP (Model Context Protocol) provides a standardized way to access Explorium's comprehensive business and contact data. Whether you're building AI agents, data pipelines, or custom applications, we offer multiple implementation paths to suit your needs.
+
+## Available Implementation Methods
+
+### <Icon icon="robot" size={24} /> [OpenAI Integration](/reference/implement-with-openai)
+
+**Best for:** AI-powered applications and conversational agents
+
+Build intelligent agents that can automatically discover and use AgentSource tools through OpenAI's API.
+
+**Key Features:**
+
+- Automatic tool discovery
+- Natural language queries
+- Built-in response formatting
+- Minimal setup required
+
+**Use Cases:**
+
+- Customer service chatbots
+- Sales intelligence assistants
+- Automated research agents
+- Interactive data exploration
+
+<Columns cols={2}>
+<Card icon="rocket-launch" horizontal title="Get Started with OpenAI" href="/reference/implement-with-openai" />
+</Columns>
+
+### <Icon icon="snake" size={24} /> [Python SDK](/reference/python-sdk-implementation-guide)
+
+**Best for:** Direct programmatic access and custom applications
+
+Native Python implementation for developers who need fine-grained control over data access and processing.
+
+**Key Features:**
+
+- Asynchronous operations
+- Full control over tool execution
+- Ideal for data pipelines
+- Comprehensive error handling
+
+**Use Cases:**
+
+- Data enrichment pipelines
+- Batch processing systems
+- Custom analytics tools
+- Integration with existing Python applications
+
+<Columns cols={2}>
+<Card icon="rocket-launch" horizontal title="Get Started with Python SDK" href="/reference/python-sdk-implementation-guide" />
+</Columns>
+
+
+### <Icon icon="link" size={24} /> LangGraph Integration
+
+**Best for:** Complex AI workflows and multi-step processes
+
+*Coming Soon*
+
+Build sophisticated AI agents with state management and complex decision trees using LangGraph.
+
+**Key Features:**
+
+- Stateful conversations
+- Multi-step workflows
+- Conditional logic
+- Tool chaining
+
+
+## Quick Comparison
+
+| Feature | OpenAI | Python SDK | LangGraph |
+| :--- | :--- | :--- | :--- |
+| **Setup Complexity** | Low | Medium | Medium |
+| **Best For** | AI Agents | Data Pipelines | Complex Workflows |
+| **Language** | Python | Python | Python |
+| **Tool Discovery** | Automatic | Manual | Automatic |
+| **Response Format** | Structured | JSON | Structured |
+| **Async Support** | ✓ | ✓ | ✓ |
+| **State Management** | Limited | Custom | Built-in |
+| **Error Handling** | Built-in | Manual | Built-in |
+
+## Getting Started
+
+### Prerequisites
+
+Before implementing AgentSource MCP, ensure you have:
+
+1. **AgentSource API Key** - [Get your API key](/reference/getting_your_api_key)
+2. **Development Environment** - Python 3.8+ recommended
+3. **Basic Understanding** - Familiarity with REST APIs and async programming
+
+### Core Concepts
+
+#### What is MCP?
+
+Model Context Protocol (MCP) is a standardized protocol that enables AI models and applications to discover and use tools dynamically. With AgentSource MCP, you get:
+
+- **Dynamic Tool Discovery** - Tools are discovered at runtime, not hardcoded
+- **Standardized Interface** - Consistent API across all tools
+- **Type Safety** - Structured inputs and outputs
+- **Streaming Support** - Real-time data updates via SSE
+
+#### Available Tool Categories
+
+**Business Intelligence**
+
+- Company search and matching
+- Firmographic enrichment
+- Technology stack analysis
+- Financial metrics (public companies)
+- Competitive landscape insights
+
+**Contact Discovery**
+
+- Employee search by role/department
+- Contact information enrichment
+- Professional profile data
+- Work history and experience
+- Social media activity
+
+**Market Intelligence**
+
+- Industry trends and statistics
+- Company events and news
+- Website changes monitoring
+- Workforce trend analysis
+- Funding and acquisition data
+
+## Common Use Cases
+
+### <Icon icon="bullseye" size={24} /> Sales Intelligence
+
+Find prospects at target companies, enrich contact information, and track company events:
+
+- Identify decision makers at target accounts
+- Get verified email addresses and phone numbers
+- Monitor job changes and company updates
+- Analyze technology stack for better positioning
+
+### <Icon icon="chart-line" size={24} /> Market Research
+
+Analyze industries, competitors, and market trends:
+
+- Company segmentation by size, revenue, location
+- Technology adoption trends
+- Competitive landscape analysis
+- Industry-specific insights
+
+### <Icon icon="handshake" size={24} /> Lead Enrichment
+
+Enhance your CRM data with comprehensive business and contact information:
+
+- Bulk company matching and enrichment
+- Contact verification and updates
+- Organizational structure mapping
+- Technographic segmentation
+
+### <Icon icon="magnifying-glass" size={24} /> Due Diligence
+
+Comprehensive company analysis for investment or partnership decisions:
+
+- Financial metrics and performance
+- Leadership and organizational changes
+- Technology infrastructure
+- Growth indicators and challenges
+
+## Best Practices
+
+### <Icon icon="lock" size={24} /> Security
+
+- Store API keys in environment variables
+- Never commit credentials to version control
+- Use HTTPS for all connections
+- Implement proper error handling
+
+### <Icon icon="bolt" size={24} /> Performance
+
+- Use batch operations when possible
+- Implement pagination for large datasets
+- Cache results when appropriate
+- Monitor rate limits and quotas
+
+### <Icon icon="screwdriver-wrench" size={24} /> Development
+
+- Start with small proof-of-concepts
+- Test with sample data first
+- Implement comprehensive logging
+- Handle edge cases gracefully
+
+## Need Help?
+
+### <Icon icon="book" size={24} /> Resources
+
+<Columns cols={2}>
+<Card icon="book" horizontal title="AgentSource MCP API Reference" href="/reference/introduction" />
+</Columns>
+
+### <Icon icon="headset" size={24} /> Support
+
+- Technical Support: [support@explorium.ai](mailto:support@explorium.ai)
+- Community Forum: Coming Soon!
+
+### <Icon icon="rocket-launch" size={24} /> What's Next?
+
+1. **Choose your implementation method** based on your use case
+2. **Follow the specific guide** for detailed instructions
+3. **Start with simple queries** and gradually increase complexity
+4. **Join our community** to share experiences and get help
+
+
+*Ready to get started? Choose an implementation guide above or[contact our team](/reference/) for personalized recommendations.*
+

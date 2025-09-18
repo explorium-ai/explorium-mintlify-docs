@@ -1,0 +1,82 @@
+---
+title: "Cursor Integration"
+---
+
+## Cursor IDE
+
+**Cursor** - The AI-powered code editor with MCP support
+
+Cursor's built-in AI features can leverage AgentSource data for research while coding, making it perfect for developers building data-driven applications.
+
+### Setup Instructions
+
+<Steps>
+<Step title="Open Cursor Settings">
+- Navigate to: Cursor > Settings > Cursor Settings > MCP Tools
+- Click the 'Add Custom MCP' button
+
+<Frame>
+![](/images/reference/9ca30e10d2b057ef0f7b4aa1a6f122e4463b82b1633f4aad435ccecadafb08dd-image.png)
+</Frame>
+</Step>
+
+<Step title="Add Explorium MCP configuration">
+```json JSON
+{
+  "mcpServers": {
+    "explorium-mcp": {
+      "type": "sse",
+      "url": "https://mcp.explorium.ai/sse",
+      "headers": {
+        "api_key": "<Your explorium api key>"
+      }
+    }
+  }
+}
+```
+</Step>
+
+<Step title="Enable Auto-Run Mode (Optional)">
+- Location: Cursor > Settings > Chat
+- Toggle: "Auto-Run Mode"
+- Benefit: Tools execute automatically without confirmation
+</Step>
+
+<Step title="Login">
+- Click 'Needs login' and click 'Open' on the dialog box.
+
+<Frame>
+![](/images/reference/aa9805999594a3a14cc36dd48c9052ae569a5ccb19a465ec4c7d724cae18696d-image.png)
+</Frame>
+</Step>
+
+<Step title="Allow Explorium MCP access for Cursor">
+- Click the 'Allow Access' button.
+
+<Frame>
+![](/images/reference/3f78c5ebb8bf4dee1bd6c0aef9c4dfecbfe4f8ace09fadbb716a248eba07586d-image.png)
+</Frame>
+</Step>
+
+<Step title="Confirm the server is connected">
+- Make sure the mcp is turned on and the tools are enabled
+
+<Frame>
+![](/images/reference/0b6a741658ad5e1b7177dc9823a9e217ad28eab050fd415a24a4edf291491447-image.png)
+</Frame>
+</Step>
+
+<Step title="Test the mcp">
+- Open chat (Cmd+K or Ctrl+K)
+- Ask: "find 5 companies in the fintech industry that use salesforce"
+</Step>
+</Steps>
+
+
+### Use Cases in Cursor
+
+- Research companies while building CRM integrations
+- Get real data for testing and development
+- Generate mock data based on real company information
+- Validate business logic with actual market data
+

@@ -1,0 +1,146 @@
+---
+openapi: post /v1/businesses/firmographics/bulk_enrich
+---
+
+Endpoint: `POST /v1/businesses/firmographics/bulk_enrich`
+
+<AccordionGroup>
+<Accordion title="How It Works">
+
+- **Input:** Provide a list of up to **50`business_id`s**.
+- **Processing:** The system retrieves enriched data for all submitted businesses in a **single request**.
+- **Output:** A structured response with the requested enrichment data for each business.
+
+</Accordion>
+
+<Accordion title="Example Request (cURL)">
+
+```shell Bash
+curl --request POST \
+     --url https://api.explorium.ai/v1/businesses/firmographics/bulk_enrich \
+     --header 'accept: application/json' \
+     --header 'api_key: your_api_key_here' \
+     --header 'content-type: application/json' \
+     --data '{
+  "business_ids": [
+    "8adce3ca1cef0c986b22310e369a0793",
+    "a34bacf839b923770b2c360eefa26748"
+  ]
+}'
+```
+</Accordion>
+
+<Accordion title="Best Practices">
+
+- **Batch process multiple businesses** to improve API efficiency and reduce request overhead.
+- **Use firmographic, technographic, and financial indicators** together for comprehensive business profiling.
+- **Monitor funding and workforce trends** to track business growth and hiring activity.
+- **Leverage competitive landscape data** to benchmark businesses against industry peers.
+
+</Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" color="red" iconType="solid"/> For additional enrichment options, explore related API endpoints below.
+
+
+## Bulk Businesses Enrichments API
+
+The **Bulk Businesses Enrichments API** allows users to enrich **multiple businesses simultaneously** by submitting up to **50 business IDs per request**. This feature is designed for high-efficiency data processing, enabling organizations to **scale their data enrichment efforts**, streamline workflows, and **reduce API call overhead**.
+
+## Endpoints for Bulk Enrichments
+
+### 1. Firmographics (Bulk)
+
+**Endpoint:** `POST /businesses/firmographics/bulk_enrich`
+
+<AccordionGroup>
+<Accordion title="How It Works">
+
+- **Input:** Provide a list of up to **50`business_id`s**.
+- **Processing:** The system retrieves enriched data for all submitted businesses in a **single request**.
+- **Output:** A structured response with the requested enrichment data for each business.
+</Accordion>
+
+<Accordion title="Example Request (cURL)">
+
+```shell Bash
+curl --request POST \
+     --url https://api.explorium.ai/v1/businesses/firmographics/bulk_enrich \
+     --header 'accept: application/json' \
+     --header 'api_key: your_api_key_here' \
+     --header 'content-type: application/json' \
+     --data '{
+  "business_ids": [
+    "8adce3ca1cef0c986b22310e369a0793",
+    "a34bacf839b923770b2c360eefa26748"
+  ]
+}'
+```
+
+</Accordion>
+
+<Accordion title="Best Practices">
+
+- **Batch process multiple businesses** to improve API efficiency and reduce request overhead.
+- **Use firmographic, technographic, and financial indicators** together for comprehensive business profiling.
+- **Monitor funding and workforce trends** to track business growth and hiring activity.
+- **Leverage competitive landscape data** to benchmark businesses against industry peers.
+</Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" color="red" iconType="solid"/> For additional enrichment options, explore related API endpoints below.
+
+## Body Params - Try Me Example
+
+```
+business_ids: ["8adce3ca1cef0c986b22310e369a0793", "a34bacf839b923770b2c360eefa26748"]
+```
+
+### 2. Technographics (Bulk)
+
+**Endpoint:** `POST /businesses/technographics/bulk_enrich`
+
+<AccordionGroup>
+<Accordion title="How It Works">
+- **Input:** Provide a list of up to **50`business_id`s**.
+- **Processing:** The system retrieves enriched data for all submitted businesses in a **single request**.
+- **Output:** A structured response with the requested enrichment data for each business.
+</Accordion>
+
+<Accordion title="Example Request (cURL)">
+
+### Example Request (cURL)
+
+```shell Bash
+curl --request POST \
+     --url https://api.explorium.ai/v1/businesses/technographics/bulk_enrich \
+     --header 'accept: application/json' \
+     --header 'api_key: your_api_key_here' \
+     --header 'content-type: application/json' \
+     --data '{
+  "business_ids": [
+    "8adce3ca1cef0c986b22310e369a0793",
+    "a34bacf839b923770b2c360eefa26748"
+  ]
+}'
+```
+</Accordion>
+
+<Accordion title="Best Practices">
+
+- **Batch process multiple businesses** to improve API efficiency and reduce request overhead.
+- **Use firmographic, technographic, and financial indicators** together for comprehensive business profiling.
+- **Monitor funding and workforce trends** to track business growth and hiring activity.
+- **Leverage competitive landscape data** to benchmark businesses against industry peers.
+</Accordion>
+</AccordionGroup>
+
+
+<Icon icon="thumbtack" color="red" iconType="solid"/> For additional enrichment options, explore related API endpoints below.
+
+## Body Params - Try Me Example
+
+```
+business_ids: ["8adce3ca1cef0c986b22310e369a0793",
+               "a34bacf839b923770b2c360eefa26748"]
+```

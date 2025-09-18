@@ -1,0 +1,146 @@
+---
+title: "Contact details"
+openapi: post /v1/prospects/contacts_information/bulk_enrich
+---
+
+## Endpoint: `POST /v1/prospects/profiles/bulk_enrich`
+
+## Description
+
+The **Bulk Contact Details Enrichment** API allows users to retrieve verified **data** for multiple prospects in a single request. This endpoint enhances lead intelligence by providing accurate **emails, phone numbers, and mobile numbers** at scale.
+
+<Icon icon="thumbtack" color="red" iconType="solid"/> **Key Benefits:**
+
+- **Bulk retrieval** of enriched contact data for up to 50 prospects per request.
+- **Enhance outreach** with validated professional and personal contact details.
+- **Optimize lead engagement** by leveraging multiple verified data points.
+
+<AccordionGroup>
+<Accordion title="How It Works">
+
+1. **Input:** Provide up to 50 `prospect_id` values, obtained from the **Match Prospects** endpoint.
+2. **Processing:** The system retrieves verified contact information, including emails and phone numbers.
+3. **Output:** Returns structured data in the same order as the input, ensuring easy mapping.
+
+</Accordion>
+
+<Accordion title="Request Schema">
+
+| Field | Type | Description |
+|:---|:---|:---|
+| `prospect_ids` | Array | A list of up to 50 unique prospect IDs (Required) |
+
+</Accordion>
+
+<Accordion title="Example Request (cURL)">
+
+```shell Bash
+curl --request POST \
+     --url https://api.explorium.ai/v1/prospects/contacts_information/bulk_enrich \
+     --header 'accept: application/json' \
+     --header 'api_key: <your_api_key>' \
+     --header 'content-type: application/json' \
+     --data '{
+  "prospect_ids": [
+    "ee936e451b50c70e068e1b54e106cb89173198c4",
+    "d668424ab4f6aaeeeb74248d56b8335383fd522b"
+  ]
+}'
+```
+
+</Accordion>
+
+<Accordion title="Example Response">
+
+```json JSON expandable
+{
+  "response_context": {
+    "correlation_id": "f6bf2bf8c0e34f3d9fa000f83398c97b",
+    "request_status": "success",
+    "time_took_in_seconds": 0.733
+  },
+  "data": [
+    {
+      "prospect_id": "ee936e451b50c70e068e1b54e106cb89173198c4",
+      "data": {
+        "emails": [
+          {
+            "address": "satyanadella@hotmail.com",
+            "type": "personal"
+          },
+          {
+            "address": "satyan@microsoft.com",
+            "type": "professional"
+          }
+        ],
+        "phone_numbers": [
+          {
+            "phone_number": "+14258828080"
+          },
+          {
+            "phone_number": "+14255032236"
+          }
+        ],
+        "mobile_phone": "+14255032236"
+      }
+    },
+    {
+      "prospect_id": "57f9e5dac64d31d80e6e9432fe2c500d0bba2c01",
+      "data": {
+        "emails": [
+          {
+            "address": "lorihuang@hotmail.com",
+            "type": "personal"
+          },
+          {
+            "address": "jensenh@nvidia.com",
+            "type": "current_professional"
+          }
+        ],
+        "phone_numbers": [
+          {
+            "phone_number": "+14156991685"
+          },
+          {
+            "phone_number": "+13172018718"
+          }
+        ],
+        "mobile_phone": "+14156991685"
+      }
+    }
+  ],
+  "total_results": 2
+}
+```
+
+</Accordion>
+
+<Accordion title="Best Practices">
+
+- **Batch process multiple prospect IDs** to improve efficiency and reduce API calls.
+- **Ensure valid prospect IDs** are used to maximize data accuracy.
+- **Leverage enriched contact data** to refine lead scoring and improve outreach.
+- **Regularly update CRM records** with the latest contact details.
+
+</Accordion>
+
+<Accordion title="Bulk Contacts Enrichment Output Signals">
+
+| Field Name | Description | Data Type |
+|:---|:---|:---|
+| `prospect_id` | Unique identifier of the prospect | `String` |
+| `emails` | List of email addresses associated with the contact | `Optional[List[Dict[str, str]]]` |
+| `phone_numbers` | List of contact phone numbers in international format | `Optional[List[str]]` |
+| `mobile_phone` | Mobile phone number of the contact | `Optional[str]` |
+
+</Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" color="red" iconType="solid"/> **For additional enrichment options, explore related API endpoints below.**
+
+## Body Params - Try Me Example
+
+```
+prospect_ids: ee936e451b50c70e068e1b54e106cb89173198c4,
+57f9e5dac64d31d80e6e9432fe2c500d0bba2c01
+```

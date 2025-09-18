@@ -1,0 +1,69 @@
+---
+openapi: post /v1/businesses/pc_strategy_10k/enrich
+title: "Strategic insights on public companies"
+---
+
+## Endpoint: `POST /v1/businesses/pc_strategy_10k/enrich`
+
+## Description
+
+The **Strategic Insights Enrichment** endpoint provides **in-depth information on the strategic direction, operational focus, and value proposition** of public companies. This dataset is valuable for **investors, corporate strategists, and competitive analysts** aiming to understand a company's **market positioning and future plans**.
+
+The data includes:
+
+- **Target markets** and primary business focus areas.
+- **Value proposition** highlighting key differentiators and competitive strengths.
+- **Partnerships and supplier relationships** to understand ecosystem dependencies.
+- **Product development and innovation strategies**.
+- **Sales and marketing priorities** to evaluate business growth plans.
+
+This information is sourced from **regulatory filings, earnings reports, and official company disclosures** to provide a **comprehensive understanding of a company's strategic roadmap**.
+
+<AccordionGroup>
+<Accordion title="How It Works">
+
+- **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
+- **Processing:** The system retrieves strategic insights, partnerships, and growth plans from company reports.
+- **Output:** A structured response summarizing corporate focus, product development, and market positioning.
+
+</Accordion>
+
+<Accordion title="Best Practices">
+
+- **Use strategic insights** to assess a company's market positioning and growth strategy.
+- **Analyze product development trends** to understand innovation pipelines and investment focus.
+- **Leverage partnership data** to identify key supply chain dependencies and alliances.
+- **Compare value propositions** across competitors to evaluate differentiation strategies.
+
+</Accordion>
+
+<Accordion title="Strategic Insights Output Signal">
+
+| SignalAPI | Name | Description | Data Type |
+| :--- | :--- | :--- | :--- |
+| insight\_category | Insight category | Category of strategic insight. | string |
+| insight\_description | Insight description | Detailed description of the insight. | string |
+| relevance\_score | Relevance score | Score indicating relevance of the insight. | number |
+| confidence\_level | Confidence level | Confidence level in the insight. | string |
+| data\_sources | Data sources | Sources used to derive the insight. | string |
+| last\_updated | Last updated | Date when the insight was last updated. | date |
+| trend\_direction | Trend direction | Direction of the trend (positive, negative, stable). | string |
+| impact\_assessment | Impact assessment | Assessment of the potential impact. | string |
+| time\_horizon | Time horizon | Time horizon for the insight. | string |
+| market\_context | Market context | Market context for the insight. | string |
+| competitive\_implications | Competitive implications | Competitive implications of the insight. | string |
+| risk\_factors | Risk factors | Risk factors associated with the insight. | string |
+| opportunities | Opportunities | Opportunities identified by the insight. | string |
+| recommendations | Recommendations | Strategic recommendations based on the insight. | string |
+| key\_metrics | Key metrics | Key metrics supporting the insight. | string |
+
+</Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" color="red" iconType="solid"/> For additional enrichment options, explore related API endpoints below.
+
+## Body Params - Try Me Example
+
+```
+business_id: 8adce3ca1cef0c986b22310e369a0793
+```

@@ -1,0 +1,66 @@
+---
+title: "Update Prospects Enrollments"
+openapi: patch /v1/prospects/events/enrollments
+---
+
+### Endpoint: `PATCH /v1/prospects/events/enrollments`
+
+## Description
+
+Update an existing prospect's enrollment.
+
+<AccordionGroup>
+<Accordion title="How It Works">
+
+**Input**: Define parameters including enrollment\_key and enrollment\_id to update, and updated prospect\_ids, and event\_types.  
+**Processing**: The system will update your your enrollment and update the monitoring for events.  
+**Output**: A confirmation response containing your enrollment\_key and enrollment\_id for future reference.
+</Accordion>
+
+<Accordion title="Query Parameters">
+
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| enrollment\_key | String | A unique identifier for this enrollment |
+| enrollment\_id | String | A unique identifier for this enrollment |
+| prospect\_ids | Array | List of Prospect IDs to monitor for events |
+| event\_types | Array | Types of events to monitor (e.g., prospect\_changed\_role, prospect\_changed\_company)) |
+</Accordion>
+
+<Accordion title="Example Request (cURL)">
+
+```shell Bash
+curl -X POST \
+  "https://api.explorium.ai/v1/prospects/events/enrollments" \
+  -H "API_KEY: your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "enrollment_key": "tech_executives_monitor",
+  "enrollment_id": "en_8d52c3f1",
+  "prospect_ids": [
+    "20ae6cbf564ee683e66685e429844a5ff8ffc30f",
+    "4c485f009d59e319dc039cdf3e935b85014e6a33"
+  ],
+  "event_types": [
+    "prospect_changed_role",
+    "prospect_changed_company"
+  ]
+}'
+```
+</Accordion>
+
+<Accordion title="Example Response">
+
+```json Bash
+{
+  "request_context": {
+    "correlation_id": "1234",
+    "request_status": "success",
+    "time_took_in_seconds": 0.515
+  },
+  "enrollment_key": "tech_executives_monitor",
+  "enrollment_id": "en_8d52c3f1"
+}
+```
+</Accordion>
+</AccordionGroup>

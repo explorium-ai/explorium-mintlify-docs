@@ -1,0 +1,119 @@
+---
+title: "Getting Started"
+description: "This page will help you get started with Explorium API."
+---
+
+Explorium's API provides access to the world's leading B2B data.
+
+Use this API to combine business, contact, and geolocation data, and enrich up to 500 records every month for free!
+
+## Example Request & Response
+
+Here’s how we enrich Tesla with firmographic data:
+
+<CodeGroup>
+  ```bash HTTP
+  POST https://app.explorium.ai/api/bundle/v1/enrich/firmographics
+  [
+    {
+      "company": "Tesla"
+    }
+  ]
+  ```
+</CodeGroup>
+
+... and Explorium responds with:
+
+<CodeGroup>
+  ```json JSON expandable
+  [
+    {
+      "Company name": "tesla",
+      "Company legal name": "tesla inc",
+      "Company website": "http://www.tesla.com",
+      "Number of employees range all sites": "10001+",
+      "Number of employees range site specific": "10001+",
+      "Yearly revenue range all sites": "10B-100B",
+      "Yearly revenue range site specific": "10B-100B",
+      "NAICS": "336111",
+      "NAICS description": "Automobile Manufacturing",
+      "NAICS sector code": "33",
+      "NAICS sector description": "Manufacturing",
+      "NAICS industry group code": "3361",
+      "NAICS industry group description": "Motor Vehicle Manufacturing",
+      "Google business category": "corporate campus",
+      "LinkedIn industry category": "accomodation services",
+      "ISIC code": null,
+      "SIC code": "3711",
+      "DUNS": "148284255",
+      "Local registration number": "us-91-2197729",
+      "Business description": "Tesla Inc (Tesla) is an automotive and energy company. It designs, develops, manufactures, and sells, and leases fully electric vehicles and energy generation and storage systems. The company produces and sells the Model Y, Model 3, Model X, Model S, Cybertruck, Tesla Semi, and Tesla Roadster vehicles. Tesla also installs and maintains energy systems and sells solar electricity; and offers end-to-end clean energy products, including generation, storage, and consumption. It markets and sells vehicles to consumers through a network of company-owned stores and galleries. The company has manufacturing facilities in the US and China. Tesla is headquartered in Palo Alto, California, the US.The company reported revenues of (US Dollars) US$31,536 million for the fiscal year ended December 2020 (FY2020), an increase of 28.3% over FY2019. The operating profit of the company was US$1,994 million in FY2020, compared to an operating loss of US$69 million in FY2019. The net profit of the company was US$690 million in FY2020, compared to a net loss of US$870 million in FY2019.",
+      "Company's number of locations": "1001+",
+      "Company phone number": "16506815000",
+      "Company's email": null,
+      "Entity hierarchy type": "ultimate parent headquarter",
+      "Foundation year": 2003,
+      "Parent company": null,
+      "Ultimate parent name": "tesla motors",
+      "Ultimate parent DUNS": null,
+      "Country": "united states",
+      "Region": "us-ca",
+      "City": "palo alto",
+      "Street": "3500 deer creek road",
+      "ZIP code / postal code": "94304",
+      "Company location latitude degrees": "37.394292",
+      "Company location longitude degrees": "-122.150617",
+      "Ticker symbol": "nasdaq:tsla",
+      "Confidence Score": 100,
+      "Company's credit score": null,
+      "Company's credit score category": null
+    }
+  ]
+  ```
+</CodeGroup>
+
+## Where to begin
+
+[Once you've gotten your API key](/reference/getting-your-api-key), browse the endpoints from the sidebar menu and pick the first data bundle you'd like to try.
+
+<Frame>
+  <img src="/images/deprecated-docs/353956b-Choose_Endpoint.png" />
+</Frame>
+
+Review the data signals included in the bundle by clicking on the data dictionary button at the bottom of the page
+
+<Frame>
+  <img src="/images/deprecated-docs/461c9a0-Click_for_dictionary.png" />
+</Frame>
+
+You'll find all data outputs' descriptions and formats:
+
+<Frame>
+  <img src="/images/deprecated-docs/c5659a0-Screen_Shot_2022-12-11_at_10.58.03.png" />
+</Frame>
+
+## Creating a request
+
+On the right side of the screen, you'll quickly recognize the sample request pre-populated.
+
+You can review the sample response to the request by clicking on the response button to the right -
+
+<Frame>
+  <img src="/images/deprecated-docs/477d862-Click_for_sample_response.png" />
+</Frame>
+
+Behold!
+
+<Frame>
+  <img src="/images/deprecated-docs/ca44638-Open_sample_response.png" />
+</Frame>
+
+You can make requests in the documentation center by updating your API key in the header, and edit the body parameters to include the inputs you're interested in enriching.
+
+<Frame caption="updating body params for your request">
+  <img src="/images/deprecated-docs/8c2c45a-Changing_request_params.png" />
+</Frame>
+
+The request window will update accordingly, the final step is to click on **Try It!** and see the response.
+
+Let's get you started!

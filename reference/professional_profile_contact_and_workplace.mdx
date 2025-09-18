@@ -1,0 +1,78 @@
+---
+title: "Professional profile: contact and workplace"
+openapi: post /v1/prospects/profiles/enrich
+---
+
+### Introduction
+
+The **Professional Profile Contact and Workplace Enrichments** API provides comprehensive professional details about a prospect, including job history, company affiliations, skills, education, and workplace details. This endpoint is designed to enhance prospect intelligence, streamline recruitment efforts, and improve sales and marketing strategies.
+
+<Icon icon="thumbtack" color="red" iconType="solid"/> **Key Benefits:**
+
+- Access **detailed career history**, including past and present job roles.
+- Retrieve **company affiliations** and workplace insights.
+- Analyze **skills and expertise** for targeted outreach.
+- Gain **educational background** to understand professional qualifications.
+- Improve **lead scoring and personalization** in sales and marketing campaigns.
+
+### Endpoint: `POST /prospects/profiles/enrich`
+
+<AccordionGroup>
+<Accordion title="How It Works">
+
+1. **Input:** Provide a `prospect_id` (retrieved from the **Match Prospects** endpoint) to fetch professional details.
+2. **Processing:** The system gathers professional data from multiple sources and structures it.
+3. **Output:** A response containing job history, workplace affiliations, skills, and education details.
+
+</Accordion>
+
+<Accordion title="Request Schema">
+
+| Field | Type | Description |
+|:---|:---|:---|
+| `prospect_id` | String | A unique identifier for the prospect (Required) |
+
+</Accordion>
+
+<Accordion title="Best Practices">
+
+- **Use verified prospect IDs** to ensure accurate data enrichment.
+- **Leverage job history and expertise** for recruitment and lead scoring.
+- **Incorporate workplace insights** into sales and marketing automation.
+- **Analyze skills and education** to personalize communication and engagement.
+- **Cross-check company affiliations** for networking and partnership opportunities.
+
+</Accordion>
+
+<Accordion title="Professional Profile Contact and Workplace Output Signal">
+
+| Signal | API Name | Description | Data Type Final |
+|:---|:---|:---|:---|
+| Individual's gender | gender | Gender reported by the individual on their profile. If gender is not reported on profile, returned value is 'null'. | string |
+| Individual's city of residence | city | Individual's city of residence reported on profile. | string |
+| Individual's country of residence | country\_name | Individual's country of residence reported on profile. | string |
+| Individual's State / Region of residence | region\_name | Individual's state or region of residence reported on profile. | string |
+| Individual's workplace: company website | company\_website | URL to the company website belonging to the individual's workplace. | string |
+| Individual's workplace: company LinkedIn® url | company\_linkedin | URL to the company LinkedIn® page belonging to the individual's workplace. | string |
+| Individual's LinkedIn® URL | linkedin | URL of the individual's LinkedIn® profile. | url |
+| Individual's age group | age\_group | Individual's estimated age group. | string |
+| Individual's work experience background | experience | List of work experience background entries on the individual's profile. May include: company name, company website, job title, seniority level, role, start date, end date, and more. Includes current work experience activities if listed. | array |
+| Individual's educational background | education | List of educational background entries on the individual's profile. May include: institutions name, institutions website, degree category, major, start date, end date, and more. Includes current educational activities if listed. | array |
+| Individual's interests | interests | List of all interests reported by the individual on their profile. | array |
+| Individual's skills | skills | List of all skills reported by the individual on their profile. | array |
+| Individual's job department | job\_department | Individual's job department, derived from their current job title. | object |
+| Individual's seniority level | job\_seniority\_level | Individual's top seniority level, derived from their current job title. | object |
+| Individual's workplace: company name | company\_name | Name of the company the individual listed as their workplace. | string |
+| Individual's job title | job\_title | Individual's current job title listed on their professional profile. | string |
+| Individual's full name | full\_name | First and last names associated with the individual, appended with a space. | string |
+
+</Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" color="red" iconType="solid"/> **For additional enrichment options, explore related API endpoints below.**
+
+## Body Params - Try Me Example
+
+```
+prospect_id: ee936e451b50c70e068e1b54e106cb89173198c4
+```

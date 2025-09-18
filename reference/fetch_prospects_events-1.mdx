@@ -1,0 +1,134 @@
+---
+title: "Prospect Events"
+openapi: post /v1/prospects/events
+---
+
+### Introduction
+
+The **Prospect Events** API provides insights into recent events related to selected prospects, including job changes, company transitions, and professional anniversaries. These insights are essential for timely engagement, personalized outreach, and tracking career movements.
+
+<Icon icon="thumbtack" iconType="solid" color="red"/> **Key Benefits:**
+
+- Track **real-time career movements** of prospects.
+- Identify **engagement opportunities** based on job changes.
+- Enhance **lead nurturing** by targeting prospects during career transitions.
+- Integrate with **CRM and sales platforms** for automated alerts.
+
+**Important:** Events API tracks only **recent events within the last quarter (3 months)**. If no relevant events occurred in this timeframe, no data will be returned.
+
+**Looking for historical data?** Use the **Prospect Enrichment API** to retrieve long-term career and engagement trends.
+
+### Endpoint: `POST https://api.explorium.ai/v1/prospects/events`
+
+<AccordionGroup>
+<Accordion title="How It Works">
+
+1. **Input:** Provide a list of prospect IDs and event types.
+2. **Processing:** The system retrieves relevant event details.
+3. **Output:** A structured response with matched prospect events.
+
+</Accordion>
+
+<Accordion title="Query Parameters">
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `event_types` | Array | List of event types to filter results. See event types below. |
+| `prospect_ids` | Array | List of prospect IDs to track. |
+| `timestamp_from` | String | Return only events that occurred after this timestamp. |
+
+</Accordion>
+
+<Accordion title="Supported Event Types">
+
+| Event Type | Description |
+| :--- | :--- |
+| [prospect\_changed\_role](/reference/#prospect_changed_role) | Prospect has changed their role. |
+| [prospect\_changed\_company](/reference/#prospect_changed_company) | Prospect has changed their company. |
+| [prospect\_job\_start\_anniversary](/reference/#prospect_job_start_anniversary) | Employee's workplace anniversary, marking the anniversary of the employee's start date at their company. |
+</Accordion>
+
+<Accordion title="Example and Response Request (cURL)">
+
+### Example Request (cURL)
+
+```curl cURL expandable
+curl -X POST \
+  "https://api.explorium.ai/v1/prospects/events" \
+  -H "API_KEY: your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "event_types": [
+    "prospect_changed_role",
+    "prospect_changed_company"
+  ],
+  "prospect_ids": [
+        "20ae6cbf564ee683e66685e429844a5ff8ffc30f",
+    "4c485f009d59e319dc039cdf3e935b85014e6a33",
+    "fd4c46716295a2e4731417eee802a883280e4d57",
+    "a7bbe0674c63338e62ae4c10751ae19da5723e5a"
+  ],
+  "timestamp_from": "2024-01-01T10:03:03.050Z"
+}
+'
+```
+
+### Example Response
+
+```json JSON expandable
+{
+  "response_context": {
+    "correlation_id": "2826dd3eca6b4625aeddc30a3b96e11d",
+    "request_status": "success",
+    "time_took_in_seconds": 0.931
+  },
+  "output_events": [
+    {
+      "event_name": "prospect_changed_company",
+      "event_time": "2024-07-01T00:00:00+00:00",
+      "event_id": "3f7e8cf51cfd522ff0cef2249772ec0c",
+      "data": {
+        "event_name": "prospect_changed_company",
+        "current_company_name": "Headovations",
+        "current_company_id": "23d794056048ff2bc8c6b3a4ecd223d1",
+        "current_job_title": "Vice President Of Business Development",
+        "previous_company_name": "Gods Gang",
+        "previous_company_id": "23d794056048ff2bc8c6b3a4ecd223d1",
+        "previous_job_title": "Vice President Of Business Development"
+      },
+      "prospect_id": "4c485f009d59e319dc039cdf3e935b85014e6a33"
+    },
+    {
+      "event_name": "prospect_changed_company",
+      "event_time": "2024-06-01T00:00:00+00:00",
+      "event_id": "10f4a011c10112a6a986ff856107104c",
+      "data": {
+        "event_name": "prospect_changed_company",
+        "current_company_name": "Actalent",
+        "current_company_id": "97a52bce42dfc8f332fd534c4de8139f",
+        "current_job_title": "Aec Career Consultant / Recruiter",
+        "previous_company_name": "Koln/Kgin Tv 10/11 News",
+        "previous_company_id": "d8c9b663c31e377b0fdc80d156e66a06",
+        "previous_job_title": "Aec Career Consultant / Recruiter"
+      },
+      "prospect_id": "20ae6cbf564ee683e66685e429844a5ff8ffc30f"
+    }
+  ]
+}
+```
+</Accordion>
+
+<Accordion title="Best Practices">
+- **Monitor career movements** to enhance engagement strategies.
+- **Leverage anniversaries** for personalized outreach.
+- **Refine search criteria** to track only relevant prospects.
+- **Utilize automation** to integrate prospect event tracking into CRM workflows.
+- **Combine with enrichment data** to build a full profile of each prospect.
+</Accordion>
+
+<Accordion title="Event Categories">
+- [Employee job changes](/reference/employee-job-changes) - Tracks when an employee changes their job title within the same company.
+- [Recently changed company](/reference/recently-changed-company) - Identifies when an employee transitions to a new company.
+- [Employee's workplace anniversary](/reference/employees-workplace-anniversary) - Marks the annual anniversary of an employee’s start date at their current company.
+</Accordion>
+</AccordionGroup>

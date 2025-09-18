@@ -1,0 +1,83 @@
+---
+openapi: post /v1/custom_enrichments/{enrichment_id}/bulk_enrich
+---
+
+## Consuming Custom Enrichments with the AgentSource API
+
+After creating your custom enrichment, you can consume it through the AgentSource API. Here's how:
+
+### Endpoint: `POST api.explorium.ai/v1/custom_enrichments/<custom_enrichment_id>/bulk_enrich`
+
+## Description
+
+Consume a custom enrichment by enriching a bulk of businesses.
+
+#### Parameters
+
+- **data\_context**: DataFrame DICT - Rows of data that will be used for evaluation. Must include a business\_id field and can optionally include other user features.
+
+#### Request Example
+
+```shell cURL
+POST api.explor{
+  "data_context": [
+    {
+      "name": "Explorium",
+      "business_id": "340c8040bd50cbab9c7df718bbe51cc9"
+    },
+    {
+      "name": "Databricks",
+      "business_id": "fe4ae057b38fcbb9e0dbcef83f918c42"
+    },
+    {
+      "name": "Microsoft Corporation",
+      "business_id": "a34bacf839b923770b2c360eefa26748"
+    }
+  ],
+  "request_context": {
+    "request_id": "ds7fdjhn293hsd8f9yu"
+  }  
+}
+ium.ai/v1/custom_signals/<custom_signal_id>/enrich`
+```
+
+#### Response Example
+
+```json cURL expandable
+{
+  "response_context": {
+    "correlation_id": "7155dd3ac8294e728eacc46632977e7a",
+    "request_status": "success",
+    "time_took_in_seconds": 0.474
+  },
+  "data": [
+    {
+      "business_id": "340c8040bd50cbab9c7df718bbe51cc9",
+      "data": {
+        "name": "Explorium",
+        "business_id": "340c8040bd50cbab9c7df718bbe51cc9",
+        "Business Type": "B2B",
+        "Reasoning": "Explorium primarily serves businesses by providing data solutions and insights to enhance their go-to-market strategies, which aligns with a B2B model. The focus on enterprise-grade data and partnerships with industry leaders further supports this classification."
+      }    
+    },
+    {
+      "business_id": "fe4ae057b38fcbb9e0dbcef83f918c42",
+      "data": {
+        "name": "Databricks",
+        "business_id": "fe4ae057b38fcbb9e0dbcef83f918c42",
+        "Business Type": "B2B",
+        "Reasoning": "Databricks primarily serves businesses and organizations, including many Fortune 500 companies, by providing data and AI solutions, which classifies it as a B2B company. The focus on enterprise-level services and partnerships further supports this classification."
+      }
+    },
+    {
+      "business_id": "a34bacf839b923770b2c360eefa26748",
+      "data": {
+        "name": "Microsoft Corporation",
+        "business_id": "a34bacf839b923770b2c360eefa26748",
+        "Business Type": "B2B2C",
+        "Reasoning": "Microsoft operates in both B2B and B2C markets, providing software and services to businesses while also offering products directly to consumers, such as Windows and Office software. Their diverse range of offerings, including cloud services and developer tools, supports both business clients and individual users."
+      }
+    }
+  ]
+}
+```

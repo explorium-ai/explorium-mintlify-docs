@@ -1,0 +1,64 @@
+---
+title: "Employee changed role"
+---
+
+## Description
+
+An **Employee Changed Role** event tracks when an individual transitions into a new job or role. This data provides insights into career progressions, role changes, and leadership movement. The role change could occur at the same workplace they were previously or at a new one.
+
+**Important:** The **Employee Job Changes** event tracks **only recent position changes** within the last quarter (`timestamp_from` should be set to the past 3 months). If no employee changed jobs within the specified timeframe, no data will be returned.
+
+**For a historical view of workforce changes,** use the **Professional profile contact and workplace Enrichment API**.
+
+## Use cases:
+
+- **Talent Intelligence**: Identify professionals moving into leadership positions.
+- **Sales & Outreach**: Target prospects who recently changed roles for timely engagement.
+- **Competitive Insights**: Track how key personnel shifts affect businesses.
+- **Recruitment Strategy**: Monitor role changes for hiring opportunities.
+
+
+## Data Schema
+
+**Event Name: "prospect_changed_role" (Use this value in the event_types parameter when querying this event.)**
+
+| Signal | API Name | Description | Data Type |
+| :--- | :--- | :--- | :--- |
+| Employee's previous job title | previous\_job\_title | Individual's previous job title listed on their professional profile. | string |
+| Event time | event\_time | The timestamp indicating when the event actually occurred | datetime |
+| Employee's current job title | current\_job\_title | Individual's current job title listed on their professional profile. | string |
+| Employee's current workplace | current\_company\_name | Name of the company where the individual currently works. | string |
+| Current workplace entity ID | current\_company\_id | Explorium's 32 character unique entity ID associated with the individual's current workplace. | string |
+| Employee's previous workplace | previous\_company\_name | Name of the company where the individual previously worked. | string |
+| Previous workplace entity ID | previous\_company\_id | Explorium's 32 character unique entity ID associated with the individual's previous workplace. | string |
+| Event name | event\_name | Name of the event related to employee's role change. | string |
+
+## Query Example
+
+```curl cURL
+curl -X POST \
+  "https://api.explorium.ai/v1/prospects/events" \
+  -H "API_KEY: your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "event_types": [
+    "prospect_changed_role"
+  ],
+  "prospect_ids": [
+    "20ae6cbf564ee683e66685e429844a5ff8ffc30f"
+  ],
+  "timestamp_from": "2024-01-01T10:03:03.050Z"
+}'
+```
+
+## Best Practices
+
+- **Filter by company (`current_company_name`)** to track role changes within target organizations.
+- **Monitor title progression (`current_job_title`)** to identify career advancements.
+- **Use timestamps (`event_time`)** to act on timely job changes.
+
+## Related Events
+
+- [Recently changed company](/reference/recently-changed-company) - Identifies when an employee transitions to a new company.
+- [Employee's workplace anniversary](/reference/employees-workplace-anniversary) - Marks the annual anniversary of an employee’s start date at their current company.
+

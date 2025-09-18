@@ -1,0 +1,86 @@
+---
+title: "Hiring by department"
+---
+## Description
+
+A **Hiring by Department** event tracks when a company is actively recruiting for roles within specific departments and locations. This data helps monitor workforce expansion, industry hiring trends, and competitive recruitment strategies.
+
+**Important:** The **Hiring by Department** event surfaces **only recent department hiring trends** within the last quarter (`timestamp_from` should be set to the past 3 months). If no hiring activity occurred in the selected timeframe, the response will be empty.
+
+**For long-term workforce insights,** use the **Workforce Trends Enrichment API**.
+
+## Use cases:
+
+- **Workforce Trends**: Identify industries and companies with growing hiring activity.
+- **Competitive Intelligence**: Track hiring patterns of competitors.
+- **Economic Indicators**: Understand job market health in specific sectors.
+- **Talent Acquisition**: Optimize recruitment strategies by targeting high-growth industries.
+
+
+## Data Schema
+
+**Event Name: "hiring_in_&lt;department&gt;" (Use this value in the event_types parameter when querying specific hiring events per department. Replace &lt;department&gt; with the actual department name.)**
+
+| Signal | API Name | Description | Data Type |
+| :--- | :--- | :--- | :--- |
+| Role location | location | Location of the position inferred from the available information. | string |
+| Event time | event\_time | The timestamp indicating when the event actually occurred | datetime |
+| Number of available roles | job\_count | Number of open positions company is hiring for at the selected site and department. | integer |
+| Job titles | job\_titles | List of the open position titles listed per department and site. | array&lt;string&gt; |
+| Department | department | Company department where the open positions were listed. | string |
+| Event name | event\_name | Name of the event related to the company's hiring activity. | string |
+
+### Departments Included
+
+| Event Name | Description |
+| :--- | :--- |
+| `hiring_in_creative_department` | Hiring for creative department roles |
+| `hiring_in_education_department` | Hiring for education department roles |
+| `hiring_in_engineering_department` | Hiring for engineering department roles |
+| `hiring_in_finance_department` | Hiring for finance department roles |
+| `hiring_in_health_department` | Hiring for health department roles |
+| `hiring_in_human_resources_department` | Hiring for human resources department roles |
+| `hiring_in_legal_department` | Hiring for legal department roles |
+| `hiring_in_marketing_department` | Hiring for marketing department roles |
+| `hiring_in_operations_department` | Hiring for operations department roles |
+| `hiring_in_professional_service_department` | Hiring for professional service department roles |
+| `hiring_in_sales_department` | Hiring for sales department roles |
+| `hiring_in_support_department` | Hiring for support department roles |
+| `hiring_in_trade_department` | Hiring for trade department roles |
+| `hiring_in_unknown_department` | Hiring for unknown department roles |
+
+## Query Example
+
+```curl cURL
+curl -X POST \
+  "https://api.explorium.ai/v1/businesses/events" \
+  -H "API_KEY: your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "event_types": [
+    "hiring_in_engineering_department"
+  ],
+  "business_ids": [
+    "8adce3ca1cef0c986b22310e369a0793"
+  ],
+  "timestamp_from": "2025-01-01T10:03:03.050Z"
+}'
+```
+
+## Best Practices
+
+- **Filter by department (`department`)** to analyze hiring trends in specific fields.
+- **Monitor job titles (`job_titles`)** to track demand for specialized roles.
+- **Use job count (`job_count`)** to assess workforce expansion rates.
+
+## Related Events
+
+<Columns cols={2}>
+<Card icon="users" horizontal title="Department trend (per department)" href="/reference/department-trend">
+Workforce Changes by Department
+</Card>
+<Card icon="user-plus" horizontal title="Employee Joined Company" href="/reference/employee-joined-company">
+Announcement of a new employee joining the company
+</Card>
+</Columns>
+

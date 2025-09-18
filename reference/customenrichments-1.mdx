@@ -1,0 +1,178 @@
+---
+title: "Custom Enrichments"
+sidebarTitle: "Overview"
+---
+
+## Introduction
+
+The Custom Enrichments App allows you to create tailored data enrichments that match your unique go-to-market (GTM) strategy. Using natural language, you can define custom enrichments that provide precisely the insights you need, beyond what standard data catalogs offer.
+
+This documentation will guide you through:
+
+- Creating custom enrichments using the chat-based [interface](https://chat.explorium.ai/)
+- Consuming custom enrichments via the AgentSource API
+
+### What are Custom enrichments?
+
+A custom Enrichment is a structured data field — such as a boolean, string, number, or array that provides a specific insight about a company, based on external third-party data. You define the enrichment using natural language in the Custom Enrichment App (e.g., "Is the company currently hiring engineers?"), and the platform enriches company records by applying this logic across Explorium's wide array of data sources — such as job postings, news, firmographics, and web activity. Think of it as a tailored, auto-generated feature you can use in GTM workflows to prioritize leads, personalize messaging, or segment accounts. It's your own custom lens on company behavior or characteristics.
+
+## Creating Custom Enrichments with the Chat Interface
+
+### Getting Started
+
+The Custom Enrichments App provides an interactive, chat-like experience where you can define and refine your data enrichments.
+
+<Frame>
+![](/images/reference/a522710001e12cedb3f6da7347dd780aa981da1565c1161ea3ef9fb15e9c1e17-image.png)
+</Frame>
+
+To create a custom enrichment:
+
+<Steps>
+<Step title="Choose a Starting Point:">
+You have two options:
+1. Select one of the eight sample prompts that many customers prefer
+2. Create your own by entering a custom prompt text
+</Step>
+<Step title="View Sample Data:">
+The interface displays a sample of five companies that can be enriched using your selected or created prompt.
+</Step>
+<Step title="Process the Data:">
+The system will process your prompt and apply it to the sample data.
+</Step>
+<Step title="Review Results:">
+After the creation process is complete, you'll see the sample data enriched with the enrichment's columns.
+</Step>
+<Step title="Evaluate and Refine:">
+Assess how well the added enrichment's columns align with your prompt and adjust as needed.
+
+<Frame>
+![](/images/reference/0d01d757f8a03493e736aad0ad7436839f76dec21dbb1e6d90e446e0abd73883-image.png)
+</Frame>
+</Step>
+</Steps>
+
+## Enhancing Your Custom Enrichments
+
+To improve the accuracy and relevance of your enrichment's columns, you can:
+
+<Steps>
+<Step title="Update Context Configuration:">
+Provide additional information about your business needs to enhance enrichment accuracy.
+
+<Frame>
+![](/images/reference/8d8b92d697494bba87f636d59a0684c334113314f5d5551227fb763157364de6-image.png)
+</Frame>
+
+The context configuration includes:
+
+- Customer Pain Points
+- Value Proposition
+- Target ICP (Ideal Customer Profile)
+- Additional Information
+
+<Frame>
+![](/images/reference/f9ee3254b1f2a1e21da5dbff6f46eb4d1c0e82c0faa963e814e8df7a1a868ffe-image.png)
+</Frame>
+
+</Step>
+<Step title="Define Output Schema:">
+Customize how your enrichment's columns will be displayed by defining:
+1. Signal name
+2. Type (string, boolean, number, array)
+3. Output values
+4. Description
+
+<Frame>
+![](/images/reference/fc3276ee743d247c80336f8fec5169110040f6379b749800f8bb41cec5e623fe-image.png)
+</Frame>
+
+<Frame>
+![](/images/reference/a0361c85d315006f17fa93c98aaee477a49b3819043f75d4ef79ee2d04d321b9-image.png)
+</Frame>
+
+By default, the output schema of our custom enrichment is defined automatically. However, in some cases you will want to choose your own output schema. For example, selecting the btb/btc custom enrichment template, creates a field named 'Business Type' with these possible options: BTB / BTC / Both. However, we might want to have a different field name (maybe 'Company Type') with these options BTB / BTC / BTCTC / Other.
+We can easily set it this way:
+
+<Frame>
+![](/images/reference/7a6f8ab0cd9a04075017628727a06863d30982b771282533d56b904d3e704a1a-Screenshot_2025-03-26_at_16.24.23.png)
+</Frame>
+</Step>
+<Step title="Explore Data Sources:">
+You can view which enrichments were used to obtain the results by exploring the data pipeline.
+
+<Frame>
+![](/images/reference/b902f4312649f573b20e00651cbfa019502b5e40a2a4967bed2a2da8df8c871d-image.png)
+</Frame>
+</Step>
+
+<Step title="Test with Your Own Data:">
+Instead of using the sample data, you can upload your own CSV or JSON file to see how your custom enrichment performs on your actual data.
+
+<Frame>
+![](/images/reference/986f98109681c9dfe7dfac65ec60760ea754bcdb76d0d7d81fdc0406fae3bb59-image.png)
+</Frame>
+</Step>
+<Step title="Understanding the Output - Reasoning & Confidence:">
+Together with the custom enrichment's signals, you will notice a Reasoning field. The reasoning field is a human-readable explanation generated by the enrichment model to clarify how it reached the output value. This is particularly useful for debugging or transparency in GTM agents.
+
+For Example, in the below image, we can see that Attio was classified as a B2B, and reading the Reasoning explains very clearly how the model concluded that. By following the custom enrichment results and the reasoning field, we can understand whether we are fine with the enrichment logic, or if a further fine-tuning is needed.
+
+<Frame>
+![](/images/reference/5b78f91bfadf17748442829e10af9f0a6976166c3fc784091a339edf33511ecb-Screenshot_2025-03-26_at_15.58.36.png)
+</Frame>
+</Step>
+
+<Step title="Export via API:">
+Once you're satisfied with the enrichment, you can consume it via AgentSource API for use in your systems. (See instructions on how to obtain an api key [here](/reference/getting_your_api_key))
+
+<Frame>
+![](/images/reference/2cbda5554d75072be16e78ec49e6420b39d0ce05b621f53f72ec9bbbf6c64a76-image.png)
+</Frame>
+
+<Frame>
+![](/images/reference/62de7cf8cf196a2ac4f7d6a47ffec1c29bf8985517dc717ba6c868dfb5a80e8f-Screenshot_2025-03-27_at_9.56.57.png)
+</Frame>
+</Step>
+</Steps>
+
+There are two endpoints for consuming a custom enrichment:
+
+- **Single record enriching with custom enrichment**:
+	When you have only one record to enrich, you can use the single enrich endpoint,
+	read more about it [here](/reference/enrich_with_custom_enrichment).
+- **Bulk enriching with custom enrichment**:
+	When you have more than one record to enrich, you can use the bulk enrich endpoint,
+	read more about it [here](/reference/customenrichments-1).
+
+## Project Management
+
+All custom enrichments you create are saved as projects for future use.
+
+A **project** is a container for one enrichment flow that results in a **dedicated API endpoint**. A project can include **multiple signals**, added through the chat. This is useful when signals are related and consumed together.
+
+On the other hand, if an enrichment's signal in a project is used separately in your agent's flow, it will make more sense to keep it in its own project for a better modular API access.
+
+You can manage projects as follows:
+
+<Steps>
+	<Step title="View All Projects:">
+	Click on "All Projects" to see a list of all your projects, which can be filtered by creator name and date.
+	</Step>
+	<Step title="Manage Projects:">
+	For each project, you can:
+	1. Consume (use the API)
+	2. Rename
+	3. Delete
+
+	<Frame>
+	![](/images/reference/7c8c793b89b930980715152318847624e4500478f772773c6b2d71aa29ef7d39-image.png)
+	</Frame>
+
+	<Frame>
+	![](/images/reference/086f906bd7f06d4fd809a5e115b6d2b1dcf0f02e317d13b4444852d610065e60-image.png)
+	</Frame>
+	</Step>
+</Steps>
+
+

@@ -1,0 +1,86 @@
+---
+title: "Add prospects enrollments"
+openapi: post /v1/prospects/events/enrollments
+---
+
+## Endpoint: POST /v1/prospects/events/enrollments
+
+## Description
+
+The Prospect Events Enrollment endpoint enables you to monitor specific prospects for professional changes and milestones. This "subscription" approach automates tracking of individual career movements such as job changes, role changes, and work anniversaries.
+When you enroll, the system will continuously monitor for new events related to your specified prospects. These events can be retrieved later or delivered via webhook, depending on your integration preferences.
+
+### Important Considerations for Enrollments
+
+- Multiple event types can be monitored for the same set of prospects.
+- Each enrollment is uniquely identified by its enrollment\_key.
+- Events are collected in the background, optimizing API usage and ensuring you don't miss important updates.
+
+<AccordionGroup>
+<Accordion title="How It Works">
+
+**Input**: Define parameters including prospect\_ids, event\_types, and ttl\_days.
+**Processing**: The system registers your enrollment and begins monitoring for events.
+**Output**: A confirmation response containing your enrollment\_id for future reference.
+
+</Accordion>
+
+<Accordion title="Query Parameters">
+
+| Field | Type | Description |
+|:---|:---|:---|
+| enrollment\_key | String | A unique identifier for this enrollment |
+| prospect\_ids | Array | List of Prospect IDs to monitor for events |
+| event\_types | Array | Types of events to monitor (e.g., prospect\_changed\_role, prospect\_changed\_company) |
+
+</Accordion>
+
+<Accordion title="Example Request (cURL)">
+
+```shell Bash
+curl -X POST \
+  "https://api.explorium.ai/v1/prospects/events/enrollments" \
+  -H "API_KEY: your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "enrollment_key": "tech_executives_monitor",
+  "prospect_ids": [
+    "20ae6cbf564ee683e66685e429844a5ff8ffc30f",
+    "4c485f009d59e319dc039cdf3e935b85014e6a33"
+  ],
+  "event_types": [
+    "prospect_changed_role",
+    "prospect_changed_company"
+  ],
+  "ttl_days": 365
+}'
+```
+
+</Accordion>
+
+<Accordion title="Example Response">
+
+```json JSON
+{
+  "request_context": {
+    "correlation_id": "1234",
+    "request_status": "success",
+    "time_took_in_seconds": 0.515
+  },
+  "enrollment_key": "tech_executives_monitor",
+  "enrollment_id": "en_8d52c3f1"
+}
+```
+
+</Accordion>
+
+<Accordion title="Best Practices">
+
+- Use descriptive enrollment\_key values to easily identify different monitoring setups.
+- Group prospects by industry, seniority, or target accounts for organized monitoring.
+- Combine with webhook registration for real-time notifications of career changes.
+
+</Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" color="red" iconType="solid" /> **For detailed endpoint explanations, request examples, and integration tips, explore the documentation sections above.**

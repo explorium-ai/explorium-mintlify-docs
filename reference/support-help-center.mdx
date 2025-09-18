@@ -1,0 +1,120 @@
+---
+title: "Support & Help Center"
+---
+
+## How to Contact Support
+
+For any issues, questions, or assistance, our support team is available to help. You can reach us through the following channels:
+
+**Email Support:** [support@explorium.ai](mailto:support@explorium.ai)
+**Slack Channel:** If you have a dedicated Slack channel with us, you can post your question there.
+
+## Submitting a Support Request
+
+To help us resolve your issue efficiently, please provide the following details when submitting a request:
+
+1. **Steps to Replicate:** Describe the exact steps you took before encountering the issue.
+2. **API Endpoint Used:** Specify which API endpoint you were using.
+3. **Exact Request Sent:** Include the request payload.
+
+<CodeGroup>
+```json JSON expandable
+{
+    "request_context": {
+    "seller_id": "sample_seller"
+    },
+    "businesses_to_match": [
+    {
+        "name": "apple",
+        "domain": "apple.com"
+    },
+    {
+        "name": "explorium",
+        "domain": "explorium.ai"
+    }
+    ]
+}
+```
+</CodeGroup>
+4. **Expected Response:** What result did you expect to receive?
+5. **Actual Response:** Provide the actual response you received.
+
+<CodeGroup>
+```json JSON expandable
+{
+    "response_context": {
+    "correlation_id": "7a446e57517e43c187f89339ab552dad",
+    "request_status": "success",
+    "time_took_in_seconds": 5.17
+    },
+    "total_results": 2,
+    "total_matches": 2,
+    "matched_businesses": [
+    {
+        "input": {
+        "name": "apple",
+        "domain": "apple.com",
+        "url": null
+        },
+        "business_id": "8adce3ca1cef0c986b22310e369a0793"
+    },
+    {
+        "input": {
+        "name": "explorium",
+        "domain": "explorium.ai",
+        "url": null
+        },
+        "business_id": "340c8040bd50cbab9c7df718bbe51cc9"
+    }
+    ]
+}
+```
+</CodeGroup>
+6. **Error Message (if any):** Copy and paste any error message you encountered.
+7. **Correlation ID (if available):** This can be found in the API response and helps us track your request faster.
+
+### Example Support Request:
+
+<CodeGroup>
+```json JSON expandable
+{
+"issue": "Received a 403 error when calling the Fetch Business Events API",
+"steps_to_replicate": "Sent a request to \`/businesses/events\` with valid parameters",
+"exact_request_send": "<copy the exact request payload here>",
+"expected_response": "A list of recent business events",
+"actual_response": {
+"error": "You have insufficient credits to perform this operation."
+},
+"correlation_id": "4826416550f648e58cc9e2ceee2529b7"
+}
+```
+</CodeGroup>
+
+## Credit Usage Policy:
+
+- If a request **returns an error** (e.g., `403 Forbidden`, `400 Bad Request`), no credits will be deducted.
+- If a request **returns no results** (i.e., no relevant data is available for the given parameters), no credits will be deducted.
+- Credits are consumed **only when valid, billable data is returned** from the API.
+
+## Common Issues & Troubleshooting
+
+### I received a `403 Forbidden` error.
+
+- Check if your API key is valid and has sufficient permissions.
+- Ensure you have available credits for the requested operation.
+- If using a protected endpoint, confirm you have the necessary access rights.
+
+### I received a `400 Bad Request` error.
+
+- Verify that all request parameters are formatted correctly.
+- Ensure the required fields are included in the request.
+
+### I received a `429 Too Many Requests` error.
+
+- You have exceeded the rate limit for API calls. Implement **exponential backoff** before retrying.
+- Monitor your API usage and consider upgrading your plan if needed.
+
+### I received a `500 Internal Server Error`.
+
+- This could indicate a temporary issue on our side. Try again later, and if the problem persists, contact support with your correlation ID.
+

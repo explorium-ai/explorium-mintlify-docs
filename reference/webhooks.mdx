@@ -1,0 +1,353 @@
+---
+title: "Webhooks: Receiving Real-Time Events"
+sidebarTitle: "Overview"
+---
+
+
+## Overview
+
+Webhooks enable you to receive real-time notifications when important events occur in Explorium's data ecosystem. This guide will walk you through setting up a webhook to receive push notifications for business and prospect events you're interested in monitoring.
+
+## Quick Start
+
+1. **Register a webhook** - Create a single webhook endpoint that will receive all event notifications
+2. **Implement a secure receiver** - Set up your handler to validate and process incoming events
+3. **Test connectivity** - Verify your webhook is configured correctly
+4. **Enroll for events** - Subscribe to specific events using the enrollment endpoints
+5. **Process events** - Receive and handle real-time events as they occur
+  
+
+## Webhook Architecture
+
+Each partner can register one webhook URL that serves as the destination for all event notifications. When you enroll businesses or prospects for event monitoring, all triggered events are sent to this webhook.  
+To differentiate between various monitoring use cases, you can assign a unique enrollment\_key when enrolling entities. This key is included in every event notification, allowing you to route and process events according to your internal systems.
+
+## Step 1: Register Your Webhook
+
+Register a webhook URL where Explorium will send event notifications.
+
+### Endpoint
+
+- **Method**: `POST`
+- **URL**: `https://api.explorium.ai/v1/webhooks`
+  
+
+### Request
+
+```json JSON
+{   
+    "partner_id": "your_partner_id",   
+    "webhook_url": "https://your-domain.com/webhook-handler" 
+}
+```
+
+  
+
+### Response
+
+```json JSON
+{   
+  "response_context": {
+    "correlation_id": "string",
+    "request_status": "success",
+    "time_took_in_seconds": 0
+  },
+      "created_at": "2025-03-16T11:35:17.720Z",   
+      "last_modified_time": "2025-03-16T11:35:17.720Z",   
+      "webhook_url": "https://your-domain.com/webhook-handler",   
+      "webhook_secret": "your_generated_secret_key" 
+}
+```
+
+**Important Security Note**: The webhook\_secret is used to verify event authenticity. Store this securely and never expose it publicly.
+
+### Webhook Limitations
+
+- You can register only one webhook URL per partner ID
+- Registering a new webhook will override any previous webhook configuration and generate a new webhook secret
+- All event notifications for a partner ID are sent to this single URL
+  
+
+## Step 2: Implement Your Webhook Handler
+
+Your webhook handler needs to:
+
+- Accept **HTTP POST** requests.
+- Validate the signature to ensure event authenticity
+- Process incoming event data based on the event type and enrollment key
+  
+
+### Example Implementation (Python with FastAPI)
+
+```python Python expandable
+import base64
+import hashlib
+import hmac
+import time
+from fastapi import FastAPI, Request, HTTPException
+
+app = FastAPI()
+
+# Store your webhook secret securely
+WEBHOOK_SECRET = "your_generated_secret_key"
+TIME_WINDOW_SECONDS = 300  # 5 minutes
+
+def verify_signature(payload, received_signature, received_timestamp):
+    try:
+        request_time = int(received_timestamp)
+    except ValueError:
+        return False  # Invalid timestamp
+
+    # Check if timestamp is within the acceptable window
+    current_time = int(time.time())
+    if abs(current_time - request_time) > TIME_WINDOW_SECONDS:
+        return False  # Reject old requests
+
+    hmac_key = base64.urlsafe_b64decode(WEBHOOK_SECRET.encode('utf-8'))
+
+    # Recreate message with timestamp + Payload
+    message = f"{received_timestamp}.{payload.decode('utf-8')}".encode("utf-8")
+
+    computed_hmac = hmac.new(hmac_key, message, hashlib.sha256)
+    computed_signature_b64 = base64.urlsafe_b64encode(computed_hmac.digest()).decode('utf-8')
+    return hmac.compare_digest(computed_signature_b64, received_signature)
+
+@app.post("/webhook-handler")
+async def receive_event(request: Request):
+    """Receive and validate webhook events."""
+    payload = await request.body()
+    received_signature = request.headers.get("X-Signature")
+    received_timestamp = request.headers.get('X-Timestamp')
+
+    # Ensure Content-Type is application/json JSON
+    content_type = request.headers.get('Content-Type', '')
+    if not content_type.startswith('application/json JSON'):
+        raise HTTPException(status_code=415, detail="Content-Type must be application/json JSON")
+
+    if not received_signature or not received_timestamp or not verify_signature(payload, received_signature, received_timestamp):
+        raise HTTPException(status_code=400, detail="Invalid signature")
+
+    # Process the event data
+    event_data = await request.json JSON()
+    print(f"Received event: {event_data}")
+    
+    # Extract the enrollment_key to determine how to process this event
+    enrollment_key = event_data.get('enrollment_key')
+    event_type = event_data.get('event_type')
+    entity_id = event_data.get('entity_id')
+    
+    # Process based on enrollment_key, event_type, and entity_id
+    # ...
+
+    return {"message": "Webhook processed successfully"}
+```
+
+**Security Implementation:** The webhook handler verifies that the event is authentic by checking the HMAC signature included in the X-Signature header. This prevents unauthorized systems from sending fake events to your endpoint.
+  
+
+## Step 3: Test Webhook Connectivity
+
+After implementing your webhook handler, verify it's working correctly:
+
+
+### Endpoint
+
+- **Method**: `POST`
+- **URL**: `https://api.explorium.ai/v1/webhooks/check_connectivity`
+  
+
+### Request
+
+```json JSON
+{   
+    "partner_id": "your_partner_id"
+}
+```
+
+### Response
+
+```json JSON
+{
+  "response_context": {
+    "correlation_id": "string",
+    "request_status": "success",
+    "time_took_in_seconds": 0
+  }
+}
+```
+
+- The system will send a test event to your webhook and return the response from your handler
+  
+
+## Advanced Testing
+
+Once your webhook is set, You can run more enhanced testing, that will allow you to:
+
+- Test with mock data for specific event types
+- Validate your event handling logic with realistic event payloads
+- Simulate various event scenarios for better integration testing
+  
+
+Use the same Test webhook connectivity url, with these parameters:
+
+- **event\_type**: event type to simulate (currently available types: new\_office, closing\_office, funding\_round, new\_investment, outages\_and\_security\_breaches)
+- **number\_of\_events**: the number of simulated events to receive.
+  
+
+### Request:
+
+```json JSON
+{   
+    "partner_id": "your_partner_id",
+  	"simulation": {
+    	"event_type": "funding_round",
+    	"number_of_events": 3
+  	}
+}
+```
+
+  
+
+### Response:
+
+```json JSON
+{
+  "response_context": {
+    "correlation_id": "7f53fa0b79fd4edf9fce50d1e530aac7",
+    "request_status": "success",
+    "time_took_in_seconds": 0.563
+  }
+}
+```
+
+- This will result in pushing 3 "funding\_round" events to your webhook.  
+	You can use the response to validate your event handling logic.
+  
+
+## Step 4: Enroll for Events
+
+Once your webhook is set up, you can enroll entities (businesses or prospects) for event monitoring.
+
+### Business Enrollment Endpoint
+
+**Method**: `POST`  
+**URL**: `https://api.explorium.ai/v1/businesses/events/enrollments`
+
+### Example Request
+
+```json JSON
+{
+  "enrollment_key": "your_custom_key_123",
+  "event_types": ["new_product", "new_funding_round"],
+  "business_ids": ["business_id_1", "business_id_2"]
+}
+```
+
+  
+
+### Prospect Enrollment Endpoint
+
+**Method**: `POST`  
+**URL**:`https://api.explorium.ai/v1/prospects/enrollments`
+
+### Example Request
+
+```json JSON
+{
+  "enrollment_key": "your_custom_key_123",
+  "event_types": ["event1", "event2"],
+  "prospect_ids": ["prospect_id_1", "prospect_id_2"]
+}
+```
+
+  
+
+### Key Enrollment Parameters:
+
+- `enrollment_key`: A custom identifier you provide to categorize this set of enrollments. You can use this to:
+	- Group enrollments by customer/client ID
+	- Segment by monitoring campaign or use case
+	- Differentiate between different business processes
+	- This key will be included in each event notification, allowing you to route events appropriately
+- `business_ids/prospect_ids`: Business or prospect IDs to monitor (up to 20 per request)
+	- While each request is limited to 20 IDs, there's no limit on the total number of IDs you can enroll across multiple requests
+	- You can enroll thousands of entities by making multiple enrollment requests
+
+### Event Payload Structure
+
+When an enrolled event is triggered, you'll receive a payload like this:
+
+```json JSON
+{
+  "tenant_id": "con_NJEwX2IUhNNbaRDC",
+  "partner_id": "ExpTest",
+  "event_id": "event_id_for_company_updates-12345",
+  "event_type": "new_product",
+  "entity_id": "340c8040bd50cbab9c7df718bbe51cc9",
+  "entity_type": "business",
+  "data": {
+    "link": "https://www.linkedin.com/posts/explorium-ai_ai-gtm-exploriumagentsource-activity-7310662960643768320-osau",
+    "product_name": "AgentSource",
+    "product_description": "Explorium launches AgentSource, a powerful B2B data API suite designed to fuel AI-driven go-to-market strategies"
+  },
+  "enrollment_key": "company_updates_demo"
+}
+```
+
+### Key Fields:
+
+`enrollment_key`: The identifier you provided during enrollment  
+`event_id`: A unique identifier for this specific event `event_type`: The type of event that was triggered `entity_type`: Either "business" or "prospect" `entity_id`: The ID of the business or prospect that triggered the event `data`: Event-specific data (varies by event type)
+
+  
+
+## Managing Your Webhook
+
+### Get Webhook Details
+
+#### Endpoint
+
+**Method**: GET  
+**URL**: [https://api.explorium.ai/v1/webhooks/{partner_id}](https://api.explorium.ai/v1/webhooks/%7Bpartner_id%7D)
+
+  
+
+### Delete Your Webhook
+
+#### Endpoint
+
+**Method**: DELETE  
+**URL**: [https://api.explorium.ai/v1/webhooks/{partner_id}](https://api.explorium.ai/v1/webhooks/%7Bpartner_id%7D)
+  
+
+## Best Practices
+
+1. **Use the enrollment\_key effectively**: Structure your enrollment keys to match your internal systems and use cases.
+2. **Set up monitoring**: Implement monitoring for your webhook endpoint to detect any delivery failures.
+3. **Validate all signatures**: Always verify the event signature to ensure authenticity before processing.
+4. **Use proper Content-Type**: Ensure your webhook handler accepts and responds with the application/json JSON Content-Type.
+
+## Frequently Asked Questions
+
+<AccordionGroup>
+    <Accordion title="How many webhooks can I register per partner ID?">
+    You can register only one webhook URL per partner ID. This URL will receive all event notifications.
+    </Accordion>
+
+    <Accordion title="Is there a limit to how many businesses or prospects I can enroll?">
+    While each enrollment request is limited to 20 IDs, there's no limit on the total number of IDs you can enroll across multiple requests.
+    </Accordion>
+
+    <Accordion title="How do I differentiate between different monitoring use cases?">
+    Use the enrollment\_key parameter when enrolling entities. This key is included in every event notification, allowing you to route and process events according to your internal systems.
+    </Accordion>
+
+    <Accordion title="What happens if I register a new webhook?">
+    Registering a new webhook will override your previous webhook configuration and generate a new webhook secret. All event notifications will be sent to the new URL.
+    </Accordion>
+
+    <Accordion title="How can I test my webhook implementation?">
+    Use the /webhooks/check\_connectivity endpoint to validate your webhook handler is properly receiving and processing events.
+    </Accordion>
+</AccordionGroup>
+

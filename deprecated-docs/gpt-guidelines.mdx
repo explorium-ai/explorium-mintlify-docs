@@ -1,0 +1,86 @@
+---
+title: "GPT Guidelines"
+---
+
+## <Icon icon="mountain-sun" size={24} /> Flow
+
+<Steps>
+<Step>
+Start of with the prompt template. The prompt template should include:
+	1. The signals you want to extract
+	2. The data-context the model should use to extract data. (This will be done using functions)
+</Step>
+<Step>
+After you have the prompt fill in signals.
+	1. For each signal you need to fill in:
+		1. Name - Will be the signal name
+		2. Description - Explain the model exactly how to compute this step.
+		3. Type - Boolean / String.
+</Step>
+<Step>
+Run
+</Step>
+</Steps>
+
+
+## <Icon icon="snake" size={24} /> Functions
+
+In order to add data context to the prompt we use functions. Functions are executed and added to the prompt prior to sending the prompt to the model.
+
+### Supported functions
+
+#### Search
+
+Parameters: query
+Description: Performs a Google search using the query string parameter and returns the results.
+
+Here is an example where we might wand to add context regarding company's layoff:
+
+```bash
+Here is some relevant context:
+Company website:
+{{Search(query=record['Webiste'] + ' layoffs')}}
+```
+
+#### ReadUrlText
+
+```bash
+ReadUrlText(link): Retrieves and returns the text content from a webpage given its link.
+
+## Example
+Assuming dataset as a column named domain
+
+Company search results:
+{{ReadUrlText(link=record['domain'])}}
+```
+
+#### LinkedinSearch
+
+```bash
+SearchLinkedin(query): Searches for specific entities (such as profiles or companies) on
+LinkedIn based on the query.
+
+Linkedin search results:
+{{SearchLinkedin(query=record['domain'] + ' ceo')}}
+```
+
+#### GetCompanyContacts
+
+```bash
+GetCompanyContacts(domain, job_titles, skills): Extracts and returns the contact information
+of a company specified by domain, filtered by job_titles and skills.
+```
+
+#### LinkQuestionAnswering
+
+```bash
+LinkQuestionAnswering(link, question): Analyzes a question, maps it to
+a data model within the webpage at the provided url, and retrieves the answer.
+```
+
+#### SearchForNaicsCodes
+
+```bash
+SearchForNaicsCodes(query, naics_code_level: Optional):
+Searches for NAICS codes based on provided query (e.g., “cloud security”, “clothing ecommerce”).
+```

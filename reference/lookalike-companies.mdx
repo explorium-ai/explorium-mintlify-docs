@@ -1,0 +1,122 @@
+---
+title: "Lookalike Companies - by Ocean.IO"
+---
+
+## **Endpoint:**
+
+`'https://api.explorium.ai/v1/businesses/lookalikes/enrich'`
+
+## **Description**
+
+This enrichment is powered by Ocean.io, a provider of lookalike companies based on advanced similarity analysis.
+
+<Frame>
+![ocean.io - logo](/images/reference/0bfdc090de99b88acc7276e2d8af4455a5e88453f8c36d2a038b5dab173d8655-image.png)
+</Frame>
+
+
+The **Lookalike Companies Enrichment** identifies and returns businesses that closely resemble a given company across key dimensions such as industry, size, geography, and online presence. This enrichment is powered by an external API provided by Ocean.io, which uses its own similarity engine to surface relevant company lookalikes.
+
+Similarity scores are calculated based on a combination of structured business attributes (e.g., number of employees, revenue range, industry classification, and country), semantic similarity of company descriptions, digital footprint overlap (such as website content and web signals), and additional contextual indicators sourced from Ocean.io’s data graph.
+
+For each input company (business\_id), the enrichment returns up to 3 lookalike companies, including their firmographic attributes and a similarity score indicating the strength of the match (e.g., Medium or High).
+
+This enrichment provides a powerful signal for identifying companies that “look like” your target ideal for use cases such as lead generation, market expansion, competitive intelligence, and segmentation strategies.
+
+
+<AccordionGroup>
+    <Accordion title="How It Works">
+
+    - **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
+    - **Processing:** The system identifies businesses with high similarity scores based on business attributes, descriptions, and digital footprint.
+    - **Output:** A list of lookalike companies with attributes such as name, website, industry, size, revenue range, and similarity score.
+    </Accordion>
+
+    <Accordion title="Example Request (cURL)">
+
+    ```bash Bash
+    {
+    "request_context": {
+    "seller_id": "sample_id"
+    },
+    "business_id": "9664930a34aa8e59f9b994b70e8bc15e"
+    }
+    ```
+    </Accordion>
+
+    <Accordion title="Example Response">
+
+    ```json JSON expandable
+    {
+    "response_context": {
+    "correlation_id": "fe2bade7db0640d0887aebc6d0e2e3f3",
+    "request_status": "success",
+    "time_took_in_seconds": 3.071
+    },
+    "data": [
+    {
+        "business_id": "9664930a34aa8e59f9b994b70e8bc15e",
+        "lookalike_business_id": "443fbc49b4ab9988d64065d7e2fddf1a",
+        "lookalike_business_name": "centrify",
+        "lookalike_website": "https://delinea.com",
+        "lookalike_description": "Please follow Delinea on Linkedin! Centrify is now Delinea....",
+        "lookalike_number_of_employees_range": "501-1000",
+        "lookalike_revenue_range": "75M-200M",
+        "lookalike_naics_description": "Software Publishers",
+        "lookalike_country_location": "us",
+        "similarity_score": "High"
+    },
+    {
+        "business_id": "9664930a34aa8e59f9b994b70e8bc15e",
+        "lookalike_business_id": "b5bff70c7cd89e7677a6863751678f30",
+        "lookalike_business_name": "innskill",
+        "lookalike_website": "https://innskill.com",
+        "lookalike_description": "INNSKILL - Empowering Businesses with IAM and Cybersecurity Solutions At INNSKILL, we specialize in providing comprehensive Identity and Access Management (IAM) .....",
+        "lookalike_number_of_employees_range": "51-200",
+        "lookalike_revenue_range": "10M-25M",
+        "lookalike_naics_description": "Computer Systems Design and Related Services",
+        "lookalike_country_location": "nl",
+        "similarity_score": "High"
+    },
+    {
+        "business_id": "9664930a34aa8e59f9b994b70e8bc15e",
+        "lookalike_business_id": "0c9e2098799d2d7ac37eba0c7aac5060",
+        "lookalike_business_name": "saviynt",
+        "lookalike_website": "https://saviynt.com",
+        "lookalike_description": "About Us At Saviynt, we are pioneers in intelligent identity security solutions....",
+        "lookalike_number_of_employees_range": "1001-5000",
+        "lookalike_revenue_range": "500M-1B",
+        "lookalike_naics_description": "Software Publishers",
+        "lookalike_country_location": "us",
+        "similarity_score": "High"
+    }
+    ],
+    "entity_id": "9664930a34aa8e59f9b994b70e8bc15e"
+    }
+    ```
+    </Accordion>
+
+    <Accordion title="Best Practices">
+    - **Always use a valid`business_id`** obtained via the **Match Businesses** API.
+    - **Interpret similarity scores** to prioritize the strongest matches for your use case (e.g. focus on “High” similarity for precise lookalikes).
+    - **Combine lookalike insights** with other enrichment signals (e.g. firmographics, technographics) for deeper segmentation.
+    - **Re-run lookalike queries periodically** to capture changes in the business landscape and discover new similar companies.
+    </Accordion>
+
+    <Accordion title="Lookalike Companies Output Signals">
+
+    | SignalAPI | Name | Description | Data Type |
+    | :--- | :--- | :--- | :--- |
+    | lookalike\_company\_name | Lookalike company name | Name of the similar company. | string |
+    | similarity\_score | Similarity score | Score indicating similarity level. | number |
+    | similarity\_factors | Similarity factors | Factors used for similarity calculation. | string |
+    | industry\_match | Industry match | Whether industries match. | boolean |
+    | size\_similarity | Size similarity | Similarity in company size. | string |
+    | geographic\_proximity | Geographic proximity | Geographic proximity of the companies. | string |
+    | business\_model\_similarity | Business model similarity | Similarity in business models. | string |
+    | financial\_similarity | Financial similarity | Similarity in financial metrics. | string |
+    | customer\_base\_similarity | Customer base similarity | Similarity in customer base. | string |
+    | confidence\_level | Confidence level | Confidence in the lookalike match. | string |
+    </Accordion>
+</AccordionGroup>
+<Icon icon="thumbtack" iconType="solid" color="red" /> *For additional enrichment options, explore related API endpoints below.*

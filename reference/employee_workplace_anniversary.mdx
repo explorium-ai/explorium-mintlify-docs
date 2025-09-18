@@ -1,0 +1,69 @@
+---
+title: "Employee's workplace anniversary"
+---
+
+## Description
+
+A **Prospect Job Start Anniversary** event tracks when an individual reaches an annual milestone at their current company. This data is valuable for engagement strategies, career milestone tracking, and relationship-building opportunities.
+
+**Important:** The **Employee's Workplace Anniversary** event highlights **only recent work anniversaries** that occurred within the last quarter (`timestamp_from` should be set to the past 3 months). If no such events were recorded, the response will be empty.
+
+**For a historical view of employment duration trends,** refer to the **Professional profile contact and workplace Enrichment API**.
+
+## Use cases:
+
+- **Sales & Outreach**: Use work anniversaries as an engagement touchpoint.
+- **Talent Retention Analysis**: Identify employees likely to consider career changes.
+- **Networking & Relationship Building**: Celebrate milestones with clients and prospects.
+- **Market Insights**: Track employee retention trends across industries.
+
+
+## Data Schema
+
+**Event Name: "prospect_job_start_anniversary" (Use this value in the event_types parameter when querying this event.)**
+
+| Signal | API Name | Description | Data Type |
+| :--- | :--- | :--- | :--- |
+| Employee's full name | full\_name | First and last names associated with the individual, appended with a space. | string |
+| Workplace company name | company\_name | Name of the company where the individual is employed. | string |
+| Number of years at company | years\_at\_company | Number of years employee has been working at the company. | integer |
+| Employee's job title | job\_title | Current job title listed on the employee's professional profile. | string |
+| Workplace anniversary date | job\_anniversary\_date | Date and time the employee's anniversary data was collected by Explorium. | datetime |
+| Employee event timestamp | event\_time | Date of employee's upcoming workplace anniversary. | datetime |
+| Employee LinkedIn® URL | linkedin\_url | URL associated with the individual's LinkedIn® profile. | url |
+| Event name | event\_name | Name of the event related to the employee's workplace anniversary. | string |
+
+## Query Example
+
+```curl cURL
+curl -X POST \
+  "https://api.explorium.ai/v1/prospects/events" \
+  -H "API_KEY: your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "event_types": [
+    "prospect_job_start_anniversary"
+  ],
+  "prospect_ids": [
+    "a7bbe0674c63338e62ae4c10751ae19da5723e5a"
+  ],
+  "timestamp_from": "2024-01-01T10:03:03.050Z"
+}'
+```
+
+## Best Practices
+
+- **Leverage work anniversaries** for personalized engagement and outreach.
+- **Track retention trends (`years_at_company`)** to predict potential job changes.
+- **Use LinkedIn data (`linkedin_url`)** to validate professional milestones.
+
+## Related Events
+
+<Columns cols={2}>
+<Card icon="user-plus" horizontal title="Employee job changes" href="/reference/employee-job-changes">
+Tracks when an employee changes their job title within the same company.
+</Card>
+<Card icon="calendar" horizontal title="Recently changed company" href="/reference/recently-changed-company">
+Identifies when an employee transitions to a new company.
+</Card>
+</Columns>

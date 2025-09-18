@@ -1,0 +1,59 @@
+---
+title: "ExactInsights: Salesforce Integration Field Mapping"
+---
+
+<Steps>
+    <Step>
+    From your Profile menu, click on CRM Integrations
+    </Step>
+    <Step>
+    On the "CRM Integration" screen, select the SalesForce integration you would like to map fields for and click on "Set Fields Mapping"
+
+    <Frame>
+    ![](/images/deprecated-docs/3b6a89d-image.png)
+    </Frame>
+   </Step>
+      <Step>
+      ExactInsights can export data to salesforce for the following objects:
+
+      1. Account
+      2. Contact
+      3. Lead
+
+   </Step>
+   <Step>
+    When exporting contact data, ExactInsight can export information to the "Leads" or "Contacts" Objects. Selecting the object the contacts will be exported to is required per integration.
+
+   <Frame>
+   ![](/images/deprecated-docs/573d069-image.png)
+   </Frame>
+   </Step>
+
+   <Step>
+   Use the Fields Mapping UI to map all the fields you would like Exact Insights to export data to. Mandatory fields for each object are marked in Orange.
+   </Step>
+   <Step>
+   For custom fields, it is possible to determine the name of the column in Salesforce to which data will be exported.
+
+   <Frame>
+   ![](/images/deprecated-docs/0e0e362-image.png)
+   </Frame>
+   </Step>
+
+   <Step>
+   Mark the "Allow Override" checkbox to enable field updates in case it already exists in Salesforce and contains values.
+   </Step>
+
+   <Step>
+   Click "Save"
+   </Step>
+
+   <Step>
+   The following columns will be created implicitly by ExactInsights when exporting data to Salesforce and do not require mapping:
+
+      1. Explorium Enrichment Date (Date)
+      2. Lead Source (Value = "Explorium")
+   </Step>
+
+</Steps>
+

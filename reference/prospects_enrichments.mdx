@@ -1,0 +1,81 @@
+---
+title: "Prospects Enrichments"
+sidebarTitle: "Overview"
+---
+
+## Introduction
+
+The **Prospects Enrichments** suite enables organizations to access comprehensive insights about prospects, helping refine outreach, sales strategies, and engagement efforts. By leveraging multiple enrichment endpoints, businesses can retrieve verified contact details, social media presence, and professional background information.
+
+<Icon icon="thumbtack" color="red" iconType="solid"/> **Key Benefits:**
+
+- Gain a view of a prospect's professional and social presence.
+- Enhance **lead qualification** with enriched data points.
+- Improve **personalized engagement** and outreach strategies.
+
+## Available Enrichments
+
+The **Prospects Enrichments** suite consists of the following three endpoints:
+
+### 1. Contact Details Enrichment
+
+Retrieves verified contact details, including professional and personal emails, ensuring accurate communication channels.
+
+<Icon icon="thumbtack" color="red" iconType="solid"/> **Key Features:**
+
+- Provides **current professional emails** when available.
+- Includes **personal email addresses** when accessible.
+- Ensures data accuracy for **direct outreach and email marketing**.
+
+### 2. Individual's Social Media Presence
+
+Extracts recent social media activity, including public posts from professional networks.
+
+<Icon icon="thumbtack" color="red" iconType="solid"/> **Key Features:**
+
+- Understand **prospect engagement trends**.
+- Identify **topics of interest** and industry discussions.
+- Use insights for **personalized marketing and outreach**.
+
+### 3. Professional Profile, Contact, and Workplace
+
+Provides a detailed view of a prospect's work history, skills, and educational background.
+
+<Icon icon="thumbtack" color="red" iconType="solid"/> **Key Features:**
+
+- Retrieve **job titles, past roles, and workplace history**.
+- Understand **career trajectory** and seniority.
+- Access **education details and skillsets**.
+
+## How It Works
+
+1. **Input:** Provide a `prospect_id` (retrieved from the **Match Prospects** endpoint).
+2. **Processing:** The system gathers, verifies, and structures relevant data.
+3. **Output:** Returns detailed insights for enhanced engagement.
+
+### Request Schema
+
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `prospect_id` | String | A unique identifier for the prospect (Required) |
+
+### Example Request (cURL):
+
+```curl cURL
+curl -X POST \
+  "https://api.explorium.ai/v1/prospects/contacts_information/enrich" \
+  -H "API_KEY: <your api key>" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "prospect_id": "f0bc40c20b185d6b102662a6621632beeedcef7c"
+}'
+```
+
+## Best Practices
+
+- **Ensure valid`prospect_id` values** obtained from the **Match Prospects** endpoint.
+- **Leverage email verification tools** before direct outreach.
+- **Analyze social media trends** to tailor messaging and engagement.
+- **Cross-reference workplace history** to refine lead segmentation strategies.
+
+The **Prospects Enrichments** suite is an essential tool for sales, marketing, and talent acquisition teams, providing the necessary data to optimize prospect engagement, improve conversion rates, and drive meaningful business interactions.

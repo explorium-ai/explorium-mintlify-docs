@@ -1,0 +1,237 @@
+---
+title: "Claude Desktop Integration"
+---
+
+**Claude by Anthropic** - The most popular MCP-compatible AI assistant
+
+Claude Desktop provides native support for MCP servers, making it the ideal choice for accessing AgentSource data through natural conversation.
+
+#### Setup Instructions
+
+<Steps>
+<Step title="Install Claude Desktop">
+Install Claude Desktop from [claude.ai](https://claude.ai/)
+</Step>
+
+<Step title="Enter Claude desktop settings">
+<Frame>
+![](/images/reference/1c808df3f6b51a70e46703941dc116233fb3b6e6fdce92eaa20636d3b1f226c5-image.png)
+</Frame>
+</Step>
+
+<Step title="Move to Integrations tab">
+<Frame>
+![](/images/reference/14a50eebb1806b05ec744f3d65accf92cae5feece347755bfe9ec653b68585a4-image.png)
+</Frame>
+</Step>
+
+<Step title="Add Explorium MCP integration">
+- Click the 'Add Integration' button
+- Enter explorium mcp details:
+	- server name: Explorium MCP
+	- Server url: [https://mcp.explorium.ai/sse](https://mcp.explorium.ai/sse)
+
+<Frame>
+![](/images/reference/5d195b27ebe3504e69d62d0b16c4eaed09008fd00842fa71701fa617651760ee-image.png)
+</Frame>
+</Step>
+
+<Step title="Connect to MCP server">
+- At the Claude chat box, Click 'Explorium MCP Connect'
+- Allow Explorium MCP access
+
+<Frame>
+![](/images/reference/d9d4f1964821a6bd35179c901aa6410569e385345e72bb614741170e76abdc93-image.png)
+</Frame>
+
+<Frame>
+![](/images/reference/d98928e4d6121f3d09d302868a31dbc7c862b4ea4b855c94e6a560a3eba476d6-image.png)
+</Frame>
+</Step>
+</Steps>
+
+#### Example Conversations
+
+**Finding Companies:**
+
+```
+You: Find me 10 SaaS companies in San Francisco with 50-200 employees
+
+Claude: I'll search for SaaS companies in San Francisco with 50-200 employees.
+
+[Searches using fetch_businesses tool]
+
+I found 10 SaaS companies matching your criteria:
+
+1. TechFlow Analytics
+   - 125 employees
+   - Revenue: $10M-$25M
+   - Technologies: AWS, React, PostgreSQL
+
+2. DataSync Solutions
+   - 87 employees
+   - Revenue: $5M-$10M
+   - Technologies: Google Cloud, Python, MongoDB
+
+[... continues with detailed results]
+```
+
+**Researching Contacts:**
+
+```
+You: Who is the CTO of Snowflake and what's their background?
+
+Claude: I'll look up information about Snowflake's CTO.
+
+[Uses match_businesses, then enrich_businesses_financial_metrics]
+
+The CTO of Snowflake is Benoit Dageville. Here's his background:
+- Co-founder of Snowflake
+- Previously at Oracle for 16 years
+- PhD in Computer Science from University of Paris
+- Expertise in database systems and query optimization
+```
+
+
+## Common Patterns
+
+### Research Assistant Pattern
+
+Transform your AI into a business research assistant:
+
+```
+1. User asks about a company or industry
+2. AI uses match_businesses or fetch_businesses
+3. AI enriches with firmographics, technographics, financials
+4. AI summarizes findings in natural language
+```
+
+### Sales Intelligence Pattern
+
+Enable your AI to support sales activities:
+
+```
+1. User provides target company name
+2. AI finds company with match_businesses
+3. AI fetches key contacts with fetch_prospects
+4. AI enriches contact information
+5. AI provides actionable insights
+```
+
+### Market Analysis Pattern
+
+Use AI for competitive intelligence:
+
+```
+1. User asks about market segment
+2. AI searches companies with filters
+3. AI aggregates statistics
+4. AI identifies trends and patterns
+5. AI generates market report
+```
+
+## Best Practices
+
+### <Icon icon="bullseye-arrow" size={24} /> Prompt Engineering
+
+**Be Specific**
+
+```
+Good: "Find B2B SaaS companies in NYC with 50-200 employees using AWS"
+Bad: "Find some tech companies"
+```
+
+**Chain Requests**
+
+```
+"First find Microsoft's business ID, then show me all VPs in their engineering department"
+```
+
+**Request Formats**
+
+```
+"Show me the results as a table with company name, size, and revenue"
+```
+
+### <Icon icon="bolt" size={24} /> Performance Tips
+
+- **Batch Operations**: Ask for multiple companies at once
+- **Specific Filters**: Use precise criteria to reduce results
+- **Caching**: AI assistants often cache recent results
+- **Pagination**: Request specific page numbers for large datasets
+
+### <Icon icon="lock" size={24} /> Security Considerations
+
+- Store API keys in secure configuration files
+- Never share API keys in conversations
+- Use read-only keys when possible
+- Monitor usage through the admin panel
+
+## Advanced Features
+
+### Tool Chaining
+
+Most AI assistants can automatically chain multiple tools:
+
+```
+"Find the top 5 competitors of Salesforce and compare their employee counts and technologies"
+
+This triggers:
+1. match_businesses (Salesforce)
+2. enrich_businesses_competitive_landscape
+3. match_businesses (for each competitor)
+4. enrich_businesses_firmographics
+5. enrich_businesses_technographics
+```
+
+### Conversational Memory
+
+AI assistants maintain context across messages:
+
+```
+You: "Find info about Uber"
+AI: [Provides Uber details]
+You: "Now show me their main competitors"
+AI: [Understands "their" refers to Uber]
+```
+
+### Natural Language Filters
+
+Convert natural language to API filters:
+
+```
+"Companies founded in the last 3 years" <Icon icon="arrow-right" /> company_age: ["0-3"]
+"Mid-size businesses" <Icon icon="arrow-right" /> company_size: ["51-200", "201-500"]
+"Tech companies" <Icon icon="arrow-right" /> linkedin_category: ["Technology"]
+```
+
+
+## Examples Gallery
+
+### Company Research
+
+```
+"Give me a complete profile of Tesla including their technology stack,
+financial metrics, recent events, and key executives"
+```
+
+### Competitive Analysis
+
+```
+"Compare the top 5 CRM companies by employee count, revenue,
+and technology stack. Show the results in a table."
+```
+
+### Lead Generation
+
+```
+"Find marketing directors at fintech companies in London
+with 100-500 employees. Include their email addresses."
+```
+
+### Market Trends
+
+```
+"What percentage of SaaS companies with $10M-$50M revenue
+are using AWS vs Google Cloud vs Azure?"
+```

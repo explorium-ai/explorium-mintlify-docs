@@ -1,0 +1,71 @@
+---
+openapi: post /v1/businesses/financial_indicators/enrich
+title: "Financial metrics for public companies"
+---
+
+## Endpoint: `POST /v1/businesses/financial_indicators/enrich`
+
+## Description
+
+The **Financial Metrics Enrichment** endpoint provides key **financial indicators** for publicly traded companies worldwide. This dataset helps users analyze a company's **financial performance, stability, and investment potential**.
+
+By querying with a **business\_id**, users can retrieve both **current and historical financial data** spanning up to **20 years**. This data includes:
+
+- **Annual and quarterly revenue**
+- **Return on capital**
+- **Total shareholder return**
+- **Profitability ratios**
+- **Market valuation metrics**
+
+The data is sourced from **trusted financial institutions** such as the **SEC (Securities and Exchange Commission), NYSE, NASDAQ, AMEX, EURONEXT, and TSX**.
+
+<AccordionGroup>
+<Accordion title="How It Works">
+
+- **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
+- **Processing:** The system retrieves financial indicators from global stock exchanges and regulatory filings.
+- **Output:** A structured response with financial metrics relevant to the selected business.
+
+</Accordion>
+
+<Accordion title="Best Practices">
+
+- **Use financial metrics** to assess company growth trends and investment risks.
+- **Combine financial data with firmographics** for a full-picture company analysis.
+- **Leverage historical data** to compare performance over different market cycles.
+- **Cross-reference stock market insights** with company ratings and workforce trends for a deeper analysis.
+
+</Accordion>
+
+<Accordion title="Financial Metrics for Public Companies Output Signal">
+
+| SignalAPI | Name | Description | Data Type |
+| :--- | :--- | :--- | :--- |
+| metric\_name | Metric name | Name of the financial metric. | string |
+| metric\_value | Metric value | Value of the financial metric. | number |
+| reporting\_period | Reporting period | Reporting period (quarterly, annually). | string |
+| fiscal\_year | Fiscal year | Fiscal year of the metric. | integer |
+| currency | Currency | Currency of the financial metric. | string |
+| metric\_category | Metric category | Category of the metric (revenue, profitability, etc.). | string |
+| growth\_rate | Growth rate | Growth rate compared to previous period. | number |
+| industry\_benchmark | Industry benchmark | Industry benchmark for comparison. | number |
+| analyst\_estimates | Analyst estimates | Analyst estimates for the metric. | number |
+| guidance | Guidance | Company guidance for the metric. | number |
+| variance\_to\_estimate | Variance to estimate | Variance from analyst estimates. | number |
+| variance\_to\_guidance | Variance to guidance | Variance from company guidance. | number |
+| peer\_comparison | Peer comparison | Comparison to peer companies. | string |
+| trend\_analysis | Trend analysis | Trend analysis of the metric. | string |
+| seasonality | Seasonality | Seasonal patterns in the metric. | string |
+| margin\_analysis | Margin analysis | Margin analysis for profitability metrics. | string |
+| segment\_breakdown | Segment breakdown | Breakdown by business segment. | string |
+
+</Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" color="red" iconType="solid"/> For additional enrichment options, explore related API endpoints below.
+
+## Body Params - Try Me Example
+
+```
+business_id: a34bacf839b923770b2c360eefa26748
+```

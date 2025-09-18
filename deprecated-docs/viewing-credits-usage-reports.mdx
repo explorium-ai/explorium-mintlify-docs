@@ -1,0 +1,42 @@
+---
+title: "Viewing Credit Usage Reports"
+---
+
+1. **Accessing credits and consumption usage information:**
+
+   - To access credits and detailed consumption reporting the user used to login to Explorium platform need to have an "Admin" role. An 'Admin' role can be associated with the user name either by Explorium customer success or by other admin users in the same account. Managing roles is done through the platform user management module .
+   - A regular (non admin) user is able to view credits expiry warnings but is not able to view credit figures or detailed consumption reporting. When logged in to platform with your user , click on the profile icon on the side menu and select ‘Credit usage’.
+
+2. **Viewing Credit utilization:**
+
+The report presents an updated status of credits utilization for the account tenant. Figures presented are:
+
+- Total credits (As defined by the contract or relevant CS)
+- Credits used (From the beginning of contract)
+- Remaining balance (Total credits - credits used)
+
+3. **Viewing a detailed consumption breakdown:**
+
+This report presents all billable consumption actions performed on the account tenant. Billable actions include:
+
+- File Downloads (Sample file downloads are excluded)
+- Job ad-hoc runs (run-now)
+- Periodic or one time scheduled jobs
+- Recipe API triggers
+
+Consumption Search criteria:
+
+- Date range (Default is the last 2 days including current)
+- Action
+- User
+
+Consumption search results:
+
+- The results are present in a granularity of a “Day” (Date) , and present project link ,occurrences, action and user.
+
+  - Occurrence: recurring actions on the same day for a given project, will be indicated by on the ‘Occurrence’ column.
+  - Project link : Clicking on the project link will open the relevant project in a new browser window. Example: 1000 API calls on the same project on the same day will be represented on the search results as a single row with Date =\[ day] Project = \[project link] , Action =API ,Occurence = 1000
+
+4. **Credits exhausted :**
+
+When there are no remaining credits for the tenant , a warning message will be displayed to the user when logged into the platform In a project - all consumption actions will be disabled.

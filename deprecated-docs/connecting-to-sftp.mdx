@@ -1,0 +1,84 @@
+---
+title: "Connecting to SFTP"
+description: "Secure file transfer (SFTP) provides a secure alternative to FTP. It is encrypted in GPR format. You can run SFTP interactively, or use it in combination with a batch file for automated, secure file transfer."
+---
+
+## There are 3 options to connect to SFTP:
+
+* Create a new project
+* Edit an existing project connection
+* Export data from the Export &gt; Run recipe button
+
+## Connecting to SFTP when Creating a New Project
+
+<Steps>
+    <Step>
+    Click Enrich. The Enrich page is displayed.
+    </Step>
+    <Step>
+    Click 'Create a project' in the upper-right hand corner. The Create a new project window is displayed.
+    </Step>
+    <Step>
+    Type in a new project name. The project name needs to be unique.
+    </Step>
+    <Step>
+    Select a use case from the drop-down.
+    </Step>
+    <Step>
+    Click Create. The Upload a dataset window appears.
+    </Step>
+    <Step>
+    Select SFTP. The following screen is displayed for a new connection creation
+    </Step>
+    <Step>
+    Click + and Create new connection. The Create a new SFTP Connection window is displayed.
+    </Step>
+    <Step>
+    Choose a connection name (mandatory).<br/>
+    Type in the Host (mandatory).<br/>
+    Type in the Host key fingerprint (mandatory).<br/>
+    This is relevant for the Administrator: We recommend that you use this link which explains how to discover the fingerprint from within the server itself: *How to view your SSH keys in Linux, macOS, and Windows.* <br/> An alternative way is how to discover the host key fingerprint (value and type) from a personal computer which has already been connected to the SFTP at least once: <br/> In order to discover your SFTP’s host key fingerprint, run the following command:
+
+    ```bash
+    ssh-keyscan <host>
+    The format of the result <host> <fingerprint type> <fingerprint value> can be seen inside the red block in the example below:
+    host: s-2ab….
+    fingerprint type: ssh-rsa
+    fingerprint value: AAAAB3N…Ie80j
+    '#' symbol: Lines of the output which are irrelevant
+    ```
+    </Step>
+
+    <Step>
+    ActionScript
+    </Step>
+    <Step>
+    Copy
+    </Step>
+    <Step>
+    Select the Key type (host key finger print type).
+    </Step>
+    <Step>
+    Type in the User (mandatory).
+    </Step>
+    <Step>
+    Upload the Identity file (SSH-private key) of your server.
+    </Step>
+    <Step>
+    Enable the GPG encryption. If the checkbox was enabled once, then the connection will be treated as encrypted, even if the checkbox was disabled.
+    </Step>
+    <Step>
+    Click Upload to output the encryption public key of the user’s company. The upload enables Explorium to encrypt the output when uploading results to the client SFTP. If you do not select Upload (Output encryption public key) then you will not be able to upload results to the SFTP. The connection will be used just for input.
+    </Step>
+    <Step>
+    Download input (public) encryption key of Explorium (in order that the client will encrypt the files on it’s SFTP before uploading them to the Platform). After clicking, a file containing Explorium public key will be downloaded to the clients computer.
+    </Step>
+    <Step>
+    Click Test Connection. A message is displayed that the connection was successfully created. If the test connection failed, then you are unable to create a connection.
+
+    Before creating a new connection, a Test Connection must be run. If the test failed, or a parameter was changed, the Create button will be disabled, and you need to create a new connection.
+    </Step>
+    <Step>
+    After the test connection has succeeded, click Create in order to create the connection, and to start working with it.
+    </Step>
+</Steps>

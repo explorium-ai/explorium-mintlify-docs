@@ -1,0 +1,138 @@
+---
+openapi: post /v1/businesses/stats
+---
+
+## Endpoint: `POST /v1/businesses/stats`
+
+## Description
+
+The **Fetch Business Statistics** endpoint provides **aggregated insights** into businesses by industry, revenue, employee count, and geographic distribution. It enables users to analyze market trends, segment industries, and gain a high-level overview of business activity within specified parameters.
+
+<AccordionGroup>
+<Accordion title="Coverage">
+
+| Attribute | Coverage Details |
+| :--- | :--- |
+| **Total Businesses Analyzed** | 80M+ businesses across 150+ countries |
+| **Industry Breakdown** | Distribution across 50+ industry categories |
+| **Revenue Distribution** | Aggregated revenue insights, ranging from $1M-$10T+ |
+| **Company Size Analysis** | Categorized by employee count (1-10, 11-50, 51-200, etc.) |
+| **Geographic Segmentation** | Supports regional and country-level filtering |
+
+</Accordion>
+
+<Accordion title="How It Works">
+
+- **Input:** Define filter parameters such as industry, region, and company size.
+- **Processing:** The system aggregates data across relevant datasets to generate statistics.
+- **Output:** A structured response with key insights into business distribution and segmentation.
+</Accordion>
+
+<Accordion title="Query Parameters">
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `filters` | Object | Defines the filtering criteria for statistics retrieval (e.g., country, industry) |
+| `region_country_code` | Array | Filters businesses by specific regions within countries (e.g., `us-ca`, `us-ga`) |
+| `company_size` | Array | Filters by number of employees (e.g., `1-10`, `11-50`, `51-200`) |
+
+</Accordion>
+
+<Accordion title="Example Request (cURL)">
+
+```shell Bash
+curl --request POST \
+  --url https://api.explorium.ai/v1/businesses/stats \
+  --header 'Content-Type: application/json' \
+  --header 'accept: application/json' \
+  --header 'api_key: key' \
+  --data '{
+  "filters": {
+    "region_country_code": {
+      "type": "includes",
+      "values": [
+        "us-ca",
+        "us-ga",
+        "us-ut"
+      ]
+    },
+    "company_size": {
+      "type": "includes",
+      "values": [
+        "1-10",
+        "11-50",
+        "51-200"
+      ]
+    }
+  }
+}'
+```
+</Accordion>
+
+<Accordion title="Example Response">
+
+```json JSON
+{
+  "total_results": 29229,
+  "stats": {
+    "business_categories_per_location": {
+      "Software company": {
+        "California, US": 22093,
+        "Georgia, US": 4898,
+        "Utah, US": 2031,
+        "total": 29022
+      },
+      "Computer software store": {
+        "California, US": 160,
+        "Georgia, US": 33,
+        "Utah, US": 12,
+        "total": 205
+      },
+      "total_per_location": {
+        "California, US": 22255,
+        "Georgia, US": 4931,
+        "Utah, US": 2043,
+        "total": 29229
+      }
+    }
+  }
+}
+```
+</Accordion>
+
+<Accordion title="Schema Explanation">
+
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `filters` | Object | Defines the filtering criteria for the statistics request. |
+| `total_results` | Number | Total number of businesses included in the statistics. |
+| `stats` | Object | Contains breakdowns by category, revenue, employees, and locations. |
+
+</Accordion>
+
+<Accordion title="Best Practices">
+
+- **Use targeted filters** to focus on specific industries or regions.
+- **Combine multiple attributes** (e.g., `region_country_code` + `company_size`) for in-depth segmentation.
+- **Utilize aggregated insights** to optimize marketing strategies and market analysis.
+
+
+### <Icon icon="magnifying-glass" /> **Note on Filter Usage**
+
+- All available **business filters** (e.g., `region_country_code`, `company_size`, etc.) can be applied in this endpoint.
+- **Only one category filter** can be used per request: choose from either `Google category`, `LinkedIn industry`, or `NAICS code`. Combining them is not supported.
+</Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" color="red" iconType="solid"/> For detailed endpoint explanations, request examples, and integration tips, explore the documentation sections above.
+
+## Body Params - Try Me Example
+
+```
+filters:
+  region_country_code: us-ca, us-ga, us-ut
+  company_size: 1-10, 11-50, 51-200
+
+Note: For any unused filter, set \`negate\` (boolean) as empty instead of \`false\`, as it defaults to \`false\`.
+```
+

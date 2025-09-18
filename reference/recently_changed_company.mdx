@@ -1,0 +1,70 @@
+---
+title: "Employee changed workplace"
+---
+
+
+## Description
+
+An **Employee Changed Workplace** event tracks when an individual moves from one company to another. This data is essential for monitoring career transitions, business relationships, and professional network changes. An employee can keep their previous role or change roles when changing their place of work.
+
+**Important:** The **Recently Changed Company** event surfaces **only recent job transitions** within the last quarter (`timestamp_from` should be set to the past 3 months). If no employees changed companies during this period, no data will be available.
+
+**For a historical record of career transitions,** use the **Professional profile contact and workplace Enrichment API**.
+
+## Use cases:
+
+- **Sales & Lead Generation**: Engage with prospects who recently joined a new company.
+- **Competitive Intelligence**: Monitor employee movements between competitors.
+- **Recruitment Strategy**: Identify candidates open to career transitions.
+- **Market Analysis**: Track key industry shifts based on talent movement.
+
+
+## Data Schema
+
+**Event Name: "prospect_changed_company" (Use this value in the event_types parameter when querying this event.)**
+
+| Signal | API Name | Description | Data Type |
+| :--- | :--- | :--- | :--- |
+| New Company Name | current\_company\_name | Name of the company where the individual currently works after the job change. | string |
+| New Company ID | current\_company\_id | Unique identifier of the company where the individual currently works. | string |
+| New Job Title | current\_job\_title | Individual's current job title at the new company. | string |
+| Previous Company Name | previous\_company\_name | Name of the company where the individual was previously employed. | string |
+| Previous Company ID | previous\_company\_id | Unique identifier of the company where the individual was previously employed. | string |
+| Previous Job Title | previous\_job\_title | Individual's job title before switching companies. | string |
+| Event time | event\_time | The timestamp indicating when the event actually occurred | datetime |
+| Event name | event\_name | Name of the event related to the employee's company change. | string |
+
+## Query Example
+
+```curl cURL
+curl -X POST \
+  "https://api.explorium.ai/v1/prospects/events" \
+  -H "API_KEY: your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "event_types": [
+    "prospect_changed_company"
+  ],
+  "prospect_ids": [
+    "4c485f009d59e319dc039cdf3e935b85014e6a33"
+  ],
+  "timestamp_from": "2024-01-01T10:03:03.050Z"
+}'
+```
+
+## Best Practices
+
+- **Filter by company (`current_company_name`)** to track key hires in target accounts.
+- **Monitor job titles (`current_job_title`)** to assess career progression.
+- **Use timestamps (`event_time`)** to reach out to prospects at the right time.
+
+## Related Events
+
+<Columns cols={2}>
+<Card icon="user-plus" horizontal title="Employee job changes" href="/reference/employee-job-changes">
+Tracks when an employee changes their job title within the same company.
+</Card>
+<Card icon="calendar" horizontal title="Employee's workplace anniversary" href="/reference/employees-workplace-anniversary">
+Marks the annual anniversary of an employee’s start date at their current company.
+</Card>
+</Columns>

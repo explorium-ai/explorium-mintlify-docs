@@ -1,0 +1,348 @@
+---
+title: "Use Case : Prospecting & Lead Enrichment"
+---
+
+## **Overview**
+
+In this example, we’ll walk through how to identify and reach **marketing** or **sales** prospects at **small to medium-sized US software companies** using Explorium’s Partner Service API. This demonstrates an **SDR (Sales Development Representative) workflow** from start to finish:
+
+1. **Check Market Size**: Use the `statistics` endpoint to see if the audience is large enough (and not waste time fetching too much data).
+2. **Fetch Businesses**: Retrieve actual companies matching your filters, enabling a targeted approach.
+3. **Fetch Prospects**: Identify relevant individuals (marketing or sales employees) working at those companies.
+4. **Enrich Prospects**: Obtain direct contact details (emails, phone numbers) so you can reach out effectively.
+
+
+## **Before You Begin**
+
+### **1. Obtain Your API Key**
+
+You’ll need a valid API key for all endpoints. For instructions on how to register and obtain credentials, see our [**Authentication Guide**](/reference/getting_your_api_key).
+
+### **2. Understand the Filters and Parameters**
+
+* **Filters**: `values` objects to include or exclude certain attributes (see **List of Business Filters** and **List of Prospect Filters**).
+* **Pagination**: You can specify `page` and `page_size` (up to 100 records per page).
+
+## **Scenario**
+
+Meet **Alex**, a Sales Manager who wants to reach out to **Marketing** or **Sales** prospects at **small- to medium-sized US software companies**. Alex only has **high-level criteria** (e.g., US-based software companies with 11–50 employees). Ultimately, Alex needs **contact information** (emails, phone numbers, etc.) for relevant prospects.
+
+Let’s see how Alex can accomplish this using our Partner Service API:
+
+1. **Explore** the potential market with business statistics.
+2. **Fetch** the actual business records that match Alex’s filters.
+3. **Fetch** prospects working at those businesses, refined by job level or department.
+4. **Enrich** those prospects with contact details (e.g., emails, phone numbers).
+
+**Why fetch businesses first?**<br/>
+You could fetch prospects directly using filters on `job_department` or `location`, but if you need to target specific sets of companies or validate which companies are relevant, retrieving them first gives you **better control** and **more precise targeting**.
+
+## **1. Check Market Size via Business Statistics**
+
+First, Alex wants a quick overview of **how many** such businesses exist to gauge if the audience is large enough:
+
+* **Country Code**: `"us"`
+* **Company Size**: `"11-50"`
+* **Google Category**: `"software"`, or **LinkedIn® category**: `"software development"`, etc.
+
+By calling the **Business Statistics** endpoint (`POST /api/v1/businesses/stats`), Alex gets an aggregated overview before committing to a full fetch.
+
+#### **Why?**
+
+* Avoids fetching thousands of records prematurely.
+* Confirms the potential size of your target audience.
+
+#### **Sample Request (Python)**
+
+<CodeGroup>
+  ```python Python expandable
+  import requests
+  BASE_URL = "<https://api.explorium.ai/v1">
+  API_KEY = "your_api_key_here"
+  headers = {
+      "API_KEY": API_KEY,
+      "Content-Type": "application/json"
+  }
+  payload_stats = {
+      "filters": {
+          "country_code": {
+              "values": ["us"]
+          },
+          "company_size": {
+              "values": ["11-50"]
+          },
+          "google_category": {
+              "values": ["software company"]
+          }
+          # Or "linkedin_category": { "type": "includes", "values": ["software development"] }
+      }
+  }
+  response = requests.post(f"{BASE_URL}/businesses/stats", headers=headers, json=payload_stats)
+  stats_data = response.json()
+  print("Stats Response:")
+  print(stats_data)
+  ```
+</CodeGroup>
+
+#### **What You Get**
+
+Aggregated counts, distribution by category, location, revenue, etc.
+
+#### **Example snippet:**
+
+<CodeGroup>
+  ```js JSON expandable
+  {
+    "total_results": 12000,
+    "stats": {
+      "business_categories_per_location": {
+        "Software company": {
+          "California, US": 8000,
+          "New York, US": 2000,
+          "Texas, US": 1000,
+          "total": 11000
+        },
+        "other_categories": {
+          ...
+        }
+      },
+      "revenue_per_category": { ... },
+      "number_of_employees_per_category": { ... }
+    }
+  }
+  ```
+</CodeGroup>
+
+Armed with this summary, Alex sees about **12,000** potential businesses. That’s large but manageable with the next step.
+
+## **2. Fetch the Actual Businesses**
+
+Next, Alex calls the **Fetch Businesses** endpoint (`POST /api/v1/businesses`) to retrieve **actual records**. We’ll supply the same filters as above, plus some paging parameters.
+
+* **Mode**: `full` returns all available fields, including `business_id`.
+
+#### **Sample Request (Python)**
+
+<CodeGroup>
+  ```python Python expandable
+  payload_fetch = {
+      "mode": "full",
+      "size": 5000,      # Total number of results to fetch (up to 10,000 in this example)
+      "page_size": 100,  # Up to 100 records per page
+      "page": 1,         # Start with page 1
+      "filters": {
+          "country_code": {
+              "values": ["us"]
+          },
+          "company_size": {
+              "values": ["11-50"]
+          },
+          "google_category": {
+              "values": ["software company"]
+          }
+      }
+  }
+  response = requests.post(f"{BASE_URL}/businesses", headers=headers, json=payload_fetch)
+  business_data = response.json()
+  print("Business Fetch Response:")
+  print(business_data)
+  ```
+</CodeGroup>
+
+#### **Response Example (Python)**
+
+<CodeGroup>
+  ```js JSON expandable
+  {
+    "total_results": 12000,
+    "page": 1,
+    "total_pages": 120,
+    "data": [
+      {
+        "business_id": "8adce3ca1cef0c986b22310e369a0793",
+        "name": "Example Software Inc.",
+        "domain": "examplesoftware.com",
+        "country_name": "united states",
+        "number_of_employees_range": "11-50",
+        ...
+      },
+      ...
+    ]
+  }
+  ```
+</CodeGroup>
+
+Alex can paginate through multiple pages if needed. Each record includes a `business_id`—important for the next step.
+
+<Tip>
+**Tip:**
+
+* If you see `total_pages \> 1`, **paginate** by incrementing the `page` parameter.
+* For more info, see [**Fetch Business Reference**](/reference/fetch_businesses).
+</Tip>
+
+## **3. Fetch Relevant Prospects for Those Businesses**
+
+Having the `business_id` fields, Alex can now find **prospects** (contacts) at these companies. For example, if Alex wants **Marketing** or **Sales** job departments, the **Prospects** endpoint supports filters like `job_department` or `job_level`.
+
+* **Endpoint**: `POST /api/v1/prospects`
+
+* **Filters**:
+
+  * `business_id` to specify which companies
+  * `job_department` = `"marketing"`, `"sales"`, etc.
+  * `has_email` = `true` if you need contacts with an email address
+
+#### **Sample Request (Python)**
+
+<CodeGroup>
+  ```python Python expandable
+  # Collect the first 3 business_ids from business_data
+  business_ids = [item["business_id"] for item in business_data["data"][:3]]
+  payload_prospects = {
+      "mode": "full",
+      "size": 100,      # max total prospects
+      "page_size": 50,
+      "page": 1,
+      "filters": {
+          "business_id": {
+              "type": "includes",
+              "values": business_ids
+          },
+          "job_department": {
+              "type": "includes",
+              "values": ["marketing", "sales"]
+          },
+          "has_email": {
+              "type": "exists",
+              "value": True
+          }
+      }
+  }
+  response = requests.post(f"{BASE_URL}/prospects", headers=headers, json=payload_prospects)
+  prospect_data = response.json()
+  print("Prospect Fetch Response:")
+  print(prospect_data)
+  ```
+</CodeGroup>
+
+#### **Response Example (Python)**
+
+<CodeGroup>
+  ```js JSON expandable
+  {
+    "total_results": 56,
+    "data": [
+      {
+        "prospect_id": "xyz123456789abc",
+        "full_name": "Jane Marketing",
+        "job_title": "Marketing Manager",
+        "company_name": "Example Software Inc.",
+        "emails": [
+          "[email protected]"
+        ],
+        ...
+      },
+      ...
+    ]
+  }
+  ```
+</CodeGroup>
+
+Now Alex has a list of **prospect IDs** and relevant fields like `job_title` or `job_department` and more, but **no** direct email or phone. That’s where **Contact Information Enrichment** comes in.
+
+### **Why fetch, then enrich?**
+
+* **Prospect Fetch** returns basic info like full name, job title, job department—but **does not** include direct emails or phone numbers.
+* If you need contact details (emails, phone), you’ll **enrich** them in the next step.
+* For more info, see [**Fetch Prospects Reference**](/reference/fetch_prospects).
+
+## **4. Enrich Prospect with Contact Info**
+
+By default, the **Prospect Fetch** endpoint (`POST /api/v1/prospects`) returns general prospect attributes (e.g., name, job department, job title) **without** providing direct contact details. To obtain **email addresses**, **phone numbers**, or similar fields, you need to call the **Contact Information** enrichment endpoint:
+
+* **Endpoint**: `POST /api/v1/prospects/contacts_information/enrich`
+* You can pass a `prospect_id` (from the fetch step) to receive the contact details.
+
+#### **Sample Request (Python)**
+
+<CodeGroup>
+  ```python Python expandable
+  import requests
+  BASE_URL = "https://api.explorium.ai/v1"
+  API_KEY = "your_api_key_here"
+  headers = {
+      "API_KEY": API_KEY,
+      "Content-Type": "application/json"
+  }
+  prospect_id_to_enrich = "xyz123456789abc"  # from the Prospects Fetch response
+  payload_enrich_contact_info = {
+      "prospect_id": prospect_id_to_enrich
+  }
+  response = requests.post(
+      f"{BASE_URL}/prospects/contacts_information/enrich",
+      headers=headers,
+      json=payload_enrich_contact_info
+  )
+  contact_info = response.json()
+  print("Contact Information Enrichment Response:")
+  print(contact_info)
+  ```
+</CodeGroup>
+
+#### **Response Example (Python)**
+
+<CodeGroup>
+  ```js JSON expandable
+  {
+    "response_context": {
+      "correlation_id": "abcdefg1234",
+      "request_status": "success"
+    },
+    "data": {
+      "emails": [
+        "[email protected]",
+        "[email protected]"
+      ],
+      "professions_email": "[email protected]",
+      "phone_numbers": "+1-555-123-4567",
+      "mobile_phone": "+1-555-987-6543"
+    }
+  }
+  ```
+</CodeGroup>
+
+With this, Alex can confidently **reach out** to prospects via phone or email, completing the entire funnel from:
+
+1. **Identifying** interesting businesses
+2. **Fetching** them
+3. **Finding** relevant employees (prospects)
+4. **Enriching** contact data
+
+## **Putting It All Together**
+
+1. **Statistics**: See how big your target audience is—avoid unnecessary data fetch.
+2. **Fetch Businesses**: Identify relevant companies by country, category, size, etc.
+3. **Fetch Prospects**: Narrow down to specific departments or job levels within those businesses.
+4. **Contact Enrichment**: Obtain the direct contact info needed for outreach.
+
+### **Why This Flow?**
+
+* **Broader to Specific**: Start by confirming the market size, then narrow to the exact companies, then the exact people.
+* **Modular**: You can skip the business step if you’re strictly prospect-focused, but it’s often easier to align leads to target companies first.
+* **Efficient**: Minimizes wasted calls, ensures you only enrich individuals who truly match your criteria.
+
+This workflow showcases a typical “start from a broad category, narrow down to specific contacts” approach. You can further customize it:
+
+* Add job levels (e.g., “manager,” “director”)
+* Filter by region or revenue range
+* And so forth!
+
+## **Next Steps**
+
+* **Visit Our Authentication Docs** to learn more about obtaining an API key ([Authentication Docs](/reference/getting_your_api_key)).
+* **Explore All Available Filters** for **Businesses** ([Business Filters](/reference/fetch_businesses)) and **Prospects** ([Prospect Filters](/reference/fetch_prospects)).
+* **Pagination**: If you have more results than can fit on one page.
+* **Advanced Use Cases**: Check out other “quickstarts” for narrower or alternative workflows.
+
+**Happy Prospecting!**

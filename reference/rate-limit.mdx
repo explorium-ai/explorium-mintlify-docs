@@ -1,0 +1,242 @@
+---
+title: "Rate Limit"
+---
+
+## Overview
+
+Our API implements rate limiting to ensure fair usage and maintain service stability for all users. When you exceed the rate limit, you'll receive a `429 Too Many Requests` response with helpful headers to guide your retry strategy.
+
+## Rate Limits
+
+- **Default Rate Limit**: 200 requests per minute per API key
+- **Rate Limit Window**: 60-second sliding window
+
+### Rate Limit Headers
+When making requests to our API, the following headers are included in every response to help you track your usage:
+
+| Header | Description | Example |
+| :--- | :--- | :--- |
+| `X-RateLimit-Limit` | Maximum number of requests allowed in the current window | `200` |
+| `X-RateLimit-Remaining` | Number of requests remaining in the current window | `150` |
+| `X-RateLimit-Reset` | Unix timestamp when the rate limit window resets | `1234567890` |
+| `Retry-After` | Number of seconds to wait before retrying (only included in 429 responses) | `60` |
+
+## Rate Limit Response
+
+When you exceed the rate limit, you'll receive the following response:
+
+```bash HTTP
+HTTP/1.1 429 Too Many Requests
+Retry-After: 60
+X-RateLimit-Limit: 200
+X-RateLimit-Remaining: 0
+X-RateLimit-Reset: 1234567890
+Content-Type: application/json
+
+{
+  "error": "rate_limit_exceeded",
+  "message": "API rate limit exceeded. Please retry after 60 seconds.",
+  "retry_after": 60
+}
+```
+
+## Implementing Retry Logic
+
+### Best Practices
+
+1. **Always check for 429 responses** and implement exponential backoff
+2. **Respect the Retry-After header** - this tells you the minimum time to wait
+3. **Monitor your usage** using the `X-RateLimit-Remaining` header
+4. **Implement preemptive throttling** when `X-RateLimit-Remaining` is low
+
+
+### Example Implementation
+
+<CodeGroup>
+```python Python expandable
+import time
+import requests
+from typing import Dict, Any, Optional
+
+class APIClient:
+    def __init__(self, api_key: str, base_url: str):
+        self.api_key = api_key
+        self.base_url = base_url
+        self.session = requests.Session()
+        self.session.headers.update({
+            'Authorization': f'Bearer {api_key}'
+        })
+
+    def make_request(
+        self,
+        endpoint: str,
+        method: str = 'GET',
+        max_retries: int = 3,
+        **kwargs
+    ) -> Dict[str, Any]:
+        """Make an API request with automatic retry logic."""
+        url = f"{self.base_url}{endpoint}"
+        retry_count = 0
+
+        while retry_count < max_retries:
+            try:
+                response = self.session.request(method, url, **kwargs)
+
+                # Log rate limit information
+                remaining = response.headers.get('X-RateLimit-Remaining')
+                if remaining:
+                    print(f"Rate Limit Remaining: {remaining}")
+
+                response.raise_for_status()
+                return response.json()
+
+            except requests.exceptions.HTTPError as e:
+                if e.response.status_code == 429:
+                    retry_count += 1
+
+                    # Get retry delay from header
+                    retry_after = e.response.headers.get('Retry-After')
+                    if retry_after:
+                        delay = int(retry_after)
+                    else:
+                        # Exponential backoff with jitter
+                        delay = min(2 ** retry_count, 60)
+
+                    print(f"Rate limit hit. Retrying after {delay} seconds...")
+
+                    if retry_count < max_retries:
+                        time.sleep(delay)
+                        continue
+
+                raise
+
+        raise Exception("Max retries exceeded")
+
+# Usage example
+client = APIClient('your-api-key', 'https://api.example.com')
+
+try:
+    data = client.make_request('/users', method='GET')
+    print('Data:', data)
+except Exception as e:
+    print(f'Error: {e}')
+```
+```javascript JavaScript expandable
+const axios = require('axios');
+
+class APIClient {
+  constructor(apiKey, baseURL) {
+    this.apiKey = apiKey;
+    this.baseURL = baseURL;
+  }
+
+  async makeRequest(endpoint, options = {}) {
+    const maxRetries = 3;
+    let retryCount = 0;
+
+    while (retryCount < maxRetries) {
+      try {
+        const response = await axios({
+          method: options.method || 'GET',
+          url: \`${this.baseURL}${endpoint}\`,
+          headers: {
+            'Authorization': \`Bearer ${this.apiKey}\`,
+            ...options.headers
+          },
+          ...options
+        });
+
+        // Log rate limit info
+        console.log(\`Rate Limit Remaining: ${response.headers['x-ratelimit-remaining']}\`);
+
+        return response.data;
+      } catch (error) {
+        if (error.response && error.response.status === 429) {
+          retryCount++;
+
+          // Get retry delay from header or use exponential backoff
+          const retryAfter = error.response.headers['retry-after'];
+          const delay = retryAfter
+            ? parseInt(retryAfter) * 1000
+            : Math.min(1000 * Math.pow(2, retryCount), 60000);
+
+          console.log(\`Rate limit hit. Retrying after ${delay/1000} seconds...\`);
+
+          if (retryCount < maxRetries) {
+            await this.sleep(delay);
+            continue;
+          }
+        }
+        throw error;
+      }
+    }
+
+    throw new Error('Max retries exceeded');
+  }
+
+  sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+}
+
+// Usage example
+const client = new APIClient('your-api-key', 'https://api.example.com');
+
+async function fetchData() {
+  try {
+    const data = await client.makeRequest('/users', {
+      method: 'GET'
+    });
+    console.log('Data:', data);
+  } catch (error) {
+    console.error('Error:', error.message);
+  }
+}
+```
+
+</CodeGroup>
+
+## Monitoring Rate Limits
+
+### Preemptive Rate Limiting
+
+To avoid hitting rate limits, monitor the `X-RateLimit-Remaining` header and implement throttling:
+
+
+```javascript JavaScript
+// JavaScript example
+if (response.headers['x-ratelimit-remaining'] < 10) {
+  // Slow down requests when approaching limit
+  await sleep(1000); // Wait 1 second between requests
+}
+```
+
+
+
+## Frequently Asked Questions
+
+<AccordionGroup>
+<Accordion title="What happens if I consistently hit rate limits?">
+
+Repeated rate limit violations may result in temporary suspension of API access. Implement proper retry logic and consider upgrading your plan if you need higher limits.
+
+</Accordion>
+
+<Accordion title="How is the rate limit window calculated?">
+
+We use a sliding window approach that tracks requests over the past 60 seconds. Each request timestamp is recorded, and requests older than 60 seconds are removed from the count.
+
+</Accordion>
+
+<Accordion title="Are rate limits applied per API key or per IP address?">
+
+Rate limits are applied per API key. Each API key has its own independent rate limit counter.
+
+</Accordion>
+
+<Accordion title="Do different endpoints have different rate limits?">
+
+Currently, all endpoints share the same rate limit of 200 requests per minute. Some endpoints may have additional specific limits which will be documented separately.
+
+</Accordion>
+</AccordionGroup>

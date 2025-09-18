@@ -1,0 +1,235 @@
+---
+title: "Integrate with Zapier"
+description: "This document provides an overview and guidance on how to use our company's Zapier integration."
+---
+
+## Introduction
+
+Zapier is a powerful automation tool that allows you to connect our service with hundreds of other apps. With Zapier, you can create automated workflows called "Zaps" that transfer data between different applications, saving you time and reducing manual effort.
+
+## Getting Started
+
+<Steps>
+<Step title="Accessing Zapier">
+Navigate to Zapier and either log in to your existing account or create a new one.
+</Step>
+
+<Step title="Connecting Our App">
+Search for our app in the Zapier app directory and connect your account using the provided credentials, click on the account field:
+
+<Frame>
+![](/images/reference/869724cf25a5d1bb834b9b2071d46a6a87cb89e01e87d7fc48422e63c90f4983-image17.png)
+</Frame>
+
+Click on "connect a new account" and a window to enter the credentials will open:
+
+<Frame>
+![](/images/reference/cefb345851bc1887adf094f5de28a24dbd7464a5f05c19fd6a8c1e6134340844-image16.png)
+</Frame>
+
+Explorium api key is required, open ai key is optional, but is necessary to use the MCP action, all the other action require only Explorium's key.
+</Step>
+
+<Step title="Creating Zaps">
+Begin creating your Zaps by selecting a trigger from our app and an action from another app (or vice versa).
+To use Explorium's API click on the zap box
+
+<Frame>
+![](/images/reference/e9f09e5f6450e436ca5b25e18627f437b01c4b597e7694e06012897104154db4-image14.png)
+</Frame>
+
+Then search for explorium:
+
+<Frame>
+![](/images/reference/ff4cd27c251a017aa9cffb7e2cb3952e3d385144bc7dea7de8f57bde323fd215-image12.png)
+</Frame>
+After that you can choose which action do you want to use (enrich, match, fetch):
+
+<Frame>
+![](/images/reference/3adc3dad195f2b4845401155a9bec7c76dbd09d52714b7194419e025f79b52f2-image11.png)
+</Frame>
+</Step>
+</Steps>
+
+### Triggers
+
+Triggers are events within our application that can initiate a Zap. The following triggers are currently supported:
+
+- **New Item Created:** Triggers when a new item is added to your account.
+- **Item Updated:** Triggers when an existing item is modified.
+
+### Actions
+
+Actions are tasks that Zapier performs in another application when a trigger occurs. The following actions are available:
+
+- **Fetch:**
+	We have 2 Fetch actions - businesses and prospects, in each fetch business you can fill the different fields, some are dropdowns, some are free values with a certain pattern listed, the first few fields which have limited values, are dropdowns with fixed values (eg. company size, age, revenue, etc), other fields are free text but with a format stated when hovering on the name (NAICS, category fields, etc.)
+    <Frame>
+    ![](/images/reference/b840b4885f8a3ce78777876e75d2239cdd29d9b16ab548858f7fa36dee7aefe0-image11.png)
+    </Frame>
+- **Output:**
+	The output on fetch actions is with line items, meaning each field getting back from the fetch api has all the values returned in an array, so for example, if you got 10 results, each field will have all the 10 results by the order it got them.
+    <Frame>
+    ![](/images/reference/efb994586bb10b52a03116bd4240cafd2c85638c3125ac0b7b6f0c00132f72f7-image15.png)
+    </Frame>
+- **Match:**
+	There are 2 Match actions, for businesses and prospects
+    <Frame>
+    ![](/images/reference/bd292ae267809905b2fad67f58ea8484c74f492cf32cab34527c2fc9ede0132f-image2.png)
+    </Frame>
+- **Output:**
+	The output for the match actions will be one field which is the matched id
+    <Frame>
+    ![](/images/reference/af22fb61bb9a1c04ca77e786ee5d489556179dadb33cf3d54681ad33a6dee1a3-image7.png)
+    </Frame>
+- **Enrich:**
+	Each of the enrich actions can get either a matched id, or the same inputs as matching, if given the same inputs as matching (For example email in prospecting or company name and website in businesses) it will match before enriching, if given a matched id it will skip matching and enrich, all the fields are optional but it is required to insert at least one of the above. Each enrich action has a dropdown to choose which enrichments you want to enrich.
+    <Frame>
+    ![](/images/reference/36bce66f7f86d6b31c0fedc46da521bdf32b2f2b8a0878fc44d430cbd75c9ab6-image17.png)
+    </Frame>
+
+After enriching, in the next step the output will be available, with each field separate and the user can choose which fields he wants to continue with
+
+    <Frame>
+    ![](/images/reference/ae8fffc5deea6b046a7ddf82f823d386646d81f627c02028c5a6467c4443a1ed-image13.png)
+    </Frame>
+- **MCP:**
+	To use Explorium’s MCP we are using an Endpoint that you can write to the mcp, and get a response
+    <Frame>
+    ![](/images/reference/2a96e9f6f5d5c7d44dda507eb193a0c800069eba506ddcdc911f4a449b625bfc-image5.png)
+    </Frame>
+- **Output:**
+	The output for the mcp prompt will be one field - Response, you can use the response as it is, or use one of zapiers actions to extract data or filter data out of it, here is an example output and how to use it in zapier:
+    <Frame>
+    ![](/images/reference/1e76f29f15865811e708357d0d5a3f32d54e39c2c234f41482b0bf92d7f9a4b8-image6.png)
+    </Frame>
+
+The response is analyzed by zapier’s AI action, and being returned to the google sheet after it extracted the relevant fields we wanted from the MCP response.
+
+## Templates
+
+Templates are ready sets of actions that can be copied and used by one click.
+Each template can be used to create a zap, after using a template the user can change any action or any of the fields. **Example of a templates:**
+
+    <Frame>
+    ![](/images/reference/f6eea5b7452f25f54e637b2752ea68527a661134851a34f979545a5cf96799b9-image9.png)
+    </Frame>
+
+In this case, after the user will choose this template, he can alter the fields to his use, or to his purpose, the webhook can be changed to any trigger (Google sheets, slack, email, etc).
+In the Explorium MCP action, the prompt and the fields being sent can be changed
+
+    <Frame>
+    ![](/images/reference/94281629d60bf25fc27579f7db5ec5b8b54154f53605c8145ffbd2eaa4f593b0-image8.png)
+    </Frame>
+
+This is the prompt text in the template, it is editable and can be changed, the output format will stay the same regardless (in the MCP action, the output is always a “response” field for example).
+
+Another template that can be used is the company research:
+
+    <Frame>
+    ![](/images/reference/e60bf39142c65113b2a67ffffb98b6e72bad03816d4a69bd9398c7b8842d9b09-image3.png)
+    </Frame>
+
+Here, after the user will choose to use this template, he can change the inputs to be to his desire, and also edit and change the MCP prompt as before, in this template we utilize “AI by Zapier” to extract different columns to be sent back to the google sheet.
+
+    <Frame>
+    ![](/images/reference/0f18d06f021648d5c0a334df4fa3a570e1c0245f71c14801fa93b32e1349040f-image1.png)
+    </Frame>
+
+The configurable fields are fully customizable, the template is just a general direction of a specific flow that can be changed to the user needs.
+
+## Using Webhooks
+
+### Introduction to Webhooks
+
+Webhooks: Webhooks are automated messages sent from an application when a specific event occurs. They are used for real-time data communication between different systems, allowing one application to notify another about an event as it happens, rather than relying on periodic polling.
+
+### Prerequisites
+
+Before starting, ensure the following are in place:
+
+- Active Zapier account.
+- Access to our API documentation and necessary API keys/tokens. [https://admin.explorium.ai/](https://admin.explorium.ai/)
+- Understanding of the specific API endpoints and data structures relevant to the integration.
+
+
+### Creating a Webhook Zap in Zapier
+
+#### Setting up the Trigger (Webhook)
+
+<Steps>
+<Step title="Log in to Zapier">
+Navigate to your Zapier dashboard and click "Create Zap."
+</Step>
+
+<Step title="Choose App & Event">
+Search for and select "Webhooks by Zapier" as the trigger app.
+</Step>
+
+<Step title="Choose Trigger Event">
+Select "Catch Hook."
+</Step>
+
+<Step title="Customize Hook">
+- Copy Webhook URL: Copy the provided Zapier Webhook URL. This URL will be used to send data from our APIs.
+
+<Frame>
+![](/images/reference/3b3b6a1eb4137ed84b63a3403e6228935ee17f04b6ae0b7cc6419fe416a683f0-image5.png)
+</Frame>
+
+- The url to connect the webhook is present in the "Test" tab:
+
+<Frame>
+![](/images/reference/e28d956983bd9966ca8af86a3d2640e0ab0084a632b3af08855375fd74bb2699-image1.png)
+</Frame>
+</Step>
+</Steps>
+
+### Configuring Our API to Send Data to the Webhook
+
+The webhook api docs: [/reference/webhooks](/reference/webhooks)
+
+<Steps>
+    <Step>
+    Follow the guide at Explorium documentation for webhooks.
+    </Step>
+
+    <Step title="Configure Webhook">
+    Take the url from the webhook action in zapier, and use it in "webhook\_url", the partner id can be visible in the admin app topbar.
+
+    <Frame>
+    ![](/images/reference/704f9c39ef064c50742617e23e9126a9ab9a738fd443e2f5d4fcb841a56a1f17-image2.png)
+    </Frame>
+    </Step>
+
+    <Step title="Enrolling events">
+    After setting up the webhook, enroll into the events you would wish to accept, this can be done with this api: [/reference/add\_businesses\_enrollments](/reference/add_businesses_enrollments) Here is an example call for that endpoint:
+
+    <Frame>
+    ![](/images/reference/7ede69775ac09d114a4eb8d3657cb2bbe3968b417f384326c976b9506f30d423-image3.png)
+    </Frame>
+    </Step>
+</Steps>
+
+### Setting up the Action (Integrating with Other Apps)
+
+<Steps>
+    <Step title="Choose Action App & Event">
+    Select the desired application (e.g., Google Sheets, Slack, CRM) and the specific action event (e.g., Create Spreadsheet Row, Send Channel Message, Create Contact).
+    </Step>
+
+    <Step title="Choose Account">
+    Connect your account for the chosen action app.
+    </Step>
+
+    <Step title="Set up Action">
+    Map the data received from the Webhook (from "Catch Hook") to the fields required by the action app.
+    </Step>
+</Steps>
+
+After setting up you’re webhook, you can use different actions zapier has, one recommended action is the Explorium mcp - Connecting the webhook to Explorium’s MCP allows you to research the event, and send the response to any application.
+
+    <Frame>
+    ![](/images/reference/036168704e9cab49d34a5ce984160572b2cee601499b5cc67857b3906c0d6045-image4.png)
+    </Frame>
+

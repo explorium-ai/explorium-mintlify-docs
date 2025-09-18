@@ -1,0 +1,40 @@
+---
+title: "Get Active Credits Summary"
+openapi: get /v1/credits
+---
+
+Returns the **allocated** and **remaining** credits for your account.
+
+Use this endpoint to monitor your current credit usage and remaining balance.
+
+## Endpoint: 
+
+**GET** `https://api.explorium.ai/v1/credits`
+
+### Authentication
+
+<Icon icon="lock" /> Include your **account API key** in the request header:
+
+### Response
+
+<Icon icon="file-lines" /> Returns a JSON object containing:
+
+| Field | Type | Description |
+|:---|:---|:---|
+| `allocated_credits` | Integer | Total number of credits assigned to the account |
+| `remaining_credits` | Integer | Number of credits currently available for use |
+| `response_context` | Object | Metadata about the API response (correlation ID etc) |
+
+### <Icon icon="book" /> Example Response
+
+```json JSON
+{  
+  "response_context": {  
+    "correlation_id": "5618d686ecb849fda660c3023acf3120",  
+    "request_status": "success",  
+    "time_took_in_seconds": 0.074  
+  },  
+  "allocated_credits": 1000,  
+  "remaining_credits": 964  
+}
+```

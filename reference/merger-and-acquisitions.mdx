@@ -1,0 +1,68 @@
+---
+title: "Merger and acquisitions"
+---
+
+## Description
+
+The **Mergers and Acquisitions (M&A)** event captures when two companies merge or when one company acquires another. These transactions can indicate strategic business expansions, competitive shifts, and investment opportunities in various industries.
+
+## Use cases:
+
+- **Investment Strategy:** Identify potential opportunities in M&A-heavy industries.
+- **Competitive Intelligence:** Monitor competitor expansion and market consolidations.
+- **Market Trends Analysis:** Understand industry shifts driven by acquisitions and mergers.
+- **Lead Generation:** Target companies undergoing transitions for financial, legal, or consulting services.
+
+## Data Schema
+
+**Event Name: "merger\_and\_acquisitions" (Use this value in the event_types parameter when querying this event.)**
+
+| Signal | API Name | Description | Data Type |
+| :--- | :--- | :--- | :--- |
+| Merger or acquisition | merger\_or\_acquisition | Indicates if the event is a merger or acquisition. | enum |
+| Event description | description | An overview of the merger or acquisition. | string |
+| Involved companies | companies\_involved | List of companies involved in the merger or acquisition. | array&lt;string&gt; |
+| Acquisition price | acquisition\_price\_amount | Amount paid in the acquisition. | number (nullable) |
+| Strategic objective | strategic\_objective | Text describing the strategic objective or motivation behind the merger or acquisition. | string |
+| Acquisition currency | acquisition\_price\_currency | Type of currency used for the acquisition. | currency\_code (nullable) |
+| Link to article | link | URL to article about the merger or acquisition. | url |
+| Title | title | The headline of the article, summarizing its main topic | string |
+| Snippet | snippet | A short summary or preview of the article | string |
+| Event name | event\_name | Name of the event related to the merger or acquisition. | string |
+| Event time | event\_time | The timestamp indicating when the event actually occurred | datetime |
+
+## Query Example
+
+```curl cURL
+curl -X POST \
+  "https://api.explorium.ai/v1/businesses/events" \
+  -H "API_KEY: your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "event_types": [
+    "merger_and_acquisitions"
+  ],
+  "business_ids": [
+    "8adce3ca1cef0c986b22310e369a0793"
+  ],
+  "timestamp_from": "2025-01-01T10:03:03.050Z"
+}'
+```
+
+## Best Practices
+
+- **Combine with firmographic enrichment** to assess the impact on industry trends.
+- **Analyze acquisition price trends** to gain financial insights into major deals.
+- **Leverage strategic objective data** to understand the intent behind mergers and acquisitions.
+
+## Related Events
+
+<Columns cols={2}>
+<Card icon="award" horizontal title="Company's Award" href="/reference/companys-award-event">
+Recognition of a company's achievements and accolades
+</Card>
+<Card icon="handshake" horizontal title="New Partnership" href="/reference/new-partnership">
+Announcement of a new partnership
+</Card>
+</Columns>
+

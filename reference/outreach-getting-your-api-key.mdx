@@ -1,0 +1,103 @@
+---
+title: "Outreach users: Getting Your API key"
+---
+
+## Overview
+
+Your API Key is the **gateway** to Explorium's services, enabling secure and authenticated access to our APIs. Every request made to our system must include a valid API Key assigned to your company.
+
+<Icon icon="thumbtack" size={22} iconType="solid" color="red" /> **Key Facts:**
+
+- Each **company** receives a **single API Key** shared among all users under that organization.
+- The API Key is automatically assigned when a **subscription package** is purchased.
+
+
+<Icon icon="lock" size={22} /> **Why is this important?**
+
+- Ensures **secure** access to your account and data.
+- Identifies your company for billing and tracking API usage.
+- Prevents unauthorized access to Explorium’s services.
+
+
+## How to Retrieve Your API Key
+
+### Step 1: Access the API Key Management Page
+
+<Steps>
+<Step>
+Log in to the **Explorium Admin Portal** at [admin.explorium.ai](https://admin.explorium.ai/signup?partner_id=Outreach).
+</Step>
+<Step>
+Navigate to **Access & Authentication** > **Getting Your API Key**.
+</Step>
+</Steps>
+
+### Step 2: View Your API Key
+
+<Frame>
+![](/images/reference/5b083ede644d0339f255e76e0264bae6f9463de042a2fec26f67e1117caa4f34-Screenshot_2025-02-20_at_19.03.04.png)
+</Frame>
+- Your API Key will be displayed in a **masked format**.
+- Click the **"Show Key"** button to reveal it.
+- Use the **Copy Key** button to copy it securely.
+
+### Step 3: Store Your API Key Securely
+
+- Save the API Key in a **secure location** (e.g., an environment variable, a secret manager, or a vault).
+- Do **not** share it in public documents, emails, or repositories.
+
+<Tip>
+**Security Tip:**
+
+If you believe your API Key has been exposed, contact **your administrator** to request a key reset.
+</Tip>
+
+
+## API Key Security Best Practices
+
+### <Icon icon="check-circle" size={22} color="green" /> **Do:**
+- **Store keys securely** using tools like AWS Secrets Manager, HashiCorp Vault, or environment variables.
+- **Restrict API key usage** by defining permissions at the company level.
+- **Monitor API usage logs** regularly to detect unusual activity.
+- **Rotate keys** periodically if your security team enforces it.
+
+### <Icon icon="x-circle" size={22} color="red" /> **Don't:**
+- **Hardcode API keys** in your application's source code.
+- **Share your API Key** in public repositories, documents, or chat tools.
+- **Use a single API Key in multiple external environments** unless required.
+
+
+## Using Your API Key
+
+Once you have retrieved your key, follow these instructions:
+
+<Steps>
+<Step>
+Copy the API key from Explorium.
+</Step>
+<Step>
+On the Outreach platform - Go to **Administration** > **Integrations** > **Connectors**.
+</Step>
+<Step>
+Find **Explorium** and click "**Configure**".
+
+<Frame>
+![](/images/reference/d9baaab12048588ccf103919d27890ae3bc16c2b9a0f6b007db573b306d48029-image_12.png)
+</Frame>
+</Step>
+<Step>
+In the dialog that appears, paste your API key and click "Save".
+
+<Frame>
+![](/images/reference/6b207a8f91a5ac1c6d089b5de77251c2493c98ba7b9dc6f8c5d8522d146bd632-image_13.png)
+</Frame>
+</Step>
+<Step>
+Your API key is now connected! To update it, click the trash bin icon, insert the new key, and Save.
+
+<Frame>
+![](/images/reference/eef79654a6a6e988e980189cc32ed7e3b400e1c9e293174f337eefb6a6bedd79-image_14.png)
+</Frame>
+</Step>
+</Steps>
+

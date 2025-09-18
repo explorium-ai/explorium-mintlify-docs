@@ -1,0 +1,651 @@
+---
+title: "Company’s Webstack"
+---
+
+## **Endpoint:**
+
+`https://api.explorium.ai/v1/businesses/webstack/enrich`
+
+## **Description**
+
+This enrichment is powered by BuiltWith, a global leader in web technology profiling.
+
+<Frame>
+![](/images/reference/e7f63097ee189ed30f14a3555728ce8109a018eb886fc4551e1d6c2b62200bcb-image.png)
+</Frame>
+
+The **Webstack Enrichment** surfaces detailed insights about a company’s website infrastructure and technology usage. Powered by BuiltWith’s technology detection engine, this signal identifies the tools, platforms, and services a company uses on its public website, from eCommerce solutions and analytics to payment processors, security systems, and marketing tools.
+
+These web signals help assess a company’s digital maturity, commercial intent, online investment, and trustworthiness. The enrichment supports use cases such as market segmentation, risk assessment, prospect prioritization, and competitive intelligence.
+
+Each enrichment query returns a comprehensive profile of technologies in use, tech categories, spending estimates, Shopify integrations, traffic rankings, and more.
+
+
+<AccordionGroup>
+<Accordion title="How It Works">
+
+- **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
+- **Processing:** The system extracts the company’s domain, scans the website, and matches detected technologies via BuiltWith’s detection logic.
+- **Output:** A set of signals describing the website’s stack, activity, and structure.
+</Accordion>
+
+<Accordion title="Example Request (cURL)">
+
+```bash Bash
+{
+  "request_context": {},
+  "business_id": "a34bacf839b923770b2c360eefa26748"
+}
+```
+</Accordion>
+
+<Accordion title="Example Response">
+
+```json JSON expandable
+{
+"response_context": {
+  "correlation_id": "6e666f60180d42e994cd7f5db5ed0c86",
+  "request_status": "success",
+  "time_took_in_seconds": 1.761
+},
+"data": {
+  "business_id": "a34bacf839b923770b2c360eefa26748",
+  "affiliate_links": true,
+  "company_vertical": null,
+  "db_indexed": true,
+  "earliest_record": "2023-07-31T07:00:00",
+  "ecommerce": true,
+  "established": false,
+  "latest_update": "2023-07-31T07:00:00",
+  "live_techs": true,
+  "money_spend_on_website_technologies": 11596,
+  "number_of_pages_on_sitemap": 5264,
+  "number_of_premium_technologies": 256,
+  "number_of_social_networks": 0,
+  "parked": false,
+  "payment_options": true,
+  "payment_technologies_in_use": "American_Express, Euro, Pound_Sterling, Visa",
+  "premium_techs": 17,
+  "product_count": 0,
+  "q_rank": 0,
+  "shopify_apps_in_use": null,
+  "spend": 11596,
+  "status": "ok",
+  "categories_to_technologies_tree": {
+    "ssl": {
+      "Other": [
+        "Microsoft SSL",
+        "Azure SSL",
+        "HSTS IncludeSubdomains PreLoad",
+        "HSTS",
+        "SSL by Default"
+      ],
+      "Root Authority": [
+        "DigiCert SSL"
+      ]
+    },
+    "link": {
+      "Other": [
+        "Events Page",
+        "LinkedIn",
+        "Accessibility Statement",
+        "Twitter",
+        "GitHub Pages",
+        "Impressum",
+        "Sustainability",
+        "Careers",
+        "Code of Conduct",
+        "Plans and Pricing",
+        "Facebook",
+        "Computershare",
+        "Investor Relations",
+        "GitHub",
+        "Meetup Pro",
+        "Instagram",
+        "Human Rights Policy",
+        "TikTok"
+      ]
+    },
+    "shop": {
+      "Non Platform": [
+        "Cart Functionality"
+      ]
+    },
+    "analytics": {
+      "Feedback Forms and Surveys": [
+        "Usabilla"
+      ],
+      "Site Optimization": [
+        "ClickTale"
+      ],
+      "Social Management": [
+        "Facebook Domain Insights"
+      ],
+      "Conversion Tracking": [
+        "Twitter Conversion Tracking"
+      ],
+      "Visitor Count Tracking": [
+        "Google Analytics"
+      ],
+      "Marketing Automation": [
+        "Optify",
+        "Marketo",
+        "Omniture SiteCatalyst",
+        "WebTrends"
+      ],
+      "Conversion Optimization": [
+        "Twitter Conversion Tracking",
+        "LinkedIn Insights",
+        "Facebook Conversion Tracking",
+        "Bing Universal Event Tracking"
+      ],
+      "Audience Measurement": [
+        "FullStory",
+        "Google Analytics",
+        "WebTrends",
+        "Microsoft Clarity"
+      ],
+      "Other": [
+        "Google Universal Analytics",
+        "Twitter Website Universal Tag",
+        "Facebook Pixel",
+        "Tealium UTAG",
+        "Global Site Tag"
+      ],
+      "Retargeting / Remarketing": [
+        "Bing Universal Event Tracking"
+      ],
+      "Application Performance": [
+        "Google Analytics",
+        "Microsoft Azure Monitor",
+        "New Relic",
+        "Azure Monitor",
+        "Microsoft Application Insights"
+      ]
+    },
+    "cdn": {
+      "Other": [
+        "CDN JS",
+        "Amazon S3",
+        "Azure Edge",
+        "Cloudflare JS",
+        "jsDelivr",
+        "Microsoft Azure Blob Storage",
+        "Microsoft Azure CDN",
+        "Microsoft Ajax Content Delivery Network",
+        "jQuery CDN",
+        "Cloudflare",
+        "UNPKG",
+        "WordPress Grid",
+        "Akamai"
+      ]
+    },
+    "cdns": {
+      "Edge Delivery Network": [
+        "Microsoft Azure Verified CDN",
+        "Akamai Edge"
+      ],
+      "Other": [
+        "Akamai Global Request Number",
+        "Akamai EdgeConnect",
+        "Cloudflare CDN"
+      ]
+    },
+    "payment": {
+      "Payment Acceptance": [
+        "Visa",
+        "American Express"
+      ],
+      "Currency": [
+        "Pound Sterling",
+        "South Korean Won",
+        "Japanese Yen",
+        "Euro"
+      ]
+    },
+    "ads": {
+      "Affiliate Programs": [
+        "Impact"
+      ],
+      "Ad Network": [
+        "Twitter Ads"
+      ],
+      "Retargeting / Remarketing": [
+        "Facebook Custom Audiences",
+        "Twitter Ads"
+      ],
+      "Other": [
+        "DoubleClick.Net",
+        "LinkedIn Ads"
+      ],
+      "Fraud Prevention": [
+        "Impact"
+      ]
+    },
+    "widgets": {
+      "Translation": [
+        "Weglot"
+      ],
+      "Site Search": [
+        "Sitelinks Search Box",
+        "Coveo"
+      ],
+      "Privacy Compliance": [
+        "Convercent",
+        "Global Privacy Control",
+        "US Privacy User Signal Mechanism"
+      ],
+      "Social Sharing": [
+        "Reddit"
+      ],
+      "Other": [
+        "COVID-19",
+        "Gravatar Profiles",
+        "WordPress Multisite",
+        "Browse Happy",
+        "Microsoft Power BI",
+        "Facebook Sharer",
+        "Hubspot Developer Verification",
+        "Twitter Tweet Button",
+        "Wordpress Plugins"
+      ],
+      "Live Chat": [
+        "LivePerson"
+      ],
+      "Tag Management": [
+        "Google Tag Manager",
+        "Tealium"
+      ],
+      "Customer Data Platform": [
+        "Tealium"
+      ],
+      "WordPress Plugins": [
+        "WP Featherlight",
+        "Jetpack",
+        "Metronet Profile Picture",
+        "Newsletter for Wordpress",
+        "Yoast SEO Premium",
+        "Stream",
+        "Redis Cache",
+        "ThemeFusion",
+        "Page Links To",
+        "Column Shortcodes",
+        "Yoast WordPress SEO Plugin",
+        "GTM4WP",
+        "Yoast Plugins",
+        "ElasticPress",
+        "Taxonomy Images"
+      ],
+      "Feedback Forms and Surveys": [
+        "DocuSign"
+      ]
+    },
+    "mx": {
+      "Other": [
+        "Microsoft Azure DNS",
+        "SPF"
+      ],
+      "Business Email Hosting": [
+        "Microsoft Exchange Online"
+      ]
+    },
+    "cms": {
+      "Blog": [
+        "WordPress"
+      ],
+      "Open Source": [
+        "WordPress",
+        "October CMS"
+      ],
+      "Hosted Solution": [
+        "Adobe Scene7"
+      ],
+      "Enterprise": [
+        "Adobe Experience Manager",
+        "Kentico Xperience",
+        "Sitecore CMS",
+        "Adobe Scene7"
+      ],
+      "Ticketing System": [
+        "Atlassian Cloud"
+      ],
+      "Social Management": [
+        "Lithium Technologies"
+      ],
+      "Other": [
+        "WordPress 6.2"
+      ]
+    },
+    "Server": {
+      "Other": [
+        "IPv6",
+        "GitHub Hosting"
+      ]
+    },
+    "media": {
+      "Social Video Platform": [
+        "YouTube"
+      ],
+      "Online Video Platform": [
+        "YouTube"
+      ],
+      "Live Stream / Webcast": [
+        "YouTube"
+      ],
+      "Other": [
+        "YouTube Privacy Enchanced",
+        "TikTok Embed"
+      ]
+    },
+    "mobile": {
+      "Other": [
+        "Viewport Meta",
+        "Mobile Optimized",
+        "IPhone / Mobile Compatible",
+        "Apple Mobile Web App Capable",
+        "Apple Mobile Web Clips Icon"
+      ]
+    },
+    "CDN": {
+      "Other": [
+        "Content Delivery Network"
+      ]
+    },
+    "javascript": {
+      "UI": [
+        "jQuery UI",
+        "Hover Intent"
+      ],
+      "Framework": [
+        "Service Worker",
+        "JSON 3"
+      ],
+      "Animation": [
+        "Slick JS"
+      ],
+      "jQuery Plugin": [
+        "jQuery Validate",
+        "jQuery Cookie",
+        "jQuery Tools",
+        "Infinite Scroll",
+        "jQuery UI"
+      ],
+      "Compatibility": [
+        "Modernizr",
+        "ECMAScript 5 Shim"
+      ],
+      "Other": [
+        "Fancybox",
+        "Hammer JS",
+        "Underscore.js",
+        "jQuery Autocomplete",
+        "Facebook for Websites",
+        "jQuery 1.3.2",
+        "jQuery 3.6.0",
+        "Modernizr 2.6",
+        "Yett",
+        "PrettyPrint",
+        "Popper.js",
+        "jQuery 1.9.0",
+        "Facebook SDK",
+        "jQuery 3.4.0",
+        "jQuery 3.3.1",
+        "jQuery BBQ",
+        "jQuery 1.11.0",
+        "jQuery BlockUI",
+        "Angular JS",
+        "jQuery 3.4.1",
+        "jQuery 2.2.4",
+        "jQuery 3.5.1",
+        "jQuery Waypoints"
+      ],
+      "JavaScript Library": [
+        "jQuery",
+        "Moment JS",
+        "Lightning.js"
+      ]
+    },
+    "Web Server": {
+      "Other": [
+        "Apache",
+        "Kestrel",
+        "IIS",
+        "nginx",
+        "IIS 10"
+      ]
+    },
+    "hosting": {
+      "Cloud PaaS": [
+        "Microsoft Azure"
+      ],
+      "US hosting": [
+        "Akamai Hosted",
+        "Microsoft"
+      ],
+      "Other": [
+        "Microsoft Azure Front Door",
+        "Microsoft Azure US West Region"
+      ],
+      "Cloud Hosting": [
+        "Microsoft Azure"
+      ],
+      "WordPress Hosting": [
+        "WP Engine"
+      ]
+    },
+    "copyright": {
+      "Other": [
+        "Copyright Year 2015"
+      ]
+    },
+    "language": {
+      "Other": [
+        "Colombian Spanish",
+        "Italian HREF LANG",
+        "Australian English HREF LANG",
+        "Korean HREF LANG",
+        "Japanese HREF LANG",
+        "Polish HREF LANG",
+        "Turkish",
+        "New Zealand English HREF LANG",
+        "Turkish HREF LANG",
+        "Taiwan Chinese HREF LANG",
+        "Spanish HREF LANG",
+        "Venezuelan Spanish HREF LANG",
+        "English HREF LANG",
+        "Czech HREF LANG",
+        "Vietnamese HREF LANG",
+        "Thai HREF LANG",
+        "Chinese",
+        "French HREF LANG",
+        "Algerian Arabic HREF LANG",
+        "Japanese",
+        "Arabic HREF LANG",
+        "Chile Spanish HREF LANG",
+        "Argentinian Spanish HREF LANG",
+        "Greek HREF LANG",
+        "Irish English HREF LANG",
+        "Indonesian HREF LANG",
+        "Swedish HREF LANG",
+        "French",
+        "Catalan",
+        "Bengali HREF LANG",
+        "Danish HREF LANG",
+        "Colombian Spanish HREF LANG",
+        "Austrian German",
+        "Norwegian Bokmål",
+        "Swiss German HREF LANG",
+        "Dutch HREF LANG",
+        "Mexican Spanish HREF LANG",
+        "Canadian French HREF LANG",
+        "Portuguese HREF LANG",
+        "Finnish HREF LANG",
+        "Malaysian HREF LANG",
+        "Russian HREF LANG",
+        "Spanish",
+        "German HREF LANG",
+        "Belgium French",
+        "German",
+        "Peruvian Spanish HREF LANG",
+        "Austrian German HREF LANG",
+        "Brazilian Portuguese HREF LANG",
+        "Hong Kong Chinese HREF LANG",
+        "Chinese HREF LANG"
+      ]
+    },
+    "framework": {
+      "Other": [
+        "Silverlight",
+        "Placehold IT",
+        "Express",
+        "ASP.NET MVC",
+        "ASP.NET Ajax",
+        "Facebook Domain Verification",
+        "Bug Bounty",
+        "Next.js",
+        "ASP.NET Core",
+        "ASP.NET",
+        "ASP.NET 4.0"
+      ],
+      "Schema": [
+        "Organization Schema",
+        "Person Schema"
+      ],
+      "WordPress Theme": [
+        "Avada"
+      ]
+    },
+    "Web Master": {
+      "Other": [
+        "MSN/Bing Webmaster",
+        "Google Webmaster",
+        "Yandex Verification"
+      ]
+    },
+    "feeds": {
+      "Other": [
+        "Really Simple Discovery",
+        "Pingback Support",
+        "RSS",
+        "Live Writer Support"
+      ]
+    }
+  },
+  "technologies_categories": "CDN, Server, Web_Master, Web_Server, ads, analytics, cdn, cdns, cms, copyright, feeds, framework, hosting, javascript, language, link, media, mobile, mx, payment, shop, ssl, widgets",
+  "technologies_sub_categories": "Ad_Network, Affiliate_Programs, Animation, Application_Performance, Audience_Measurement, Blog, Business_Email_Hosting, Cloud_Hosting, Cloud_PaaS, Compatibility, Conversion_Optimization, Conversion_Tracking, Currency, Customer_Data_Platform, Edge_Delivery_Network, Enterprise, Feedback_Forms_and_Surveys, Framework, Fraud_Prevention, Hosted_Solution, JavaScript_Library, Live_Chat, Live_Stream_/_Webcast, Marketing_Automation, Non_Platform, Online_Video_Platform, Open_Source, Payment_Acceptance, Privacy_Compliance, Retargeting_/_Remarketing, Root_Authority, Schema, Site_Optimization, Site_Search, Social_Management, Social_Sharing, Social_Video_Platform, Tag_Management, Ticketing_System, Translation, UI, US_hosting, Visitor_Count_Tracking, WordPress_Hosting, WordPress_Plugins, WordPress_Theme, jQuery_Plugin",
+  "technologies_used_by_company_website": "ASP.NET, ASP.NET_4.0, ASP.NET_Ajax, ASP.NET_Core, ASP.NET_MVC, Accessibility_Statement, Adobe_Experience_Manager, Adobe_Scene7, Akamai, Akamai_Edge, Akamai_EdgeConnect, Akamai_Global_Request_Number, Akamai_Hosted, Algerian_Arabic_HREF_LANG, Amazon_S3, American_Express, Angular_JS, Apache, Apple_Mobile_Web_App_Capable, Apple_Mobile_Web_Clips_Icon, Arabic_HREF_LANG, Argentinian_Spanish_HREF_LANG, Atlassian_Cloud, Australian_English_HREF_LANG, Austrian_German, Austrian_German_HREF_LANG, Avada, Azure_Edge, Azure_Monitor, Azure_SSL, Belgium_French, Bengali_HREF_LANG, Bing_Universal_Event_Tracking, Brazilian_Portuguese_HREF_LANG, Browse_Happy, Bug_Bounty, CDN_JS, COVID-19, Canadian_French_HREF_LANG, Careers, Cart_Functionality, Catalan, Chile_Spanish_HREF_LANG, Chinese, Chinese_HREF_LANG, ClickTale, Cloudflare, Cloudflare_CDN, Cloudflare_JS, Code_of_Conduct, Colombian_Spanish, Colombian_Spanish_HREF_LANG, Column_Shortcodes, Computershare, Content_Delivery_Network, Convercent, Copyright_Year_2015, Coveo, Czech_HREF_LANG, Danish_HREF_LANG, DigiCert_SSL, DocuSign, DoubleClick.Net, Dutch_HREF_LANG, ECMAScript_5_Shim, ElasticPress, English_HREF_LANG, Euro, Events_Page, Express, Facebook, Facebook_Conversion_Tracking, Facebook_Custom_Audiences, Facebook_Domain_Insights, Facebook_Domain_Verification, Facebook_Pixel, Facebook_SDK, Facebook_Sharer, Facebook_for_Websites, Fancybox, Finnish_HREF_LANG, French, French_HREF_LANG, FullStory, GTM4WP, German, German_HREF_LANG, GitHub, GitHub_Hosting, GitHub_Pages, Global_Privacy_Control, Global_Site_Tag, Google_Analytics, Google_Tag_Manager, Google_Universal_Analytics, Google_Webmaster, Gravatar_Profiles, Greek_HREF_LANG, HSTS, HSTS_IncludeSubdomains_PreLoad, Hammer_JS, Hong_Kong_Chinese_HREF_LANG, Hover_Intent, Hubspot_Developer_Verification, Human_Rights_Policy, IIS, IIS_10, IPhone_/_Mobile_Compatible, IPv6, Impact, Impressum, Indonesian_HREF_LANG, Infinite_Scroll, Instagram, Investor_Relations, Irish_English_HREF_LANG, Italian_HREF_LANG, JSON_3, Japanese, Japanese_HREF_LANG, Japanese_Yen, Jetpack, Kentico_Xperience, Kestrel, Korean_HREF_LANG, Lightning.js, LinkedIn, LinkedIn_Ads, LinkedIn_Insights, Lithium_Technologies, LivePerson, Live_Writer_Support, MSN/Bing_Webmaster, Malaysian_HREF_LANG, Marketo, Meetup_Pro, Metronet_Profile_Picture, Mexican_Spanish_HREF_LANG, Microsoft, Microsoft_Ajax_Content_Delivery_Network, Microsoft_Application_Insights, Microsoft_Azure, Microsoft_Azure_Blob_Storage, Microsoft_Azure_CDN, Microsoft_Azure_DNS, Microsoft_Azure_Front_Door, Microsoft_Azure_Monitor, Microsoft_Azure_US_West_Region, Microsoft_Azure_Verified_CDN, Microsoft_Clarity, Microsoft_Exchange_Online, Microsoft_Power_BI, Microsoft_SSL, Mobile_Optimized, Modernizr, Modernizr_2.6, Moment_JS, New_Relic, New_Zealand_English_HREF_LANG, Newsletter_for_Wordpress, Next.js, Norwegian_Bokmål, October_CMS, Omniture_SiteCatalyst, Optify, Organization_Schema, Page_Links_To, Person_Schema, Peruvian_Spanish_HREF_LANG, Pingback_Support, Placehold_IT, Plans_and_Pricing, Polish_HREF_LANG, Popper.js, Portuguese_HREF_LANG, Pound_Sterling, PrettyPrint, RSS, Really_Simple_Discovery, Reddit, Redis_Cache, Russian_HREF_LANG, SPF, SSL_by_Default, Service_Worker, Silverlight, Sitecore_CMS, Sitelinks_Search_Box, Slick_JS, South_Korean_Won, Spanish, Spanish_HREF_LANG, Stream, Sustainability, Swedish_HREF_LANG, Swiss_German_HREF_LANG, Taiwan_Chinese_HREF_LANG, Taxonomy_Images, Tealium, Tealium_UTAG, Thai_HREF_LANG, ThemeFusion, TikTok, TikTok_Embed, Turkish, Turkish_HREF_LANG, Twitter, Twitter_Ads, Twitter_Conversion_Tracking, Twitter_Tweet_Button, Twitter_Website_Universal_Tag, UNPKG, US_Privacy_User_Signal_Mechanism, Underscore.js, Usabilla, Venezuelan_Spanish_HREF_LANG, Vietnamese_HREF_LANG, Viewport_Meta, Visa, WP_Engine, WP_Featherlight, WebTrends, Weglot, WordPress, WordPress_6.2, WordPress_Grid, WordPress_Multisite, Wordpress_Plugins, Yandex_Verification, Yett, Yoast_Plugins, Yoast_SEO_Premium, Yoast_WordPress_SEO_Plugin, YouTube, YouTube_Privacy_Enchanced, jQuery, jQuery_1.11.0, jQuery_1.3.2, jQuery_1.9.0, jQuery_2.2.4, jQuery_3.3.1, jQuery_3.4.0, jQuery_3.4.1, jQuery_3.5.1, jQuery_3.6.0, jQuery_Autocomplete, jQuery_BBQ, jQuery_BlockUI, jQuery_CDN, jQuery_Cookie, jQuery_Tools, jQuery_UI, jQuery_Validate, jQuery_Waypoints, jsDelivr, nginx",
+  "umbrella": 2
+},
+"entity_id": "a34bacf839b923770b2c360eefa26748"
+}
+```
+</Accordion>
+
+<Accordion title="Best Practices">
+- **Use with matched companies only.** Ensure the `business_id` corresponds to a verified website.
+- **Combine with firmographic signals** (e.g. revenue, size, country) for rich segmentation.
+- **Use premium spend estimates** to prioritize leads with higher digital investment.
+- **Monitor tech stack changes** over time to detect shifts in digital strategy or maturity.
+</Accordion>
+
+<Accordion title="Webstack Output Signals">
+
+| SignalAPI | Name | Description | Data Type |
+| :--- | :--- | :--- | :--- |
+| technology\_name | Technology name | Name of the web technology. | string |
+| technology\_type | Technology type | Type of web technology (analytics, advertising, etc.). | string |
+| vendor | Vendor | Vendor of the technology. | string |
+| detection\_date | Detection date | Date when technology was detected. | date |
+| implementation\_status | Implementation status | Current implementation status. | string |
+| usage\_category | Usage category | Category of usage. | string |
+| integration\_level | Integration level | Level of integration. | string |
+| version | Version | Version of the technology. | string |
+| deployment\_model | Deployment model | Deployment model (cloud, on-premise). | string |
+| license\_type | License type | Type of license (free, paid, enterprise). | string |
+| performance\_impact | Performance impact | Impact on website performance. | string |
+| security\_level | Security level | Security level of the technology. | string |
+| compliance\_status | Compliance status | Compliance status with regulations. | string |
+| cost | Cost | Cost of the technology. | number |
+| roi | ROI | Return on investment. | number |
+| user\_experience\_impact | User experience impact | Impact on user experience. | string |
+| mobile\_compatibility | Mobile compatibility | Compatibility with mobile devices. | boolean |
+| accessibility\_compliance | Accessibility compliance | Compliance with accessibility standards. | boolean |
+| data\_privacy\_compliance | Data privacy compliance | Compliance with data privacy regulations. | boolean |
+| third\_party\_integrations | Third-party integrations | Integration with third-party services. | string |
+| customization\_level | Customization level | Level of customization. | string |
+| support\_quality | Support quality | Quality of vendor support. | string |
+| update\_frequency | Update frequency | Frequency of technology updates. | string |
+| scalability | Scalability | Scalability of the technology. | string |
+| reliability | Reliability | Reliability of the technology. | string |
+| documentation\_quality | Documentation quality | Quality of documentation. | string |
+| community\_support | Community support | Level of community support. | string |
+| training\_requirements | Training requirements | Training requirements for users. | string |
+| migration\_complexity | Migration complexity | Complexity of migrating to/from the technology. | string |
+| vendor\_stability | Vendor stability | Financial stability of the vendor. | string |
+| market\_position | Market position | Market position of the technology. | string |
+| innovation\_track\_record | Innovation track record | Track record of innovation. | string |
+| competitive\_alternatives | Competitive alternatives | Alternative technologies available. | string |
+| adoption\_rate | Adoption rate | Rate of adoption in the market. | string |
+| future\_roadmap | Future roadmap | Future development roadmap. | string |
+| end\_of\_life\_timeline | End of life timeline | Expected end of life timeline. | string |
+| backup\_solutions | Backup solutions | Backup solutions available. | string |
+| disaster\_recovery | Disaster recovery | Disaster recovery capabilities. | string |
+| monitoring\_capabilities | Monitoring capabilities | Monitoring and alerting capabilities. | string |
+| reporting\_features | Reporting features | Reporting and analytics features. | string |
+| api\_availability | API availability | Availability of APIs. | boolean |
+| webhook\_support | Webhook support | Support for webhooks. | boolean |
+| batch\_processing | Batch processing | Batch processing capabilities. | boolean |
+| real\_time\_processing | Real-time processing | Real-time processing capabilities. | boolean |
+| data\_export\_options | Data export options | Options for exporting data. | string |
+| data\_import\_options | Data import options | Options for importing data. | string |
+| user\_management | User management | User management capabilities. | string |
+| role\_based\_access | Role-based access | Role-based access control. | boolean |
+| single\_sign\_on | Single sign-on | Single sign-on support. | boolean |
+| multi\_factor\_authentication | Multi-factor authentication | Multi-factor authentication support. | boolean |
+| audit\_logging | Audit logging | Audit logging capabilities. | boolean |
+| data\_retention\_policies | Data retention policies | Data retention policies. | string |
+| gdpr\_compliance | GDPR compliance | GDPR compliance status. | boolean |
+| ccpa\_compliance | CCPA compliance | CCPA compliance status. | boolean |
+| hipaa\_compliance | HIPAA compliance | HIPAA compliance status. | boolean |
+| sox\_compliance | SOX compliance | SOX compliance status. | boolean |
+| iso\_certification | ISO certification | ISO certification status. | string |
+| penetration\_testing | Penetration testing | Penetration testing results. | string |
+| vulnerability\_assessments | Vulnerability assessments | Vulnerability assessment results. | string |
+| security\_certifications | Security certifications | Security certifications held. | string |
+| incident\_response | Incident response | Incident response procedures. | string |
+| business\_continuity | Business continuity | Business continuity planning. | string |
+| sla\_guarantees | SLA guarantees | Service level agreement guarantees. | string |
+| uptime\_statistics | Uptime statistics | Historical uptime statistics. | string |
+| performance\_benchmarks | Performance benchmarks | Performance benchmarks. | string |
+| load\_testing\_results | Load testing results | Load testing results. | string |
+| stress\_testing\_results | Stress testing results | Stress testing results. | string |
+| capacity\_planning | Capacity planning | Capacity planning capabilities. | string |
+| auto\_scaling | Auto scaling | Auto-scaling capabilities. | boolean |
+| geographic\_distribution | Geographic distribution | Geographic distribution of services. | string |
+| cdn\_integration | CDN integration | Content delivery network integration. | boolean |
+| caching\_mechanisms | Caching mechanisms | Caching mechanisms employed. | string |
+| compression\_support | Compression support | Support for data compression. | boolean |
+| encryption\_standards | Encryption standards | Encryption standards used. | string |
+| key\_management | Key management | Cryptographic key management. | string |
+| certificate\_management | Certificate management | SSL certificate management. | string |
+| network\_security | Network security | Network security measures. | string |
+| firewall\_configuration | Firewall configuration | Firewall configuration. | string |
+| intrusion\_detection | Intrusion detection | Intrusion detection systems. | string |
+| malware\_protection | Malware protection | Malware protection measures. | string |
+| ddos\_protection | DDoS protection | Distributed denial of service protection. | string |
+| bot\_protection | Bot protection | Bot protection mechanisms. | string |
+| rate\_limiting | Rate limiting | Rate limiting capabilities. | boolean |
+| traffic\_analysis | Traffic analysis | Traffic analysis capabilities. | string |
+| anomaly\_detection | Anomaly detection | Anomaly detection capabilities. | string |
+| machine\_learning\_integration | Machine learning integration | Integration with ML services. | boolean |
+| ai\_capabilities | AI capabilities | Artificial intelligence capabilities. | string |
+| natural\_language\_processing | Natural language processing | NLP capabilities. | boolean |
+| image\_recognition | Image recognition | Image recognition capabilities. | boolean |
+| voice\_recognition | Voice recognition | Voice recognition capabilities. | boolean |
+| predictive\_analytics | Predictive analytics | Predictive analytics capabilities. | boolean |
+| recommendation\_engine | Recommendation engine | Recommendation engine capabilities. | boolean |
+</Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" color="red" iconType="solid"/> *For additional web-based enrichment options, explore related API endpoints.*
+

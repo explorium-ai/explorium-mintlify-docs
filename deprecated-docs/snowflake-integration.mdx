@@ -1,0 +1,81 @@
+---
+title: "Snowflake integration"
+icon: "snowflake"
+description: "How to setup an integration to import and export data to and from Explorium."
+---
+
+## Open the snowflake integration modal
+
+To open the snowflake integration modal:
+
+<Steps>
+    <Step>
+        Go to Explorium Integration page
+    </Step>
+    <Step>
+        Click new Integration
+    </Step>
+    <Step>
+        Choose Snowflake
+    </Step>
+</Steps>
+
+<Frame>
+![](/images/deprecated-docs/c361cc2-Explorium_-_Automated_Data_Science.gif)
+</Frame>
+
+## Inserting credentials fields
+
+The first 3 fields we need to fill out are the
+
+* Account name
+* User name
+* Password
+
+These are the field that are required to log into your snowflake account.
+
+<Frame>
+![](/images/deprecated-docs/483faa1-CleanShot_2023-04-03_at_12.40.18.png)
+</Frame>
+
+<br />
+
+<Frame>
+![](/images/deprecated-docs/00e981a-CleanShot_2023-04-03_at_12.42.48.png)
+</Frame>
+
+## Inserting data base fields
+
+The next fields are required to access a group of tables:
+
+1. Database
+2. Schema
+3. Warehouse
+4. Role
+
+In order to get the view below perform the following steps:
+
+<Steps>
+    <Step>
+        Log into your snowflake account
+    </Step>
+    <Step>
+        Choose a table from the schema you would later on want to either pull or push data to.
+    </Step>
+</Steps>
+
+<Frame>
+![](/images/deprecated-docs/4aa7c60-CleanShot_2023-04-03_at_14.57.31.png)
+</Frame>
+
+<br />
+
+<Frame>
+![](/images/deprecated-docs/c2c90ba-CleanShot_2023-04-03_at_14.54.47.png)
+</Frame>
+
+## Setting up the integration
+
+Once all fields are filled out click the `Test connection` button. If the all goes all you will be prompted with the `Connection successful` message.
+
+Click Create and your all done!

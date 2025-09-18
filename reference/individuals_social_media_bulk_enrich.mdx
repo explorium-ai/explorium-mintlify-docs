@@ -1,0 +1,123 @@
+---
+title: "Individual's social media presence"
+openapi: post /v1/prospects/linkedin_posts/bulk_enrich
+---
+
+## Description
+
+The **Bulk Individual's Social Media Presence Enrichment** API retrieves LinkedIn® post data for up to **50 prospects** in a single request. This endpoint helps in monitoring professional engagement, thought leadership, and outreach personalization.
+
+<Icon icon="thumbtack" color="red" iconType="solid"/> **Key Benefits:**
+
+- **Bulk access** to recent LinkedIn® posts from multiple prospects.
+- **Identify trends and professional interests** to optimize engagement.
+- **Enhance lead nurturing** with personalized messaging strategies.
+
+<AccordionGroup>
+<Accordion title="How It Works">
+
+1. **Input:** Provide up to 50 `prospect_id` values, obtained from the **Match Prospects** endpoint.
+2. **Processing:** The system retrieves public LinkedIn® posts associated with the provided prospects.
+3. **Output:** Returns structured data in the same order as the input, ensuring easy mapping.
+
+</Accordion>
+
+<Accordion title="Request Schema">
+
+| Field | Type | Description |
+|:---|:---|:---|
+| `prospect_ids` | Array | A list of up to 50 unique prospect IDs (Required) |
+
+</Accordion>
+
+<Accordion title="Example Request (cURL)">
+
+```shell Bash
+curl --request POST \
+     --url https://api.explorium.ai/v1/prospects/linkedin_posts/bulk_enrich \
+     --header 'accept: application/json' \
+     --header 'api_key: <your api key>' \
+     --header 'content-type: application/json' \
+     --data '{
+  "prospect_ids": [
+    "ee936e451b50c70e068e1b54e106cb89173198c4",
+    "57f9e5dac64d31d80e6e9432fe2c500d0bba2c01"
+  ]
+}'
+```
+
+</Accordion>
+
+<Accordion title="Example Response">
+
+```json JSON expandable
+{
+  "response_context": {
+    "correlation_id": "250fcd74ddb9498281b2bb2404bf71e8",
+    "request_status": "success",
+    "time_took_in_seconds": 29.91
+  },
+  "data": [
+    {
+      "prospect_id": "ee936e451b50c70e068e1b54e106cb89173198c4",
+      "data": {
+        "display_name": null,
+        "post_text": "Great to see so many customers and partners unlocking the full ROI of AI.",
+        "days_since_posted": 28,
+        "post_url": "https://www.linkedin.com/feed/update/urn:li:activity:7293486979298578433",
+        "number_of_comments": 122,
+        "number_of_likes": 2875,
+        "created_at": "2025-02-06T00:00:00"
+      }
+    },
+    {
+      "prospect_id": "ee936e451b50c70e068e1b54e106cb89173198c4",
+      "data": {
+        "display_name": null,
+        "post_text": "Today in Nature Magazine: Our MatterGen model represents a paradigm shift in materials design...",
+        "days_since_posted": 46,
+        "post_url": "https://www.linkedin.com/feed/update/urn:li:activity:7286992519978958848",
+        "number_of_comments": 254,
+        "number_of_likes": 6115,
+        "created_at": "2025-01-19T00:00:00"
+      }
+    },
+    ...
+  ],
+  "total_results": 20
+}
+```
+
+</Accordion>
+
+<Accordion title="Best Practices">
+
+- **Use valid prospect IDs** to ensure accurate enrichment results.
+- **Monitor recent LinkedIn® activity** to identify engagement opportunities.
+- **Integrate enriched data** into CRM systems for sales intelligence.
+- **Leverage insights** to craft personalized outreach campaigns.
+
+</Accordion>
+
+<Accordion title="Bulk LinkedIn® posts Output Signals">
+
+| Field Name | Description | Data Type |
+|:---|:---|:---|
+| `prospect_id` | Unique identifier of the prospect | `String` |
+| `display_name` | Name of the individual (if available) | `Optional[str]` |
+| `post_text` | Content of the LinkedIn® post | `Optional[str]` |
+| `days_since_posted` | Number of days since the post was published | `Optional[int]` |
+| `post_url` | URL linking to the original LinkedIn® post | `Optional[DataTypes.Url]` |
+| `number_of_comments` | Total number of comments on the post | `Optional[int]` |
+| `number_of_likes` | Total number of likes on the post | `Optional[int]` |
+| `created_at` | Date and time when the post was created | `Optional[datetime]` |
+
+</Accordion>
+</AccordionGroup>
+
+
+## Body Params - Try Me Example
+
+```
+prospect_ids: ["ee936e451b50c70e068e1b54e106cb89173198c4", "57f9e5dac64d31d80e6e9432fe2c500d0bba2c01"]
+```

@@ -1,0 +1,68 @@
+---
+openapi: patch /v1/businesses/events/enrollments
+---
+
+## Endpoint: `PATCH /v1/businesses/events/enrollments`
+
+## Description
+
+Update an existing enrollment.
+
+<AccordionGroup>
+<Accordion title="How It Works">
+
+- **Input**: Define parameters including enrollment\_key and enrollment\_id to update, and updated business\_ids, and event\_types.  
+- **Processing**: The system will update your your enrollment and update the monitoring for events.  
+- **Output**: A confirmation response containing your enrollment\_key and enrollment\_id for future reference.
+
+</Accordion>
+
+<Accordion title="Query Parameters">
+
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| enrollment\_key | String | A unique identifier for this enrollment |
+| enrollment\_id | String | A unique identifier for this enrollment |
+| business\_ids | Array | List of Business IDs to monitor for events |
+| event\_types | Array | Types of events to monitor (e.g., ipo\_announcement, new\_funding\_round) |
+
+</Accordion>
+
+<Accordion title="Example Request (cURL)">
+
+```shell Bash
+curl -X PATCH \
+  "https://api.explorium.ai/v1/businesses/events/enrollments" \
+  -H "API_KEY: your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "enrollment_key": "my_b2b_saas_monitor",
+  "enrollment_id": "en_7b429a01",
+  "business_ids": [
+    "8adce3ca1cef0c986b22310e369a0793",
+    "665595bbb4e724de6f8bc705a5b84753"
+  ],
+  "event_types": [
+    "ipo_announcement",
+    "new_funding_round",
+    "new_product"
+  ]
+}'
+```
+</Accordion>
+
+<Accordion title="Example Response">
+
+```json JSON
+{
+  "request_context": {
+    "correlation_id": "1234",
+    "request_status": "success",
+    "time_took_in_seconds": 0.515
+  },
+  "enrollment_key": "my_b2b_saas_monitor",
+  "enrollment_id": "en_7b429a01"
+}
+```
+</Accordion>
+</AccordionGroup>

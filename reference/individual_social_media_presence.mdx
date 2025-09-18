@@ -1,0 +1,69 @@
+---
+title: "Individual’s social media presence"
+openapi: post /v1/prospects/linkedin_posts/enrich
+---
+
+### Introduction
+
+The **Individual’s Social Media Presence Enrichments** API provides insights into a prospect’s social media activity. This endpoint retrieves public posts from professional networks, allowing businesses to analyze engagement trends, content topics, and prospect interests for better outreach and marketing strategies.
+
+<Icon icon="thumbtack" color="red" iconType="solid"/> **Key Benefits:**
+
+- Gain **real-time visibility** into a prospect’s social media activity.
+- Understand **professional interests, opinions, and engagement**.
+- Improve **personalized outreach** by leveraging recent posts and topics of discussion.
+- Track changes in **professional communication patterns** over time.
+
+
+<AccordionGroup>
+<Accordion title="How It Works">
+
+1. **Input:** Provide a `prospect_id` (retrieved from the **Match Prospects** endpoint) to fetch their social media data.
+2. **Processing:** The system gathers publicly available social media posts and organizes them into a structured format.
+3. **Output:** A response containing recent posts, links to content, and engagement details.
+</Accordion>
+
+<Accordion title="Request Schema">
+
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `prospect_id` | String | A unique identifier for the prospect (Required) |
+</Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" color="red" iconType="solid"/> **Key Consideration:**
+
+- Posts retrieved are from publicly available social media content.
+- Engagement data (likes, comments) may not always be available.
+- Ensure **valid prospect IDs** (from **Match Prospects**) to retrieve accurate data.
+- Use insights for **trend analysis, competitor research, and engagement tracking**.
+
+<AccordionGroup>
+<Accordion title="Best Practices">
+
+- **Use verified prospect IDs** for accurate enrichment.
+- **Analyze engagement patterns** to tailor marketing efforts.
+- **Store and categorize insights** in your CRM for future reference.
+- **Leverage content analysis** for personalized outreach.
+- **Monitor recent social media activity** to track industry trends and thought leadership.
+</Accordion>
+
+<Accordion title="Individual’s Social Media Presence Output Signal">
+
+| Signal | API Name | Description | Data Type Final |
+| :--- | :--- | :--- | :--- |
+| Time of posting | created\_at | Timestamp of when the individual's post was published. | datetime |
+| Number of post likes | number\_of\_likes | Number of likes the individual's post received by time of collection. | integer |
+| LinkedIn® post URL | post\_url | URL to the LinkedIn® post published by individual. | url |
+| Number of post comments | number\_of\_comments | Number of comments on the individual's post by time of collection. | integer |
+| Days since post | days\_since\_posted | Number of days since the post was published by the individual. | integer |
+| Post text content | post\_text | Text content of the LinkedIn® post published by individual. | string |
+| Display Name | display\_name | Display Name | string |
+</Accordion>
+</AccordionGroup>
+
+## Body Params - Try Me Example
+
+```
+prospect_id: ee936e451b50c70e068e1b54e106cb89173198c4
+```

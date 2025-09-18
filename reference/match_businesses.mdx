@@ -1,0 +1,62 @@
+---
+openapi: post /v1/businesses/match
+---
+
+## Endpoint: `POST /businesses/match`
+
+## Description
+
+The **Match Businesses** endpoint is the **first step** in the data enrichment process. It enables users to accurately identify businesses based on their **name or domain**, returning a **unique Business ID** that acts as the **foundation for all subsequent API interactions**.
+
+This endpoint is designed to provide **high-accuracy business matching** by leveraging **multiple data sources, validation layers, and proprietary algorithms** to ensure precise identification.
+
+Once a business is successfully matched, its **Business ID** becomes the **primary key** for retrieving enriched company data, accessing financial insights, monitoring real-time business events, and performing additional analytics through other Explorium APIs.
+
+<AccordionGroup>
+<Accordion title="Coverage">
+
+| Attribute | Coverage Details |
+| :--- | :--- |
+| **Total Businesses** | 80M+ businesses across 150+ countries |
+| **Matching Accuracy** | Advanced entity resolution for precise business identification |
+| **Real-Time Updates** | Ensures the latest business records are used for matching |
+</Accordion>
+
+<Accordion title="How It Works">
+
+- **Input:** A list of business names and domains.
+- **Processing:** Our system cross-references multiple datasets to find the best match.
+- **Output:** A structured response with the matched **Business IDs**, maintaining the same order as the input list.
+</Accordion>
+
+<Accordion title="Schema Explanation">
+
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `businesses_to_match` | Array | List of business name-domain pairs to match |
+| `business_id` | String | Unique identifier for the matched business (null if not found) |
+
+</Accordion>
+
+<Accordion title="Best Practices">
+
+- **Always store the Business ID** – It serves as the key for all future enrichment and analytics.
+- **Use multiple identifiers** (e.g., name + domain) for **higher match accuracy**.
+- **Batch requests efficiently** to optimize API performance.
+- **Handle null values gracefully** to account for unmatched businesses.
+- **Update and validate input data regularly** to ensure the most accurate matches.
+</Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" color="red" iconType="solid"/> For detailed endpoint explanations, request examples, and integration tips, explore the documentation sections above.
+
+
+## Body Params - Try Me Example
+
+```
+name: Apple
+domain: apple.com
+
+name: Microsoft
+domain: microsoft.com
+```

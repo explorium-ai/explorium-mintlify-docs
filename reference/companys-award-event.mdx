@@ -1,0 +1,67 @@
+---
+title: "Company award"
+---
+
+## Description
+
+The **Company's Award** event tracks when a business receives a notable award or endorsement. This data provides valuable insights into a company's reputation, achievements, and industry standing. Recognitions can range from innovation awards, sustainability achievements, best workplace titles, and more.
+
+## Use cases:
+
+- **Competitive Benchmarking:** Compare industry leaders based on recent awards.
+- **Investment Analysis:** Identify companies demonstrating growth and industry leadership.
+- **Public Relations Monitoring:** Track company recognition for branding and marketing insights.
+- **Lead Prioritization:** Use awards as a signal to engage with high-performing businesses.
+
+## Data Schema
+
+**Event Name: "company\_award" (Use this value in the event_types parameter when querying this event.)**
+
+| Signal | API Name | Description | Data Type |
+| :--- | :--- | :--- | :--- |
+| Award name | award\_name | Name of the award or endorsement that was given to the company. | string |
+| Reason for award win | award\_reason | Text describing justification for the company receiving an award including the key criteria and accomplishments that led to the win. | string |
+| Organisation bestowing award | awarding\_body | Name of the institution or organisation that granted the award, accolade, or certification. | string |
+| Event name | event\_name | Name of the award event. | string |
+| Event time | event\_time | The timestamp indicating when the event actually occurred | datetime |
+| Link | link | URL to the announcement or reference page. | url |
+| Snippet | snippet | Short excerpt or highlight text summarizing the award or announcement | string |
+| Title | title | Official title or headline of the award or recognition | string |
+
+## Query Example
+
+```curl cURL
+curl -X POST \
+  "https://api.explorium.ai/v1/businesses/events" \
+  -H "API_KEY: your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "event_types": [
+    "company_award"
+  ],
+  "business_ids": [
+    "8adce3ca1cef0c986b22310e369a0793"
+  ],
+  "timestamp_from": "2025-01-01T10:03:03.050Z"
+}'
+```
+
+## Best Practices
+
+- **Combine with company firmographics** for deeper insights into award-winning businesses.
+- **Monitor trends in industry recognition** to track emerging market leaders.
+- **Leverage awards data** to personalize marketing and outreach efforts.
+
+## Related Events
+
+<Columns cols={2}>
+<Card icon="award" horizontal title="Merger and Acquisitions" href="/reference/merger-and-acquisitions">
+Tracks major M&A activity.
+</Card>
+<Card icon="dollar-sign" horizontal title="Funding Round" href="/reference/companys-award-event">
+Monitors new investment rounds for businesses.
+</Card>
+<Card icon="handshake" horizontal title="New Partnership" href="/reference/new-partnership">
+Identifies newly announced business partnerships.
+</Card>
+</Columns>

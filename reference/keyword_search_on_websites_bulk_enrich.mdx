@@ -1,0 +1,51 @@
+---
+title: "Keyword search on websites"
+openapi: post /v1/businesses/company_website_keywords/bulk_enrich
+---
+
+## Endpoint: `POST /v1/businesses/company_website_keywords/bulk_enrich`
+
+<AccordionGroup>
+<Accordion title="How It Works">
+
+- **Input:** Provide a list of up to **50`business_id`s**.
+- **Processing:** The system scans websites for specified keywords and retrieves matched snippets.
+- **Output:** A structured response listing keyword occurrences, extracted snippets, and URLs.
+
+</Accordion>
+
+<Accordion title="Example Request (cURL)">
+
+```shell Bash
+curl --request POST \
+     --url https://api.explorium.ai/v1/businesses/company_website_keywords/bulk_enrich \
+     --header 'accept: application/json' \
+     --header 'api_key: your_api_key_here' \
+     --header 'content-type: application/json' \
+     --data '{
+  "business_ids": [
+    "8adce3ca1cef0c986b22310e369a0793",
+    "a34bacf839b923770b2c360eefa26748"
+  ]
+}'
+```
+
+</Accordion>
+
+<Accordion title="Best Practices">
+
+- **Analyze competitor website content** to understand keyword strategies.
+- **Monitor brand mentions** across industry websites.
+- **Track keyword density** to assess SEO effectiveness.
+
+</Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" color="red" iconType="solid"/> **For additional enrichment options, explore related API endpoints below.**
+
+## Body Params - Try Me Example
+
+```
+business_ids: ["8adce3ca1cef0c986b22310e369a0793",
+               "a34bacf839b923770b2c360eefa26748"]
+```

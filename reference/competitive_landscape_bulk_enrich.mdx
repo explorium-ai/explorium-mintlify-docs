@@ -1,0 +1,51 @@
+---
+title: "Competitive landscape of public companies"
+openapi: post /v1/businesses/pc_competitive_landscape_10k/bulk_enrich
+---
+
+## Endpoint: `POST /v1/businesses/pc_competitive_landscape_10k/bulk_enrich`
+
+<AccordionGroup>
+<Accordion title="How It Works">
+
+- **Input:** Provide a list of up to **50`business_id`s**.
+- **Processing:** The system retrieves strategic insights and competitive landscape data for all submitted businesses in a **single request**.
+- **Output:** A structured response with competitive positioning and strategic differentiators.
+
+</Accordion>
+
+<Accordion title="Example Request (cURL)">
+
+```shell Bash
+curl --request POST \
+     --url https://api.explorium.ai/v1/businesses/pc_competitive_landscape_10k/bulk_enrich \
+     --header 'accept: application/json' \
+     --header 'api_key: your_api_key_here' \
+     --header 'content-type: application/json' \
+     --data '{
+  "business_ids": [
+    "8adce3ca1cef0c986b22310e369a0793",
+    "a34bacf839b923770b2c360eefa26748"
+  ]
+}'
+```
+
+</Accordion>
+
+<Accordion title="Best Practices">
+
+- **Compare competitors** to assess relative market positioning.
+- **Identify strategic differentiators** to refine corporate strategy.
+- **Leverage industry benchmarks** for competitive advantage.
+
+</Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" color="red" iconType="solid"/> **For additional enrichment options, explore related API endpoints below.**
+
+## Body Params - Try Me Example
+
+```
+business_ids: ["8adce3ca1cef0c986b22310e369a0793",
+               "a34bacf839b923770b2c360eefa26748"]
+```

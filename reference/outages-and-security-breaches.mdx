@@ -1,0 +1,68 @@
+---
+title: "Outages and security breaches"
+---
+
+## Description
+
+The **Outages and Security Breaches** event tracks major disruptions and cybersecurity incidents affecting businesses. These events provide valuable insights into a company's resilience, data security practices, and operational stability.
+
+## Use cases:
+
+- **Risk Management:** Identify businesses experiencing major disruptions or security threats.
+- **Vendor & Partner Evaluation:** Assess potential risks when working with affected companies.
+- **Cybersecurity Monitoring:** Track security breaches that could indicate systemic vulnerabilities.
+- **Customer Impact Analysis:** Understand how outages and breaches affect business operations and customer trust.
+
+## Data Schema
+
+**Event Name: "outages\_and\_security\_breaches" (Use this value in the event_types parameter when querying this event.)**
+
+| Signal | API Name | Description | Data Type |
+| :--- | :--- | :--- | :--- |
+| Type of incident | incident\_type | Categorization of the type of incident that occurred e.g., outage, data breach. | string |
+| Impacted systems | impacted\_systems | Text listing the systems that were impacted by the incident. | array&lt;string&gt; |
+| Number of affected customers | number\_of\_affected\_customers | Number of company's customers affected by the incident. | integer |
+| Link to article | link | Link to article reporting the outage, security incident, or data breach. | url |
+| Title | title | The headline of the article, summarizing its main topic | string |
+| Snippet | snippet | A short summary or preview of the article | string |
+| Event name | event\_name | Name of the event related to the incident. | string |
+| Event time | event\_time | The timestamp indicating when the event actually occurred | datetime |
+
+## Query Example
+
+```curl cURL
+curl -X POST \
+  "https://api.explorium.ai/v1/businesses/events" \
+  -H "API_KEY: your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "event_types": [
+    "outages_and_security_breaches"
+  ],
+  "business_ids": [
+    "8adce3ca1cef0c986b22310e369a0793"
+  ],
+  "timestamp_from": "2025-01-01T10:03:03.050Z"
+}'
+```
+
+
+## Best Practices
+
+- **Monitor incident trends** to assess business stability and security posture.
+- **Analyze impacted systems** to determine operational risks.
+- **Correlate security breaches with customer impact** to understand reputational damage.
+
+## Related Events
+
+<Columns cols={2}>
+<Card icon="shield-halved" horizontal title="Lawsuits and Legal Issues" href="/reference/lawsuits-and-legal-issues">
+Tracks legal challenges and regulatory issues
+</Card>
+<Card icon="hand-holding-dollar" horizontal title="Cost Cutting" href="/reference/cost-cutting">
+Tracks significant cost reduction measures
+</Card>
+<Card icon="code-merge" horizontal title="Merger and Acquisitions" href="/reference/merger-and-acquisitions">
+Tracks major M&A activity
+</Card>
+</Columns>

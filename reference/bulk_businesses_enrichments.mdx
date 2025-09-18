@@ -1,0 +1,74 @@
+---
+title: "Bulk Businesses Enrichments"
+sidebarTitle: "Overview"
+---
+
+## Overview
+
+### Introduction
+
+The **Bulk Businesses Enrichments API** allows users to enrich **multiple businesses simultaneously** by submitting up to **50 business IDs per request**. This feature is designed for high-efficiency data processing, enabling organizations to **scale their data enrichment efforts**, streamline workflows, and **reduce API call overhead**.
+
+By leveraging bulk enrichment, businesses can:
+
+- **Enhance multiple records at once**, reducing processing time.
+- **Improve efficiency** by retrieving enriched data for a full list of companies in a single request.
+- **Minimize API rate limits** and optimize data retrieval for large datasets.
+
+This API is ideal for **large-scale business intelligence, batch data processing, CRM enrichment, and predictive analytics.**
+
+
+## Key Features & Benefits
+
+### High-Scale Data Processing
+
+- Supports up to **50 business IDs per request**.
+- Streamlines bulk data enrichment with **minimal latency**.
+
+### Optimized for Enterprise Workflows
+
+- Reduce **repetitive API calls** by sending batch requests.
+- Ideal for **CRM enrichment, investment research, and market intelligence.**
+
+## How to Use Bulk Businesses Enrichments
+
+<Steps>
+<Step title="Obtain a List of Business IDs:">
+Use the **Match Businesses API** to retrieve business IDs for the companies you wish to enrich.
+</Step>
+<Step title="Prepare the API Request:">
+Structure your request by including an array of up to **50 business IDs**.
+</Step>
+<Step title="Submit the Request:">
+Send a `POST` request to the Bulk Businesses Enrichments API.
+</Step>
+<Step title="Analyze & Utilize the Data:">
+Integrate the enriched data into your **analytics, CRM, or decision-making processes**.
+</Step>
+</Steps>
+
+### Example API Request (cURL):
+
+```bash cURL
+curl -X POST \
+  "https://api.explorium.ai/v1/businesses/bulk-enrich" \
+  -H "API_KEY: your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "business_ids": [
+    "8adce3ca1cef0c986b22310e369a0793",
+    "a34bacf839b923770b2c360eefa26748",
+    "b12f4e1a5d9c7e5fb60b4a23c845678d"
+  ]
+}'
+```
+
+
+## Best Practices
+
+- **Use the Match Businesses API** to obtain business IDs before submitting bulk enrichment requests.
+- **Prioritize bulk processing** for large datasets instead of making multiple single requests.
+- **Leverage batch results** to enrich **sales leads, customer insights, and predictive analytics.**
+- **Combine multiple enrichments** (firmographics, financials, workforce) for comprehensive business profiling.
+
+<Icon icon="thumbtack" color="red" iconType="solid"/> **For detailed API specifications and request examples, refer to the enrichment endpoints in this documentation.**

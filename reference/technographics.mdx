@@ -1,0 +1,68 @@
+---
+openapi: post /v1/businesses/technographics/enrich
+---
+
+## Endpoint: `POST /v1/businesses/technographics/enrich`
+
+## Description
+
+The **Technographics Enrichment** endpoint provides insights into the internal technologies used by companies. This data is valuable for **lead scoring, competitive analysis, and sales prospecting** by identifying the software, platforms, and tools adopted by businesses.
+
+Technographic data is sourced from **multiple data vendors and public records**, combined with Explorium's proprietary data inference models for maximum accuracy. The dataset is **updated quarterly** to ensure fresh and relevant insights.
+
+<AccordionGroup>
+<Accordion title="How It Works">
+
+- **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
+- **Processing:** The system retrieves relevant technology stacks, including software, cloud providers, and infrastructure details.
+- **Output:** A structured response with categorized insights into a company's technology usage.
+
+</Accordion>
+
+<Accordion title="Best Practices">
+
+- **Ensure you retrieve the`business_id`** using the **Match Businesses** API before making technographic enrichment requests.
+- **Leverage technographic insights** to personalize outreach and improve targeting for tech-related products.
+- **Combine firmographic and technographic data** for deeper analysis and refined audience segmentation.
+- **Use regular updates** to keep up with rapidly changing technology adoption trends.
+
+</Accordion>
+
+<Accordion title="Technographics Output Signal">
+
+| SignalAPI | Name | Description | Data Type |
+| :--- | :--- | :--- | :--- |
+| technology\_name | Technology name | Name of the technology or software. | string |
+| technology\_category | Technology category | Category of technology (CRM, ERP, analytics, etc.). | string |
+| vendor | Vendor | Vendor or provider of the technology. | string |
+| implementation\_status | Implementation status | Status of technology implementation. | string |
+| usage\_level | Usage level | Level of usage within the company. | string |
+| deployment\_date | Deployment date | Date when the technology was deployed. | date |
+| integration\_level | Integration level | Level of integration with other systems. | string |
+| technology\_version | Technology version | Version of the technology being used. | string |
+| license\_type | License type | Type of license (subscription, perpetual, etc.). | string |
+| user\_count | User count | Number of users of the technology. | integer |
+| department | Department | Department using the technology. | string |
+| cost | Cost | Cost of the technology implementation. | number |
+| roi | ROI | Return on investment from the technology. | number |
+| satisfaction\_score | Satisfaction score | User satisfaction score for the technology. | number |
+| renewal\_date | Renewal date | Date when the technology license is up for renewal. | date |
+| migration\_plans | Migration plans | Plans for migrating to new technology. | string |
+| customization\_level | Customization level | Level of customization of the technology. | string |
+| support\_level | Support level | Level of vendor support. | string |
+| compliance\_requirements | Compliance requirements | Compliance requirements met by the technology. | string |
+| security\_features | Security features | Security features of the technology. | string |
+| scalability | Scalability | Scalability of the technology. | string |
+| mobile\_compatibility | Mobile compatibility | Mobile compatibility of the technology. | boolean |
+| cloud\_deployment | Cloud deployment | Whether the technology is deployed in the cloud. | boolean |
+
+</Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" color="red" iconType="solid"/> For additional enrichment options, explore related API endpoints below.
+
+## Body Params - Try Me Example
+
+```
+business_id: 8adce3ca1cef0c986b22310e369a0793
+```

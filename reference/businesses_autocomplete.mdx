@@ -1,0 +1,121 @@
+---
+openapi: get /v1/businesses/autocomplete
+---
+
+## Endpoint: `GET /v1/businesses/autocomplete`
+
+## Description
+
+The **Fetch Business Autocomplete** endpoint provides **real-time suggestions** for business-related fields, helping users quickly find relevant categories, locations, and industries based on partial text input. This is useful for creating dynamic search fields and enhancing user experience in filtering interfaces.
+
+<AccordionGroup>
+<Accordion title="Coverage">
+
+| Attribute | Coverage Details |
+| :--- | :--- |
+| **Supported Fields** | Country, Region, Google Category, NAICS Category, LinkedIn Category, etc. |
+| **Geographic Scope** | Supports 150+ countries |
+| **Response Time** | Optimized for real-time autocomplete functionality |
+
+</Accordion>
+
+<Accordion title="How It Works">
+
+- **Input:** Specify a field type (`country`, `region_country`, etc.) and provide a partial query string.
+- **Processing:** The system searches through indexed datasets to return the most relevant suggestions.
+- **Output:** A structured response containing suggested values for the given input.
+</Accordion>
+
+<Accordion title="Query Parameters">
+
+| Parameter | Type | Description |
+| :--- | :--- | :--- |
+| `field` | String | The field for which autocomplete is requested (e.g., `country`, `industry`). |
+| `query` | String | Partial text input to generate suggestions. |
+
+</Accordion>
+
+<Accordion title="Example Request (cURL)">
+
+```shell Bash
+curl -X GET \
+  "https://api.explorium.ai/v1/businesses/autocomplete?field=country&query=unit" \
+  -H "API_KEY: your_api_key_here"
+```
+</Accordion>
+
+<Accordion icon="thumbtack" title="Supported Autocomplete Fields & Example Inputs" iconType="solid" color="red">
+
+| **Filter** | **Description** | **Example Input** |
+| :--- | :--- | :--- |
+| `country` | Autocomplete for country names | `"Uni"` → United States, United Kingdom |
+| `country_code` | Autocomplete for country codes (ISO 2-letter) | `"US"` → United States |
+| `region_country_code` | Autocomplete for region-based country codes | `"EU"` → European Union countries |
+| `google_category` | Google's business category classification | `"E-com"` → E-commerce |
+| `naics_category` | Industry classification based on NAICS codes | `"541512"` → Computer Systems Design Services |
+| `linkedin_category` | Industry classification from LinkedIn data | `"Retail"` → Retail Industry |
+| `company_tech_stack_tech` | Technologies used by a company | `"Cloud"` → Cloud Computing, Cloud Security |
+| `company_tech_stack_categories` | Technology categories used by the company | `"Marketing"` → CRM, AdTech |
+| `job_title` | Autocomplete for job titles | `"Soft"` → Software Engineer, Software Developer |
+| `company_size` | Autocomplete for company sizes (by number of employees) | `"500"` → Companies with ~500 employees |
+| `company_revenue` | Revenue-based classification (**K, M, B, T** for thousands, millions, billions, trillions) | `"100M"` → $100 Million+ |
+| `number_of_locations` | Number of physical company locations | `"1"` → Companies with a single location |
+| `company_age` | Company age in years | `"10"` → Companies older than 10 years |
+| `job_department` | Autocomplete for job departments | `"Eng"` → Engineering, Product Engineering |
+| `job_level` | Job seniority levels | `"Senior"` → Senior Manager, Senior Engineer |
+| `city_region_country` | Combined location filter by city, region, and country | `"New York, NY, US"` → Companies in New York |
+| `company_name` | Filter by company name | `"Meta"` → Meta Platforms Inc. |
+
+</Accordion>
+
+<Accordion title="Example Response">
+
+```json JSON
+[
+  {
+    "query": "unit",
+    "label": "United States",
+    "value": "us"
+  },
+  {
+    "query": "unit",
+    "label": "United Kingdom",
+    "value": "gb"
+  },
+  {
+    "query": "unit",
+    "label": "United Arab Emirates",
+    "value": "ae"
+  },
+  {
+    "query": "unit",
+    "label": "Tanzania, United Republic Of",
+    "value": "tz"
+  },
+  {
+    "query": "unit",
+    "label": "United States Minor Outlying Islands",
+    "value": "um"
+  }
+]
+```
+</Accordion>
+
+<Accordion title="Best Practices">
+
+- **Use precise queries** to get the most relevant autocomplete results.
+- **Optimize search fields** by implementing real-time feedback mechanisms.
+- **Restrict field selection** to avoid unnecessary queries and improve API efficiency.
+- **Combine with filtering APIs** to refine user selections dynamically.
+
+</Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" color="red" iconType="solid" /> For detailed endpoint explanations, request examples, and integration tips, explore the documentation sections above.
+
+## Body Params - Try Me Example
+
+```
+field: country
+query: unit
+```

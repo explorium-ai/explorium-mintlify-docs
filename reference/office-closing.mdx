@@ -1,0 +1,71 @@
+---
+title: "Office closing"
+---
+
+## Description
+
+An **Office Closing** event tracks when a company shuts down a physical office or facility. This data provides insights into business downsizing, market exits, and shifts in operational strategy.
+
+**Important:** The **Office Closing** event is available only for **recent office closures** that occurred within the last quarter (`timestamp_from` should be set to the past 3 months). If no office closure was recorded during this period, no data will be returned.
+
+**For long-term office location history,** refer to the **Firmographic Enrichment API**.
+
+## Use cases
+
+- **Market Contraction Analysis**: Identify industries or regions where businesses are downsizing.
+- **Competitive Intelligence**: Track competitor office closures to understand their market shifts.
+- **Economic Indicators**: Assess the impact of office closures on local economies and employment.
+- **Operational Strategy**: Monitor company restructuring and realignment decisions.
+
+
+## Data Schema
+
+**Event Name `"closing_office"` *(Use this value in the`event_types` parameter when querying this event.)***
+
+| Signal | API Name | Description | Data Type |
+| :--- | :--- | :--- | :--- |
+| Reason for office closing | reason\_for\_closure | Text describing the reason for the office closing. | string |
+| Location of closing office | office\_location | Text describing where the office is located. | string |
+| Number of employees impacted | number\_of\_employees\_affected | Number of employees impacted by the office location closing. | integer |
+| Title of closing office article | title | Title of published news report or article on company's office closing. | string |
+| Snippet | snippet | Short excerpt or highlight text summarizing the award or announcement | string |
+| Link to article | link | Link to article announcing the company's office closing. | url |
+| Event name | event\_name | Name of the event related to office closing. | string |
+| Event time | event\_time | The timestamp indicating when the event actually occurred | datetime |
+
+## Query Example
+```curl cURL
+curl -X POST \
+  "https://api.explorium.ai/v1/businesses/events" \
+  -H "API_KEY: your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "event_types": [
+    "closing_office"
+  ],
+  "business_ids": [
+    "8adce3ca1cef0c986b22310e369a0793"
+  ],
+  "timestamp_from": "2025-01-01T10:03:03.050Z"
+}'
+```
+
+## Best Practices
+
+- **Filter by location (`office_location`)** to analyze closures in specific regions.
+- **Track closure reasons (`reason_for_closure`)** to understand business decisions.
+- **Monitor employment impact (`number_of_employees_affected`)** to assess workforce reductions.
+
+## Related Events
+
+<Columns cols={2}>
+<Card icon="party-horn" horizontal title="New Product Launch" href="/reference/new-product-launch">
+Launch of a new product
+</Card>
+<Card icon="building" horizontal title="New Office Opening" href="/reference/new-office-opening">
+Opening of a new office
+</Card>
+<Card icon="award" horizontal title="Company's Award" href="/reference/companys-award-event">
+Recognition of a company's achievements and accolades
+</Card>
+</Columns>

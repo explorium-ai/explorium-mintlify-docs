@@ -1,0 +1,70 @@
+---
+title: "New product launch"
+---
+
+## Description
+
+A **New Product Launch** event tracks when a company officially announces the release of a new product. This data helps monitor industry innovation, market expansion, and competitive movements.
+
+**Important:** The **New Product Launch** event is available only for **recent product announcements** within the last quarter (`timestamp_from` should be set to the past 3 months). If a company did not announce a product launch within the specified timeframe, no data will be returned.
+
+**For historical product launches,** check business enrichment data sources.
+
+## Use cases:
+
+- **Market Trends**: Identify industries and companies launching new products.
+- **Competitive Intelligence**: Track new product releases from competitors.
+- **Investment Insights**: Assess which companies are investing in innovation.
+- **Consumer Behavior**: Analyze market response to new product announcements.
+
+## Data Schema
+
+**Event Name: "new\_product" (Use this value in the event\_types parameter when querying this event.)**
+
+| Signal | API Name | Description | Data Type |
+| :--- | :--- | :--- | :--- |
+| Name of product | product\_name | Name of the company's newly announced product. | string |
+| Product Description | product\_description | A text field that provides details about the product | string |
+| News report publishing date | event\_time | The timestamp indicating when the event actually occurred | datetime |
+| Snippet | snippet | Snippet of the published article or report on company's new product. | string |
+| Title of new product article | title | Title of published news report or article on company's new product. | string |
+| Link to article | link | Link to article announcing the company's new product. | url |
+| Event name | event\_name | Name of the event related to company's new product launch. | string |
+
+## Query Example
+
+```curl cURL
+curl -X POST \
+  "https://api.explorium.ai/v1/businesses/events" \
+  -H "API_KEY: your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "event_types": [
+    "new_product"
+  ],
+  "business_ids": [
+    "8adce3ca1cef0c986b22310e369a0793"
+  ],
+  "timestamp_from": "2025-01-01T10:03:03.050Z"
+}'
+```
+
+## Best Practices
+
+- **Filter by product name (`product_name`)** to track specific product launches.
+- **Combine with company firmographics** to analyze innovation trends in various industries.
+- **Monitor news sources (`link`)** for additional context and market sentiment.
+
+## Related Events
+
+<Columns columns={2}>
+    <Card icon="party-horn" horizontal title="New Office Opening" href="/reference/new-office-opening">
+    Opening of a new office
+    </Card>
+    <Card icon="building" horizontal title="Office Closing" href="/reference/office-closing">
+    Closure of an office
+    </Card>
+    <Card icon="award" horizontal title="Company's Award" href="/reference/companys-award-event">
+    Recognition of a company's achievements and accolades
+    </Card>
+</Columns>

@@ -1,0 +1,143 @@
+---
+title: "Data Classifications (Ontologies)"
+---
+
+## What are Data Classifications (Ontologies)?
+
+A data classification (ontologies) is the classification of the data loaded into the Explorium system, the type of data in a column, such as a zip code, city, email, credit card number, text, numeric, categorical and so on.
+
+Explorium automatically assigns data classifications (ontologies) when you load data into the platform, and Explorium uses the data classification (ontology) to determine which external data can be used to enrich it. From a date column, for example, we can extract the day of the month, day of the week, the month, and the year.
+
+The data classification (ontology) is also being used to normalize the data, for example, we know how to handle state codes if classified as US state, but we won't know to handle it the same way if classified as a category.
+
+Where a data classification (ontology) is incorrect you can select the correct data classification (Ontology) by hovering over the data classification and selecting a new data classification. For more information, click here.
+
+## Now proceed to transform your data.
+
+To avoid potential parsing errors make sure that your numeric data does not contain any non-numeric characters. For zip codes in US, you should only include numeric characters.
+
+We recommend that you add a regional prefix to the phone number and make sure that “address” contains the full address of the location, including street, city, region, and zip code, and if possible, country and house number.
+
+## Data Classification (Ontology) Types
+
+| Name     | Description                                                                                                                                                                  | Example of Input                                               |
+| :-------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------- |
+| ADDRESS  | The full address including country, state or region, city, street name, ZIP code and other potential address identifiers associated with the entity's location.              | 3 Brewster Rd, Newark, NJ 07114, United States                 |
+| BOOLEAN  | The purpose of this data type is to represent conditional rules relevant to the entity. Typically, it is used to assign one of two values that represent 'true' and 'false'. | True \| False \|\| Yes \| No                                   |
+| CATEGORY | A division of information into groups that represent characteristics of the entity.                                                                                          | Group A \| Group B \| Group C \|\| 1-100 \| 101-200 \| 201-300 |
+| CITY     | The name of the entity's city location.                                                                                                                                      | NYC \| New-York \| New York City                               |
+| COMPANY  | The name of an organization.                                                                                                                                                 | Warner Brothers                                                |
+
+
+**COMPANY\_LEGAL\_NAME**<br/>
+The name that a business or company is legally registered under. Warner Bros. Entertainment, Inc.
+
+**COMPANY\_WEBSITE**<br/>
+The link to the website associated with the business or company. [http://www.mybank.com](http://www.mybank.com)
+
+**COUNTRY**<br/>
+The name of the entity's country location. AR | ARG | Argentina
+
+**DATETIME**<br/>
+The time and date of an event related to the entity, represented by 17 digits YYYY-MM-DD hh:mm:ss\[.nnn] and the time zone.<br/>
+2021-12-05T15:00:00.123+00:00 |<br/>
+2021-12-05T15:00:00Z |<br/>
+20211205T150000Z |<br/>
+2000-01-01 22:00:00.123456+00:00<br/>
+DISPLAY<br/>
+
+These values are only displayed, and no features will be extracted from them. The second address is for shipping, ignore.
+
+**EMAIL**<br/>
+The email address associated with the entity. <br/>[Ada_Lovelace@mail.com](mailto:Ada_Lovelace@mail.com) | [ organization@company.com](mailto:organization@company.com)
+
+**FACEBOOK\_URL**<br/>
+The link to a Facebook profile associated with the entity. <br/>[http://www.facebook.com/profile.php?id=1234567890](http://www.facebook.com/profile.php?id=1234567890)
+
+**First Name**<br/>
+The first name or private name associated with the individual.<br/>
+Ada | Domingo 'Inigo'
+
+**Full Name**<br/>
+All first and last names listed under the individual. <br/>Ada Lovelace | Domingo 'Inigo' Montoya
+
+**GLASSDOOR\_URL**<br/>
+The link to a Glassdoor profile associated with an organization. <br/>[https://www.glassdoor.com/Reviews/Tel-Aviv-University-Reviews-E364263.htm](https://www.glassdoor.com/Reviews/Tel-Aviv-University-Reviews-E364263.htm)
+
+**H3**<br/>
+H3 is a geospatial indexing system that partitions the world into hexagonal cells in the area resolution of around 12k square kilometers. <br/>89283082e73ffff
+
+**HOUSE NUMBER**<br/>
+The unique number and letter combination assigned to each house or building on a street, this number is used to form the building's full address. <br/>57 | 4
+
+**INSTAGRAM\_URL**<br/>
+The link to an Instagram profile associated with the entity. <br/>[https://www.instagram.com/adalovelace/](https://www.instagram.com/adalovelace/)
+
+**IP Address**<br/>
+In IPV4 format, the IP address associated with the entity consists of 4 numbers, ranging from 0 to 255 and separated by dots. <br/>192.0.2.146
+
+**Last Name**<br/>
+The last name, family name or surname associated with the individual. <br/>Lovelace | Montoya
+
+**LATITUDE**<br/>
+Latitude coordinate degrees specify the entity's distance from the equator as measured on the north-south axis. <br/>29.979 | 46.777541 LINKEDIN\_URL
+
+The link to a LinkedIn profile associated with the entity. <br/>[http://www.linkedin.com/pub/eva-lovelace/6a217b542](http://www.linkedin.com/pub/eva-lovelace/6a217b542)
+
+**LONGITUDE**<br/>
+Longitude coordinate degrees specify the entity's distance from the equator as measured on the east-west axis. <br/>31.1342, 31.777777
+
+**NAICS Code**<br/>
+The unique North American Industry Classification System code assigned to the relevant industry. <br/>'4444' | '444422'
+
+**NUMERIC**<br/>
+An exact numeric value related to the entity. <br/>3.3333 | 598765432 | 0.12358
+
+
+**PHONE NUMBER**<br/>
+The phone number associated with the entity, including a '+', a country code, and a number up to 12 digits that does not start with '0'. <br/>(+1)66666666666 | +972556667788 | +902165558844
+
+**PINTEREST\_URL**<br/>
+The link to a Pinterest profile associated with the entity. <br/>[https://www.pinterest.com/AdaLovelace/_saved/](https://www.pinterest.com/AdaLovelace/_saved/)
+
+**REGION**<br/>
+An area or province of a country with definable characteristics, generally considered to be the equivalent of a US state as coded by ISO 3166-2.<br/> DE-Bavaria | DE-BY | FR-Normandy
+
+**SIC Code**<br/>
+Standard Industrial Classification codes are four-digit numerical codes that categorize the industries that companies belong to based on their business activities, and have been replaced by NAICS<br/> ‘44' | '4444'
+
+**STREET**<br/>
+The street name associated with the entity's location. <br/>Brewster Rd
+
+**SUBPREMISE**<br/>
+Subpremise within a property, is usually in the form of a unit marked by a number or letter such as an apartment number within a building. <br/>26A | 8
+
+**TEXT**<br/>
+Text data related to the entity can contain both single-byte and multibyte characters.<br/> Countess of Lovelace was an English mathematician and writer, chiefly known for her work on Charles Babbage's proposed mechanical general-purpose computer, the Analytical Engine.
+
+**TICKER**<br/>
+A stock symbol that is compiled of an arrangement of characters representing publicly-traded securities on an exchange. The symbol is used to place trade orders. <br/>NYSE: AAIC
+
+**TWITTER\_URL**<br/>
+The link to a Twitter profile associated with the entity. <br/>[http://twitter.com/adalovelace](http://twitter.com/adalovelace)
+
+**UNIQUE\_ID** <br/>
+A universally unique identifier (UUID) is generated using random numbers and consists of a 128-bit label.<br/> 123e4567-e89b-12d3-a456-426614174000
+
+**URL**<br/>
+A web address associated with the entity.<br/> [https://en.wikipedia.org](https://en.wikipedia.org)
+
+**US State**<br/>
+The entity's US state location. <br/>Georgia | GA
+
+**YEAR**<br/>
+A Gregorian calendar year represented by 4 digits YYYY. <br/>1989 | 2015
+
+**ZIP CODE**<br/>
+The unique ZIP code or postcode associated with the entity <br/>US-66666 | US-66666-7777 | TR-30707
+
+**ZIP CODE**<br/>
+US The unique US ZIP code associated with the entity <br/>12345-1234 | 66666-7777 | 66666
+
+**ZIP\_CODE\_UK**<br/>
+The unique UK ZIP code or postcode associated with the entity. <br/>SW1W 0NY | GU16 7HF

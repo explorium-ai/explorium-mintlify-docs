@@ -1,0 +1,56 @@
+---
+openapi: post /v1/businesses/company_website_keywords/enrich
+title: "Keyword search on websites"
+---
+
+## Endpoint: `POST /v1/businesses/company_website_keywords/enrich`
+
+## Description
+
+The **Keyword Search on Websites Enrichment** endpoint enables users to **identify keyword occurrences on a company's website**. This dataset is valuable for **market researchers, competitive analysts, and SEO strategists** looking to **analyze content relevance and online presence**.
+
+The data includes:
+
+- **Keyword presence detection**, confirming whether a term appears on a site.
+- **Snippet extraction**, showcasing relevant text segments containing the keyword.
+- **Direct URLs to content**, allowing for further review and validation.
+
+This information is sourced from **real-time website crawls and indexed public web pages** to provide **comprehensive insights into company messaging and search visibility**.
+
+<AccordionGroup>
+<Accordion title="How It Works">
+
+- **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
+- **Processing:** The system scans the target website and retrieves keyword matches.
+- **Output:** A structured response highlighting keyword occurrences, extracted snippets, and URLs.
+
+</Accordion>
+
+<Accordion title="Best Practices">
+
+- **Use keyword insights** to track industry-specific terminology and brand messaging.
+- **Analyze keyword frequency** to gauge content focus and relevance.
+- **Leverage snippet extractions** for competitor research and content benchmarking.
+- **Monitor website content** to ensure alignment with marketing and SEO strategies.
+
+</Accordion>
+
+<Accordion title="Keyword Search on Websites Output Signal">
+
+| SignalAPI | Name | Description | Data Type |
+| :--- | :--- | :--- | :--- |
+| keyword | Keyword | Keyword or phrase searched for. | string |
+| search\_frequency | Search frequency | Frequency of the keyword on the website. | integer |
+| page\_url | Page URL | URL where the keyword was found. | url |
+
+</Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" color="red" iconType="solid"/> For additional enrichment options, explore related API endpoints below.
+
+## Body Params - Try Me Example
+
+```
+business_id: 8adce3ca1cef0c986b22310e369a0793
+keywords: iphone, data
+```

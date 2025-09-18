@@ -1,0 +1,68 @@
+---
+openapi: post /v1/businesses/funding_and_acquisition/enrich
+title: "Funding and acquisitions for public and private companies"
+---
+
+## Endpoint: `POST /v1/businesses/funding_and_acquisition/enrich`
+
+## Description
+
+The **Funding and Acquisitions Enrichment** endpoint provides **detailed insights into funding rounds, acquisitions, and IPOs** for over **300,000 private and public companies**. This data helps users track **investment trends, company growth, and market positioning**.
+
+The dataset includes **up to 10 of the most recent transactions per company**, updated quarterly, and covers key funding details such as investors, deal values, and company valuations.
+
+<AccordionGroup>
+<Accordion title="How It Works">
+
+- **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
+- **Processing:** The system retrieves funding history, acquisitions, and IPO-related data.
+- **Output:** A structured response with investment details, key investors, and historical funding rounds.
+
+</Accordion>
+
+<Accordion title="Best Practices">
+
+- **Monitor funding rounds** to identify fast-growing companies and emerging market leaders.
+- **Leverage acquisition data** to track industry consolidation and M&A trends.
+- **Use IPO insights** to evaluate newly public companies for investment and competitive analysis.
+- **Cross-reference funding data** with firmographics and financial metrics for deeper insights into company growth and financial health.
+
+</Accordion>
+
+<Accordion title="Funding and Acquisition Output Signal">
+
+| SignalAPI | Name | Description | Data Type |
+| :--- | :--- | :--- | :--- |
+| transaction\_type | Transaction type | Type of funding or acquisition. | string |
+| company\_name | Company name | Name of the company involved. | string |
+| amount | Amount | Transaction amount. | number |
+| date | Date | Date of the transaction. | date |
+| investors | Investors | Investors or acquirers involved. | string |
+| valuation | Valuation | Company valuation. | number |
+| funding\_stage | Funding stage | Stage of funding (seed, Series A, etc.). | string |
+| use\_of\_funds | Use of funds | Intended use of the funding. | string |
+| lead\_investor | Lead investor | Lead investor in the transaction. | string |
+| previous\_funding | Previous funding | Amount of previous funding raised. | number |
+| total\_funding | Total funding | Total funding raised to date. | number |
+| investor\_count | Investor count | Number of investors in the round. | integer |
+| deal\_terms | Deal terms | Specific terms of the deal. | string |
+| board\_changes | Board changes | Changes to the board of directors. | string |
+| strategic\_rationale | Strategic rationale | Strategic rationale for the transaction. | string |
+| market\_reaction | Market reaction | Market reaction to the transaction. | string |
+| due\_diligence | Due diligence | Due diligence findings. | string |
+| regulatory\_approval | Regulatory approval | Regulatory approval status. | string |
+| closing\_conditions | Closing conditions | Conditions for closing the transaction. | string |
+| post\_transaction\_plans | Post-transaction plans | Plans following the transaction. | string |
+| synergies | Synergies | Expected synergies from the transaction. | string |
+| risk\_factors | Risk factors | Risk factors associated with the transaction. | string |
+
+</Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" color="red" iconType="solid"/> For additional enrichment options, explore related API endpoints below.
+
+## Body Params - Try Me Example
+
+```
+business_id: 8adce3ca1cef0c986b22310e369a0793
+```

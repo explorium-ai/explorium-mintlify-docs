@@ -1,0 +1,98 @@
+---
+title: "Additional Resources"
+---
+
+## Error Handling
+
+When using the API, errors may occur due to invalid requests, authorization issues, or internal server errors. The API returns structured error responses to help diagnose and resolve issues efficiently.
+
+### Standard Error Codes
+
+All endpoints return standard HTTP status codes:
+
+| Error Code | Description |
+| :--- | :--- |
+| `400` | Bad request – invalid parameters or request format. |
+| `401` | Unauthorized – invalid API key or missing authentication. |
+| `403` | Forbidden – insufficient permissions or credits. |
+| `404` | Not Found – requested resource does not exist. |
+| `429` | Too Many Requests – rate limit exceeded. |
+| `500` | Internal Server Error – an unexpected error occurred. |
+
+### Example Error Response
+
+<CodeGroup>
+```json JSON expandable
+{
+  "detail": [
+    {
+      "loc": [
+        "body",
+        "size"
+      ],
+      "msg": "ensure this value is less than or equal to 100",
+      "type": "value_error.number.not_le",
+      "ctx": {
+        "limit_value": 100
+      }
+    }
+  ]
+}
+```
+</CodeGroup>
+
+## Credit Error Codes
+
+When a user is out of credits, calling an endpoint that involves credit consumption (such as enrich, fetch, etc.) will yield the following error response:
+
+<CodeGroup>
+```json JSON expandable
+HTTP/1.1 403 Forbidden
+Content-Type: application/json
+
+{
+  "details": "You have insufficient credits to perform this operation. Please purchase additional credits.",
+  "correlation_id": "4826416550f648e58cc9e2ceee2529b7"
+}
+```
+</CodeGroup>
+
+## Rate Limiting
+
+To ensure fair usage and system stability, the API enforces rate limit of **200 qpm** per API key. If a request exceeds the allowed threshold, the API returns a **429 Too Many Requests** error.
+
+### Handling Rate Limits
+
+- Implement **exponential backoff** when retrying failed requests due to rate limits.
+- Monitor API usage to avoid hitting limits unexpectedly.
+- Contact support if higher limits are required for your use case.
+
+## Logging & Debugging
+
+To facilitate debugging and ensure smooth integration, API responses include correlation IDs for tracking.
+
+### Best Practices for Debugging
+
+- **Log API Requests & Responses** – Store all request parameters and response payloads for troubleshooting.
+- **Use Correlation IDs** – Every API response contains a `correlation_id`, which can be provided to support for investigation.
+- **Validate API Keys & Parameters** – Ensure API keys are active and request parameters match the schema.
+- **Monitor API Status** – Subscribe to status updates to detect downtime or service disruptions.
+
+
+### Example Response with Correlation ID
+
+<CodeGroup>
+```json JSON expandable
+{
+  "response_context": {
+    "correlation_id": "7103edeaf1ae44b497a6bb3ce457318b",
+    "request_status": "success",
+    "time_took_in_seconds": 3.537
+  }
+}
+```
+</CodeGroup>
+
+## Thank You!
+
+For additional support or questions, reach out to our team through your dedicated Slack channel with Explorium.

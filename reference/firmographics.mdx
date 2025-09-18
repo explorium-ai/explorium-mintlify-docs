@@ -1,0 +1,56 @@
+---
+openapi: post /v1/businesses/firmographics/enrich
+---
+
+## Endpoint: `POST /v1/businesses/firmographics/enrich`
+
+## Description
+
+The **Firmographics Enrichment** endpoint provides **essential business details**, such as revenue, company size, industry classification, and other key attributes. This data helps businesses segment markets, refine lead generation, and enhance business intelligence efforts.
+
+Firmographic data is compiled from multiple **verified sources**, ensuring broad coverage and high accuracy. This dataset is particularly valuable for sales intelligence, B2B marketing, risk assessment, and market research.
+
+<AccordionGroup>
+<Accordion title="How It Works">
+
+- **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
+- **Processing:** The system retrieves firmographic attributes by cross-referencing multiple datasets.
+- **Output:** A structured response with company details such as revenue, industry, size, and global presence.
+
+</Accordion>
+
+<Accordion title="Best Practices">
+
+- **Ensure you retrieve the`business_id`** using the **Match Businesses** API before making firmographic enrichment requests.
+- **Leverage firmographic insights** to enhance lead scoring and segmentation.
+- **Cross-reference results** with other enrichment APIs (e.g., **Technographics**) for deeper business insights.
+- **Regularly update queries** to ensure the most up-to-date business data is retrieved.
+
+</Accordion>
+
+<Accordion title="Firmographics Output Signal">
+
+| SignalAPI | Name | Description | Data Type |
+| :--- | :--- | :--- | :--- |
+| company\_name | Company name | Official name of the company. | string |
+| legal\_name | Legal name | Legal name of the company. | string |
+| industry | Industry | Industry sector of the company. | string |
+| sub\_industry | Sub-industry | Sub-industry classification. | string |
+| company\_size | Company size | Size of the company by employee count. | string |
+| revenue | Revenue | Annual revenue of the company. | number |
+| headquarters\_location | Headquarters location | Location of company headquarters. | string |
+| founded\_year | Founded year | Year the company was founded. | integer |
+| company\_type | Company type | Type of company (public, private, non-profit). | string |
+| website\_url | Website URL | Official website URL of the company. | url |
+| description | Description | Brief description of the company and its business. | string |
+| employee\_count | Employee count | Number of employees at the company. | integer |
+| linkedin\_url | LinkedIn URL | Company's LinkedIn page URL. | url |
+| stock\_ticker | Stock ticker | Stock ticker symbol for public companies. | string |
+| parent\_company | Parent company | Parent company if applicable. | string |
+| ownership\_status | Ownership status | Ownership status (public, private, subsidiary). | string |
+
+</Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" color="red" iconType="solid" /> **For additional enrichment options, explore related API endpoints below.**
+

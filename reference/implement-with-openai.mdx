@@ -1,0 +1,289 @@
+---
+title: "OpenAI Implementation Guide"
+description: "Learn how to integrate AgentSource MCP with OpenAI's API  to build AI agents that can access real-time business and contact data."
+---
+
+## Overview
+
+This guide demonstrates how to use AgentSource MCP (Model Context Protocol) with OpenAI's API. MCP enables your AI agents to seamlessly access Explorium's data through a standardized protocol, allowing for dynamic tool discovery and execution.
+
+## Prerequisites
+
+- Python 3.8 or higher
+- OpenAI API key
+- AgentSource API key
+- Basic understanding of OpenAI's API
+
+## Installation
+
+First, install the required package:
+
+```shell Bash
+pip install openai
+```
+
+## Quick Start
+
+### 1. Initialize the OpenAI Client
+
+```python Python
+from openai import OpenAI
+
+# Initialize the client with your OpenAI API key
+client = OpenAI(api_key="your-openai-api-key")
+```
+
+### 2. Configure AgentSource MCP
+
+Create a response with MCP tools configured:
+
+```python Python
+response = client.responses.create(
+    model="gpt-4.1",
+    tools=[{
+        "type": "mcp",
+        "require_approval": "never",
+        "server_label": "explorium",
+        "server_url": "https://mcp.explorium.ai/mcp",
+        "headers": {
+            "api_key": "YOUR_AGENTSOURCE_API_KEY"
+        }
+    }],
+    input="Your query here"
+)
+```
+
+### 3. Basic Example
+
+Here's a complete example that searches for companies:
+
+```python Python expandable
+from openai import OpenAI
+
+# Initialize client
+client = OpenAI(api_key="your-openai-api-key")
+
+# Make a request to find banks
+response = client.responses.create(
+    model="gpt-4.1",
+    tools=[{
+        "type": "mcp",
+        "require_approval": "never",
+        "server_label": "explorium",
+        "server_url": "https://mcp.explorium.ai/mcp",
+        "headers": {
+            "api_key": "YOUR_AGENTSOURCE_API_KEY"
+        }
+    }],
+    input="Find 10 banks in the US with less than 5000 employees that use Azure"
+)
+
+# The response will contain the results
+print(response)
+```
+
+## Common Use Cases
+
+### Finding Companies with Specific Criteria
+
+```python Python
+# Search for tech companies using specific technologies
+response = client.responses.create(
+    model="gpt-4.1",
+    tools=[{
+        "type": "mcp",
+        "require_approval": "never",
+        "server_label": "explorium",
+        "server_url": "https://mcp.explorium.ai/mcp",
+        "headers": {
+            "api_key": "YOUR_AGENTSOURCE_API_KEY"
+        }
+    }],
+    input="Find software companies in California with 100-500 employees using AWS"
+)
+```
+
+### Finding Contacts at Specific Companies
+
+```python Python
+# Get engineering directors at Microsoft
+response = client.responses.create(
+    model="gpt-4.1",
+    tools=[{
+        "type": "mcp",
+        "require_approval": "never",
+        "server_label": "explorium",
+        "server_url": "https://mcp.explorium.ai/mcp",
+        "headers": {
+            "api_key": "YOUR_AGENTSOURCE_API_KEY"
+        }
+    }],
+    input="Get 50 directors of engineering at Microsoft along with their email addresses"
+)
+```
+
+### Analyzing Specific Departments
+
+```python Python
+# Analyze VPs in a specific department
+response = client.responses.create(
+    model="gpt-4.1",
+    tools=[{
+        "type": "mcp",
+        "require_approval": "never",
+        "server_label": "explorium",
+        "server_url": "https://mcp.explorium.ai/mcp",
+        "headers": {
+            "api_key": "YOUR_AGENTSOURCE_API_KEY"
+        }
+    }],
+    input="Inspect all VPs in the Engineering department at Salesforce and highlight those working on Agentforce"
+)
+```
+
+## Understanding the Response
+
+The MCP integration automatically handles:
+
+- Tool discovery and listing
+- Parameter formatting
+- API calls to AgentSource
+- Response parsing
+
+Your agent will receive structured data that it can process and present in a user-friendly format.
+
+## Advanced Configuration
+
+### Multi-turn Conversations
+
+For follow-up queries in the same context:
+
+```python Python expandable
+# Initial query
+response1 = client.responses.create(
+    model="gpt-4.1",
+    tools=[{
+        "type": "mcp",
+        "require_approval": "never",
+        "server_label": "explorium",
+        "server_url": "https://mcp.explorium.ai/mcp",
+        "headers": {
+            "api_key": "YOUR_AGENTSOURCE_API_KEY"
+        }
+    }],
+    input="Find all VPs at Tesla"
+)
+
+# Follow-up query
+response2 = client.responses.create(
+    model="gpt-4.1",
+    tools=[{
+        "type": "mcp",
+        "require_approval": "never",
+        "server_label": "explorium",
+        "server_url": "https://mcp.explorium.ai/mcp",
+        "headers": {
+            "api_key": "YOUR_AGENTSOURCE_API_KEY"
+        }
+    }],
+    input="Now get their email addresses",
+    previous_response_id=response1.id
+)
+```
+
+### Tool Approval Settings
+
+You can control whether tools require approval before execution:
+
+- `"never"` - Tools execute automatically
+- `"always"` - Tools require user approval
+- `"on_error"` - Approval required only on errors
+
+## Debugging and Monitoring
+
+### Response Tracing
+
+To understand the execution flow, you can inspect the response object which contains:
+
+- Tool calls made
+- Input parameters sent
+- Responses received
+- Agent's interpretation
+
+### Example Response Structure
+
+```python Python
+# Access the response outputs
+for output in response.output:
+    if output.type == "mcp_call":
+        print(f"Tool called: {output.name}")
+        print(f"Arguments: {output.arguments}")
+        print(f"Result: {output.output}")
+    elif output.type == "message":
+        print(f"Agent response: {output.content}")
+```
+
+## Best Practices
+
+1. **API Key Security**: Never hardcode API keys in your code. Use environment variables:
+	```python Python
+	import os
+	client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+	```
+2. **Clear Queries**: Be specific in your queries for better results:
+	- <Icon icon="square-check" color="green" /> "Find 20 CTOs at fintech companies in New York with 50-200 employees"
+	- <Icon icon="xmark" color="red" /> "Find some tech people"
+3. **Handle Rate Limits**: Implement appropriate error handling and retries
+4. **Optimize Requests**: Batch related queries when possible to reduce API calls
+
+## Available Tools
+
+Through MCP, your agent automatically has access to all AgentSource tools including:
+
+- **Company Search**: Find businesses based on various criteria
+- **Contact Discovery**: Locate professionals with specific roles
+- **Email Enrichment**: Get contact information
+- **Company Matching**: Match and enrich company data
+- **Prospect Matching**: Match and enrich prospect data
+- **And more**: The full suite of AgentSource capabilities
+
+The beauty of MCP is that tools are discovered dynamically - you don't need to explicitly define them.
+
+## Error Handling
+
+```python Python
+try:
+    response = client.responses.create(
+        model="gpt-4.1",
+        tools=[{
+            "type": "mcp",
+            "require_approval": "never",
+            "server_label": "explorium",
+            "server_url": "https://mcp.explorium.ai/mcp",
+            "headers": {
+                "api_key": "YOUR_AGENTSOURCE_API_KEY"
+            }
+        }],
+        input="Your query"
+    )
+except Exception as e:
+    print(f"Error: {e}")
+```
+
+## Next Steps
+
+- Explore the [complete AgentSource MCP documentation](/reference/agentsource-mcp)
+- Check out implementations using other frameworks (LangGraph, Python SDK)
+- Learn about advanced filtering and search capabilities
+- Understand rate limits and quotas
+
+## Support
+
+If you encounter any issues or have questions:
+
+- Contact our support team at [support@explorium.ai](mailto:support@explorium.ai)
+- Join our developer community
+
+
+*Note: Remember to replace`YOUR_AGENTSOURCE_API_KEY` and `your-openai-api-key` with your actual API keys.*
+

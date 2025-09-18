@@ -1,0 +1,72 @@
+---
+title: "New office opening"
+---
+
+## Description
+
+A **New Office Opening** event tracks when a company establishes a new office or facility. This data provides insights into business expansion, geographic growth, and hiring trends.
+
+**Important:** The **New Office Opening** event is limited to **recent office expansions** within the last quarter (`timestamp_from` should be set to the past 3 months). If the company did not open a new office during this period, the response will be empty.
+
+**For long-term office location insights,** refer to firmographic enrichment APIs.
+
+## Use cases:
+
+- **Market Expansion**: Identify companies growing their physical presence.
+- **Competitive Intelligence**: Monitor competitor office openings.
+- **Investment Insights**: Track capital expenditure on new facilities.
+- **Real Estate & Economic Trends**: Analyze business activity in different regions.
+
+## Data Schema
+
+**Event Name: "new_office" (Use this value in the event_types parameter when querying this event.)**
+
+| Signal | API Name | Description | Data Type |
+| :--- | :--- | :--- | :--- |
+| Event time | event\_time | The timestamp indicating when the event actually occurred | datetime |
+| Purpose of new office | purpose\_of\_new\_office | Short description of the new office's purpose, extracted from the article. | string |
+| Link to article | link | Link to article announcing the company's new office. | url |
+| Location of new office | office\_location | Text extracted from the article indicating where the new office is located. | string |
+| Number of employees at new office | number\_of\_employees | Number of employees working from the new office's location. | integer |
+| Title of new office article | title | Title of published news report or article on company's new office. | string |
+| Snippet | snippet | Short excerpt or highlight text summarizing the award or announcement | string |
+| Event name | event\_name | Name of the event related to company's new office. | string |
+
+## Query Example
+
+```curl cURL
+curl -X POST \
+  "https://api.explorium.ai/v1/businesses/events" \
+  -H "API_KEY: your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "event_types": [
+    "new_office"
+  ],
+  "business_ids": [
+    "8adce3ca1cef0c986b22310e369a0793"
+  ],
+  "timestamp_from": "2025-01-01T10:03:03.050Z"
+}'
+```
+
+## Best Practices
+
+- **Filter by location (`office_location`)** to track openings in specific regions.
+- **Combine with hiring data** to analyze workforce expansion.
+- **Monitor new office purpose (`purpose_of_new_office`)** to understand business strategy.
+
+## Related Events
+
+<Columns cols={2}>
+    <Card icon="party-horn" horizontal title="New Product Launch" href="/reference/new-product-launch">
+    Launch of a new product
+    </Card>
+  <Card icon="building" horizontal title="Office Closing" href="/reference/office-closing">
+  Closure of an office
+  </Card>
+  <Card icon="award" horizontal title="Company's Award" href="/reference/companys-award-event">
+  Recognition of a company's achievements and accolades
+  </Card>
+</Columns>
+

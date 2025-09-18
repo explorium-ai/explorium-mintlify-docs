@@ -1,0 +1,325 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Explorium docs",
+  "colors": {
+    "primary": "#004349",
+    "light": "#d0ee70",
+    "dark": "#004349"
+  },
+  "favicon": "/favicon.svg",
+  "appearance": {
+    "default": "light"
+  },
+  "background": {
+    "color": {
+      "light": "#fffcf5"
+    }
+  },
+  "fonts": {
+    "heading": {
+      "family": "Gilroy",
+      "source": "https://www.explorium.ai/wp-content/themes/moveo-theme/assets/font/gilroy-bold-webfont.woff",
+      "format": "woff"
+    },
+    "body": {
+      "family": "Gilroy",
+      "source": "https://www.explorium.ai/wp-content/themes/moveo-theme/assets/font/gilroy-regular-webfont.woff2",
+      "format": "woff2"
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "API Reference",
+        "icon": "code-simple",
+        "groups": [
+          {
+            "group": "Explorium AgentSource",
+            "pages": [
+              {
+                "group": "Quick Starts",
+                "pages": [
+                  "reference/quick-starts",
+                  "reference/introduction",
+                  "reference/use_case_prospecting"
+                ]
+              },
+              {
+                "group":"Authentication & Setup",
+                "pages": [
+                  "reference/account_access",
+                  "reference/getting_your_api_key",
+                  {
+                    "group": "Billing & Credits",
+                    "pages": [
+                      "reference/tracking_your_credits",
+                      "reference/credit_plans"
+                    ]
+                  },
+                  "reference/user_management"
+                ]
+              },
+              {
+                "group": "Businesses",
+                "pages": [
+                  "reference/businesses_api",
+                  "/reference/match_businesses",
+                  "/reference/fetch_businesses",
+                  {
+                    "group": "Autocomplete Businesses",
+                    "pages": [
+                      "/reference/businesses_autocomplete",
+                      "/reference/linkedin_categories"
+                    ]
+                  },
+                  "/reference/fetch_businesses_statistics",
+                  {
+                    "group": "Businesses Events",
+                    "pages": [
+                      "/reference/fetch_businesses_events",
+                      "/reference/add_businesses_enrollments",
+                      "/reference/update_businesses_enrollments",
+                      "/reference/delete_businesses_enrollments",
+                      "/reference/get_businesses_enrollments"
+                    ]
+                  },
+                  {
+                    "group": "Events Type",
+                    "pages": [
+                      "/reference/ipo-announcement",
+                      "/reference/new-product-launch",
+                      "/reference/new-funding-round",
+                      "/reference/new-investment",
+                      "/reference/office-closing",
+                      "/reference/new-office-opening",
+                      "/reference/companys-award-event",
+                      "/reference/new-partnership",
+                      "/reference/hiring-by-department",
+                      "/reference/department-trend",
+                      "/reference/employee-joined-company",
+                      "/reference/lawsuits-and-legal-issues",
+                      "/reference/outages-and-security-breaches",
+                      "/reference/cost-cutting",
+                      "/reference/merger-and-acquisitions"
+                    ]
+                  },
+                  {
+                    "group": "Business Enrichments",
+                    "pages": [
+                      "reference/businesses_enrichments",
+                      "/reference/firmographics",
+                      "/reference/technographics",
+                      "/reference/company_social_media",
+                      "/reference/company_ratings",
+                      "/reference/keyword_search_on_websites",
+                      "/reference/financial_metrics_for_public_companies",
+                      "/reference/funding_and_acquisitions",
+                      "/reference/business_challenges",
+                      "/reference/competitive_landscape",
+                      "/reference/strategic_insights",
+                      "/reference/company_website_content_changes",
+                      "/reference/workforce_trends",
+                      "/reference/lookalike-companies",
+                      "/reference/webstack",
+                      "/reference/company-hierarchy"
+                    ]
+                  },
+                  {
+                    "group": "Bulk Businesses Enrichments",
+                    "pages": [
+                      "/reference/bulk_businesses_enrichments",
+                      "/reference/businesses_firmographics_bulk_enrich",
+                      "/reference/businesses_technographics_bulk_enrich",
+                      "/reference/company_social_media_bulk_enrich",
+                      "/reference/businesses_company_ratings_by_employees_bulk_enrich",
+                      "/reference/keyword_search_on_websites_bulk_enrich",
+                      "/reference/businesses_financial_metrics_bulk_enrich",
+                      "/reference/businesses_funding_and_acquisition_bulk_enrich",
+                      "/reference/business_challenges_bulk_enrich",
+                      "/reference/competitive_landscape_bulk_enrich",
+                      "/reference/strategic_insights_bulk_enrich",
+                      "/reference/company_website_content_changes_bulk_enrich",
+                      "/reference/businesses_workforce_trends_bulk_enrich"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Prospects",
+                "pages": [
+                  "/reference/prospects_api",
+                  "/reference/match_prospects-1",
+                  "/reference/fetch_prospects",
+                  "/reference/prospects_autocomplete",
+                  {
+                    "group": "Prospects Events",
+                    "pages": [
+                      "/reference/fetch_prospects_events-1",
+                      "/reference/add_prospects_enrollments",
+                      "/reference/update_prospects_enrollments",
+                      "/reference/delete_prospects_enrollments",
+                      "/reference/get_prospects_enrollments"
+                    ]
+                  },
+                  {
+                    "group": "Events Type",
+                    "pages": [
+                      "/reference/recently_changed_company",
+                      "/reference/employee_workplace_anniversary",
+                      "/reference/employee_job_changes"
+                    ]
+                  },
+                  {
+                    "group": "Prospects Enrichments",
+                    "pages": [
+                      "/reference/prospects_enrichments",
+                      "/reference/contacts_information",
+                      "/reference/individual_social_media_presence",
+                      "/reference/professional_profile_contact_and_workplace"
+                    ]
+                  },
+                  {
+                    "group": "Prospects Bulk Enrichments",
+                    "pages": [
+                      "/reference/bulk_prospects_enrichments",
+                      "/reference/prospects_contacts_information_bulk_enrich",
+                      "/reference/individuals_social_media_bulk_enrich",
+                      "/reference/professional_profile_contact_bulk_enrich"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Webhooks: Receiving Real-Time Events",
+                "pages": [
+                  "/reference/webhooks",
+                  "/reference/add_webhook",
+                  "/reference/get_webhook",
+                  "/reference/delete_webhook",
+                  "/reference/check_webhook_connectivity"
+                ]
+              },
+              "reference/error-handling",
+              "reference/rate-limit",
+              {
+                "group": "Credits",
+                "pages": [
+                  "reference/get_active_credits_summary"
+                ]
+              },
+              "reference/support-help-center",
+              "reference/additional_resources",
+              {
+                "group": "Custom Enrichments",
+                "pages": [
+                  "reference/customenrichments-1",
+                  "reference/enrich_with_custom_enrichment-1",
+                  "reference/bulk_enrich_with_custom_enrichment-1"
+                ]
+              },
+              "reference/data",
+              {
+                "group": "AgentSource MCP",
+                "pages": [
+                  "reference/agentsource-mcp",
+                  {
+                    "group": "Developers Implementation Guides",
+                    "pages": [
+                      "reference/developers-implementation-guides",
+                      "reference/implement-with-openai",
+                      "reference/python-sdk-implementation-guide",
+                      {
+                        "group": "MCP Integrations",
+                        "pages": [
+                          "reference/mcp-integrations",
+                          "reference/claude-desktop-integration",
+                          "reference/cursor-integration",
+                          "reference/integrate-with-n8n",
+                          "reference/integrate-with-zapier",
+                          "reference/integrate-with-base44"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Integrations templates",
+                "pages": [
+                  {
+                    "group": "n8n",
+                    "pages": [
+                      "reference/n8n",
+                      "reference/explorium-event-triggered-outreach",
+                      "reference/google-sheets-company-enrichment-with-explorium-mcp",
+                      "reference/explorium-prospects-search-chatbot",
+                      "reference/salesforce-data-enrichment-workflow",
+                      "reference/hubspot-contact-enrichment"
+                    ]
+                  },
+                  "reference/zapier"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Parterns",
+            "pages": [
+              "reference/outreach-getting-your-api-key"
+            ]
+          }
+        ]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Contact Us",
+          "href": "https://www.explorium.ai/about#contact",
+          "icon": "headset"
+        },
+        {
+          "anchor": "Blog",
+          "href": "https://www.explorium.ai/blog/",
+          "icon": "newspaper"
+        }
+      ]
+    }
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://www.explorium.ai/"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Login",
+        "href": "https://admin.explorium.ai/login"
+      }
+    ],
+    "primary": {
+      "label": "Sign Up",
+      "type": "button",
+      "href": "https://www.explorium.ai/#admin-signup"
+    }
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
+  },
+  "footer": {
+    "socials": {
+      "linkedin": "https://www.linkedin.com/company/explorium-ai/"
+    }
+  }
+}

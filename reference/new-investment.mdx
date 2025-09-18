@@ -1,0 +1,68 @@
+---
+title: "New investment"
+---
+
+## Description
+
+A **New Investment** event tracks when an organization or investor makes a strategic investment in a company. This data helps identify market movements, strategic partnerships, and industry growth patterns.
+
+**Important:** The **New Investment** event surfaces **only recent investment activities** within the last quarter (`timestamp_from` should be set to the past 3 months). If there was no investment recorded during this period, the response will be empty.
+
+**For historical investment records**, use the **Funding & Acquisitions Enrichment API**.
+
+## Use cases
+
+- **Investor Tracking**: Monitor investment activity from venture capitalists, private equity firms, and corporations.
+- **Market Trends**: Understand which sectors and companies are receiving financial backing.
+- **Competitive Intelligence**: Gain insight into competitor investments and expansion plans.
+- **Strategic Partnerships**: Identify relationships between investors and businesses.
+
+## Data Schema
+
+**Event Name: "new\_investment" (Use this value in the event\_types parameter when querying this event.)**
+
+| Signal | API Name | Description | Data Type |
+| :--- | :--- | :--- | :--- |
+| Type of investment | investment\_type | Type of investment extracted from the report or article. | string |
+| Event time | event\_time | The timestamp indicating when the event actually occurred | datetime |
+| Target of investment | investment\_target | Text extracted from the article describing the target of the investment. | string (nullable) |
+| Snippet of article | snippet | Snippet of the published article or report on company's new investment. | string |
+| Title of new investment article | title | Title of published news report or article on company's new investment. | string |
+| Link to article | link | Link to article announcing the company's new investment. | url |
+| Amount of investment | investment\_amount | Size of investment in dollars extracted from the article. | number (nullable) |
+| Investment Currency | investment\_amount\_currency | The currency code (ISO 4217) that specifies the currency of the investment amount. For example, USD for US Dollars or EUR for Euros. | currency\_code (nullable) |
+
+## Query Example
+
+```curl cURL
+curl -X POST \
+  "https://api.explorium.ai/v1/businesses/events" \
+  -H "API_KEY: your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "event_types": [
+    "new_investment"
+  ],
+  "business_ids": [
+    "8adce3ca1cef0c986b22310e369a0793"
+  ],
+  "timestamp_from": "2025-01-01T10:03:03.050Z"
+}'
+```
+
+## Best Practices
+
+- **Filter by investment type** to track strategic vs. financial investments.
+- **Analyze investment targets** to identify high-growth companies and sectors.
+- **Monitor investment amounts** to assess the scale of market movements.
+
+## Related Events
+
+<Columns cols={2}>
+<Card icon="chart-line" horizontal title="IPO Announcement" href="/reference/ipo-announcement">
+Initial Public Offering announcement
+</Card>
+<Card icon="dollar-sign" horizontal title="New Funding Round" href="/reference/new-funding-round">
+Announcement of a new funding round
+</Card>
+</Columns>

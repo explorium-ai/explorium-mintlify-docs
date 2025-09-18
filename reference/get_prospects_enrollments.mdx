@@ -1,0 +1,57 @@
+---
+title: "Get Prospects Enrollments"
+openapi: get /v1/prospects/events/enrollments
+---
+
+### 
+
+**Endpoint:** `GET /v1/prospects/events/enrollments`### 
+
+**Description**The Get Prospect Events Enrollments endpoint retrieves all your active prospect monitoring configurations. This allows you to review which individuals and event types you're currently tracking, along with enrollment details such as time-to-live settings..
+
+<AccordionGroup>
+<Accordion title="How It Works">
+
+**Input**: Either pass `partner_id` in the header; otherwise, your key will be used to infer you partner id.  
+**Processing**: The system retrieves all active enrollments associated with your account.  
+**Output**: A structured response containing all enrollment configurations.
+</Accordion>
+
+<Accordion title="Example Request (cURL)">
+
+```shell Bash
+curl -X GET \
+  "https://api.explorium.ai/v1/prospects/events/enrollments" \
+  -H "API_KEY: your_api_key_here" \
+  -H "parnter_id: your_partner_id"
+```
+</Accordion>
+
+<Accordion title="Example Response">
+
+```json Bash
+{
+  "response_context": {
+    "correlation_id": "1234",
+    "request_status": "success",
+    "time_took_in_seconds": 0.515
+  },
+  "enrollments": [
+    {
+      "enrollment_id": "en_8d52c3f1",
+      "enrollment_key": "tech_executives_monitor",
+      "prospect_ids": ["20ae6cbf564ee683e66685e429844a5ff8ffc30f", "4c485f009d59e319dc039cdf3e935b85014e6a33"],
+      "event_types": ["prospect_changed_role", "prospect_changed_company"]
+    },
+    {
+      "enrollment_id": "en_7d31a9c2",
+      "enrollment_key": "sales_prospects",
+      "prospect_ids": ["fd4c46716295a2e4731417eee802a883280e4d57", "a7bbe0674c63338e62ae4c10751ae19da5723e5a"],
+      "event_types": ["prospect_job_start_anniversary", "prospect_changed_company"]
+    }
+  ]
+}
+```
+
+</Accordion>
+</AccordionGroup>

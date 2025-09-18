@@ -1,0 +1,77 @@
+---
+title: "Quick Starts"
+description: "For any issues, questions, or assistance, our support team is available to help."
+sidebarTitle: "Overview"
+---
+
+You can reach us through the following channels:
+
+Email Support: [support@explorium.ai](mailto:support@explorium.ai)
+
+Slack Channel: If you have a dedicated Slack channel with us, you can post your question there.
+
+## How to Leverage Explorium's API
+
+### Overview
+
+Explorium's Partner Service API provides powerful capabilities to enhance data-driven decision-making. Whether you're in sales, marketing, risk assessment, or investment research, these **Use Cases** will guide you in leveraging our API effectively.
+
+Our use cases demonstrate how to streamline workflows, enrich data, and maximize business intelligence through our powerful API endpoints.
+
+### Why Use These Workflows?
+
+- **Boost Efficiency:** Automate prospecting, lead enrichment, and business research.
+- **Improve Data Accuracy:** Access real-time and enriched data from multiple sources.
+- **Enhance Targeting:** Use granular filters to refine searches for businesses and individuals.
+- **Optimize Your Pipeline:** Focus only on high-potential leads with verified contact information.
+- **Reduce Manual Work:** Eliminate the need for manual research with automated data retrieval.
+
+### Before You Begin
+
+<Steps>
+	<Step>
+	Obtain Your API KeyYou’ll need a valid API key for all endpoints. For instructions on how to register and obtain credentials, see our **Authentication Guide**. [**Authentication Guide**](/reference/getting_your_api_key)
+	</Step>
+	<Step>
+	Understand the Filters and Parameters
+
+	- **Filters**:`values` objects to include or exclude certain attributes (see **List of Business Filters** and **List of Prospect Filters**).
+	- **Pagination**: You can specify `page` and `page_size` (up to 100 records per page).
+	</Step>
+</Steps>
+
+### Available Use Cases
+
+The following workflows illustrate different ways to leverage Explorium’s API. Click on any use case to explore the step-by-step guide.
+
+- **Sales & Marketing Workflows**
+
+[**Prospecting & Lead Enrichment**](/reference/use_case_prospecting) and reach out to ideal prospects with verified contact details.
+
+## Recommended Workflow
+
+To maximize efficiency and ensure precise targeting, follow this structured flow when working with Explorium’s API:
+
+1. **Assess Market Potential** – Use the stats endpoint to gauge the size and scope of your target audience before making large-scale data fetches.
+2. **Match Businesses** – Use the match endpoint to find the most accurate `business_id` for the companies you are targeting. Extract `business_id` to ensure precise data retrieval in the next steps.
+3. **Fetch Business Data** – Retrieve company records that match your desired filters (e.g., industry, company size, location) using the matched `business_id`.
+4. **Match Prospects** – Use the match endpoint to find the most accurate `prospect_id` for relevant employees within the selected businesses. Extract `prospect_id` to proceed with enrichment.
+5. **Fetch & Enrich Prospects** – Retrieve prospects using the matched `prospect_id`, then enrich them with verified contact details such as email addresses and phone numbers for effective outreach.
+6. **Refine & Iterate** – Adjust filters based on initial results to optimize for precision and efficiency.
+
+By first matching businesses and prospects using the match endpoints, you ensure that the data retrieved is highly accurate and relevant. Extracting `business_id` and `prospect_id` at the right stages allows for better enrichment and precise targeting, minimizing redundant API calls and maximizing efficiency.
+
+## Best Practices for Using the API
+
+- **Optimize API Calls:** Use the `stats` endpoint before fetching full datasets to avoid unnecessary calls.
+- **Refine Filters:** Use multiple filtering layers to get precise results without retrieving excessive data.
+- **Paginate Large Datasets:** Break down requests into pages to manage data flow efficiently.
+- **Monitor Rate Limits:** Ensure compliance with API rate limits to maintain performance and avoid throttling.
+	We support up to **200 qpm**.
+
+## Next Steps
+
+- **Get Started**: Choose a use case and explore the detailed step-by-step guide.
+- **Read the Docs**: Visit our API's Documentation section for technical references.
+
+**Ready to maximize your data? Start exploring the use cases now!**

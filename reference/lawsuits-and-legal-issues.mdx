@@ -1,0 +1,70 @@
+---
+title: "Lawsuits and legal proceedings"
+---
+
+## Description
+
+The **Lawsuits and Legal proceedings** event tracks legal proceedings involving companies, such as lawsuits, regulatory actions, and compliance violations. This data provides valuable insights into a company's legal standing, potential risks, and regulatory challenges.
+
+## Use cases:
+
+- **Risk Assessment:** Evaluate potential legal risks before engaging with a company.
+- **Investor Due Diligence:** Identify companies facing legal disputes that may impact stock performance.
+- **Regulatory Compliance Monitoring:** Track businesses involved in legal actions for compliance verification.
+- **Competitive Analysis:** Understand how legal challenges affect industry players.
+
+## Data Schema
+
+**Event Name: "lawsuits\_and\_legal\_issues" (Use this value in the event_types parameter when querying this event.)**
+
+| Signal | API Name | Description | Data Type |
+| :--- | :--- | :--- | :--- |
+| Legal case type | case\_type | Classification of the legal case e.g. Patent infringement, Fraud, etc. | string |
+| Court | court | Court or legal body overseeing the case e.g. U.S. District Court. | string |
+| Link to report | link | Link to article or report about the legal issue. | url |
+| Event name | event\_name | Name of the event related to the legal proceedings. | string |
+| Event time | event\_time | The timestamp indicating when the event actually occurred | datetime |
+| Title | title | The headline of the article, summarizing its main topic | string |
+| Snippet | snippet | A short summary or preview of the article | string |
+
+
+## Query Example
+
+```curl cURL
+curl -X POST \
+  "https://api.explorium.ai/v1/businesses/events" \
+  -H "API_KEY: your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "event_types": [
+    "lawsuits_and_legal_issues"
+  ],
+  "business_ids": [
+    "8adce3ca1cef0c986b22310e369a0793"
+  ],
+  "timestamp_from": "2025-01-01T10:03:03.050Z"
+}'
+```
+
+
+## Best Practices
+
+- **Cross-reference legal issues** with financial and firmographic data for a complete risk profile.
+- **Monitor ongoing cases** to track potential long-term liabilities.
+- **Use court data** to identify the jurisdiction and severity of legal actions.
+
+## Related Events
+
+<Columns cols={2}>
+    <Card icon="shield-halved" horizontal title="Outages and Security Breaches" href="/reference/outages-and-security-breaches">
+    Identifies major disruptions and cybersecurity incidents
+    </Card>
+    <Card icon="hand-holding-dollar" horizontal title="Cost Cutting" href="/reference/cost-cutting">
+    Tracks significant cost reduction measures
+    </Card>
+    <Card icon="handshake" horizontal title="Merger and Acquisitions" href="/reference/merger-and-acquisitions">
+    Tracks major M&A activity
+    </Card>
+</Columns>
+
+

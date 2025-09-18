@@ -1,0 +1,24 @@
+---
+title: "SFDC Error cods"
+description: "The below are common SFDC Error codes:"
+---
+
+1. Error: Cannot update records in Salesforce, because 'Contact ID' column (which is the record's unique-identifier) is missing from the uploaded data
+
+   1. Reason : This happens when trying to update an object without the ID column apparent in the core data set.
+   2. Solution: Make sure you have the required column ID in your dataset on the platform project.
+
+2. Error: Cannot update records in Salesforce, because 'Lead ID' column (which is the record's unique-identifier) is missing from the uploaded data.
+
+   1. Reason:This happens when trying to update an object without the ID column apparent in the core data set.
+   2. Solution: Make sure you have the required column ID in your dataset on the platform project.
+
+3. Error: INVALID\_OR\_NULL\_FOR\_RESTRICTED\_PICKLIST".Example failure message: "\{'message': 'bad value for restricted picklist field: Prospecting', 'fields': \['LeadSource\_Child\_\_c']\['LeadSource\_Child\_\_c']}
+
+   1. Reason: This happens when you try to put a value in a field that can only contain pre defined values. In the example above we were trying to push the value prospecting inside the LeadSource Child field.
+   2. Solution: Either remove this column mapping or make sure you place a value from the accepted list of the field. (You will need to contact the Customer to know the exact list value
+
+4. Error: tatus-code: ENTITY\_IS\_DELETED had 1 failures. e.g: \{'success': False, 'created': False, 'id': None, 'errors': \[\{'statusCode': 'ENTITY\_IS\_DELETED', 'message': 'entity is deleted', 'fields': \[]}]}
+
+   1. Reason: caused when you try to update an entity (e.g. Lead) that was deleted.
+   2. Solution: Issue is likely on your (customer) local SF , please check your configuration and object data

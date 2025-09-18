@@ -1,0 +1,58 @@
+---
+openapi: post /v1/businesses/website_changes/enrich
+title: "Company’s website content changes"
+---
+
+## Endpoint: `POST /v1/businesses/website_changes/enrich`
+
+## Description
+
+The **Company's Website Content Changes Enrichment** endpoint enables users to **track changes in website content over time**, helping businesses monitor **updates, keyword appearances, and messaging shifts**. This is particularly useful for **competitive intelligence, compliance tracking, and brand monitoring**.
+
+The data includes:
+
+- **Detection of content changes** in key sections of a company's website.
+- **Keyword-based monitoring**, allowing users to track the appearance or disappearance of specific terms.
+- **Timestamped records of detected modifications** to ensure historical tracking.
+- **Logical AND search**: The system evaluates predefined conditions, ensuring that **all input keywords** must appear together in the retrieved snippets.
+
+This information is sourced from **real-time web crawls and indexed website snapshots**, providing a **comprehensive view of content evolution over time**.
+
+<AccordionGroup>
+<Accordion title="How It Works">
+
+- **Input:** Provide a `business_id` obtained from the **Match Businesses** API, along with optional `keywords` separated by commas. The system will return only results where **all keywords appear together**.
+- **Processing:** The system scans the target website and detects changes in text and keyword occurrences.
+- **Output:** A structured response highlighting updated content, extracted snippets, and relevant URLs.
+
+</Accordion>
+
+<Accordion title="Best Practices">
+
+- **Monitor competitors' websites** to track strategic updates and product announcements.
+- **Analyze keyword trends** to detect shifts in branding and messaging.
+- **Leverage historical data** to identify long-term content evolution and strategic priorities.
+- **Ensure regulatory compliance** by tracking content modifications in sensitive sectors.
+- **Use comma-separated keywords** to refine searches, ensuring that all specified terms appear together.
+
+</Accordion>
+
+<Accordion title="Website Changes Output Signal">
+
+| SignalAPI | Name | Description | Data Type |
+| :--- | :--- | :--- | :--- |
+| change\_type | Change type | Type of content change (addition, deletion, modification). | string |
+| page\_url | Page URL | URL of the page with changes. | url |
+| change\_description | Change description | Description of the changes made. | string |
+| change\_date | Change date | Date when the change was detected. | date |
+
+</Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" color="red" iconType="solid"/> For additional enrichment options, explore related API endpoints below.
+
+## Body Params - Try Me Example
+
+```
+business_id: 8adce3ca1cef0c986b22310e369a0793
+```

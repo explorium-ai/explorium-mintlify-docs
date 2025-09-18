@@ -1,0 +1,84 @@
+---
+title: "Department workforce trends"
+---
+
+
+## Description
+
+A **Department trend** event tracks when a company increases or decreases staffing within a specific department. This data helps monitor employment trends, workforce restructuring, and organizational growth or downsizing.
+
+**Important:** The **Department Trend** event tracks **only recent workforce distribution changes**. If no changes occurred within the last quarter (`timestamp_from` should be set to the past 3 months), no data will be returned.
+
+**For a historical workforce analysis,** use the **Workforce Trends Enrichment API**.
+
+## Use cases:
+
+- **Labor Market Analysis**: Identify hiring or downsizing trends within industries.
+- **Competitive Intelligence**: Track workforce changes in competitor organizations.
+- **Economic Indicators**: Assess how staffing changes affect regional and industry employment.
+- **Business Strategy**: Understand how companies adjust their workforce for growth or cost-cutting measures.
+
+
+## Data Schema
+
+**Event Name: "increase_in_&lt;department&gt;" or "decrease_in_&lt;department&gt;" (Use these values in the event_types parameter when querying workforce change events per department. Replace &lt;department&gt; with the actual department name.)**
+
+| Signal | Description | API Name | Data Type |
+| :--- | :--- | :--- | :--- |
+| QoQ change in department count | Quarter over quarter rate of change in the number of employees working at the selected department. Calculation: (current quarter headcount of department / prev. quarter headcount of department) \* 100. | department\_change | integer |
+| Event time | The timestamp indicating when the event actually occurred | event\_time | datetime |
+| Department trend type | Type of department change type: Increase / Decrease | change\_type | string |
+| Event name | Name of the event related to the department change. | event\_name | string |
+
+### Departments Included
+
+| Event Name | Description |
+| :--- | :--- |
+| `increase_in_engineering_department` | Increase in engineering department workforce |
+| `increase_in_sales_department` | Increase in sales department workforce |
+| `increase_in_marketing_department` | Increase in marketing department workforce |
+| `increase_in_operations_department` | Increase in operations department workforce |
+| `increase_in_customer_service_department` | Increase in customer service department workforce |
+| `increase_in_all_departments` | Increase across all departments |
+| `decrease_in_engineering_department` | Decrease in engineering department workforce |
+| `decrease_in_sales_department` | Decrease in sales department workforce |
+| `decrease_in_marketing_department` | Decrease in marketing department workforce |
+| `decrease_in_operations_department` | Decrease in operations department workforce |
+| `decrease_in_customer_service_department` | Decrease in customer service department workforce |
+| `decrease_in_all_departments` | Decrease across all departments |
+
+## Query Example
+
+```curl cURL
+curl -X POST \
+  "https://api.explorium.ai/v1/businesses/events" \
+  -H "API_KEY: your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "event_types": [
+    "increase_in_engineering_department"
+  ],
+  "business_ids": [
+    "8adce3ca1cef0c986b22310e369a0793"
+  ],
+  "timestamp_from": "2025-01-01T10:03:03.050Z"
+}'
+```
+
+## Best Practices
+
+- **Filter by department (`department`)** to track workforce changes in specific fields.
+- **Monitor change type (`change_type`)** to distinguish between hiring and downsizing trends.
+- **Use timestamps (`event_time`)** to analyze trends over time.
+
+## Related Events
+
+<Columns cols={2}>
+<Card icon="users" horizontal title="Hiring (per department)" href="/reference/hiring-by-department">
+Hiring by Department
+</Card>
+<Card icon="user-plus" horizontal title="Employee Joined Company" href="/reference/employee-joined-company">
+Announcement of a new employee joining the company
+</Card>
+</Columns>
+

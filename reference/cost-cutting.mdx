@@ -1,0 +1,69 @@
+---
+title: "Cost cutting"
+---
+## Description
+
+The **Cost Cutting** event tracks significant cost reduction measures taken by companies, such as layoffs, budget reductions, downsizing, and restructuring. These events provide insights into a company's financial health, strategic adjustments, and market positioning.
+
+## Use cases:
+
+- **Investment Analysis:** Identify businesses implementing cost-saving measures that may indicate financial distress or strategic shifts.
+- **Competitive Intelligence:** Monitor how competitors are adjusting budgets and operations.
+- **Risk Assessment:** Evaluate financial stability before engaging with a business.
+- **Mergers & Acquisitions:** Identify potential acquisition targets facing financial difficulties.
+
+## Data Schema
+
+**Event Name: "cost\_cutting" (Use this value in the event_types parameter when querying this event.)**
+
+| Signal | API Name | Description | Data Type |
+| :--- | :--- | :--- | :--- |
+| Cost cutting actions | action\_taken | A summary of the measures implemented to reduce costs. | string |
+| Expected savings | expected\_savings\_amount | Projected amount of cost savings as a result of the cost cutting measures, if appears in the text. | number (nullable) |
+| Affected departments | departments\_affected | A list of departments impacted by the cost-cutting measures. | array&lt;string&gt; |
+| Savings currency | expected\_savings\_currency | Currency of the projected amount of savings resulting from the cost cutting measures. | currency\_code (nullable) |
+| Link to article | link | Link to article reporting the cust cutting measures taken by the company. | url |
+| Event name | event\_name | Name of the event related to the cost cutting measures. | string |
+| Event time | event\_time | The timestamp indicating when the event actually occurred | datetime |
+| Title | title | The headline of the article, summarizing its main topic | string |
+| Snippet | snippet | A short summary or preview of the article | string |
+
+## Query Example
+
+```curl cURL
+curl -X POST \
+  "https://api.explorium.ai/v1/businesses/events" \
+  -H "API_KEY: your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "event_types": [
+    "cost_cutting"
+  ],
+  "business_ids": [
+    "8adce3ca1cef0c986b22310e369a0793"
+  ],
+  "timestamp_from": "2025-01-01T10:03:03.050Z"
+}'
+```
+
+
+## Best Practices
+
+- **Analyze cost reduction trends** to assess long-term business viability.
+- **Monitor layoffs and restructuring efforts** to understand workforce shifts.
+- **Use cost-cutting data with financial metrics** to create a comprehensive business risk profile.
+
+## Related Events
+
+<Columns cols={2}>
+<Card icon="shield-halved" horizontal title="Lawsuits and Legal Issues" href="/reference/lawsuits-and-legal-issues">
+Tracks legal challenges and regulatory issues
+</Card>
+<Card icon="shield-halved" horizontal title="Outages and Security Breaches" href="/reference/outages-and-security-breaches">
+Identifies major disruptions and cybersecurity incidents
+</Card>
+<Card icon="code-merge" horizontal title="Merger and Acquisitions" href="/reference/merger-and-acquisitions">
+Tracks major M&A activity
+</Card>
+</Columns>
+

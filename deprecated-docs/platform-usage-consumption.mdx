@@ -1,0 +1,41 @@
+---
+title: "Platform Usage (Consumption)"
+description: "Understand how Explorium.ai computes consumption."
+---
+
+To help track and manage usage on our platform, we measure consumption in credits.
+A credit is defined as one of the following:
+
+1. **An enriched row**
+2. **A generated row**
+3. **A predicted row**
+
+Consumption can occur through downloads, API calls, or batch jobs.
+
+## Platform Consumption Breakdown
+
+**Enrich Module**: When you upload tabular data to the platform and enrich it with external data, each enriched row will consume one credit upon export.
+
+**Generate Module**: Data generated based on your search criteria will consume one credit per generated row upon export.
+
+**Predict Module**: Uploading tabular data for predictions (Using the predict step) will consume one credit for each predicted row upon export.
+
+## Consumption operation
+
+Consumption occurs through three primary methods:
+
+<Note>
+**Note**
+
+Consumption is counted only after the following operations. Recipe operations on their own doesn't trigger consumption.
+</Note>
+
+**Downloads**: When you download enriched, generated, or predicted data from the platform, the consumption will be counted in credits accordingly.
+
+**API Calls**: Consumption will also be counted in credits when you make API calls to enrich, generate, or predict data.
+
+**Batch Jobs**: If you're running scheduled or ad-hoc batch jobs for enrichment, generation, or prediction, the consumption will be counted in credits based on the number of rows processed.
+
+
+
+

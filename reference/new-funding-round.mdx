@@ -1,0 +1,68 @@
+---
+title: "New funding round"
+---
+
+## Description
+
+A **New Funding Round** event tracks when a company raises capital from investors. This information is essential for understanding business growth, market trends, and investment opportunities. Funding rounds are categorized by stages, such as seed, Series A, B, C, and beyond.
+
+**Important:** The **New Funding Round** event retrieves only **recent funding announcements** within the last quarter (`timestamp_from` should be set to the past 3 months). If no funding event was announced in this timeframe, no data will be available.
+
+**Need historical funding data?** Use the **Funding & Acquisitions Enrichment API** to access past funding rounds.
+
+## Use cases:
+
+- **Investor Insights**: Identify companies attracting significant investment.
+- **Startup & Market Trends**: Track emerging companies and industries receiving funding.
+- **Competitive Intelligence**: Analyze how competitors are securing funding.
+- **Valuation Tracking**: Understand how company valuations change over time.
+
+## Data Schema
+
+**Event Name: "new\_funding\_round" (Use this value in the event\_types parameter when querying this event.)**
+
+| Signal | API Name | Description | Data Type |
+| :--- | :--- | :--- | :--- |
+| founding\_date | Date of funding round | Date funding round took place. Formatted YYYY-MM-DD. | datetime |
+| amount\_raised | Amount raised in funding | Size of investment in dollars extracted from the article. | float |
+| link | Link to article | Link to article announcing the company's new investment. | url |
+| founding\_stage | Funding round stage | Funding round stage extracted from the report or article. | string |
+| investors | Investors in funding round | List of investors in the funding round. | string |
+| lead\_investor | Lead investor | Name of the lead investor in the funding round. | string |
+| event\_name | Event name | Name of the event related to company's new funding round. | string |
+
+## Query Example
+
+```curl cURL
+curl -X POST \
+  "https://api.explorium.ai/v1/businesses/events" \
+  -H "API_KEY: your_api_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "event_types": [
+    "new_funding_round"
+  ],
+  "business_ids": [
+    "8adce3ca1cef0c986b22310e369a0793"
+  ],
+  "timestamp_from": "2025-01-01T10:03:03.050Z"
+}'
+```
+
+## Best Practices
+
+- **Filter by funding stage** to focus on relevant rounds (e.g., Series A vs. Late-Stage Growth).
+- **Combine with company firmographics** for deeper insights into industry trends.
+- **Monitor lead investors** to identify key players in market funding.
+
+## Related Events
+
+<Columns columns={2}>
+  <Card icon="chart-line" horizontal title="IPO Announcement" href="/reference/ipo-announcement">
+  Initial Public Offering announcement
+  </Card>
+  <Card icon="dollar-sign" horizontal title="New Investment" href="/reference/new-investment">
+  Announcement of a new investment
+  </Card>
+</Columns>
+

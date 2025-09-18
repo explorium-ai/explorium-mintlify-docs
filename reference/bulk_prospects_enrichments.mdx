@@ -1,0 +1,53 @@
+---
+title: "Bulk Prospects Enrichments"
+sidebarTitle: "Overview"
+---
+
+## Introduction
+
+The **Bulk Prospects Enrichments** feature enables users to enrich up to **50 prospects in a single request**, streamlining the process of gathering and enhancing lead data. This feature is particularly valuable for sales and marketing teams aiming to scale their prospecting efforts efficiently.
+
+<Icon icon="map-in" /> **Key Benefits:**
+
+- **Bulk Processing:** Enrich multiple prospects simultaneously, saving time and reducing manual effort.
+- **Enhanced Data Completeness:** Retrieve verified **contact details, social media presence, and professional profiles** in one go.
+- **Improved Lead Scoring:** Gain deeper insights into prospects, enabling more accurate segmentation and targeting.
+
+## How It Works
+
+1. **Input:** Provide up to **50`prospect_id` values**, obtained from the **Match Prospects** endpoint.
+2. **Processing:** The system retrieves verified contact information, social media presence, and professional details.
+3. **Output:** Returns structured data in the same order as the input, ensuring easy mapping.
+
+### Request Schema
+
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `prospect_id` | Array | A list of up to **50 unique prospect IDs** (Required) |
+
+### Example Request (cURL):
+
+```bash cURL
+curl -X POST \
+  "https://api.explorium.ai/v1/prospects/enrich/bulk" \
+  -H "API_KEY: <your_api_key>" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "prospect_ids": [
+    "f0bc40c20b185d6b102662a6621632beeedcef7c",
+    "8a76d8b09e5f4739b6e2f58915f07d1f4a3bd2d3"
+  ]
+}'
+```
+
+---
+
+## Best Practices
+
+- **Use`Match Prospects` first** to obtain valid `prospect_id` values before enrichment.
+- **Batch enrichments strategically** to maximize efficiency within the 50-ID limit.
+- **Leverage multiple enrichments** (e.g., **contact details, workplace history, social media activity**) for a full prospect profile.
+- **Monitor data quality** by periodically verifying returned results and adjusting filters as needed.
+
+The **Bulk Prospects Enrichments** feature is an essential tool for organizations looking to **streamline lead enrichment**, **enhance data completeness**, and **boost engagement strategies at scale**. By leveraging this capability, teams can significantly **reduce manual work** while improving the quality of prospect insights for sales and marketing efforts.
+
