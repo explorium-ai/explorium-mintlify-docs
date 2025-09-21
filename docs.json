@@ -107,22 +107,22 @@
                   {
                     "group": "Business Enrichments",
                     "pages": [
-                      "reference/businesses_enrichments",
-                      "/reference/firmographics",
-                      "/reference/technographics",
-                      "/reference/company_social_media",
-                      "/reference/company_ratings",
-                      "/reference/keyword_search_on_websites",
-                      "/reference/financial_metrics_for_public_companies",
-                      "/reference/funding_and_acquisitions",
-                      "/reference/business_challenges",
-                      "/reference/competitive_landscape",
-                      "/reference/strategic_insights",
-                      "/reference/company_website_content_changes",
-                      "/reference/workforce_trends",
-                      "/reference/lookalike-companies",
-                      "/reference/webstack",
-                      "/reference/company-hierarchy"
+                      "reference/businesses/enrichments/businesses_enrichments",
+                      "/reference/businesses/enrichments/firmographics",
+                      "/reference/businesses/enrichments/technographics",
+                      "/reference/businesses/enrichments/company_social_media",
+                      "/reference/businesses/enrichments/company_ratings",
+                      "/reference/businesses/enrichments/keyword_search_on_websites",
+                      "/reference/businesses/enrichments/financial_metrics_for_public_companies",
+                      "/reference/businesses/enrichments/funding_and_acquisitions",
+                      "/reference/businesses/enrichments/business_challenges",
+                      "/reference/businesses/enrichments/competitive_landscape",
+                      "/reference/businesses/enrichments/strategic_insights",
+                      "/reference/businesses/enrichments/company_website_content_changes",
+                      "/reference/businesses/enrichments/workforce_trends",
+                      "/reference/businesses/enrichments/lookalike-companies",
+                      "/reference/businesses/enrichments/webstack",
+                      "/reference/businesses/enrichments/company-hierarchy"
                     ]
                   },
                   {
