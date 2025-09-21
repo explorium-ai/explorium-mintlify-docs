@@ -77,11 +77,11 @@
                   {
                     "group": "Businesses Events",
                     "pages": [
-                      "/reference/fetch_businesses_events",
-                      "/reference/add_businesses_enrollments",
-                      "/reference/update_businesses_enrollments",
-                      "/reference/delete_businesses_enrollments",
-                      "/reference/get_businesses_enrollments"
+                      "/reference/businesses/events/fetch_businesses_events",
+                      "/reference/businesses/events/add_businesses_enrollments",
+                      "/reference/businesses/events/update_businesses_enrollments",
+                      "/reference/businesses/events/delete_businesses_enrollments",
+                      "/reference/businesses/events/get_businesses_enrollments"
                     ]
                   },
                   {
