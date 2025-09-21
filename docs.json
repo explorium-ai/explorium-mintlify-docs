@@ -128,19 +128,19 @@
                   {
                     "group": "Bulk Businesses Enrichments",
                     "pages": [
-                      "/reference/businesses/bulk/bulk_businesses_enrichments",
-                      "/reference/businesses/bulk/businesses_firmographics_bulk_enrich",
-                      "/reference/businesses/bulk/businesses_technographics_bulk_enrich",
+                      "/reference/businesses/enrichments/bulk/bulk_businesses_enrichments",
+                      "/reference/businesses/enrichments/bulk/businesses_firmographics_bulk_enrich",
+                      "/reference/businesses/enrichments/bulk/businesses_technographics_bulk_enrich",
                       "/reference/businesses/bulk/company_social_media_bulk_enrich",
-                      "/reference/businesses/bulk/businesses_company_ratings_by_employees_bulk_enrich",
-                      "/reference/businesses/bulk/keyword_search_on_websites_bulk_enrich",
-                      "/reference/businesses/bulk/businesses_financial_metrics_bulk_enrich",
-                      "/reference/businesses/bulk/businesses_funding_and_acquisition_bulk_enrich",
-                      "/reference/businesses/bulk/business_challenges_bulk_enrich",
-                      "/reference/businesses/bulk/competitive_landscape_bulk_enrich",
-                      "/reference/businesses/bulk/strategic_insights_bulk_enrich",
-                      "/reference/businesses/bulk/company_website_content_changes_bulk_enrich",
-                      "/reference/businesses/bulk/businesses_workforce_trends_bulk_enrich"
+                      "/reference/businesses/enrichments/bulk/businesses_company_ratings_by_employees_bulk_enrich",
+                      "/reference/businesses/enrichments/bulk/keyword_search_on_websites_bulk_enrich",
+                      "/reference/businesses/enrichments/bulk/businesses_financial_metrics_bulk_enrich",
+                      "/reference/businesses/enrichments/bulk/businesses_funding_and_acquisition_bulk_enrich",
+                      "/reference/businesses/enrichments/bulk/business_challenges_bulk_enrich",
+                      "/reference/businesses/enrichments/bulk/competitive_landscape_bulk_enrich",
+                      "/reference/businesses/enrichments/bulk/strategic_insights_bulk_enrich",
+                      "/reference/businesses/enrichments/bulk/company_website_content_changes_bulk_enrich",
+                      "/reference/businesses/enrichments/bulk/businesses_workforce_trends_bulk_enrich"
                     ]
                   }
                 ]
