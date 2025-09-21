@@ -69,8 +69,8 @@
                   {
                     "group": "Autocomplete Businesses",
                     "pages": [
-                      "/reference/autocomplete/businesses_autocomplete",
-                      "/reference/autocomplete/linkedin_categories"
+                      "/reference/businesses/autocomplete/businesses_autocomplete",
+                      "/reference/businesses/autocomplete/linkedin_categories"
                     ]
                   },
                   "/reference/fetch_businesses_statistics",
