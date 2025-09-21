@@ -64,13 +64,13 @@
                 "group": "Businesses",
                 "pages": [
                   "reference/businesses/businesses_api",
-                  "/reference/match_businesses",
-                  "/reference/fetch_businesses",
+                  "/reference/businesses/match_businesses",
+                  "/reference/businesses/fetch_businesses",
                   {
                     "group": "Autocomplete Businesses",
                     "pages": [
-                      "/reference/businesses_autocomplete",
-                      "/reference/linkedin_categories"
+                      "/reference/autocomplete/businesses_autocomplete",
+                      "/reference/autocomplete/linkedin_categories"
                     ]
                   },
                   "/reference/fetch_businesses_statistics",
