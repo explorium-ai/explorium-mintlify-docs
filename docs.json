@@ -87,21 +87,21 @@
                   {
                     "group": "Events Type",
                     "pages": [
-                      "/reference/ipo-announcement",
-                      "/reference/new-product-launch",
-                      "/reference/new-funding-round",
-                      "/reference/new-investment",
-                      "/reference/office-closing",
-                      "/reference/new-office-opening",
-                      "/reference/companys-award-event",
-                      "/reference/new-partnership",
-                      "/reference/hiring-by-department",
-                      "/reference/department-trend",
-                      "/reference/employee-joined-company",
-                      "/reference/lawsuits-and-legal-issues",
-                      "/reference/outages-and-security-breaches",
-                      "/reference/cost-cutting",
-                      "/reference/merger-and-acquisitions"
+                      "/reference/businesses/events/types/ipo-announcement",
+                      "/reference/businesses/events/types/new-product-launch",
+                      "/reference/businesses/events/types/new-funding-round",
+                      "/reference/businesses/events/types/new-investment",
+                      "/reference/businesses/events/types/office-closing",
+                      "/reference/businesses/events/types/new-office-opening",
+                      "/reference/businesses/events/types/companys-award-event",
+                      "/reference/businesses/events/types/new-partnership",
+                      "/reference/businesses/events/types/hiring-by-department",
+                      "/reference/businesses/events/types/department-trend",
+                      "/reference/businesses/events/types/employee-joined-company",
+                      "/reference/businesses/events/types/lawsuits-and-legal-issues",
+                      "/reference/businesses/events/types/outages-and-security-breaches",
+                      "/reference/businesses/events/types/cost-cutting",
+                      "/reference/businesses/events/types/merger-and-acquisitions"
                     ]
                   },
                   {
