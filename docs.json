@@ -131,7 +131,7 @@
                       "/reference/businesses/enrichments/bulk/bulk_businesses_enrichments",
                       "/reference/businesses/enrichments/bulk/businesses_firmographics_bulk_enrich",
                       "/reference/businesses/enrichments/bulk/businesses_technographics_bulk_enrich",
-                      "/reference/businesses/bulk/company_social_media_bulk_enrich",
+                      "/reference/businesses/enrichments/bulk/company_social_media_bulk_enrich",
                       "/reference/businesses/enrichments/bulk/businesses_company_ratings_by_employees_bulk_enrich",
                       "/reference/businesses/enrichments/bulk/keyword_search_on_websites_bulk_enrich",
                       "/reference/businesses/enrichments/bulk/businesses_financial_metrics_bulk_enrich",
