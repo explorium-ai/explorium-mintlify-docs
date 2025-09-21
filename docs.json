@@ -66,14 +66,14 @@
                   "reference/businesses/businesses_api",
                   "/reference/businesses/match_businesses",
                   "/reference/businesses/fetch_businesses",
+                  "/reference/businesses/fetch_businesses_statistics",
                   {
                     "group": "Autocomplete Businesses",
                     "pages": [
                       "/reference/businesses/autocomplete/businesses_autocomplete",
                       "/reference/businesses/autocomplete/linkedin_categories"
                     ]
-                  },
-                  "/reference/fetch_businesses_statistics",
+                  },                  
                   {
                     "group": "Businesses Events",
                     "pages": [
