@@ -63,7 +63,7 @@
               {
                 "group": "Businesses",
                 "pages": [
-                  "reference/businesses_api",
+                  "reference/businesses/businesses_api",
                   "/reference/match_businesses",
                   "/reference/fetch_businesses",
                   {
