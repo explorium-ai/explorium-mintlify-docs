@@ -193,11 +193,11 @@
               {
                 "group": "Webhooks: Receiving Real-Time Events",
                 "pages": [
-                  "/reference/webhooks",
-                  "/reference/add_webhook",
-                  "/reference/get_webhook",
-                  "/reference/delete_webhook",
-                  "/reference/check_webhook_connectivity"
+                  "/reference/webhooks/webhooks",
+                  "/reference/webhooks/add_webhook",
+                  "/reference/webhooks/get_webhook",
+                  "/reference/webhooks/delete_webhook",
+                  "/reference/webhooks/check_webhook_connectivity"
                 ]
               },
               "reference/error-handling",
@@ -209,15 +209,7 @@
                 ]
               },
               "reference/support-help-center",
-              "reference/additional_resources",
-              {
-                "group": "Custom Enrichments",
-                "pages": [
-                  "reference/customenrichments-1",
-                  "reference/enrich_with_custom_enrichment-1",
-                  "reference/bulk_enrich_with_custom_enrichment-1"
-                ]
-              },
+              "reference/additional_resources",              
               "reference/data",
               {
                 "group": "AgentSource MCP",
