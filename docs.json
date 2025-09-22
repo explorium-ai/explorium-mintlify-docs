@@ -148,44 +148,44 @@
               {
                 "group": "Prospects",
                 "pages": [
-                  "/reference/prospects_api",
-                  "/reference/match_prospects-1",
-                  "/reference/fetch_prospects",
-                  "/reference/prospects_autocomplete",
+                  "/reference/prospects/prospects_api",
+                  "/reference/prospects/match_prospects",
+                  "/reference/prospects/fetch_prospects",
+                  "/reference/prospects/prospects_autocomplete",
                   {
                     "group": "Prospects Events",
                     "pages": [
-                      "/reference/fetch_prospects_events-1",
-                      "/reference/add_prospects_enrollments",
-                      "/reference/update_prospects_enrollments",
-                      "/reference/delete_prospects_enrollments",
-                      "/reference/get_prospects_enrollments"
+                      "/reference/prospects/events/fetch_prospects_events",
+                      "/reference/prospects/events/add_prospects_enrollments",
+                      "/reference/prospects/events/update_prospects_enrollments",
+                      "/reference/prospects/events/delete_prospects_enrollments",
+                      "/reference/prospects/events/get_prospects_enrollments"
                     ]
                   },
                   {
                     "group": "Events Type",
                     "pages": [
-                      "/reference/recently_changed_company",
-                      "/reference/employee_workplace_anniversary",
-                      "/reference/employee_job_changes"
+                      "/reference/prospects/events/types/recently_changed_company",
+                      "/reference/prospects/events/types/employee_workplace_anniversary",
+                      "/reference/prospects/events/types/employee_job_changes"
                     ]
                   },
                   {
                     "group": "Prospects Enrichments",
                     "pages": [
-                      "/reference/prospects_enrichments",
-                      "/reference/contacts_information",
-                      "/reference/individual_social_media_presence",
-                      "/reference/professional_profile_contact_and_workplace"
+                      "/reference/prospects/enrichments/prospects_enrichments",
+                      "/reference/prospects/enrichments/contacts_information",
+                      "/reference/prospects/enrichments/individual_social_media_presence",
+                      "/reference/prospects/enrichments/professional_profile_contact_and_workplace"
                     ]
                   },
                   {
                     "group": "Prospects Bulk Enrichments",
                     "pages": [
-                      "/reference/bulk_prospects_enrichments",
-                      "/reference/prospects_contacts_information_bulk_enrich",
-                      "/reference/individuals_social_media_bulk_enrich",
-                      "/reference/professional_profile_contact_bulk_enrich"
+                      "/reference/prospects/enrichments/bulk/bulk_prospects_enrichments",
+                      "/reference/prospects/enrichments/bulk/prospects_contacts_information_bulk_enrich",
+                      "/reference/prospects/enrichments/bulk/individuals_social_media_bulk_enrich",
+                      "/reference/prospects/enrichments/bulk/professional_profile_contact_bulk_enrich"
                     ]
                   }
                 ]
