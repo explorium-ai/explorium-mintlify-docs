@@ -16,18 +16,6 @@
       "light": "#fffcf5"
     }
   },
-  "fonts": {
-    "heading": {
-      "family": "Gilroy",
-      "source": "https://www.explorium.ai/wp-content/themes/moveo-theme/assets/font/gilroy-bold-webfont.woff",
-      "format": "woff"
-    },
-    "body": {
-      "family": "Gilroy",
-      "source": "https://www.explorium.ai/wp-content/themes/moveo-theme/assets/font/gilroy-regular-webfont.woff2",
-      "format": "woff2"
-    }
-  },
   "navigation": {
     "tabs": [
       {
