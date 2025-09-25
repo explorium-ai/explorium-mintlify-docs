@@ -52,83 +52,83 @@
                 "group": "Businesses",
                 "pages": [
                   "reference/businesses/businesses_api",
-                  "/reference/businesses/match_businesses",
-                  "/reference/businesses/fetch_businesses",
-                  "/reference/businesses/fetch_businesses_statistics",
+                  "reference/businesses/match_businesses",
+                  "reference/businesses/fetch_businesses",
+                  "reference/businesses/fetch_businesses_statistics",
                   {
                     "group": "Autocomplete Businesses",
                     "pages": [
-                      "/reference/businesses/autocomplete/businesses_autocomplete",
-                      "/reference/businesses/autocomplete/linkedin_categories"
+                      "reference/businesses/autocomplete/businesses_autocomplete",
+                      "reference/businesses/autocomplete/linkedin_categories"
                     ]
                   },                  
                   {
                     "group": "Businesses Events",
                     "pages": [
-                      "/reference/businesses/events/fetch_businesses_events",
-                      "/reference/businesses/events/add_businesses_enrollments",
-                      "/reference/businesses/events/update_businesses_enrollments",
-                      "/reference/businesses/events/delete_businesses_enrollments",
-                      "/reference/businesses/events/get_businesses_enrollments"
+                      "reference/businesses/events/fetch_businesses_events",
+                      "reference/businesses/events/add_businesses_enrollments",
+                      "reference/businesses/events/update_businesses_enrollments",
+                      "reference/businesses/events/delete_businesses_enrollments",
+                      "reference/businesses/events/get_businesses_enrollments"
                     ]
                   },
                   {
                     "group": "Events Type",
                     "pages": [
-                      "/reference/businesses/events/types/ipo-announcement",
-                      "/reference/businesses/events/types/new-product-launch",
-                      "/reference/businesses/events/types/new-funding-round",
-                      "/reference/businesses/events/types/new-investment",
-                      "/reference/businesses/events/types/office-closing",
-                      "/reference/businesses/events/types/new-office-opening",
-                      "/reference/businesses/events/types/companys-award-event",
-                      "/reference/businesses/events/types/new-partnership",
-                      "/reference/businesses/events/types/hiring-by-department",
-                      "/reference/businesses/events/types/department-trend",
-                      "/reference/businesses/events/types/employee-joined-company",
-                      "/reference/businesses/events/types/lawsuits-and-legal-issues",
-                      "/reference/businesses/events/types/outages-and-security-breaches",
-                      "/reference/businesses/events/types/cost-cutting",
-                      "/reference/businesses/events/types/merger-and-acquisitions"
+                      "reference/businesses/events/types/ipo-announcement",
+                      "reference/businesses/events/types/new-product-launch",
+                      "reference/businesses/events/types/new-funding-round",
+                      "reference/businesses/events/types/new-investment",
+                      "reference/businesses/events/types/office-closing",
+                      "reference/businesses/events/types/new-office-opening",
+                      "reference/businesses/events/types/companys-award-event",
+                      "reference/businesses/events/types/new-partnership",
+                      "reference/businesses/events/types/hiring-by-department",
+                      "reference/businesses/events/types/department-trend",
+                      "reference/businesses/events/types/employee-joined-company",
+                      "reference/businesses/events/types/lawsuits-and-legal-issues",
+                      "reference/businesses/events/types/outages-and-security-breaches",
+                      "reference/businesses/events/types/cost-cutting",
+                      "reference/businesses/events/types/merger-and-acquisitions"
                     ]
                   },
                   {
                     "group": "Business Enrichments",
                     "pages": [
                       "reference/businesses/enrichments/businesses_enrichments",
-                      "/reference/businesses/enrichments/firmographics",
-                      "/reference/businesses/enrichments/technographics",
-                      "/reference/businesses/enrichments/company_social_media",
-                      "/reference/businesses/enrichments/company_ratings",
-                      "/reference/businesses/enrichments/keyword_search_on_websites",
-                      "/reference/businesses/enrichments/financial_metrics_for_public_companies",
-                      "/reference/businesses/enrichments/funding_and_acquisitions",
-                      "/reference/businesses/enrichments/business_challenges",
-                      "/reference/businesses/enrichments/competitive_landscape",
-                      "/reference/businesses/enrichments/strategic_insights",
-                      "/reference/businesses/enrichments/company_website_content_changes",
-                      "/reference/businesses/enrichments/workforce_trends",
-                      "/reference/businesses/enrichments/lookalike-companies",
-                      "/reference/businesses/enrichments/webstack",
-                      "/reference/businesses/enrichments/company-hierarchy"
+                      "reference/businesses/enrichments/firmographics",
+                      "reference/businesses/enrichments/technographics",
+                      "reference/businesses/enrichments/company_social_media",
+                      "reference/businesses/enrichments/company_ratings",
+                      "reference/businesses/enrichments/keyword_search_on_websites",
+                      "reference/businesses/enrichments/financial_metrics_for_public_companies",
+                      "reference/businesses/enrichments/funding_and_acquisitions",
+                      "reference/businesses/enrichments/business_challenges",
+                      "reference/businesses/enrichments/competitive_landscape",
+                      "reference/businesses/enrichments/strategic_insights",
+                      "reference/businesses/enrichments/company_website_content_changes",
+                      "reference/businesses/enrichments/workforce_trends",
+                      "reference/businesses/enrichments/lookalike-companies",
+                      "reference/businesses/enrichments/webstack",
+                      "reference/businesses/enrichments/company-hierarchy"
                     ]
                   },
                   {
                     "group": "Bulk Businesses Enrichments",
                     "pages": [
-                      "/reference/businesses/enrichments/bulk/bulk_businesses_enrichments",
-                      "/reference/businesses/enrichments/bulk/businesses_firmographics_bulk_enrich",
-                      "/reference/businesses/enrichments/bulk/businesses_technographics_bulk_enrich",
-                      "/reference/businesses/enrichments/bulk/company_social_media_bulk_enrich",
-                      "/reference/businesses/enrichments/bulk/businesses_company_ratings_by_employees_bulk_enrich",
-                      "/reference/businesses/enrichments/bulk/keyword_search_on_websites_bulk_enrich",
-                      "/reference/businesses/enrichments/bulk/businesses_financial_metrics_bulk_enrich",
-                      "/reference/businesses/enrichments/bulk/businesses_funding_and_acquisition_bulk_enrich",
-                      "/reference/businesses/enrichments/bulk/business_challenges_bulk_enrich",
-                      "/reference/businesses/enrichments/bulk/competitive_landscape_bulk_enrich",
-                      "/reference/businesses/enrichments/bulk/strategic_insights_bulk_enrich",
-                      "/reference/businesses/enrichments/bulk/company_website_content_changes_bulk_enrich",
-                      "/reference/businesses/enrichments/bulk/businesses_workforce_trends_bulk_enrich"
+                      "reference/businesses/enrichments/bulk/bulk_businesses_enrichments",
+                      "reference/businesses/enrichments/bulk/businesses_firmographics_bulk_enrich",
+                      "reference/businesses/enrichments/bulk/businesses_technographics_bulk_enrich",
+                      "reference/businesses/enrichments/bulk/company_social_media_bulk_enrich",
+                      "reference/businesses/enrichments/bulk/businesses_company_ratings_by_employees_bulk_enrich",
+                      "reference/businesses/enrichments/bulk/keyword_search_on_websites_bulk_enrich",
+                      "reference/businesses/enrichments/bulk/businesses_financial_metrics_bulk_enrich",
+                      "reference/businesses/enrichments/bulk/businesses_funding_and_acquisition_bulk_enrich",
+                      "reference/businesses/enrichments/bulk/business_challenges_bulk_enrich",
+                      "reference/businesses/enrichments/bulk/competitive_landscape_bulk_enrich",
+                      "reference/businesses/enrichments/bulk/strategic_insights_bulk_enrich",
+                      "reference/businesses/enrichments/bulk/company_website_content_changes_bulk_enrich",
+                      "reference/businesses/enrichments/bulk/businesses_workforce_trends_bulk_enrich"
                     ]
                   }
                 ]
@@ -136,44 +136,44 @@
               {
                 "group": "Prospects",
                 "pages": [
-                  "/reference/prospects/prospects_api",
-                  "/reference/prospects/match_prospects",
-                  "/reference/prospects/fetch_prospects",
-                  "/reference/prospects/prospects_autocomplete",
+                  "reference/prospects/prospects_api",
+                  "reference/prospects/match_prospects",
+                  "reference/prospects/fetch_prospects",
+                  "reference/prospects/prospects_autocomplete",
                   {
                     "group": "Prospects Events",
                     "pages": [
-                      "/reference/prospects/events/fetch_prospects_events",
-                      "/reference/prospects/events/add_prospects_enrollments",
-                      "/reference/prospects/events/update_prospects_enrollments",
-                      "/reference/prospects/events/delete_prospects_enrollments",
-                      "/reference/prospects/events/get_prospects_enrollments"
+                      "reference/prospects/events/fetch_prospects_events",
+                      "reference/prospects/events/add_prospects_enrollments",
+                      "reference/prospects/events/update_prospects_enrollments",
+                      "reference/prospects/events/delete_prospects_enrollments",
+                      "reference/prospects/events/get_prospects_enrollments"
                     ]
                   },
                   {
                     "group": "Events Type",
                     "pages": [
-                      "/reference/prospects/events/types/recently_changed_company",
-                      "/reference/prospects/events/types/employee_workplace_anniversary",
-                      "/reference/prospects/events/types/employee_job_changes"
+                      "reference/prospects/events/types/recently_changed_company",
+                      "reference/prospects/events/types/employee_workplace_anniversary",
+                      "reference/prospects/events/types/employee_job_changes"
                     ]
                   },
                   {
                     "group": "Prospects Enrichments",
                     "pages": [
-                      "/reference/prospects/enrichments/prospects_enrichments",
-                      "/reference/prospects/enrichments/contacts_information",
-                      "/reference/prospects/enrichments/individual_social_media_presence",
-                      "/reference/prospects/enrichments/professional_profile_contact_and_workplace"
+                      "reference/prospects/enrichments/prospects_enrichments",
+                      "reference/prospects/enrichments/contacts_information",
+                      "reference/prospects/enrichments/individual_social_media_presence",
+                      "reference/prospects/enrichments/professional_profile_contact_and_workplace"
                     ]
                   },
                   {
                     "group": "Prospects Bulk Enrichments",
                     "pages": [
-                      "/reference/prospects/enrichments/bulk/bulk_prospects_enrichments",
-                      "/reference/prospects/enrichments/bulk/prospects_contacts_information_bulk_enrich",
-                      "/reference/prospects/enrichments/bulk/individuals_social_media_bulk_enrich",
-                      "/reference/prospects/enrichments/bulk/professional_profile_contact_bulk_enrich"
+                      "reference/prospects/enrichments/bulk/bulk_prospects_enrichments",
+                      "reference/prospects/enrichments/bulk/prospects_contacts_information_bulk_enrich",
+                      "reference/prospects/enrichments/bulk/individuals_social_media_bulk_enrich",
+                      "reference/prospects/enrichments/bulk/professional_profile_contact_bulk_enrich"
                     ]
                   }
                 ]
@@ -181,11 +181,11 @@
               {
                 "group": "Webhooks: Receiving Real-Time Events",
                 "pages": [
-                  "/reference/webhooks/webhooks",
-                  "/reference/webhooks/add_webhook",
-                  "/reference/webhooks/get_webhook",
-                  "/reference/webhooks/delete_webhook",
-                  "/reference/webhooks/check_webhook_connectivity"
+                  "reference/webhooks/webhooks",
+                  "reference/webhooks/add_webhook",
+                  "reference/webhooks/get_webhook",
+                  "reference/webhooks/delete_webhook",
+                  "reference/webhooks/check_webhook_connectivity"
                 ]
               },
               "reference/error-handling",
@@ -247,6 +247,54 @@
             "group": "Parterns",
             "pages": [
               "reference/outreach-getting-your-api-key"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Explorium MCP",
+        "icon": "code-simple",
+        "groups": [
+          {               
+            "group": "AgentSource MCP",
+            "pages": [
+              "reference/agentsource-mcp",
+              {
+                "group": "Developers Implementation Guides",
+                "pages": [
+                  "reference/developers-implementation-guides",
+                  "reference/implement-with-openai",
+                  "reference/python-sdk-implementation-guide",
+                  {
+                    "group": "MCP Integrations",
+                    "pages": [
+                      "reference/mcp-integrations",
+                      "reference/claude-desktop-integration",
+                      "reference/cursor-integration",
+                      "reference/integrate-with-n8n",
+                      "reference/integrate-with-zapier",
+                      "reference/integrate-with-base44"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Integrations templates",
+            "pages": [
+              {
+                "group": "n8n",
+                "pages": [
+                  "reference/n8n",
+                  "reference/explorium-event-triggered-outreach",
+                  "reference/google-sheets-company-enrichment-with-explorium-mcp",
+                  "reference/explorium-prospects-search-chatbot",
+                  "reference/salesforce-data-enrichment-workflow",
+                  "reference/hubspot-contact-enrichment"
+                ]
+              },
+              "reference/zapier"
             ]
           }
         ]
