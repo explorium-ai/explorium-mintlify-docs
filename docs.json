@@ -211,7 +211,7 @@
       },
       {
         "tab": "Explorium MCP",
-        "icon": "code-simple",
+        "icon": "message-code",
         "groups": [
           {               
             "group": "AgentSource MCP",
