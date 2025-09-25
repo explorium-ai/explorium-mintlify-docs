@@ -237,7 +237,13 @@
                 ]
               }
             ]
-          },
+          }
+        ]
+      },
+       {
+        "tab": "Integrations",
+        "icon": "circles-overlap",
+        "groups": [      
           {
             "group": "Integrations templates",
             "pages": [
