@@ -41,8 +41,8 @@
                   {
                     "group": "Billing & Credits",
                     "pages": [
-                      "credits/tracking_your_credits",
-                      "credits/credit_plans"
+                      "reference/credits/tracking_your_credits",
+                      "reference/credits/credit_plans"
                     ]
                   },
                   "reference/setup/user_management"
