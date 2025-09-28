@@ -28,24 +28,24 @@
               {
                 "group": "Quick Starts",
                 "pages": [
-                  "reference/quick-starts",
-                  "reference/introduction",
-                  "reference/use_case_prospecting"
+                  "reference/quick-starts/quick-starts",
+                  "reference/quick-starts/introduction",
+                  "reference/quick-starts/use_case_prospecting"
                 ]
               },
               {
                 "group":"Authentication & Setup",
                 "pages": [
-                  "reference/account_access",
-                  "reference/getting_your_api_key",
+                  "reference/setup/account_access",
+                  "reference/setup/getting_your_api_key",
                   {
                     "group": "Billing & Credits",
                     "pages": [
-                      "reference/tracking_your_credits",
-                      "reference/credit_plans"
+                      "credits/tracking_your_credits",
+                      "credits/credit_plans"
                     ]
                   },
-                  "reference/user_management"
+                  "reference/setup/user_management"
                 ]
               },
               {
@@ -193,7 +193,7 @@
               {
                 "group": "Credits",
                 "pages": [
-                  "reference/get_active_credits_summary"
+                  "reference/credits/get_active_credits_summary"
                 ]
               },
               "reference/support-help-center",
