@@ -216,22 +216,22 @@
           {               
             "group": "AgentSource MCP",
             "pages": [
-              "reference/agentsource-mcp",
+              "mcp-docs/agentsource-mcp",
               {
                 "group": "Developers Implementation Guides",
                 "pages": [
-                  "reference/developers-implementation-guides",
-                  "reference/implement-with-openai",
-                  "reference/python-sdk-implementation-guide",
+                  "mcp-docs/developers-implementation-guides",
+                  "mcp-docs/implement-with-openai",
+                  "mcp-docs/python-sdk-implementation-guide",
                   {
                     "group": "MCP Integrations",
                     "pages": [
-                      "reference/mcp-integrations",
-                      "reference/claude-desktop-integration",
-                      "reference/cursor-integration",
-                      "reference/integrate-with-n8n",
-                      "reference/integrate-with-zapier",
-                      "reference/integrate-with-base44"
+                      "integrations/mcp-integrations",
+                      "integrations/claude/claude-desktop-integration",
+                      "integrations/cursor/cursor-integration",
+                      "integrations/n8n/integrate-with-n8n",
+                      "integrations/zapier/integrate-with-zapier",
+                      "integrations/base44/integrate-with-base44"
                     ]
                   }
                 ]
@@ -250,15 +250,15 @@
               {
                 "group": "n8n",
                 "pages": [
-                  "reference/n8n",
-                  "reference/explorium-event-triggered-outreach",
-                  "reference/google-sheets-company-enrichment-with-explorium-mcp",
-                  "reference/explorium-prospects-search-chatbot",
-                  "reference/salesforce-data-enrichment-workflow",
-                  "reference/hubspot-contact-enrichment"
+                  "integrations/n8n/n8n",
+                  "integrations/n8n/explorium-event-triggered-outreach",
+                  "integrations/n8n/google-sheets-company-enrichment-with-explorium-mcp",
+                  "integrations/n8n/explorium-prospects-search-chatbot",
+                  "integrations/n8n/salesforce-data-enrichment-workflow",
+                  "integrations/n8n/hubspot-contact-enrichment"
                 ]
               },
-              "reference/zapier"
+              "integrations/zapier/zapier"
             ]
           }
         ]
