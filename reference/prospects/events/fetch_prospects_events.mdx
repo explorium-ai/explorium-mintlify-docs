@@ -43,9 +43,9 @@ The **Prospect Events** API provides insights into recent events related to sele
 
 | Event Type | Description |
 | :--- | :--- |
-| [prospect\_changed\_role](/reference/#prospect_changed_role) | Prospect has changed their role. |
-| [prospect\_changed\_company](/reference/#prospect_changed_company) | Prospect has changed their company. |
-| [prospect\_job\_start\_anniversary](/reference/#prospect_job_start_anniversary) | Employee's workplace anniversary, marking the anniversary of the employee's start date at their company. |
+| [prospect\_changed\_role](/reference/prospects/events/types/employee_job_changes) | Prospect has changed their role. |
+| [prospect\_changed\_company](/reference/prospects/events/types/recently_changed_company) | Prospect has changed their company. |
+| [prospect\_job\_start\_anniversary](/reference/prospects/events/types/employee_workplace_anniversary) | Employee's workplace anniversary, marking the anniversary of the employee's start date at their company. |
 </Accordion>
 
 <Accordion title="Example and Response Request (cURL)">
@@ -127,8 +127,8 @@ curl -X POST \
 </Accordion>
 
 <Accordion title="Event Categories">
-- [Employee job changes](/reference/employee-job-changes) - Tracks when an employee changes their job title within the same company.
-- [Recently changed company](/reference/recently-changed-company) - Identifies when an employee transitions to a new company.
-- [Employee's workplace anniversary](/reference/employees-workplace-anniversary) - Marks the annual anniversary of an employee’s start date at their current company.
+- [Employee job changes](/reference/prospects/events/types/employee_job_changes) - Tracks when an employee changes their job title within the same company.
+- [Recently changed company](/reference/prospects/events/types/recently_changed_company) - Identifies when an employee transitions to a new company.
+- [Employee's workplace anniversary](/reference/prospects/events/types/employees_workplace_anniversary) - Marks the annual anniversary of an employee’s start date at their current company.
 </Accordion>
 </AccordionGroup>
