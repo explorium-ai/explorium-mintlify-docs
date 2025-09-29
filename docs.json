@@ -221,6 +221,7 @@
                 "group": "Developers Implementation Guides",
                 "pages": [
                   "mcp-docs/developers-implementation-guides",
+                  "mcp-docs/implement-with-langgraph",
                   "mcp-docs/implement-with-openai",
                   "mcp-docs/python-sdk-implementation-guide",
                   {

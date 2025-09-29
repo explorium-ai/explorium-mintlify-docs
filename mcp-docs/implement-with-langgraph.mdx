@@ -1,0 +1,592 @@
+---
+title: "LangGraph Integration with Explorium MCP"
+description: "Learn how to integrate AgentSource MCP with LangGraph framework to build AI agents that can access real-time business and contact data."
+---
+
+## Overview
+
+This guide demonstrates how to integrate Explorium's MCP (Model Context Protocol) server with LangGraph to build intelligent AI agents that can access Explorium's business data enrichment capabilities. LangGraph provides a framework for building stateful, multi-actor applications with LLMs, making it perfect for creating sophisticated business intelligence workflows.
+
+## Prerequisites
+
+Before you begin, ensure you have:
+
+- Python 3.11 or higher
+- An Explorium API key
+- An Anthropic API key (or another LLM provider API key)
+- A Python environment (Databricks, Jupyter, or local)
+
+## Installation
+
+Install the required packages using pip:
+
+```bash
+pip install langgraph langchain_anthropic langchain_mcp_adapters
+```
+
+For Databricks environments, use the following commands in separate cells:
+
+```python
+%pip install langgraph
+%pip install langchain_anthropic
+%pip install langchain_mcp_adapters
+```
+
+Then restart the Python kernel:
+
+```python
+dbutils.library.restartPython()
+```
+
+## Quick Start
+
+Here's a minimal example to get you started:
+
+```python
+import asyncio
+from langchain_mcp_adapters.client import MultiServerMCPClient
+from langchain_mcp_adapters.tools import load_mcp_tools
+
+async def quick_start():
+    # Initialize MCP client
+    client = MultiServerMCPClient({
+        "explorium": {
+            "transport": "streamable_http",
+            "url": "https://mcp.explorium.ai/mcp",
+            "headers": {
+                "api_key": "your-explorium-api-key"
+            }
+        }
+    })
+    
+    # Create session and load tools
+    async with client.session("explorium") as session:
+        tools = await load_mcp_tools(session)
+        print(f"Loaded {len(tools)} Explorium tools")
+        for tool in tools[:5]:
+            print(f"  - {tool.name}")
+
+# Run the example
+asyncio.run(quick_start())
+```
+
+## Core Components
+
+### 1. Required Imports
+
+Start by importing all necessary libraries:
+
+```python
+import os
+import asyncio
+from typing import Annotated, TypedDict, cast
+
+# LangGraph imports
+from langgraph.func import END, START
+from langgraph.graph import StateGraph
+from langgraph.prebuilt import ToolNode, tools_condition
+from langgraph.graph.message import add_messages
+
+# Pydantic imports
+from pydantic import BaseModel
+
+# LangChain imports
+from langchain_core.messages import SystemMessage, HumanMessage, AIMessage, ToolMessage
+from langchain_anthropic import ChatAnthropic
+from langchain_core.runnables import RunnableConfig
+
+# MCP imports
+from langchain_mcp_adapters.client import MultiServerMCPClient
+from langchain_mcp_adapters.tools import load_mcp_tools
+```
+
+### 2. Define Configuration and State
+
+Create the necessary data structures for your agent:
+
+```python
+class ConfigSchema(TypedDict):
+    """Configuration schema for API keys"""
+    explorium_api_key: str
+    anthropic_api_key: str
+
+
+class AgentState(BaseModel):
+    """State for the LangGraph agent"""
+    messages: Annotated[list, add_messages]
+    is_last_step: bool = False
+```
+
+### 3. System Prompt
+
+Define a system prompt that guides your agent's behavior:
+
+```python
+EXPLORIUM_SYSTEM_PROMPT = """You are an AI assistant specialized in business intelligence and research.
+You have access to Explorium data tools that can help find information about businesses and prospects.
+
+When the user asks a question, use the appropriate tools to gather information and provide a helpful response.
+Always be concise and focus on relevant business information.
+"""
+```
+
+## Complete Implementation
+
+Here's a full implementation of a LangGraph agent with Explorium MCP integration:
+
+```python
+async def run_explorium_agent(config: RunnableConfig):
+    """
+    Runs the Explorium agent with active MCP session
+    
+    Args:
+        config: Configuration containing API keys
+    """
+    # Get API keys from config
+    explorium_api_key = config.get("configurable", {}).get("explorium_api_key")
+    anthropic_api_key = config.get("configurable", {}).get("anthropic_api_key")
+    
+    if not explorium_api_key:
+        raise ValueError("explorium_api_key is required in config")
+    if not anthropic_api_key:
+        raise ValueError("anthropic_api_key is required in config")
+    
+    print(f"Using Explorium API key: {explorium_api_key[:10]}...")
+    
+    # Initialize MCP client with Explorium configuration
+    client = MultiServerMCPClient(
+        {
+            "explorium": {
+                "transport": "streamable_http",
+                "url": "https://mcp.explorium.ai/mcp",
+                "headers": {
+                    "api_key": explorium_api_key
+                }
+            }
+        }
+    )
+    
+    # Keep session active throughout the agent execution
+    async with client.session("explorium") as session:
+        # Load tools within the active session
+        tools = await load_mcp_tools(session)
+        print(f"Loaded {len(tools)} tools")
+        
+        # Print available tools for debugging
+        print("Available tools:")
+        for tool in tools[:10]:
+            print(f"  - {tool.name}")
+        
+        # Initialize the LLM with Anthropic
+        model = ChatAnthropic(
+            model="claude-3-5-sonnet-20241022",  # Use a valid model name
+            temperature=0.05,
+            api_key=anthropic_api_key
+        )
+        
+        # Define the reasoning node function
+        async def reasoning_node(state: AgentState):
+            bound_model = model.bind_tools(tools)
+            system_prompt = SystemMessage(content=EXPLORIUM_SYSTEM_PROMPT)
+            
+            response = cast(
+                AIMessage,
+                await bound_model.ainvoke([system_prompt, *state.messages]),
+            )
+            
+            # Handle the case when it's the last step and the model still wants to use a tool
+            if state.is_last_step and response.tool_calls:
+                return {
+                    "messages": [
+                        AIMessage(
+                            id=response.id,
+                            content="Sorry, I could not find an answer to your question in the specified number of steps.",
+                        )
+                    ]
+                }
+            
+            # Return the model's response to be added to existing messages
+            return {"messages": [response]}
+        
+        # Build the graph
+        graph_builder = StateGraph(AgentState)
+        
+        # Add nodes
+        graph_builder.add_node("reasoning_node", reasoning_node)
+        graph_builder.add_node("tools", ToolNode(tools))
+        
+        # Add edges
+        graph_builder.add_edge(START, "reasoning_node")
+        graph_builder.add_conditional_edges(
+            "reasoning_node",
+            tools_condition,
+            {"tools": "tools", END: END}
+        )
+        graph_builder.add_edge("tools", "reasoning_node")
+        
+        # Compile the graph
+        graph = graph_builder.compile()
+        
+        # Initialize the graph with a user query
+        user_query = "Find 10 product managers from Microsoft"
+        
+        # Create the initial state
+        initial_state = AgentState(messages=[HumanMessage(content=user_query)])
+        
+        # Stream the execution for real-time updates
+        async for event in graph.astream(initial_state, stream_mode="values"):
+            if "messages" in event:
+                latest_message = event["messages"][-1]
+                
+                if isinstance(latest_message, AIMessage):
+                    if latest_message.content:
+                        print(f"\nAI: {latest_message.content}")
+                elif isinstance(latest_message, ToolMessage):
+                    print(f"\nTool ({latest_message.name}): {latest_message.content[:200]}...")
+```
+
+## Running the Agent
+
+Create a function to run your LangGraph agent:
+
+```python
+async def run_langgraph():
+    """Example usage of the Explorium LangGraph"""
+    
+    # Configuration with API keys
+    config = {
+        "configurable": {
+            "explorium_api_key": "your-explorium-api-key",
+            "anthropic_api_key": "your-anthropic-api-key"
+        }
+    }
+    
+    await run_explorium_agent(config)
+
+# Run the agent
+if __name__ == "__main__":
+    asyncio.run(run_langgraph())
+```
+
+## Available Explorium Tools
+
+The MCP integration provides access to the following Explorium tools:
+
+- `match-business` - Match and identify businesses
+- `fetch-businesses` - Retrieve business information
+- `fetch-businesses-statistics` - Get business statistics
+- `fetch-businesses-events` - Fetch business events
+- `enrich-business` - Enrich business data with additional attributes
+- `match-prospects` - Match prospect contacts
+- `fetch-prospects` - Retrieve prospect information
+- `fetch-prospects-events` - Fetch prospect events
+- `fetch-prospects-statistics` - Get prospect statistics
+- `enrich-prospects` - Enrich prospect data
+- `autocomplete` - Autocomplete suggestions for field values
+
+## Security Best Practices
+
+### Environment Variables
+
+Store your API keys as environment variables:
+
+```python
+import os
+
+config = {
+    "configurable": {
+        "explorium_api_key": os.environ.get("EXPLORIUM_API_KEY"),
+        "anthropic_api_key": os.environ.get("ANTHROPIC_API_KEY")
+    }
+}
+```
+
+Set environment variables before running:
+
+```bash
+export EXPLORIUM_API_KEY="your-explorium-api-key"
+export ANTHROPIC_API_KEY="your-anthropic-api-key"
+```
+
+### Databricks Secrets
+
+For Databricks environments, use the secrets management system:
+
+```python
+# First, create secrets in Databricks CLI:
+# databricks secrets create-scope --scope explorium
+# databricks secrets put --scope explorium --key api-key
+# databricks secrets create-scope --scope anthropic
+# databricks secrets put --scope anthropic --key api-key
+
+config = {
+    "configurable": {
+        "explorium_api_key": dbutils.secrets.get(scope="explorium", key="api-key"),
+        "anthropic_api_key": dbutils.secrets.get(scope="anthropic", key="api-key")
+    }
+}
+```
+
+## Alternative LLM Providers
+
+While this guide uses Anthropic's Claude, you can use other LLM providers:
+
+<br />
+
+```python
+from langchain_google_vertexai import ChatVertexAI
+
+model = ChatVertexAI(
+    model_name="gemini-pro",
+    project="your-gcp-project",
+    location="us-central1"
+)
+```
+
+## Advanced Features
+
+### Custom Tool Selection
+
+Filter and select specific tools for your agent:
+
+```python
+async with client.session("explorium") as session:
+    # Load all tools
+    all_tools = await load_mcp_tools(session)
+    
+    # Filter to specific tools
+    selected_tools = [
+        tool for tool in all_tools 
+        if tool.name in ["match-business", "fetch-prospects", "enrich-business"]
+    ]
+    
+    # Use selected tools in your agent
+    model = ChatAnthropic(
+        model="claude-3-5-sonnet-20241022",
+        api_key=anthropic_api_key
+    )
+    bound_model = model.bind_tools(selected_tools)
+```
+
+### Custom Message Handling
+
+Implement custom logic for different message types:
+
+```python
+async for event in graph.astream(initial_state, stream_mode="values"):
+    if "messages" in event:
+        latest_message = event["messages"][-1]
+        
+        if isinstance(latest_message, AIMessage):
+            # Handle AI responses
+            if latest_message.content:
+                print(f"AI Response: {latest_message.content}")
+            if latest_message.tool_calls:
+                print(f"Tools called: {[tc['name'] for tc in latest_message.tool_calls]}")
+                
+        elif isinstance(latest_message, ToolMessage):
+            # Handle tool responses
+            print(f"Tool '{latest_message.name}' returned data")
+            # Process tool results here
+            
+        elif isinstance(latest_message, HumanMessage):
+            # Handle user messages
+            print(f"User said: {latest_message.content}")
+```
+
+### Error Handling
+
+Implement comprehensive error handling:
+
+```python
+async def run_with_error_handling():
+    try:
+        client = MultiServerMCPClient({
+            "explorium": {
+                "transport": "streamable_http",
+                "url": "https://mcp.explorium.ai/mcp",
+                "headers": {"api_key": "your-api-key"}
+            }
+        })
+        
+        async with client.session("explorium") as session:
+            tools = await load_mcp_tools(session)
+            # Your agent logic here
+            
+    except ConnectionError as e:
+        print(f"Failed to connect to MCP server: {e}")
+        print("Check your network connection and API endpoint")
+        
+    except ValueError as e:
+        print(f"Configuration error: {e}")
+        print("Verify your API keys and configuration")
+        
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        import traceback
+        traceback.print_exc()
+```
+
+### Batch Processing
+
+Process multiple queries efficiently:
+
+```python
+async def process_batch_queries(queries: list[str], config: dict):
+    """Process multiple queries through the agent"""
+    
+    client = MultiServerMCPClient({
+        "explorium": {
+            "transport": "streamable_http",
+            "url": "https://mcp.explorium.ai/mcp",
+            "headers": {"api_key": config["explorium_api_key"]}
+        }
+    })
+    
+    async with client.session("explorium") as session:
+        tools = await load_mcp_tools(session)
+        model = ChatAnthropic(
+            model="claude-3-5-sonnet-20241022",
+            api_key=config["anthropic_api_key"]
+        )
+        
+        # Build your graph here (same as before)
+        # ...
+        
+        results = []
+        for query in queries:
+            initial_state = AgentState(
+                messages=[HumanMessage(content=query)]
+            )
+            
+            # Process each query
+            async for event in graph.astream(initial_state):
+                # Collect results
+                pass
+            
+            results.append({"query": query, "response": "..."})
+        
+        return results
+```
+
+## Example Output
+
+When running the agent with a query like "Find 10 product managers from Microsoft", you'll see:
+
+```
+Using Explorium API key: dde4db9289...
+Loaded 12 tools
+Available tools:
+  - match-business
+  - fetch-businesses
+  - fetch-businesses-statistics
+  - fetch-businesses-events
+  - enrich-business
+  - match-prospects
+  - fetch-prospects
+  - fetch-prospects-events
+  - fetch-prospects-statistics
+  - enrich-prospects
+
+AI: I'll help you find 10 product managers from Microsoft. Let me search for prospects with product manager roles at Microsoft.
+
+Tool (match-business): {"response_context":{"correlation_id":"ac3bdd9b...","request_status":"success"...
+
+AI: Now I'll search for product managers at Microsoft using the business ID I found.
+
+Tool (fetch-prospects): {"response_context":{"correlation_id":"829dd0f9...","request_status":"success"...
+
+AI: Here are 10 product managers from Microsoft:
+
+## Microsoft Product Managers
+
+1. **Demetrius M.** - Senior Product Manager, Azure Storage (United States)
+2. **Alan Ross** - Partner Group Product Manager Manager, Cloud + AI Engineering (United States)
+3. **Diego Rejtman** - Partner Group Product Manager, Threat Protection (United States)
+4. **Mariam Keriakos** - Principal Product Manager Manager - M365 Copilot & Teams Platform (Germany)
+5. **Drena Kusari** - Vice President of Product and General Manager (United States)
+6. **Fatima Azzahra El Azzouzi** - Senior Product Manager - Data Security for AI (Canada)
+7. **Jessica Peet** - Partner of Product Manager, Commercial Solution Areas CTO (United States)
+8. **Seth Patton** - General Manager, Microsoft 365 Copilot, Product Marketing (United States)
+9. **Morgan Webb** - Principal Group Manager Product Management | Security Engineering (United States)
+10. **Raghav Jandhyala** - Partner General Manager, Head of Product - Microsoft Dynamics 365 AI (United States)
+
+The search found 1,000 total product managers at Microsoft, so there are many more available if you need additional contacts.
+```
+
+## Troubleshooting
+
+### Authentication Errors
+
+**Problem:** `AuthenticationError: Error code: 401 - invalid x-api-key`
+
+**Solution:**
+
+1. Verify your Anthropic API key is valid and active
+2. Check the API key format (should start with `sk-ant-api03-`)
+3. Ensure you're using a valid model name:
+   - Claude: `claude-3-5-sonnet-20241022`, `claude-3-opus-20240229`
+   - OpenAI: `gpt-4`, `gpt-4-turbo`
+
+### Connection Issues
+
+**Problem:** Cannot connect to MCP server
+
+**Solution:**
+
+1. Verify your Explorium API key is correct
+2. Check the endpoint URL is exactly: `https://mcp.explorium.ai/mcp`
+3. Test your network connectivity
+4. Ensure firewall rules allow HTTPS connections
+
+### Tool Loading Issues
+
+**Problem:** No tools loaded or tools not working
+
+**Solution:**
+
+1. Ensure you're within an active MCP session context
+2. Check the `langchain_mcp_adapters` version is up to date:
+
+   ```bash
+   pip install --upgrade langchain_mcp_adapters
+   ```
+3. Verify the session is initialized before loading tools
+
+<br />
+
+```python
+import asyncio
+
+async def parallel_tool_execution(tools, queries):
+    """Execute multiple tool calls in parallel"""
+    
+    tasks = []
+    for query in queries:
+        task = asyncio.create_task(
+            tools[0].ainvoke({"query": query})
+        )
+        tasks.append(task)
+    
+    results = await asyncio.gather(*tasks)
+    return results
+```
+
+## API Reference
+
+### MCP Configuration
+
+- **Endpoint:** `https://mcp.explorium.ai/mcp`
+- **Transport:** Streamable HTTP
+- **Authentication:** API key in headers
+- **Headers Format:** `{"api_key": "your-api-key"}`
+
+<br />
+
+## Support and Resources
+
+- **Explorium Support:** Contact your Explorium representative
+- **API Documentation:** [Explorium Developer Portal](https://developers.explorium.ai)
+- **LangGraph Documentation:** [LangGraph Docs](https://python.langchain.com/docs/langgraph)
+- **LangChain Documentation:** [LangChain Docs](https://python.langchain.com)
+- **MCP Specification:** [Model Context Protocol](https://modelcontextprotocol.io)

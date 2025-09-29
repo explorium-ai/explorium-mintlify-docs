@@ -226,13 +226,14 @@ for output in response.output:
 ## Best Practices
 
 1. **API Key Security**: Never hardcode API keys in your code. Use environment variables:
-	```python Python
-	import os
-	client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-	```
+
+   ```python Python
+   import os
+   client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+   ```
 2. **Clear Queries**: Be specific in your queries for better results:
-	- <Icon icon="square-check" color="green" /> "Find 20 CTOs at fintech companies in New York with 50-200 employees"
-	- <Icon icon="xmark" color="red" /> "Find some tech people"
+   - <Icon icon="square-check" color="green" /> "Find 20 CTOs at fintech companies in New York with 50-200 employees"
+   - <Icon icon="xmark" color="red" /> "Find some tech people"
 3. **Handle Rate Limits**: Implement appropriate error handling and retries
 4. **Optimize Requests**: Batch related queries when possible to reduce API calls
 
@@ -284,6 +285,4 @@ If you encounter any issues or have questions:
 - Contact our support team at [support@explorium.ai](mailto:support@explorium.ai)
 - Join our developer community
 
-
-*Note: Remember to replace`YOUR_AGENTSOURCE_API_KEY` and `your-openai-api-key` with your actual API keys.*
-
+_``Note: Remember to replaceYOUR_AGENTSOURCE_API_KEY and your-openai-api-key with your actual API keys.``_
