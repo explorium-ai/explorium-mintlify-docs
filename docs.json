@@ -223,8 +223,10 @@
                   "mcp-docs/developers-implementation-guides",
                   "mcp-docs/implement-with-langgraph",
                   "mcp-docs/implement-with-openai",
-                  "mcp-docs/python-sdk-implementation-guide",
-                  {
+                  "mcp-docs/python-sdk-implementation-guide"                  
+                ]
+              },
+              {
                     "group": "MCP Integrations",
                     "pages": [
                       "integrations/mcp-integrations",
@@ -235,8 +237,6 @@
                       "integrations/base44/integrate-with-base44"
                     ]
                   }
-                ]
-              }
             ]
           }
         ]
