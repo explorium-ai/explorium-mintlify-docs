@@ -244,7 +244,18 @@
        {
         "tab": "Integrations",
         "icon": "circles-overlap",
-        "groups": [      
+        "groups": [ 
+          {
+            "group": "MCP Integrations",
+            "pages": [
+              "integrations/mcp-integrations",
+              "integrations/claude/claude-desktop-integration",
+              "integrations/cursor/cursor-integration",
+              "integrations/n8n/integrate-with-n8n",
+              "integrations/zapier/integrate-with-zapier",
+              "integrations/base44/integrate-with-base44"
+            ]
+          },
           {
             "group": "Integrations templates",
             "pages": [
