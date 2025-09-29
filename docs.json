@@ -110,7 +110,8 @@
                       "reference/businesses/enrichments/workforce_trends",
                       "reference/businesses/enrichments/lookalike-companies",
                       "reference/businesses/enrichments/webstack",
-                      "reference/businesses/enrichments/company-hierarchy"
+                      "reference/businesses/enrichments/company-hierarchy",
+                      "reference/businesses/enrichments/business_website_traffic"
                     ]
                   },
                   {
