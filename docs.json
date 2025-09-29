@@ -246,7 +246,7 @@
         "icon": "circles-overlap",
         "groups": [ 
           {
-            "group": "MCP Integrations",
+            "group": "Integrations",
             "pages": [
               "integrations/mcp-integrations",
               "integrations/claude/claude-desktop-integration",
