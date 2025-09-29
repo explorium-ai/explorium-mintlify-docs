@@ -1,47 +1,37 @@
 ---
 title: "Company's social media presence"
-openapi: post /v1/businesses/linkedin_posts/bulk_enrich
+openapi: "post /v1/businesses/linkedin_posts/bulk_enrich"
 ---
 
-## Endpoint: `POST /v1/businesses/linkedin_posts/bulk_enrich`
-
 <AccordionGroup>
-<Accordion title="How It Works">
-
-- **Input:** Provide a list of up to **50`business_id`s**.
-- **Processing:** The system retrieves social media engagement metrics for all submitted businesses in a **single request**.
-- **Output:** A structured response summarizing social media activity and trends.
-
-</Accordion>
-
-<Accordion title="Example Request (cURL)">
-
-```shell Bash
-curl --request POST \
-     --url https://api.explorium.ai/v1/businesses/linkedin_posts/bulk_enrich \
-     --header 'accept: application/json' \
-     --header 'api_key: your_api_key_here' \
-     --header 'content-type: application/json' \
-     --data '{
-  "business_ids": [
-    "8adce3ca1cef0c986b22310e369a0793",
-    "a34bacf839b923770b2c360eefa26748"
-  ]
-}'
-```
-
-</Accordion>
-
-<Accordion title="Best Practices">
-
-- **Track social media activity** to analyze company messaging trends.
-- **Compare engagement metrics** with competitors.
-- **Use social media insights** to refine branding strategies.
-
-</Accordion>
+  <Accordion title="How It Works">
+    - **Input:** Provide a list of up to **`50business_ids`**.
+    - **Processing:** The system retrieves social media engagement metrics for all submitted businesses in a **single request**.
+    - **Output:** A structured response summarizing social media activity and trends.
+  </Accordion>
+  <Accordion title="Example Request (cURL)">
+    ```shell Bash
+    curl --request POST \
+         --url https://api.explorium.ai/v1/businesses/linkedin_posts/bulk_enrich \
+         --header 'accept: application/json' \
+         --header 'api_key: your_api_key_here' \
+         --header 'content-type: application/json' \
+         --data '{
+      "business_ids": [
+        "8adce3ca1cef0c986b22310e369a0793",
+        "a34bacf839b923770b2c360eefa26748"
+      ]
+    }'
+    ```
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **Track social media activity** to analyze company messaging trends.
+    - **Compare engagement metrics** with competitors.
+    - **Use social media insights** to refine branding strategies.
+  </Accordion>
 </AccordionGroup>
 
-<Icon icon="thumbtack" color="red" iconType="solid"/> **For additional enrichment options, explore related API endpoints below.**
+<Icon icon="thumbtack" iconType="solid" color="red" /> **For additional enrichment options, explore related API endpoints below.**
 
 ## Body Params - Try Me Example
 

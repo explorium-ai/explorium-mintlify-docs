@@ -1,9 +1,7 @@
 ---
-openapi: post /v1/businesses/pc_business_challenges_10k/enrich
+openapi: "post /v1/businesses/pc_business_challenges_10k/enrich"
 title: "Business challenges of public companies"
 ---
-
-## Endpoint: `POST /v1/businesses/pc_business_challenges_10k/enrich`
 
 ## Description
 
@@ -19,47 +17,39 @@ The data includes:
 This information is sourced from **regulatory filings, public disclosures, and investment databases** to provide **a comprehensive view of financial backing and corporate strategy**.
 
 <AccordionGroup>
-<Accordion title="How It Works">
-
-- **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
-- **Processing:** The system retrieves funding rounds, IPO details, and advisory board members.
-- **Output:** A structured response summarizing key investment details and corporate leadership.
-
-</Accordion>
-
-<Accordion title="Best Practices">
-
-- **Use funding insights** to track a company's financial growth and investment backing.
-- **Analyze advisory board members** to assess strategic leadership and governance.
-- **Leverage IPO data** for evaluating newly public companies and market positioning.
-- **Cross-reference funding data** with firmographics and financial metrics for deeper investment insights.
-
-</Accordion>
-
-<Accordion title="Business Challenges Output Signal">
-
-| SignalAPI | Name | Description | Data Type |
-| :--- | :--- | :--- | :--- |
-| challenge\_category | Challenge category | Category of business challenge. | string |
-| challenge\_description | Challenge description | Detailed description of the challenge. | string |
-| severity\_level | Severity level | Severity level of the challenge. | string |
-| affected\_areas | Affected areas | Business areas affected by the challenge. | string |
-| potential\_impact | Potential impact | Potential impact of the challenge. | string |
-| root\_causes | Root causes | Root causes of the challenge. | string |
-| mitigation\_strategies | Mitigation strategies | Possible strategies to address the challenge. | string |
-| timeline | Timeline | Expected timeline for addressing the challenge. | string |
-| resource\_requirements | Resource requirements | Resources required to address the challenge. | string |
-| success\_metrics | Success metrics | Metrics to measure success in addressing the challenge. | string |
-| stakeholder\_impact | Stakeholder impact | Impact on various stakeholders. | string |
-| regulatory\_implications | Regulatory implications | Regulatory implications of the challenge. | string |
-| market\_factors | Market factors | Market factors contributing to the challenge. | string |
-| historical\_context | Historical context | Historical context of similar challenges. | string |
-| competitive\_disadvantage | Competitive disadvantage | Competitive disadvantage from the challenge. | string |
-
-</Accordion>
+  <Accordion title="How It Works">
+    - **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
+    - **Processing:** The system retrieves funding rounds, IPO details, and advisory board members.
+    - **Output:** A structured response summarizing key investment details and corporate leadership.
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **Use funding insights** to track a company's financial growth and investment backing.
+    - **Analyze advisory board members** to assess strategic leadership and governance.
+    - **Leverage IPO data** for evaluating newly public companies and market positioning.
+    - **Cross-reference funding data** with firmographics and financial metrics for deeper investment insights.
+  </Accordion>
+  <Accordion title="Business Challenges Output Signal">
+    | SignalAPI                | Name                     | Description                                             | Data Type |
+    | :----------------------- | :----------------------- | :------------------------------------------------------ | :-------- |
+    | challenge_category       | Challenge category       | Category of business challenge.                         | string    |
+    | challenge_description    | Challenge description    | Detailed description of the challenge.                  | string    |
+    | severity_level           | Severity level           | Severity level of the challenge.                        | string    |
+    | affected_areas           | Affected areas           | Business areas affected by the challenge.               | string    |
+    | potential_impact         | Potential impact         | Potential impact of the challenge.                      | string    |
+    | root_causes              | Root causes              | Root causes of the challenge.                           | string    |
+    | mitigation_strategies    | Mitigation strategies    | Possible strategies to address the challenge.           | string    |
+    | timeline                 | Timeline                 | Expected timeline for addressing the challenge.         | string    |
+    | resource_requirements    | Resource requirements    | Resources required to address the challenge.            | string    |
+    | success_metrics          | Success metrics          | Metrics to measure success in addressing the challenge. | string    |
+    | stakeholder_impact       | Stakeholder impact       | Impact on various stakeholders.                         | string    |
+    | regulatory_implications  | Regulatory implications  | Regulatory implications of the challenge.               | string    |
+    | market_factors           | Market factors           | Market factors contributing to the challenge.           | string    |
+    | historical_context       | Historical context       | Historical context of similar challenges.               | string    |
+    | competitive_disadvantage | Competitive disadvantage | Competitive disadvantage from the challenge.            | string    |
+  </Accordion>
 </AccordionGroup>
 
-<Icon icon="thumbtack" color="red" iconType="solid"/> For additional enrichment options, explore related API endpoints below.
+<Icon icon="thumbtack" iconType="solid" color="red" /> For additional enrichment options, explore related API endpoints below.
 
 ## Body Params - Try Me Example
 

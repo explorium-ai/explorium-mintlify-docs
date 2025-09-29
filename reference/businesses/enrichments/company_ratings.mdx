@@ -1,8 +1,6 @@
 ---
-openapi: post /v1/businesses/company_ratings_by_employees/enrich
+openapi: "post /v1/businesses/company_ratings_by_employees/enrich"
 ---
-
-## Endpoint: `POST /v1/businesses/company_ratings_by_employees/enrich`
 
 ## Description
 
@@ -11,56 +9,48 @@ The **Company Ratings by Employees Enrichment** endpoint provides **insights int
 These ratings cover various aspects of company culture, **management quality, work-life balance, salary satisfaction, and overall employee sentiment**. The data is sourced from leading job review platforms, ensuring **high credibility and relevance**.
 
 <AccordionGroup>
-<Accordion title="How It Works">
-
-- **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
-- **Processing:** The system retrieves aggregated ratings and structured feedback.
-- **Output:** A structured response with key rating metrics and employee sentiment analysis.
-
-</Accordion>
-
-<Accordion title="Best Practices">
-
-- **Use company ratings** to evaluate employer reputation before partnerships, investments, or sales outreach.
-- **Combine ratings with firmographic data** to create a holistic view of a company's stability and employee satisfaction.
-- **Monitor trends over time** to detect shifts in employee sentiment and workplace culture.
-- **Cross-reference ratings with workforce trends** for deeper insights into employee retention and hiring dynamics.
-
-</Accordion>
-
-<Accordion title="Company Ratings by Employees Output Signal">
-
-| SignalAPI | Name | Description | Data Type |
-| :--- | :--- | :--- | :--- |
-| rating\_platform | Rating platform | Platform where ratings are posted (Glassdoor, Indeed). | string |
-| overall\_rating | Overall rating | Overall company rating. | number |
-| culture\_rating | Culture rating | Rating for company culture. | number |
-| compensation\_rating | Compensation rating | Rating for compensation and benefits. | number |
-| management\_rating | Management rating | Rating for management quality. | number |
-| work\_life\_balance\_rating | Work-life balance rating | Rating for work-life balance. | number |
-| career\_opportunities\_rating | Career opportunities rating | Rating for career advancement opportunities. | number |
-| diversity\_inclusion\_rating | Diversity & inclusion rating | Rating for diversity and inclusion. | number |
-| number\_of\_reviews | Number of reviews | Total number of reviews. | integer |
-| recommendation\_percentage | Recommendation percentage | Percentage who recommend the company. | number |
-| ceo\_approval\_rating | CEO approval rating | CEO approval rating percentage. | number |
-| business\_outlook\_rating | Business outlook rating | Rating for business outlook. | number |
-| employee\_satisfaction\_score | Employee satisfaction score | Overall employee satisfaction score. | number |
-| retention\_rate | Retention rate | Employee retention rate. | number |
-| glassdoor\_score | Glassdoor score | Overall Glassdoor rating. | number |
-| indeed\_score | Indeed score | Overall Indeed rating. | number |
-| linkedin\_score | LinkedIn score | Overall LinkedIn rating. | number |
-| engagement\_score | Engagement score | Employee engagement score. | number |
-| training\_rating | Training rating | Rating for training and development. | number |
-| benefits\_rating | Benefits rating | Rating for benefits package. | number |
-| job\_security\_rating | Job security rating | Rating for job security. | number |
-| stress\_level\_rating | Stress level rating | Rating for workplace stress levels. | number |
-| innovation\_rating | Innovation rating | Rating for innovation and creativity. | number |
-| communication\_rating | Communication rating | Rating for internal communication. | number |
-
-</Accordion>
+  <Accordion title="How It Works">
+    - **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
+    - **Processing:** The system retrieves aggregated ratings and structured feedback.
+    - **Output:** A structured response with key rating metrics and employee sentiment analysis.
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **Use company ratings** to evaluate employer reputation before partnerships, investments, or sales outreach.
+    - **Combine ratings with firmographic data** to create a holistic view of a company's stability and employee satisfaction.
+    - **Monitor trends over time** to detect shifts in employee sentiment and workplace culture.
+    - **Cross-reference ratings with workforce trends** for deeper insights into employee retention and hiring dynamics.
+  </Accordion>
+  <Accordion title="Company Ratings by Employees Output Signal">
+    | SignalAPI                   | Name                         | Description                                            | Data Type |
+    | :-------------------------- | :--------------------------- | :----------------------------------------------------- | :-------- |
+    | rating_platform             | Rating platform              | Platform where ratings are posted (Glassdoor, Indeed). | string    |
+    | overall_rating              | Overall rating               | Overall company rating.                                | number    |
+    | culture_rating              | Culture rating               | Rating for company culture.                            | number    |
+    | compensation_rating         | Compensation rating          | Rating for compensation and benefits.                  | number    |
+    | management_rating           | Management rating            | Rating for management quality.                         | number    |
+    | work_life_balance_rating    | Work-life balance rating     | Rating for work-life balance.                          | number    |
+    | career_opportunities_rating | Career opportunities rating  | Rating for career advancement opportunities.           | number    |
+    | diversity_inclusion_rating  | Diversity & inclusion rating | Rating for diversity and inclusion.                    | number    |
+    | number_of_reviews           | Number of reviews            | Total number of reviews.                               | integer   |
+    | recommendation_percentage   | Recommendation percentage    | Percentage who recommend the company.                  | number    |
+    | ceo_approval_rating         | CEO approval rating          | CEO approval rating percentage.                        | number    |
+    | business_outlook_rating     | Business outlook rating      | Rating for business outlook.                           | number    |
+    | employee_satisfaction_score | Employee satisfaction score  | Overall employee satisfaction score.                   | number    |
+    | retention_rate              | Retention rate               | Employee retention rate.                               | number    |
+    | glassdoor_score             | Glassdoor score              | Overall Glassdoor rating.                              | number    |
+    | indeed_score                | Indeed score                 | Overall Indeed rating.                                 | number    |
+    | linkedin_score              | LinkedIn score               | Overall LinkedIn rating.                               | number    |
+    | engagement_score            | Engagement score             | Employee engagement score.                             | number    |
+    | training_rating             | Training rating              | Rating for training and development.                   | number    |
+    | benefits_rating             | Benefits rating              | Rating for benefits package.                           | number    |
+    | job_security_rating         | Job security rating          | Rating for job security.                               | number    |
+    | stress_level_rating         | Stress level rating          | Rating for workplace stress levels.                    | number    |
+    | innovation_rating           | Innovation rating            | Rating for innovation and creativity.                  | number    |
+    | communication_rating        | Communication rating         | Rating for internal communication.                     | number    |
+  </Accordion>
 </AccordionGroup>
 
-<Icon icon="thumbtack" color="red" iconType="solid"/> For additional enrichment options, explore related API endpoints below.
+<Icon icon="thumbtack" iconType="solid" color="red" /> For additional enrichment options, explore related API endpoints below.
 
 ## Body Params - Try Me Example
 

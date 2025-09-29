@@ -1,5 +1,5 @@
 ---
-openapi: "post /v1/businesses/lookalikes/enrich"
+openapi: "post /v1/businesses/lookalikes/bulk_enrich"
 title: "Lookalike Companies - by Ocean.IO"
 ---
 
@@ -31,57 +31,67 @@ This enrichment provides a powerful signal for identifying companies that “loo
     "request_context": {
     "seller_id": "sample_id"
     },
-    "business_id": "9664930a34aa8e59f9b994b70e8bc15e"
+    "business_ids": ["9664930a34aa8e59f9b994b70e8bc15e"]
     }
     ```
   </Accordion>
   <Accordion title="Example Response">
     ```json JSON expandable
     {
-    "response_context": {
-    "correlation_id": "fe2bade7db0640d0887aebc6d0e2e3f3",
-    "request_status": "success",
-    "time_took_in_seconds": 3.071
-    },
-    "data": [
-    {
-        "business_id": "9664930a34aa8e59f9b994b70e8bc15e",
-        "lookalike_business_id": "443fbc49b4ab9988d64065d7e2fddf1a",
-        "lookalike_business_name": "centrify",
-        "lookalike_website": "https://delinea.com",
-        "lookalike_description": "Please follow Delinea on Linkedin! Centrify is now Delinea....",
-        "lookalike_number_of_employees_range": "501-1000",
-        "lookalike_revenue_range": "75M-200M",
-        "lookalike_naics_description": "Software Publishers",
-        "lookalike_country_location": "us",
-        "similarity_score": "High"
-    },
-    {
-        "business_id": "9664930a34aa8e59f9b994b70e8bc15e",
-        "lookalike_business_id": "b5bff70c7cd89e7677a6863751678f30",
-        "lookalike_business_name": "innskill",
-        "lookalike_website": "https://innskill.com",
-        "lookalike_description": "INNSKILL - Empowering Businesses with IAM and Cybersecurity Solutions At INNSKILL, we specialize in providing comprehensive Identity and Access Management (IAM) .....",
-        "lookalike_number_of_employees_range": "51-200",
-        "lookalike_revenue_range": "10M-25M",
-        "lookalike_naics_description": "Computer Systems Design and Related Services",
-        "lookalike_country_location": "nl",
-        "similarity_score": "High"
-    },
-    {
-        "business_id": "9664930a34aa8e59f9b994b70e8bc15e",
-        "lookalike_business_id": "0c9e2098799d2d7ac37eba0c7aac5060",
-        "lookalike_business_name": "saviynt",
-        "lookalike_website": "https://saviynt.com",
-        "lookalike_description": "About Us At Saviynt, we are pioneers in intelligent identity security solutions....",
-        "lookalike_number_of_employees_range": "1001-5000",
-        "lookalike_revenue_range": "500M-1B",
-        "lookalike_naics_description": "Software Publishers",
-        "lookalike_country_location": "us",
-        "similarity_score": "High"
-    }
-    ],
-    "entity_id": "9664930a34aa8e59f9b994b70e8bc15e"
+      "response_context": {
+        "correlation_id": "be542cecda9b40c8af830adc25b71b0c",
+        "request_status": "success",
+        "time_took_in_seconds": 2.317
+      },
+      "data": [
+        {
+          "business_id": "9664930a34aa8e59f9b994b70e8bc15e",
+          "data": {
+            "business_id": "9664930a34aa8e59f9b994b70e8bc15e",
+            "lookalike_business_id": "443fbc49b4ab9988d64065d7e2fddf1a",
+            "lookalike_business_name": "centrify",
+            "lookalike_website": "https://delinea.com",
+            "lookalike_description": "Please follow Delinea on Linkedin! Centrify is now Delinea, a leading provider of privileged access management (PAM) solutions that make security seamless for the modern, hybrid enterprise. Our solutions empower organizations to secure critical data, devices, code, and cloud infrastructure to help reduce risk, ensure compliance, and simplify security. Delinea removes complexity and defines the boundaries of access for thousands of customers worldwide. Our customers range from small businesses to the world's largest financial institutions, intelligence agencies, and critical infrastructure companies.",
+            "lookalike_number_of_employees_range": "501-1000",
+            "lookalike_revenue_range": "75M-200M",
+            "lookalike_naics_description": "Software Publishers",
+            "lookalike_country_location": "us",
+            "similarity_score": "High"
+          }
+        },
+        {
+          "business_id": "9664930a34aa8e59f9b994b70e8bc15e",
+          "data": {
+            "business_id": "9664930a34aa8e59f9b994b70e8bc15e",
+            "lookalike_business_id": "0230a888e8196d7b94ddd866d2e4d9fc",
+            "lookalike_business_name": "beyondtrust",
+            "lookalike_website": "https://beyondtrust.com",
+            "lookalike_description": "BeyondTrust is a global leader in Privileged Access Management (PAM), offering advanced solutions to secure and manage privileges across traditional, cloud, and hybrid environments. Their Universal Privilege Management approach protects privileges related to passwords, endpoints, and access, enhancing visibility and control for organizations to reduce risk, ensure compliance, and improve operational performance. Trusted by 20,000 customers, including 78 of the Fortune 100, BeyondTrust's platform empowers organizations to shrink their attack surface and mitigate security blind spots through intelligent identity threat detection and privilege control.",
+            "lookalike_number_of_employees_range": "1001-5000",
+            "lookalike_revenue_range": "500M-1B",
+            "lookalike_naics_description": "Computer Systems Design Services",
+            "lookalike_country_location": "us",
+            "similarity_score": "High"
+          }
+        },
+        {
+          "business_id": "9664930a34aa8e59f9b994b70e8bc15e",
+          "data": {
+            "business_id": "9664930a34aa8e59f9b994b70e8bc15e",
+            "lookalike_business_id": "21d52ef9535ea4e6d0872a8c15dc2b59",
+            "lookalike_business_name": "cyberi3secure",
+            "lookalike_website": "https://cyberi3secure.com",
+            "lookalike_description": "Cyberi3Secure is uniquely qualified to help companies improve efficiency, strengthen compliance, and protecting data and assets by addressing privilege access management. Our specialized focus on PAM practice, combined with our deep knowledge and experience, we can deliver and deploy customized privilege access management solutions for every customer.",
+            "lookalike_number_of_employees_range": "11-50",
+            "lookalike_revenue_range": "5M-10M",
+            "lookalike_naics_description": "Computer Systems Design and Related Services",
+            "lookalike_country_location": "in",
+            "similarity_score": "High"
+          }
+        }
+      ],
+      "entity_id": null,
+      "total_results": 3
     }
     ```
   </Accordion>

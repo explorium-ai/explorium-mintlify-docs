@@ -1,193 +1,177 @@
 ---
-openapi: post /v1/businesses
+openapi: "post /v1/businesses"
 ---
-
-## Endpoint: `POST /v1/businesses`
 
 ## Description
 
 The **Fetch Businesses** endpoint allows users to retrieve business records based on filters such as country, industry, company size, and revenue. It returns a structured dataset optimized for **further filtering, deduplication, or previewing records before enrichment**. This enables precise data-driven decision-making and lead generation. It is designed to help users efficiently find relevant businesses based on their specific criteria.
 
 <AccordionGroup>
-<Accordion title="Coverage">
-
-- **80M+ businesses** across **150+ countries**.
-- **Advanced filtering options** for precise data extraction.
-- **Optimized for efficiency**, returning only the minimal data needed for further processing.
-
-</Accordion>
-
-<Accordion title="How It Works">
-
-- **Input:** Define filter parameters such as country, industry, revenue range, and company size.
-- **Processing:** The system searches across multiple datasets to retrieve businesses that meet the criteria.
-- **Output:** A structured response containing business records for further analysis or enrichment.
-</Accordion>
-
-<Accordion title="Request Schema">
-
-```json JSON
-{
-  "filters": {
-    "country_code": {
-      "values": ["us", "ca"]
-    },
-    "company_size": {
-      "values": ["11-50", "51-200"]
-    }
-  }
-}
-```
-</Accordion>
-
-<Accordion title="Pagination, Filtering & Modes Parameters">
-
-## Data Fetching: Pagination, Filtering & Modes
-
-The API supports flexible data fetching through **pagination**, **filtering**, and optional **modes** to customize the amount and structure of the returned data.
-
-### Pagination
-
-To efficiently retrieve large datasets, use the following parameters to paginate the results:
-
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
-| `size` | Number | The total maximum number of records to return across all pages.   Must be ≤ 10,000. |
-| `page_size` | Number | Number of records to return per page.   Maximum value: 100. |
-| `page` | Number | The page number to retrieve (1-based index).   Defaults to 1 if not specified. |
-
-### Behavior Notes
-
-- If `size` is smaller than `page_size * page`, the last page may contain fewer records or be empty.
-- If pagination parameters are omitted, the API may return a default page size (implementation-specific).
-
-
-### Filtering
-
-Filters allow you to narrow down results based on specific field values.
-All filters must be included in the request body under the `"filters"` key, as a JSON object.
-
-Each filter field accepts:
-
-- `values`: for multiple possible matches (e.g. `"values": ["11-50", "51-200"]`)
-
-### Example Request Body
-
-```json JSON
-{
-    "filters": {
+  <Accordion title="Coverage">
+    - **80M+ businesses** across **150+ countries**.
+    - **Advanced filtering options** for precise data extraction.
+    - **Optimized for efficiency**, returning only the minimal data needed for further processing.
+  </Accordion>
+  <Accordion title="How It Works">
+    - **Input:** Define filter parameters such as country, industry, revenue range, and company size.
+    - **Processing:** The system searches across multiple datasets to retrieve businesses that meet the criteria.
+    - **Output:** A structured response containing business records for further analysis or enrichment.
+  </Accordion>
+  <Accordion title="Request Schema">
+    ```json JSON
+    {
+      "filters": {
+        "country_code": {
+          "values": ["us", "ca"]
+        },
         "company_size": {
-            "values": ["11-50", "51-200"]
-    }
-  }
-}
-```
-
-### Filter Matching Logic
-
-- Fields using `values` are matched using an **OR** condition.
-- Filters are combined using an **AND** across different fields.
-
-### Mode Parameter
-
-The optional `mode` parameter defines the level of detail in the returned data.
-
-| Mode | Description |
-| :--- | :--- |
-| `full` | Returns the complete data object for each prospect.   Use this when full detail is required for processing or display. |
-| `preview` | Returns a lightweight version of the data, including only key fields.   For businesses, this includes: `business_id`, `name`, `domain`, `logo`, `country_name`. |
-
-### Default Behavior
-
-If `mode` is not specified, the API may return a summary version of the data optimized for performance.
-
-### Best Practices
-
-- Always use `page_size` to control payload size for better performance.
-- Use `size` to set an upper limit and avoid unintentionally requesting large datasets.
-- Apply filters whenever possible to reduce response size and processing time.
-- Avoid using `mode=full` unless full object data is necessary—especially in high-volume requests.
-
-### <Icon icon="magnifying-glass" /> Note on Filter Usage
-
-- **Only one category filter** can be used per request: choose from either `Google category`, `LinkedIn industry`, or `NAICS code`. Combining them is not supported.
-</Accordion>
-
-<Accordion title="Business Filters">
-
-| Parameter | Description | Notes / Best Practices |
-| :--- | :--- | :--- |
-| `country_code` | Filter accounts by their HQ’s country using alpha-2 country codes. Example:  `["us", "ca"]` | - Use autocomplete to search by country name and select the correct two-letter code. - Uses a list of `values`. - Logic checks whether the country code matches the account location. |
-| `region_country_code` | Filter accounts by their HQ’s region using ISO 3166-2 country-subdivision codes. Example:  `["us-ut", "us-ca"]` | - Use autocomplete to search for a region after selecting a country. Format will automatically apply as `country-region` (e.g., `us-ca`). - Uses multiple `values`. - Logic verifies if the region code matches the structured field. |
-| `city_region_country` | Filter accounts by geographic region, down to city-level granularity. Example:  `["San Francisco, CA, US"]` | - Use autocomplete with cascading dropdowns (country → region → city). - Accepts a list of full location strings. - Logic checks address fields for match. |
-| `company_size` | Filter accounts by the number of employees at all company sites. Categories:  `["1-10", "11-50", ..., "10001+"]` | - Use autocomplete to search and select a size bracket from the predefined list. - Uses multiple `values`. - Logic maps input values to normalized size brackets. |
-| `company_revenue` | Filter accounts by annual revenue generated at all company sites. Categories:  `["0-500K", ..., "10B-100B"]` | - Use autocomplete to search and select a revenue range from the predefined list. - Accepts a list of `values`. - Logic compares revenue input against company revenue fields. |
-| `company_age` | Filter accounts by how many years since they were established. Categories:  `["0-3", "3-6", ..., "20+"]` | - Use autocomplete to select a range representing company age. - Accepts multiple `values`. - Logic compares establishment year against current date to determine match. |
-| `google_category` | Filter accounts by their classified Google business category. Example:  `["Paving contractor", "Retail"]` | - Use autocomplete to search and select from Google’s list of business categories. - Accepts `values`. - Logic filters companies based on Google’s classification field. |
-| `naics_category` | Filter accounts by their 2017 NAICS industry code. Example:  `["23", "5611"]` | - Use autocomplete to search and select valid NAICS industry codes. - Uses multiple `values`. - Logic matches selected code to structured industry metadata. |
-| `linkedin_category` | Filter accounts by their classified LinkedIn® business category. Example:  `["software development", "investment banking"]` | - Use autocomplete to search and select from LinkedIn® list of industry categories. - Accepts a list of `values`. - Logic filters based on LinkedIn® business category field. |
-| `company_tech_stack_category` | Filter accounts by the technology categories they use. Example:  `["Marketing", "CRM", "Cloud Services"]` | - Use autocomplete to search and select technology categories from a predefined list. - Uses multiple `values`. - Logic checks whether the account is associated with technologies in those categories. |
-| `company_tech_stack_tech` | Filter accounts by the specific technologies they use. Example:  `["JavaScript", "HTML5", "Apache"]` | - Use autocomplete to search and select specific technologies from the available list. - Accepts a list of `values`. - Logic checks for presence of selected technologies in the company’s tech stack. |
-| `company_name` | Filter accounts by specific company names. Example:  `["Google", "Walmart"]` | - Use autocomplete to search and select company names. - Accepts one or more `values`. - Logic performs exact or fuzzy match depending on configuration. |
-| `number_of_locations` | Filter accounts by how many office locations they operate. Example:  `["1", "2-5", "6+"]` | - Use autocomplete to select location range. - Accepts a list of `values`. - Logic checks for company location count metadata. |
-| `website_keywords` | Filter accounts by specific keywords mentioned on their websites. Example:  `["sustainability", "machine learning"]` | - Use keyword search to find companies mentioning certain terms. - Accepts free-text keywords or predefined tags. - Logic performs keyword match in indexed website content. |
-
-
-### <Icon icon="target" /> Targeting Mid-Sized B2B Software Companies in California for CRM Sales
-
-#### <Icon icon="magnifying-glass" /> Use Case:A CRM software vendor wants to sell customer relationship management tools to mid-sized software companies in California. The filters ensure that companies already use CRM tools but may be looking for an upgrade.
-
-#### <Icon icon="thumbtack" iconType="solid" color="red" /> Filters:
-- **Country**: `["us"]`
-- **Region (State)**: `["us-ca"]`
-- **Company Size**: `["201-500"]`
-- **Company Revenue**: `["10M-25M"]`
-- **LinkedIn® category**: `["software development"]`
-- **Company Tech Stack Category**: `["CRM"]`
-
-
-### <Icon icon="target" /> Finding Large Public Healthcare Companies in Texas for IT Security Solutions
-
-#### <Icon icon="magnifying-glass" /> Use Case:A cybersecurity provider wants to target large, publicly traded healthcare companies in Texas that use cloud services and have significant revenue, indicating budget availability for IT security improvements.
-
-#### <Icon icon="thumbtack" iconType="solid" color="red" /> Filters:
-
-- **Country**: `["us"]`
-- **Region (State)**: `["us-tx"]`
-- **Company Size**: `["1001-5000", "5001-10000", "10001+"]`
-- **Company Revenue**: `["200M-500M", "500M-1B", "1B-10B", "10B-100B"]`
-- **NAICS Category**: `["62"]` *(Healthcare & Social Assistance)*
-- **Company Tech Stack Category**: `["Cloud Services", "Cybersecurity"]`
-</Accordion>
-
-<Accordion title="Example Request (cURL)">
-
-```shell Bash
-curl -X POST \
-  "https://api.explorium.ai/v1/businesses" \
-  -H "API_KEY: your_api_key_here" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "mode": "full",
-    "size": 10000,
-    "page_size": 100,
-    "page": 1,
-    "exclude": ["00000230f8f8d86e167e189c7c3b4bd6"],
-    "filters": {
-      "country_code": {
-        "values": ["us"]
-      },
-      "company_size": {
-        "values": ["11-50", "51-200"]
+          "values": ["11-50", "51-200"]
+        }
       }
-    },
-    "request_context": {}
-  }'
-```
-</Accordion>
+    }
+    ```
+  </Accordion>
+  <Accordion title="Pagination, Filtering & Modes Parameters">
+    ## Data Fetching: Pagination, Filtering & Modes
+
+    The API supports flexible data fetching through **pagination**, **filtering**, and optional **modes** to customize the amount and structure of the returned data.
+
+    ### Pagination
+
+    To efficiently retrieve large datasets, use the following parameters to paginate the results:
+
+    | Parameter   | Type   | Description                                                                         |
+    | :---------- | :----- | :---------------------------------------------------------------------------------- |
+    | `size`      | Number | The total maximum number of records to return across all pages.   Must be ≤ 10,000. |
+    | `page_size` | Number | Number of records to return per page.   Maximum value: 100.                         |
+    | `page`      | Number | The page number to retrieve (1-based index).   Defaults to 1 if not specified.      |
+
+    ### Behavior Notes
+
+    - If `size` is smaller than `page_size * page`, the last page may contain fewer records or be empty.
+    - If pagination parameters are omitted, the API may return a default page size (implementation-specific).
+
+    ### Filtering
+
+    Filters allow you to narrow down results based on specific field values.
+    All filters must be included in the request body under the `"filters"` key, as a JSON object.
+
+    Each filter field accepts:
+
+    - `values`: for multiple possible matches (e.g. `"values": ["11-50", "51-200"]`)
+
+    ### Example Request Body
+
+    ```json JSON
+    {
+        "filters": {
+            "company_size": {
+                "values": ["11-50", "51-200"]
+        }
+      }
+    }
+    ```
+
+    ### Filter Matching Logic
+
+    - Fields using `values` are matched using an **OR** condition.
+    - Filters are combined using an **AND** across different fields.
+
+    ### Mode Parameter
+
+    The optional `mode` parameter defines the level of detail in the returned data.
+
+    | Mode      | Description                                                                                                                                                     |
+    | :-------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `full`    | Returns the complete data object for each prospect.   Use this when full detail is required for processing or display.                                          |
+    | `preview` | Returns a lightweight version of the data, including only key fields.   For businesses, this includes: `business_id`, `name`, `domain`, `logo`, `country_name`. |
+
+    ### Default Behavior
+
+    If `mode` is not specified, the API may return a summary version of the data optimized for performance.
+
+    ### Best Practices
+
+    - Always use `page_size` to control payload size for better performance.
+    - Use `size` to set an upper limit and avoid unintentionally requesting large datasets.
+    - Apply filters whenever possible to reduce response size and processing time.
+    - Avoid using `mode=full` unless full object data is necessary—especially in high-volume requests.
+
+    ### <Icon icon="magnifying-glass" /> Note on Filter Usage
+
+    - **Only one category filter** can be used per request: choose from either `Google category`, `LinkedIn industry`, or `NAICS code`. Combining them is not supported.
+  </Accordion>
+  <Accordion title="Business Filters">
+    | Parameter                     | Description                                                                                                                 | Notes / Best Practices                                                                                                                                                                                                                |
+    | :---------------------------- | :-------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+    | `country_code`                | Filter accounts by their HQ’s country using alpha-2 country codes. Example:  `["us", "ca"]`                                 | - Use autocomplete to search by country name and select the correct two-letter code. - Uses a list of `values`. - Logic checks whether the country code matches the account location.                                                 |
+    | `region_country_code`         | Filter accounts by their HQ’s region using ISO 3166-2 country-subdivision codes. Example:  `["us-ut", "us-ca"]`             | - Use autocomplete to search for a region after selecting a country. Format will automatically apply as `country-region` (e.g., `us-ca`). - Uses multiple `values`. - Logic verifies if the region code matches the structured field. |
+    | `city_region_country`         | Filter accounts by geographic region, down to city-level granularity. Example:  `["San Francisco, CA, US"]`                 | - Use autocomplete with cascading dropdowns (country → region → city). - Accepts a list of full location strings. - Logic checks address fields for match.                                                                            |
+    | `company_size`                | Filter accounts by the number of employees at all company sites. Categories:  `["1-10", "11-50", ..., "10001+"]`            | - Use autocomplete to search and select a size bracket from the predefined list. - Uses multiple `values`. - Logic maps input values to normalized size brackets.                                                                     |
+    | `company_revenue`             | Filter accounts by annual revenue generated at all company sites. Categories:  `["0-500K", ..., "10B-100B"]`                | - Use autocomplete to search and select a revenue range from the predefined list. - Accepts a list of `values`. - Logic compares revenue input against company revenue fields.                                                        |
+    | `company_age`                 | Filter accounts by how many years since they were established. Categories:  `["0-3", "3-6", ..., "20+"]`                    | - Use autocomplete to select a range representing company age. - Accepts multiple `values`. - Logic compares establishment year against current date to determine match.                                                              |
+    | `google_category`             | Filter accounts by their classified Google business category. Example:  `["Paving contractor", "Retail"]`                   | - Use autocomplete to search and select from Google’s list of business categories. - Accepts `values`. - Logic filters companies based on Google’s classification field.                                                              |
+    | `naics_category`              | Filter accounts by their 2017 NAICS industry code. Example:  `["23", "5611"]`                                               | - Use autocomplete to search and select valid NAICS industry codes. - Uses multiple `values`. - Logic matches selected code to structured industry metadata.                                                                          |
+    | `linkedin_category`           | Filter accounts by their classified LinkedIn® business category. Example:  `["software development", "investment banking"]` | - Use autocomplete to search and select from LinkedIn® list of industry categories. - Accepts a list of `values`. - Logic filters based on LinkedIn® business category field.                                                         |
+    | `company_tech_stack_category` | Filter accounts by the technology categories they use. Example:  `["Marketing", "CRM", "Cloud Services"]`                   | - Use autocomplete to search and select technology categories from a predefined list. - Uses multiple `values`. - Logic checks whether the account is associated with technologies in those categories.                               |
+    | `company_tech_stack_tech`     | Filter accounts by the specific technologies they use. Example:  `["JavaScript", "HTML5", "Apache"]`                        | - Use autocomplete to search and select specific technologies from the available list. - Accepts a list of `values`. - Logic checks for presence of selected technologies in the company’s tech stack.                                |
+    | `company_name`                | Filter accounts by specific company names. Example:  `["Google", "Walmart"]`                                                | - Use autocomplete to search and select company names. - Accepts one or more `values`. - Logic performs exact or fuzzy match depending on configuration.                                                                              |
+    | `number_of_locations`         | Filter accounts by how many office locations they operate. Example:  `["1", "2-5", "6+"]`                                   | - Use autocomplete to select location range. - Accepts a list of `values`. - Logic checks for company location count metadata.                                                                                                        |
+    | `website_keywords`            | Filter accounts by specific keywords mentioned on their websites. Example:  `["sustainability", "machine learning"]`        | - Use keyword search to find companies mentioning certain terms. - Accepts free-text keywords or predefined tags. - Logic performs keyword match in indexed website content.                                                          |
+
+    ### <Icon icon="target" /> Targeting Mid-Sized B2B Software Companies in California for CRM Sales
+
+    #### <Icon icon="magnifying-glass" /> Use Case:A CRM software vendor wants to sell customer relationship management tools to mid-sized software companies in California. The filters ensure that companies already use CRM tools but may be looking for an upgrade.
+
+    #### <Icon icon="thumbtack" iconType="solid" color="red" /> Filters:
+
+    - **Country**: `["us"]`
+    - **Region (State)**: `["us-ca"]`
+    - **Company Size**: `["201-500"]`
+    - **Company Revenue**: `["10M-25M"]`
+    - **LinkedIn® category**: `["software development"]`
+    - **Company Tech Stack Category**: `["CRM"]`
+
+    ### <Icon icon="target" /> Finding Large Public Healthcare Companies in Texas for IT Security Solutions
+
+    #### <Icon icon="magnifying-glass" /> Use Case:A cybersecurity provider wants to target large, publicly traded healthcare companies in Texas that use cloud services and have significant revenue, indicating budget availability for IT security improvements.
+
+    #### <Icon icon="thumbtack" iconType="solid" color="red" /> Filters:
+
+    - **Country**: `["us"]`
+    - **Region (State)**: `["us-tx"]`
+    - **Company Size**: `["1001-5000", "5001-10000", "10001+"]`
+    - **Company Revenue**: `["200M-500M", "500M-1B", "1B-10B", "10B-100B"]`
+    - **NAICS Category**: `["62"]` _(Healthcare & Social Assistance)_
+    - **Company Tech Stack Category**: `["Cloud Services", "Cybersecurity"]`
+  </Accordion>
+  <Accordion title="Example Request (cURL)">
+    ```shell Bash
+    curl -X POST \
+      "https://api.explorium.ai/v1/businesses" \
+      -H "API_KEY: your_api_key_here" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "mode": "full",
+        "size": 10000,
+        "page_size": 100,
+        "page": 1,
+        "exclude": ["00000230f8f8d86e167e189c7c3b4bd6"],
+        "filters": {
+          "country_code": {
+            "values": ["us"]
+          },
+          "company_size": {
+            "values": ["11-50", "51-200"]
+          }
+        },
+        "request_context": {}
+      }'
+    ```
+  </Accordion>
 </AccordionGroup>
 
-<Icon icon="thumbtack" color="red" iconType="solid" /> For detailed endpoint explanations, request examples, and integration tips, explore the documentation sections above.
+<Icon icon="thumbtack" iconType="solid" color="red" /> For detailed endpoint explanations, request examples, and integration tips, explore the documentation sections above.
 
 ## Body Params - Try Me Example
 

@@ -1,8 +1,6 @@
 ---
-openapi: post /v1/businesses/events
+openapi: "post /v1/businesses/events"
 ---
-
-## Endpoint: `POST /v1/businesses/events`
 
 ## Description
 
@@ -12,135 +10,118 @@ Each event provides a snapshot of **real-time changes** occurring within busines
 
 ### Important Considerations for Event
 
-- Events are **limited to recent occurrences** and are available **only within the timeframe defined in`timestamp_from`** , which should be set to **the last quarter (past 3 months)**.
+- Events are **limited to recent occurrences** and are available **`only within the timeframe defined intimestamp_from`** , which should be set to **the last quarter (past 3 months)**.
 - If no qualifying events took place in the specified period, the response will be empty.
 - This API does not provide historical records. To access past data, refer to the appropriate **Enrichment API** endpoints.
 
 <AccordionGroup>
-<Accordion title="Coverage">
-
-| Attribute | Coverage Details |
-| :--- | :--- |
-| **Total Events** | Covers thousands of business-related events monthly |
-| **Event Categories** | Includes funding, IPOs, product launches, partnerships, hiring trends, and more |
-| **Geographical Scope** | Global coverage across 150+ countries |
-| **Data Refresh Rate** | Updated in near real-time |
-
-</Accordion>
-
-<Accordion title="How It Works">
-
-- **Input:** Define filter parameters such as `event_types`, `business_ids`, and `timestamp_from`.
-- **Processing:** The system retrieves relevant business events from its real-time data sources.
-- **Output:** A structured response containing event details, including timestamps, descriptions, and business associations.
-</Accordion>
-
-<Accordion title="Query Parameters">
-
-| Parameter | Type | Description |
-| :--- | :--- | :--- |
-| `event_types` | Array | Filters events by type (e.g. `ipo_announcement`, `new_funding_round`, `new_investment`, `new_product`, `new_office`) |
-| `business_ids` | Array | Returns events related to specific businesses using their Business IDs |
-| `timestamp_from` | String | Filters results to show only events after a specific timestamp (ISO format) |
-
-</Accordion>
-
-<Accordion title="Example Request (cURL)">
-
-```shell Bash
-curl -X POST \
-  "https://api.explorium.ai/v1/businesses/events" \
-  -H "API_KEY: your_api_key_here" \
-  -H "Content-Type: application/json" \
-  -d '{
-  "event_types": [
-    "ipo_announcement",
-    "new_investment"
-  ],
-  "business_ids": [
-    "8adce3ca1cef0c986b22310e369a0793"
-  ]
-}'
-```
-</Accordion>
-
-<Accordion title="Example Response">
-
-```json JSON
-{
-  "response_context": {
-    "correlation_id": "e96ef2125e0d45568f370cee53428106",
-    "request_status": "success",
-    "time_took_in_seconds": 4.299
-  },
-  "output_events": [
+  <Accordion title="Coverage">
+    | Attribute              | Coverage Details                                                                |
+    | :--------------------- | :------------------------------------------------------------------------------ |
+    | **Total Events**       | Covers thousands of business-related events monthly                             |
+    | **Event Categories**   | Includes funding, IPOs, product launches, partnerships, hiring trends, and more |
+    | **Geographical Scope** | Global coverage across 150+ countries                                           |
+    | **Data Refresh Rate**  | Updated in near real-time                                                       |
+  </Accordion>
+  <Accordion title="How It Works">
+    - **Input:** Define filter parameters such as `event_types`, `business_ids`, and `timestamp_from`.
+    - **Processing:** The system retrieves relevant business events from its real-time data sources.
+    - **Output:** A structured response containing event details, including timestamps, descriptions, and business associations.
+  </Accordion>
+  <Accordion title="Query Parameters">
+    | Parameter        | Type   | Description                                                                                                          |
+    | :--------------- | :----- | :------------------------------------------------------------------------------------------------------------------- |
+    | `event_types`    | Array  | Filters events by type (e.g. `ipo_announcement`, `new_funding_round`, `new_investment`, `new_product`, `new_office`) |
+    | `business_ids`   | Array  | Returns events related to specific businesses using their Business IDs                                               |
+    | `timestamp_from` | String | Filters results to show only events after a specific timestamp (ISO format)                                          |
+  </Accordion>
+  <Accordion title="Example Request (cURL)">
+    ```shell Bash
+    curl -X POST \
+      "https://api.explorium.ai/v1/businesses/events" \
+      -H "API_KEY: your_api_key_here" \
+      -H "Content-Type: application/json" \
+      -d '{
+      "event_types": [
+        "ipo_announcement",
+        "new_investment"
+      ],
+      "business_ids": [
+        "8adce3ca1cef0c986b22310e369a0793"
+      ]
+    }'
+    ```
+  </Accordion>
+  <Accordion title="Example Response">
+    ```json JSON
     {
-      "event_name": "new_investment",
-      "event_time": "2025-01-20T00:00:00+00:00",
-      "event_id": "60392c31a409901d75d071565d09dda4",
-      "data": {
-        "event_name": "new_investment",
-        "investment_date": "2025-01-20T00:00:00+00:00",
-        "investment_amount": 430000013312,
-        "investment_target": "United States",
-        "investment_type": "Strategic Investment",
-        "link": "https://www.businesstimes.com.sg/international/trump-says-apple-ceo-make-large-investment-us"
+      "response_context": {
+        "correlation_id": "e96ef2125e0d45568f370cee53428106",
+        "request_status": "success",
+        "time_took_in_seconds": 4.299
       },
-      "business_id": "8adce3ca1cef0c986b22310e369a0793"
+      "output_events": [
+        {
+          "event_name": "new_investment",
+          "event_time": "2025-01-20T00:00:00+00:00",
+          "event_id": "60392c31a409901d75d071565d09dda4",
+          "data": {
+            "event_name": "new_investment",
+            "investment_date": "2025-01-20T00:00:00+00:00",
+            "investment_amount": 430000013312,
+            "investment_target": "United States",
+            "investment_type": "Strategic Investment",
+            "link": "https://www.businesstimes.com.sg/international/trump-says-apple-ceo-make-large-investment-us"
+          },
+          "business_id": "8adce3ca1cef0c986b22310e369a0793"
+        }
+      ]
     }
-  ]
-}
-```
-</Accordion>
+    ```
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **Use targeted queries** by specifying `event_types` to reduce unnecessary data retrieval.
+    - **``Combinebusiness_ids withtimestamp_from``** for precise event tracking.
+    - **Monitor new event types** as the dataset is continually updated.
+    - **Leverage analytics tools** to extract actionable insights and refine business strategies.
+  </Accordion>
+  <Accordion title="Event Categories">
+    ## Funding & Investment
 
-<Accordion title="Best Practices">
+    - [IPO Announcement](/reference/businesses/events/types/ipo-announcement) - Initial Public Offering announcement
+    - [New Funding Round](/reference/businesses/events/types/new-funding-round) - Announcement of a new funding round
+    - [New Investment](/reference/businesses/events/types/new-investment) - Announcement of a new investment
 
-- **Use targeted queries** by specifying `event_types` to reduce unnecessary data retrieval.
-- **Combine`business_ids` with`timestamp_from`** for precise event tracking.
-- **Monitor new event types** as the dataset is continually updated.
-- **Leverage analytics tools** to extract actionable insights and refine business strategies.
+    ## Product & Business Growth
 
-</Accordion>
+    - [New Product Launch](/reference/businesses/events/types/new-product-launch) - Launch of a new product
+    - [New Office Opening](/reference/businesses/events/types/new-office-opening) - Opening of a new office
+    - [Office Closing](/reference/businesses/events/types/office-closing) - Closing of a company's office
+    - [Company's Award](/reference/businesses/events/types/companys-award-event) - Recognition of a company's achievements and accolades
 
-<Accordion title="Event Categories">
+    ## Partnerships & Mergers
 
-## Funding & Investment
+    - [New Partnership](/reference/businesses/events/types/new-partnership) - Announcement of a new partnership
+    - [Merger and Acquisitions](/reference/businesses/events/types/merger-and-acquisitions) - Tracks major M&A activity
 
-- [IPO Announcement](/reference/businesses/events/types/ipo-announcement) - Initial Public Offering announcement
-- [New Funding Round](/reference/businesses/events/types/new-funding-round) - Announcement of a new funding round
-- [New Investment](/reference/businesses/events/types/new-investment) - Announcement of a new investment
+    ## Hiring & Workforce Trends
 
-## Product & Business Growth
+    - [Hiring (per department)](/reference/businesses/events/types/hiring-by-department) - Hiring by Department
+    - [Department trend (per department)](/reference/businesses/events/types/department-trend) - Workforce Changes by Department
+    - [Employee Joined Company](/reference/businesses/events/types/employee-joined-company) - Announcement of a new employee joining the company
 
-- [New Product Launch](/reference/businesses/events/types/new-product-launch) - Launch of a new product
-- [New Office Opening](/reference/businesses/events/types/new-office-opening) - Opening of a new office
-- [Office Closing](/reference/businesses/events/types/office-closing) - Closing of a company's office
-- [Company's Award](/reference/businesses/events/types/companys-award-event) - Recognition of a company's achievements and accolades
+    ## Legal & Security Issues
 
-## Partnerships & Mergers
+    - [Lawsuits and Legal Issues](/reference/businesses/events/types/lawsuits-and-legal-issues) - Tracks legal challenges and regulatory issues
+    - [Outages and Security Breaches](/reference/businesses/events/types/outages-and-security-breaches) - Identifies major disruptions and cybersecurity incidents
 
-- [New Partnership](/reference/businesses/events/types/new-partnership) - Announcement of a new partnership
-- [Merger and Acquisitions](/reference/businesses/events/types/merger-and-acquisitions) - Tracks major M&A activity
+    ## Financial Adjustments
 
-## Hiring & Workforce Trends
-
-- [Hiring (per department)](/reference/businesses/events/types/hiring-by-department) - Hiring by Department
-- [Department trend (per department)](/reference/businesses/events/types/department-trend) - Workforce Changes by Department
-- [Employee Joined Company](/reference/businesses/events/types/employee-joined-company) - Announcement of a new employee joining the company
-
-## Legal & Security Issues
-
-- [Lawsuits and Legal Issues](/reference/businesses/events/types/lawsuits-and-legal-issues) - Tracks legal challenges and regulatory issues
-- [Outages and Security Breaches](/reference/businesses/events/types/outages-and-security-breaches) - Identifies major disruptions and cybersecurity incidents
-
-## Financial Adjustments
-
-- [Cost Cutting](/reference/businesses/events/types/cost-cutting) - Tracks significant cost reduction measures
-
-</Accordion>
+    - [Cost Cutting](/reference/businesses/events/types/cost-cutting) - Tracks significant cost reduction measures
+  </Accordion>
 </AccordionGroup>
 
-<Icon icon="thumbtack" color="red" iconType="solid"/> For detailed endpoint explanations, request examples, and integration tips, explore the documentation sections above.
+<Icon icon="thumbtack" iconType="solid" color="red" /> For detailed endpoint explanations, request examples, and integration tips, explore the documentation sections above.
 
 ## Body Params - Try Me Example
 
@@ -148,4 +129,3 @@ curl -X POST \
 event_types: ipo_announcement, new_investment
 business_ids: 8adce3ca1cef0c986b22310e369a0793
 ```
-

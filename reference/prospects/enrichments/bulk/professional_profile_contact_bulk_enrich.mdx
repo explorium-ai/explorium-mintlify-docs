@@ -1,121 +1,102 @@
 ---
 title: "Professional profile: contact and workplace"
-openapi: post /v1/prospects/profiles/bulk_enrich
+openapi: "post /v1/prospects/profiles/bulk_enrich"
 ---
-
-## Endpoint: POST /v1/prospects/profiles/bulk_enrich
 
 ## Description
 
 The **Bulk Professional Profile Enrichment** API provides detailed professional and workplace insights for up to **50 prospects** in a single request. This endpoint enables deep analysis of career history, education, and workplace affiliations.
 
-<Icon icon="thumbtack" color="red" iconType="solid"/> **Key Benefits:**
+<Icon icon="thumbtack" iconType="solid" color="red" /> **Key Benefits:**
 
 - **Retrieve bulk professional profiles** including job history, skills, and education.
 - **Enhance recruiting and sales efforts** with verified workplace details.
 - **Optimize segmentation and outreach** using structured career insights.
 
 <AccordionGroup>
-<Accordion title="How It Works">
-
-1. **Input:** Provide up to 50 `prospect_id` values, obtained from the **Match Prospects** endpoint.
-2. **Processing:** The system retrieves verified professional details, including job history, education, and workplace affiliations.
-3. **Output:** Returns structured data in the same order as the input, ensuring easy mapping.
-
-</Accordion>
-
-<Accordion title="Request Schema">
-
-| Field | Type | Description |
-|:---|:---|:---|
-| `prospect_ids` | Array | A list of up to 50 unique prospect IDs (Required) |
-
-</Accordion>
-
-<Accordion title="Example Request (cURL)">
-
-```shell Bash
-curl --request POST \
-     --url https://api.explorium.ai/v1/prospects/profiles/bulk_enrich \
-     --header 'accept: application/json' \
-     --header 'api_key: <your api key>' \
-     --header 'content-type: application/json' \
-     --data '{
-  "prospect_ids": [
-    "ee936e451b50c70e068e1b54e106cb89173198c4",
-    "d668424ab4f6aaeeeb74248d56b8335383fd522b"
-  ]
-}'
-```
-
-</Accordion>
-
-<Accordion title="Example Response">
-
-```json JSON expandable
-{
-  "response_context": {
-    "correlation_id": "1badf5a06e9f42ca9fd74f46743af953",
-    "request_status": "success",
-    "time_took_in_seconds": 0.692
-  },
-  "data": [
+  <Accordion title="How It Works">
+    1. **Input:** Provide up to 50 `prospect_id` values, obtained from the **Match Prospects** endpoint.
+    2. **Processing:** The system retrieves verified professional details, including job history, education, and workplace affiliations.
+    3. **Output:** Returns structured data in the same order as the input, ensuring easy mapping.
+  </Accordion>
+  <Accordion title="Request Schema">
+    | Field          | Type  | Description                                       |
+    | :------------- | :---- | :------------------------------------------------ |
+    | `prospect_ids` | Array | A list of up to 50 unique prospect IDs (Required) |
+  </Accordion>
+  <Accordion title="Example Request (cURL)">
+    ```shell Bash
+    curl --request POST \
+         --url https://api.explorium.ai/v1/prospects/profiles/bulk_enrich \
+         --header 'accept: application/json' \
+         --header 'api_key: <your api key>' \
+         --header 'content-type: application/json' \
+         --data '{
+      "prospect_ids": [
+        "ee936e451b50c70e068e1b54e106cb89173198c4",
+        "d668424ab4f6aaeeeb74248d56b8335383fd522b"
+      ]
+    }'
+    ```
+  </Accordion>
+  <Accordion title="Example Response">
+    ```json JSON expandable
     {
-      "prospect_id": "ee936e451b50c70e068e1b54e106cb89173198c4",
-      "data": {
-        "full_name": "Satya Nadella",
-        "country_name": "United States",
-        "linkedin": "https://linkedin.com/in/satyanadella",
-        "experience": [...],
-        "education": [...],
-        "company_name": "University Of Chicago",
-        "company_website": "https://uchicago.edu",
-        "job_title": "Member Board Of Trustees"
-      }
-    },
-    {
-      "prospect_id": "57f9e5dac64d31d80e6e9432fe2c500d0bba2c01",
-      "data": {
-        "full_name": "Jensen Huang",
-        "country_name": "United States",
-        "linkedin": "https://linkedin.com/in/jenhsunhuang",
-        "experience": [...],
-        "education": [...],
-        "company_name": "Nvidia",
-        "company_website": "https://nvidia.com",
-        "job_title": "Founder And Chief Executive Officer"
-      }
+      "response_context": {
+        "correlation_id": "1badf5a06e9f42ca9fd74f46743af953",
+        "request_status": "success",
+        "time_took_in_seconds": 0.692
+      },
+      "data": [
+        {
+          "prospect_id": "ee936e451b50c70e068e1b54e106cb89173198c4",
+          "data": {
+            "full_name": "Satya Nadella",
+            "country_name": "United States",
+            "linkedin": "https://linkedin.com/in/satyanadella",
+            "experience": [...],
+            "education": [...],
+            "company_name": "University Of Chicago",
+            "company_website": "https://uchicago.edu",
+            "job_title": "Member Board Of Trustees"
+          }
+        },
+        {
+          "prospect_id": "57f9e5dac64d31d80e6e9432fe2c500d0bba2c01",
+          "data": {
+            "full_name": "Jensen Huang",
+            "country_name": "United States",
+            "linkedin": "https://linkedin.com/in/jenhsunhuang",
+            "experience": [...],
+            "education": [...],
+            "company_name": "Nvidia",
+            "company_website": "https://nvidia.com",
+            "job_title": "Founder And Chief Executive Officer"
+          }
+        }
+      ]
     }
-  ]
-}
-```
-
-</Accordion>
-
-<Accordion title="Best Practices">
-
-- **Ensure valid prospect IDs** to maximize data accuracy.
-- **Use enriched profiles** to refine candidate selection and outreach.
-- **Monitor career movements** to track professional growth trends.
-- **Leverage structured education and skills data** for talent and partnership analysis.
-
-</Accordion>
-
-<Accordion title="Bulk Professional Profile Output Signals">
-
-| Field Name | Description | Data Type |
-|:---|:---|:---|
-| `prospect_id` | Unique identifier of the prospect | `String` |
-| `full_name` | Full name of the individual | `Optional[str]` |
-| `country_name` | Country where the individual is located | `Optional[str]` |
-| `linkedin` | URL to the individual's LinkedIn profile | `Optional[str]` |
-| `experience` | List of past and current job experiences | `Optional[List[Dict]]` |
-| `education` | List of educational background details | `Optional[List[Dict]]` |
-| `company_name` | Name of the company where the individual works | `Optional[str]` |
-| `company_website` | URL to the company's website | `Optional[str]` |
-| `job_title` | Current job title | `Optional[str]` |
-
-</Accordion>
+    ```
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **Ensure valid prospect IDs** to maximize data accuracy.
+    - **Use enriched profiles** to refine candidate selection and outreach.
+    - **Monitor career movements** to track professional growth trends.
+    - **Leverage structured education and skills data** for talent and partnership analysis.
+  </Accordion>
+  <Accordion title="Bulk Professional Profile Output Signals">
+    | Field Name        | Description                                    | Data Type              |
+    | :---------------- | :--------------------------------------------- | :--------------------- |
+    | `prospect_id`     | Unique identifier of the prospect              | `String`               |
+    | `full_name`       | Full name of the individual                    | `Optional[str]`        |
+    | `country_name`    | Country where the individual is located        | `Optional[str]`        |
+    | `linkedin`        | URL to the individual's LinkedIn profile       | `Optional[str]`        |
+    | `experience`      | List of past and current job experiences       | `Optional[List[Dict]]` |
+    | `education`       | List of educational background details         | `Optional[List[Dict]]` |
+    | `company_name`    | Name of the company where the individual works | `Optional[str]`        |
+    | `company_website` | URL to the company's website                   | `Optional[str]`        |
+    | `job_title`       | Current job title                              | `Optional[str]`        |
+  </Accordion>
 </AccordionGroup>
 
 ## Body Params - Try Me Example

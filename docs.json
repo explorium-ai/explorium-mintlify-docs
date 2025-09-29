@@ -129,7 +129,11 @@
                       "reference/businesses/enrichments/bulk/competitive_landscape_bulk_enrich",
                       "reference/businesses/enrichments/bulk/strategic_insights_bulk_enrich",
                       "reference/businesses/enrichments/bulk/company_website_content_changes_bulk_enrich",
-                      "reference/businesses/enrichments/bulk/businesses_workforce_trends_bulk_enrich"
+                      "reference/businesses/enrichments/bulk/businesses_workforce_trends_bulk_enrich",
+"reference/businesses/enrichments/bulk/lookalike_companies_bulk_enrich",
+"reference/businesses/enrichments/bulk/webstack_bulk_enrich",
+"reference/businesses/enrichments/bulk/company_hierarchy_bulk_enrich",
+"reference/businesses/enrichments/bulk/business_website_traffic_bulk_enrich"
                     ]
                   }
                 ]

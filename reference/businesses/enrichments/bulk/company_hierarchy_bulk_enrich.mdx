@@ -1,0 +1,3516 @@
+---
+openapi: "post /v1/businesses/company_hierarchies/bulk_enrich"
+title: "Company Hierarchy"
+---
+
+## **Description**
+
+The **Company Hierarchies Enrichment** endpoint provides a **structured view of a company's corporate hierarchy**, including its parent company, ultimate parent entity, and any known subsidiaries. This proprietary enrichment, developed by **Explorium AI**, enables users to explore the broader organizational structure a company belongs to — supporting **smarter prospect targeting, whitespace discovery, and coordinated expansion strategies** across related entities.
+
+In addition to delivering a **full JSON representation** of the organization tree (anchored by a unique ultimate parent ID), the enrichment provides **structured relationship signals** describing connections between entities, such as immediate parents and subsidiaries. This offers both a **comprehensive** and **queryable** view of corporate relationships.
+
+By surfacing these connections, the enrichment helps to:
+
+- Identify opportunities to grow within enterprise groups.
+- Tailor engagement by specific business units.
+- Coordinate account strategies across entities under shared ownership.
+
+<AccordionGroup>
+  <Accordion title="How It Works">
+    - **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
+    - **Processing:** The system retrieves all known relationships in the corporate hierarchy from multiple verified datasets.
+    - **Output:** A structured JSON and set of signals detailing immediate parent companies, ultimate parents, and subsidiaries, as well as a full organization tree view.
+  </Accordion>
+  <Accordion title="Example Request (cURL)">
+    ```bash Bash
+    curl -X 'POST' \
+      'https://api.explorium.ai/v1/businesses/company_hierarchies/enrich' \
+      -H 'accept: application/json' \
+      -H 'api_key: your_api_key_here' \
+      -H 'Content-Type: application/json' \
+      -d '{
+      "request_context": {},
+      "business_ids": ["f21530ca2ee13d38c434cff9f6f56726"]
+    }'
+    ```
+  </Accordion>
+  <Accordion title="Example Response">
+    ```json JSON expandable
+    {
+      "response_context": {
+        "correlation_id": "1da4b8f4d3594514a31117c2a72d2f75",
+        "request_status": "success",
+        "time_took_in_seconds": 0.37
+      },
+      "data": [
+        {
+          "business_id": "f21530ca2ee13d38c434cff9f6f56726",
+          "data": {
+            "business_id": "f21530ca2ee13d38c434cff9f6f56726",
+            "parent_company_id": "e11943a6031a0e6114ae69c257617980",
+            "parent_company_name": "pepsico",
+            "ultimate_parent_id": "e11943a6031a0e6114ae69c257617980",
+            "ultimate_parent_name": "pepsico",
+            "subsidiaries": [
+              {
+                "id": "57e40bf2ab85ec3c8368dbe8b57830f7",
+                "name": "soda club worldwide bv"
+              },
+              {
+                "id": "9d0b83a3cbbba4406a24caae8e3bbadc",
+                "name": "opm"
+              }
+            ],
+            "organization_tree": [
+              {
+                "level": 0,
+                "companies": [
+                  {
+                    "id": "e11943a6031a0e6114ae69c257617980",
+                    "name": "pepsico",
+                    "parent_id": null,
+                    "parent_name": null
+                  }
+                ]
+              },
+              {
+                "level": 1,
+                "companies": [
+                  {
+                    "id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "name": "frito lay",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "98ad83bef31de50b0ce05ea49f3c8a0c",
+                    "name": "popify healthy popify",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "6a98d376661629d65b4dd896dc8e3c9c",
+                    "name": "lipton distributing",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "a9b71aed7925eb2177271b40384376c1",
+                    "name": "dorios",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "c5bfcfde8643f8870b5c5cbecb75cd22",
+                    "name": "simba",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "2597c8a09330d41031aa5499da6cc6c6",
+                    "name": "school henri sellier",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "8c89053fcc330560fdee8763717fad13",
+                    "name": "sansations",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "89df543ad4398dd304ff649d7ddba629",
+                    "name": "punjab beverages private",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "21ca21c9c039c3bc8ed1eb9a3429758b",
+                    "name": "pepsico zapadni balkan",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "name": "pioneer foods",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "339d5abde32f46bf69757d54f31f4cee",
+                    "name": "pepsi nederland",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "823c0d34f83c8ddf72bcacddc43f46d2",
+                    "name": "penny’s popping delights",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "fb9d57398f2134ec21497da01d6e9401",
+                    "name": "sakata australia",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "ca3536b266deeae3acab935fb706a564",
+                    "name": "burggraaff",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "c84141182fb84e1d5aa60f849baf2a57",
+                    "name": "sete culleres",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "0e3fdbd47e5795aec6bfe78d69ef00b4",
+                    "name": "sietie kale",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "99d9b2f3459599ca2f88fcf2b286df7c",
+                    "name": "the honickman companies",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "ee02469ae419a436f068ecfed4da48b7",
+                    "name": "mothers sppl",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "94040c8c87824a38f04785f53948a207",
+                    "name": "uncle peps",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "5ac3e9bed7f729a9e4eb2a8db401334b",
+                    "name": "frito lay trading",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "78ab069ccb7691aa7fc71f8a03716417",
+                    "name": "quaker oats",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "c78be13c3e2367406861edf85b5a5cfc",
+                    "name": "sodastream uk",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "f202de524e28d8a7a81e3d87c55a75d2",
+                    "name": "cetap distribuidora de produtos alimentícios",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "25f0faf77dc76db9d9a8dfbf921a1423",
+                    "name": "baya daily",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "e23decc05de726103bf49db606eff51a",
+                    "name": "tropicana",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "cc955400fca4c95e1fecdef1d975d2da",
+                    "name": "mid wisconsin beverage",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "eb402529d376e65d4cfdc0a6c75ababf",
+                    "name": "g and j pepsi cola bottlers",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "810d9b260aebe7a239023773d646cf2b",
+                    "name": "aquadina",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "d99efa5dc005d66278458d7866b3c524",
+                    "name": "pepsi arabia",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "bd9fd809bbe83ead5afd8d136c01c917",
+                    "name": "united beverage kscc",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "09b56387febb985ce677adf869869938",
+                    "name": "pepsi cola ogdensburg bottlers",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "c02909917517b52d390c7740b1d35a88",
+                    "name": "marbo promotions",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "b5bbc68c24a953801f069f468d5592be",
+                    "name": "devendra kumar",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "d5dd6578fedb045d1f93daf8f393cd32",
+                    "name": "rockstar energy drink",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "9ce986871ec0fd728ccd5db678aa733c",
+                    "name": "cheetos",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "0d7fe8b2df998fca4666213d38245f07",
+                    "name": "grupo mabel",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "83d303f71ef8937a131dc08415d6ff1b",
+                    "name": "myx beverage",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "89b58d1cf79c96542ac72f5e55a5ba7d",
+                    "name": "pepsi cola and national brand beverage",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "bd0f59ab548e8e670fcd7747c2dddfff",
+                    "name": "naked dates",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "407a7ad5c0dbe373b2928c1635e94102",
+                    "name": "acadiana bottling",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "9d2a94578afaf9d49c96a8251a313683",
+                    "name": "pepsi bottling ventures",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "4d83c1f36eef76160436cb97e1dc7059",
+                    "name": "kfc us",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "7a6bc6936340393d05e7c8f98af25d63",
+                    "name": "natural food international holding",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "7658ab0c2a620e326f8ce0499e1f6070",
+                    "name": "dew drinks",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "c6ea063ff49e32a13a83a290c47ac28c",
+                    "name": "pep abcd/karea",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "61f483dfda0f356d3842d4a80ce8b953",
+                    "name": "pesi oficial",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "b796578810ec189a6e101220cd22fa4d",
+                    "name": "yachak",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "1f8dc3596d1182a41286fe401658a5f6",
+                    "name": "gatorade colombia pepsico",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "0362c29fde7ebb605534d6b8acf16fb1",
+                    "name": "siete suertes",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "c20f2ae69af3b64e34a59583f81ac1b5",
+                    "name": "crown beverages",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "cace29537bcc18f95d72370b76276a6a",
+                    "name": "sodastream switzerland",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "c4c5d723742f6e4a2cbc7d6f6dad63b0",
+                    "name": "sabra dipping",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "8883c9ba1a7e5b4c62197752bc7446e8",
+                    "name": "dubecq",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "ac1639957081867ab311dfe3c48a3f92",
+                    "name": "pepsi cola bottling of bennettsville",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "b54ae2473115787ab98b01616dc31ca1",
+                    "name": "mug lovers",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "de9abe5a3c777ce012c2efef4eec45f0",
+                    "name": "menabev",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "fce54aa61accfd57a46ba4aa43b3ac93",
+                    "name": "pepsi jordan jice",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "6619545e0f4581d13abe21dde8d86cb2",
+                    "name": "poppy incorporation",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "9a599d28b673d4b7207c001593a8a4e9",
+                    "name": "simba foods",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "cba91f9ad2240bf7170d3722dd82f842",
+                    "name": "manzanita sweets",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "528c6f57242b7e9d3dfbebcc5931308a",
+                    "name": "smlc pepsico",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "545161b9e8ee55abb080695e3b95985f",
+                    "name": "pepsi cola of florence",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "3e6c0b944522118787d0646a1120b0a8",
+                    "name": "rockstar energy",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "dc79af02db756e1df6699bfa75559511",
+                    "name": "pl di poppi luigi",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "c790c0f4ee47ea44ab19c3b0827fb15f",
+                    "name": "poppy miles",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "ec5d8c4cb3df83844b61c122aadef27a",
+                    "name": "siete en el",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "c4bebde456a9191939e17445b3b9dc97",
+                    "name": "siete family foods",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "5aa5da5bce3b3bfd2bd6fa135b2060bc",
+                    "name": "go snacks",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "7c17487043008cabdc46192500ef0e43",
+                    "name": "i’ve got the vapors",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "94642ee007bdfe1d29211ace88cc3bd9",
+                    "name": "walkers outdoors",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "28d2354de3979b27017904824b5ca529",
+                    "name": "middle school henri martin",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "6451214c67ba46cc196cd9a38e6f2e32",
+                    "name": "smv beverages",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "2506d1b38988bee8ad5bbc9ba57a7d39",
+                    "name": "pepsi cola bottling of davenport",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "77bbb6ded53339f8c3d295e39d7756ec",
+                    "name": "poppy international",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "6bd184efa33d2583f84251ece3c8fc25",
+                    "name": "poppi",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "4f32da08427f05c42802bd7620c6ace0",
+                    "name": "poppi group",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "82c89e8e7eb5ce7805fd6ac346647dda",
+                    "name": "gatorade dominicana",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "890d36c0c7508149e722dface4c54a72",
+                    "name": "haidri beverages pepsicola international franchise",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "c962eb0dae0b5ac5d62e91743ba72435",
+                    "name": "jksm pepsi cola bottlers multan",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "1d731bc9ce0416f655590993cae433f3",
+                    "name": "sodastream south africa",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "8eb7d933ecc8c801a509c9019d525d56",
+                    "name": "obela fresh dips and spreads anz",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "d2db85ec0503b7031f2ce59d897ecff1",
+                    "name": "gluki",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "d392fea9012b5832635c1bbe2d6c8591",
+                    "name": "rockstar on campus",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "fcee97d3e9a79563355af5289071ded5",
+                    "name": "pephire",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "26b6d54625d0081df08f5ba590bd68a9",
+                    "name": "aquafina india",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "262e5d6ad0be9e81ba280ef9d621dce7",
+                    "name": "sobe gourmet",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "358b57af1dba500174e7daf92c9805f1",
+                    "name": "carolina canners",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "e05340c95125b27413de0977828787ef",
+                    "name": "tropicana uk",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "563bbc252d4ba2ddc1936f4b0d5ec709",
+                    "name": "munchies medley",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "7ef51cb365494cf3f0144d6949cf9f4c",
+                    "name": "pepsico south africa",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "ba3fa1caaf49edc9f136affe733c7783",
+                    "name": "pepsi bottlers azerbaijan mars overseas baku career page",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "a5e22087d44a8692762edcc846a1e61b",
+                    "name": "the smiths snackfood pty",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "afa7448b2bc2ecbafef63f2a13b4b0ee",
+                    "name": "bardal siete",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "7caadae2659c8f59af274e43f501e9c5",
+                    "name": "pepsi cola products philippines incpcppi",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "b753a8e307ed0da0a84ca2cbbe399c0b",
+                    "name": "starry foods usa // savvy foods mx",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "0ce7d42aa27e5fc51d29faadf1d81869",
+                    "name": "van dusen beverages pepsi cola bottling of astoria",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "d6a8f998d5300ab66be83af8bb0ce3fb",
+                    "name": "pissa",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "74db08a8fe585f251950ebb2f41bb338",
+                    "name": "poppy love",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "afd5ad21be3a753f078a16155af682ab",
+                    "name": "rockstar energy drink car wrap",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "5ae2fb8a81f7126d1106297860c17b13",
+                    "name": "rockster south africa",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "75e88a931c836df644af54f5eec48044",
+                    "name": "pepsi naubahar bottling",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "cbd89e6817dc83bfda5010abf772819d",
+                    "name": "sabra int",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "ea65b9c5bdce05c49b0248198ade4d3a",
+                    "name": "stars food",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "8163c9186ce11dec22be1ba406326db3",
+                    "name": "health warriors",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "71f1e474d21289c31bdb61bdc3488a3f",
+                    "name": "poppy and sebastian",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "7e1d04bd63ec4882ad225ec548802d32",
+                    "name": "poppy and pops",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "89af92d2faafbd69f262e558c7131d3d",
+                    "name": "snack and drink",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "36923eebf673c2ee8b27c0816681c078",
+                    "name": "international refreshments pepsico",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "85fdac95ab489a9545bda1d667a5f8c0",
+                    "name": "pepsi cola champaign urbana bottling",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "1677e0f46933df4f5300254617686938",
+                    "name": "siete banderas",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "34c88c2b689c4a1eba64b872ea1880c9",
+                    "name": "future life solution",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "4eb065d04a42b9dd213718c05a0a5db6",
+                    "name": "futured life",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "5d34f3b10fb042e724a72af66a4bb145",
+                    "name": "pangiter",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "d2e9c95e1722ac0a89f3fab4562b76ac",
+                    "name": "bare",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "565bcafb4fd59f15e547aed83ed06187",
+                    "name": "sabra mediterranean grill",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "3da21a761e769bd0ecdefc8d8ff09702",
+                    "name": "pepsi cola bottlers australia",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "a63036881f581ffdf78f4cef2c7ebc87",
+                    "name": "pepi sánchez",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "db6eaf69eef8acf7c6832ca23d7fa753",
+                    "name": "stacys gluten free goodies",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "df828de99c5ae25a6f3db38dae2b26b8",
+                    "name": "pepsi cola bottlers lahore",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "bf8f75f9d571b2e688028333b382947b",
+                    "name": "ип ооо international beverages tashkent pepsico bottlers in uzbekistan",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "4adeb3008e38a0a92d9d3570b732c4e0",
+                    "name": "iberia refreshments pepsico bottler in georgia",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "9fe8340ae191083c6ed933a7f56ed9d6",
+                    "name": "bubbly flavored molasses",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "336d20d58d445ad7b47aa5ad26e83ddb",
+                    "name": "productos percisa",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "3c12144fe2f82e2419390aeb9433ddc4",
+                    "name": "snacks and more",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "187b2aeb6aa6b4bbbceec4a11c39f6cf",
+                    "name": "peps17",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "e10b30b53aa2e7f77df37c1c6dbf7e10",
+                    "name": "obela mx",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "b12f91995e6b5ec1f562f129cabf803f",
+                    "name": "punica getranke",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "a3d6ae087ec58ca699fac0b8803c3217",
+                    "name": "tropicana oil",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "7208053f9abc9af44c0ecb29387eb048",
+                    "name": "paradas 7",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "1c08a1d833d3fdb690f17545c6dce645",
+                    "name": "peps elec",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "688a1bb1e57933221d9801d703a37c6a",
+                    "name": "poptys",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "6d234637bb11df0855221b074c665179",
+                    "name": "dew",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "16473ec4e73f7768409ef1a7fb933c54",
+                    "name": "soda g",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "690cf9fd1c8809ff00adb6bb28878636",
+                    "name": "poppy perspective",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "ffe8ab28ee2377e267f6ee6d2e592cd8",
+                    "name": "pepsclub",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "4bd7146d99a60027394267e022923a91",
+                    "name": "irfan khokhar",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "5e14339911dcae4a7d8c835699cbdb13",
+                    "name": "stacys pita chip",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "9fe4af1a818bafadb0ffcc1ac67a17af",
+                    "name": "frito lay",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "ad2cd213b600ab9091d8407a06f5525a",
+                    "name": "siete onces catering",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "c9294a15612a98f22fead9dd49048516",
+                    "name": "yourfuturelife",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "f21530ca2ee13d38c434cff9f6f56726",
+                    "name": "sodastream international",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "a8e66274246c30ab40c42efb55780139",
+                    "name": "pepcol",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "83904a4165c96c6a59745f73f8deaf0b",
+                    "name": "tropicana alvalle sl",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "a5c6595768cefe781f4fb90bbe3bb5ab",
+                    "name": "tropicana food products",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "c255ef57658322e795d7d960eab0fb87",
+                    "name": "siete mares shop",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "a3318ee6f8388d532ee46b25db0c519b",
+                    "name": "bare foods catering",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "f426a7a32ea7581a37128d1e69805054",
+                    "name": "pepsico india",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "a0546332c6be4b13e71ef32ce9d69ed7",
+                    "name": "pepsi logistics",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "c0828019915d25683d01089dc7854f01",
+                    "name": "futurelife health products",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "3e6fd5168c95dbc7a38d5245baf45092",
+                    "name": "bare foods global",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "53752952641c9d9dbdbfbb79d410097d",
+                    "name": "seven saints",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "add1137ecdce26b36d87d128b2606f87",
+                    "name": "flopipo",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "ff4fdb002b55402aadb0b558440d8293",
+                    "name": "carbonated water making machine",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "141c7b6fd6a585cdd11c75e33877af67",
+                    "name": "pepsico breakout accelerator",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "f0f23c95849490463c500bbbf73b59e6",
+                    "name": "bluebird foods",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "f6274c54c42c5a55a42d73796c933c62",
+                    "name": "gatorade plant indianapolis",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "3ce6770e549581c0c1fb0cd44f021c2a",
+                    "name": "karinto",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "5df85e4cb34988247ca314d8bb3f1f5f",
+                    "name": "sabra",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "28167ab7459bb424caadb68840626624",
+                    "name": "shoarma sabra",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "a381bba5dbedee6210ab394b0584832b",
+                    "name": "city park pepsi tennis center",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "858892393391a2880f7086c8efee1a5e",
+                    "name": "pepsi cola of missoula",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "8aecdfff9a377213bcc676dac40dbe37",
+                    "name": "pepsi cola puerto rico cbc",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "1e942981411db6bb4d0d89bca996d696",
+                    "name": "biolumen",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "b780917e5f24454601c4d1001cd2850e",
+                    "name": "siete",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "d2ce3feaca28f0a80f1c597a03099e82",
+                    "name": "kevita",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "164b4f5a21d5d42a2f1b53cae87b1a6a",
+                    "name": "cape breton beverages",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "4d675e418480d4ba5de41e88c03d357a",
+                    "name": "siete cinco cero",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "f13150bef751d050e04a5ebd770f8078",
+                    "name": "ahmadi industries bsc",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "a5057132cbae25bb77298d2be9f5dd7c",
+                    "name": "7 lézards",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "7ff759933411e30947a0900b2e4bcf0b",
+                    "name": "pepsi cola of bristol",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "0081cf7c381e288e070a86c8b40aa91f",
+                    "name": "pioneer foods roasty tasty",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "0165e2bddd15ca1bfd45945312169876",
+                    "name": "pink poppi",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "04ed85556bfa5b96d3f8ff60b5c0f422",
+                    "name": "northern bottling franchise of pepsi cola international",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "7bed48470d804b661b530cbd005d9e84",
+                    "name": "mabel cereais",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "0dc082da2517d2b834200ed616db2618",
+                    "name": "sodastream denmark",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "8a74f5e566bca7ddfe68e77a386cfab4",
+                    "name": "pepsi cola distributing",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "8d3644d4828fef1160a938be53948ae6",
+                    "name": "pepsi cola bottling of la crosse",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "9922fd037fa909b6d8da9ae01b5dbc9a",
+                    "name": "pt buana distrindo pepsi cola",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "4688f7ecc50124bf7331691d3e47d214",
+                    "name": "potato vending machine",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "dcbbd622d7a646a7f2c516d0d925a9c0",
+                    "name": "mabel treats",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "a4423c634eb95fc6c092892ac0a4d531",
+                    "name": "amacoco",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "7f74c33aa406d84eb415a3a18274c25f",
+                    "name": "sabra kosher bakery and restaurant",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "a891b7871f71f8c718d694eb6a1a0adc",
+                    "name": "pipers crisps",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "c991010cee65cd127927865d6bdb8b08",
+                    "name": "harrington bottling",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "44234543068fa889684b17c36d915aec",
+                    "name": "saudi snack foods",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "878076a2f3a7577123a57449000ec06f",
+                    "name": "wimm bill dann",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "12eaa071b5d68822159e21ea6a12f16f",
+                    "name": "the popcorner",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "cde335de5db1808bc4381c7e9f13643a",
+                    "name": "ma che siete venuti a fa’",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "f0e15a9ea34907cb96ed15d55f22582d",
+                    "name": "little farmer",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "cde4c78013adbe4603aad140f4628bb4",
+                    "name": "henri and scie",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "b3a9cd45210475c6af2f7c765c2b018d",
+                    "name": "pak teem",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "1359d80d799ea5b085ab83b95c566bd5",
+                    "name": "百草味",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "de1517e572584527bf5a7a8caf26b1e4",
+                    "name": "lays market",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "e2a581ad87e2b762490a701ede6264e8",
+                    "name": "bare snacks",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "ceb1a00e87217fb10fdceb772e931cd8",
+                    "name": "snackaroos",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "3250eeb0a3d163f9632d7c038d6b22ac",
+                    "name": "poppi burgos tienda",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "02e9221f16444c0db1500dab27021290",
+                    "name": "sting and honey",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "bba4e67872e98f3f6d4959eb3b308f9b",
+                    "name": "soda club",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "08a299f19f68c2e73c3a537eed9816cd",
+                    "name": "guillaume cerdini",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "6a47df4769dd7c949be94879f07d1089",
+                    "name": "one natural experience",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "124ad4700fe879a92e7427d9312a2185",
+                    "name": "sabra food",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "bbcb7472991a06284f83b0f31824bd45",
+                    "name": "hangzhou minle snacks",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "9497ee2153f449d03d472f6f6e2a3b93",
+                    "name": "siete semanal",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "e5b3c26ecd3fb3d88b52aa6b3282d47f",
+                    "name": "obela deutschland",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "175c7026bd69d0a56b8b0e41459f2a4b",
+                    "name": "hotel poppi",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "33f51878b68ea8838d57106bf1856cae",
+                    "name": "kmbc private a franchise unit of pepsi foods",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "73c10ab62d8936890f9a2f9d633abd83",
+                    "name": "pedro jorge cruz",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "83849fd88868f9a35b4d2480b4af3652",
+                    "name": "pepsico veurne",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "90d9714bd3f0bab9d19dc91d6bb5b80f",
+                    "name": "samabra",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "b55cc1c6011b1e3935961a545d7d1d46",
+                    "name": "aqua fina kitchen emporium",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "e9b588761c446e0989a443db607ccd9a",
+                    "name": "pepsi cola memphis bottling",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "ad0982f6e5c2a651a9cab8915a097c0b",
+                    "name": "lime rock springs",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "bdc41e086724611647aedcf36bd512e0",
+                    "name": "local school henri deglume",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "08d653659cb915f28707737b586ff3f2",
+                    "name": "hummus market",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "2306b62d472c3193811c89fd5b7774ff",
+                    "name": "pepsi cola soccer complex",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "5215af5a6986bba3c030ead796c79a74",
+                    "name": "garza proveedores",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "6aa63fe09032df0e60c0b3c1ae30f070",
+                    "name": "pepsico flavorworks",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "678b2d3a0bc3dc85abfa9d00eb1bfeea",
+                    "name": "futurelife foods private",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "44cece377a7c1f9fdea01c44a8611849",
+                    "name": "siete luminarias",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "543c783cd5f7bbc2d83acf439e87361d",
+                    "name": "riaz bottlers pvt pepsico",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "6464f659789502a61378991cc62891bc",
+                    "name": "pepsi cola bottling of marysville",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "4347e60801eeb84f635297a9291e8cb1",
+                    "name": "frtio lay",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "5a27d94f10c1621027d6734ac246a068",
+                    "name": "frito lay poland sp with oo",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "a422dbf9ccd11b2d2917286c4b6df29c",
+                    "name": "juntos crecemos",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "d50846caf771cf8ac127c27890c028ae",
+                    "name": "miss vickies south",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "f6c5954046da82ac265bac35f1ccf92b",
+                    "name": "boucherie sabra",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "1a029941cd6f8c535e2d35151a44bca2",
+                    "name": "snacks services",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "4f8d74e2129ec02191e12f4c8e531bc3",
+                    "name": "middle school henri barbusse",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "b53e080065f3c4670cadd565a4996eaa",
+                    "name": "pepis shop",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "c4ae8320fc552428a9e73724a905a098",
+                    "name": "mabos snacks",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "d967d7fdfff8e1d507920c5288748450",
+                    "name": "gamesa s de rl de cv",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "141b567e8cbb0f9eb3e13bb8161e14e3",
+                    "name": "gn beverages",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "5ba4fd160e063e79e2f4a2b8e31438ec",
+                    "name": "stacy’s juicebar",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "748d3c73b84334487c93d9c31a647ade",
+                    "name": "what’s poppin",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "75fab642af3e79eaf97aa62313e9d870",
+                    "name": "sodastream professional",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "a37c5dfb4049efea3bc8613ada49c452",
+                    "name": "lebedyansky",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "3b1430d8b99216e8d69fa600eaa449bf",
+                    "name": "brisk trading",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "52513125e5765c7b109688c44762474e",
+                    "name": "spitz international",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "a96abac52d0a36d86bb328fc5f8c59f1",
+                    "name": "aunt jemima mills",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "447888dcf26ce72c8dfb25353baab791",
+                    "name": "pepsi al hayat",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "58762ad3185c48926683cfca6e4dd313",
+                    "name": "captain crunch",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "87da9494afb39a1c09a380f09c554316",
+                    "name": "poppi’s bbq",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "6d0c8ce68ded5fa800e12889353fc6be",
+                    "name": "pepsico pakistan",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "611213ce222e0245ad1368d38475b37b",
+                    "name": "simba pty",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "8e8dbaaad04a881b43b2ff32ed0865b4",
+                    "name": "gatorade uk",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "f4ad2c7dca6cd1036380125c9a08f9bb",
+                    "name": "snacks´n drinks",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "ef157c95212e3aaa9da26b67938f71cf",
+                    "name": "izze",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "1f413071fc570249ef7d95379ba39ce3",
+                    "name": "esspaña",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "9f7202c51e12f4818503aca55deceac9",
+                    "name": "miss vickys",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "5237b1935dd5ed2956fe2b8f0c8148ea",
+                    "name": "tasty rewards",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "5fed9c0b635d4d161b5ec95b147587b3",
+                    "name": "sabra grill",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "6e6d51ef180d3805401eb6650a99aaaa",
+                    "name": "ar tradears",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "7c80675bbb664bbeb75f085c9f5d6204",
+                    "name": "pepsi cola newburgh bottling",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "f44e4a79c01f21637c734d1929564269",
+                    "name": "smith snack service",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "3b57d4abffe9b5bc054e96e3d396df78",
+                    "name": "springfield pepsi cola bottling",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "64bde143777bb30fc41edbe5940f0fec",
+                    "name": "sodastream nordics",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "a379751906e45d3de4f1655492aef3fd",
+                    "name": "sobe",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "66268fa0438c50582a2e92e5cc6e0761",
+                    "name": "health warrior superfoods",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "70888ef7277372bc7eccd0a28916b01b",
+                    "name": "uncle chips",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "8f0a24772de600124077459624d471ee",
+                    "name": "súper distribuidor cabimas",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "d940d92f45e08bc60678418cdb193b34",
+                    "name": "quacker",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "2dcc9ca7148b5f5d14d4383a5e93c2b5",
+                    "name": "sabra beirut mix",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "3164d893e2885850ed6345814ccc8ae7",
+                    "name": "barec",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "c038e4a410304082505801434e2351ac",
+                    "name": "gatorade bolt",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "02c64ce61664eef11d51888a79f708e4",
+                    "name": "sodastream international bv italian branch",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "a3562ba45a819fa2688ffac0bc1c4c4e",
+                    "name": "peps eat",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "eeb06ab5854266d0099aef9f2e00cfae",
+                    "name": "siete azul",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "8be031af03574a36a5c3572ea34f0b1a",
+                    "name": "walker’s popcorn",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  },
+                  {
+                    "id": "d7e4378eb916b56c0b286df9b774baf6",
+                    "name": "cytosport",
+                    "parent_id": "e11943a6031a0e6114ae69c257617980",
+                    "parent_name": "pepsico"
+                  }
+                ]
+              },
+              {
+                "level": 2,
+                "companies": [
+                  {
+                    "id": "6e787232b1980a9d9bdeb7d7b7d4f965",
+                    "name": "fritos and foie gras",
+                    "parent_id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "parent_name": "frito lay"
+                  },
+                  {
+                    "id": "e5175d662bf6e68aa92d9e9888313edc",
+                    "name": "lucy’s hot fries",
+                    "parent_id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "parent_name": "frito lay"
+                  },
+                  {
+                    "id": "c4ac3cfe8150f4e9439fed547869107a",
+                    "name": "crackerjacks concessions best jerky",
+                    "parent_id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "parent_name": "frito lay"
+                  },
+                  {
+                    "id": "65f868e7460706e5fef4810b36812a10",
+                    "name": "smartfoods",
+                    "parent_id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "parent_name": "frito lay"
+                  },
+                  {
+                    "id": "6fe76eaafb7ac09378393e7fe79d6833",
+                    "name": "ruffles pet care",
+                    "parent_id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "parent_name": "frito lay"
+                  },
+                  {
+                    "id": "525225dfef742bfacc8bf4c60f5c6624",
+                    "name": "togachipguy",
+                    "parent_id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "parent_name": "frito lay"
+                  },
+                  {
+                    "id": "967324d4b82e36af3f286637c6012232",
+                    "name": "crackerjacks food truck",
+                    "parent_id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "parent_name": "frito lay"
+                  },
+                  {
+                    "id": "a47d032df330522ae308d7d3348912c0",
+                    "name": "twisty’s potatoes",
+                    "parent_id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "parent_name": "frito lay"
+                  },
+                  {
+                    "id": "22f94ff218da460e603755d1b9a61ed8",
+                    "name": "ruffles art studio",
+                    "parent_id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "parent_name": "frito lay"
+                  },
+                  {
+                    "id": "6b0dc1e8e9e907272ffb2dfd20aac35e",
+                    "name": "ruffles and rust vintage",
+                    "parent_id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "parent_name": "frito lay"
+                  },
+                  {
+                    "id": "d4fa48e39723d73d2f24c0616f326e43",
+                    "name": "smartfoods vending",
+                    "parent_id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "parent_name": "frito lay"
+                  },
+                  {
+                    "id": "ea152325c1f46ac88ed15a1b2006d08f",
+                    "name": "ruffles and rosesuk",
+                    "parent_id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "parent_name": "frito lay"
+                  },
+                  {
+                    "id": "ea44de48111e3b845b75e1dc6e5feac8",
+                    "name": "the smart food",
+                    "parent_id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "parent_name": "frito lay"
+                  },
+                  {
+                    "id": "7007ed40a5653063bfa2d5a8bd4678ff",
+                    "name": "smart food",
+                    "parent_id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "parent_name": "frito lay"
+                  },
+                  {
+                    "id": "135a12636cf31a90cffe54f412dd89f7",
+                    "name": "aardappelen nijs nw frito",
+                    "parent_id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "parent_name": "frito lay"
+                  },
+                  {
+                    "id": "d14486d05a3cc89d35b3d7724cd9f388",
+                    "name": "smartfoodies",
+                    "parent_id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "parent_name": "frito lay"
+                  },
+                  {
+                    "id": "db1018d846a4fbf979d23240cd831d76",
+                    "name": "lay z",
+                    "parent_id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "parent_name": "frito lay"
+                  },
+                  {
+                    "id": "03ef1e732c62534fe519fc322f689ac5",
+                    "name": "devon lazy spa hire",
+                    "parent_id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "parent_name": "frito lay"
+                  },
+                  {
+                    "id": "7aeca492efe53edbae651079e428a3a8",
+                    "name": "cracker jack cafe and take away",
+                    "parent_id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "parent_name": "frito lay"
+                  },
+                  {
+                    "id": "92580114c7886807b08f6a0a306589cb",
+                    "name": "smart corn",
+                    "parent_id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "parent_name": "frito lay"
+                  },
+                  {
+                    "id": "ef54276722e5b930d2a15e1b0672ae62",
+                    "name": "lay business consulting",
+                    "parent_id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "parent_name": "frito lay"
+                  },
+                  {
+                    "id": "0eeb317e38c00b7b574f44ed9a8e1b40",
+                    "name": "doritos store rydalmere",
+                    "parent_id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "parent_name": "frito lay"
+                  },
+                  {
+                    "id": "09e1bd17b3f6532d8a35cf8f013b207e",
+                    "name": "cracker jack auctions",
+                    "parent_id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "parent_name": "frito lay"
+                  },
+                  {
+                    "id": "65e3209b747bdebce629d4abcfe4b422",
+                    "name": "firito taco",
+                    "parent_id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "parent_name": "frito lay"
+                  },
+                  {
+                    "id": "ee9187cd088f86fd58914c884207fedc",
+                    "name": "ruffles and relics",
+                    "parent_id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "parent_name": "frito lay"
+                  },
+                  {
+                    "id": "987a3e8ee74dbd55936e8780b66ea9eb",
+                    "name": "matutano",
+                    "parent_id": "6eebb2af6bb0fb54b7ef435a98bb66d9",
+                    "parent_name": "frito lay"
+                  },
+                  {
+                    "id": "3ed13ba781120b53b6bcb962da115ffb",
+                    "name": "simba smart watch",
+                    "parent_id": "c5bfcfde8643f8870b5c5cbecb75cd22",
+                    "parent_name": "simba"
+                  },
+                  {
+                    "id": "34c8b1c57a24ed42171831feac0af8f7",
+                    "name": "five star taekwondo",
+                    "parent_id": "c5bfcfde8643f8870b5c5cbecb75cd22",
+                    "parent_name": "simba"
+                  },
+                  {
+                    "id": "28ad3d18c7caecf4d4bbdba0448c4f74",
+                    "name": "serengeti simba lodge",
+                    "parent_id": "c5bfcfde8643f8870b5c5cbecb75cd22",
+                    "parent_name": "simba"
+                  },
+                  {
+                    "id": "d864dc3dc42ce2a646568a97491f7099",
+                    "name": "simba 4x",
+                    "parent_id": "c5bfcfde8643f8870b5c5cbecb75cd22",
+                    "parent_name": "simba"
+                  },
+                  {
+                    "id": "c3e72f35ab574e4987b8287f28e897ad",
+                    "name": "simba towels",
+                    "parent_id": "c5bfcfde8643f8870b5c5cbecb75cd22",
+                    "parent_name": "simba"
+                  },
+                  {
+                    "id": "fb7bf1f9b81f0d9821af08d113b645c3",
+                    "name": "associated vehicle assemblers",
+                    "parent_id": "c5bfcfde8643f8870b5c5cbecb75cd22",
+                    "parent_name": "simba"
+                  },
+                  {
+                    "id": "fc26dc62189f6ae194d88199bdabe07d",
+                    "name": "radio simba fm",
+                    "parent_id": "c5bfcfde8643f8870b5c5cbecb75cd22",
+                    "parent_name": "simba"
+                  },
+                  {
+                    "id": "0b2aa2c568bdf3c55deb6a69ab80ba51",
+                    "name": "ashok leyland kenya by deluxe trucks",
+                    "parent_id": "c5bfcfde8643f8870b5c5cbecb75cd22",
+                    "parent_name": "simba"
+                  },
+                  {
+                    "id": "0cc608ff9c624a18b6b12bd7d0797c85",
+                    "name": "simba for you",
+                    "parent_id": "c5bfcfde8643f8870b5c5cbecb75cd22",
+                    "parent_name": "simba"
+                  },
+                  {
+                    "id": "67277e5fa7f036d6e2366b468430dac3",
+                    "name": "roar refreshments",
+                    "parent_id": "c5bfcfde8643f8870b5c5cbecb75cd22",
+                    "parent_name": "simba"
+                  },
+                  {
+                    "id": "698c5fce64c788624563e54db2139ac9",
+                    "name": "simba water",
+                    "parent_id": "c5bfcfde8643f8870b5c5cbecb75cd22",
+                    "parent_name": "simba"
+                  },
+                  {
+                    "id": "025d34ba7f5a7780e04dd255364033ab",
+                    "name": "simba enterprises",
+                    "parent_id": "c5bfcfde8643f8870b5c5cbecb75cd22",
+                    "parent_name": "simba"
+                  },
+                  {
+                    "id": "3c48423207ddc993dac7a2fe14677c49",
+                    "name": "simba dojang taekwondo",
+                    "parent_id": "c5bfcfde8643f8870b5c5cbecb75cd22",
+                    "parent_name": "simba"
+                  },
+                  {
+                    "id": "1ae13237d6a14e87de238114314c76e3",
+                    "name": "simba queens",
+                    "parent_id": "c5bfcfde8643f8870b5c5cbecb75cd22",
+                    "parent_name": "simba"
+                  },
+                  {
+                    "id": "82d17001e155f752d063f8acde6d40b3",
+                    "name": "simba money",
+                    "parent_id": "c5bfcfde8643f8870b5c5cbecb75cd22",
+                    "parent_name": "simba"
+                  },
+                  {
+                    "id": "af0dccb36dd033652e4589b93f047277",
+                    "name": "simba market",
+                    "parent_id": "c5bfcfde8643f8870b5c5cbecb75cd22",
+                    "parent_name": "simba"
+                  },
+                  {
+                    "id": "04e28e342cbd0912ad6cdf8673f80fe9",
+                    "name": "simba escaliers",
+                    "parent_id": "c5bfcfde8643f8870b5c5cbecb75cd22",
+                    "parent_name": "simba"
+                  },
+                  {
+                    "id": "b122191703d292cb88ae9b9e22ea0c7d",
+                    "name": "simbas den pub and bistro",
+                    "parent_id": "c5bfcfde8643f8870b5c5cbecb75cd22",
+                    "parent_name": "simba"
+                  },
+                  {
+                    "id": "0ed5ef7a6d31bd7ff0ea09feb621e9cd",
+                    "name": "simba grill restaurant",
+                    "parent_id": "c5bfcfde8643f8870b5c5cbecb75cd22",
+                    "parent_name": "simba"
+                  },
+                  {
+                    "id": "0e11e7c2dea95d5b354996c599fac56f",
+                    "name": "yibe subsidiary of simba developers",
+                    "parent_id": "c5bfcfde8643f8870b5c5cbecb75cd22",
+                    "parent_name": "simba"
+                  },
+                  {
+                    "id": "1dd5c6b784483cb264889ed4856b38e4",
+                    "name": "punjab concrete",
+                    "parent_id": "89df543ad4398dd304ff649d7ddba629",
+                    "parent_name": "punjab beverages private"
+                  },
+                  {
+                    "id": "e1b9771d4080cc40a5b2c2d2f958bc59",
+                    "name": "punjab food center",
+                    "parent_id": "89df543ad4398dd304ff649d7ddba629",
+                    "parent_name": "punjab beverages private"
+                  },
+                  {
+                    "id": "1f04cf42bb8e13bab9605a5120742d97",
+                    "name": "punjabs agrotech india private",
+                    "parent_id": "89df543ad4398dd304ff649d7ddba629",
+                    "parent_name": "punjab beverages private"
+                  },
+                  {
+                    "id": "f45d5f1f93e1bb3accd40a6fab1b6277",
+                    "name": "pivrifine water",
+                    "parent_id": "89df543ad4398dd304ff649d7ddba629",
+                    "parent_name": "punjab beverages private"
+                  },
+                  {
+                    "id": "2e2f781a1d5532a18cd6ba6f1b288d4e",
+                    "name": "pioneer texas and pioneer lot services",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "5c9b9db8bb6221bf5781ca6592fc9adb",
+                    "name": "crowdform",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "071054f2fea556166875f737abb7f08a",
+                    "name": "pioneer tv and appliances",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "d9ee9a9c0773759f16e6e458cbe14670",
+                    "name": "the pioneer",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "8155522f0f2c717572383fc86618b172",
+                    "name": "ketchikan daily news",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "fd7e51bf85904aa99586c4386ea92673",
+                    "name": "pioneer building supplies",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "3a8fe28be188a2ba4e7f69185e316232",
+                    "name": "pioneer property solutions",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "ecc3036d054ed95037fac20614ccd1b0",
+                    "name": "pioneer nursing service",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "75e12a516341f7059a434e13c67b4d4f",
+                    "name": "pioneer funding group",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "76902fe1a83fe76bfe9ef1a9a37eb1ca",
+                    "name": "bpo pioneers",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "cdd966ff645d80f9fec6b2f2a202bff4",
+                    "name": "pio | communication agency",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "18f502fda75f07fbb5b1772162b5ef62",
+                    "name": "stream foods",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "1a8a8a32b346a61e7eed408ef525e3ca",
+                    "name": "garage w van empel",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "3f3e32925fbd0ffb15e826cf9978c15a",
+                    "name": "pioneer street restaurant downtown ridgefield wa",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "66d69e82e365833df3a666cd6ea6127d",
+                    "name": "pioneer filers",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "30e99b87f3c54dd521c3d2d88aa05201",
+                    "name": "pionex audio solutions",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "cb614e3041c241ef7d79e80fadf41672",
+                    "name": "pioneer flanges and fittings",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "ccb2290b8b76f95195b52d0b6be90f3f",
+                    "name": "pioneer austin",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "94912c83a31ef27edfd582700cfccfa8",
+                    "name": "pioneer systems and projects",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "7dac726aef49642f981c484dd717aa8d",
+                    "name": "pioneer industries bapunagar",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "4ad03cd52ac7651780efc6ef61cc57df",
+                    "name": "pioneer exteriors dallas",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "dd80cf74b635db2ff4ddcbf63e726cca",
+                    "name": "pioneer cleaning specialist rob pound",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "9f669e2519862a83689f0e317ae8ca66",
+                    "name": "pioneer automotives",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "3d47bcefc151702ea9c301177ef41d4f",
+                    "name": "pioneer family pre owned auto",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "8e3c78e7b4ebc3a154b72a4fdf91124a",
+                    "name": "cornerstone church swansea",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "2b821b786541632ce51e198a476479ca",
+                    "name": "pioneer car care",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "502e9f0c4199eaa5f49996dfdd22de4a",
+                    "name": "lone peak lookout",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "cc2562ebcf133cdeb45b8d33f760e878",
+                    "name": "pioneer hospitals p",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "e2eadf2a2235b6112d05f757d748a390",
+                    "name": "pioneer transmission and general repair",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "b8d730faf6fe788432941a36ca078993",
+                    "name": "pioneer abrasive",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "538cad7294ee2a27749530a0e9429484",
+                    "name": "pioneer feeds",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "a784ed9d215ff580d8a5d77278c8a37d",
+                    "name": "pionec electronic systems",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "2bf3f377ae87820827683a20a28d769a",
+                    "name": "heartech precision",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "e4d09a38f82b677b8ceee25dc8529c56",
+                    "name": "pioneerinc",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "41f044e3ddb0e1621bc890fae8125ee8",
+                    "name": "talentgroup asia",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "c347523a50714c4e8491818d3fef2ccd",
+                    "name": "pionerr car music system fittings",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "0f9fd879f7b2e5173116a3e0451923ee",
+                    "name": "talent group asia a pioneer design group",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "3fe7efc7aeb15374743e419bd194ee48",
+                    "name": "pioneer sewing machine",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "cb5c888d91d09126bea07746c1649b94",
+                    "name": "dsl philomath",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "e4cb259e940e66c3e363c19df93f7070",
+                    "name": "gerda doors",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "c225b2e82831716c8acc35c9e1bc2c65",
+                    "name": "universal business computing",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "e23e45acb6ef4111ad5b50e54931519e",
+                    "name": "new pioneer spring",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "f3d9e18274f4f0f7ba4e8c1bb9b7449b",
+                    "name": "first pioneer industries",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "567526e9f96cb54fce1b8c11d3318703",
+                    "name": "bokomo foods uk",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "d8417a3bdb3665296bb9b24cec339305",
+                    "name": "knayam foods",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "dc9f29cd765e92730caa3e58f5f8e173",
+                    "name": "pioneer plasma catalysis for co2 recycling",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "9d5d9b90f2f5ac3372d138e5fc5c9222",
+                    "name": "pioneer textile engineers",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "4b7d83896822023921cd60fc53af9c6c",
+                    "name": "gantry public house",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "abc41a3d706613ea7ad3c54da1d99d79",
+                    "name": "pioneer cuisine",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "9647173bf9d6f51505b42739452ae9cf",
+                    "name": "pioners",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "cd534321d87daa04174b04fdd6bce2d1",
+                    "name": "pioneer concrete and fuel",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "f6781f81389b86064e90f59baf952228",
+                    "name": "pioneer xenergy",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "6b64854c53dfe178b02f409cb50ebcaf",
+                    "name": "pioneer nf forgings india pvt",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "18d66cbfe64b8c4fd08d2cf8d6e85914",
+                    "name": "r and s pioneer pharmacy",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "e717994f0a4361d564237449c76a8a86",
+                    "name": "pioneer autocare",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "b36f93710e9147b0631275446f4f2f29",
+                    "name": "pioneer oil",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "53c12b233d08df0c1a3b5c2a215719f8",
+                    "name": "ceres productos alimenticios",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "6dd1f19f65ea18dca5a7c8c3bc4ac0cc",
+                    "name": "xenergy group",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "75e5837c82ec21ad73ba614e54fdd14b",
+                    "name": "belmont solids control",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "2f8dc4d717d44463d29d136243e2e8cf",
+                    "name": "pioneer florida museum and village",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "aebe2fcbe41548eb90cba851e98d8cb5",
+                    "name": "420 bus tour",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "99ac04ee5694fc0dce7b95b6ab45f585",
+                    "name": "pioneer cad and design solutions",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "227185b77948b3cf4ac3247df6b321d8",
+                    "name": "pioneer outdoor lighting",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "ce111d461469c89e1b00de8f7dadc599",
+                    "name": "bmr logistics savannah agency for pioneer transport",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "be49469ce32ff13e750cdb55a981874d",
+                    "name": "pioneer europe nv uk branch office",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "f6747ffabcdfd37d8ef82bddc3ebb75a",
+                    "name": "pioneer electrical",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "fbfa71f6f771e07083d052381c4014da",
+                    "name": "state tower syracuse",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "81c3ee54e7a4d2e70f7c2253dd9aa3d8",
+                    "name": "pioneer office cleaning",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "2ea00226f05592c25edd21f733b420f3",
+                    "name": "pioneer electrical and telcom",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "0d6bfa2c22b88bdf800b8474341302f5",
+                    "name": "pioneer international campus",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "21311c829ae28ee203a1560895980a55",
+                    "name": "pioneer homes detroit",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "547588b969f768db317b236db7bc822f",
+                    "name": "carl jarl locksmiths",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "e7bc0219e85499a35f4fe51e29803a52",
+                    "name": "pioneer enterprises nagpur",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "f67c078484e0612df874fbf9896dea82",
+                    "name": "pioneer electrical contractors",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "5ed759e55479454b22246d6fe7318876",
+                    "name": "pioneer engineering industries gurgaon",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "158efd7e783845fb399b139c158c8200",
+                    "name": "pioneer road long day",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "8599d5d79bf5f74e1632d5fc82f8d34c",
+                    "name": "pioneer farm and ranch supply",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "eab04fbcf3eef67e4aea8e4cc11d51e4",
+                    "name": "p associates",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "200c3252d0ba8191f938f4778a99d99b",
+                    "name": "pioneer enterprises bengaluru",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "2a1e8a878761e7fcd5ea382075ddc959",
+                    "name": "young pioneer accessories",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "bbe42f48ceedcf76513a125a873631b6",
+                    "name": "pioneer4ou",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "d9052977f28cf45a056a1df8df539b3a",
+                    "name": "arroyo gardens independent and assisted living",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "439a5fe7312082170608be5baf5208e1",
+                    "name": "pioneer audio visuals",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "70b1fa19303b55f77c5a057b44153027",
+                    "name": "pioneer tandoor",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "8a2edab198e29276add26df8ab5c0686",
+                    "name": "pioneer auto",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "0a72b96f5a58468a94151f5bcd7c195d",
+                    "name": "lizis",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "d744ee0179cd2e70e922f9fa74ad0855",
+                    "name": "pioneer compressor",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "008f24b3b2f48eef4d809418e2021ad8",
+                    "name": "jolie hair academy",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "53e20f21c6a7bd64936675d3f43fa3f5",
+                    "name": "greenbank pioneer health general practice",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "97dcfca8453b905d5d9fb0c2b6d7af32",
+                    "name": "pioneer mashroom",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "dc48aaaf9d423e01ce40605e0044213d",
+                    "name": "pioneer storage mesquite",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "d45fd384095ea1683cb6a8174f4f4516",
+                    "name": "yes apartment napoli",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "6001ef5c3face0f2ddb3f4d324c33243",
+                    "name": "bokomo zambia",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "933669c80cd28aeee18bd4dc95d40965",
+                    "name": "changzhou zhongjin medical",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "d0d9cd2722b4943f85a861217c847c86",
+                    "name": "pioneer ford bremen",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "f3f90152bb7da62e2a2c1513ba02e0f6",
+                    "name": "pioneer rubber industry",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "f9b9f41a80530b5a271e5d4757bd3096",
+                    "name": "pioneer development",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "135a3a6af6a3d61cfb10fe25f5990f83",
+                    "name": "pioneer lakeshore café",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "36e89bf3ac4a6ce02b0cba1434236d83",
+                    "name": "pioneer automation solution",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "b859d4bf41cc02bb3311f7a519f6750b",
+                    "name": "pioneer decorator",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "d6f361b3fb3c8dcb6e942bf496d4f056",
+                    "name": "pioneer logistics group",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "1b16322d321d585d3d34b51192c9ba4a",
+                    "name": "xian pioneer dope",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "3585690a5f9fdac25df9a14296878f43",
+                    "name": "pioneer auto desk",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "78cb85ac301afeddc503f289b36f252e",
+                    "name": "pioneer elastoseal",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "9cec1425388d9b396b45a66972ef825e",
+                    "name": "pioneer copper",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "4a3b7be417d3bdae734b861526d2d54d",
+                    "name": "kings church manchester",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "33b913caf8e04527d97480494df3068d",
+                    "name": "pioneer global design and sourcing",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "a7f1e51453689edbf8648346b3bc7555",
+                    "name": "pioneer marine",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "c729a03038d87a8a584540f231febd53",
+                    "name": "pioneer inn motel",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "da59845c44551a33a1aa4545cd09c61d",
+                    "name": "yangzhong pioneer electronics",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "6a26d1c8e472b1685d482ba082b05730",
+                    "name": "pioneers enterprise",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "7a00a840dd6da449ec5b806ab738672a",
+                    "name": "pioneer electro agencies",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "52126663c2d99a7f557dc133d8b03c08",
+                    "name": "pioneers pizza",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "e9fa60064608a6569d0321a97e9c2a0b",
+                    "name": "sensory spaces at pioneer",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "7426ed7cf19b0f43701d45d14f2ddf7d",
+                    "name": "pioneer enterprises",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "ba936da9f1a653b3f4208e21a6f29f5c",
+                    "name": "shenzhen pioneer printing",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "a2365564bcfad9bb66d4b4e42b213e8d",
+                    "name": "pioneer technology",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "6a18208c487d21bc649a858cf283d098",
+                    "name": "the pioneer hotel and motel",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "8bbf669677796cfcc0aeab8b1707091f",
+                    "name": "dominic powell",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "a9366159c0800ebacea57aef02036302",
+                    "name": "pioneer ent",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "ecb3d8e344096d4d29b18f89495852e1",
+                    "name": "pioneer r v storage",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "67495104392936dfc24771e6d8c5adb9",
+                    "name": "pioneer equipments",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "c522ebfd2bafe4311dad1de7483f91fe",
+                    "name": "buffalo billiards",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "a31c90c5ef170a85a7fbbcddb564a5f4",
+                    "name": "car audio rhythm",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "b7db5c2edca3192ff91abdfc5956ae89",
+                    "name": "pioneer compu link",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "a41c113b0237162512387c2ca2c03f52",
+                    "name": "pioneer communications network",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "cbb7cf7123d77c6f5348220e864b4674",
+                    "name": "pioneer trading mumbai",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "11380eeef3c8ad096e7ffa6db8cded4f",
+                    "name": "pioneer electro industries",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "5a13727e4fda84595c56be8de495d80b",
+                    "name": "pioneer forging",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "5eca0147361aab915947ad8dc4db62cc",
+                    "name": "pioneer cameras",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "6492906f08427de290fca94d1172e4bd",
+                    "name": "pioneer screen ii",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "a8a1d8f7eaf77f4f5cc3cfb128cbafdf",
+                    "name": "the pioneer motel",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "a470c782db01668dbe123801d42b85af",
+                    "name": "pioneer sound and light",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "b8bbf797c5d3cd9bdc78c75295ce0d01",
+                    "name": "meri saheli",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "af1caea4b8707b33b0bd098b97ce4c52",
+                    "name": "pioneer europe",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "faed85da80c8a0910b504d52e316d942",
+                    "name": "pioneer caps and cans",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "62ada64a54bec9906cb118e82af6c277",
+                    "name": "pioneerium",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "519bc8c1e0f2156035a39f1b100a198d",
+                    "name": "pioneer electronics coltd",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "a642159add29bc9e7bb2a0030fc28b32",
+                    "name": "driveco motors",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "306d09429fcadc254d5c913c5b3663a7",
+                    "name": "pioner auto",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "bbd467530694ed5144e002450143cb85",
+                    "name": "sasko bakery",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "346a31731d8190b78b078ea9976e1299",
+                    "name": "pioneer procurement",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "348afc630ec6ee3e84138115470a081b",
+                    "name": "pioneer regional school",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "d5513907eea66512aba369120da6834c",
+                    "name": "pioneer marketing research",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "eb19e1860816eca79ead8debdcc87635",
+                    "name": "pioneer drape and sofa comfort",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "7cd5bec12b2a6dcb0964c3a8d949b79b",
+                    "name": "pioneer one consulting",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "ccae222c61c2f137f65ce91fcfebbee6",
+                    "name": "pioneer trading",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "7b281aaf17aa15f71b51d994c41dfb18",
+                    "name": "pioneer cellular event center",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "e5d2bef84c168163d5d78d8d934f39f3",
+                    "name": "pioneer union",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "cfb58bb3d8cc0a258ee9e2b5dcf7f68b",
+                    "name": "zamony venture",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "ff0abe6ccdc306d929a26485aec2052b",
+                    "name": "psi crane and rigging",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "f9df794fd2a942c56c904ea8b3f5b37f",
+                    "name": "community connections program ccp pioneer programs",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "f3c1f3ef55859ffdc4573a9fd0da4037",
+                    "name": "pioneer do brasil",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "091427a4e3f4d84d631ad605c04d40c0",
+                    "name": "pioneer green cbd",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "34b5593f078d2ca9032f4d3e38624199",
+                    "name": "frank’s key and lock shop",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "6c781f56b1fe5b8d5cf7ee275407392a",
+                    "name": "pioneer microsystems",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "5f87fe3a49834d3c431d447dbe1227e1",
+                    "name": "invesco",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "72839a5628303476b2ea493cc8980369",
+                    "name": "jinyun pioneer tool",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "a5afbd91fcea6d2b81e3c9b11540cef5",
+                    "name": "pioneer laminates india",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "e966160d464fa7da7ddaac975f6cd3fa",
+                    "name": "pioneer n f forgings india private",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "0236a9cb780ad5d5c888c6573ba073f1",
+                    "name": "pioneer display systems",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "5681488e7c14a948ba9d34e15a3c520f",
+                    "name": "pioneer decorative mouldings",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "e357eec3b54695c873f0ed7bb3648454",
+                    "name": "pioneer instrumentation",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "dc2289335e416dc898f5d196007c844f",
+                    "name": "pioneer india electronics",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "88268d8e167f9d7afc3b2a33c2c5b9c2",
+                    "name": "pioneer realtor",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "261d3ffc05899235f4299a236f02b834",
+                    "name": "pioneer lodge internet cafe",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "f83deba1c7ae00ea1b086ef88b38ad3d",
+                    "name": "natty rems",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "24e948d3422b2a62dbb49b85159fa9cb",
+                    "name": "pioneer service",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "88926020ae332d638b962f1c4465c479",
+                    "name": "pioneer firewood",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "367834dc82e2cf954cfb726ac6b377cc",
+                    "name": "pioneers partners",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "49bc586879bf1ee52a616b5a17c3154a",
+                    "name": "pioneer used auto and rv sales",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "6c72e138715c84e90ad776eef4b50fb2",
+                    "name": "pioneer lists",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "95f65f6dbbe8e08e9bc5649b7e4b08d6",
+                    "name": "pioneer commnications",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "83f4a61c815ba12dd5b7dab2961af27e",
+                    "name": "pioneer ebc",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "e972fc24035121f38a73f5716cdfefb4",
+                    "name": "pioneer furniture and decoraters",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "1cff078ef4edf534e8600a6d763cb3cf",
+                    "name": "pioneer elastomers",
+                    "parent_id": "c17a9b84c3c3ade4cdce7373958ccb9c",
+                    "parent_name": "pioneer foods"
+                  },
+                  {
+                    "id": "b5fc40373304d4403d6fa9434c1e8689",
+                    "name": "splash fruit",
+                    "parent_id": "99d9b2f3459599ca2f88fcf2b286df7c",
+                    "parent_name": "the honickman companies"
+                  },
+                  {
+                    "id": "e04de9cff435daddd5c5da24e711856d",
+                    "name": "canada dry potomac",
+                    "parent_id": "99d9b2f3459599ca2f88fcf2b286df7c",
+                    "parent_name": "the honickman companies"
+                  },
+                  {
+                    "id": "9b67a62bbc49e283a6945a383ae22033",
+                    "name": "beverage distribution center",
+                    "parent_id": "99d9b2f3459599ca2f88fcf2b286df7c",
+                    "parent_name": "the honickman companies"
+                  },
+                  {
+                    "id": "a27fa5c64b4dc5173210c9a5123c1f54",
+                    "name": "canada dry delaware valley",
+                    "parent_id": "99d9b2f3459599ca2f88fcf2b286df7c",
+                    "parent_name": "the honickman companies"
+                  },
+                  {
+                    "id": "ce16cbb189a22a2b6a1b5e16bf1d4aa5",
+                    "name": "magic pan",
+                    "parent_id": "78ab069ccb7691aa7fc71f8a03716417",
+                    "parent_name": "quaker oats"
+                  },
+                  {
+                    "id": "78dc90bb6f77d576d0c1cc84af82b34d",
+                    "name": "chicoccino",
+                    "parent_id": "78ab069ccb7691aa7fc71f8a03716417",
+                    "parent_name": "quaker oats"
+                  },
+                  {
+                    "id": "f3f6126676b7c7fec201192551be40fa",
+                    "name": "stanton cannery",
+                    "parent_id": "78ab069ccb7691aa7fc71f8a03716417",
+                    "parent_name": "quaker oats"
+                  },
+                  {
+                    "id": "24d8c3ba40d19e1926ff3fcdc946c555",
+                    "name": "quaker brasil",
+                    "parent_id": "78ab069ccb7691aa7fc71f8a03716417",
+                    "parent_name": "quaker oats"
+                  },
+                  {
+                    "id": "507838cb82baf9048acf9951ed11baff",
+                    "name": "the magic pan",
+                    "parent_id": "78ab069ccb7691aa7fc71f8a03716417",
+                    "parent_name": "quaker oats"
+                  },
+                  {
+                    "id": "5ab65aa3da6b56acb0b5ed6cf7cbd7e1",
+                    "name": "al maidan dental clinic",
+                    "parent_id": "bd9fd809bbe83ead5afd8d136c01c917",
+                    "parent_name": "united beverage kscc"
+                  },
+                  {
+                    "id": "65fa16f4a557388158b3ea21d5a4953a",
+                    "name": "rockstar digital",
+                    "parent_id": "d5dd6578fedb045d1f93daf8f393cd32",
+                    "parent_name": "rockstar energy drink"
+                  },
+                  {
+                    "id": "ba1fbc37a1e4f66c5ed4ae349beabc81",
+                    "name": "mabel kurumsal emlak zi̇nci̇ri̇ franchise direktoru",
+                    "parent_id": "0d7fe8b2df998fca4666213d38245f07",
+                    "parent_name": "grupo mabel"
+                  },
+                  {
+                    "id": "941d483b6d6c303c432b2b5fe62247e1",
+                    "name": "sorveteria vilela",
+                    "parent_id": "0d7fe8b2df998fca4666213d38245f07",
+                    "parent_name": "grupo mabel"
+                  },
+                  {
+                    "id": "53aad9ab2dd11a0f2fb8f44da077f48f",
+                    "name": "mabel business consulting",
+                    "parent_id": "0d7fe8b2df998fca4666213d38245f07",
+                    "parent_name": "grupo mabel"
+                  },
+                  {
+                    "id": "f0b690749fb0ccce0d3b38e94fc4b990",
+                    "name": "mabel’s clothing and gifts",
+                    "parent_id": "0d7fe8b2df998fca4666213d38245f07",
+                    "parent_name": "grupo mabel"
+                  },
+                  {
+                    "id": "27b1074a05819f13114b660a36ff0e51",
+                    "name": "mabel and zora",
+                    "parent_id": "0d7fe8b2df998fca4666213d38245f07",
+                    "parent_name": "grupo mabel"
+                  },
+                  {
+                    "id": "6bf200879fd9ac16bfdd9b1ffc3ce33a",
+                    "name": "mabel and fox",
+                    "parent_id": "0d7fe8b2df998fca4666213d38245f07",
+                    "parent_name": "grupo mabel"
+                  },
+                  {
+                    "id": "c05b9de66bda34fd4bd1097ccf91678c",
+                    "name": "notaria mabel llano",
+                    "parent_id": "0d7fe8b2df998fca4666213d38245f07",
+                    "parent_name": "grupo mabel"
+                  },
+                  {
+                    "id": "a6b9d69c2217db8bc37976ce45946a14",
+                    "name": "new mabel ricami",
+                    "parent_id": "0d7fe8b2df998fca4666213d38245f07",
+                    "parent_name": "grupo mabel"
+                  },
+                  {
+                    "id": "8882b0b138eb4f9e3eab4d078157672b",
+                    "name": "lakeside bottling lakeside pepsi",
+                    "parent_id": "89b58d1cf79c96542ac72f5e55a5ba7d",
+                    "parent_name": "pepsi cola and national brand beverage"
+                  },
+                  {
+                    "id": "a5347bfc8ef899d3b94c53182f96b15b",
+                    "name": "geneva club beverage",
+                    "parent_id": "89b58d1cf79c96542ac72f5e55a5ba7d",
+                    "parent_name": "pepsi cola and national brand beverage"
+                  },
+                  {
+                    "id": "5aa6f31e83d866cce4e58edc2b222e8c",
+                    "name": "cpf nehf ops",
+                    "parent_id": "89b58d1cf79c96542ac72f5e55a5ba7d",
+                    "parent_name": "pepsi cola and national brand beverage"
+                  },
+                  {
+                    "id": "ac73aa580e115086a875af3ac8937a94",
+                    "name": "ventures food and beverage",
+                    "parent_id": "9d2a94578afaf9d49c96a8251a313683",
+                    "parent_name": "pepsi bottling ventures"
+                  },
+                  {
+                    "id": "87c504374b088a97b847e637e0220b89",
+                    "name": "sabra famous kati roll",
+                    "parent_id": "c4c5d723742f6e4a2cbc7d6f6dad63b0",
+                    "parent_name": "sabra dipping"
+                  },
+                  {
+                    "id": "8d4800ab4496c55361a8140e2b6ae6d5",
+                    "name": "pasticceria siciliana falanga",
+                    "parent_id": "c4c5d723742f6e4a2cbc7d6f6dad63b0",
+                    "parent_name": "sabra dipping"
+                  },
+                  {
+                    "id": "fdf32e236b58a52b2655a8835fe0f3cb",
+                    "name": "bear mountain at reading",
+                    "parent_id": "c4c5d723742f6e4a2cbc7d6f6dad63b0",
+                    "parent_name": "sabra dipping"
+                  },
+                  {
+                    "id": "424625ecb91a74d87c9419845eba0c9e",
+                    "name": "sabra travel",
+                    "parent_id": "c4c5d723742f6e4a2cbc7d6f6dad63b0",
+                    "parent_name": "sabra dipping"
+                  },
+                  {
+                    "id": "51f7ad5c8c61420d98b54b6fc30ee0ad",
+                    "name": "the original hummus",
+                    "parent_id": "c4c5d723742f6e4a2cbc7d6f6dad63b0",
+                    "parent_name": "sabra dipping"
+                  },
+                  {
+                    "id": "5559c7b23a626f56dd92ffed8d750be5",
+                    "name": "the sabra institute",
+                    "parent_id": "c4c5d723742f6e4a2cbc7d6f6dad63b0",
+                    "parent_name": "sabra dipping"
+                  },
+                  {
+                    "id": "ae95babe25703d126045987414074c12",
+                    "name": "full hummus",
+                    "parent_id": "c4c5d723742f6e4a2cbc7d6f6dad63b0",
+                    "parent_name": "sabra dipping"
+                  },
+                  {
+                    "id": "8e08886c376724ca0546c38a0b3dad4f",
+                    "name": "minasbev",
+                    "parent_id": "de9abe5a3c777ce012c2efef4eec45f0",
+                    "parent_name": "menabev"
+                  },
+                  {
+                    "id": "c4b42312fb78edaedcedc730bdf7e492",
+                    "name": "splitgerber william f",
+                    "parent_id": "528c6f57242b7e9d3dfbebcc5931308a",
+                    "parent_name": "smlc pepsico"
+                  },
+                  {
+                    "id": "04eeb6ac72171ce0a95d73c1a2e11bc1",
+                    "name": "gadin noventa y siete",
+                    "parent_id": "c4bebde456a9191939e17445b3b9dc97",
+                    "parent_name": "siete family foods"
+                  },
+                  {
+                    "id": "31e05d55fa05f91739e4b614959b60a0",
+                    "name": "alta baja market",
+                    "parent_id": "c4bebde456a9191939e17445b3b9dc97",
+                    "parent_name": "siete family foods"
+                  },
+                  {
+                    "id": "c1ca2618a6108ffb602057b948183848",
+                    "name": "sete producoes",
+                    "parent_id": "c4bebde456a9191939e17445b3b9dc97",
+                    "parent_name": "siete family foods"
+                  },
+                  {
+                    "id": "9ac11b05f0e4fb2c9f00145f5eed956a",
+                    "name": "all in our family foods",
+                    "parent_id": "c4bebde456a9191939e17445b3b9dc97",
+                    "parent_name": "siete family foods"
+                  },
+                  {
+                    "id": "0c2aa55c24925ba3d4bd8fd69aa4a71b",
+                    "name": "socca chips",
+                    "parent_id": "c4bebde456a9191939e17445b3b9dc97",
+                    "parent_name": "siete family foods"
+                  },
+                  {
+                    "id": "0382ecfc721f440b1a33120a8ef2f131",
+                    "name": "7agty",
+                    "parent_id": "c4bebde456a9191939e17445b3b9dc97",
+                    "parent_name": "siete family foods"
+                  },
+                  {
+                    "id": "14bef948735a87c471f0959ad11eb4d7",
+                    "name": "sieteco marketing and strategie",
+                    "parent_id": "c4bebde456a9191939e17445b3b9dc97",
+                    "parent_name": "siete family foods"
+                  },
+                  {
+                    "id": "83d1910b2c631e97f70fbe423f244a65",
+                    "name": "siete 77",
+                    "parent_id": "c4bebde456a9191939e17445b3b9dc97",
+                    "parent_name": "siete family foods"
+                  },
+                  {
+                    "id": "c26cf1909750a03b22bc7824599c97d0",
+                    "name": "poppy cards",
+                    "parent_id": "6bd184efa33d2583f84251ece3c8fc25",
+                    "parent_name": "poppi"
+                  },
+                  {
+                    "id": "c3b3b32f52e100d51a6101892bb8f7cb",
+                    "name": "popy bags",
+                    "parent_id": "6bd184efa33d2583f84251ece3c8fc25",
+                    "parent_name": "poppi"
+                  },
+                  {
+                    "id": "c6bab7f7e0cf19afbf264c813897dfd8",
+                    "name": "poppis guesthouse",
+                    "parent_id": "6bd184efa33d2583f84251ece3c8fc25",
+                    "parent_name": "poppi"
+                  },
+                  {
+                    "id": "05a3382c3b3c93b858aa798468e25c1b",
+                    "name": "poppi clementino",
+                    "parent_id": "6bd184efa33d2583f84251ece3c8fc25",
+                    "parent_name": "poppi"
+                  },
+                  {
+                    "id": "126dd707d7ed06c0b1e8b2788df61e0a",
+                    "name": "mother polycap",
+                    "parent_id": "6bd184efa33d2583f84251ece3c8fc25",
+                    "parent_name": "poppi"
+                  },
+                  {
+                    "id": "782cc126fe50b537745bf50fa98d8c52",
+                    "name": "franchise feed international claymont de",
+                    "parent_id": "890d36c0c7508149e722dface4c54a72",
+                    "parent_name": "haidri beverages pepsicola international franchise"
+                  },
+                  {
+                    "id": "8fa1a8f9d3ad0427f24a51b04e14b939",
+                    "name": "international beverages trading",
+                    "parent_id": "890d36c0c7508149e722dface4c54a72",
+                    "parent_name": "haidri beverages pepsicola international franchise"
+                  },
+                  {
+                    "id": "2638d58526033a5c10b6558890acdc8e",
+                    "name": "pee dee food service",
+                    "parent_id": "358b57af1dba500174e7daf92c9805f1",
+                    "parent_name": "carolina canners"
+                  },
+                  {
+                    "id": "ff1a3501bc29014ceb4830170294b045",
+                    "name": "sodastream/soda bär/soda magic/co2 tausch von pietrowski",
+                    "parent_id": "f21530ca2ee13d38c434cff9f6f56726",
+                    "parent_name": "sodastream international"
+                  },
+                  {
+                    "id": "de2400adb073c434641c07ad110078fd",
+                    "name": "kevit",
+                    "parent_id": "d2ce3feaca28f0a80f1c597a03099e82",
+                    "parent_name": "kevita"
+                  }
+                ]
+              },
+              {
+                "level": 3,
+                "companies": [
+                  {
+                    "id": "c59e80952e445b9125f9866c064e9256",
+                    "name": "smrtfoods",
+                    "parent_id": "65f868e7460706e5fef4810b36812a10",
+                    "parent_name": "smartfoods"
+                  },
+                  {
+                    "id": "241f1138750df95fa2d1590f682652ae",
+                    "name": "tom and luke",
+                    "parent_id": "65f868e7460706e5fef4810b36812a10",
+                    "parent_name": "smartfoods"
+                  },
+                  {
+                    "id": "0d8b510e9bb9eb18d76c2271148780a4",
+                    "name": "a associated vehicle sales",
+                    "parent_id": "fb7bf1f9b81f0d9821af08d113b645c3",
+                    "parent_name": "associated vehicle assemblers"
+                  },
+                  {
+                    "id": "fc569f3c081a5bdc7cf7c5cd62bc0a9a",
+                    "name": "halstead community primary school",
+                    "parent_id": "d9ee9a9c0773759f16e6e458cbe14670",
+                    "parent_name": "the pioneer"
+                  },
+                  {
+                    "id": "7c1078b150fd1ced5cc2cde86f62cd5e",
+                    "name": "md media publishing service",
+                    "parent_id": "d9ee9a9c0773759f16e6e458cbe14670",
+                    "parent_name": "the pioneer"
+                  },
+                  {
+                    "id": "68a38860ba09532e8400c3a276bb5d40",
+                    "name": "woodcote primary school",
+                    "parent_id": "d9ee9a9c0773759f16e6e458cbe14670",
+                    "parent_name": "the pioneer"
+                  },
+                  {
+                    "id": "d80d17b60784c4e3d3e936655fa0bcd0",
+                    "name": "ightham primary school",
+                    "parent_id": "d9ee9a9c0773759f16e6e458cbe14670",
+                    "parent_name": "the pioneer"
+                  },
+                  {
+                    "id": "70995b2c9bf6fd1ddcae161bf4c21608",
+                    "name": "leslie mock",
+                    "parent_id": "d9ee9a9c0773759f16e6e458cbe14670",
+                    "parent_name": "the pioneer"
+                  },
+                  {
+                    "id": "5e12f2b23d9c6323d04c17a02666ea8d",
+                    "name": "thepioneersolutions",
+                    "parent_id": "d9ee9a9c0773759f16e6e458cbe14670",
+                    "parent_name": "the pioneer"
+                  },
+                  {
+                    "id": "fbf16a5a6feb96994868fd34edf76d1a",
+                    "name": "edenbridge primary school",
+                    "parent_id": "d9ee9a9c0773759f16e6e458cbe14670",
+                    "parent_name": "the pioneer"
+                  },
+                  {
+                    "id": "5d11f23863bd7e4e64daa10c5dd80b41",
+                    "name": "chen honglin sole proprietorship",
+                    "parent_id": "d9ee9a9c0773759f16e6e458cbe14670",
+                    "parent_name": "the pioneer"
+                  },
+                  {
+                    "id": "5db7233374a5fd65ae8f6753905898f9",
+                    "name": "small market meetings conference",
+                    "parent_id": "d9ee9a9c0773759f16e6e458cbe14670",
+                    "parent_name": "the pioneer"
+                  },
+                  {
+                    "id": "40f42ad5066562e45b6aeb59b7d6af91",
+                    "name": "pioneer club",
+                    "parent_id": "d9ee9a9c0773759f16e6e458cbe14670",
+                    "parent_name": "the pioneer"
+                  },
+                  {
+                    "id": "0849813d291e58a800da0431c8583fbf",
+                    "name": "the reader me",
+                    "parent_id": "d9ee9a9c0773759f16e6e458cbe14670",
+                    "parent_name": "the pioneer"
+                  },
+                  {
+                    "id": "25b6e1c5491057d34a34fbee414eb1a9",
+                    "name": "the south norwood academy",
+                    "parent_id": "d9ee9a9c0773759f16e6e458cbe14670",
+                    "parent_name": "the pioneer"
+                  },
+                  {
+                    "id": "351099d6db2844fb6930ee2cf562ee62",
+                    "name": "the reader librar",
+                    "parent_id": "d9ee9a9c0773759f16e6e458cbe14670",
+                    "parent_name": "the pioneer"
+                  },
+                  {
+                    "id": "26eeab9400ce8c9df71a3f932365908e",
+                    "name": "hollington primary academy",
+                    "parent_id": "d9ee9a9c0773759f16e6e458cbe14670",
+                    "parent_name": "the pioneer"
+                  },
+                  {
+                    "id": "abca11ec5709eb6e3e96a441926da3cf",
+                    "name": "the reader",
+                    "parent_id": "d9ee9a9c0773759f16e6e458cbe14670",
+                    "parent_name": "the pioneer"
+                  },
+                  {
+                    "id": "30da0acf4dd044f1508948d30a7a77ae",
+                    "name": "downe primary school",
+                    "parent_id": "d9ee9a9c0773759f16e6e458cbe14670",
+                    "parent_name": "the pioneer"
+                  },
+                  {
+                    "id": "3708a8acb6aae56edb0b822b3a44cf80",
+                    "name": "macauhr",
+                    "parent_id": "41f044e3ddb0e1621bc890fae8125ee8",
+                    "parent_name": "talentgroup asia"
+                  },
+                  {
+                    "id": "d2eb19c5d4358c5e9e274e647d3c5d28",
+                    "name": "mycloudhr",
+                    "parent_id": "41f044e3ddb0e1621bc890fae8125ee8",
+                    "parent_name": "talentgroup asia"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "entity_id": null,
+      "total_results": 1
+    }
+    ```
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **`Always obtain thebusiness_id`** via the **Match Businesses** API before making company hierarchy enrichment requests.
+    - **Leverage relationship data** to identify new business opportunities across connected entities.
+    - **Cross-reference** with other enrichment APIs (e.g., Firmographics, Technographics) for deeper business context.
+    - **Incorporate hierarchy analysis** into account planning for better coordination across business units.
+  </Accordion>
+  <Accordion title="Company Hierarchies Output Signals">
+    | SignalAPI            | Name                 | Description                                    | Data Type |
+    | :------------------- | :------------------- | :--------------------------------------------- | :-------- |
+    | entity_name          | Entity name          | Name of the entity in hierarchy.               | string    |
+    | entity_type          | Entity type          | Type of entity (parent, subsidiary, division). | string    |
+    | relationship_type    | Relationship type    | Type of hierarchical relationship.             | string    |
+    | ownership_percentage | Ownership percentage | Percentage of ownership.                       | number    |
+    | hierarchy_level      | Hierarchy level      | Level in the organizational hierarchy.         | integer   |
+    | establishment_date   | Establishment date   | Date when relationship was established.        | date      |
+    | geographic_location  | Geographic location  | Location of the entity.                        | string    |
+    | legal_status         | Legal status         | Legal status of the entity.                    | string    |
+  </Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" iconType="solid" color="red" /> _For additional enrichment options, explore related API endpoints below._

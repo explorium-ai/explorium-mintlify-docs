@@ -1,9 +1,7 @@
 ---
-openapi: post /v1/businesses/workforce_trends/enrich
+openapi: "post /v1/businesses/workforce_trends/enrich"
 title: "Workforce trends by company department"
 ---
-
-## Endpoint: `POST /v1/businesses/workforce_trends/enrich`
 
 ## Description
 
@@ -18,64 +16,56 @@ The data includes:
 This information is sourced from **employment records, job postings, and public workforce data** to provide **real-time visibility into corporate workforce dynamics**.
 
 <AccordionGroup>
-<Accordion title="How It Works">
-
-- **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
-- **Processing:** The system analyzes workforce composition, department trends, and hiring activity over time.
-- **Output:** A structured response summarizing workforce distribution and hiring/firing trends.
-
-</Accordion>
-
-<Accordion title="Workforce trends Output Signal">
-
-| SignalAPI | Name | Description | Data Type |
-| :--- | :--- | :--- | :--- |
-| department | Department | Department name. | string |
-| trend\_type | Trend type | Type of workforce trend (growth, decline, stability). | string |
-| trend\_period | Trend period | Period over which the trend is observed. | string |
-| percentage\_change | Percentage change | Percentage change in workforce. | number |
-| headcount\_change | Headcount change | Absolute change in headcount. | integer |
-| trend\_drivers | Trend drivers | Factors driving the trend. | string |
-| forecast | Forecast | Forecasted trend direction. | string |
-| seasonal\_patterns | Seasonal patterns | Seasonal patterns in workforce trends. | string |
-| skill\_requirements | Skill requirements | Skills in demand for the department. | string |
-| turnover\_rate | Turnover rate | Employee turnover rate in the department. | number |
-| average\_tenure | Average tenure | Average employee tenure in the department. | number |
-| compensation\_trends | Compensation trends | Compensation trends in the department. | string |
-| remote\_work\_adoption | Remote work adoption | Level of remote work adoption. | string |
-| diversity\_metrics | Diversity metrics | Diversity metrics for the department. | string |
-| training\_programs | Training programs | Training programs for the department. | string |
-| performance\_metrics | Performance metrics | Performance metrics for the department. | string |
-| budget\_allocation | Budget allocation | Budget allocation for the department. | number |
-| technology\_adoption | Technology adoption | Technology adoption in the department. | string |
-| collaboration\_patterns | Collaboration patterns | Collaboration patterns within the department. | string |
-| leadership\_changes | Leadership changes | Leadership changes in the department. | string |
-| project\_success\_rate | Project success rate | Success rate of projects in the department. | number |
-| employee\_satisfaction | Employee satisfaction | Employee satisfaction scores. | number |
-| innovation\_index | Innovation index | Innovation index for the department. | number |
-| market\_demand | Market demand | Market demand for department services. | string |
-| competitive\_positioning | Competitive positioning | Competitive positioning of the department. | string |
-| regulatory\_compliance | Regulatory compliance | Regulatory compliance status. | string |
-| risk\_assessment | Risk assessment | Risk assessment for the department. | string |
-| future\_outlook | Future outlook | Future outlook for the department. | string |
-| investment\_priorities | Investment priorities | Investment priorities for the department. | string |
-| partnership\_opportunities | Partnership opportunities | Partnership opportunities for the department. | string |
-| automation\_impact | Automation impact | Impact of automation on the department. | string |
-| sustainability\_initiatives | Sustainability initiatives | Sustainability initiatives in the department. | string |
-
-</Accordion>
-
-<Accordion title="Best Practices">
-
-- **Use workforce distribution insights** to assess company department growth and investment focus.
-- **Analyze hiring and downsizing trends** to gauge business expansion or contraction.
-- **Leverage workforce trend data** to benchmark against competitors in the same industry.
-- **Monitor key roles in engineering, sales, and operations** to understand where a company is investing resources.
-
-</Accordion>
+  <Accordion title="How It Works">
+    - **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
+    - **Processing:** The system analyzes workforce composition, department trends, and hiring activity over time.
+    - **Output:** A structured response summarizing workforce distribution and hiring/firing trends.
+  </Accordion>
+  <Accordion title="Workforce trends Output Signal">
+    | SignalAPI                  | Name                       | Description                                           | Data Type |
+    | :------------------------- | :------------------------- | :---------------------------------------------------- | :-------- |
+    | department                 | Department                 | Department name.                                      | string    |
+    | trend_type                 | Trend type                 | Type of workforce trend (growth, decline, stability). | string    |
+    | trend_period               | Trend period               | Period over which the trend is observed.              | string    |
+    | percentage_change          | Percentage change          | Percentage change in workforce.                       | number    |
+    | headcount_change           | Headcount change           | Absolute change in headcount.                         | integer   |
+    | trend_drivers              | Trend drivers              | Factors driving the trend.                            | string    |
+    | forecast                   | Forecast                   | Forecasted trend direction.                           | string    |
+    | seasonal_patterns          | Seasonal patterns          | Seasonal patterns in workforce trends.                | string    |
+    | skill_requirements         | Skill requirements         | Skills in demand for the department.                  | string    |
+    | turnover_rate              | Turnover rate              | Employee turnover rate in the department.             | number    |
+    | average_tenure             | Average tenure             | Average employee tenure in the department.            | number    |
+    | compensation_trends        | Compensation trends        | Compensation trends in the department.                | string    |
+    | remote_work_adoption       | Remote work adoption       | Level of remote work adoption.                        | string    |
+    | diversity_metrics          | Diversity metrics          | Diversity metrics for the department.                 | string    |
+    | training_programs          | Training programs          | Training programs for the department.                 | string    |
+    | performance_metrics        | Performance metrics        | Performance metrics for the department.               | string    |
+    | budget_allocation          | Budget allocation          | Budget allocation for the department.                 | number    |
+    | technology_adoption        | Technology adoption        | Technology adoption in the department.                | string    |
+    | collaboration_patterns     | Collaboration patterns     | Collaboration patterns within the department.         | string    |
+    | leadership_changes         | Leadership changes         | Leadership changes in the department.                 | string    |
+    | project_success_rate       | Project success rate       | Success rate of projects in the department.           | number    |
+    | employee_satisfaction      | Employee satisfaction      | Employee satisfaction scores.                         | number    |
+    | innovation_index           | Innovation index           | Innovation index for the department.                  | number    |
+    | market_demand              | Market demand              | Market demand for department services.                | string    |
+    | competitive_positioning    | Competitive positioning    | Competitive positioning of the department.            | string    |
+    | regulatory_compliance      | Regulatory compliance      | Regulatory compliance status.                         | string    |
+    | risk_assessment            | Risk assessment            | Risk assessment for the department.                   | string    |
+    | future_outlook             | Future outlook             | Future outlook for the department.                    | string    |
+    | investment_priorities      | Investment priorities      | Investment priorities for the department.             | string    |
+    | partnership_opportunities  | Partnership opportunities  | Partnership opportunities for the department.         | string    |
+    | automation_impact          | Automation impact          | Impact of automation on the department.               | string    |
+    | sustainability_initiatives | Sustainability initiatives | Sustainability initiatives in the department.         | string    |
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **Use workforce distribution insights** to assess company department growth and investment focus.
+    - **Analyze hiring and downsizing trends** to gauge business expansion or contraction.
+    - **Leverage workforce trend data** to benchmark against competitors in the same industry.
+    - **Monitor key roles in engineering, sales, and operations** to understand where a company is investing resources.
+  </Accordion>
 </AccordionGroup>
 
-<Icon icon="thumbtack" color="red" iconType="solid"/> For additional enrichment options, explore related API endpoints below.
+<Icon icon="thumbtack" iconType="solid" color="red" /> For additional enrichment options, explore related API endpoints below.
 
 ## Body Params - Try Me Example
 

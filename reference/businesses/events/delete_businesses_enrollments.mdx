@@ -1,49 +1,38 @@
 ---
-openapi: delete /v1/businesses/events/enrollments
+openapi: "delete /v1/businesses/events/enrollments"
 ---
-
-## Endpoint: `DELETE /v1/businesses/events/enrollments`
 
 ## Description
 
 The Delete Business Events Enrollment endpoint allows you to cancel an active event monitoring configuration. This is useful when you no longer need to track certain businesses or when a monitoring strategy needs to be reconfigured.
 
 <AccordionGroup>
-<Accordion title="How It Works">
-
-- **Input**: Specify the enrollment\_id you wish to cancel.  
-- **Processing**: The system removes the enrollment configuration.  
-- **Output**: A confirmation of successful deletion.
-
-</Accordion>
-
-<Accordion title="Query Parameters">
-
-| Field | Type | Description |
-| :--- | :--- | :--- |
-| enrollment\_id | String | The unique identifier of the enrollment to delete |
-
-</Accordion>
-
-<Accordion title="Example Request (cURL)">
-
-```shell Bash
-curl -X DELETE \
-  "https://api.explorium.ai/v1/businesses/events/enrollments" \
-  -H "API_KEY: your_api_key_here" \
-  -H "Content-Type: application/json" \
-  -d '{
-  "enrollment_id": "en_7b429a01"
-}'
-```
-</Accordion>
-
-<Accordion title="Example Response">
-
-```json JSON
-{
-  "status": "success"
-}
-```
-</Accordion>
+  <Accordion title="How It Works">
+    - **Input**: Specify the enrollment_id you wish to cancel.
+    - **Processing**: The system removes the enrollment configuration.
+    - **Output**: A confirmation of successful deletion.
+  </Accordion>
+  <Accordion title="Query Parameters">
+    | Field         | Type   | Description                                       |
+    | :------------ | :----- | :------------------------------------------------ |
+    | enrollment_id | String | The unique identifier of the enrollment to delete |
+  </Accordion>
+  <Accordion title="Example Request (cURL)">
+    ```shell Bash
+    curl -X DELETE \
+      "https://api.explorium.ai/v1/businesses/events/enrollments" \
+      -H "API_KEY: your_api_key_here" \
+      -H "Content-Type: application/json" \
+      -d '{
+      "enrollment_id": "en_7b429a01"
+    }'
+    ```
+  </Accordion>
+  <Accordion title="Example Response">
+    ```json JSON
+    {
+      "status": "success"
+    }
+    ```
+  </Accordion>
 </AccordionGroup>

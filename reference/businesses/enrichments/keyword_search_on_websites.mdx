@@ -1,9 +1,7 @@
 ---
-openapi: post /v1/businesses/company_website_keywords/enrich
+openapi: "post /v1/businesses/company_website_keywords/enrich"
 title: "Keyword search on websites"
 ---
-
-## Endpoint: `POST /v1/businesses/company_website_keywords/enrich`
 
 ## Description
 
@@ -18,35 +16,27 @@ The data includes:
 This information is sourced from **real-time website crawls and indexed public web pages** to provide **comprehensive insights into company messaging and search visibility**.
 
 <AccordionGroup>
-<Accordion title="How It Works">
-
-- **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
-- **Processing:** The system scans the target website and retrieves keyword matches.
-- **Output:** A structured response highlighting keyword occurrences, extracted snippets, and URLs.
-
-</Accordion>
-
-<Accordion title="Best Practices">
-
-- **Use keyword insights** to track industry-specific terminology and brand messaging.
-- **Analyze keyword frequency** to gauge content focus and relevance.
-- **Leverage snippet extractions** for competitor research and content benchmarking.
-- **Monitor website content** to ensure alignment with marketing and SEO strategies.
-
-</Accordion>
-
-<Accordion title="Keyword Search on Websites Output Signal">
-
-| SignalAPI | Name | Description | Data Type |
-| :--- | :--- | :--- | :--- |
-| keyword | Keyword | Keyword or phrase searched for. | string |
-| search\_frequency | Search frequency | Frequency of the keyword on the website. | integer |
-| page\_url | Page URL | URL where the keyword was found. | url |
-
-</Accordion>
+  <Accordion title="How It Works">
+    - **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
+    - **Processing:** The system scans the target website and retrieves keyword matches.
+    - **Output:** A structured response highlighting keyword occurrences, extracted snippets, and URLs.
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **Use keyword insights** to track industry-specific terminology and brand messaging.
+    - **Analyze keyword frequency** to gauge content focus and relevance.
+    - **Leverage snippet extractions** for competitor research and content benchmarking.
+    - **Monitor website content** to ensure alignment with marketing and SEO strategies.
+  </Accordion>
+  <Accordion title="Keyword Search on Websites Output Signal">
+    | SignalAPI        | Name             | Description                              | Data Type |
+    | :--------------- | :--------------- | :--------------------------------------- | :-------- |
+    | keyword          | Keyword          | Keyword or phrase searched for.          | string    |
+    | search_frequency | Search frequency | Frequency of the keyword on the website. | integer   |
+    | page_url         | Page URL         | URL where the keyword was found.         | url       |
+  </Accordion>
 </AccordionGroup>
 
-<Icon icon="thumbtack" color="red" iconType="solid"/> For additional enrichment options, explore related API endpoints below.
+<Icon icon="thumbtack" iconType="solid" color="red" /> For additional enrichment options, explore related API endpoints below.
 
 ## Body Params - Try Me Example
 

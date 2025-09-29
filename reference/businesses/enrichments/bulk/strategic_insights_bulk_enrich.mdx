@@ -1,47 +1,37 @@
 ---
 title: "Strategic insights of public companies"
-openapi: post /v1/businesses/pc_strategy_10k/bulk_enrich
+openapi: "post /v1/businesses/pc_strategy_10k/bulk_enrich"
 ---
 
-## Endpoint: `POST /v1/businesses/pc_strategy_10k/bulk_enrich`
-
 <AccordionGroup>
-<Accordion title="How It Works">
-
-- **Input:** Provide a list of up to **50`business_id`s**.
-- **Processing:** The system retrieves strategic insights for all submitted businesses in a **single request**.
-- **Output:** A structured response with corporate focus, partnerships, and competitive strategies.
-
-</Accordion>
-
-<Accordion title="Example Request (cURL)">
-
-```shell Bash
-curl --request POST \
-     --url https://api.explorium.ai/v1/businesses/pc_strategy_10k/bulk_enrich \
-     --header 'accept: application/json' \
-     --header 'api_key: your_api_key_here' \
-     --header 'content-type: application/json' \
-     --data '{
-  "business_ids": [
-    "8adce3ca1cef0c986b22310e369a0793",
-    "a34bacf839b923770b2c360eefa26748"
-  ]
-}'
-```
-
-</Accordion>
-
-<Accordion title="Best Practices">
-
-- **Assess corporate strategies** to understand business priorities.
-- **Identify partnerships and alliances** to track business relationships.
-- **Leverage strategic insights** for competitive benchmarking.
-
-</Accordion>
+  <Accordion title="How It Works">
+    - **Input:** Provide a list of up to **`50business_ids`**.
+    - **Processing:** The system retrieves strategic insights for all submitted businesses in a **single request**.
+    - **Output:** A structured response with corporate focus, partnerships, and competitive strategies.
+  </Accordion>
+  <Accordion title="Example Request (cURL)">
+    ```shell Bash
+    curl --request POST \
+         --url https://api.explorium.ai/v1/businesses/pc_strategy_10k/bulk_enrich \
+         --header 'accept: application/json' \
+         --header 'api_key: your_api_key_here' \
+         --header 'content-type: application/json' \
+         --data '{
+      "business_ids": [
+        "8adce3ca1cef0c986b22310e369a0793",
+        "a34bacf839b923770b2c360eefa26748"
+      ]
+    }'
+    ```
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **Assess corporate strategies** to understand business priorities.
+    - **Identify partnerships and alliances** to track business relationships.
+    - **Leverage strategic insights** for competitive benchmarking.
+  </Accordion>
 </AccordionGroup>
 
-<Icon icon="thumbtack" color="red" iconType="solid"/> **For additional enrichment options, explore related API endpoints below.**
+<Icon icon="thumbtack" iconType="solid" color="red" /> **For additional enrichment options, explore related API endpoints below.**
 
 ## Body Params - Try Me Example
 

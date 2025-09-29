@@ -1,81 +1,67 @@
 ---
-openapi: post /v1/businesses/events/enrollments
+openapi: "post /v1/businesses/events/enrollments"
 ---
-
-## Endpoint: `POST /v1/businesses/events/enrollments`
 
 ## Description
 
-The Business Events Enrollment endpoint allows you to monitor specific businesses for future events. Rather than making repeated manual queries, enrollments let you "subscribe" to events for selected business IDs. This enables automated tracking of company activities such as funding rounds, IPOs, product launches, and more.  
+The Business Events Enrollment endpoint allows you to monitor specific businesses for future events. Rather than making repeated manual queries, enrollments let you "subscribe" to events for selected business IDs. This enables automated tracking of company activities such as funding rounds, IPOs, product launches, and more.\
 When you enroll, the system will continuously monitor for new events matching your criteria. These events can be retrieved later or delivered via webhook, depending on your integration preferences.
 
 ### Important Considerations for Enrollments
 
 - Multiple event types can be monitored for the same set of businesses.
-- Each enrollment is uniquely identified by its enrollment\_key and enrollment\_id.
+- Each enrollment is uniquely identified by its enrollment_key and enrollment_id.
 - Events are collected in the background, optimizing API usage and ensuring you don't miss important updates.
-  
+
 <AccordionGroup>
-<Accordion title="How It Works">
-
-- **Input**: Define parameters including business\_ids, and event\_types.  
-- **Processing**: The system registers your enrollment and begins monitoring for events.  
-- **Output**: A confirmation response containing your enrollment\_id for future reference.
-
-</Accordion>
-
-<Accordion title="Query Parameters">
-
-| Field | Type | Description |
-| :--- | :--- | :--- |
-| enrollment\_key | String | A unique identifier for this enrollment |
-| business\_ids | Array | List of Business IDs to monitor for events |
-| event\_types | Array | Types of events to monitor (e.g., ipo\_announcement, new\_funding\_round) |
-
-</Accordion>
-
-<Accordion title="Example Request (cURL)">
-
-```shell Bash
-curl -X POST \
-  "https://api.explorium.ai/v1/businesses/events/enrollments" \
-  -H "API_KEY: your_api_key_here" \
-  -H "Content-Type: application/json" \
-  -d '{
-  "enrollment_key": "my_b2b_saas_monitor",
-  "business_ids": [
-    "8adce3ca1cef0c986b22310e369a0793",
-    "665595bbb4e724de6f8bc705a5b84753"
-  ],
-  "event_types": [
-    "ipo_announcement",
-    "new_funding_round",
-    "new_product"
-  ]
-}'
-```
-</Accordion>
-
-<Accordion title="Example Response">
-
-```json JSON
-{
-  "request_context": {
-    "correlation_id": "1234",
-    "request_status": "success",
-    "time_took_in_seconds": 0.515
-  },
-  "enrollment_key": "my_b2b_saas_monitor",
-  "enrollment_id": "en_7b429a01"
-}
-```
-</Accordion>
-
-<Accordion title="Best Practices">
-
-- Use descriptive enrollment\_key values to easily identify different monitoring setups.
-- Monitor only the most relevant event types to optimize performance.
-- Combine with webhook registration for real-time notifications.
-
-</Accordion>
+  <Accordion title="How It Works">
+    - **Input**: Define parameters including business_ids, and event_types.
+    - **Processing**: The system registers your enrollment and begins monitoring for events.
+    - **Output**: A confirmation response containing your enrollment_id for future reference.
+  </Accordion>
+  <Accordion title="Query Parameters">
+    | Field          | Type   | Description                                                            |
+    | :------------- | :----- | :--------------------------------------------------------------------- |
+    | enrollment_key | String | A unique identifier for this enrollment                                |
+    | business_ids   | Array  | List of Business IDs to monitor for events                             |
+    | event_types    | Array  | Types of events to monitor (e.g., ipo_announcement, new_funding_round) |
+  </Accordion>
+  <Accordion title="Example Request (cURL)">
+    ```shell Bash
+    curl -X POST \
+      "https://api.explorium.ai/v1/businesses/events/enrollments" \
+      -H "API_KEY: your_api_key_here" \
+      -H "Content-Type: application/json" \
+      -d '{
+      "enrollment_key": "my_b2b_saas_monitor",
+      "business_ids": [
+        "8adce3ca1cef0c986b22310e369a0793",
+        "665595bbb4e724de6f8bc705a5b84753"
+      ],
+      "event_types": [
+        "ipo_announcement",
+        "new_funding_round",
+        "new_product"
+      ]
+    }'
+    ```
+  </Accordion>
+  <Accordion title="Example Response">
+    ```json JSON
+    {
+      "request_context": {
+        "correlation_id": "1234",
+        "request_status": "success",
+        "time_took_in_seconds": 0.515
+      },
+      "enrollment_key": "my_b2b_saas_monitor",
+      "enrollment_id": "en_7b429a01"
+    }
+    ```
+  </Accordion>
+  <Accordion title="Best Practices">
+    - Use descriptive enrollment_key values to easily identify different monitoring setups.
+    - Monitor only the most relevant event types to optimize performance.
+    - Combine with webhook registration for real-time notifications.
+  </Accordion>
 </AccordionGroup>

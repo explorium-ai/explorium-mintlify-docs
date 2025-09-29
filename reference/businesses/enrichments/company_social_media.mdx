@@ -1,9 +1,7 @@
 ---
-openapi: post /v1/businesses/linkedin_posts/enrich
+openapi: "post /v1/businesses/linkedin_posts/enrich"
 title: "Company’s social media presence"
 ---
-
-## Endpoint: `POST /v1/businesses/linkedin_posts/enrich`
 
 ## Description
 
@@ -18,39 +16,31 @@ The data includes:
 This information is sourced from **public Social media data and corporate social media feeds** to offer a **comprehensive view of a company's digital engagement and brand presence**.
 
 <AccordionGroup>
-<Accordion title="How It Works">
-
-- **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
-- **Processing:** The system retrieves Social media activity, post frequency, and engagement trends.
-- **Output:** A structured response summarizing social media presence and key engagement metrics.
-
-</Accordion>
-
-<Accordion title="Best Practices">
-
-- **Use social media insights** to track brand perception and digital engagement trends.
-- **Analyze posting behavior** to understand a company's content strategy and outreach.
-- **Leverage engagement data** to benchmark a company's influence against competitors.
-- **Monitor trending topics** to gain insights into corporate priorities and industry focus.
-
-</Accordion>
-
-<Accordion title="Company's Social Media Presence Output Signal">
-
-| SignalAPI | Name | Description | Data Type |
-| :--- | :--- | :--- | :--- |
-| platform | Platform | Social media platform (LinkedIn, Twitter, Facebook, etc.). | string |
-| account\_handle | Account handle | Company's handle or username. | string |
-| follower\_count | Follower count | Number of followers. | integer |
-| post\_frequency | Post frequency | Frequency of posts. | string |
-| engagement\_rate | Engagement rate | Average engagement rate. | number |
-| content\_strategy | Content strategy | Type of content strategy. | string |
-| brand\_sentiment | Brand sentiment | Overall brand sentiment. | string |
-
-</Accordion>
+  <Accordion title="How It Works">
+    - **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
+    - **Processing:** The system retrieves Social media activity, post frequency, and engagement trends.
+    - **Output:** A structured response summarizing social media presence and key engagement metrics.
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **Use social media insights** to track brand perception and digital engagement trends.
+    - **Analyze posting behavior** to understand a company's content strategy and outreach.
+    - **Leverage engagement data** to benchmark a company's influence against competitors.
+    - **Monitor trending topics** to gain insights into corporate priorities and industry focus.
+  </Accordion>
+  <Accordion title="Company's Social Media Presence Output Signal">
+    | SignalAPI        | Name             | Description                                                | Data Type |
+    | :--------------- | :--------------- | :--------------------------------------------------------- | :-------- |
+    | platform         | Platform         | Social media platform (LinkedIn, Twitter, Facebook, etc.). | string    |
+    | account_handle   | Account handle   | Company's handle or username.                              | string    |
+    | follower_count   | Follower count   | Number of followers.                                       | integer   |
+    | post_frequency   | Post frequency   | Frequency of posts.                                        | string    |
+    | engagement_rate  | Engagement rate  | Average engagement rate.                                   | number    |
+    | content_strategy | Content strategy | Type of content strategy.                                  | string    |
+    | brand_sentiment  | Brand sentiment  | Overall brand sentiment.                                   | string    |
+  </Accordion>
 </AccordionGroup>
 
-<Icon icon="thumbtack" color="red" iconType="solid"/> For additional enrichment options, explore related API endpoints below.
+<Icon icon="thumbtack" iconType="solid" color="red" /> For additional enrichment options, explore related API endpoints below.
 
 ## Body Params - Try Me Example
 

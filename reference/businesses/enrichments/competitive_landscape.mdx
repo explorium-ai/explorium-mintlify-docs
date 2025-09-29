@@ -1,9 +1,7 @@
 ---
-openapi: post /v1/businesses/pc_competitive_landscape_10k/enrich
+openapi: "post /v1/businesses/pc_competitive_landscape_10k/enrich"
 title: "Competitive landscape of public companies"
 ---
-
-## Endpoint: `POST /v1/businesses/pc_competitive_landscape_10k/enrich`
 
 ## Description
 
@@ -18,43 +16,35 @@ The data includes:
 This information is sourced from **publicly available financial reports, regulatory filings, and industry analysis** to offer **a comprehensive view of market positioning and competition**.
 
 <AccordionGroup>
-<Accordion title="How It Works">
-
-- **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
-- **Processing:** The system retrieves competitor analysis, differentiation factors, and relevant regulatory filings.
-- **Output:** A structured response summarizing market positioning and competitive landscape.
-
-</Accordion>
-
-<Accordion title="Best Practices">
-
-- **Use competitor analysis** to benchmark against industry leaders and identify market gaps.
-- **Leverage differentiation insights** to refine branding, positioning, and value propositions.
-- **Utilize regulatory filings** for deeper due diligence on corporate strategies and competition.
-- **Cross-reference competitive insights** with financial metrics and firmographic data for a complete market view.
-
-</Accordion>
-
-<Accordion title="Competitive Landscape Output Signal">
-
-| SignalAPI | Name | Description | Data Type |
-| :--- | :--- | :--- | :--- |
-| competitor\_name | Competitor name | Name of the competing company. | string |
-| competitive\_position | Competitive position | Market position relative to competitors. | string |
-| market\_share | Market share | Market share percentage. | number |
-| competitive\_advantages | Competitive advantages | Key competitive advantages. | string |
-| competitive\_threats | Competitive threats | Main competitive threats. | string |
-| differentiation\_factors | Differentiation factors | Factors that differentiate from competitors. | string |
-| pricing\_strategy | Pricing strategy | Pricing strategy compared to competitors. | string |
-| product\_comparison | Product comparison | Comparison of products/services. | string |
-| customer\_overlap | Customer overlap | Degree of customer overlap. | string |
-| geographic\_presence | Geographic presence | Geographic presence comparison. | string |
-| innovation\_comparison | Innovation comparison | Comparison of innovation capabilities. | string |
-
-</Accordion>
+  <Accordion title="How It Works">
+    - **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
+    - **Processing:** The system retrieves competitor analysis, differentiation factors, and relevant regulatory filings.
+    - **Output:** A structured response summarizing market positioning and competitive landscape.
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **Use competitor analysis** to benchmark against industry leaders and identify market gaps.
+    - **Leverage differentiation insights** to refine branding, positioning, and value propositions.
+    - **Utilize regulatory filings** for deeper due diligence on corporate strategies and competition.
+    - **Cross-reference competitive insights** with financial metrics and firmographic data for a complete market view.
+  </Accordion>
+  <Accordion title="Competitive Landscape Output Signal">
+    | SignalAPI               | Name                    | Description                                  | Data Type |
+    | :---------------------- | :---------------------- | :------------------------------------------- | :-------- |
+    | competitor_name         | Competitor name         | Name of the competing company.               | string    |
+    | competitive_position    | Competitive position    | Market position relative to competitors.     | string    |
+    | market_share            | Market share            | Market share percentage.                     | number    |
+    | competitive_advantages  | Competitive advantages  | Key competitive advantages.                  | string    |
+    | competitive_threats     | Competitive threats     | Main competitive threats.                    | string    |
+    | differentiation_factors | Differentiation factors | Factors that differentiate from competitors. | string    |
+    | pricing_strategy        | Pricing strategy        | Pricing strategy compared to competitors.    | string    |
+    | product_comparison      | Product comparison      | Comparison of products/services.             | string    |
+    | customer_overlap        | Customer overlap        | Degree of customer overlap.                  | string    |
+    | geographic_presence     | Geographic presence     | Geographic presence comparison.              | string    |
+    | innovation_comparison   | Innovation comparison   | Comparison of innovation capabilities.       | string    |
+  </Accordion>
 </AccordionGroup>
 
-<Icon icon="thumbtack" color="red" iconType="solid"/> For additional enrichment options, explore related API endpoints below.
+<Icon icon="thumbtack" iconType="solid" color="red" /> For additional enrichment options, explore related API endpoints below.
 **Body Params - Try Me Example**
 
 ```

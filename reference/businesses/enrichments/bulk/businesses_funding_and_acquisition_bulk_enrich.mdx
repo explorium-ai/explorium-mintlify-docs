@@ -1,48 +1,37 @@
 ---
 title: "Funding and acquisitions for public and private companies"
-openapi: post /v1/businesses/funding_and_acquisition/bulk_enrich
+openapi: "post /v1/businesses/funding_and_acquisition/bulk_enrich"
 ---
 
-## Endpoint: `POST /v1/businesses/funding_and_acquisition/bulk_enrich`
-
-
 <AccordionGroup>
-<Accordion title="How It Works">
-
-- **Input:** Provide a list of up to **50`business_id`s**.
-- **Processing:** The system retrieves funding and acquisition data for all submitted businesses in a **single request**.
-- **Output:** A structured response with historical funding rounds and acquisitions.
-
-</Accordion>
-
-<Accordion title="Example Request (cURL)">
-
-```shell Bash
-curl --request POST \
-     --url https://api.explorium.ai/v1/businesses/funding_and_acquisition/bulk_enrich \
-     --header 'accept: application/json' \
-     --header 'api_key: your_api_key_here' \
-     --header 'content-type: application/json' \
-     --data '{
-  "business_ids": [
-    "8adce3ca1cef0c986b22310e369a0793",
-    "a34bacf839b923770b2c360eefa26748"
-  ]
-}'
-```
-
-</Accordion>
-
-<Accordion title="Best Practices">
-
-- **Track funding rounds** to identify growing companies.
-- **Analyze acquisition trends** for market consolidation insights.
-- **Assess investor activity** to evaluate market confidence.
-
-</Accordion>
+  <Accordion title="How It Works">
+    - **Input:** Provide a list of up to **`50business_ids`**.
+    - **Processing:** The system retrieves funding and acquisition data for all submitted businesses in a **single request**.
+    - **Output:** A structured response with historical funding rounds and acquisitions.
+  </Accordion>
+  <Accordion title="Example Request (cURL)">
+    ```shell Bash
+    curl --request POST \
+         --url https://api.explorium.ai/v1/businesses/funding_and_acquisition/bulk_enrich \
+         --header 'accept: application/json' \
+         --header 'api_key: your_api_key_here' \
+         --header 'content-type: application/json' \
+         --data '{
+      "business_ids": [
+        "8adce3ca1cef0c986b22310e369a0793",
+        "a34bacf839b923770b2c360eefa26748"
+      ]
+    }'
+    ```
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **Track funding rounds** to identify growing companies.
+    - **Analyze acquisition trends** for market consolidation insights.
+    - **Assess investor activity** to evaluate market confidence.
+  </Accordion>
 </AccordionGroup>
 
-<Icon icon="thumbtack" color="red" iconType="solid"/> **For additional enrichment options, explore related API endpoints below.**
+<Icon icon="thumbtack" iconType="solid" color="red" /> **For additional enrichment options, explore related API endpoints below.**
 
 ## Body Params - Try Me Example
 
