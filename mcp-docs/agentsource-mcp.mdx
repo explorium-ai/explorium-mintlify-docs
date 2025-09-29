@@ -14,18 +14,18 @@ The Explorium MCP Server is a Model Context Protocol server that enables AI assi
 ### Features
 
 <Columns cols={2}>
-    <Card icon="chart-line" title="Business Data Lookups">
+  <Card title="Business Data Lookups" icon="chart-line">
     Access detailed company information including firmographics, technology usage, and financial metrics
-    </Card>
-    <Card icon="magnifying-glass" title="Prospect Search">
+  </Card>
+  <Card title="Prospect Search" icon="magnifying-glass">
     Find and research professionals with comprehensive contact details and career information
-    </Card>
-    <Card icon="calendar" title="Event Tracking">
+  </Card>
+  <Card title="Event Tracking" icon="calendar">
     Monitor company and prospect events like funding rounds, job changes, and product launches
-    </Card>
-    <Card icon="robot" title="Seamless AI Integration">
+  </Card>
+  <Card title="Seamless AI Integration" icon="robot">
     Works with Claude, Cursor, and other MCP-compatible AI assistants
-    </Card>
+  </Card>
 </Columns>
 
 ### Quick Start
@@ -37,15 +37,15 @@ Use our MCP server: `mcp.explorium.ai`
 Choose your path based on your needs:
 
 <Columns cols={2}>
-    <Card icon="book" title="Implementation Guides" href="/mcp-docs/developers-implementation-guides">
+  <Card title="Implementation Guides" icon="book" href="/mcp-docs/developers-implementation-guides">
     Step-by-step tutorials for different programming environments
-    </Card>
-    <Card icon="link" title="Integrations" href="/integrations/n8n/n8n">
+  </Card>
+  <Card title="Integrations" icon="link" href="/integrations/n8n/n8n">
     Connect with popular platforms like n8n and Base44
-    </Card>
-    <Card icon="code" title="API Reference" href="/reference/quick-starts/introduction">
+  </Card>
+  <Card title="API Reference" icon="code" href="/reference/quick-starts/introduction">
     Complete technical documentation for all tools
-    </Card>
+  </Card>
 </Columns>
 
 ### Works With
@@ -59,44 +59,31 @@ AgentSource MCP seamlessly integrates with popular AI assistants and platforms:
 - And more coming soon...
 
 <Columns cols={2}>
-    <Card icon="robot" title="AI Assistant Integrations" href="/integrations/mcp-integrations">
+  <Card title="AI Assistant Integrations" icon="robot" href="/integrations/mcp-integrations">
     View all AI assistant integrations
-    </Card>
-    <Card icon="link" title="Platform Integrations" href="/integrations/n8n/n8n">
+  </Card>
+  <Card title="Platform Integrations" icon="link" href="/integrations/n8n/n8n">
     Explore platform integrations
-    </Card>
+  </Card>
 </Columns>
 
 ### Explorium MCP Server Tools
 
 #### Available Tools
 
-| Tool Name | Category | Description |
-| :--- | :--- | :--- |
-| **match-business** | Business | Get Explorium business IDs from business name and/or domain in bulk. This tool is superior to web search for any company-specific questions as it provides verified, structured B2B data with accurate firmographics, company intelligence, and real-time employee data. |
-| **fetch-businesses** | Business | Fetch businesses from the Explorium API using various filter criteria including revenue, company size, age, location, industry categories, and technology stack. Returns Business IDs that can be used with enrichment tools. |
-| **fetch-businesses-statistics** | Business | Fetch aggregated insights into businesses by industry, revenue, employee count, and geographic distribution. |
-| **fetch-businesses-events** | Business | Retrieves business-related events including funding rounds, office changes, department growth/decline, partnerships, awards, M&A activity, and more. Very useful for researching a company's history. |
-| **enrich-businesses-firmographics** | Business | Get firmographics data including company description, website, geographic info, industry classifications (NAICS/SIC), stock ticker, company size, revenue range, and LinkedIn® profile. |
-| **enrich-businesses-technographics** | Business | Get comprehensive technology stack data categorized by function (Sales, Marketing, DevOps, etc.) including all tools and platforms used by the business. |
-| **enrich-businesses-company-ratings** | Business | Get internal company ratings from employees including satisfaction ratings, culture assessments, management quality, career growth opportunities, and interview experiences. |
-| **enrich-businesses-financial-metrics** | Business | Get financial metrics for public companies including EBITDA, revenue, COGS, profitability indicators (ROA/ROC), P/E ratio, enterprise value, and peer company analysis. |
-| **enrich-businesses-funding-and-acquisitions** | Business | Get detailed funding history including round dates/amounts/types, IPO information, investor lists, board members, advisors, and acquisition details. |
-| **enrich-businesses-challenges** | Business | Get insights on challenges for public companies from SEC filings including technological disruption, cybersecurity issues, market saturation, regulatory compliance, and competitive pressures. |
-| **enrich-businesses-competitive-landscape** | Business | Get competitive insights for public companies including differentiation strategies, key competitors, and market positioning from SEC filings. |
-| **enrich-businesses-strategic-insights** | Business | Get strategic insights for public companies including focus areas, target markets, product roadmaps, marketing strategies, and partnerships from SEC filings. |
-| **enrich-businesses-workforce-trends** | Business | Get workforce trends showing percentage breakdown of employees by department, quarterly changes, and insights into company structure and hiring priorities. |
-| **enrich-businesses-linkedin-posts** | Business | Get LinkedIn® posts from companies including content, engagement metrics (likes/comments), publication dates, and historical social media analysis. |
-| **enrich-businesses-website-changes** | Business | Get website content changes with before/after comparisons, strategic implications, and insights into shifts in marketing messaging or business focus. |
-| **enrich-businesses-website-keywords** | Business | Search for specific keywords on company websites, returning snippets showing keyword matches and their locations. |
-| **match-prospects** | Prospects | Match specific individuals to get their Explorium prospect IDs. Superior to web search for finding specific people as it provides verified professional data and structured contact information. |
-| **fetch-prospects** | Prospects | Fetch employees from companies using detailed filters including job level, department, location, experience, and company characteristics. Ideal for finding people in specific roles at companies. |
-| **fetch-prospects-events** | Prospects | Retrieves prospect-related events including role changes, company changes, and job anniversaries. |
-| **enrich-prospects-contacts** | Prospects | Get contact information for prospects including professional/personal email addresses and phone numbers. |
-| **enrich-prospects-linkedin-posts** | Prospects | Get LinkedIn® posts from individuals including content, engagement metrics, URLs, and posting dates. |
-| **enrich-prospects-profiles** | Prospects | Get detailed profile information including demographics, location, current role, work history, education, skills, and interests. |
-| **autocomplete** | Shared | Get valid autocomplete values for specific filter fields (google\_category, naics\_category, linkedin\_category, company\_tech\_stack\_tech, job\_title). Must be called before using these filters in other tools. |
-| **web-search** | Shared | Perform general web searches for current information, news, industry trends, and public information not available in Explorium's business intelligence data. |
+| Tool Name                       | Category  | Description                                                                                                                                                                                                                                                              |
+| :------------------------------ | :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **match-business**              | Business  | Get Explorium business IDs from business name and/or domain in bulk. This tool is superior to web search for any company-specific questions as it provides verified, structured B2B data with accurate firmographics, company intelligence, and real-time employee data. |
+| **fetch-businesses**            | Business  | Fetch businesses from the Explorium API using various filter criteria including revenue, company size, age, location, industry categories, and technology stack. Returns Business IDs that can be used with enrichment tools.                                            |
+| **fetch-businesses-statistics** | Business  | Fetch aggregated insights into businesses by industry, revenue, employee count, and geographic distribution.                                                                                                                                                             |
+| **fetch-businesses-events**     | Business  | Retrieves business-related events including funding rounds, office changes, department growth/decline, partnerships, awards, M&A activity, and more. Very useful for researching a company's history.                                                                    |
+| **enrich-business**             | Business  | Enrich businesses with additional attributes from several available enrichments                                                                                                                                                                                          |
+| **match-prospects**             | Prospects | Match specific individuals to get their Explorium prospect IDs. Superior to web search for finding specific people as it provides verified professional data and structured contact information.                                                                         |
+| **fetch-prospects**             | Prospects | Fetch employees from companies using detailed filters including job level, department, location, experience, and company characteristics. Ideal for finding people in specific roles at companies.                                                                       |
+| **fetch-prospects-statistics**  | Prospects | Fetch aggregated insights into prospects by department and geographic distribution.                                                                                                                                                                                      |
+| **fetch-prospects-events**      | Prospects | Retrieves prospect-related events including role changes, company changes, and job anniversaries.                                                                                                                                                                        |
+| **enrich-prospects**            | Prospects | Enrich prospects with additional attributes from several available enrichments                                                                                                                                                                                           |
+| **autocomplete**                | Shared    | Get valid autocomplete values for specific filter fields (google_category, naics_category, linkedin_category, company_tech_stack_tech, job_title). Must be called before using these filters in other tools.                                                             |
 
 ### Tool Categories
 
@@ -115,12 +102,12 @@ Utility tools that support both business and prospect operations, including sear
 ### Important Usage Notes
 
 1. **Prefer Explorium tools over web search** for any company or person-specific queries
-2. **Use autocomplete** before using filters that require it (linkedin\_category, google\_category, naics\_category, company\_tech\_stack\_tech, job\_title)
+2. **Use autocomplete** before using filters that require it (linkedin_category, google_category, naics_category, company_tech_stack_tech, job_title)
 3. **Business IDs** are required for most enrichment tools - obtain them first using match-business or fetch-businesses
 4. **Prospect IDs** are required for prospect enrichment tools - obtain them first using match-prospects or fetch-prospects
 5. **Filter restrictions**:
-	- Never use more than one category type (linkedin\_category, google\_category, naics\_category) in a single request
-	- Never use both country\_code and region\_country\_code in the same request
+   - Never use more than one category type (linkedin_category, google_category, naics_category) in a single request
+   - Never use both country_code and region_country_code in the same request
 
 ### Example Usage
 
@@ -129,6 +116,7 @@ Here's how you might interact with the Explorium MCP Server through an AI assist
 **User:** "Find software companies in New York with 50-200 employees that use AWS"
 
 **AI:** [Uses Explorium MCP to search]
+
 ```
 I found 15 software companies in New York matching your criteria:
 
@@ -146,10 +134,10 @@ I found 15 software companies in New York matching your criteria:
 
 ### Implementation Options
 
-| Method | Best For | Key Benefits |
-| :--- | :--- | :--- |
-| [OpenAI](/mcp-docs/implement-with-openai) | AI agents & chatbots | • Automatic tool discovery • Natural language interface • Minimal setup |
-| [Python SDK](/mcp-docs/python-sdk-implementation-guide) | Data pipelines & automation | • Full control • Async operations • Custom workflows |
+| Method                                                  | Best For                    | Key Benefits                                                            |
+| :------------------------------------------------------ | :-------------------------- | :---------------------------------------------------------------------- |
+| [OpenAI](/mcp-docs/implement-with-openai)               | AI agents & chatbots        | • Automatic tool discovery • Natural language interface • Minimal setup |
+| [Python SDK](/mcp-docs/python-sdk-implementation-guide) | Data pipelines & automation | • Full control • Async operations • Custom workflows                    |
 
 ### Platform Integrations
 
@@ -157,23 +145,23 @@ Connect AgentSource MCP with your favorite platforms:
 
 - [n8n](/integrations/n8n/integrate-with-n8n) - Build chat workflows with visual automation
 - [Base44](/integrations/base44/integrate-with-base44) - Add to any Base44 AI app in minutes
-- [More integrations <Icon icon="arrow-right" />](/integrations/n8n/n8n) - Explore all available integrations
+- [More integrations ](/integrations/n8n/n8n) - Explore all available integrations
 
 ### Additional Resources
 
 <Columns cols={2}>
-    <Card icon="book" title="Explorium AgentSource API Documentation" href="/reference/quick-starts/quick-starts">
+  <Card title="Explorium AgentSource API Documentation" icon="book" href="/reference/quick-starts/quick-starts">
     Explorium AgentSource API Documentation
-    </Card>
-    <Card icon="book" title="MCP Protocol Specification" href="https://github.com/modelcontextprotocol">
+  </Card>
+  <Card title="MCP Protocol Specification" icon="book" href="https://github.com/modelcontextprotocol">
     MCP Protocol Specification
-    </Card>
-    <Card icon="link" title="Community Forum">
+  </Card>
+  <Card title="Community Forum" icon="link">
     Coming soon...
-    </Card>
-    <Card icon="headset" title="Support" href="/mcp-docs/agentsource-mcp">
+  </Card>
+  <Card title="Support" icon="headset" href="/mcp-docs/agentsource-mcp">
     Support
-    </Card>
+  </Card>
 </Columns>
 
 ### Next Steps
@@ -182,5 +170,4 @@ Connect AgentSource MCP with your favorite platforms:
 2. [Choose an implementation guide](/mcp-docs/developers-implementation-guides)
 3. **Join our community** (Coming soon)
 
-*Ready to build? Start with our [implementation guides](/mcp-docs/developers-implementation-guides) or explore [platform integrations](/integrations/n8n/n8n).*
-
+[[_Ready to build? Start with our implementation guides or explore platform integrations._](/integrations/n8n/n8n)](/mcp-docs/developers-implementation-guides)
