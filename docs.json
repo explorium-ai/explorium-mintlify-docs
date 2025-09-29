@@ -225,18 +225,7 @@
                   "mcp-docs/implement-with-openai",
                   "mcp-docs/python-sdk-implementation-guide"                  
                 ]
-              },
-              {
-                    "group": "MCP Integrations",
-                    "pages": [
-                      "integrations/mcp-integrations",
-                      "integrations/claude/claude-desktop-integration",
-                      "integrations/cursor/cursor-integration",
-                      "integrations/n8n/integrate-with-n8n",
-                      "integrations/zapier/integrate-with-zapier",
-                      "integrations/base44/integrate-with-base44"
-                    ]
-                  }
+              }              
             ]
           }
         ]
@@ -245,6 +234,17 @@
         "tab": "Integrations",
         "icon": "circles-overlap",
         "groups": [           
+          {
+          "group": "MCP Integrations",
+          "pages": [
+            "integrations/mcp-integrations",
+            "integrations/claude/claude-desktop-integration",
+            "integrations/cursor/cursor-integration",
+            "integrations/n8n/integrate-with-n8n",
+            "integrations/zapier/integrate-with-zapier",
+            "integrations/base44/integrate-with-base44"
+          ]
+        },
           {
             "group": "Integrations templates",
             "pages": [
@@ -261,7 +261,7 @@
               },
               "integrations/zapier/zapier"              
             ]      
-          }
+          }          
         ]
       }
     ],
