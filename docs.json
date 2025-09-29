@@ -259,7 +259,18 @@
                   "integrations/n8n/hubspot-contact-enrichment"
                 ]
               },
-              "integrations/zapier/zapier"
+              "integrations/zapier/zapier",
+              {
+            "group": "Integrations",
+            "pages": [
+              "integrations/mcp-integrations",
+              "integrations/claude/claude-desktop-integration",
+              "integrations/cursor/cursor-integration",
+              "integrations/n8n/integrate-with-n8n",
+              "integrations/zapier/integrate-with-zapier",
+              "integrations/base44/integrate-with-base44"
+            ]
+          }
             ]
           }
         ]
