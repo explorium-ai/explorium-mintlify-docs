@@ -319,5 +319,11 @@
     "socials": {
       "linkedin": "https://www.linkedin.com/company/explorium-ai/"
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/reference/agentsource-mcp",
+      "destination": "/mcp-docs/agentsource-mcp"
+    }
+  ]
 }
