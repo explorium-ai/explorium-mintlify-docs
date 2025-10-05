@@ -1,0 +1,228 @@
+---
+title: "Prospects Statistics"
+openapi: "post /v1/prospects/stats"
+---
+
+# Prospects Statistics
+
+### **Introduction**
+
+The **Prospects Statistics** API provides aggregated insights and distributions for prospects based on your search criteria. This powerful analytics endpoint helps you understand the composition of your prospect universe, enabling data-driven decisions for sales territory planning, market analysis, and campaign targeting.
+
+📌 **Key Benefits:**
+
+- Get **instant insights** into prospect distributions without fetching individual records
+- Understand **market composition** by department, seniority, location, and more
+- Receive **dynamic statistics** that adapt to your filter criteria
+- Make **data-driven decisions** for territory planning and resource allocation
+- **No credit charges** for statistical analysis
+
+---
+
+<AccordionGroup>
+  <Accordion title="How It Works" icon="sparkles">
+    **Input:** Provide filters identical to the prospects fetch endpoint to define your target audience
+  2. **Processing:** The system aggregates prospect data based on your filters and calculates distributions
+  3. **Output:** Dynamic statistics showing distributions for the filters you've applied
+  4. **Intelligence:** The response structure adapts based on which filters are used in the request
+  </Accordion>
+  <Accordion title="Request Schema" icon="sparkles">
+    
+  | Field     | Type   | Description                                                                                             | Required |
+  | --------- | ------ | ------------------------------------------------------------------------------------------------------- | -------- |
+  | `filters` | Object | Filter criteria to define the prospect universe. Supports all filters from the `/v1/prospects` endpoint | No       |
+
+  **Note:** See the "Supported Filters" section below for the complete list of available filters and their usage.
+  </Accordion>
+  <Accordion title="Supported Filters" icon="sparkles">
+      This endpoint supports **ALL filters** available in the `/v1/prospects` fetch endpoint:
+
+  ### **Contact Availability Filters**
+
+  | Filter             | Description                  | Example           |
+  | ------------------ | ---------------------------- | ----------------- |
+  | `has_email`        | Filter by email availability | `{"value": true}` |
+  | `has_phone_number` | Filter by phone availability | `{"value": true}` |
+
+  ### **Professional Filters**
+
+  | Filter                    | Description                    | Example                                             |
+  | ------------------------- | ------------------------------ | --------------------------------------------------- |
+  | `job_level`               | Filter by seniority level      | `{"values": ["director", "vp", "cxo"]}`             |
+  | `job_department`          | Filter by department           | `{"values": ["sales", "marketing", "engineering"]}` |
+  | `job_title`               | Filter by job title keywords   | `{"value": "Sales Representative"}`                 |
+  | `total_experience_months` | Filter by total experience     | `{"gte": 60, "lte": 120}`                           |
+  | `current_role_months`     | Filter by time in current role | `{"gte": 12}`                                       |
+
+  ### **Geographic Filters**
+
+  | Filter                | Description                     | Example                            |
+  | --------------------- | ------------------------------- | ---------------------------------- |
+  | `country_code`        | Filter by prospect's country    | `{"values": ["us", "gb", "de"]}`   |
+  | `region_country_code` | Filter by prospect's region     | `{"values": ["us-ca", "us-ny"]}`   |
+  | `city_region_country` | Filter by city, region, country | `{"values": ["New York, NY, US"]}` |
+
+  ### **Company Filters**
+
+  | Filter                        | Description                     | Example                                |
+  | ----------------------------- | ------------------------------- | -------------------------------------- |
+  | `business_id`                 | Filter by specific business IDs | `{"values": ["exp_id_1", "exp_id_2"]}` |
+  | `company_name`                | Filter by company names         | `{"values": ["Meta", "Tesla"]}`        |
+  | `company_size`                | Filter by employee count ranges | `{"values": ["51-200", "201-500"]}`    |
+  | `company_revenue`             | Filter by revenue ranges        | `{"values": ["10M-50M", "50M-100M"]}`  |
+  | `company_country_code`        | Filter by company HQ country    | `{"values": ["us", "ca"]}`             |
+  | `company_region_country_code` | Filter by company HQ region     | `{"values": ["us-ca", "us-tx"]}`       |
+
+  ### **Industry Classification Filters**
+
+  | Filter              | Description                          | Example                                                      |
+  | ------------------- | ------------------------------------ | ------------------------------------------------------------ |
+  | `google_category`   | Filter by Google business category   | `{"values": ["Software Development", "Retail"]}`             |
+  | `naics_category`    | Filter by NAICS industry codes       | `{"values": ["5611", "23"]}`                                 |
+  | `linkedin_category` | Filter by LinkedIn business category | `{"values": ["software development", "investment banking"]}` |
+
+  **Filter Structure:**
+
+  * Use `{"values": [...]}` for multi-value filters
+  * Use `{"value": ...}` for single-value or boolean filters
+  * Use `{"gte": ..., "lte": ...}` for numeric range filters
+  </Accordion>
+  <Accordion title="Dynamic Response Structure" icon="sparkles">
+      The response intelligently adapts based on the filters used in your request:
+
+  | Filters Used                             | Statistics Returned                          | Use Case                       |
+  | ---------------------------------------- | -------------------------------------------- | ------------------------------ |
+  | `job_department` + `region_country_code` | Distribution of departments across regions   | Territory planning by function |
+  | `job_department` + `country_code`        | Distribution of departments across countries | Executive targeting analysis   |
+  | Single filter only                       | Simple count distribution                    | Quick market sizing            |
+
+  **Always Included:**
+
+  * `total_results`: Total count of matching prospects
+  * `response_context`: Request metadata and performance metrics
+  </Accordion>
+  <Accordion title="Request Examples" icon="sparkles">
+      ```json
+  {
+    "filters": {
+      "job_department": {
+        "values": ["engineering", "sales", "marketing"]
+      },
+      "region_country_code": {
+        "values": ["us-ca", "us-ny", "us-tx"]
+      },
+      "company_size": {
+        "values": ["51-200", "201-500"]
+      }
+    }
+  }
+  ```
+  </Accordion>
+  <Accordion title="Response Examples" icon="sparkles">
+      **Department by Region Response:**
+
+  ```json
+  {
+    "response_context": {
+      "correlation_id": "812719a515474144a8cac019d7776b14",
+      "request_status": "success",
+      "time_took_in_seconds": 0.75
+    },
+    "total_results": 4500,
+    "stats": {
+      "job_departments_per_location": {
+        "engineering": {
+          "California, US": 850,
+          "New York, US": 620,
+          "Texas, US": 480,
+          "total": 1950
+        },
+        "sales": {
+          "California, US": 560,
+          "New York, US": 410,
+          "Texas, US": 380,
+          "total": 1350
+        },
+        "marketing": {
+          "California, US": 420,
+          "New York, US": 350,
+          "Texas, US": 430,
+          "total": 1200
+        },
+        "total_per_location": {
+          "California, US": 1830,
+          "New York, US": 1380,
+          "Texas, US": 1290,
+          "total": 4500
+        }
+      }
+    }
+  }
+  ```
+  </Accordion>
+  <Accordion title="Use Cases" icon="sparkles">
+      ### **Sales Territory Planning**
+
+  * Analyze prospect distribution across regions using `region_country_code` and `job_department`
+  * Balance territories based on prospect density with `company_size` and `job_level` filters
+  * Identify underserved markets by comparing prospect counts across geographic areas
+
+  ### **Account-Based Marketing (ABM)**
+
+  * Target specific companies using `company_name` or `business_id` filters
+  * Analyze decision-maker distribution with `job_level` and `job_department`
+  * Segment by company characteristics using `company_revenue` and `company_size`
+
+  ### **Campaign Targeting**
+
+  * Size your total addressable market using industry filters (`naics_category`, `linkedin_category`)
+  * Validate contact availability with `has_email` and `has_phone_number`
+  * Focus on new decision-makers using `current_role_months` filter
+
+  ### **Market Intelligence**
+
+  * Compare prospect density across industries using classification filters
+  * Analyze experience levels with `total_experience_months`
+  * Track job mobility trends with role duration filters
+
+  ### **Lead Scoring & Qualification**
+
+  * Identify high-value segments combining `job_level`, `company_revenue`, and `job_department`
+  * Find prospects in growth companies using company size and revenue filters
+  * Target specific buyer personas with precise filter combinations
+  </Accordion>
+  <Accordion title="Best Practices" icon="sparkles">
+      * **Start broad, then narrow:** Begin with 1-2 filters to understand market size, then add filters progressively
+  * **Validate before fetching:** Always run stats before expensive fetch operations to ensure sufficient results
+  * **Use classification filters:** Leverage `naics_category` or `linkedin_category` for accurate industry targeting
+  * **Combine geographic levels:** Use country → region → city filters for precise location targeting
+  * **Monitor regularly:** Schedule weekly/monthly stats queries to track market changes
+  * **Cross-reference filters:** Combine professional (job\_level) with company (company\_size) filters for better segmentation
+  * **Experience targeting:** Use experience filters to identify senior professionals or recent role changes
+  * **Industry-specific analysis:** Combine industry classifications with other filters for vertical-specific insights
+  </Accordion>
+  <Accordion title="Important Notes" icon="sparkles">
+      * **No credit charges:** Statistical queries are free and don't consume any credits
+  * **Real-time data:** Statistics reflect the current state of the prospect database
+  * **Dynamic response:** Response structure automatically adapts to your filter combination
+  * **All filters supported:** Every filter from the `/v1/prospects` endpoint works here
+  </Accordion>
+</AccordionGroup>
+
+**Try Me Example:**
+
+```json
+  {
+    "filters": {
+      "job_department": {
+        "values": ["engineering", "sales", "marketing"]
+      },
+      "region_country_code": {
+        "values": ["us-ca", "us-ny", "us-tx"]
+      },
+      "company_size": {
+        "values": ["51-200", "201-500"]
+      }
+    }
+  }
+```
