@@ -306,7 +306,27 @@
                 ]
               }
             ]
-          }          
+          },
+          {
+            "group": "Introduction & Overview",
+            "pages": [
+              "deprecated-docs/logging-into-the-explorium-platform",
+              "deprecated-docs/data-classifications-ontologies",
+              {
+                "group": "Salesforce Connector via Platform",
+                "pages": [
+              "deprecated-docs/salesforce-connector",
+              "deprecated-docs/uploading-data-from-a-salesforce-object",
+              "deprecated-docs/connecting-to-microsoft-azure-blob",
+              "deprecated-docs/connecting-to-sftp",
+              "deprecated-docs/connecting-to-google-bigquery",
+              "deprecated-docs/connecting-to-mysql",
+              "deprecated-docs/connecting-to-postgres"
+                ]              
+              },
+              "deprecated-docs/viewing-credits-usage-reports"           
+            ]
+          }
         ] 
       }
     ],
