@@ -279,15 +279,7 @@
             "pages": [
               "deprecated-docs/getting-started",
               "deprecated-docs/getting-your-api-key",
-              "deprecated-docs/platform-usage-consumption",
-              "deprecated-docs/",
-              "deprecated-docs/",
-              "deprecated-docs/",
-              "deprecated-docs/",
-              "deprecated-docs/",
-              "deprecated-docs/",
-              "deprecated-docs/",
-              "deprecated-docs/"
+              "deprecated-docs/platform-usage-consumption"
             ]
           },
           {
@@ -296,12 +288,25 @@
               "deprecated-docs/connectors",
               "deprecated-docs/salesforce-integrations",
               "deprecated-docs/salesforce-import",
-              
+              {
+                "group": "Salesforce export - Insert new objects",
+                "pages": [
+                  "deprecated-docs/salesforce-export-insert-new-objects",
+                  "deprecated-docs/mandatory-fields",
+                  "deprecated-docs/sfdc-error-cods"                
+                ]
+              },              
               "deprecated-docs/hubspot-integration",
-              "deprecated-docs/hubspot-import"
-
+              "deprecated-docs/hubspot-import",
+              "deprecated-docs/snowflake-integration"              
             ]
-          }
+          },
+          {
+                "group": "Transformations",
+                "pages": [
+                  "deprecated-docs/gpt-guidelines"
+                ]
+              }
         ] 
       }
     ],
