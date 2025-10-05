@@ -1,262 +1,243 @@
 ---
 title: "Fetch prospects"
-openapi: post /v1/prospects
+openapi: "post /v1/prospects"
 ---
 
 ### Introduction
 
 The **Fetch Prospects** endpoint allows users to retrieve a list of prospect records based on filtering criteria such as job level, department, or other professional attributes. This API is essential for sales intelligence, lead enrichment, and prospecting workflows.
 
-<Icon icon="thumbtack" color="red" iconType="solid"/> **Key Benefits:**
+<Icon icon="thumbtack" iconType="solid" color="red" /> **Key Benefits:**
 
 - Identify **high-value prospects** based on job roles, seniority, and industry.
 - Enhance **lead scoring and segmentation** with structured data.
 - Retrieve **up-to-date professional details** to optimize outreach.
 - Integrate seamlessly with existing **CRM and marketing automation** platforms.
 - Consideration:
-	- Not all filters have a high coverage rate. Using a filter with low data coverage may result in a smaller set of returned results.
-	- Conversely, using broader filters can yield more results. For example, if filtering by a very specific attribute results in few matches, expanding the filter criteria may increase the number of retrieved records.
-	- When filtering by location, note that there are two distinct filter types: company location and prospect location. For example, the `company_country_code` filter applies to the company's headquarters location, while the `country_code` filter applies to the individual prospect's location. This distinction is particularly important for global companies where prospects may be distributed across different locations than the company headquarters.RetryClaude can make mistakes. Please double-check responses.)
-
+  - Not all filters have a high coverage rate. Using a filter with low data coverage may result in a smaller set of returned results.
+  - Conversely, using broader filters can yield more results. For example, if filtering by a very specific attribute results in few matches, expanding the filter criteria may increase the number of retrieved records.
+  - When filtering by location, note that there are two distinct filter types: company location and prospect location. For example, the `company_country_code` filter applies to the company's headquarters location, while the `country_code` filter applies to the individual prospect's location. This distinction is particularly important for global companies where prospects may be distributed across different locations than the company headquarters.RetryClaude can make mistakes. Please double-check responses.)
 
 ### Endpoint:`POST /prospects`
 
 <AccordionGroup>
-<Accordion title="How It Works">
-1. **Input:** Provide filters such as job level, department, or industry to refine prospect search.
-2. **Processing:** The system scans and retrieves relevant prospect records.
-3. **Output:** A structured response containing matched prospect data.
-</Accordion>
+  <Accordion title="How It Works">
+    1. **Input:** Provide filters such as job level, department, or industry to refine prospect search.
+    2. **Processing:** The system scans and retrieves relevant prospect records.
+    3. **Output:** A structured response containing matched prospect data.
+  </Accordion>
+  <Accordion title="Request Schema">
+    | Field       | Type   | Description                                  |
+    | ----------- | ------ | -------------------------------------------- |
+    | `mode`      | String | `full`                                       |
+    | `size`      | Number | Max number of returned results - up to 60000 |
+    | `page_size` | Number | Max number of records per page - up to 100   |
+    | `page`      | Number | Page number to retrieve                      |
+    | `filters`   | Object | Filter object (see Filters Object below)     |
+  </Accordion>
+  <Accordion title="Pagination, Filtering & Modes Parameters">
+    ### Data Fetching: Pagination, Filtering & Modes
 
-<Accordion title="Request Schema">
+    The API supports flexible data fetching through **pagination**, **filtering**, and optional **modes** to customize the amount and structure of the returned data.
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `mode` | String | `full` |
-| `size` | Number | Max number of returned results - up to 10000 |
-| `page_size` | Number | Max number of records per page - up to 100 |
-| `page` | Number | Page number to retrieve |
-| `filters` | Object | Filter object (see Filters Object below) |
+    #### Pagination
 
-</Accordion>
+    To efficiently retrieve large datasets, use the following parameters to paginate the results:
 
-<Accordion title="Pagination, Filtering & Modes Parameters">
+    | Parameter   | Type   | Description                                                                         |
+    | ----------- | ------ | ----------------------------------------------------------------------------------- |
+    | `size`      | Number | The total maximum number of records to return across all pages.   Must be ≤ 60,000. |
+    | `page_size` | Number | Number of records to return per page.   Maximum value: 100.                         |
+    | `page`      | Number | The page number to retrieve (1-based index).   Defaults to 1 if not specified.      |
 
-### Data Fetching: Pagination, Filtering & Modes
+    **Behavior Notes:**
 
-The API supports flexible data fetching through **pagination**, **filtering**, and optional **modes** to customize the amount and structure of the returned data.
+    - If `size` is smaller than `page_size * page`, the last page may contain fewer records or be empty.
+    - If pagination parameters are omitted, the API may return a default page size (implementation-specific).
 
-#### Pagination
+    #### Filtering
 
-To efficiently retrieve large datasets, use the following parameters to paginate the results:
+    Filters allow you to narrow down results based on specific field values.
+    All filters must be included in the request body under the `"filters"` key, as a JSON object.
 
-| Parameter | Type | Description |
-| --- | --- | --- |
-| `size` | Number | The total maximum number of records to return across all pages.   Must be ≤ 10,000. |
-| `page_size` | Number | Number of records to return per page.   Maximum value: 100. |
-| `page` | Number | The page number to retrieve (1-based index).   Defaults to 1 if not specified. |
+    Each filter field accepts:
 
-**Behavior Notes:**
+    - `value`: for a single filter value (e.g. `"value": "true"`)
+    - `values`: for multiple possible matches (e.g. `"values": ["director", "manager"]`)
 
-- If `size` is smaller than `page_size * page`, the last page may contain fewer records or be empty.
-- If pagination parameters are omitted, the API may return a default page size (implementation-specific).
+    **Example Request Body:**
 
-
-#### Filtering
-
-Filters allow you to narrow down results based on specific field values.
-All filters must be included in the request body under the `"filters"` key, as a JSON object.
-
-Each filter field accepts:
-
-- `value`: for a single filter value (e.g. `"value": "true"`)
-- `values`: for multiple possible matches (e.g. `"values": ["director", "manager"]`)
-
-**Example Request Body:**
-
-```json
-{
-  "filters": {
-    "job_level": {
-      "values": ["director", "manager"]
-    },
-    "has_email": {
-      "value": "true"
-    }
-  }
-}
-```
-
-**Filter Matching Logic:**
-
-- Fields using `value` are matched exactly.
-- Fields using `values` are matched using an **OR** condition.
-- Filters are combined using an **AND** across different fields.
-
-
-#### Mode Parameter
-
-The optional `mode` parameter defines the level of detail in the returned data.
-
-| Mode | Description |
-| --- | --- |
-| `full` | Returns the complete data object for each prospect.   Use this when full detail is required for processing or display. |
-| `preview` | Returns a lightweight version of the data, including only key fields.   For prospects, this typically includes: `prospect_id`, `name`, `title`, `company_name`, and `email_status`. |
-
-#### Best Practices
-
-- Always use `page_size` to control payload size for better performance.
-- Use `size` to set an upper limit and avoid unintentionally requesting large datasets.
-- Apply filters whenever possible to reduce response size and processing time.
-- Avoid using `mode=full` unless full object data is necessary—especially in high-volume requests.
-
-</Accordion>
-
-<Accordion title="Prospect Filters">
-
-### Prospect Filters Reference
-
-| Parameter | Description | Notes / Best Practices |
-| --- | --- | --- |
-| has\_email | Filter prospects by whether they have an email. Categories: \[True, False\] | Enter `true` to find only prospects with email addresses, or `false` to exclude them. Uses a single `value` (true/false). Logic is based on checking the existence of a value in the email field. |
-| has\_phone\_number | Filter prospects by whether they have a phone number. Categories: \[True, False\] | Use `true` to get only prospects with phone numbers. Useful when planning outreach via phone. Uses a single `value`. Logic checks whether the phone field is populated. |
-| job\_level | Filter prospects by their job level. Categories: \[director, manager, vp, partner, cxo, non-managerial, senior, entry, training, unpaid\] | Use the autocomplete dropdown to search for job levels and select from the available list. ֿYou can choose one or more values. This ensures consistent filtering across companies. Uses a list of `values`. Internally matches against a normalized field. |
-| job\_department | Filter prospects by their job department. Categories: \[customer service, design, education, engineering, finance, general, health, sales, ...\] | Use autocomplete to browse and select departments. Works best when combined with job\_level to cover title variations across organizations. Uses multiple `values`. Matches selected categories against a normalized list. |
-| business\_id | Filter prospects by account. Use Explorium entity IDs. Example: \[EXP\_ENTITY\_ID\_1, EXP\_ENTITY\_ID\_2\]\[EXP\_ENTITY\_ID\_1, EXP\_ENTITY\_ID\_2\] | Paste one or more valid business IDs. These are specific identifiers in the system. |
-| country\_code | Filter prospects by country using alpha-2 codes. Example: \[us, ca\] | Use the country autocomplete to search by country name and select the correct two-letter code. This avoids manual errors and ensures valid input. Uses a list of `values`. Logic checks whether the country code matches. |
-| region\_country\_code | Filter prospects by region using ISO 3166-2 codes. Example: \[us-ut, us-ca\] | First choose a country in the autocomplete, then select a region. The code will be formatted as `country-region` (e.g., `us-ca`). Uses `values`. Logic checks for region code inclusion. |
-| city\_region\_country | Filter by city, region, and country of the company location. Example: \["New York, NY, US"\] | Use cascading autocomplete to select a country, then region and city. The full location string is used for precise geographic targeting. Accepts multiple `values`. Logic checks structured address fields. |
-| company\_size | Filter by company’s number of employees. Options: \[1-10, 11-50, ..., 10001+\] | Use autocomplete to select the company size range you're interested in. Helpful for distinguishing between small businesses and large enterprises. Accepts multiple `values`. Internally maps to normalized size brackets. |
-| company\_revenue | Filter by company’s annual revenue. Options: \[0-500K, 500K-1M, ..., 10B-100B\] | Use autocomplete to choose from available revenue brackets. Each value represents a range, making segmentation simple and accurate. Accepts `values`. The logic compares the company revenue field against the selected bracket range. |
-| google\_category | Filter by company’s Google business category. Example: \[Paving contractor, Retail\] | Use autocomplete to find and apply relevant business categories based on Google's classifications. Accepts `values`. The logic checks category labels against company classification metadata. |
-| naics\_category | Filter by NAICS code (2, 4, or full). Example: \[23, 5611\] | Use autocomplete to find relevant industry codes. Recommended for accurate industry classification. Uses multiple `values`. Logic compares NAICS codes to industry metadata. |
-| linkedin\_category | Filter by company’s LinkedIn business category. Example: \[software development, investment banking\] | Use autocomplete to choose from LinkedIn’s available business categories to align with industry filters. Accepts `values`. Filters based on company category tags provided by LinkedIn. |
-| job\_title | Filter prospects by their job titles. Example: \[Sales Representative, SEO specialist, Technical Support Engineer\] | Enter one or more job titles as free text. The filter matches prospects whose title includes all the words. For more consistent results, prefer using job\_level and job\_department. Uses a single `value` with flexible keyword matching. Logic ensures all words appear in the target field, regardless of order. |
-| company\_country\_code | Filter by company HQ country using alpha-2 codes. Example: \[us, ca\] | Use the country autocomplete to select the appropriate country code. This ensures accurate targeting based on company location. Accepts `values`. Matches against the company’s registered country code. |
-| company\_region\_country\_code | Filter by company HQ region using ISO 3166-2 codes. Example: \[us-ut, us-ca\] | Start by choosing the company’s country, then use autocomplete to select the relevant region. This automatically formats the code correctly. Accepts multiple `values`. Matches structured region codes from company metadata. |
-| total\_experience\_months | Filter by total months of experience. | You can specify minimum (`gte`) and/or maximum (`lte`) months of experience. For example, use `gte: 60` to filter for 5+ years. This uses a numeric `value` range. Logic compares experience duration against thresholds. |
-| current\_role\_months | Filter by number of months in current role. | Use `gte` or `lte` to define how long the prospect has held their current position. Great for identifying newly promoted prospects or those with long tenure. Accepts a numeric range of `value`. Logic checks against current role start date. |
-| company\_name | Filter by company name. Example: \["Meta", "Tesla"\] | Enter one or more full company names. Useful for targeting specific known organizations. Accepts a list of `values`. Matching is typically exact or fuzzy depending on the configuration. |
-
-
-### <Icon icon="bullseye-arrow" /> **Prospecting HR Directors at Healthcare Companies in Texas for Payroll Software**
-
-#### <Icon icon="magnifying-glass" /> Use Case:
-
-A payroll software provider wants to sell to HR directors at mid-sized healthcare organizations in Texas who handle payroll compliance and workforce management.
-
-
-#### <Icon icon="filter" /> Filters:
-
-- **Company Country Code**: `["us"]`
-- **Company Region (State Code)**: `["us-tx"]`
-- **Company Size**: `["501-1000"]`
-- **Company Revenue**: `["75M-200M"]`
-- **NAICS Category**: `["62"]` *(Healthcare & Social Assistance)*
-- **Job Level**: `["director", "manager", "vp"]`
-- **Job Department**: `["human resources"]`
-- **Has Email**: `["True"]`
-
-
-#### <Icon icon="bullseye-arrow" /> Targeting CFOs of Investment Banks in New York for Financial Compliance Software
-A regulatory compliance software provider wants to reach out to CFOs at mid-sized investment banks in New York who have been in their role for over two years and are likely leading compliance initiatives.
-
-#### <Icon icon="filter" /> Filters:
-
-- **Company Country Code**: `["us"]`
-- **Company Region (State Code)**: `["us-ny"]`
-- **Company Size**: `["1001-5000"]`
-- **Company Revenue**: `["500M-1B"]`
-- **LinkedIn Category**: `["investment banking"]`
-- **Job Department**: `["finance"]`
-- **Job Level**: `["CXO"]`
-- **Has Email**: `["True"]`
-- **Has Phone Number**: `["True"]`
-
-</Accordion>
-<Accordion title="Example Request (cURL)">
-
-```curl cURL expandable
-curl -X POST \
-  "https://api.explorium.ai/v1/prospects" \
-  -H "API_KEY: <your api key>" \
-  -H "Content-Type: application/json" \
-  -d '{
-  "mode": "full",
-  "size": 100,
-  "page_size": 100,
-  "page": 1,
-  "filters": {
-    "business_id": {
-      "values": [
-        "8adce3ca1cef0c986b22310e369a0793"
-      ]
-    },
-    "job_level": {
-      "values": [
-        "director",
-        "manager"
-      ]
-    },
-    "has_email": {
-      "value": true
-    },
-    "total_experience_months": {
-      "gte": 3,
-      "lte": 6
-    }
-  }
-}'
-```
-
-<Icon icon="thumbtack" iconType="solid" color="red" /> **Mode`full`** : Returns additional attributes such as job history, social links, and experience.
-
-```curl cURL expandable
-{
-  "response_context": {
-    "correlation_id": "d46aa78f3da148e7846fa94492f8f80a",
-    "request_status": "success",
-    "time_took_in_seconds": 1.252
-  },
-  "data": [
+    ```json
     {
-      "prospect_id": "ba32fc15ccaccac027f9f9f1c3116a3333469443",
-      "full_name": "Brandon Kuchta",
-      "country_name": "united states",
-      "region_name": "california",
-      "city": "alamo",
-      "linkedin": "linkedin.com/in/bkuchta",
-      "experience": "Acd, design manager, product art direction",
-      "skills": "3d animation, 3d rendering, After effects, Art direction, Color correction, Color grading, Color management, Compositing, Concept design, Content marketing, Creative direction, Davinci resolve, Digital compositing, Digital marketing, Ec2, Hdr, Image compositing, Image manipulation, Interactive advertising, Interactive media, Leadership, Lighting, Live action, Look development, Matte painting, Mobile design, Modeling, Modo, Motion design, Motion graphics, Nuke, Photographic lighting, Photography, Photoshop, Post production, Pre press, Product development, Product management, Rendering, Responsive design, Retouching, Team leadership, User experience, Vfx supervision, Visual effects",
-      "interests": "Home improvement, Home decoration, Electronics",
-      "company_name": "Apple",
-      "company_website": "apple.com",
-      "company_linkedin": "linkedin.com/company/apple",
-      "job_department": "Marketing",
-      "job_seniority_level": [
-        "director"
+      "filters": {
+        "job_level": {
+          "values": ["director", "manager"]
+        },
+        "has_email": {
+          "value": "true"
+        }
+      }
+    }
+    ```
+
+    **Filter Matching Logic:**
+
+    - Fields using `value` are matched exactly.
+    - Fields using `values` are matched using an **OR** condition.
+    - Filters are combined using an **AND** across different fields.
+
+    #### Mode Parameter
+
+    The optional `mode` parameter defines the level of detail in the returned data.
+
+    | Mode      | Description                                                                                                                                                                         |
+    | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+    | `full`    | Returns the complete data object for each prospect.   Use this when full detail is required for processing or display.                                                              |
+    | `preview` | Returns a lightweight version of the data, including only key fields.   For prospects, this typically includes: `prospect_id`, `name`, `title`, `company_name`, and `email_status`. |
+
+    #### Best Practices
+
+    - Always use `page_size` to control payload size for better performance.
+    - Use `size` to set an upper limit and avoid unintentionally requesting large datasets.
+    - Apply filters whenever possible to reduce response size and processing time.
+    - Avoid using `mode=full` unless full object data is necessary—especially in high-volume requests.
+  </Accordion>
+  <Accordion title="Prospect Filters">
+    ### Prospect Filters Reference
+
+    | Parameter                   | Description                                                                                                                                    | Notes / Best Practices                                                                                                                                                                                                                                                                                             |
+    | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+    | has_email                   | Filter prospects by whether they have an email. Categories: [True, False]                                                                      | Enter `true` to find only prospects with email addresses, or `false` to exclude them. Uses a single `value` (true/false). Logic is based on checking the existence of a value in the email field.                                                                                                                  |
+    | has_phone_number            | Filter prospects by whether they have a phone number. Categories: [True, False]                                                                | Use `true` to get only prospects with phone numbers. Useful when planning outreach via phone. Uses a single `value`. Logic checks whether the phone field is populated.                                                                                                                                            |
+    | job_level                   | Filter prospects by their job level. Categories: [director, manager, vp, partner, cxo, non-managerial, senior, entry, training, unpaid]        | Use the autocomplete dropdown to search for job levels and select from the available list. ֿYou can choose one or more values. This ensures consistent filtering across companies. Uses a list of `values`. Internally matches against a normalized field.                                                         |
+    | job_department              | Filter prospects by their job department. Categories: [customer service, design, education, engineering, finance, general, health, sales, ...] | Use autocomplete to browse and select departments. Works best when combined with job_level to cover title variations across organizations. Uses multiple `values`. Matches selected categories against a normalized list.                                                                                          |
+    | business_id                 | Filter prospects by account. Use Explorium entity IDs. Example: [EXP_ENTITY_ID_1, EXP_ENTITY_ID_2][EXP_ENTITY_ID_1, EXP_ENTITY_ID_2]           | Paste one or more valid business IDs. These are specific identifiers in the system.                                                                                                                                                                                                                                |
+    | country_code                | Filter prospects by country using alpha-2 codes. Example: [us, ca]                                                                             | Use the country autocomplete to search by country name and select the correct two-letter code. This avoids manual errors and ensures valid input. Uses a list of `values`. Logic checks whether the country code matches.                                                                                          |
+    | region_country_code         | Filter prospects by region using ISO 3166-2 codes. Example: [us-ut, us-ca]                                                                     | First choose a country in the autocomplete, then select a region. The code will be formatted as `country-region` (e.g., `us-ca`). Uses `values`. Logic checks for region code inclusion.                                                                                                                           |
+    | city_region_country         | Filter by city, region, and country of the company location. Example: ["New York, NY, US"]                                                     | Use cascading autocomplete to select a country, then region and city. The full location string is used for precise geographic targeting. Accepts multiple `values`. Logic checks structured address fields.                                                                                                        |
+    | company_size                | Filter by company’s number of employees. Options: [1-10, 11-50, ..., 10001+]                                                                   | Use autocomplete to select the company size range you're interested in. Helpful for distinguishing between small businesses and large enterprises. Accepts multiple `values`. Internally maps to normalized size brackets.                                                                                         |
+    | company_revenue             | Filter by company’s annual revenue. Options: [0-500K, 500K-1M, ..., 10B-100B]                                                                  | Use autocomplete to choose from available revenue brackets. Each value represents a range, making segmentation simple and accurate. Accepts `values`. The logic compares the company revenue field against the selected bracket range.                                                                             |
+    | google_category             | Filter by company’s Google business category. Example: [Paving contractor, Retail]                                                             | Use autocomplete to find and apply relevant business categories based on Google's classifications. Accepts `values`. The logic checks category labels against company classification metadata.                                                                                                                     |
+    | naics_category              | Filter by NAICS code (2, 4, or full). Example: [23, 5611]                                                                                      | Use autocomplete to find relevant industry codes. Recommended for accurate industry classification. Uses multiple `values`. Logic compares NAICS codes to industry metadata.                                                                                                                                       |
+    | linkedin_category           | Filter by company’s LinkedIn business category. Example: [software development, investment banking]                                            | Use autocomplete to choose from LinkedIn’s available business categories to align with industry filters. Accepts `values`. Filters based on company category tags provided by LinkedIn.                                                                                                                            |
+    | job_title                   | Filter prospects by their job titles. Example: [Sales Representative, SEO specialist, Technical Support Engineer]                              | Enter one or more job titles as free text. The filter matches prospects whose title includes all the words. For more consistent results, prefer using job_level and job_department. Uses a single `value` with flexible keyword matching. Logic ensures all words appear in the target field, regardless of order. |
+    | company_country_code        | Filter by company HQ country using alpha-2 codes. Example: [us, ca]                                                                            | Use the country autocomplete to select the appropriate country code. This ensures accurate targeting based on company location. Accepts `values`. Matches against the company’s registered country code.                                                                                                           |
+    | company_region_country_code | Filter by company HQ region using ISO 3166-2 codes. Example: [us-ut, us-ca]                                                                    | Start by choosing the company’s country, then use autocomplete to select the relevant region. This automatically formats the code correctly. Accepts multiple `values`. Matches structured region codes from company metadata.                                                                                     |
+    | total_experience_months     | Filter by total months of experience.                                                                                                          | You can specify minimum (`gte`) and/or maximum (`lte`) months of experience. For example, use `gte: 60` to filter for 5+ years. This uses a numeric `value` range. Logic compares experience duration against thresholds.                                                                                          |
+    | current_role_months         | Filter by number of months in current role.                                                                                                    | Use `gte` or `lte` to define how long the prospect has held their current position. Great for identifying newly promoted prospects or those with long tenure. Accepts a numeric range of `value`. Logic checks against current role start date.                                                                    |
+    | company_name                | Filter by company name. Example: ["Meta", "Tesla"]                                                                                             | Enter one or more full company names. Useful for targeting specific known organizations. Accepts a list of `values`. Matching is typically exact or fuzzy depending on the configuration.                                                                                                                          |
+
+    ### <Icon icon="bullseye-arrow" /> **Prospecting HR Directors at Healthcare Companies in Texas for Payroll Software**
+
+    #### <Icon icon="magnifying-glass" /> Use Case:
+
+    A payroll software provider wants to sell to HR directors at mid-sized healthcare organizations in Texas who handle payroll compliance and workforce management.
+
+    #### <Icon icon="filter" /> Filters:
+
+    - **Company Country Code**: `["us"]`
+    - **Company Region (State Code)**: `["us-tx"]`
+    - **Company Size**: `["501-1000"]`
+    - **Company Revenue**: `["75M-200M"]`
+    - **NAICS Category**: `["62"]` _(Healthcare & Social Assistance)_
+    - **Job Level**: `["director", "manager", "vp"]`
+    - **Job Department**: `["human resources"]`
+    - **Has Email**: `["True"]`
+
+    #### <Icon icon="bullseye-arrow" /> Targeting CFOs of Investment Banks in New York for Financial Compliance Software
+
+    A regulatory compliance software provider wants to reach out to CFOs at mid-sized investment banks in New York who have been in their role for over two years and are likely leading compliance initiatives.
+
+    #### <Icon icon="filter" /> Filters:
+
+    - **Company Country Code**: `["us"]`
+    - **Company Region (State Code)**: `["us-ny"]`
+    - **Company Size**: `["1001-5000"]`
+    - **Company Revenue**: `["500M-1B"]`
+    - **LinkedIn Category**: `["investment banking"]`
+    - **Job Department**: `["finance"]`
+    - **Job Level**: `["CXO"]`
+    - **Has Email**: `["True"]`
+    - **Has Phone Number**: `["True"]`
+  </Accordion>
+  <Accordion title="Example Request (cURL)">
+    ```curl cURL expandable
+    curl -X POST \
+      "https://api.explorium.ai/v1/prospects" \
+      -H "API_KEY: <your api key>" \
+      -H "Content-Type: application/json" \
+      -d '{
+      "mode": "full",
+      "size": 100,
+      "page_size": 100,
+      "page": 1,
+      "filters": {
+        "business_id": {
+          "values": [
+            "8adce3ca1cef0c986b22310e369a0793"
+          ]
+        },
+        "job_level": {
+          "values": [
+            "director",
+            "manager"
+          ]
+        },
+        "has_email": {
+          "value": true
+        },
+        "total_experience_months": {
+          "gte": 3,
+          "lte": 6
+        }
+      }
+    }'
+    ```
+
+    <Icon icon="thumbtack" iconType="solid" color="red" /> **`Modefull`** : Returns additional attributes such as job history, social links, and experience.
+
+    ```curl cURL expandable
+    {
+      "response_context": {
+        "correlation_id": "d46aa78f3da148e7846fa94492f8f80a",
+        "request_status": "success",
+        "time_took_in_seconds": 1.252
+      },
+      "data": [
+        {
+          "prospect_id": "ba32fc15ccaccac027f9f9f1c3116a3333469443",
+          "full_name": "Brandon Kuchta",
+          "country_name": "united states",
+          "region_name": "california",
+          "city": "alamo",
+          "linkedin": "linkedin.com/in/bkuchta",
+          "experience": "Acd, design manager, product art direction",
+          "skills": "3d animation, 3d rendering, After effects, Art direction, Color correction, Color grading, Color management, Compositing, Concept design, Content marketing, Creative direction, Davinci resolve, Digital compositing, Digital marketing, Ec2, Hdr, Image compositing, Image manipulation, Interactive advertising, Interactive media, Leadership, Lighting, Live action, Look development, Matte painting, Mobile design, Modeling, Modo, Motion design, Motion graphics, Nuke, Photographic lighting, Photography, Photoshop, Post production, Pre press, Product development, Product management, Rendering, Responsive design, Retouching, Team leadership, User experience, Vfx supervision, Visual effects",
+          "interests": "Home improvement, Home decoration, Electronics",
+          "company_name": "Apple",
+          "company_website": "apple.com",
+          "company_linkedin": "linkedin.com/company/apple",
+          "job_department": "Marketing",
+          "job_seniority_level": [
+            "director"
+          ],
+          "job_title": "Art director"
+        },
+        ...
       ],
-      "job_title": "Art director"
-    },
-    ...
-  ],
-  "total_results": 5,
-  "page": 1,
-  "total_pages": 1
-}
-```
-
-</Accordion>
-
-<Accordion title="Best Practices">
-
-- **Use refined filters** to retrieve the most relevant prospects.
-- **Batch requests efficiently** to optimize API performance.
-- **Monitor pagination settings** to avoid missing data.
-- **Ensure data freshness** by running regular queries to keep prospect information up-to-date.
-- **Be mindful of filter coverage** – some filters may return fewer results due to lower data availability, while broader filters may yield larger result sets.
-
-</Accordion>
+      "total_results": 5,
+      "page": 1,
+      "total_pages": 1
+    }
+    ```
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **Use refined filters** to retrieve the most relevant prospects.
+    - **Batch requests efficiently** to optimize API performance.
+    - **Monitor pagination settings** to avoid missing data.
+    - **Ensure data freshness** by running regular queries to keep prospect information up-to-date.
+    - **Be mindful of filter coverage** – some filters may return fewer results due to lower data availability, while broader filters may yield larger result sets.
+  </Accordion>
 </AccordionGroup>
 
 ## Body Params - Try Me Example
@@ -272,4 +253,3 @@ filters:
     has_email:
       value: true
 ```
-
