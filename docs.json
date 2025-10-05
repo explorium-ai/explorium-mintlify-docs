@@ -144,6 +144,7 @@
                   "reference/prospects/prospects_api",
                   "reference/prospects/match_prospects",
                   "reference/prospects/fetch_prospects",
+                  "reference/prospects/prospects_stats",
                   "reference/prospects/prospects_autocomplete",
                   {
                     "group": "Prospects Events",
