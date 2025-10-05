@@ -401,7 +401,7 @@
     },
     {
       "source": "/reference/prospects-statistics",
-      "destination": "/deprecated-docs/:slug*"
+      "destination": "/reference/prospects/prospects_stats"
     },
     {
       "source": "/reference/business-website-traffic",
