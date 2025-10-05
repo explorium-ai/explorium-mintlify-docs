@@ -394,6 +394,22 @@
     {
       "source": "/docs/:slug*",
       "destination": "/deprecated-docs/:slug*"
+    },
+    {
+      "source": "reference/contacts_information",
+      "destination": "/reference/prospects/enrichments/contacts_information"
+    },
+    {
+      "source": "/reference/prospects-statistics",
+      "destination": "/deprecated-docs/:slug*"
+    },
+    {
+      "source": "/reference/business-website-traffic",
+      "destination": "/reference/businesses/enrichments/business_website_traffic"
+    },
+    {
+      "source": "/reference/company-hierarchy",
+      "destination": "/reference/businesses/enrichments/company-hierarchy"
     }
   ]
 }
