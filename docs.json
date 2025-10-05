@@ -326,6 +326,12 @@
               },
               "deprecated-docs/viewing-credits-usage-reports"           
             ]
+          },
+          {
+            "group": "Announcement",
+            "pages": [
+              "deprecated-docs/tam-dashboard"
+            ]
           }
         ] 
       }
