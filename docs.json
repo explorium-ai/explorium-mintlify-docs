@@ -340,12 +340,12 @@
       "anchors": [
         {
           "anchor": "Contact Us",
-          "href": "https://www.explorium.ai/about#contact",
+          "href": "https://www.explorium.ai/about#contact?utm_source=developers",
           "icon": "headset"
         },
         {
           "anchor": "Blog",
-          "href": "https://www.explorium.ai/blog/",
+          "href": "https://www.explorium.ai/blog?utm_source=developers",
           "icon": "newspaper"
         }
       ]
@@ -354,19 +354,19 @@
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg",
-    "href": "https://www.explorium.ai/"
+    "href": "https://www.explorium.ai?utm_source=developers"
   },
   "navbar": {
     "links": [
       {
         "label": "Login",
-        "href": "https://admin.explorium.ai/login"
+        "href": "https://admin.explorium.ai/login?utm_source=developers"
       }
     ],
     "primary": {
       "label": "Sign Up",
       "type": "button",
-      "href": "https://www.explorium.ai/#admin-signup"
+      "href": "https://www.explorium.ai/#admin-signup?utm_source=developers"
     }
   },
   "contextual": {
