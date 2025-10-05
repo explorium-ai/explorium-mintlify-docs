@@ -361,7 +361,7 @@
       "destination": "/mcp-docs/agentsource-mcp"
     },
     {
-      "source": "/doc/:slug*",
+      "source": "/docs/:slug*",
       "destination": "/deprecated-docs/:slug*"
     }
   ]
