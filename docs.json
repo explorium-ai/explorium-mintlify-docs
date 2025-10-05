@@ -396,7 +396,7 @@
       "destination": "/deprecated-docs/:slug*"
     },
     {
-      "source": "reference/contacts_information",
+      "source": "/reference/contacts_information",
       "destination": "/reference/prospects/enrichments/contacts_information"
     },
     {
