@@ -279,10 +279,8 @@
             "pages": [
               "deprecated-docs/getting-started",
               "deprecated-docs/getting-your-api-key",
-              "deprecated-docs/platform-usage-consumption"
-            ]
-          },
-          {
+              "deprecated-docs/platform-usage-consumption",
+              {
             "group": "Integrations",
             "pages": [
               "deprecated-docs/connectors",
@@ -307,6 +305,8 @@
                   "deprecated-docs/gpt-guidelines"
                 ]
               }
+            ]
+          }          
         ] 
       }
     ],
