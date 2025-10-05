@@ -411,5 +411,11 @@
       "source": "/reference/company-hierarchy",
       "destination": "/reference/businesses/enrichments/company-hierarchy"
     }
-  ]
+  ],  
+  "integrations": {
+    "gtm": {
+        "tagId": "G-H8MZ577667"
+    }
+}
+  
 }
