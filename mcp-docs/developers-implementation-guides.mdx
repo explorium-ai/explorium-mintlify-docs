@@ -76,7 +76,8 @@ Build sophisticated AI agents with state management and complex decision trees u
 - Tool chaining
 
 <Columns cols={2}>
-  <Card title="Get Started with LangGraph" icon="rocket-launch" horizontal href="/mcp-docs/implement-with-langgraph">    
+  <Card title="Get Started with LangGraph" icon="rocket-launch" horizontal href="/mcp-docs/implement-with-langgraph">
+    
   </Card>
 </Columns>
 
@@ -178,28 +179,138 @@ Comprehensive company analysis for investment or partnership decisions:
 - Technology infrastructure
 - Growth indicators and challenges
 
-## Best Practices
+## Best Practices for Integrating AgentSource MCP
 
-### <Icon icon="lock" size={24} /> Security
+Here are some recommendations for optimal integration of Explorium's AgentSource MCP server into your AI agent application. Following these practices will help you achieve reliable, high-quality results similar to our MCP Playground.
 
-- Store API keys in environment variables
-- Never commit credentials to version control
-- Use HTTPS for all connections
-- Implement proper error handling
+### System Prompt Guidelines
 
-### <Icon icon="bolt" size={24} /> Performance
+**Core Principles**
 
-- Use batch operations when possible
-- Implement pagination for large datasets
-- Cache results when appropriate
-- Monitor rate limits and quotas
+Effective MCP performance is highly dependent on your system prompt. You may need to iterate and refine your prompt to achieve optimal results for your specific use case.
 
-### <Icon icon="screwdriver-wrench" size={24} /> Development
+**Reference System Prompt**
 
-- Start with small proof-of-concepts
-- Test with sample data first
-- Implement comprehensive logging
-- Handle edge cases gracefully
+Below is the system prompt used in Explorium's MCP Playground. This can serve as a baseline for your implementation:
+
+```
+The assistant is **AgentSource**, created by Explorium.   
+Current date: {currentDateTime} 
+You are an **interactive Explorium API agent**.   
+Your job: demonstrate Explorium's data power through real-time research. 
+
+## 1. Workflow 
+1. **Search session** – for lists of companies.   
+   * Call `get_search_filters` first and use only the returned filters.   
+2. **Research session** – for a specific company.   
+   * Call `create_company_research_session`. 
+
+At each step:   
+- State how many matches were found.   
+- Wait for further user input.   
+- Suggest useful enrichments when relevant. 
+
+## 2. Response style 
+* Mention that you are using the Explorium API (not tool names or "sessions"). 
+  * e.g. "I'm searching Explorium's database…" 
+* **Do not mention internal function names (`get_search_filters`, etc.).** 
+* Write in **Markdown**.   
+  * Use tables for multi-row output, for example:
+| Company | Location | Revenue | 
+|---------|----------|---------| 
+| …       | …        | …       |
+
+* After a table, keep extra text minimal.   
+* On tool error or no data: reply only "An error occurred." 
+
+## 3. Search-filter rules 
+* Autocomplete queries must include **all** user concepts.   
+* If multiple industries are mentioned, include them all. 
+
+## 4. Internet usage 
+Only query the public web if the Explorium API lacks the answer; 
+tell the user when you do.
+```
+
+**Customization Tips**
+
+When adapting this system prompt for your application:
+
+- **Replace the date placeholder**: Update `{currentDateTime}` with your actual date/time variable or remove if not needed
+- **Adjust the identity**: Modify "The assistant is **AgentSource**" to match your agent's branding
+- **Tailor the workflow**: Add or modify workflow steps based on your specific use case
+- **Customize response style**: Adapt formatting and verbosity requirements to match your application's UX
+- **Add domain-specific instructions**: Include any industry or use-case specific guidance relevant to your users
+
+### Model Selection
+
+**Recommended Models**
+
+We **highly recommend** using **Claude Sonnet** models for optimal performance:
+
+- Claude 4.5 Sonnet (primary recommendation)
+- Claude 4.0 Sonnet (alternative)
+
+**Alternative Models**
+
+If you need to use alternative models, the following have been tested:
+
+- OpenAI GPT-5
+- OpenAI GPT-4.1
+
+Note: Results may vary with non-Claude models. We recommend thorough testing if using alternatives.
+
+### Model Parameters
+
+**Temperature Settings**
+
+**Critical**: Use a **low temperature** setting to ensure reliable MCP tool usage.
+
+- **Recommended range**: 0.0 - 0.1
+- **Explorium uses**: 0.05
+- **Why this matters**: Higher temperature values may cause the agent to query MCP tools incorrectly or inconsistently
+
+### Other Parameters
+
+Consider these additional parameter recommendations:
+
+- **Max tokens**: Set appropriately for your use case - we recommend not limiting the number of tokens.
+- **Top-p**: If used, keep at 0.9 or lower for consistent behavior
+
+## Prompt Engineering Best Practices
+
+### Tool Calling Instructions
+
+1. **Be explicit about workflow**: Clearly define when and how each MCP tool should be used
+2. **Handle errors gracefully**: Provide clear instructions on error handling and fallback behavior
+
+### Response Formatting
+
+1. **Specify output format**: Be explicit about Markdown formatting, table usage, and response structure
+2. **User experience**: Include guidelines on when to wait for user input vs. proceeding automatically
+
+### Testing and Iteration
+
+**Validation Steps**
+
+1. **Test common queries**: Validate your integration with typical user queries in your domain
+2. **Edge case testing**: Test with complex, multi-filter queries
+3. **Error scenarios**: Verify behavior when API calls fail or return no results
+4. **Consistency checks**: Run the same query multiple times to ensure consistent behavior
+
+**Performance Optimization**
+
+1. **Monitor tool calling patterns**: Ensure the agent is calling tools in the optimal sequence
+2. **Review response quality**: Check that responses are well-formatted and user-friendly
+3. **Iterate on the system prompt**: Refine instructions based on observed agent behavior
+4. **A/B test variations**: Try different prompt formulations to find what works best for your use case
+
+### Common Pitfalls to Avoid
+
+- ❌ Using high temperature settings (\> 0.1)
+- ❌ Exposing internal function names in user-facing responses
+- ❌ Insufficient error handling instructions
+- ❌ Vague or ambiguous workflow instructions
 
 ## Need Help?
 
