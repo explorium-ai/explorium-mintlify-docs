@@ -126,10 +126,10 @@ async def receive_event(request: Request):
     
     # Extract the enrollment_key to determine how to process this event
     enrollment_key = event_data.get('enrollment_key')
-    event_type = event_data.get('event_type')
+    event_name = event_data.get('event_name')
     entity_id = event_data.get('entity_id')
     
-    # Process based on enrollment_key, event_type, and entity_id
+    # Process based on enrollment_key, event_name, and entity_id
     # ...
 
     return {"message": "Webhook processed successfully"}
@@ -178,7 +178,7 @@ Once your webhook is set, You can run more enhanced testing, that will allow you
 
 Use the same Test webhook connectivity url, with these parameters:
 
-- **event_type**: event type to simulate (currently available types: new_office, closing_office, funding_round, new_investment, outages_and_security_breaches)
+- **event_name**: event type to simulate (currently available types: new_office, closing_office, funding_round, new_investment, outages_and_security_breaches)
 - **number_of_events**: the number of simulated events to receive.
 
 ### Request:
@@ -262,7 +262,7 @@ When an enrolled event is triggered, you'll receive a payload like this:
   "tenant_id": "con_NJEwX2IUhNNbaRDC",
   "partner_id": "ExpTest",
   "event_id": "event_id_for_company_updates-12345",
-  "event_type": "new_product",
+  "event_name": "new_product",
   "entity_id": "340c8040bd50cbab9c7df718bbe51cc9",
   "entity_type": "business",
   "data": {
@@ -277,7 +277,11 @@ When an enrolled event is triggered, you'll receive a payload like this:
 ### Key Fields:
 
 `enrollment_key`: The identifier you provided during enrollment\
-`event_id`: A unique identifier for this specific event `event_type`: The type of event that was triggered `entity_type`: Either "business" or "prospect" `entity_id`: The ID of the business or prospect that triggered the event `data`: Event-specific data (varies by event type)
+`event_id`: A unique identifier for this specific event \
+`event_name`: The type of event that was triggered \
+`entity_type`: Either "business" or "prospect" \
+`entity_id`: The ID of the business or prospect that triggered the event \
+`data`: Event-specific data (varies by event type)
 
 ## Managing Your Webhook
 
