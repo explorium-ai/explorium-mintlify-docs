@@ -58,3 +58,48 @@ The **Contact details enrichments** API provides detailed information about indi
 prospect_id: ee936e451b50c70e068e1b54e106cb89173198c4
 ```
 
+##Body Params - Try Me Example
+
+```
+prospect_id: ee936e451b50c70e068e1b54e106cb89173198c4
+```
+
+##Email Only (2 credits):
+
+```json
+  {
+    "prospect_id": "ee936e451b50c70e068e1b54e106cb89173198c4",
+    "parameters": {
+      "contact_types": ["email"]
+    }
+  }
+```
+
+##Phone Only (5 credits):
+
+```json
+{
+    "prospect_id": "ee936e451b50c70e068e1b54e106cb89173198c4",
+    "parameters": {
+      "contact_types": ["phone"]
+    }
+  }
+```
+
+##Both Email and Phone (5 credits) - Default behavior:
+
+```json
+{
+    "prospect_id": "ee936e451b50c70e068e1b54e106cb89173198c4",
+    "parameters": {
+      "contact_types": ["email", "phone"]
+    }
+  }
+```
+
+##Backward Compatible (no parameters = all contact types):
+
+```
+prospect_id: ee936e451b50c70e068e1b54e106cb89173198c4
+```
+
