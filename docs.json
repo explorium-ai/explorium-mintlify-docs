@@ -387,32 +387,143 @@
       "linkedin": "https://www.linkedin.com/company/explorium-ai/"
     }
   },
-  "redirects": [
-    {
-      "source": "/reference/agentsource-mcp",
-      "destination": "/mcp-docs/agentsource-mcp"
-    },
-    {
-      "source": "/docs/:slug*",
-      "destination": "/deprecated-docs/:slug*"
-    },
-    {
-      "source": "/reference/contacts_information",
-      "destination": "/reference/prospects/enrichments/contacts_information"
-    },
-    {
-      "source": "/reference/prospects-statistics",
-      "destination": "/reference/prospects/prospects_stats"
-    },
-    {
-      "source": "/reference/business-website-traffic",
-      "destination": "/reference/businesses/enrichments/business_website_traffic"
-    },
-    {
-      "source": "/reference/company-hierarchy",
-      "destination": "/reference/businesses/enrichments/company-hierarchy"
-    }
-  ],  
+"redirects": [
+  { 
+    "source": "/reference/agentsource-mcp", 
+    "destination": "/mcp-docs/agentsource-mcp" 
+  },
+  
+  { 
+    "source": "/docs/:slug*", 
+    "destination": "/deprecated-docs/:slug*" 
+  },
+  
+
+
+
+  { "source": "/reference/quick-starts", "destination": "/reference/quick-starts/quick-starts" },
+  { "source": "/reference/introduction", "destination": "/reference/quick-starts/introduction" },
+  { "source": "/reference/use_case_prospecting", "destination": "/reference/quick-starts/use_case_prospecting" },
+
+  { "source": "/reference/account_access", "destination": "/reference/setup/account_access" },
+  { "source": "/reference/getting_your_api_key", "destination": "/reference/setup/getting_your_api_key" },
+  { "source": "/reference/tracking_your_credits", "destination": "/reference/credits/tracking_your_credits" },
+  { "source": "/reference/credit_plans", "destination": "/reference/credits/credit_plans" },
+  { "source": "/reference/user_management", "destination": "/reference/setup/user_management" },
+
+  { "source": "/reference/businesses_api", "destination": "/reference/businesses/businesses_api" },
+  { "source": "/reference/match_businesses", "destination": "/reference/businesses/match_businesses" },
+  { "source": "/reference/fetch_businesses", "destination": "/reference/businesses/fetch_businesses" },
+  { "source": "/reference/fetch_businesses_statistics", "destination": "/reference/businesses/fetch_businesses_statistics" },
+
+  { "source": "/reference/businesses_autocomplete", "destination": "/reference/businesses/autocomplete/businesses_autocomplete" },
+  { "source": "/reference/linkedin_categories", "destination": "/reference/businesses/autocomplete/linkedin_categories" },
+
+  { "source": "/reference/fetch_businesses_events", "destination": "/reference/businesses/events/fetch_businesses_events" },
+  { "source": "/reference/add_businesses_enrollments", "destination": "/reference/businesses/events/add_businesses_enrollments" },
+  { "source": "/reference/update_businesses_enrollments", "destination": "/reference/businesses/events/update_businesses_enrollments" },
+  { "source": "/reference/delete_businesses_enrollments", "destination": "/reference/businesses/events/delete_businesses_enrollments" },
+  { "source": "/reference/get_businesses_enrollments", "destination": "/reference/businesses/events/get_businesses_enrollments" },
+
+  { "source": "/reference/ipo-announcement", "destination": "/reference/businesses/events/types/ipo-announcement" },
+  { "source": "/reference/new-product-launch", "destination": "/reference/businesses/events/types/new-product-launch" },
+  { "source": "/reference/new-funding-round", "destination": "/reference/businesses/events/types/new-funding-round" },
+  { "source": "/reference/new-investment", "destination": "/reference/businesses/events/types/new-investment" },
+  { "source": "/reference/office-closing", "destination": "/reference/businesses/events/types/office-closing" },
+  { "source": "/reference/new-office-opening", "destination": "/reference/businesses/events/types/new-office-opening" },
+  { "source": "/reference/companys-award-event", "destination": "/reference/businesses/events/types/companys-award-event" },
+  { "source": "/reference/new-partnership", "destination": "/reference/businesses/events/types/new-partnership" },
+  { "source": "/reference/hiring-by-department", "destination": "/reference/businesses/events/types/hiring-by-department" },
+  { "source": "/reference/department-trend", "destination": "/reference/businesses/events/types/department-trend" },
+  { "source": "/reference/employee-joined-company", "destination": "/reference/businesses/events/types/employee-joined-company" },
+  { "source": "/reference/lawsuits-and-legal-issues", "destination": "/reference/businesses/events/types/lawsuits-and-legal-issues" },
+  { "source": "/reference/outages-and-security-breaches", "destination": "/reference/businesses/events/types/outages-and-security-breaches" },
+  { "source": "/reference/cost-cutting", "destination": "/reference/businesses/events/types/cost-cutting" },
+  { "source": "/reference/merger-and-acquisitions", "destination": "/reference/businesses/events/types/merger-and-acquisitions" },
+
+  { "source": "/reference/businesses_enrichments", "destination": "/reference/businesses/enrichments/businesses_enrichments" },
+  { "source": "/reference/firmographics", "destination": "/reference/businesses/enrichments/firmographics" },
+  { "source": "/reference/technographics", "destination": "/reference/businesses/enrichments/technographics" },
+  { "source": "/reference/company_social_media", "destination": "/reference/businesses/enrichments/company_social_media" },
+  { "source": "/reference/company_ratings", "destination": "/reference/businesses/enrichments/company_ratings" },
+  { "source": "/reference/keyword_search_on_websites", "destination": "/reference/businesses/enrichments/keyword_search_on_websites" },
+  { "source": "/reference/financial_metrics_for_public_companies", "destination": "/reference/businesses/enrichments/financial_metrics_for_public_companies" },
+  { "source": "/reference/funding_and_acquisitions", "destination": "/reference/businesses/enrichments/funding_and_acquisitions" },
+  { "source": "/reference/business_challenges", "destination": "/reference/businesses/enrichments/business_challenges" },
+  { "source": "/reference/competitive_landscape", "destination": "/reference/businesses/enrichments/competitive_landscape" },
+  { "source": "/reference/strategic_insights", "destination": "/reference/businesses/enrichments/strategic_insights" },
+  { "source": "/reference/company_website_content_changes", "destination": "/reference/businesses/enrichments/company_website_content_changes" },
+  { "source": "/reference/workforce_trends", "destination": "/reference/businesses/enrichments/workforce_trends" },
+  { "source": "/reference/lookalike-companies", "destination": "/reference/businesses/enrichments/lookalike-companies" },
+  { "source": "/reference/webstack", "destination": "/reference/businesses/enrichments/webstack" },
+  { "source": "/reference/business-website-traffic", "destination": "/reference/businesses/enrichments/business_website_traffic" },
+  { "source": "/reference/company-hierarchy", "destination": "/reference/businesses/enrichments/company-hierarchy" },
+  
+
+  { "source": "/reference/bulk_businesses_enrichments", "destination": "/reference/businesses/enrichments/bulk/bulk_businesses_enrichments" },
+  { "source": "/reference/businesses_firmographics_bulk_enrich", "destination": "/reference/businesses/enrichments/bulk/businesses_firmographics_bulk_enrich" },
+  { "source": "/reference/businesses_technographics_bulk_enrich", "destination": "/reference/businesses/enrichments/bulk/businesses_technographics_bulk_enrich" },
+  { "source": "/reference/company_social_media_bulk_enrich", "destination": "/reference/businesses/enrichments/bulk/company_social_media_bulk_enrich" },
+  { "source": "/reference/businesses_company_ratings_by_employees_bulk_enrich", "destination": "/reference/businesses/enrichments/bulk/businesses_company_ratings_by_employees_bulk_enrich" },
+  { "source": "/reference/keyword_search_on_websites_bulk_enrich", "destination": "/reference/businesses/enrichments/bulk/keyword_search_on_websites_bulk_enrich" },
+  { "source": "/reference/businesses_financial_metrics_bulk_enrich", "destination": "/reference/businesses/enrichments/bulk/businesses_financial_metrics_bulk_enrich" },
+  { "source": "/reference/businesses_funding_and_acquisition_bulk_enrich", "destination": "/reference/businesses/enrichments/bulk/businesses_funding_and_acquisition_bulk_enrich" },
+  { "source": "/reference/business_challenges_bulk_enrich", "destination": "/reference/businesses/enrichments/bulk/business_challenges_bulk_enrich" },
+  { "source": "/reference/competitive_landscape_bulk_enrich", "destination": "/reference/businesses/enrichments/bulk/competitive_landscape_bulk_enrich" },
+  { "source": "/reference/strategic_insights_bulk_enrich", "destination": "/reference/businesses/enrichments/bulk/strategic_insights_bulk_enrich" },
+  { "source": "/reference/company_website_content_changes_bulk_enrich", "destination": "/reference/businesses/enrichments/bulk/company_website_content_changes_bulk_enrich" },
+  { "source": "/reference/businesses_workforce_trends_bulk_enrich", "destination": "/reference/businesses/enrichments/bulk/businesses_workforce_trends_bulk_enrich" },
+  { "source": "/reference/business-website-traffic-1", "destination": "/reference/businesses/enrichments/bulk/business_website_traffic_bulk_enrich" },
+
+  { "source": "/reference/prospects_api", "destination": "/reference/prospects/prospects_api" },
+  { "source": "/reference/match_prospects-1", "destination": "/reference/prospects/match_prospects" },
+  { "source": "/reference/fetch_prospects", "destination": "/reference/prospects/fetch_prospects" },
+  { "source": "/reference/prospects-statistics", "destination": "/reference/prospects/prospects_stats" },
+  { "source": "/reference/prospects_autocomplete", "destination": "/reference/prospects/prospects_autocomplete" },
+
+  { "source": "/reference/fetch_prospects_events-1", "destination": "/reference/prospects/events/fetch_prospects_events" },
+  { "source": "/reference/add_prospects_enrollments", "destination": "/reference/prospects/events/add_prospects_enrollments" },
+  { "source": "/reference/update_prospects_enrollments", "destination": "/reference/prospects/events/update_prospects_enrollments" },
+  { "source": "/reference/delete_prospects_enrollments", "destination": "/reference/prospects/events/delete_prospects_enrollments" },
+  { "source": "/reference/get_prospects_enrollments", "destination": "/reference/prospects/events/get_prospects_enrollments" },
+
+  { "source": "/reference/recently_changed_company", "destination": "/reference/prospects/events/types/recently_changed_company" },
+  { "source": "/reference/employee_workplace_anniversary", "destination": "/reference/prospects/events/types/employee_workplace_anniversary" },
+  { "source": "/reference/employee_job_changes", "destination": "/reference/prospects/events/types/employee_job_changes" },
+
+  { "source": "/reference/prospects_enrichments", "destination": "/reference/prospects/enrichments/prospects_enrichments" },
+  { "source": "/reference/contacts_information", "destination": "/reference/prospects/enrichments/contacts_information" },
+  { "source": "/reference/individual_social_media_presence", "destination": "/reference/prospects/enrichments/individual_social_media_presence" },
+  { "source": "/reference/professional_profile_contact_and_workplace", "destination": "/reference/prospects/enrichments/professional_profile_contact_and_workplace" },
+
+  { "source": "/reference/webhooks", "destination": "/reference/webhooks/webhooks" },
+  { "source": "/reference/add_webhook", "destination": "/reference/webhooks/add_webhook" },
+  { "source": "/reference/get_webhook", "destination": "/reference/webhooks/get_webhook" },
+  { "source": "/reference/delete_webhook", "destination": "/reference/webhooks/delete_webhook" },
+  { "source": "/reference/check_webhook_connectivity", "destination": "/reference/webhooks/check_webhook_connectivity" },
+
+  { "source": "/reference/get_active_credits_summary", "destination": "/reference/credits/get_active_credits_summary" },
+
+  { "source": "/reference/developers-implementation-guides", "destination": "/mcp-docs/developers-implementation-guides" },
+  { "source": "/reference/implement-with-openai", "destination": "/mcp-docs/implement-with-openai" },
+  { "source": "/reference/python-sdk-implementation-guide", "destination": "/mcp-docs/python-sdk-implementation-guide" },
+  { "source": "/reference/langgraph-integration-with-explorium-mcp", "destination": "/mcp-docs/implement-with-langgraph" },
+
+  { "source": "/reference/mcp-integrations", "destination": "/integrations/mcp-integrations" },
+  { "source": "/reference/claude-desktop-integration", "destination": "/integrations/claude/claude-desktop-integration" },
+  { "source": "/reference/cursor-integration", "destination": "/integrations/cursor/cursor-integration" },
+  { "source": "/reference/integrate-with-n8n", "destination": "/integrations/n8n/integrate-with-n8n" },
+  { "source": "/reference/integrate-with-zapier", "destination": "/integrations/zapier/integrate-with-zapier" },
+  { "source": "/reference/integrate-with-base44", "destination": "/integrations/base44/integrate-with-base44" },
+
+  { "source": "/reference/n8n", "destination": "/integrations/n8n/n8n" },
+  { "source": "/reference/explorium-event-triggered-outreach", "destination": "/integrations/n8n/explorium-event-triggered-outreach" },
+  { "source": "/reference/google-sheets-company-enrichment-with-explorium-mcp", "destination": "/integrations/n8n/google-sheets-company-enrichment-with-explorium-mcp" },
+  { "source": "/reference/explorium-prospects-search-chatbot", "destination": "/integrations/n8n/explorium-prospects-search-chatbot" },
+  { "source": "/reference/salesforce-data-enrichment-workflow", "destination": "/integrations/n8n/salesforce-data-enrichment-workflow" },
+  { "source": "/reference/hubspot-contact-enrichment", "destination": "/integrations/n8n/hubspot-contact-enrichment" },
+  { "source": "/reference/zapier", "destination": "/integrations/zapier/zapier" }
+],  
   "integrations": {
     "gtm": {
         "tagId": "G-H8MZ577667"
