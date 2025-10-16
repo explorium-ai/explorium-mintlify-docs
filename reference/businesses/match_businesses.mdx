@@ -20,22 +20,40 @@ Once a business is successfully matched, its **Business ID** becomes the **prima
     | **Real-Time Updates** | Ensures the latest business records are used for matching      |
   </Accordion>
   <Accordion title="How It Works">
-    - **Input:** A list of business names and domains.
+    - **Input:** A list of business identifiers, which can include **name**, **domain**, and **LinkedIn company URL**.
     - **Processing:** Our system cross-references multiple datasets to find the best match.
     - **Output:** A structured response with the matched **Business IDs**, maintaining the same order as the input list.
   </Accordion>
   <Accordion title="Schema Explanation">
-    | Field                 | Type   | Description                                                    |
-    | :-------------------- | :----- | :------------------------------------------------------------- |
-    | `businesses_to_match` | Array  | List of business name-domain pairs to match                    |
-    | `business_id`         | String | Unique identifier for the matched business (null if not found) |
+    | **Field**             | **Type** | **Description**                                                            |
+    | :-------------------- | :------- | :------------------------------------------------------------------------- |
+    | `businesses_to_match` | Array    | List of business identifiers to match (can include name, domain, LinkedIn) |
+    | `name`                | String   | Business name provided for matching                                        |
+    | `domain`              | String   | Business domain provided for matching                                      |
+    | `linkedin_url`        | String   | LinkedIn company profile URL (optional, improves matching accuracy)        |
+    | `business_id`         | String   | Unique identifier for the matched business (null if not found)             |
   </Accordion>
   <Accordion title="Best Practices">
     - **Always store the Business ID** – It serves as the key for all future enrichment and analytics.
-    - **Use multiple identifiers** (e.g., name + domain) for **higher match accuracy**.
+    - **Use multiple identifiers** (e.g., name + domain, or LinkedIn URL) for **higher match accuracy**.
     - **Batch requests efficiently** to optimize API performance.
     - **Handle null values gracefully** to account for unmatched businesses.
     - **Update and validate input data regularly** to ensure the most accurate matches.
+  </Accordion>
+  <Accordion title="Body Params – Example with LinkedIn URL">
+    ```json
+    {
+      "request_context": {
+        "seller_id": "sample_seller"
+      },
+      "businesses_to_match": [
+        {
+          "name": "microsoft",
+          "linkedin_url": "https://linkedin.com/company/microsoft"
+        }
+      ]
+    }
+    ```
   </Accordion>
 </AccordionGroup>
 
