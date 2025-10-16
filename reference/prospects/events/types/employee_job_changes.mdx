@@ -17,21 +17,20 @@ An **Employee Changed Role** event tracks when an individual transitions into a 
 - **Competitive Insights**: Track how key personnel shifts affect businesses.
 - **Recruitment Strategy**: Monitor role changes for hiring opportunities.
 
-
 ## Data Schema
 
 **Event Name: "prospect_changed_role" (Use this value in the event_types parameter when querying this event.)**
 
-| Signal | API Name | Description | Data Type |
-| :--- | :--- | :--- | :--- |
-| Employee's previous job title | previous\_job\_title | Individual's previous job title listed on their professional profile. | string |
-| Event time | event\_time | The timestamp indicating when the event actually occurred | datetime |
-| Employee's current job title | current\_job\_title | Individual's current job title listed on their professional profile. | string |
-| Employee's current workplace | current\_company\_name | Name of the company where the individual currently works. | string |
-| Current workplace entity ID | current\_company\_id | Explorium's 32 character unique entity ID associated with the individual's current workplace. | string |
-| Employee's previous workplace | previous\_company\_name | Name of the company where the individual previously worked. | string |
-| Previous workplace entity ID | previous\_company\_id | Explorium's 32 character unique entity ID associated with the individual's previous workplace. | string |
-| Event name | event\_name | Name of the event related to employee's role change. | string |
+| Signal                | API Name                      | Description                                                                                    | Data Type |
+| :-------------------- | :---------------------------- | :--------------------------------------------------------------------------------------------- | :-------- |
+| previous_job_title    | Employee's previous job title | Individual's previous job title listed on their professional profile.                          | string    |
+| event_time            | Event time                    | The timestamp indicating when the event actually occurred                                      | datetime  |
+| current_job_title     | Employee's current job title  | Individual's current job title listed on their professional profile.                           | string    |
+| current_company_name  | Employee's current workplace  | Name of the company where the individual currently works.                                      | string    |
+| current_company_id    | Current workplace entity ID   | Explorium's 32 character unique entity ID associated with the individual's current workplace.  | string    |
+| previous_company_name | Employee's previous workplace | Name of the company where the individual previously worked.                                    | string    |
+| previous_company_id   | Previous workplace entity ID  | Explorium's 32 character unique entity ID associated with the individual's previous workplace. | string    |
+| event_name            | Event name                    | Name of the event related to employee's role change.                                           | string    |
 
 ## Query Example
 
@@ -53,12 +52,11 @@ curl -X POST \
 
 ## Best Practices
 
-- **Filter by company (`current_company_name`)** to track role changes within target organizations.
-- **Monitor title progression (`current_job_title`)** to identify career advancements.
-- **Use timestamps (`event_time`)** to act on timely job changes.
+- **`Filter by company (current_company_name)`** to track role changes within target organizations.
+- **`Monitor title progression (current_job_title)`** to identify career advancements.
+- **`Use timestamps (event_time)`** to act on timely job changes.
 
 ## Related Events
 
 - [Recently changed company](/reference/prospects/events/types/recently_changed_company) - Identifies when an employee transitions to a new company.
 - [Employee's workplace anniversary](/reference/prospects/events/types/employee_workplace_anniversary) - Marks the annual anniversary of an employee’s start date at their current company.
-

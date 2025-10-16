@@ -17,21 +17,20 @@ A **Prospect Job Start Anniversary** event tracks when an individual reaches an 
 - **Networking & Relationship Building**: Celebrate milestones with clients and prospects.
 - **Market Insights**: Track employee retention trends across industries.
 
-
 ## Data Schema
 
 **Event Name: "prospect_job_start_anniversary" (Use this value in the event_types parameter when querying this event.)**
 
-| Signal | API Name | Description | Data Type |
-| :--- | :--- | :--- | :--- |
-| Employee's full name | full\_name | First and last names associated with the individual, appended with a space. | string |
-| Workplace company name | company\_name | Name of the company where the individual is employed. | string |
-| Number of years at company | years\_at\_company | Number of years employee has been working at the company. | integer |
-| Employee's job title | job\_title | Current job title listed on the employee's professional profile. | string |
-| Workplace anniversary date | job\_anniversary\_date | Date and time the employee's anniversary data was collected by Explorium. | datetime |
-| Employee event timestamp | event\_time | Date of employee's upcoming workplace anniversary. | datetime |
-| Employee LinkedIn® URL | linkedin\_url | URL associated with the individual's LinkedIn® profile. | url |
-| Event name | event\_name | Name of the event related to the employee's workplace anniversary. | string |
+| Signal               | API Name                   | Description                                                                 | Data Type |
+| :------------------- | :------------------------- | :-------------------------------------------------------------------------- | :-------- |
+| full_name            | Employee's full name       | First and last names associated with the individual, appended with a space. | string    |
+| company_name         | Workplace company name     | Name of the company where the individual is employed.                       | string    |
+| years_at_company     | Number of years at company | Number of years employee has been working at the company.                   | integer   |
+| job_title            | Employee's job title       | Current job title listed on the employee's professional profile.            | string    |
+| job_anniversary_date | Workplace anniversary date | Date and time the employee's anniversary data was collected by Explorium.   | datetime  |
+| event_time           | Employee event timestamp   | Date of employee's upcoming workplace anniversary.                          | datetime  |
+| linkedin_url         | Employee LinkedIn® URL     | URL associated with the individual's LinkedIn® profile.                     | url       |
+| event_name           | Event name                 | Name of the event related to the employee's workplace anniversary.          | string    |
 
 ## Query Example
 
@@ -54,16 +53,16 @@ curl -X POST \
 ## Best Practices
 
 - **Leverage work anniversaries** for personalized engagement and outreach.
-- **Track retention trends (`years_at_company`)** to predict potential job changes.
-- **Use LinkedIn data (`linkedin_url`)** to validate professional milestones.
+- **`Track retention trends (years_at_company)`** to predict potential job changes.
+- **`Use LinkedIn data (linkedin_url)`** to validate professional milestones.
 
 ## Related Events
 
 <Columns cols={2}>
-<Card icon="user-plus" horizontal title="Employee job changes" href="/reference/prospects/events/types/employee_job_changes">
-Tracks when an employee changes their job title within the same company.
-</Card>
-<Card icon="calendar" horizontal title="Recently changed company" href="/reference/prospects/events/types/recently_changed_company">
-Identifies when an employee transitions to a new company.
-</Card>
+  <Card title="Employee job changes" icon="user-plus" horizontal href="/reference/prospects/events/types/employee_job_changes">
+    Tracks when an employee changes their job title within the same company.
+  </Card>
+  <Card title="Recently changed company" icon="calendar" horizontal href="/reference/prospects/events/types/recently_changed_company">
+    Identifies when an employee transitions to a new company.
+  </Card>
 </Columns>

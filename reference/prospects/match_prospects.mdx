@@ -1,13 +1,13 @@
 ---
 title: "Match prospects"
-openapi: post /v1/prospects/match
+openapi: "post /v1/prospects/match"
 ---
 
 ### Introduction
 
 The **Match Prospects** endpoint allows users to accurately match individual prospects to unique **Prospect IDs** using multiple fetchers, such as email, phone number, LinkedIn profile, or name and company combination. This ensures accurate lead identification and enhances sales and marketing workflows.
 
-<Icon icon="thumbtack" color="red" iconType="solid"/> **Key Benefits:**
+<Icon icon="thumbtack" iconType="solid" color="red" /> **Key Benefits:**
 
 - Match and validate **lead data** across multiple fetchers.
 - Enhance **B2B prospecting** by linking leads to business profiles.
@@ -17,119 +17,106 @@ The **Match Prospects** endpoint allows users to accurately match individual pro
 ### Endpoint: `POST /v1/prospects/match`
 
 
-<Accordion title="How It Works">
-
-1. **Input:** Provide a list of prospects with at least one fetcher (e.g., email, phone number, LinkedIn URL, or name & company).
-2. **Processing:** The system cross-references internal datasets and returns the best possible matches.
-3. **Output:** A structured response with matched **Prospect IDs**, maintaining the same order as the input list.
-
-</Accordion>
-
-### Request Schema
-
-| Field | Type | Description |
-|:---|:---|:---|
-| **prospects\_to\_match:** | Array | A list of prospect fetchers to match |
-| `email` | String | The prospect's email address |
-| `phone_number` | String | The prospect's phone number |
-| `full_name` | String | The prospect's full name (must be accompanied by `company_name`) |
-| `company_name` | String | The prospect's company name (must be accompanied by `full_name`) |
-| `linkedin` | String | LinkedIn profile URL |
-| `business_id` (optional) | String | Filters the match to a specific company |
-
-*full\_name must be accompanied with company\_name*
-
 
 <AccordionGroup>
-<Accordion title="Example Request (cURL)">
-
-```shell Bash
-curl -X POST "https://api.explorium.ai/v1/prospects/match" \
-  -H "API_KEY: your_api_key_here" \
-  -H "Content-Type: application/json" \
-  -d '{
-  "request_context": {
-    "sample": "sample"
-  },
-  "prospects_to_match": [
-    {
-      "business_id": "19fbe842a2e51db95d4f92333f2cc63a",
-      "linkedin": "https://www.linkedin.com/in/russell-lumpkin-07585b128"
-    },
-    {
-      "full_name": "tim cook",
-      "company_name": "Apple"
-    },
-    {
-      "email": "satyan@microsoft.com"
+  <Accordion title="How It Works">
+  1. **Input:** Provide a list of prospects with at least one fetcher (e.g., email, phone number, LinkedIn URL, or name & company).
+  2. **Processing:** The system cross-references internal datasets and returns the best possible matches.
+  3. **Output:** A structured response with matched **Prospect IDs**, maintaining the same order as the input list.
+</Accordion>
+    <Accordion title="Request Schema">
+    | Field                    | Type   | Description                                                      |
+    | :----------------------- | :----- | :--------------------------------------------------------------- |
+    | **prospects_to_match:**  | Array  | A list of prospect fetchers to match                             |
+    | `email`                  | String | The prospect's email address                                     |
+    | `phone_number`           | String | The prospect's phone number                                      |
+    | `full_name`              | String | The prospect's full name (must be accompanied by `company_name`) |
+    | `company_name`           | String | The prospect's company name (must be accompanied by `full_name`) |
+    | `linkedin`               | String | LinkedIn profile URL                                             |
+    | `business_id` (optional) | String | Filters the match to a specific company                          |
+  </Accordion>
+  <Accordion title="Example Request (cURL)">
+    ```shell Bash
+    curl -X POST "https://api.explorium.ai/v1/prospects/match" \
+      -H "API_KEY: your_api_key_here" \
+      -H "Content-Type: application/json" \
+      -d '{
+      "request_context": {
+        "sample": "sample"
+      },
+      "prospects_to_match": [
+        {
+          "business_id": "19fbe842a2e51db95d4f92333f2cc63a",
+          "linkedin": "https://www.linkedin.com/in/russell-lumpkin-07585b128"
+        },
+        {
+          "full_name": "tim cook",
+          "company_name": "Apple"
+        },
+        {
+          "email": "satyan@microsoft.com"
+        }
+      ]
     }
-  ]
-}
-'
-```
-
-</Accordion>
-
-<Accordion title="Example Response">
-
-```json JSON
-{
-  "response_context": {
-    "correlation_id": "a30a507872c64b428f067115aaf64cad",
-    "request_status": "success",
-    "time_took_in_seconds": 1.627
-  },
-  "total_results": 3,
-  "total_matches": 3,
-  "matched_prospects": [
+    '
+    ```
+  </Accordion>
+  <Accordion title="Example Response">
+    ```json JSON
     {
-      "input": {
-        "business_id": "19fbe842a2e51db95d4f92333f2cc63a",
-        "full_name": null,
-        "company_name": null,
-        "email": null,
-        "phone_number": null,
-        "linkedin": "https://www.linkedin.com/in/russell-lumpkin-07585b128"
+      "response_context": {
+        "correlation_id": "a30a507872c64b428f067115aaf64cad",
+        "request_status": "success",
+        "time_took_in_seconds": 1.627
       },
-      "prospect_id": "6ffd52c681452e2da8aac7ec3efb174f4604734c"
-    },
-    {
-      "input": {
-        "business_id": null,
-        "full_name": "tim cook",
-        "company_name": "Apple",
-        "email": null,
-        "phone_number": null,
-        "linkedin": null
-      },
-      "prospect_id": "07352d784dc9e77b06b2517dec224b53e4f482dd"
-    },
-    {
-      "input": {
-        "business_id": null,
-        "full_name": null,
-        "company_name": null,
-        "email": "satyan@microsoft.com",
-        "phone_number": null,
-        "linkedin": null
-      },
-      "prospect_id": "ee936e451b50c70e068e1b54e106cb89173198c4"
+      "total_results": 3,
+      "total_matches": 3,
+      "matched_prospects": [
+        {
+          "input": {
+            "business_id": "19fbe842a2e51db95d4f92333f2cc63a",
+            "full_name": null,
+            "company_name": null,
+            "email": null,
+            "phone_number": null,
+            "linkedin": "https://www.linkedin.com/in/russell-lumpkin-07585b128"
+          },
+          "prospect_id": "6ffd52c681452e2da8aac7ec3efb174f4604734c"
+        },
+        {
+          "input": {
+            "business_id": null,
+            "full_name": "tim cook",
+            "company_name": "Apple",
+            "email": null,
+            "phone_number": null,
+            "linkedin": null
+          },
+          "prospect_id": "07352d784dc9e77b06b2517dec224b53e4f482dd"
+        },
+        {
+          "input": {
+            "business_id": null,
+            "full_name": null,
+            "company_name": null,
+            "email": "satyan@microsoft.com",
+            "phone_number": null,
+            "linkedin": null
+          },
+          "prospect_id": "ee936e451b50c70e068e1b54e106cb89173198c4"
+        }
+      ]
     }
-  ]
-}
-```
+    ```
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **Use multiple fetchers** whenever possible to increase match accuracy.
+    - **Combine with** `business_id` **to refine matches to a specific company.**
+    - **Ensure accurate and up-to-date data** for improved results.
+    - **Handle** `null` **values** in responses where no match is found.
+    - **Use the input field** when sending multiple queries to match your queries with the results.
+  </Accordion>
 
-</Accordion>
-
-<Accordion title="Best Practices">
-
-- **Use multiple fetchers** whenever possible to increase match accuracy.
-- **Combine with** `business_id` **to refine matches to a specific company.**
-- **Ensure accurate and up-to-date data** for improved results.
-- **Handle** `null` **values** in responses where no match is found.
-- **Use the input field** when sending multiple queries to match your queries with the results.
-
-</Accordion>
 </AccordionGroup>
 
-<Icon icon="thumbtack" color="red" iconType="solid"/> **For more details on request formats and usage, refer to the API documentation.**
+<Icon icon="thumbtack" iconType="solid" color="red" /> **For more details on request formats and usage, refer to the API documentation.**
