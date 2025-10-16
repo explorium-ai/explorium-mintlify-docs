@@ -28,11 +28,11 @@ This information is sourced from **real-time website crawls and indexed public w
     - **Monitor website content** to ensure alignment with marketing and SEO strategies.
   </Accordion>
   <Accordion title="Keyword Search on Websites Output Signal">
-    | SignalAPI        | Name             | Description                              | Data Type |
-    | :--------------- | :--------------- | :--------------------------------------- | :-------- |
-    | keyword          | Keyword          | Keyword or phrase searched for.          | string    |
-    | search_frequency | Search frequency | Frequency of the keyword on the website. | integer   |
-    | page_url         | Page URL         | URL where the keyword was found.         | url       |
+    | SignalAPI          | Name                  | Description                                                                                                                                                                                                                                                                    | Data Type |
+    | :----------------- | :-------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------- |
+    | text_results       | Keyword search result | JSON-formatted list of search results, indicating the location of the queried keywords within the snippet. Each result includes a snippet of text containing the keywords, the corresponding URL, and a numeric ranking of where the keyword is positioned within the snippet. | array     |
+    | keywords_indicator | URL has keyword       | True if the URL contains the queried keywords.                                                                                                                                                                                                                                 | string    |
+    | url                | URL                   | Website associated with Explorium's entity ID queried for the input keywords.                                                                                                                                                                                                  | url       |
   </Accordion>
 </AccordionGroup>
 

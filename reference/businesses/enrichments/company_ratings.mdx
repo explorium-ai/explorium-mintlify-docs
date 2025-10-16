@@ -21,32 +21,31 @@ These ratings cover various aspects of company culture, **management quality, wo
     - **Cross-reference ratings with workforce trends** for deeper insights into employee retention and hiring dynamics.
   </Accordion>
   <Accordion title="Company Ratings by Employees Output Signal">
-    | SignalAPI                   | Name                         | Description                                            | Data Type |
-    | :-------------------------- | :--------------------------- | :----------------------------------------------------- | :-------- |
-    | rating_platform             | Rating platform              | Platform where ratings are posted (Glassdoor, Indeed). | string    |
-    | overall_rating              | Overall rating               | Overall company rating.                                | number    |
-    | culture_rating              | Culture rating               | Rating for company culture.                            | number    |
-    | compensation_rating         | Compensation rating          | Rating for compensation and benefits.                  | number    |
-    | management_rating           | Management rating            | Rating for management quality.                         | number    |
-    | work_life_balance_rating    | Work-life balance rating     | Rating for work-life balance.                          | number    |
-    | career_opportunities_rating | Career opportunities rating  | Rating for career advancement opportunities.           | number    |
-    | diversity_inclusion_rating  | Diversity & inclusion rating | Rating for diversity and inclusion.                    | number    |
-    | number_of_reviews           | Number of reviews            | Total number of reviews.                               | integer   |
-    | recommendation_percentage   | Recommendation percentage    | Percentage who recommend the company.                  | number    |
-    | ceo_approval_rating         | CEO approval rating          | CEO approval rating percentage.                        | number    |
-    | business_outlook_rating     | Business outlook rating      | Rating for business outlook.                           | number    |
-    | employee_satisfaction_score | Employee satisfaction score  | Overall employee satisfaction score.                   | number    |
-    | retention_rate              | Retention rate               | Employee retention rate.                               | number    |
-    | glassdoor_score             | Glassdoor score              | Overall Glassdoor rating.                              | number    |
-    | indeed_score                | Indeed score                 | Overall Indeed rating.                                 | number    |
-    | linkedin_score              | LinkedIn score               | Overall LinkedIn rating.                               | number    |
-    | engagement_score            | Engagement score             | Employee engagement score.                             | number    |
-    | training_rating             | Training rating              | Rating for training and development.                   | number    |
-    | benefits_rating             | Benefits rating              | Rating for benefits package.                           | number    |
-    | job_security_rating         | Job security rating          | Rating for job security.                               | number    |
-    | stress_level_rating         | Stress level rating          | Rating for workplace stress levels.                    | number    |
-    | innovation_rating           | Innovation rating            | Rating for innovation and creativity.                  | number    |
-    | communication_rating        | Communication rating         | Rating for internal communication.                     | number    |
+    | SignalAPI                     | Name                                 | Description                                                                                                                                           | Data Type |
+    | :---------------------------- | :----------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- | :-------- |
+    | company_country               | Company's country                    | The country where the company's headquarters are located.                                                                                             | string    |
+    | company_name                  | Company's name                       | The name of the company.                                                                                                                              | string    |
+    | company_region                | Company's region                     | The state region where the company's headquarters are located.                                                                                        | string    |
+    | company_street                | Company's street                     | The street name and number where the company's headquarters are located.                                                                              | string    |
+    | company_url                   | Company's URL                        | The URL of the website associated with the company.                                                                                                   | url       |
+    | company_zip_code              | Company Zip code                     | The postal code where the company's headquarters are located.                                                                                         | string    |
+    | experience_negative           | Negative experience                  | Percentage out of interviewees who published reviews that reported having a negative sentiment following a job interview.                             | float     |
+    | experience_neutral            | Neutral experience                   | Percentage out of interviewees who published reviews that reported having a neutral sentiment following a job interview.                              | float     |
+    | experience_positive           | Positive experience                  | Percentage out of interviewees who published reviews that reported having a positive sentiment following a job interview.                             | float     |
+    | ratings_all_reviews_count     | Number of ratings                    | Overall number of company ratings published by current and former employees.                                                                          | float     |
+    | ratings_business_outlook      | Business outlook rating              | The percentage out of current and former employees who published reviews that believe the company will succeed in the near future.                    | float     |
+    | ratings_career_opportunities  | Career opportunities rating          | Current and former Employees rating between 1-5 of the personal career development opportunities at the company. \| 1=low rating, 5=high rating       | float     |
+    | ratings_ceo_approval          | CEO approval rating                  | The percent of current and former employees that published reviews who approved of the company's CEO.                                                 | float     |
+    | ratings_ceo_approval_count    | CEO approval ratings count           | Number of CEO approval ratings collected.                                                                                                             | float     |
+    | ratings_compensation_benefits | Compensation benefits rating         | Compensation and benefits rating between 1-5 published by its current and former employees. \| 1=low rating, 5=high rating                            | float     |
+    | ratings_cutlure_values        | Culture values rating                | Culture values rating between 1-5 as rated by its current and former employees. \| 1=low rating, 5=high rating                                        | float     |
+    | ratings_diversity_inclusion   | Diversity inclusion rating           | Diversity inclusion rating between 1-5 as viewed by the company’s current and former employees. \| 1=low rating, 5=high rating                        | float     |
+    | ratings_overall               | Overall Ratings                      | A company’s overall score between 1-5 rated by its employees, interviewees and former employees. \| 1=low rating, 5=high rating                       | float     |
+    | ratings_recommend_to_friend   | Recommend to friend rating           | The chance that a current or former employee will recommend a friend to work in said company.                                                         | float     |
+    | ratings_senior_management     | Senior management rating             | Rating between 1-5 of the senior management as viewed by its current and former employees. \| 1=low rating, 5=high rating                             | float     |
+    | ratings_work_life_balance     | Work life balance rating             | Work life balance rating between 1-5 as viewed by its current and former employees. \| 1=low rating, 5=high rating                                    | float     |
+    | total_reviews_count           | Total reviews count                  | Total number of company reviews published by current and former employees.                                                                            | float     |
+    | company_score                 | Trend of company rating by employees | A dictionary listing the overall company score rated by current and former employees over the recent year between 1-5. \| 1=low rating, 5=high rating | array     |
   </Accordion>
 </AccordionGroup>
 

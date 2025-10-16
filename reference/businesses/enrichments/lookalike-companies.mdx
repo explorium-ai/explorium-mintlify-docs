@@ -95,18 +95,18 @@ This enrichment provides a powerful signal for identifying companies that “loo
     - **Re-run lookalike queries periodically** to capture changes in the business landscape and discover new similar companies.
   </Accordion>
   <Accordion title="Lookalike Companies Output Signals">
-    | SignalAPI                 | Name                      | Description                              | Data Type |
-    | :------------------------ | :------------------------ | :--------------------------------------- | :-------- |
-    | lookalike_company_name    | Lookalike company name    | Name of the similar company.             | string    |
-    | similarity_score          | Similarity score          | Score indicating similarity level.       | number    |
-    | similarity_factors        | Similarity factors        | Factors used for similarity calculation. | string    |
-    | industry_match            | Industry match            | Whether industries match.                | boolean   |
-    | size_similarity           | Size similarity           | Similarity in company size.              | string    |
-    | geographic_proximity      | Geographic proximity      | Geographic proximity of the companies.   | string    |
-    | business_model_similarity | Business model similarity | Similarity in business models.           | string    |
-    | financial_similarity      | Financial similarity      | Similarity in financial metrics.         | string    |
-    | customer_base_similarity  | Customer base similarity  | Similarity in customer base.             | string    |
-    | confidence_level          | Confidence level          | Confidence in the lookalike match.       | string    |
+    | SignalAPI                           | Name                                | Description                                                                                    | Data Type |
+    | :---------------------------------- | :---------------------------------- | :--------------------------------------------------------------------------------------------- | :-------- |
+    | comparable_business_id              | Comparable Business ID              | The Explorium ID of the requested company.                                                     | string    |
+    | lookalike_business_id               | Lookalike Business ID               | The Explorium ID of the lookalike company.                                                     | string    |
+    | lookalike_business_name             | Lookalike Business Name             | Name of the lookalike company.                                                                 | string    |
+    | lookalike_website                   | Lookalike Website                   | Website URL of the lookalike.                                                                  | string    |
+    | lookalike_description               | Lookalike Description               | Description of the lookalike company.                                                          | string    |
+    | lookalike_number_of_employees_range | Lookalike Number of Employees Range | Employee range for the lookalike.                                                              | string    |
+    | lookalike_revenue_range             | Lookalike Revenue Range             | Revenue range for the lookalike.                                                               | string    |
+    | lookalike_naics_description         | Lookalike NAICS Description         | NAICS (North American Industry Classification System) description for the lookalike.           | string    |
+    | lookalike_country_location          | Lookalike Country Location          | The country of operation for the lookalike.                                                    | string    |
+    | similarity_score                    | Similarity Score                    | Similarity score of the lookalike to the requested company. Medium (0.95–0.975), High (0.975+) | string    |
   </Accordion>
 </AccordionGroup>
 

@@ -30,12 +30,12 @@ This information is sourced from **real-time web crawls and indexed website snap
     - **Use comma-separated keywords** to refine searches, ensuring that all specified terms appear together.
   </Accordion>
   <Accordion title="Website Changes Output Signal">
-    | SignalAPI          | Name               | Description                                                | Data Type |
-    | :----------------- | :----------------- | :--------------------------------------------------------- | :-------- |
-    | change_type        | Change type        | Type of content change (addition, deletion, modification). | string    |
-    | page_url           | Page URL           | URL of the page with changes.                              | url       |
-    | change_description | Change description | Description of the changes made.                           | string    |
-    | change_date        | Change date        | Date when the change was detected.                         | date      |
+    | SignalAPI          | Name                            | Description                                                                                  | Data Type |
+    | :----------------- | :------------------------------ | :------------------------------------------------------------------------------------------- | :-------- |
+    | url                | Website page of detected change | URL from which the changes were derived                                                      | url       |
+    | change_description | Type of content change          | Text describing the content modification on the website as compared to the previous version. | string    |
+    | change_implication | Description of content change   | Text indicating the strategic significance of the content change on the website              | string    |
+    | date               | Content change timestamp        | Date the content change on the website occurred.                                             | datetime  |
   </Accordion>
 </AccordionGroup>
 

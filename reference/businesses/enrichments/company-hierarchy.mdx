@@ -3488,16 +3488,16 @@ By surfacing these connections, the enrichment helps to:
     - **Incorporate hierarchy analysis** into account planning for better coordination across business units.
   </Accordion>
   <Accordion title="Company Hierarchies Output Signals">
-    | SignalAPI            | Name                 | Description                                    | Data Type |
-    | :------------------- | :------------------- | :--------------------------------------------- | :-------- |
-    | entity_name          | Entity name          | Name of the entity in hierarchy.               | string    |
-    | entity_type          | Entity type          | Type of entity (parent, subsidiary, division). | string    |
-    | relationship_type    | Relationship type    | Type of hierarchical relationship.             | string    |
-    | ownership_percentage | Ownership percentage | Percentage of ownership.                       | number    |
-    | hierarchy_level      | Hierarchy level      | Level in the organizational hierarchy.         | integer   |
-    | establishment_date   | Establishment date   | Date when relationship was established.        | date      |
-    | geographic_location  | Geographic location  | Location of the entity.                        | string    |
-    | legal_status         | Legal status         | Legal status of the entity.                    | string    |
+    | SignalAPI            | Name                        | Description                                                                   | Data Type    |
+    | :------------------- | :-------------------------- | :---------------------------------------------------------------------------- | :----------- |
+    | input_company_id     | Input company ID            | The original business_id provided as input                                    | EXPLORIUM_ID |
+    | input_company_name   | Input company name          | The name of the input company                                                 | COMPANY      |
+    | parent_company_id    | Parent company ID           | Business ID of the immediate parent company                                   | EXPLORIUM_ID |
+    | parent_company       | Parent company name         | The name of the immediate parent company                                      | COMPANY      |
+    | ultimate_parent_id   | Ultimate parent ID          | Business ID of the top-most company in the tree (level_0)                     | EXPLORIUM_ID |
+    | ultimate_parent_name | Ultimate parent name        | The name of the top-most company in the tree (level_0)                        | COMPANY      |
+    | subsidiaries         | Subsidiaries                | List of direct subsidiaries                                                   | JSON         |
+    | org_tree_json        | Organization hierarchy Tree | A JSON structure representing the full organizational tree from top to bottom | JSON         |
   </Accordion>
 </AccordionGroup>
 

@@ -101,31 +101,39 @@ This signal is particularly useful for:
     - **Combine traffic metrics with firmographics** to build a richer business profile.
   </Accordion>
   <Accordion title="Website Traffic Output Signals">
-    | Signal             | API Name           | Description                                         | Data Type |
-    | ------------------ | ------------------ | --------------------------------------------------- | --------- |
-    | Accuracy           | accuracy           | Data accuracy (1–3, with 3 as the most accurate).   | CATEGORY  |
-    | Visits             | visits             | Total sessions.                                     | NUMERIC   |
-    | Users              | users              | Total unique users.                                 | NUMERIC   |
-    | Bounce Rate        | bounce_rate        | Percentage of single-page sessions.                 | NUMERIC   |
-    | Pages Per Visit    | pages_per_visit    | Average number of pages viewed per session.         | NUMERIC   |
-    | Time On Site       | time_on_site       | Average time on site (in seconds) per session.      | NUMERIC   |
-    | Desktop Share      | desktop_share      | Proportion of traffic from desktops.                | NUMERIC   |
-    | Mobile Share       | mobile_share       | Proportion of traffic from mobile devices.          | NUMERIC   |
-    | Mobile Visits      | mobile_visits      | Sessions from mobile devices.                       | NUMERIC   |
-    | Mobile Users       | mobile_users       | Unique users on mobile devices.                     | NUMERIC   |
-    | Mobile Hits        | mobile_hits        | Pageviews from mobile devices.                      | NUMERIC   |
-    | Mobile Bounce Rate | mobile_bounce_rate | Bounce rate for mobile sessions.                    | NUMERIC   |
-    | Direct             | direct             | Direct traffic (typed URL/bookmark).                | NUMERIC   |
-    | Referral           | referral           | Traffic from referral sources.                      | NUMERIC   |
-    | Search Organic     | search_organic     | Unpaid search traffic.                              | NUMERIC   |
-    | Search Paid        | search_paid        | Paid search traffic.                                | NUMERIC   |
-    | Paid               | paid               | Traffic from all paid sources.                      | NUMERIC   |
-    | Social Organic     | social_organic     | Unpaid social traffic.                              | NUMERIC   |
-    | Social Paid        | social_paid        | Paid social traffic.                                | NUMERIC   |
-    | Display Ad         | display_ad         | Traffic from banner/display ads.                    | NUMERIC   |
-    | Rank               | rank               | Global rank of the domain by traffic (1 = highest). | NUMERIC   |
-    | Target             | target             | The analyzed domain (e.g., example.com).            | URL       |
-    | Month Period       | month_period       | Reference month for cumulative data.                | DATETIME  |
+    | Signal                 | API Name               | Description                                                                           | Data Type |
+    | ---------------------- | ---------------------- | ------------------------------------------------------------------------------------- | --------- |
+    | accuracy               | Accuracy               | Data accuracy, with values of 1, 2, or 3. 3 is the most accurate.                     | CATEGORY  |
+    | bounced_visits         | Bounced Visits         | The number of single-page sessions.                                                   | NUMERIC   |
+    | bounce_rate            | Bounce Rate            | The percentage of single-page sessions.                                               | NUMERIC   |
+    | channel                | Channel                | The channel type, which can be direct, referral, search, social, mail, or display_ad. | CATEGORY  |
+    | desktop_share          | Desktop Share          | The proportion of total traffic that comes from desktops.                             | NUMERIC   |
+    | device_type            | Device Type            | The type of device used by the user, such as desktop or mobile.                       | CATEGORY  |
+    | direct                 | Direct                 | Traffic from users typing in the URL or using bookmarks.                              | NUMERIC   |
+    | display_ad             | Display Ad             | Traffic from banner or display advertising.                                           | NUMERIC   |
+    | mail                   | Mail                   | Traffic from email campaigns.                                                         | NUMERIC   |
+    | mobile_bounce_rate     | Mobile Bounce Rate     | The bounce rate specific to users on mobile devices.                                  | NUMERIC   |
+    | mobile_hits            | Mobile Hits            | The number of pageviews from mobile devices.                                          | NUMERIC   |
+    | mobile_pages_per_visit | Mobile Pages Per Visit | The number of pages viewed per session from mobile devices.                           | NUMERIC   |
+    | mobile_share           | Mobile Share           | The proportion of total traffic that comes from mobile devices.                       | NUMERIC   |
+    | mobile_users           | Mobile Users           | The number of unique users on mobile devices.                                         | NUMERIC   |
+    | mobile_visits          | Mobile Visits          | The total number of sessions from mobile devices.                                     | NUMERIC   |
+    | pages_per_visit        | Pages Per Visit        | The number of pages viewed per session.                                               | NUMERIC   |
+    | paid                   | Paid                   | Traffic from all paid sources, including ads.                                         | NUMERIC   |
+    | referral               | Referral               | Referral traffic.                                                                     | NUMERIC   |
+    | rank                   | Rank                   | The ranking of the target based on traffic volume, where 1 is the highest traffic.    | NUMERIC   |
+    | search                 | Search                 | Total search engine traffic (organic and paid).                                       | NUMERIC   |
+    | search_organic         | Search Organic         | Traffic from unpaid search results.                                                   | NUMERIC   |
+    | search_paid            | Search Paid            | Traffic from paid search ads.                                                         | NUMERIC   |
+    | social                 | Social                 | Traffic from all social media sources.                                                | NUMERIC   |
+    | social_organic         | Social Organic         | Unpaid traffic from social platforms.                                                 | NUMERIC   |
+    | social_paid            | Social Paid            | Paid traffic from social media advertising.                                           | NUMERIC   |
+    | target                 | Target                 | The domain being analyzed, such as example.com.                                       | URL       |
+    | time_on_site           | Time On Site           | The average time spent on the site per session.                                       | NUMERIC   |
+    | unknown_channel        | Unknown Channel        | Traffic for which the source could not be determined.                                 | NUMERIC   |
+    | users                  | Users                  | The total number of users.                                                            | NUMERIC   |
+    | visits                 | Visits                 | The total number of sessions.                                                         | NUMERIC   |
+    | month_period           | Month period           | Reference month for cumulative data (default: previous month)                         | DATETIME  |
   </Accordion>
 </AccordionGroup>
 

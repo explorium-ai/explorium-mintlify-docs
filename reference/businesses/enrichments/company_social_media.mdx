@@ -28,15 +28,14 @@ This information is sourced from **public Social media data and corporate social
     - **Monitor trending topics** to gain insights into corporate priorities and industry focus.
   </Accordion>
   <Accordion title="Company's Social Media Presence Output Signal">
-    | SignalAPI        | Name             | Description                                                | Data Type |
-    | :--------------- | :--------------- | :--------------------------------------------------------- | :-------- |
-    | platform         | Platform         | Social media platform (LinkedIn, Twitter, Facebook, etc.). | string    |
-    | account_handle   | Account handle   | Company's handle or username.                              | string    |
-    | follower_count   | Follower count   | Number of followers.                                       | integer   |
-    | post_frequency   | Post frequency   | Frequency of posts.                                        | string    |
-    | engagement_rate  | Engagement rate  | Average engagement rate.                                   | number    |
-    | content_strategy | Content strategy | Type of content strategy.                                  | string    |
-    | brand_sentiment  | Brand sentiment  | Overall brand sentiment.                                   | string    |
+    | SignalAPI          | Name                    | Description                                                        | Data Type |
+    | :----------------- | :---------------------- | :----------------------------------------------------------------- | :-------- |
+    | post_text          | Post text content       | Text content of the LinkedIn® post published by company profile.   | string    |
+    | days_since_posted  | Days since post         | Number of days since the post was published by the company.        | integer   |
+    | post_url           | LinkedIn® post URL      | URL to the LinkedIn® post published by individual.                 | url       |
+    | number_of_comments | Number of post comments | Number of comments on the company's post by time of collection.    | integer   |
+    | number_of_likes    | Number of post likes    | Number of likes the company's post received by time of collection. | integer   |
+    | created_at         | Time of posting         | Timestamp of when the company's post was published.                | datetime  |
   </Accordion>
 </AccordionGroup>
 

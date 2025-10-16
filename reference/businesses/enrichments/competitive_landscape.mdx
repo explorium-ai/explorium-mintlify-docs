@@ -28,24 +28,23 @@ This information is sourced from **publicly available financial reports, regulat
     - **Cross-reference competitive insights** with financial metrics and firmographic data for a complete market view.
   </Accordion>
   <Accordion title="Competitive Landscape Output Signal">
-    | SignalAPI               | Name                    | Description                                  | Data Type |
-    | :---------------------- | :---------------------- | :------------------------------------------- | :-------- |
-    | competitor_name         | Competitor name         | Name of the competing company.               | string    |
-    | competitive_position    | Competitive position    | Market position relative to competitors.     | string    |
-    | market_share            | Market share            | Market share percentage.                     | number    |
-    | competitive_advantages  | Competitive advantages  | Key competitive advantages.                  | string    |
-    | competitive_threats     | Competitive threats     | Main competitive threats.                    | string    |
-    | differentiation_factors | Differentiation factors | Factors that differentiate from competitors. | string    |
-    | pricing_strategy        | Pricing strategy        | Pricing strategy compared to competitors.    | string    |
-    | product_comparison      | Product comparison      | Comparison of products/services.             | string    |
-    | customer_overlap        | Customer overlap        | Degree of customer overlap.                  | string    |
-    | geographic_presence     | Geographic presence     | Geographic presence comparison.              | string    |
-    | innovation_comparison   | Innovation comparison   | Comparison of innovation capabilities.       | string    |
+    | SignalAPI                   | Name                        | Description                                                                                                                                                                                                                                                                                  | Data Type |
+    | :-------------------------- | :-------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------- |
+    | cik                         | Company's CIK               | Unique numeric identifier assigned by the SEC distinguishing a company in the EDGAR filing system. Typically consists of up to 10 digits and may include leading zeros. Used for retrieving financial filings and compliance documents.                                                      | string    |
+    | link_to_filing_details      | 10-K filing index link      | URL linking to the index page of the company's specific 10-K filing, which lists the main filing document, exhibits, and supplemental files submitted to the SEC.                                                                                                                            | url       |
+    | form_description            | Form description            | Summary of the filing, including the type of form submitted, the statutory authority requiring its submission, and details on whether specific disclosures are included or excluded. The filing is prepared and submitted by the company it pertains to, in compliance with SEC regulations. | string    |
+    | competitive_differentiation | Competitive differentiation | Text describing the company's unique value and differentiators from competitors.                                                                                                                                                                                                             | array     |
+    | filed_at                    | Time of filing              | Date and time the filing was submitted, formatted YYYY-MM-DDTHH:MM:SS±HH:MM.                                                                                                                                                                                                                 | string    |
+    | company_name                | Company name                | Name of the company.                                                                                                                                                                                                                                                                         | string    |
+    | link_to_html                | 10-K filing document link   | URL linking to the main HTML document of the company's specific 10-K filing, containing financial statements, management analysis, and other key information submitted to the SEC.                                                                                                           | url       |
+    | key_competitors             | Key competitors             | List of the company's competitors.                                                                                                                                                                                                                                                           | array     |
+    | accession_number            | File's accession number     | Unique identifier for the file submitted by the company to the SEC, including the company’s CIK, the fiscal year of the filing, and the sequential number of the filing within that year.                                                                                                    | string    |
+    | form_type                   | Form type                   | Type of form that was filed by the company. In most cases the form type is 10-K.                                                                                                                                                                                                             | string    |
+    | ticker                      | Ticker symbol               | Stock symbol associated with the company, that is compiled of an arrangement of characters representing publicly-traded securities on an exchange. The symbol is used to place trade orders.                                                                                                 | string    |
   </Accordion>
 </AccordionGroup>
 
-<Icon icon="thumbtack" iconType="solid" color="red" /> For additional enrichment options, explore related API endpoints below.
-**Body Params - Try Me Example**
+<Icon icon="thumbtack" iconType="solid" color="red" /> For additional enrichment options, explore related API endpoints below. **Body Params - Try Me Example**
 
 ```
 business_id: 8adce3ca1cef0c986b22310e369a0793
