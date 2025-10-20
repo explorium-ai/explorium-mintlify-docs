@@ -20,9 +20,62 @@ Once a business is successfully matched, its **Business ID** becomes the **prima
     | **Real-Time Updates** | Ensures the latest business records are used for matching      |
   </Accordion>
   <Accordion title="How It Works">
-    - **Input:** A list of business identifiers, which can include **name**, **domain**, and **LinkedIn company URL**.
-    - **Processing:** Our system cross-references multiple datasets to find the best match.
-    - **Output:** A structured response with the matched **Business IDs**, maintaining the same order as the input list.
+    ### How It Works
+
+    **Input**: A list of business identifiers, which can include `name`, `website (domain)`, and `linkedin_company_url`.\
+    **Processing**: The system cross-references multiple internal datasets to determine the best possible match.\
+    **Output**: A structured response containing the matched Business IDs, preserving the exact order of the input list.
+
+    ---
+
+    ### Matching Strategy
+
+    When using the **Business Match** endpoint, the system applies a multi-step resolution strategy based on the fields you provide — primarily `name` and `website`.
+
+    #### 1. Primary Matching — Smart Fuzzy Logic (Name + Website)
+
+    We begin by attempting to match the business using both the company name and website domain.\
+    The company name is evaluated using a smart fuzzy matching algorithm designed to handle:
+
+    - Common variations and abbreviations
+    - Typos and noisy CRM inputs
+    - Token normalization, semantic similarity, and industry-aware string processing
+
+    The website (domain) serves as a strong anchoring signal to disambiguate between similarly named companies and to boost confidence.\
+    This phase ensures high-precision matching while remaining robust to imperfect input data.
+
+    #### 2. Fallback Matching — Website Only
+
+    If the system fails to find a confident match using both name and domain, it automatically falls back to matching by website alone.\
+    Because domains are typically unique and consistent across organizations, this fallback ensures matches can still be returned when the company name is incomplete, inconsistent, or incorrect.
+
+    ---
+
+    ### Important Notes
+
+    - Fallback matching from **name + website → website only** occurs only when both fields are provided.
+    - If only the website is supplied, it will be used directly for matching.
+    - If only the name is provided, matching relies solely on fuzzy name resolution without domain anchoring.
+    - This logic is aligned with the AgentSource model, which emphasizes main site-level resolution (not individual branches).
+
+    ---
+
+    ### Example Scenarios
+
+    | Input                                               | Matching Outcome                             |
+    | :-------------------------------------------------- | :------------------------------------------- |
+    | `Name: Starbucks EMEA`, `Website: starbucks.com`    | Match using name + website (fuzzy supported) |
+    | `Name: abcxyz`, `Website: starbucks.com`            | Fallback — match using website only          |
+    | `Name: Starbucks`, `Website: fakeurl.xyz`           | No match — invalid domain                    |
+    | `Name: (empty)`, `Website: starbucks.com`           | Match using website only                     |
+    | `Name: Starbuks Intl Ltd`, `Website: starbucks.com` | Match using fuzzy logic + website            |
+
+    ### Recommendation
+
+    To get the best possible results:
+
+    - Always include both `name` and `website` when calling the Business Match endpoint.
+    - This enables the system to apply smart fuzzy matching **and** fallback recovery for unmatched names — maximizing accuracy, coverage, and confidence.
   </Accordion>
   <Accordion title="Schema Explanation">
     | **Field**             | **Type** | **Description**                                                            |
