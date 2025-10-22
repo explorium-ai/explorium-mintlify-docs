@@ -16,6 +16,14 @@
       "light": "#fffcf5"
     }
   },
+  "api": {
+   "playground": {
+     "display": "interactive"
+   },
+   "examples": {
+     "prefill": false
+   }
+ },
   "navigation": {
     "tabs": [
       {
