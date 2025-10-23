@@ -17,21 +17,20 @@ A **New Executive Level Hire** event tracks when a new employee is hired and off
 - **Economic Indicators**: Assess the overall employment rate within sectors.
 - **Talent Acquisition Strategy**: Identify organizations aggressively recruiting talent.
 
-
 ## Data Schema
 
 **Event Name: "employee_joined_company" (Use this value in the event_types parameter when querying this event.)**
 
-| Signal | API Name | Description | Data Type |
-| :--- | :--- | :--- | :--- |
-| Company name | job\_company\_name | Name of the company where employee change event occurred. | string |
-| Executive's current job department | job\_department | Individual's current job department, derived from their current job title. If employee change type is 'Employee left the company', value is NULL. | string |
-| Executive's full name | full\_name | First and last names associated with the individual, appended with a space. | string |
-| Executive's role change event | change\_type | Title of employee change event that occurred. E.g. executive joined the company. | string |
-| Event time | event\_time | The timestamp indicating when the event actually occurred | datetime |
-| Executive's current job title | job\_role\_title | Individual's current job title listed on their professional profile. If employee change type is 'Employee left the company', value is NULL. | string |
-| Executive's LinkedIn® URL | linkedin\_url | URL of the individual's LinkedIn® profile. | url |
-| Event name | event\_name | Name of the event related to employee's role change. | string |
+| Signal                             | API Name         | Description                                                                                                                                       | Data Type |
+| :--------------------------------- | :--------------- | :------------------------------------------------------------------------------------------------------------------------------------------------ | :-------- |
+| Company name                       | job_company_name | Name of the company where employee change event occurred.                                                                                         | string    |
+| Executive's current job department | job_department   | Individual's current job department, derived from their current job title. If employee change type is 'Employee left the company', value is NULL. | string    |
+| Executive's full name              | full_name        | First and last names associated with the individual, appended with a space.                                                                       | string    |
+| Executive's role change event      | change_type      | Title of employee change event that occurred. E.g. executive joined the company.                                                                  | string    |
+| Event time                         | event_time       | The timestamp indicating when the event actually occurred                                                                                         | datetime  |
+| Executive's current job title      | job_role_title   | Individual's current job title listed on their professional profile. If employee change type is 'Employee left the company', value is NULL.       | string    |
+| Executive's LinkedIn® URL          | linkedin_url     | URL of the individual's LinkedIn® profile.                                                                                                        | url       |
+| Event name                         | event_name       | Name of the event related to employee's role change.                                                                                              | string    |
 
 ## Query Example
 
@@ -46,24 +45,24 @@ curl -X POST \
   ],
   "business_ids": [
     "8adce3ca1cef0c986b22310e369a0793"
-ה  ],
+  ],
   "timestamp_from": "2025-01-01T10:03:03.050Z"
 }'
 ```
 
 ## Best Practices
 
-- **Filter by department (`job_department`)** to track hiring trends in specific fields.
-- **Monitor job titles (`job_role_title`)** to analyze demand for specialized roles.
-- **Use LinkedIn data (`linkedin_url`)** to validate new hires and assess their background.
+- **`Filter by department (job_department)`** to track hiring trends in specific fields.
+- **`Monitor job titles (job_role_title)`** to analyze demand for specialized roles.
+- **`Use LinkedIn data (linkedin_url)`** to validate new hires and assess their background.
 
 ## Related Events
 
 <Columns cols={2}>
-<Card icon="users" horizontal title="Hiring (per department)" href="/reference/businesses/events/types/hiring-by-department">
-Hiring by Department
-</Card>
-<Card icon="user-plus" horizontal title="Department trend (per department)" href="/reference/businesses/events/types/department-trend">
-Workforce Changes by Department
-</Card>
+  <Card title="Hiring (per department)" icon="users" horizontal href="/reference/businesses/events/types/hiring-by-department">
+    Hiring by Department
+  </Card>
+  <Card title="Department trend (per department)" icon="user-plus" horizontal href="/reference/businesses/events/types/department-trend">
+    Workforce Changes by Department
+  </Card>
 </Columns>
