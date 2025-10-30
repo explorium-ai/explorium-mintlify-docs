@@ -57,8 +57,7 @@ The **Fetch Prospects** endpoint allows users to retrieve a list of prospect rec
 
     #### Filtering
 
-    Filters allow you to narrow down results based on specific field values.
-    All filters must be included in the request body under the `"filters"` key, as a JSON object.
+    Filters allow you to narrow down results based on specific field values. All filters must be included in the request body under the `"filters"` key, as a JSON object.
 
     Each filter field accepts:
 
@@ -90,17 +89,15 @@ The **Fetch Prospects** endpoint allows users to retrieve a list of prospect rec
 
     The optional `mode` parameter defines the level of detail in the returned data.
 
-    | Mode      | Description                                                                                                                                                                         |
-    | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | `full`    | Returns the complete data object for each prospect.   Use this when full detail is required for processing or display.                                                              |
-    | `preview` | Returns a lightweight version of the data, including only key fields.   For prospects, this typically includes: `prospect_id`, `name`, `title`, `company_name`, and `email_status`. |
+    | Mode   | Description                                                                                                            |
+    | ------ | ---------------------------------------------------------------------------------------------------------------------- |
+    | `full` | Returns the complete data object for each prospect.   Use this when full detail is required for processing or display. |
 
     #### Best Practices
 
     - Always use `page_size` to control payload size for better performance.
     - Use `size` to set an upper limit and avoid unintentionally requesting large datasets.
     - Apply filters whenever possible to reduce response size and processing time.
-    - Avoid using `mode=full` unless full object data is necessary—especially in high-volume requests.
   </Accordion>
   <Accordion title="Prospect Filters">
     ### Prospect Filters Reference
