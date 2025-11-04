@@ -1,0 +1,168 @@
+---
+title: "Business Intent Topics (Bombora) — Bulk"
+openapi: "post /v1/businesses/intent_topics/enrich/bulk"
+---
+
+### **Description**
+
+The **Business Intent Topics (Bombora) — Bulk** enrichment enables you to retrieve intent topic insights for **multiple businesses in a single request**.  
+It reveals which topics each company is actively researching online, offering comprehensive visibility into collective business interests and buying intent across a portfolio of accounts.
+
+Powered by **Bombora’s weekly intent dataset**, the enrichment analyzes topic-level content consumption patterns to detect **surging interest signals** and **engagement intensity** at the company level.
+
+For each provided company (`business_id`), the enrichment returns a **ranked list of intent topics** with a **composite score above 60**, grouped by category and timestamped by week.  
+The results highlight which topics each business is researching most intensely and classify them by **intent level** (*In-Depth, Active, Early*).
+
+This enrichment is particularly useful for:
+- **Account prioritization:** Identify which companies across your target list are currently researching relevant topics.
+- **Intent-driven segmentation:** Group accounts by research activity and level of engagement.
+- **ABM automation:** Scale intent-based personalization to entire account lists.
+- **Pipeline acceleration:** Detect surging interest signals across multiple prospects simultaneously.
+
+**Refresh cadence:** Weekly
+
+Raw intent data powered by:
+
+<img
+  src="/download.png"
+  alt="Image(1) Pn"
+  title=""
+  className="mx-auto"
+  style={{ width:"45%" }}
+/>
+
+---
+
+<AccordionGroup>
+  <Accordion title="How It Works">
+ - **Input:**  
+    Provide a list of `business_id` values obtained from the **Match Businesses** API.  
+    Optional parameters:  
+      - **`topic_parameters`** — semicolon-separated list of `"category: topic"` filters (e.g., `technology: ios;other: vendor profiling`).  
+      - **`min_score`** — optional integer **> 60**. If omitted, the default threshold is **60**.
+
+  - **Processing:**  
+    The enrichment queries Bombora’s weekly dataset to identify surging topics for each company in the list.  
+    Only topics with `composite_score >= threshold` are returned, where **threshold = `min_score` (if provided and >60) or 60 (default)**.
+
+  - **Output:**  
+    Returns, for each input `business_id`, the company’s **top intent topics**, including the composite score, engagement level, and weekly timestamp.
+
+  </Accordion>
+  <Accordion title="Example 1 — Basic Request & Response">
+    ```bash
+    curl -X 'POST' \
+    'https://api.explorium.ai/v1/businesses/intent_topics/enrich' \
+    -H 'accept: application/json' \
+    -H 'api_key: your_api_key' \
+    -H 'Content-Type: application/json' \
+    -d '{
+      "source": [
+        {"Text": "e4d5a55eefa7db177c6d96c0abb2a8b1"}
+      ],
+      "schema": {
+        "columns": [
+          {
+            "name": "Text",
+            "ontology": "TEXT"
+          }
+        ]
+      },
+      "arguments": {
+        "topic_parameters": "technology: ios;technology: acer;storage: disk storage"
+      }
+    }'
+    ```
+
+    ```json
+    {
+      "response": [
+        {
+          "__id__": 0,
+          "__status__": "success",
+          "__status_code__": 200,
+          "company_name": "clearblade",
+          "company_website": "clearblade.com",
+          "date_stamp": "20251102",
+          "intent_topics": [
+            {"topic": "storage: disk storage", "composite_score": 71}
+          ],
+          "level_of_intent": "Early Research",
+          "topic_count": "1 / 310",
+          "_input_Text": "e4d5a55eefa7db177c6d96c0abb2a8b1"
+        }
+      ],
+      "request_status": "success",
+      "request_id": "6a194c9b70704670"
+    }
+    ```
+  </Accordion>
+  <Accordion title="Example 2 — Request with `min_score` & Response">
+    ```bash
+    curl -X 'POST' \
+    'https://api.explorium.ai/v1/businesses/intent_topics/enrich' \
+    -H 'accept: application/json' \
+    -H 'api_key: your_api_key' \
+    -H 'Content-Type: application/json' \
+    -d '{
+      "source": [
+        {"Text": "019f8c788490785aed7d345d53c6c199"}
+      ],
+      "schema": {
+        "columns": [
+          {
+            "name": "Text",
+            "ontology": "TEXT"
+          }
+        ]
+      },
+      "arguments": {
+        "topic_parameters": "other: vendor profiling;technology: google (goog);immigration: citizen",
+        "min_score": 80
+      }
+    }'
+    ```
+
+    ```json
+    {
+      "response": [
+        {
+          "__id__": 0,
+          "__status__": "success",
+          "__status_code__": 200,
+          "company_name": "art dental clinic",
+          "company_website": "artdentalclinic.net",
+          "date_stamp": "20251102",
+          "intent_topics": [
+            {"topic": "immigration: citizen", "composite_score": 75},
+            {"topic": "other: vendor profiling", "composite_score": 77}
+          ],
+          "level_of_intent": "In Depth Research",
+          "topic_count": "2 / 5",
+          "_input_Text": "019f8c788490785aed7d345d53c6c199"
+        }
+      ],
+      "request_status": "success",
+      "request_id": "4f4c1e1bc6284ab3"
+    }
+    ```
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **`Always provide valid business_id inputs`** retrieved from the **Match Businesses** API.
+    - **`Specify topic_parameters`** to focus enrichment results on relevant industries or technologies.
+    - **`Use min_score`** only if you wish to raise the threshold above 60 — values ≤60 are not valid.
+    - **Check for null values** — if Bombora has no data for a given domain, all topic-related fields will return null.
+    - **Combine intent data** with firmographic and technographic enrichments for full go-to-market insights.
+  </Accordion>
+  <Accordion title="Intent Topics Output Signals">
+    | Signal          | API Name        | Description                                                                                                                                                                                                       | Data Type |
+    | --------------- | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+    | level_of_intent | Level of Intent | Indicates how actively a company engaged with selected topics during the past week: \>25% = In-Depth Research, 5–25% = Active Research, \<5% = Early Research. Returns `null` when no input topics are available. | CATEGORY  |
+    | topic_count     | Topic Count     | Shows the number of topics with a composite score above 60, relative to all topics evaluated (e.g., 5/5). When no input topics are provided, all topics are returned.                                             | TEXT      |
+    | intent_topics   | Intent Topics   | Contains an array of objects summarizing the company’s active interest in specific Bombora topics over a given week. Each object includes the topic name, category, composite score, and date.                    | TEXT      |
+    | company_website | Company Website | The company’s primary website or domain URL.                                                                                                                                                                      | TEXT      |
+    | company_name    | Company Name    | The official or recognized name of the company.                                                                                                                                                                   | TEXT      |
+  </Accordion>
+</AccordionGroup>
+
+📌 \_For additional enrichment options, explore related API endpoints below.
