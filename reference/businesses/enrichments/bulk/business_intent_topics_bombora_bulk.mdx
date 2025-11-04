@@ -47,102 +47,37 @@ Raw intent data powered by:
     - **Output:**\
       Returns, for each input `business_id`, the company’s **top intent topics**, including the composite score, engagement level, and weekly timestamp.
   </Accordion>
-  <Accordion title="Example 1 — Basic Request & Response">
-    ```bash
-    curl -X 'POST' \
-    'https://api.explorium.ai/v1/businesses/intent_topics/enrich' \
-    -H 'accept: application/json' \
-    -H 'api_key: your_api_key' \
-    -H 'Content-Type: application/json' \
-    -d '{
-      "source": [
-        {"Text": "e4d5a55eefa7db177c6d96c0abb2a8b1"}
-      ],
-      "schema": {
-        "columns": [
-          {
-            "name": "Text",
-            "ontology": "TEXT"
-          }
-        ]
-      },
-      "arguments": {
-        "topic_parameters": "technology: ios;technology: acer;storage: disk storage"
-      }
-    }'
+  <Accordion title="Example  — Request with `min_score` & Response">
+    ```json
+    {
+  "request_context": {},
+  "parameters": {
+    "topics": [
+      "technology: ios","technology: acer","storage: disk storage"
+    ],"min_score": 30
+  },
+  "business_id": "e4d5a55eefa7db177c6d96c0abb2a8b1"
+}
     ```
 
     ```json
     {
-      "response": [
-        {
-          "__id__": 0,
-          "__status__": "success",
-          "__status_code__": 200,
-          "company_name": "clearblade",
-          "company_website": "clearblade.com",
-          "date_stamp": "20251102",
-          "intent_topics": [
-            {"topic": "storage: disk storage", "composite_score": 71}
-          ],
-          "level_of_intent": "Early Research",
-          "topic_count": "1 / 310",
-          "_input_Text": "e4d5a55eefa7db177c6d96c0abb2a8b1"
-        }
-      ],
-      "request_status": "success",
-      "request_id": "6a194c9b70704670"
-    }
-    ```
-  </Accordion>
-  <Accordion title="Example 2 — Request with `min_score` & Response">
-    ```bash
-    curl -X 'POST' \
-    'https://api.explorium.ai/v1/businesses/intent_topics/enrich' \
-    -H 'accept: application/json' \
-    -H 'api_key: your_api_key' \
-    -H 'Content-Type: application/json' \
-    -d '{
-      "source": [
-        {"Text": "019f8c788490785aed7d345d53c6c199"}
-      ],
-      "schema": {
-        "columns": [
-          {
-            "name": "Text",
-            "ontology": "TEXT"
-          }
-        ]
-      },
-      "arguments": {
-        "topic_parameters": "other: vendor profiling;technology: google (goog);immigration: citizen",
-        "min_score": 80
-      }
-    }'
-    ```
-
-    ```json
-    {
-      "response": [
-        {
-          "__id__": 0,
-          "__status__": "success",
-          "__status_code__": 200,
-          "company_name": "art dental clinic",
-          "company_website": "artdentalclinic.net",
-          "date_stamp": "20251102",
-          "intent_topics": [
-            {"topic": "immigration: citizen", "composite_score": 75},
-            {"topic": "other: vendor profiling", "composite_score": 77}
-          ],
-          "level_of_intent": "In Depth Research",
-          "topic_count": "2 / 5",
-          "_input_Text": "019f8c788490785aed7d345d53c6c199"
-        }
-      ],
-      "request_status": "success",
-      "request_id": "4f4c1e1bc6284ab3"
-    }
+  "response_context": {
+    "correlation_id": "bd5c9535f90b43368925faeaf8ce9040",
+    "request_status": "success",
+    "time_took_in_seconds": 0.365
+  },
+  "data": {
+    "business_id": "e4d5a55eefa7db177c6d96c0abb2a8b1",
+    "company_name": "clearblade",
+    "company_website": "clearblade.com",
+    "date_stamp": "20251102",
+    "intent_topics": "[{\"topic\":\"storage: disk storage\",\"composite_score\":71}]",
+    "level_of_intent": "Early Research",
+    "topic_count": "1 / 310"
+  },
+  "entity_id": "e4d5a55eefa7db177c6d96c0abb2a8b1"
+}
     ```
   </Accordion>
   <Accordion title="Best Practices">
