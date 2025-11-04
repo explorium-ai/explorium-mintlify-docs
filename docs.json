@@ -119,8 +119,7 @@
                       "reference/businesses/enrichments/lookalike-companies",
                       "reference/businesses/enrichments/webstack",
                       "reference/businesses/enrichments/company-hierarchy",
-                      "reference/businesses/enrichments/business_website_traffic",
-      "reference/businesses/enrichments/business_intent_topics_bombora"
+                      "reference/businesses/enrichments/business_website_traffic"
                     ]
                   },
                   {
@@ -142,8 +141,7 @@
 "reference/businesses/enrichments/bulk/lookalike_companies_bulk_enrich",
 "reference/businesses/enrichments/bulk/webstack_bulk_enrich",
 "reference/businesses/enrichments/bulk/company_hierarchy_bulk_enrich",
-"reference/businesses/enrichments/bulk/business_website_traffic_bulk_enrich",
-"reference/businesses/enrichments/bulk/business_intent_topics_bombora_bulk"
+"reference/businesses/enrichments/bulk/business_website_traffic_bulk_enrich"
                     ]
                   }
                 ]
@@ -209,7 +207,8 @@
               {
                 "group": "Credits",
                 "pages": [
-                  "reference/credits/get_active_credits_summary"
+                  "reference/credits/get_active_credits_summary",
+                  "reference/credits/get_credit_consumption_aggregation"
                 ]
               },
               "reference/support-help-center",
