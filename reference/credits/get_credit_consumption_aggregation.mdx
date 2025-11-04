@@ -1,0 +1,392 @@
+---
+title: "Get Credit Consumption Aggregation"
+openapi: POST /v1/credits/aggregation
+description: "Retrieve aggregated credit consumption data with configurable time ranges and resolutions"
+---
+
+## Overview
+
+The Credit Consumption Aggregation endpoint provides detailed analytics on credit usage across your account. Query consumption data by time periods (hourly, daily, monthly) or by API endpoint to understand usage patterns and optimize your credit allocation.
+
+## Authentication
+
+Include your account API key in the request header:
+
+```bash
+api_key: YOUR_API_KEY
+```
+
+## Request Body
+
+<ParamField body="from_date" type="string" required>
+  Start date and time for the aggregation period (ISO 8601 format)
+
+  **Example:** `"2025-08-23T00:00:00Z"`
+</ParamField>
+
+<ParamField body="to_date" type="string" required>
+  End date and time for the aggregation period (ISO 8601 format)
+
+  **Example:** `"2025-08-24T00:00:00Z"`
+</ParamField>
+
+<ParamField body="resolution" type="string" required>
+  Time resolution for aggregating credit data
+
+  **Allowed values:** `hour` | `day` | `month`
+
+  **Date range limits:**
+
+  - `hour`: Maximum 7 days
+  - `day`: Maximum 60 days
+  - `month`: Maximum 2 years
+</ParamField>
+
+<ParamField body="timezone" type="string">
+  Timezone for the aggregation (default: UTC)
+
+  **Example:** `"America/New_York"`
+</ParamField>
+
+## Response
+
+Returns a JSON object containing aggregated credit consumption data:
+
+<ResponseField name="response_context" type="object">
+  Metadata about the API response
+
+  <Expandable title="properties">
+    <ResponseField name="correlation_id" type="string">
+      Unique identifier for tracking the request
+    </ResponseField>
+    <ResponseField name="request_status" type="string">
+      Status of the request (`success` or `failure`)
+    </ResponseField>
+    <ResponseField name="time_took_in_seconds" type="number">
+      Request processing time in seconds
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="from_date" type="string">
+  Start date of the aggregation period
+</ResponseField>
+
+<ResponseField name="to_date" type="string">
+  End date of the aggregation period
+</ResponseField>
+
+<ResponseField name="resolution" type="string">
+  Time resolution used for aggregation
+</ResponseField>
+
+<ResponseField name="timezone" type="string">
+  Timezone applied to the aggregation
+</ResponseField>
+
+<ResponseField name="total_credits" type="integer">
+  Total credits consumed during the specified period
+</ResponseField>
+
+<ResponseField name="aggregations" type="array">
+  Array of aggregated credit consumption data points
+
+  <Expandable title="properties">
+    <ResponseField name="timestamp" type="string">
+      ISO 8601 timestamp for the aggregation bucket
+    </ResponseField>
+    <ResponseField name="credits" type="integer">
+      Credits consumed in this time period
+    </ResponseField>
+    <ResponseField name="hour" type="string">
+      Hour in 24-hour format (only for hourly resolution)
+
+      **Example:** `"13:00"`
+    </ResponseField>
+    <ResponseField name="date" type="string">
+      Date of the aggregation (for hourly and daily resolution)
+
+      **Example:** `"2025-08-23"`
+    </ResponseField>
+    <ResponseField name="day_name" type="string">
+      Name of the day (only for daily resolution)
+
+      **Example:** `"Monday"`
+    </ResponseField>
+    <ResponseField name="day_of_week" type="integer">
+      Day of the week as number 0-6 (only for daily resolution)
+
+      **Example:** `1` (Monday)
+    </ResponseField>
+    <ResponseField name="year" type="integer">
+      Year (only for monthly resolution)
+
+      **Example:** `2025`
+    </ResponseField>
+    <ResponseField name="month" type="integer">
+      Month number 1-12 (only for monthly resolution)
+
+      **Example:** `2`
+    </ResponseField>
+    <ResponseField name="month_name" type="string">
+      Full month name (only for monthly resolution)
+
+      **Example:** `"February"`
+    </ResponseField>
+    <ResponseField name="month_abbr" type="string">
+      Abbreviated month name (only for monthly resolution)
+
+      **Example:** `"FEB"`
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+## Examples
+
+<CodeGroup>
+
+```bash Hourly Resolution
+curl --request POST \
+  --url https://api.explorium.ai/v1/credits/aggregation \
+  --header 'Content-Type: application/json' \
+  --header 'api_key: YOUR_API_KEY' \
+  --data '{
+    "from_date": "2025-08-23T00:00:00Z",
+    "to_date": "2025-08-24T00:00:00Z",
+    "resolution": "hour"
+  }'
+```
+
+
+```bash Daily Resolution
+curl --request POST \
+  --url https://api.explorium.ai/v1/credits/aggregation \
+  --header 'Content-Type: application/json' \
+  --header 'api_key: YOUR_API_KEY' \
+  --data '{
+    "from_date": "2025-08-17T00:00:00Z",
+    "to_date": "2025-08-24T00:00:00Z",
+    "resolution": "day"
+  }'
+```
+
+
+```bash Monthly Resolution
+curl --request POST \
+  --url https://api.explorium.ai/v1/credits/aggregation \
+  --header 'Content-Type: application/json' \
+  --header 'api_key: YOUR_API_KEY' \
+  --data '{
+    "from_date": "2025-01-01T00:00:00Z",
+    "to_date": "2025-07-01T00:00:00Z",
+    "resolution": "month"
+  }'
+```
+
+
+```bash With Timezone
+curl --request POST \
+  --url https://api.explorium.ai/v1/credits/aggregation \
+  --header 'Content-Type: application/json' \
+  --header 'api_key: YOUR_API_KEY' \
+  --data '{
+    "from_date": "2025-08-23T00:00:00Z",
+    "to_date": "2025-08-24T00:00:00Z",
+    "resolution": "day",
+    "timezone": "America/New_York"
+  }'
+```
+
+</CodeGroup>
+
+<ResponseExample>
+
+```json Hourly Response
+{
+  "response_context": {
+    "correlation_id": "5618d686ecb849fda660c3023acf3120",
+    "request_status": "success",
+    "time_took_in_seconds": 0.245
+  },
+  "from_date": "2025-08-23T00:00:00Z",
+  "to_date": "2025-08-24T00:00:00Z",
+  "resolution": "hour",
+  "timezone": "UTC",
+  "total_credits": 1245,
+  "aggregations": [
+    {
+      "timestamp": "2025-08-23T00:00:00Z",
+      "hour": "00:00",
+      "date": "2025-08-23",
+      "credits": 45
+    },
+    {
+      "timestamp": "2025-08-23T01:00:00Z",
+      "hour": "01:00",
+      "date": "2025-08-23",
+      "credits": 52
+    },
+    {
+      "timestamp": "2025-08-23T13:00:00Z",
+      "hour": "13:00",
+      "date": "2025-08-23",
+      "credits": 89
+    }
+  ]
+}
+```
+
+
+```json Daily Response
+{
+  "response_context": {
+    "correlation_id": "a7b8c9d0e1f2g3h4i5j6k7l8m9n0o1p2",
+    "request_status": "success",
+    "time_took_in_seconds": 0.189
+  },
+  "from_date": "2025-08-17T00:00:00Z",
+  "to_date": "2025-08-24T00:00:00Z",
+  "resolution": "day",
+  "timezone": "UTC",
+  "total_credits": 3456,
+  "aggregations": [
+    {
+      "timestamp": "2025-08-17T00:00:00Z",
+      "date": "2025-08-17",
+      "day_name": "Saturday",
+      "day_of_week": 6,
+      "credits": 234
+    },
+    {
+      "timestamp": "2025-08-18T00:00:00Z",
+      "date": "2025-08-18",
+      "day_name": "Sunday",
+      "day_of_week": 0,
+      "credits": 0
+    },
+    {
+      "timestamp": "2025-08-19T00:00:00Z",
+      "date": "2025-08-19",
+      "day_name": "Monday",
+      "day_of_week": 1,
+      "credits": 567
+    }
+  ]
+}
+```
+
+
+```json Monthly Response
+{
+  "response_context": {
+    "correlation_id": "q2r3s4t5u6v7w8x9y0z1a2b3c4d5e6f7",
+    "request_status": "success",
+    "time_took_in_seconds": 0.312
+  },
+  "from_date": "2025-01-01T00:00:00Z",
+  "to_date": "2025-07-01T00:00:00Z",
+  "resolution": "month",
+  "timezone": "UTC",
+  "total_credits": 15678,
+  "aggregations": [
+    {
+      "timestamp": "2025-01-01T00:00:00Z",
+      "year": 2025,
+      "month": 1,
+      "month_name": "January",
+      "month_abbr": "JAN",
+      "credits": 2345
+    },
+    {
+      "timestamp": "2025-02-01T00:00:00Z",
+      "year": 2025,
+      "month": 2,
+      "month_name": "February",
+      "month_abbr": "FEB",
+      "credits": 1890
+    },
+    {
+      "timestamp": "2025-03-01T00:00:00Z",
+      "year": 2025,
+      "month": 3,
+      "month_name": "March",
+      "month_abbr": "MAR",
+      "credits": 2567
+    }
+  ]
+}
+```
+
+</ResponseExample>
+
+## Error Responses
+
+<ResponseExample>
+
+```json Invalid Date Range (400)
+{
+  "response_context": {
+    "correlation_id": "error123456789",
+    "request_status": "failure",
+    "time_took_in_seconds": 0.012
+  },
+  "error": {
+    "code": "INVALID_DATE_RANGE",
+    "message": "The from_date must be before to_date",
+    "details": {
+      "from_date": "2025-08-24T00:00:00Z",
+      "to_date": "2025-08-23T00:00:00Z"
+    }
+  }
+}
+```
+
+
+```json Unauthorized (401)
+{
+  "response_context": {
+    "correlation_id": "auth987654321",
+    "request_status": "failure",
+    "time_took_in_seconds": 0.008
+  },
+  "error": {
+    "code": "UNAUTHORIZED",
+    "message": "Invalid or missing API key"
+  }
+}
+```
+
+
+```json Invalid Resolution (400)
+{
+  "response_context": {
+    "correlation_id": "error456789123",
+    "request_status": "failure",
+    "time_took_in_seconds": 0.010
+  },
+  "error": {
+    "code": "INVALID_RESOLUTION",
+    "message": "Resolution must be one of: hour, day, month"
+  }
+}
+```
+
+</ResponseExample>
+
+## Use Cases
+
+**Monitoring Credit Usage Patterns**
+
+Track how your credit consumption varies throughout the day, week, or month to identify peak usage times and optimize your API call scheduling.
+
+**Budget Planning**
+
+Use monthly aggregations to understand long-term trends and plan your credit allocation for upcoming periods.
+
+**Anomaly Detection**
+
+Monitor hourly or daily consumption to quickly identify unexpected spikes in usage that may indicate issues or opportunities for optimization.
+
+**Reporting and Analytics**
+
+Generate detailed consumption reports for internal stakeholders or integrate with your own analytics dashboards for comprehensive visibility.
