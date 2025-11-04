@@ -5,15 +5,16 @@ openapi: "post /v1/businesses/intent_topics/enrich/bulk"
 
 ### **Description**
 
-The **Business Intent Topics (Bombora) — Bulk** enrichment enables you to retrieve intent topic insights for **multiple businesses in a single request**.  
+The **Business Intent Topics (Bombora) — Bulk** enrichment enables you to retrieve intent topic insights for **multiple businesses in a single request**.\
 It reveals which topics each company is actively researching online, offering comprehensive visibility into collective business interests and buying intent across a portfolio of accounts.
 
 Powered by **Bombora’s weekly intent dataset**, the enrichment analyzes topic-level content consumption patterns to detect **surging interest signals** and **engagement intensity** at the company level.
 
-For each provided company (`business_id`), the enrichment returns a **ranked list of intent topics** with a **composite score above 60**, grouped by category and timestamped by week.  
-The results highlight which topics each business is researching most intensely and classify them by **intent level** (*In-Depth, Active, Early*).
+For each provided company (`business_id`), the enrichment returns a **ranked list of intent topics** with a **composite score above 60**, grouped by category and timestamped by week.\
+The results highlight which topics each business is researching most intensely and classify them by **intent level** (_In-Depth, Active, Early_).
 
 This enrichment is particularly useful for:
+
 - **Account prioritization:** Identify which companies across your target list are currently researching relevant topics.
 - **Intent-driven segmentation:** Group accounts by research activity and level of engagement.
 - **ABM automation:** Scale intent-based personalization to entire account lists.
@@ -35,19 +36,16 @@ Raw intent data powered by:
 
 <AccordionGroup>
   <Accordion title="How It Works">
- - **Input:**  
-    Provide a list of `business_id` values obtained from the **Match Businesses** API.  
-    Optional parameters:  
-      - **`topic_parameters`** — semicolon-separated list of `"category: topic"` filters (e.g., `technology: ios;other: vendor profiling`).  
-      - **`min_score`** — optional integer **> 60**. If omitted, the default threshold is **60**.
-
-  - **Processing:**  
-    The enrichment queries Bombora’s weekly dataset to identify surging topics for each company in the list.  
-    Only topics with `composite_score >= threshold` are returned, where **threshold = `min_score` (if provided and >60) or 60 (default)**.
-
-  - **Output:**  
-    Returns, for each input `business_id`, the company’s **top intent topics**, including the composite score, engagement level, and weekly timestamp.
-
+    - **Input:**\
+      Provide a list of `business_id` values obtained from the **Match Businesses** API.\
+      Optional parameters:
+      - **`topic_parameters`** — semicolon-separated list of `"category: topic"` filters (e.g., `technology: ios;other: vendor profiling`).
+      - **`min_score`** — optional integer **\> 60**. If omitted, the default threshold is **60**.
+    - **Processing:**\
+      The enrichment queries Bombora’s weekly dataset to identify surging topics for each company in the list.\
+      Only topics with `composite_score >= threshold` are returned, where **`threshold = min_score (if provided and >60) or 60 (default)`**.
+    - **Output:**\
+      Returns, for each input `business_id`, the company’s **top intent topics**, including the composite score, engagement level, and weekly timestamp.
   </Accordion>
   <Accordion title="Example 1 — Basic Request & Response">
     ```bash
