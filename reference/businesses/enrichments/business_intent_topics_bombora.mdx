@@ -37,8 +37,11 @@ Raw intent data powered by:
     - **Input:**\
       Provide a single `business_id` obtained from the **Match Businesses** API.\
       Optional parameters:
-      - **`topic_parameters`** — semicolon-separated list of `"category: topic"` filters (e.g., `technology: ios;other: vendor profiling`).
+      - **`topics`** — semicolon-separated list of `"category: topic"` filters (e.g., `technology: ios;other: vendor profiling`).
       - **`min_score`** — optional integer **\> 60**. If omitted, the default threshold is **60**.
+
+        \
+        Use the autocomplete endpoint with field `business_intent_topics` to find intent topics
     - **Processing:**\
       The enrichment queries Bombora’s weekly dataset to identify surging topics for the specified company.\
       Only topics with `composite_score >= threshold` are returned, where **`threshold = min_score (if provided and >60) or 60 (default)`**.
@@ -46,26 +49,26 @@ Raw intent data powered by:
       Returns the company’s **top intent topics**, each with a composite score, engagement level, and weekly timestamp.
   </Accordion>
   <Accordion title="Example  — Request with `min_score` & Response">
-    ```json
-{
-  "request_context": {},
-  "parameters": {
+    ````json
+    {
+    "request_context": {},
+    "parameters": {
     "topics": [
       "technology: ios","technology: acer","storage: disk storage"
     ],"min_score": 30
-  },
-  "business_id": "e4d5a55eefa7db177c6d96c0abb2a8b1"
-}
-
+    },
+    "business_id": "e4d5a55eefa7db177c6d96c0abb2a8b1"
+    }
+    
     ```json
     {
       {
-  "response_context": {
+    "response_context": {
     "correlation_id": "bd5c9535f90b43368925faeaf8ce9040",
     "request_status": "success",
     "time_took_in_seconds": 0.365
-  },
-  "data": {
+    },
+    "data": {
     "business_id": "e4d5a55eefa7db177c6d96c0abb2a8b1",
     "company_name": "clearblade",
     "company_website": "clearblade.com",
@@ -73,10 +76,10 @@ Raw intent data powered by:
     "intent_topics": "[{\"topic\":\"storage: disk storage\",\"composite_score\":71}]",
     "level_of_intent": "Early Research",
     "topic_count": "1 / 310"
-  },
-  "entity_id": "e4d5a55eefa7db177c6d96c0abb2a8b1"
-}
-    ```
+    },
+    "entity_id": "e4d5a55eefa7db177c6d96c0abb2a8b1"
+    }
+    ````
   </Accordion>
   <Accordion title="Best Practices">
     - **`Always provide valid business_id inputs`** retrieved from the **Match Businesses** API.
