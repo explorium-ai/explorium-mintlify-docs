@@ -93,8 +93,9 @@ Raw intent data powered by:
     | level_of_intent | Level of Intent | Indicates how actively a company engaged with selected topics during the past week: \>25% = In-Depth Research, 5–25% = Active Research, \<5% = Early Research. Returns `null` when no input topics are available. | CATEGORY  |
     | topic_count     | Topic Count     | Shows the number of topics with a composite score above 60, relative to all topics evaluated (e.g., 5/5). When no input topics are provided, all topics are returned.                                             | TEXT      |
     | intent_topics   | Intent Topics   | Contains an array of objects summarizing the company’s active interest in specific Bombora topics over a given week. Each object includes the topic name, category, composite score, and date.                    | TEXT      |
-    | company_website | Company Website | The company’s primary website or domain URL.                                                                                                                                                                      | TEXT      |
+    | company_website | Company Website | The company’s primary website or domain URL.                                                                                                                                                                      | URL       |
     | company_name    | Company Name    | The official or recognized name of the company.                                                                                                                                                                   | TEXT      |
+    | date_stamp      | date            | The date of the most recent Bombora data file (weekly), in format YYYYMMDD                                                                                                                                        | TEXT      |
   </Accordion>
 </AccordionGroup>
 
