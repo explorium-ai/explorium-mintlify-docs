@@ -1,8 +1,7 @@
 ---
-title: "Business Intent Topics (Bombora) — Bulk"
+title: "Business Intent Topics (Bulk)"
 openapi: "post /v1/businesses/bombora_intent/bulk_enrich"
 ---
-
 
 ### **Description**
 
@@ -51,24 +50,24 @@ Raw intent data powered by:
   <Accordion title="Example  — Request with `min_score` & Response">
     ```json
     {
-  "request_context": {},
-  "parameters": {
+    "request_context": {},
+    "parameters": {
     "topics": [
       "technology: ios","technology: acer","storage: disk storage"
     ],"min_score": 30
-  },
-  "business_id": "e4d5a55eefa7db177c6d96c0abb2a8b1"
-}
+    },
+    "business_id": "e4d5a55eefa7db177c6d96c0abb2a8b1"
+    }
     ```
 
     ```json
     {
-  "response_context": {
+    "response_context": {
     "correlation_id": "bd5c9535f90b43368925faeaf8ce9040",
     "request_status": "success",
     "time_took_in_seconds": 0.365
-  },
-  "data": {
+    },
+    "data": {
     "business_id": "e4d5a55eefa7db177c6d96c0abb2a8b1",
     "company_name": "clearblade",
     "company_website": "clearblade.com",
@@ -76,9 +75,9 @@ Raw intent data powered by:
     "intent_topics": "[{\"topic\":\"storage: disk storage\",\"composite_score\":71}]",
     "level_of_intent": "Early Research",
     "topic_count": "1 / 310"
-  },
-  "entity_id": "e4d5a55eefa7db177c6d96c0abb2a8b1"
-}
+    },
+    "entity_id": "e4d5a55eefa7db177c6d96c0abb2a8b1"
+    }
     ```
   </Accordion>
   <Accordion title="Best Practices">
