@@ -143,7 +143,7 @@
 "reference/businesses/enrichments/bulk/webstack_bulk_enrich",
 "reference/businesses/enrichments/bulk/company_hierarchy_bulk_enrich",
 "reference/businesses/enrichments/bulk/business_website_traffic_bulk_enrich",
-                      "reference/businesses/enrichments/business_intent_topics_bombora_bulk"
+"reference/businesses/enrichments/bulk/business_intent_topics_bombora_bulk"
                     ]
                   }
                 ]
