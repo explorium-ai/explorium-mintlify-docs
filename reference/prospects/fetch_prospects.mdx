@@ -109,7 +109,7 @@ The **Fetch Prospects** endpoint allows users to retrieve a list of prospect rec
     | job_title                   | Filter prospects by their job titles. Example: [Sales Representative, SEO specialist, Technical Support Engineer]                                                                                                                                                                                                                                                                        | Enter one or more job titles as free text. The filter matches prospects whose title includes all the words. For more consistent results, prefer using job_level and job_department. Uses a single `value` with flexible keyword matching. Logic ensures all words appear in the target field, regardless of order.                                                                                                                                                                                                                                                                          |
     | job_level                   | Filter prospects by their job level. **Examples Categories**: manager, president, senior manager, owner, advisor, freelancer, junior, director, c-suite, board member, senior non-managerial, non-managerial, partner, vice president, founder.                                                                                                                                          | Use autocomplete to search and select job levels. You can choose one or more values. The response fields (`job_level_array`, `job_level_main`) provide enriched  context. Examples of new levels: manager, president, senior manager, owner, advisor, freelancer, junior, director, c-suite, board member, senior non-managerial, non-managerial, partner, vice president, founder.                                                                                                                                                                                                         |
     | job_department              | Filter prospects by their job department. **Examples Categories:** retail, engineering, customer success, administration, education, security, healthcare, public service, partnerships, creative, strategy, real estate, procurement, IT, data, c-suite, manufacturing, support, logistics, product, sales, design, marketing, finance, R&D, trade, human resources, legal, operations. | Use autocomplete to browse and select departments. Works best when combined with job_level to ensure title coverage across organizations. The response fields (`job_department_array`, `job_department_main`) provide enriched  context. Examples of new departments: retail, engineering, customer success, administration, education, security, healthcare, public service, partnerships, creative, strategy, real estate, procurement, IT, data, c-suite, manufacturing, support, logistics, product, sales, design, marketing, finance, R&D, trade, human resources, legal, operations. |
-    | related_job_titles          | Expand filtering results to include related job titles.                                                                                                                                                                                                                                                                                                                                  | When set to `true`, the system broadens the search to include job titles that are semantically or hierarchically related to the provided title(s). Default is `false`. Useful for retrieving a wider range of relevant roles.                                                                                                                                                                                                                                                                                                                                                               |
+    | include_related_job_titles  | Expand filtering results to include related job titles.                                                                                                                                                                                                                                                                                                                                  | When set to `true`, the system broadens the search to include job titles that are semantically or hierarchically related to the provided title(s). Default is `false`. Useful for retrieving a wider range of relevant roles.                                                                                                                                                                                                                                                                                                                                                               |
     | business_id                 | Filter prospects by account. Use Explorium entity IDs. Example: [EXP_ENTITY_ID_1, EXP_ENTITY_ID_2][EXP_ENTITY_ID_1, EXP_ENTITY_ID_2]                                                                                                                                                                                                                                                     | Paste one or more valid business IDs. These are specific identifiers in the system.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
     | country_code                | Filter prospects by country using alpha-2 codes. Example: [us, ca]                                                                                                                                                                                                                                                                                                                       | Use the country autocomplete to search by country name and select the correct two-letter code. This avoids manual errors and ensures valid input. Uses a list of `values`. Logic checks whether the country code matches.                                                                                                                                                                                                                                                                                                                                                                   |
     | region_country_code         | Filter prospects by region using ISO 3166-2 codes. Example: [us-ut, us-ca]                                                                                                                                                                                                                                                                                                               | First choose a country in the autocomplete, then select a region. The code will be formatted as `country-region` (e.g., `us-ca`). Uses `values`. Logic checks for region code inclusion.                                                                                                                                                                                                                                                                                                                                                                                                    |
@@ -165,16 +165,17 @@ The **Fetch Prospects** endpoint allows users to retrieve a list of prospect rec
       -H "API_KEY: <your api key>" \
       -H "Content-Type: application/json" \
       -d '{
+      "request_context": {},
       "mode": "full",
       "size": 100,
-      "page_size": 100,
+      "page_size": 3,
       "page": 1,
-      "filters": {
-        "business_id": {
+      "filters": {"business_id": {
           "values": [
             "8adce3ca1cef0c986b22310e369a0793"
           ]
         },
+       "include_related_job_titles": true,
         "job_level": {
           "values": [
             "director",
@@ -188,8 +189,11 @@ The **Fetch Prospects** endpoint allows users to retrieve a list of prospect rec
           "gte": 3,
           "lte": 6
         }
-      }
-    }'
+      },
+      "max_per_company": 2
+    }
+    
+    '
     ```
 
     <Icon icon="thumbtack" iconType="solid" color="red" /> **`Modefull`** : Returns additional attributes such as job history, social links, and experience.
@@ -197,35 +201,189 @@ The **Fetch Prospects** endpoint allows users to retrieve a list of prospect rec
     ```curl cURL expandable
     {
       "response_context": {
-        "correlation_id": "d46aa78f3da148e7846fa94492f8f80a",
+        "correlation_id": "bea92c3cc44b4c5ba9760c8c792d45f1",
         "request_status": "success",
-        "time_took_in_seconds": 1.252
+        "time_took_in_seconds": 0.541
       },
       "data": [
         {
-          "prospect_id": "ba32fc15ccaccac027f9f9f1c3116a3333469443",
-          "full_name": "Brandon Kuchta",
-          "country_name": "united states",
-          "region_name": "california",
-          "city": "alamo",
-          "linkedin": "linkedin.com/in/bkuchta",
-          "experience": "Acd, design manager, product art direction",
-          "skills": "3d animation, 3d rendering, After effects, Art direction, Color correction, Color grading, Color management, Compositing, Concept design, Content marketing, Creative direction, Davinci resolve, Digital compositing, Digital marketing, Ec2, Hdr, Image compositing, Image manipulation, Interactive advertising, Interactive media, Leadership, Lighting, Live action, Look development, Matte painting, Mobile design, Modeling, Modo, Motion design, Motion graphics, Nuke, Photographic lighting, Photography, Photoshop, Post production, Pre press, Product development, Product management, Rendering, Responsive design, Retouching, Team leadership, User experience, Vfx supervision, Visual effects",
-          "interests": "Home improvement, Home decoration, Electronics",
+          "prospect_id": "0b6eaac18fdff5fb98e3d590c0f547556045868a",
+          "professional_email_hashed": null,
+          "first_name": "Janet",
+          "last_name": "Fung",
+          "full_name": "Janet Fung",
+          "country_name": "hong kong",
+          "region_name": null,
+          "city": null,
+          "linkedin": "linkedin.com/in/janet-fung-96677650",
+          "experience": [
+            "Head of retail business",
+            "hong kong and taiwan channel",
+            "Category manager",
+            "Head of business planning and retail ops",
+            "hong kong and taiwan channel",
+            "Assistant manager",
+            "Marketing manager",
+            "Retail program manager",
+            "greater china"
+          ],
+          "skills": [
+            "Product development",
+            "Product launch",
+            "Product marketing",
+            "Marketing management",
+            "Product management",
+            "Marketing strategy",
+            "Marketing communications",
+            "Key account management",
+            "Customer insight",
+            "Management",
+            "Trade marketing"
+          ],
+          "interests": null,
           "company_name": "Apple",
           "company_website": "apple.com",
           "company_linkedin": "linkedin.com/company/apple",
-          "job_department": "Marketing",
+          "job_department": null,
+          "job_department_array": [
+            "retail"
+          ],
+          "job_department_main": null,
           "job_seniority_level": [
             "director"
           ],
-          "job_title": "Art director"
+          "job_level_array": [
+            "director"
+          ],
+          "job_level_main": "director",
+          "job_title": "Head of retail business, hong kong and taiwan channel",
+          "business_id": "8adce3ca1cef0c986b22310e369a0793"
         },
-        ...
+        {
+          "prospect_id": "b7475c99219114f66e55399fdc4bd13fd73e8089",
+          "professional_email_hashed": null,
+          "first_name": "Godsheritage",
+          "last_name": "Adeoye",
+          "full_name": "Godsheritage Adeoye",
+          "country_name": "united states",
+          "region_name": null,
+          "city": null,
+          "linkedin": "linkedin.com/in/godsheritage",
+          "experience": [
+            "Tech exchange",
+            "Sprout fellow",
+            "Software engineering lead",
+            "Hbcu academy of excellence!",
+            "Participant",
+            "Director of operations",
+            "Apple hbcu scholar",
+            "Full stack engineer",
+            "Ios developer",
+            "Pathway alliance scholar",
+            "Software engineering intern",
+            "Backend developer",
+            "Chief of staff",
+            "Front end engineer",
+            "Family member",
+            "Machine learning engineering intern",
+            "President",
+            "Latitude fellow",
+            "Library assistant"
+          ],
+          "skills": [
+            "Api development",
+            "Technology leadership",
+            "Front-end engineering",
+            "Applied machine learning",
+            "Software systems engineering",
+            "Program management",
+            "React.js",
+            "Typescript",
+            "Web development",
+            "Full-stack development",
+            "Front-end design",
+            "Finance",
+            "Team building",
+            "Team leadership",
+            "Project management",
+            "Business strategy",
+            "Marketing strategy",
+            "Fundraising",
+            "Networking",
+            "Gallup strengths",
+            "Design documents",
+            "Streamlit",
+            "Artificial intelligence (ai)",
+            "Google cloud platform (gcp)",
+            "Javascript",
+            "Programming",
+            "Mongodb",
+            "Swift (programming language)",
+            "Mern stack",
+            "Html",
+            "Sass",
+            "Hackerrank interview",
+            "Database testing",
+            "Cascading style sheets (css)",
+            "Bootstrap",
+            "Express.js",
+            "Node.js",
+            "Web services api",
+            "Html5",
+            "Git",
+            "User experience (ux)",
+            "Vue.js",
+            "Mysql",
+            "Sass",
+            "Php",
+            "Mobile interface design",
+            "Web applications",
+            "Redux.js",
+            "Web services",
+            "Web design",
+            "Adobe creative suite",
+            "Software",
+            "Software development",
+            "Web content creation",
+            "Back-end web development",
+            "Angularjs",
+            "Front-end development",
+            "User experience design (ued)",
+            "User interface design",
+            "Wireframing",
+            "Front-end coding",
+            "Web interface design",
+            "Adobe photoshop",
+            "Adobe illustrator",
+            "Web analytics",
+            "Web project management",
+            "Mean stack",
+            "Mevn",
+            "Graphql"
+          ],
+          "interests": null,
+          "company_name": "Crown media",
+          "company_website": "apple.com",
+          "company_linkedin": "linkedin.com/company/apple",
+          "job_department": "Operations",
+          "job_department_array": [
+            "operations"
+          ],
+          "job_department_main": null,
+          "job_seniority_level": [
+            "director"
+          ],
+          "job_level_array": [
+            "director"
+          ],
+          "job_level_main": "director",
+          "job_title": "Director of operations",
+          "business_id": "8adce3ca1cef0c986b22310e369a0793"
+        }
       ],
-      "total_results": 5,
+      "total_results": 100,
       "page": 1,
-      "total_pages": 1
+      "total_pages": 34
     }
     ```
   </Accordion>
