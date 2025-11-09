@@ -160,40 +160,118 @@ The **Fetch Prospects** endpoint allows users to retrieve a list of prospect rec
   </Accordion>
   <Accordion title="Example Request (cURL)">
     ```curl cURL expandable
-    curl -X POST \
-      "https://api.explorium.ai/v1/prospects" \
-      -H "API_KEY: <your api key>" \
-      -H "Content-Type: application/json" \
-      -d '{
+    {
       "request_context": {},
       "mode": "full",
-      "size": 100,
-      "page_size": 3,
+      "size": 10,
+      "page_size": 10,
       "page": 1,
-      "filters": {"business_id": {
-          "values": [
-            "8adce3ca1cef0c986b22310e369a0793"
-          ]
-        },
-       "include_related_job_titles": true,
-        "job_level": {
-          "values": [
-            "director",
-            "manager"
-          ]
-        },
+      "exclude": [
+        "a5fbfab4d7221b144efecbe83e55cbf80b64bd50"
+      ],
+      "filters": {
         "has_email": {
           "value": true
         },
+        "has_phone_number": {
+          "value": true
+        },
+        "job_level": {
+          "values": [
+            "owner",
+            "cxo",
+            "vp",
+            "director",
+            "senior",
+            "manager",
+            "partner",
+            "non-managerial",
+            "founder",
+            "training",
+            "c-suite"
+          ]
+        },
+        "job_department": {
+          "values": [
+            "real estate",
+            "Customer service",
+            "Trades",
+            "design",
+            "Public relations",
+            "Legal",
+            "Operations",
+            "Media",
+            "Sales",
+            "Marketing",
+            "Finance",
+            "Engineering",
+            "Education",
+            "General",
+            "Health",
+            "Design",
+            "Human resources"
+          ]
+        },
+        "business_id": {
+          "values": [
+            "8adce3ca1cef0c986b22310e369a0793",
+            "340c8040bd50cbab9c7df718bbe51cc9"
+          ]
+        },
         "total_experience_months": {
-          "gte": 3,
-          "lte": 6
-        }
-      },
-      "max_per_company": 2
+          "gte": 1,
+          "lte": 10
+        },
+        "country_code": {
+          "values": [
+            "US",
+            "CA"
+          ]
+        },
+        "current_role_months": {
+          "gte": 1,
+          "lte": 10
+        },
+        "company_size": {
+          "values": [
+            "1-10",
+            "11-50",
+            "51-200",
+            "201-500",
+            "501-1000",
+            "1001-5000",
+            "5001-10000",
+            "10001+"
+          ]
+        },
+        "company_revenue": {
+          "values": [
+            "0-500K",
+            "500K-1M",
+            "1M-5M",
+            "5M-10M",
+            "10M-25M",
+            "25M-75M",
+            "75M-200M",
+            "200M-500M",
+            "500M-1B",
+            "1B-10B",
+            "10B-100B",
+            "100B-1T",
+            "1T-10T",
+            "10T+"
+          ]
+        },
+        "job_title": {
+          "values": [
+            "Software Engineer",
+            "Data Scientist"
+          ]
+        },
+        "include_related_job_titles":true
+      }
     }
     
-    '
     ```
 
     <Icon icon="thumbtack" iconType="solid" color="red" /> **`Modefull`** : Returns additional attributes such as job history, social links, and experience.
@@ -201,175 +279,395 @@ The **Fetch Prospects** endpoint allows users to retrieve a list of prospect rec
     ```curl cURL expandable
     {
       "response_context": {
-        "correlation_id": "bea92c3cc44b4c5ba9760c8c792d45f1",
+        "correlation_id": "229295f5ec99457eb9ab0265b5b517a4",
         "request_status": "success",
-        "time_took_in_seconds": 0.541
+        "time_took_in_seconds": 1.078
       },
       "data": [
         {
-          "prospect_id": "0b6eaac18fdff5fb98e3d590c0f547556045868a",
+          "prospect_id": "ab9f37311965d65da53e6787d87cab240576ed0f",
           "professional_email_hashed": null,
-          "first_name": "Janet",
-          "last_name": "Fung",
-          "full_name": "Janet Fung",
-          "country_name": "hong kong",
-          "region_name": null,
-          "city": null,
-          "linkedin": "linkedin.com/in/janet-fung-96677650",
+          "first_name": "Simi",
+          "last_name": "Dube",
+          "full_name": "Simi Dube",
+          "country_name": "united states",
+          "region_name": "california",
+          "city": "san francisco",
+          "linkedin": "linkedin.com/in/simidube",
           "experience": [
-            "Head of retail business",
-            "hong kong and taiwan channel",
-            "Category manager",
-            "Head of business planning and retail ops",
-            "hong kong and taiwan channel",
-            "Assistant manager",
-            "Marketing manager",
-            "Retail program manager",
-            "greater china"
+            "Music editor - music",
+            "Growth product manager - music",
+            "New york regional promotion manager",
+            "Radio promotion",
+            "Manager",
+            "engineering program management - app store",
+            "Vice president - product  &  user experience design",
+            "Director of product - growth",
+            "enrollments  &  payments",
+            "Product management producer - app store  &  podcasts",
+            "Senior director of radio promotion",
+            "Group pm - enrollments  &  payments"
           ],
           "skills": [
-            "Product development",
-            "Product launch",
-            "Product marketing",
-            "Marketing management",
-            "Product management",
-            "Marketing strategy",
-            "Marketing communications",
-            "Key account management",
-            "Customer insight",
+            "Digital designs",
+            "Analytics",
+            "Leadership",
+            "Interpersonal skills",
+            "Product strategy",
             "Management",
-            "Trade marketing"
+            "Strategy",
+            "Communication",
+            "People management",
+            "Team leadership",
+            "Product management",
+            "Strategic planning",
+            "Business strategy",
+            "Music",
+            "Entertainment",
+            "Product development",
+            "Music industry",
+            "Digital media",
+            "Record labels",
+            "New media",
+            "A&r",
+            "Publicity",
+            "Music publishing",
+            "Software project management",
+            "Radio promotions",
+            "Music licensing",
+            "Marketing"
           ],
           "interests": null,
           "company_name": "Apple",
           "company_website": "apple.com",
           "company_linkedin": "linkedin.com/company/apple",
-          "job_department": retail,
+          "job_department": null,
           "job_department_array": [
-            "retail"
+            "engineering"
           ],
-          "job_department_main": retail,
+          "job_department_main": "Engineering",
           "job_seniority_level": [
-            "director"
+            "vp"
           ],
           "job_level_array": [
-            "director"
+            "vice president",
+            "manager"
           ],
-          "job_level_main": "director",
-          "job_title": "Head of retail business, hong kong and taiwan channel",
+          "job_level_main": "vice president",
+          "job_title": "Manager, engineering program management - app store",
           "business_id": "8adce3ca1cef0c986b22310e369a0793"
         },
         {
-          "prospect_id": "b7475c99219114f66e55399fdc4bd13fd73e8089",
+          "prospect_id": "bc6e4174532a007f28c45c1eb6b463f7a0aa706e",
           "professional_email_hashed": null,
-          "first_name": "Godsheritage",
-          "last_name": "Adeoye",
-          "full_name": "Godsheritage Adeoye",
+          "first_name": "Irakli",
+          "last_name": "Nadareishvili",
+          "full_name": "Irakli Nadareishvili",
           "country_name": "united states",
-          "region_name": null,
-          "city": null,
-          "linkedin": "linkedin.com/in/godsheritage",
+          "region_name": "california",
+          "city": "san francisco bay area",
+          "linkedin": "linkedin.com/in/inadarei",
           "experience": [
-            "Tech exchange",
-            "Sprout fellow",
-            "Software engineering lead",
-            "Hbcu academy of excellence!",
-            "Participant",
-            "Director of operations",
-            "Apple hbcu scholar",
-            "Full stack engineer",
-            "Ios developer",
-            "Pathway alliance scholar",
-            "Software engineering intern",
-            "Backend developer",
-            "Chief of staff",
-            "Front end engineer",
-            "Family member",
-            "Machine learning engineering intern",
-            "President",
-            "Latitude fellow",
-            "Library assistant"
+            "Senior director",
+            "technology",
+            "Adjunct professor",
+            "Director of api strategy",
+            "api academy",
+            "Additional experience",
+            "Managing director",
+            "chief technology officer of global banking platform",
+            "Vice president engineering",
+            "chief technology officer of core modernization",
+            "Director of engineering",
+            "digital media",
+            "Head of engineering",
+            "rights  &  pricing",
+            "Chief technology officer  &  co-founder"
           ],
           "skills": [
-            "Api development",
-            "Technology leadership",
-            "Front-end engineering",
-            "Applied machine learning",
-            "Software systems engineering",
-            "Program management",
-            "React.js",
-            "Typescript",
+            "Agile methodologies",
+            "Product development",
+            "Start-ups",
+            "Product management",
+            "Strategy",
+            "Business development",
             "Web development",
-            "Full-stack development",
-            "Front-end design",
-            "Finance",
-            "Team building",
-            "Team leadership",
-            "Project management",
-            "Business strategy",
-            "Marketing strategy",
-            "Fundraising",
-            "Networking",
-            "Gallup strengths",
-            "Design documents",
-            "Streamlit",
-            "Artificial intelligence (ai)",
-            "Google cloud platform (gcp)",
-            "Javascript",
-            "Programming",
-            "Mongodb",
-            "Swift (programming language)",
-            "Mern stack",
-            "Html",
-            "Sass",
-            "Hackerrank interview",
-            "Database testing",
-            "Cascading style sheets (css)",
-            "Bootstrap",
-            "Express.js",
-            "Node.js",
-            "Web services api",
-            "Html5",
-            "Git",
-            "User experience (ux)",
-            "Vue.js",
-            "Mysql",
-            "Sass",
-            "Php",
-            "Mobile interface design",
-            "Web applications",
-            "Redux.js",
-            "Web services",
-            "Web design",
-            "Adobe creative suite",
-            "Software",
+            "It strategy",
+            "Online publishing",
+            "User experience",
+            "Design patterns",
+            "Recruitment/retention",
+            "Distributed systems",
+            "Agile project management",
+            "Business management",
+            "New business development",
+            "Cloud computing",
+            "Software development life cycle (sdlc)",
+            "Enterprise architecture",
+            "Integration",
+            "Vendor management",
+            "Program management",
+            "Architecture",
             "Software development",
-            "Web content creation",
-            "Back-end web development",
-            "Angularjs",
-            "Front-end development",
-            "User experience design (ued)",
-            "User interface design",
-            "Wireframing",
-            "Front-end coding",
-            "Web interface design",
-            "Adobe photoshop",
-            "Adobe illustrator",
-            "Web analytics",
-            "Web project management",
-            "Mean stack",
-            "Mevn",
-            "Graphql"
+            "Project management",
+            "Mysql",
+            "Node.js",
+            "Java",
+            "Enterprise software",
+            "Saas",
+            "Elasticsearch",
+            "Open source",
+            "Amazon web services (aws)",
+            "Management",
+            "Leadership",
+            "Microservices",
+            "Kubernetes",
+            "Go (programming language)",
+            "Cassandra",
+            "Digital media",
+            "Digital strategy",
+            "Strategic planning"
           ],
           "interests": null,
-          "company_name": "Crown media",
+          "company_name": "Apple",
           "company_website": "apple.com",
           "company_linkedin": "linkedin.com/company/apple",
-          "job_department": "Operations",
+          "job_department": null,
           "job_department_array": [
-            "operations"
+            "engineering"
           ],
-          "job_department_main": director,
+          "job_department_main": "Engineering",
+          "job_seniority_level": [
+            "director"
+          ],
+          "job_level_array": [
+            "c-suite",
+            "director"
+          ],
+          "job_level_main": "c-suite",
+          "job_title": "Head of engineering, rights & pricing",
+          "business_id": "8adce3ca1cef0c986b22310e369a0793"
+        },
+        {
+          "prospect_id": "313e747521f730f962b6674e2f59d51f21572bc8",
+          "professional_email_hashed": null,
+          "first_name": "Sriram",
+          "last_name": "Krishnan",
+          "full_name": "Sriram Krishnan",
+          "country_name": "united states",
+          "region_name": "california",
+          "city": "san mateo",
+          "linkedin": "linkedin.com/in/therealsriramk",
+          "experience": [
+            "Group leader",
+            "advanced cyberinfrastructure development",
+            "Research aide",
+            "Software architect",
+            "big data platform",
+            "Director of engineering",
+            "apple data platform",
+            "Vice president of engineering",
+            "platform  &  applications",
+            "Research coop",
+            "Vice president of engineering",
+            "machine learning platform",
+            "Senior engineering manager",
+            "head of data platform",
+            "Research assistant"
+          ],
+          "skills": [
+            "Engineering leadership",
+            "Distributed systems",
+            "Big data",
+            "Cloud computing",
+            "Open source",
+            "Hive",
+            "Software engineering",
+            "Parallel computing",
+            "Computer science",
+            "Web services",
+            "Rest",
+            "Scalability",
+            "Databases",
+            "Mapreduce",
+            "Design patterns",
+            "Architecture",
+            "Algorithms",
+            "Soap",
+            "Data warehousing",
+            "Machine learning",
+            "System architecture",
+            "Amazon web services (aws)",
+            "Apache pig",
+            "Object oriented design",
+            "Karaoke",
+            "Volleyball",
+            "Jira",
+            "Software development",
+            "High performance computing (hpc)",
+            "Representational state transfer (rest)",
+            "Service-oriented architecture (soa)"
+          ],
+          "interests": null,
+          "company_name": "Apple",
+          "company_website": "apple.com",
+          "company_linkedin": "linkedin.com/company/apple",
+          "job_department": "Engineering",
+          "job_department_array": [
+            "engineering"
+          ],
+          "job_department_main": "Engineering",
+          "job_seniority_level": [
+            "director"
+          ],
+          "job_level_array": [
+            "vice president",
+            "director"
+          ],
+          "job_level_main": "vice president",
+          "job_title": "Director of engineering, apple data platform",
+          "business_id": "8adce3ca1cef0c986b22310e369a0793"
+        },
+        {
+          "prospect_id": "01205d46ee366a10bdc32606718728b6cea2372b",
+          "professional_email_hashed": null,
+          "first_name": "Justin",
+          "last_name": "Etzine",
+          "full_name": "Justin Etzine",
+          "country_name": "united states",
+          "region_name": "california",
+          "city": "san francisco bay area",
+          "linkedin": "linkedin.com/in/justetz",
+          "experience": [
+            "Software engineer intern",
+            "Engineering manager",
+            "facetime foundation",
+            "Senior software engineer",
+            "Software engineer intern",
+            "Engineering manager",
+            "shareplay",
+            "Software engineer intern",
+            "129th president of the union",
+            "Intern",
+            "Software engineer ii",
+            "152nd grand marshal",
+            "Software engineer intern",
+            "Engineering manager",
+            "calls core"
+          ],
+          "skills": [
+            "Leadership",
+            "Public speaking",
+            "Software development",
+            "Scuba diving",
+            "Ios development",
+            "Business intelligence",
+            "Computer science",
+            "Project management",
+            "Mobile applications",
+            "Information technology",
+            "Research",
+            "Product management",
+            "Web development",
+            "Entrepreneurship",
+            "Agile methodologies",
+            "Financial planning",
+            "Strategic planning",
+            "Javascript",
+            "Angularjs",
+            "Html",
+            "Enterprise software",
+            "Php",
+            "Java",
+            "Mysql",
+            "Software as a service (saas)",
+            "Objective-c",
+            "Node.js",
+            "Relational databases",
+            "Management",
+            "Technical project leadership",
+            "Web technologies",
+            "Collaboration",
+            "Paas",
+            "Parallel computing",
+            "C++",
+            "Mongodb",
+            "Elasticsearch",
+            "Kafka",
+            "Spring framework",
+            "Docker",
+            "Jenkins",
+            "Ibm urbancode deploy (udeploy)",
+            "Json",
+            "Swift (programming language)"
+          ],
+          "interests": null,
+          "company_name": "Apple",
+          "company_website": "apple.com",
+          "company_linkedin": "linkedin.com/company/apple",
+          "job_department": "Engineering",
+          "job_department_array": [
+            "engineering"
+          ],
+          "job_department_main": "Engineering",
+          "job_seniority_level": [
+            "manager"
+          ],
+          "job_level_array": [
+            "manager"
+          ],
+          "job_level_main": "manager",
+          "job_title": "Engineering manager, calls core",
+          "business_id": "8adce3ca1cef0c986b22310e369a0793"
+        },
+        {
+          "prospect_id": "159146629af4d8f92c17c40b7283d192f4426358",
+          "professional_email_hashed": null,
+          "first_name": "Bicky",
+          "last_name": "B",
+          "full_name": "Bicky B.",
+          "country_name": "united states",
+          "region_name": "california",
+          "city": "san jose",
+          "linkedin": "linkedin.com/in/bbhullar",
+          "experience": [
+            "Senior ios software engineer",
+            "Hardware engineer intern",
+            "Software engineer intern",
+            "Computer scientist",
+            "Intern",
+            "Software engineering manager",
+            "Senior software engineer",
+            "Senior software engineering manager",
+            "Director of engineering",
+            "Ios engineering manager  &  technical lead"
+          ],
+          "skills": [
+            "Objective-c",
+            "Mobile applications",
+            "Python",
+            "User experience",
+            "Mobile devices",
+            "Testing",
+            "Cloud computing",
+            "Oop",
+            "Distributed systems",
+            "Web applications",
+            "C++",
+            "Mysql",
+            "C",
+            "Adobe acrobat",
+            "Cocoa"
+          ],
+          "interests": null,
+          "company_name": "Apple",
+          "company_website": "apple.com",
+          "company_linkedin": "linkedin.com/company/apple",
+          "job_department": "Engineering",
+          "job_department_array": [
+            "engineering"
+          ],
+          "job_department_main": "Engineering",
           "job_seniority_level": [
             "director"
           ],
@@ -377,13 +675,361 @@ The **Fetch Prospects** endpoint allows users to retrieve a list of prospect rec
             "director"
           ],
           "job_level_main": "director",
-          "job_title": "Director of operations",
+          "job_title": "Director of engineering",
+          "business_id": "8adce3ca1cef0c986b22310e369a0793"
+        },
+        {
+          "prospect_id": "c22bb6cbeadb24cd41a63c5ba6003e798d1825bc",
+          "professional_email_hashed": null,
+          "first_name": "Vaibhav",
+          "last_name": "Chauhan",
+          "full_name": "Vaibhav Chauhan",
+          "country_name": "united states",
+          "region_name": "california",
+          "city": "san jose",
+          "linkedin": "linkedin.com/in/vchauhan87",
+          "experience": [
+            "Senior manager quality engineering- siri / aiml",
+            "Intern",
+            "Solution engineer - ran",
+            "Sw quality assurance engineer ii",
+            "Senior quality assurance manager- vision products",
+            "Quality assurance manager- vision products",
+            "Wireless modem - sdet",
+            "Summer intern",
+            "Senior software quality assurance engineer",
+            "Lead quality assurance engineer"
+          ],
+          "skills": [
+            "Software quality assurance",
+            "Quality assurance",
+            "Test automation",
+            "Python (programming language)",
+            "Test planning",
+            "Regression testing",
+            "Test strategy",
+            "Performance testing",
+            "Functional testing",
+            "Home automation",
+            "Alexa",
+            "Amazon alexa",
+            "Remote testing",
+            "Brds",
+            "Product testing",
+            "Pts"
+          ],
+          "interests": null,
+          "company_name": "Apple",
+          "company_website": "apple.com",
+          "company_linkedin": "linkedin.com/company/apple",
+          "job_department": null,
+          "job_department_array": [
+            "engineering"
+          ],
+          "job_department_main": "Engineering",
+          "job_seniority_level": [
+            "manager"
+          ],
+          "job_level_array": [
+            "senior manager",
+            "manager"
+          ],
+          "job_level_main": "senior manager",
+          "job_title": "Senior manager quality engineering- siri / aiml",
+          "business_id": "8adce3ca1cef0c986b22310e369a0793"
+        },
+        {
+          "prospect_id": "7155d49ad649123eba82a908b09f13b4c0aa749a",
+          "professional_email_hashed": null,
+          "first_name": "Varun",
+          "last_name": "Boosnur",
+          "full_name": "Varun Boosnur",
+          "country_name": "united states",
+          "region_name": "karnataka",
+          "city": "bengaluru",
+          "linkedin": "linkedin.com/in/varunboosnur",
+          "experience": [
+            "Senior business analyst",
+            "Innovation  &  strategy consultant",
+            "Project manager - project management office accelerate program",
+            "Engineering program manager",
+            "Software engineer",
+            "Technical product manager",
+            "Senior program manager",
+            "Program director",
+            "Engineering program manager"
+          ],
+          "skills": [
+            "Mes",
+            "Strategic partnerships",
+            "Conflict management",
+            "Team motivation",
+            "Global cross-functional team leadership",
+            "Program management",
+            "Cloud applications",
+            "Software product management",
+            "Cloud computing",
+            "Creative problem solving",
+            "Driving results",
+            "Coaching & mentoring",
+            "Project management",
+            "Business analysis",
+            "Identity & access management (iam)",
+            "Business strategy",
+            "Sdlc",
+            "Business intelligence",
+            "Requirements analysis",
+            "Business development",
+            "Agile methodologies",
+            "Product development",
+            "Solutions marketing",
+            "Cross-functional team leadership",
+            "Pmo",
+            "Ca clarity",
+            "Innovation consulting",
+            "Requirements gathering",
+            "Business requirements",
+            "Management consulting",
+            "Leadership",
+            "Ms project",
+            "Pmp",
+            "User acceptance testing",
+            "Resource management",
+            "Oracle e-business suite",
+            "It strategy",
+            "Sql",
+            "Change management",
+            "Consulting",
+            "Business process",
+            "Analysis",
+            "Quality assurance",
+            "Soa",
+            "Sequence diagrams",
+            "Logistics management",
+            "Crm",
+            "Agile project management",
+            "Vendor management",
+            "Business process re-engineering",
+            "Project portfolio management",
+            "Pre-sales",
+            "Competitive analysis",
+            "Data warehousing",
+            "Strategy",
+            "Telecommunications",
+            "Risk management",
+            "Rally",
+            "Internet of things"
+          ],
+          "interests": null,
+          "company_name": "Apple",
+          "company_website": "apple.com",
+          "company_linkedin": "linkedin.com/company/apple",
+          "job_department": "Engineering",
+          "job_department_array": [
+            "engineering"
+          ],
+          "job_department_main": "Engineering",
+          "job_seniority_level": [
+            "manager"
+          ],
+          "job_level_array": [
+            "manager"
+          ],
+          "job_level_main": "manager",
+          "job_title": "Engineering program manager",
+          "business_id": "8adce3ca1cef0c986b22310e369a0793"
+        },
+        {
+          "prospect_id": "f7ab66ae5d2df8e5dd2a5b8cf5510984e6e051bb",
+          "professional_email_hashed": null,
+          "first_name": "Srini",
+          "last_name": "Nimmala",
+          "full_name": "Srini Nimmala",
+          "country_name": "united states",
+          "region_name": "california",
+          "city": "san francisco bay area",
+          "linkedin": "linkedin.com/in/srini-nimmala-a02a54a",
+          "experience": [
+            "Senior software engineer",
+            "ios cellular software",
+            "Principal staff engineer",
+            "Senior engineering manager",
+            "ios cellular software",
+            "Software engineer",
+            "Software engineer",
+            "Principal engineering manager",
+            "ios cellular software",
+            "Senior software engineer",
+            "Software architect",
+            "ios cellular software",
+            "Engineering manager",
+            "ios cellular software",
+            "Director of software engineering",
+            "ios cellular software"
+          ],
+          "skills": [
+            "Lte"
+          ],
+          "interests": null,
+          "company_name": "Apple",
+          "company_website": "apple.com",
+          "company_linkedin": "linkedin.com/company/apple",
+          "job_department": null,
+          "job_department_array": [
+            "engineering"
+          ],
+          "job_department_main": "Engineering",
+          "job_seniority_level": [
+            "director"
+          ],
+          "job_level_array": [
+            "director",
+            "manager"
+          ],
+          "job_level_main": "director",
+          "job_title": "Director of software engineering, ios cellular software",
+          "business_id": "8adce3ca1cef0c986b22310e369a0793"
+        },
+        {
+          "prospect_id": "b4fc54151a7a7fc28518e33c9d91d3e82e3a5bad",
+          "professional_email_hashed": null,
+          "first_name": "Siddesh",
+          "last_name": "S",
+          "full_name": "Siddesh Koppalada S",
+          "country_name": "united states",
+          "region_name": "california",
+          "city": "san jose",
+          "linkedin": "linkedin.com/in/siddesh-koppalada-s-a676452",
+          "experience": [
+            "Software quality assurance team lead / qa engineer",
+            "Senior software qe manager - network media frameworks",
+            "Software qe manager - airplay",
+            "video streaming  &  camera frameworks",
+            "Software design engineer",
+            "Senior software qe manager: apple vision pro",
+            "Video codecs software qe lead",
+            "Senior software qe manager - health software",
+            "Research engineer - embedded software developer",
+            "Director of quality engineering",
+            "visionos and vision pro",
+            "Camera",
+            "airplay  &  video frameworks software qe lead",
+            "Director of quality engineering - siri ai"
+          ],
+          "skills": [
+            "Software engineering",
+            "Test automation",
+            "Software quality assurance",
+            "Performance testing",
+            "Symbian",
+            "Embedded systems",
+            "Device drivers",
+            "Testing",
+            "Debugging",
+            "Software development",
+            "Unit testing",
+            "Embedded software",
+            "Perl",
+            "H.264"
+          ],
+          "interests": null,
+          "company_name": "Apple",
+          "company_website": "apple.com",
+          "company_linkedin": "linkedin.com/company/apple",
+          "job_department": null,
+          "job_department_array": [
+            "engineering"
+          ],
+          "job_department_main": "Engineering",
+          "job_seniority_level": [
+            "director"
+          ],
+          "job_level_array": [
+            "director"
+          ],
+          "job_level_main": "director",
+          "job_title": "Director of quality engineering - siri ai",
+          "business_id": "8adce3ca1cef0c986b22310e369a0793"
+        },
+        {
+          "prospect_id": "07fa8276cc7f6de702f7e7b754931687f7cc6567",
+          "professional_email_hashed": null,
+          "first_name": "Nik",
+          "last_name": "Bosnyak",
+          "full_name": "Nik Bosnyak",
+          "country_name": "united states",
+          "region_name": "texas",
+          "city": "austin",
+          "linkedin": "linkedin.com/in/niklosbosnyak",
+          "experience": [
+            "Manager",
+            "machine learning engineering",
+            "Industrial engineer",
+            "intern",
+            "Business intelligence developer",
+            "Undergraduate research assistant",
+            "Manager",
+            "machine learning engineering",
+            "Data science and analytics",
+            "Unit supply specialist",
+            "Data scientist",
+            "Industrial engineer",
+            "capstone",
+            "Gap year",
+            "Machine learning engineer"
+          ],
+          "skills": [
+            "Key metrics",
+            "Data science",
+            "Machine learning",
+            "R",
+            "Python",
+            "Apache spark",
+            "Data analysis",
+            "Business intelligence",
+            "Java",
+            "C++",
+            "Six sigma",
+            "Microsoft excel",
+            "Sql",
+            "Performance dashboards",
+            "Industrial engineering",
+            "Operations research",
+            "Continuous improvement",
+            "Leadership",
+            "Analytics",
+            "Business requirements",
+            "Web intelligence",
+            "Ms excel",
+            "Requirements analysis",
+            "Sap",
+            "Statistics",
+            "Forecasting",
+            "Powerpoint"
+          ],
+          "interests": null,
+          "company_name": "Apple",
+          "company_website": "apple.com",
+          "company_linkedin": "linkedin.com/company/apple",
+          "job_department": null,
+          "job_department_array": [
+            "engineering"
+          ],
+          "job_department_main": "Engineering",
+          "job_seniority_level": [
+            "manager"
+          ],
+          "job_level_array": [
+            "manager"
+          ],
+          "job_level_main": "manager",
+          "job_title": "Manager, machine learning engineering",
           "business_id": "8adce3ca1cef0c986b22310e369a0793"
         }
       ],
-      "total_results": 100,
+      "total_results": 10,
       "page": 1,
-      "total_pages": 34
+      "total_pages": 1
     }
     ```
   </Accordion>
