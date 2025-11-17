@@ -16,15 +16,13 @@ The **Match Prospects** endpoint allows users to accurately match individual pro
 
 ### Endpoint: `POST /v1/prospects/match`
 
-
-
 <AccordionGroup>
   <Accordion title="How It Works">
-  1. **Input:** Provide a list of prospects with at least one fetcher (e.g., email, phone number, LinkedIn URL, or name & company).
-  2. **Processing:** The system cross-references internal datasets and returns the best possible matches.
-  3. **Output:** A structured response with matched **Prospect IDs**, maintaining the same order as the input list.
-</Accordion>
-    <Accordion title="Request Schema">
+    1. **Input:** Provide a list of prospects with at least one fetcher (e.g., email, phone number, LinkedIn URL, or name & company).
+    2. **Processing:** The system cross-references internal datasets and returns the best possible matches.
+    3. **Output:** A structured response with matched **Prospect IDs**, maintaining the same order as the input list.
+  </Accordion>
+  <Accordion title="Request Schema">
     | Field                    | Type   | Description                                                      |
     | :----------------------- | :----- | :--------------------------------------------------------------- |
     | **prospects_to_match:**  | Array  | A list of prospect fetchers to match                             |
@@ -41,33 +39,31 @@ The **Match Prospects** endpoint allows users to accurately match individual pro
       -H "API_KEY: your_api_key_here" \
       -H "Content-Type: application/json" \
       -d '{
-      "request_context": {
-        "sample": "sample"
-      },
+    
+     "request_context": {},
       "prospects_to_match": [
         {
           "business_id": "19fbe842a2e51db95d4f92333f2cc63a",
           "linkedin": "https://www.linkedin.com/in/russell-lumpkin-07585b128"
         },
         {
-          "full_name": "tim cook",
-          "company_name": "Apple"
+          "full_name": "Richard Branson", 
+          "company_name": "Virgin"
         },
         {
           "email": "satyan@microsoft.com"
         }
       ]
-    }
-    '
+    }'
     ```
   </Accordion>
   <Accordion title="Example Response">
     ```json JSON
     {
       "response_context": {
-        "correlation_id": "a30a507872c64b428f067115aaf64cad",
+        "correlation_id": "68d2e054ffa149dab8d09c59f1092091",
         "request_status": "success",
-        "time_took_in_seconds": 1.627
+        "time_took_in_seconds": 0
       },
       "total_results": 3,
       "total_matches": 3,
@@ -86,13 +82,13 @@ The **Match Prospects** endpoint allows users to accurately match individual pro
         {
           "input": {
             "business_id": null,
-            "full_name": "tim cook",
-            "company_name": "Apple",
+            "full_name": "Richard Branson",
+            "company_name": "Virgin",
             "email": null,
             "phone_number": null,
             "linkedin": null
           },
-          "prospect_id": "07352d784dc9e77b06b2517dec224b53e4f482dd"
+          "prospect_id": "46ab818ec439a76489024b5727abdf194dfa3329"
         },
         {
           "input": {
@@ -103,10 +99,11 @@ The **Match Prospects** endpoint allows users to accurately match individual pro
             "phone_number": null,
             "linkedin": null
           },
-          "prospect_id": "ee936e451b50c70e068e1b54e106cb89173198c4"
+          "prospect_id": "f80a80fb6b3d55dfefd269bb35c2049e050876ae"
         }
       ]
     }
+    
     ```
   </Accordion>
   <Accordion title="Best Practices">
@@ -116,7 +113,6 @@ The **Match Prospects** endpoint allows users to accurately match individual pro
     - **Handle** `null` **values** in responses where no match is found.
     - **Use the input field** when sending multiple queries to match your queries with the results.
   </Accordion>
-
 </AccordionGroup>
 
 <Icon icon="thumbtack" iconType="solid" color="red" /> **For more details on request formats and usage, refer to the API documentation.**
