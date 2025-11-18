@@ -10828,7 +10828,7 @@
     "securitySchemes": {
       "APIKeyHeader": {
         "type": "apiKey",
-        "in": "header",
+        "in": "header", 
         "name": "api_key"
       }
     }
