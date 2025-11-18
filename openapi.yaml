@@ -5747,8 +5747,7 @@
         "properties": {
           "request_context": {
             "type": "object",
-            "title": "Request Context",
-            "nullable": true
+            "title": "Request Context"
           },
           "entity_type": {
             "allOf": [
@@ -5780,10 +5779,7 @@
               },
               {
                 "type": "string"
-              },
-              {
-                  "type": "null"
-                }
+              }
             ],
             "title": "Timestamp To"
           },
@@ -5795,10 +5791,7 @@
               },
               {
                 "type": "string"
-              },
-              {
-                  "type": "null"
-                }
+              }
             ],
             "title": "Timestamp From",
             "description": "ISO format datetime string or date in format YYYY-MM-DD"
