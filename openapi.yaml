@@ -5748,7 +5748,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "required": false
+            "nullable": true
           },
           "entity_type": {
             "allOf": [
@@ -5783,7 +5783,7 @@
               }
             ],
             "title": "Timestamp To",
-            "required": false
+            "nullable": true
           },
           "timestamp_from": {
             "anyOf": [
@@ -5797,7 +5797,7 @@
             ],
             "title": "Timestamp From",
             "description": "ISO format datetime string or date in format YYYY-MM-DD",
-            "required": false
+            "nullable": true
           },
           "business_ids": {
             "items": {
