@@ -36,18 +36,20 @@ Raw intent data powered by:
   <Accordion title="How It Works">
     ### **Input**
 
-    Provide a list of `business_id` values obtained from the **Match Businesses API**.
+    Provide a list of `business_id` values obtained from the **Match Businesses API**.
 
-    **Optional parameters:**
+    **Parameters:**
 
-    - `topic_parameters` — semicolon-separated list of "category: topic" filters (e.g., `technology: ios;other: vendor profiling`).
-    - `min_score` — optional integer \> 60. If omitted, the default threshold is 60.
+    - `topic_parameters` — semicolon-separated list of "category: topic" filters\
+      (e.g., `technology: ios;other: vendor profiling`).
+      - To build this list, use the Autocomplete endpoint with `business_intent_topics` — and preferably `semantic_search=true` — to retrieve a broader, smarter set of intent topics.
 
-    > 💡 **Recommendation:**\
-    > To achieve a meaningful and accurate measurement of intent, it is strongly recommended to include **at least 12 topics** that reflect the company’s genuine areas of interest.\
-    > Providing too few topics — or omitting the list entirely — will return _all_ available topics for the company, which may include a wide variety of unrelated subjects and lead to misleading or noisy intent insights.
+        This ensures your topic list is accurate, relevant, and aligned with Bombora’s taxonomy.
+    - `min_score` — optional integer \> 60. If omitted, the default threshold is 60.
 
-    ---
+    > 💡 **Recommendation:**\
+    > To achieve a meaningful and accurate measurement of intent, it is strongly recommended to include **at least 12 topics** that reflect the company’s genuine areas of interest.\
+    > Providing too few topics — or omitting the list entirely — will return _all_ available topics for the company, which may include many unrelated subjects and lead to misleading or noisy intent insights.
 
     ### **Processing**
 
@@ -108,6 +110,7 @@ Raw intent data powered by:
     - **`Use min_score`** only if you wish to raise the threshold above 60 — values ≤60 are not valid.
     - **Check for null values** — if Bombora has no data for a given domain, all topic-related fields will return null.
     - **Combine intent data** with firmographic and technographic enrichments for full go-to-market insights.
+    - **Use the Autocomplete endpoint** with `business_intent_topics` — and preferably `semantic_search=true` — to build accurate and relevant `topic_parameters` before running enrichment.
   </Accordion>
   <Accordion title="Intent Topics Output Signals">
     | Signal          | API Name        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Data Type |

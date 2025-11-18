@@ -22,41 +22,30 @@ The **Fetch Business Autocomplete** endpoint provides **real-time suggestions** 
     - **Output:** A structured response containing suggested values for the given input.
   </Accordion>
   <Accordion title="Query Parameters">
-    | Parameter | Type   | Description                                                                  |
-    | :-------- | :----- | :--------------------------------------------------------------------------- |
-    | `field`   | String | The field for which autocomplete is requested (e.g., `country`, `industry`). |
-    | `query`   | String | Partial text input to generate suggestions.                                  |
+    | Parameter         | Type    | Description                                                                                                                                                                           |
+    | :---------------- | :------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+    | `field`           | String  | The field for which autocomplete is requested (e.g., `country`, `industry`).                                                                                                          |
+    | `query`           | String  | Partial text input to generate suggestions.                                                                                                                                           |
+    | `semantic_search` | Boolean | Optional. When `true`, enables semantic autocomplete to return a broader, topic-aware set of suggestions. This parameter is intended for use with the `business_intent_topics` field. |
   </Accordion>
   <Accordion title="Example Request (cURL)">
+    Example with contry field. 
     ```shell Bash
     curl -X GET \
       "https://api.explorium.ai/v1/businesses/autocomplete?field=country&query=unit" \
       -H "API_KEY: your_api_key_here"
     ```
+   Example with business_intent_topics field. 
+    ```shell Bash
+    curl -X GET \
+      'https://api.explorium.ai/v1/businesses/autocomplete?query=cloude&semantic_search=true&field=business_intent_topics' \
+      -H "API_KEY: your_api_key_here"
+    ```
+
   </Accordion>
-  <Accordion title="Supported Autocomplete Fields & Example Inputs" icon="thumbtack" iconType="solid">
-    | **Filter**                      | **Description**                                                                            | **Example Input**                                       |
-    | :------------------------------ | :----------------------------------------------------------------------------------------- | :------------------------------------------------------ |
-    | `country`                       | Autocomplete for country names                                                             | `"Uni"` → United States, United Kingdom                 |
-    | `country_code`                  | Autocomplete for country codes (ISO 2-letter)                                              | `"US"` → United States                                  |
-    | `region_country_code`           | Autocomplete for region-based country codes                                                | `"EU"` → European Union countries                       |
-    | `google_category`               | Google's business category classification                                                  | `"E-com"` → E-commerce                                  |
-    | `naics_category`                | Industry classification based on NAICS codes                                               | `"541512"` → Computer Systems Design Services           |
-    | `linkedin_category`             | Industry classification from LinkedIn data                                                 | `"Retail"` → Retail Industry                            |
-    | `company_tech_stack_tech`       | Technologies used by a company                                                             | `"Cloud"` → Cloud Computing, Cloud Security             |
-    | `company_tech_stack_categories` | Technology categories used by the company                                                  | `"Marketing"` → CRM, AdTech                             |
-    | `job_title`                     | Autocomplete for job titles                                                                | `"Soft"` → Software Engineer, Software Developer        |
-    | `company_size`                  | Autocomplete for company sizes (by number of employees)                                    | `"500"` → Companies with ~500 employees                 |
-    | `company_revenue`               | Revenue-based classification (**K, M, B, T** for thousands, millions, billions, trillions) | `"100M"` → \$100 Million+                               |
-    | `number_of_locations`           | Number of physical company locations                                                       | `"1"` → Companies with a single location                |
-    | `company_age`                   | Company age in years                                                                       | `"10"` → Companies older than 10 years                  |
-    | `job_department`                | Autocomplete for job departments                                                           | `"Eng"` → Engineering, Product Engineering              |
-    | `job_level`                     | Job seniority levels                                                                       | `"Senior"` → Senior Manager, Senior Engineer            |
-    | `city_region_country`           | Combined location filter by city, region, and country                                      | `"New York, NY, US"` → Companies in New York            |
-    | `company_name`                  | Filter by company name                                                                     | `"Meta"` → Meta Platforms Inc.                          |
-    | `business_intent_topics`        | Business intent topics                                                                     | `"cloud"` → technology: cloudflare, cloud: cloud server |
-  </Accordion>
-  <Accordion title="Example Response">
+    <Accordion title="Example Response">
+    Example with contry field. 
+      
     ```json JSON
     [
       {
@@ -86,9 +75,140 @@ The **Fetch Business Autocomplete** endpoint provides **real-time suggestions** 
       }
     ]
     ```
+    
+   Example with business_intent_topics field. 
+
+    ```json JSON
+
+    [
+  {
+    "query": "cloude",
+    "label": "cloud: cloud data",
+    "value": "cloud: cloud data"
+  },
+  {
+    "query": "cloude",
+    "label": "business solutions: cloudapp",
+    "value": "business solutions: cloudapp"
+  },
+  {
+    "query": "cloude",
+    "label": "cloud: cloud integration",
+    "value": "cloud: cloud integration"
+  },
+  {
+    "query": "cloude",
+    "label": "media & advertising: cloudimage",
+    "value": "media & advertising: cloudimage"
+  },
+  {
+    "query": "cloude",
+    "label": "technology: cloudsuite",
+    "value": "technology: cloudsuite"
+  },
+  {
+    "query": "cloude",
+    "label": "cloud: cloud applications",
+    "value": "cloud: cloud applications"
+  },
+  {
+    "query": "cloude",
+    "label": "technology: cloudsense",
+    "value": "technology: cloudsense"
+  },
+  {
+    "query": "cloude",
+    "label": "technology: cloudnine",
+    "value": "technology: cloudnine"
+  },
+  {
+    "query": "cloude",
+    "label": "cloud: cloud server",
+    "value": "cloud: cloud server"
+  },
+  {
+    "query": "cloude",
+    "label": "technology: cloudflare",
+    "value": "technology: cloudflare"
+  },
+  {
+    "query": "cloude",
+    "label": "ecommerce: cloudcraze",
+    "value": "ecommerce: cloudcraze"
+  },
+  {
+    "query": "cloude",
+    "label": "business services: mapp cloud",
+    "value": "business services: mapp cloud"
+  },
+  {
+    "query": "cloude",
+    "label": "business services: cloudbees",
+    "value": "business services: cloudbees"
+  },
+  {
+    "query": "cloude",
+    "label": "cloud: multicloud",
+    "value": "cloud: multicloud"
+  },
+  {
+    "query": "cloude",
+    "label": "technology: content+cloud",
+    "value": "technology: content+cloud"
+  },
+  {
+    "query": "cloude",
+    "label": "cloud: cloud management",
+    "value": "cloud: cloud management"
+  },
+  {
+    "query": "cloude",
+    "label": "cloud: cloud management platform",
+    "value": "cloud: cloud management platform"
+  },
+  {
+    "query": "cloude",
+    "label": "technology: cloud essentials",
+    "value": "technology: cloud essentials"
+  },
+  {
+    "query": "cloude",
+    "label": "technology: cloudinary",
+    "value": "technology: cloudinary"
+  }
+]
+
+    ```
+
+
+      
   </Accordion>
+  <Accordion title="Supported Autocomplete Fields & Example Inputs" icon="thumbtack" iconType="solid">
+    | **Filter**                      | **Description**                                                                                                                                                                                      | **Example Input**                                       |
+    | :------------------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------ |
+    | `country`                       | Autocomplete for country names                                                                                                                                                                       | `"Uni"` → United States, United Kingdom                 |
+    | `country_code`                  | Autocomplete for country codes (ISO 2-letter)                                                                                                                                                        | `"US"` → United States                                  |
+    | `region_country_code`           | Autocomplete for region-based country codes                                                                                                                                                          | `"EU"` → European Union countries                       |
+    | `google_category`               | Google's business category classification                                                                                                                                                            | `"E-com"` → E-commerce                                  |
+    | `naics_category`                | Industry classification based on NAICS codes                                                                                                                                                         | `"541512"` → Computer Systems Design Services           |
+    | `linkedin_category`             | Industry classification from LinkedIn data                                                                                                                                                           | `"Retail"` → Retail Industry                            |
+    | `company_tech_stack_tech`       | Technologies used by a company                                                                                                                                                                       | `"Cloud"` → Cloud Computing, Cloud Security             |
+    | `company_tech_stack_categories` | Technology categories used by the company                                                                                                                                                            | `"Marketing"` → CRM, AdTech                             |
+    | `job_title`                     | Autocomplete for job titles                                                                                                                                                                          | `"Soft"` → Software Engineer, Software Developer        |
+    | `company_size`                  | Autocomplete for company sizes (by number of employees)                                                                                                                                              | `"500"` → Companies with ~500 employees                 |
+    | `company_revenue`               | Revenue-based classification (**K, M, B, T** for thousands, millions, billions, trillions)                                                                                                           | `"100M"` → \$100 Million+                               |
+    | `number_of_locations`           | Number of physical company locations                                                                                                                                                                 | `"1"` → Companies with a single location                |
+    | `company_age`                   | Company age in years                                                                                                                                                                                 | `"10"` → Companies older than 10 years                  |
+    | `job_department`                | Autocomplete for job departments                                                                                                                                                                     | `"Eng"` → Engineering, Product Engineering              |
+    | `job_level`                     | Job seniority levels                                                                                                                                                                                 | `"Senior"` → Senior Manager, Senior Engineer            |
+    | `city_region_country`           | Combined location filter by city, region, and country                                                                                                                                                | `"New York, NY, US"` → Companies in New York            |
+    | `company_name`                  | Filter by company name                                                                                                                                                                               | `"Meta"` → Meta Platforms Inc.                          |
+    | `business_intent_topics`        | Business intent topics — <br />It is recommended to use `semantic_search=true` to receive a broader and smarter autocomplete result that identifies wider semantic connections to the searched term. | `"cloud"` → technology: cloudflare, cloud: cloud server |
+  </Accordion>
+  
   <Accordion title="Best Practices">
     - **Use precise queries** to get the most relevant autocomplete results.
+    - Enable `semantic_search=true` when working with **business intent topics** to receive broader, smarter, and semantically-aware suggestions.
     - **Optimize search fields** by implementing real-time feedback mechanisms.
     - **Restrict field selection** to avoid unnecessary queries and improve API efficiency.
     - **Combine with filtering APIs** to refine user selections dynamically.
