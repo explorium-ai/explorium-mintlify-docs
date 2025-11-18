@@ -5,14 +5,11 @@
     "version": "0.2.240"
   },
   "servers": [
-    {
-      "url": "/api/partner-service"
-    },
-    {
-      "url": "https://platform-dev-us-app.explorium.ai/api/partner-service",
-      "description": "AgentSource Server"
-    }
-  ],
+        {
+            "description": "AgentSource Server",
+            "url": "https://api.explorium.ai"
+        }
+    ],
   "paths": {
     "/healthcheck/http": {
       "get": {
@@ -10828,7 +10825,7 @@
     "securitySchemes": {
       "APIKeyHeader": {
         "type": "apiKey",
-        "in": "header", 
+        "in": "header",
         "name": "api_key"
       }
     }
