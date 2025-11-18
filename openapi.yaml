@@ -5781,10 +5781,11 @@
               {
                 "type": "string"
               },
-              {"type": "object"}
+              {
+                  "type": "null"
+                }
             ],
-            "title": "Timestamp To",
-            "nullable": true
+            "title": "Timestamp To"
           },
           "timestamp_from": {
             "anyOf": [
@@ -5795,11 +5796,12 @@
               {
                 "type": "string"
               },
-              {"type": "object"}
+              {
+                  "type": "null"
+                }
             ],
             "title": "Timestamp From",
-            "description": "ISO format datetime string or date in format YYYY-MM-DD",
-            "nullable": true
+            "description": "ISO format datetime string or date in format YYYY-MM-DD"
           },
           "business_ids": {
             "items": {
