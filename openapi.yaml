@@ -3399,8 +3399,7 @@
         "properties": {
           "negate": {
             "type": "boolean",
-            "title": "Negate",
-            "default": false
+            "title": "Negate"
           },
           "values": {
             "items": {
@@ -3422,8 +3421,7 @@
         "properties": {
           "negate": {
             "type": "boolean",
-            "title": "Negate",
-            "default": false
+            "title": "Negate"
           },
           "values": {
             "items": {
@@ -3444,8 +3442,7 @@
         "properties": {
           "negate": {
             "type": "boolean",
-            "title": "Negate",
-            "default": false
+            "title": "Negate"
           },
           "values": {
             "items": {
@@ -3714,8 +3711,7 @@
         "properties": {
           "negate": {
             "type": "boolean",
-            "title": "Negate",
-            "default": false
+            "title": "Negate"
           },
           "topics": {
             "items": {
@@ -6895,8 +6891,7 @@
         "properties": {
           "negate": {
             "type": "boolean",
-            "title": "Negate",
-            "default": false
+            "title": "Negate"
           },
           "values": {
             "items": {
@@ -6985,8 +6980,7 @@
         "properties": {
           "negate": {
             "type": "boolean",
-            "title": "Negate",
-            "default": false
+            "title": "Negate"
           },
           "value": {
             "type": "boolean",
@@ -7381,8 +7375,7 @@
         "properties": {
           "negate": {
             "type": "boolean",
-            "title": "Negate",
-            "default": false
+            "title": "Negate"
           },
           "values": {
             "items": {
@@ -7404,8 +7397,7 @@
         "properties": {
           "negate": {
             "type": "boolean",
-            "title": "Negate",
-            "default": false
+            "title": "Negate"
           },
           "values": {
             "items": {
@@ -7425,8 +7417,7 @@
         "properties": {
           "negate": {
             "type": "boolean",
-            "title": "Negate",
-            "default": false
+            "title": "Negate"
           },
           "values": {
             "items": {
@@ -7447,8 +7438,7 @@
         "properties": {
           "negate": {
             "type": "boolean",
-            "title": "Negate",
-            "default": false
+            "title": "Negate"
           },
           "values": {
             "items": {
@@ -7468,8 +7458,7 @@
         "properties": {
           "negate": {
             "type": "boolean",
-            "title": "Negate",
-            "default": false
+            "title": "Negate"
           },
           "values": {
             "items": {
@@ -7489,8 +7478,7 @@
         "properties": {
           "negate": {
             "type": "boolean",
-            "title": "Negate",
-            "default": false
+            "title": "Negate"
           },
           "values": {
             "items": {
@@ -7512,8 +7500,7 @@
         "properties": {
           "negate": {
             "type": "boolean",
-            "title": "Negate",
-            "default": false
+            "title": "Negate"
           },
           "values": {
             "items": {
@@ -7533,8 +7520,7 @@
         "properties": {
           "negate": {
             "type": "boolean",
-            "title": "Negate",
-            "default": false
+            "title": "Negate"
           },
           "values": {
             "items": {
@@ -7554,8 +7540,7 @@
         "properties": {
           "negate": {
             "type": "boolean",
-            "title": "Negate",
-            "default": false
+            "title": "Negate"
           },
           "values": {
             "items": {
@@ -7577,8 +7562,7 @@
         "properties": {
           "negate": {
             "type": "boolean",
-            "title": "Negate",
-            "default": false
+            "title": "Negate"
           },
           "values": {
             "items": {
@@ -7599,8 +7583,7 @@
         "properties": {
           "negate": {
             "type": "boolean",
-            "title": "Negate",
-            "default": false
+            "title": "Negate"
           },
           "values": {
             "items": {
@@ -7620,8 +7603,7 @@
         "properties": {
           "negate": {
             "type": "boolean",
-            "title": "Negate",
-            "default": false
+            "title": "Negate"
           },
           "values": {
             "items": {
@@ -7642,8 +7624,7 @@
         "properties": {
           "negate": {
             "type": "boolean",
-            "title": "Negate",
-            "default": false
+            "title": "Negate"
           },
           "values": {
             "items": {
@@ -9911,8 +9892,7 @@
         "properties": {
           "negate": {
             "type": "boolean",
-            "title": "Negate",
-            "default": false
+            "title": "Negate"
           },
           "gte": {
             "type": "integer",
