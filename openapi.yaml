@@ -6149,8 +6149,14 @@
             "nullable": true
           },
           "filters": {
-            "$ref": "#/components/schemas/BusinessesFetchFilters",
-            "nullable": true
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BusinessesFetchFilters"
+              }
+            ],
+            "title": "Filters",
+            "nullable": true,
+            "nullabe": true
           },
           "next_cursor": {
             "anyOf": [
