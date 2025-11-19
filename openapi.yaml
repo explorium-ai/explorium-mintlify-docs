@@ -5833,7 +5833,8 @@
                 "US",
                 "CA"
               ]
-            }
+            },
+            "nullable": true
           },
           "region_country_code": {
             "allOf": [
@@ -5848,7 +5849,8 @@
                 "US-CA",
                 "IL-TA"
               ]
-            }
+            },
+            "nullable": true
           },
           "company_size": {
             "allOf": [
@@ -5869,7 +5871,8 @@
                 "5001-10000",
                 "10001+"
               ]
-            }
+            },
+            "nullable": true
           },
           "company_revenue": {
             "allOf": [
@@ -5896,7 +5899,8 @@
                 "1T-10T",
                 "10T+"
               ]
-            }
+            },
+            "nullable": true
           },
           "company_age": {
             "allOf": [
@@ -5914,7 +5918,8 @@
                 "10-20",
                 "20+"
               ]
-            }
+            },
+            "nullable": true
           },
           "google_category": {
             "allOf": [
@@ -5928,7 +5933,8 @@
               "values": [
                 "Retail"
               ]
-            }
+            },
+            "nullable": true
           },
           "naics_category": {
             "allOf": [
@@ -5942,7 +5948,8 @@
               "values": [
                 "541512"
               ]
-            }
+            },
+            "nullable": true
           },
           "linkedin_category": {
             "allOf": [
@@ -5956,7 +5963,8 @@
               "values": [
                 "Market research"
               ]
-            }
+            },
+            "nullable": true
           },
           "company_tech_stack_category": {
             "allOf": [
@@ -5971,7 +5979,8 @@
                 "Business Intelligence And Analytics",
                 "Devops And Development"
               ]
-            }
+            },
+            "nullable": true
           },
           "company_tech_stack_tech": {
             "allOf": [
@@ -5987,7 +5996,8 @@
                 "HTML5",
                 "Apache"
               ]
-            }
+            },
+            "nullable": true
           },
           "company_name": {
             "allOf": [
@@ -6002,7 +6012,8 @@
                 "Microsoft",
                 "Google"
               ]
-            }
+            },
+            "nullable": true
           },
           "number_of_locations": {
             "allOf": [
@@ -6022,7 +6033,8 @@
                 "101-1000",
                 "1001+"
               ]
-            }
+            },
+            "nullable": true
           },
           "city_region_country": {
             "allOf": [
@@ -6038,7 +6050,8 @@
                 "Tel Aviv, IL",
                 "Miami, FL, US"
               ]
-            }
+            },
+            "nullable": true
           },
           "website_keywords": {
             "allOf": [
@@ -6053,7 +6066,8 @@
                 "summer camp",
                 "machine learning"
               ]
-            }
+            },
+            "nullable": true
           },
           "business_intent_topics": {
             "allOf": [
@@ -6070,7 +6084,8 @@
                 "Smartphones:iPhone"
               ],
               "topic_intent_level": "high_intent"
-            }
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false,
