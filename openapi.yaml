@@ -6156,6 +6156,9 @@
               }
             ],
             "title": "Filters",
+            "example": {
+
+            },
             "nullable": true
           },
           "next_cursor": {
@@ -9570,7 +9573,15 @@
             "nullable": true
           },
           "filters": {
-            "$ref": "#/components/schemas/ProspectsFetchFilters",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProspectsFetchFilters"
+              }
+            ],
+            "title": "Filters",
+            "example": {
+
+            },
             "nullable": true
           },
           "next_cursor": {
