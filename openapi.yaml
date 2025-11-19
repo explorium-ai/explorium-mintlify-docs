@@ -3710,7 +3710,7 @@
                 "$ref": "#/components/schemas/BusinessIntentTopicsIntentLevel"
               }
             ],
-            "default": "emerging_intent"
+            "nullable": true
           }
         },
         "additionalProperties": false,
