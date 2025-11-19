@@ -4,6 +4,12 @@
     "title": "Partner Service",
     "version": "0.2.241"
   },
+  "servers": [
+        {
+            "description": "AgentSource Server",
+            "url": "https://api.explorium.ai"
+        }
+    ],
   "paths": {
     "/healthcheck/http": {
       "get": {
@@ -27,12 +33,6 @@
         }
       }
     },
-    "servers": [
-        {
-            "description": "AgentSource Server",
-            "url": "https://api.explorium.ai"
-        }
-    ],
     "/healthcheck/http_payload/{response_bytes}": {
       "get": {
         "tags": [
@@ -3801,7 +3801,8 @@
           },
           "parameters": {
             "type": "object",
-            "title": "Parameters"
+            "title": "Parameters",
+            "nullable": true
           },
           "business_ids": {
             "items": {
@@ -4765,7 +4766,8 @@
           },
           "parameters": {
             "type": "object",
-            "title": "Parameters"
+            "title": "Parameters",
+            "nullable": true
           },
           "business_id": {
             "type": "string",
@@ -5776,7 +5778,8 @@
                 "type": "null"
               }
             ],
-            "title": "Timestamp To"
+            "title": "Timestamp To",
+            "nullable": true
           },
           "timestamp_from": {
             "anyOf": [
@@ -5792,7 +5795,8 @@
               }
             ],
             "title": "Timestamp From",
-            "description": "ISO format datetime string or date in format YYYY-MM-DD"
+            "description": "ISO format datetime string or date in format YYYY-MM-DD",
+            "nullable": true
           },
           "business_ids": {
             "items": {
@@ -6126,15 +6130,25 @@
             "minItems": 1,
             "title": "Exclude",
             "description": "List of business ids to exclude from the response.",
-            "example": []
+            "example": [],
+            "nullable": true
           },
           "filters": {
-            "$ref": "#/components/schemas/BusinessesFetchFilters"
+            "$ref": "#/components/schemas/BusinessesFetchFilters",
+            "nullable": true
           },
           "next_cursor": {
-            "type": "string",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Next Cursor",
-            "description": "The sort values from the last document returned by the previous page. If provided, cursor pagination is used instead of page-based pagination."
+            "description": "The sort values from the last document returned by the previous page. If provided, cursor pagination is used instead of page-based pagination.",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -8431,7 +8445,8 @@
           },
           "parameters": {
             "type": "object",
-            "title": "Parameters"
+            "title": "Parameters",
+            "nullable": true
           },
           "prospect_ids": {
             "items": {
@@ -8460,7 +8475,8 @@
           },
           "parameters": {
             "type": "object",
-            "title": "Parameters"
+            "title": "Parameters",
+            "nullable": true
           },
           "prospect_ids": {
             "items": {
@@ -8654,7 +8670,8 @@
           },
           "parameters": {
             "type": "object",
-            "title": "Parameters"
+            "title": "Parameters",
+            "nullable": true
           },
           "prospect_id": {
             "type": "string",
@@ -8679,7 +8696,8 @@
           },
           "parameters": {
             "type": "object",
-            "title": "Parameters"
+            "title": "Parameters",
+            "nullable": true
           },
           "prospect_id": {
             "type": "string",
@@ -9095,7 +9113,8 @@
                 "type": "null"
               }
             ],
-            "title": "Timestamp To"
+            "title": "Timestamp To",
+            "nullable": true
           },
           "timestamp_from": {
             "anyOf": [
@@ -9111,7 +9130,8 @@
               }
             ],
             "title": "Timestamp From",
-            "description": "ISO format datetime string or date in format YYYY-MM-DD"
+            "description": "ISO format datetime string or date in format YYYY-MM-DD",
+            "nullable": true
           },
           "prospect_ids": {
             "items": {
@@ -9531,15 +9551,25 @@
             "minItems": 1,
             "title": "Exclude",
             "description": "List of prospect ids to exclude from the response.",
-            "example": []
+            "example": [],
+            "nullable": true
           },
           "filters": {
-            "$ref": "#/components/schemas/ProspectsFetchFilters"
+            "$ref": "#/components/schemas/ProspectsFetchFilters",
+            "nullable": true
           },
           "next_cursor": {
-            "type": "string",
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Next Cursor",
-            "description": "The sort values from the last document returned by the previous page. If provided, cursor pagination is used instead of page-based pagination."
+            "description": "The sort values from the last document returned by the previous page. If provided, cursor pagination is used instead of page-based pagination.",
+            "nullable": true
           },
           "max_per_company": {
             "type": "integer",
@@ -10739,7 +10769,13 @@
             "nullable": true
           },
           "parameters": {
-            "$ref": "#/components/schemas/LinkedInPostsEnrichmentParams"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LinkedInPostsEnrichmentParams"
+              }
+            ],
+            "title": "Parameters",
+            "nullable": true
           },
           "prospect_ids": {
             "items": {
@@ -10767,7 +10803,13 @@
             "nullable": true
           },
           "parameters": {
-            "$ref": "#/components/schemas/LinkedInPostsEnrichmentParams"
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/LinkedInPostsEnrichmentParams"
+              }
+            ],
+            "title": "Parameters",
+            "nullable": true
           },
           "prospect_id": {
             "type": "string",
