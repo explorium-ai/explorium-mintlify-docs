@@ -6133,7 +6133,8 @@
             "title": "Page",
             "description": "The page number to fetch.",
             "default": 1,
-            "example": 1
+            "example": 1,
+            "nullable": true
           },
           "exclude": {
             "items": {
@@ -9552,7 +9553,8 @@
             "title": "Page",
             "description": "The page number to fetch.",
             "default": 1,
-            "example": 1
+            "example": 1,
+            "nullable": true
           },
           "exclude": {
             "items": {
@@ -9583,7 +9585,8 @@
             "minimum": 1,
             "title": "Max Per Company",
             "description": "Limits the number of prospects returned per company.",
-            "example": 2
+            "example": 2,
+            "nullable": true
           }
         },
         "additionalProperties": false,
