@@ -5773,9 +5773,6 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "type": "null"
               }
             ],
             "title": "Timestamp To",
@@ -5789,9 +5786,6 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "type": "null"
               }
             ],
             "title": "Timestamp From",
@@ -6155,18 +6149,10 @@
               }
             ],
             "title": "Filters",
-            "nullable": true,
-            "nullabe": true
+            "nullable": true
           },
           "next_cursor": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "string",
             "title": "Next Cursor",
             "description": "The sort values from the last document returned by the previous page. If provided, cursor pagination is used instead of page-based pagination.",
             "nullable": true
@@ -9129,9 +9115,6 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "type": "null"
               }
             ],
             "title": "Timestamp To",
@@ -9145,9 +9128,6 @@
               },
               {
                 "type": "string"
-              },
-              {
-                "type": "null"
               }
             ],
             "title": "Timestamp From",
@@ -9580,14 +9560,7 @@
             "nullable": true
           },
           "next_cursor": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "string",
             "title": "Next Cursor",
             "description": "The sort values from the last document returned by the previous page. If provided, cursor pagination is used instead of page-based pagination.",
             "nullable": true
