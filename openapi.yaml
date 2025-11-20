@@ -45,7 +45,7 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "maximum": 1000000,
+              "maximum": 1000000.0,
               "title": "Response Bytes"
             },
             "name": "response_bytes",
@@ -238,9 +238,7 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {
-
-                }
+                "schema": {}
               }
             }
           },
@@ -743,9 +741,7 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {
-
-                }
+                "schema": {}
               }
             }
           },
@@ -5897,7 +5893,7 @@
               }
             ],
             "title": "Company Revenue",
-            "description": "Filter by company’s annual revenue. Options: [0-500K, 500K-1M, ..., 10B-100B].",
+            "description": "Filter by company\u2019s annual revenue. Options: [0-500K, 500K-1M, ..., 10B-100B].",
             "example": {
               "values": [
                 "0-500K",
@@ -5944,7 +5940,7 @@
               }
             ],
             "title": "Google Category",
-            "description": "Filter by company’s Google business category. Example: [Paving contractor, Retail].",
+            "description": "Filter by company\u2019s Google business category. Example: [Paving contractor, Retail].",
             "example": {
               "values": [
                 "Retail"
@@ -6107,9 +6103,7 @@
         "additionalProperties": false,
         "type": "object",
         "title": "BusinessesFetchFilters",
-        "example": {
-
-        }
+        "example": {}
       },
       "BusinessesFetchRequest": {
         "properties": {
@@ -6129,23 +6123,23 @@
           },
           "size": {
             "type": "integer",
-            "maximum": 60000,
-            "minimum": 1,
+            "maximum": 60000.0,
+            "minimum": 1.0,
             "title": "Size",
             "description": "The number of businesses to fetch.",
             "example": 3
           },
           "page_size": {
             "type": "integer",
-            "maximum": 500,
-            "minimum": 1,
+            "maximum": 500.0,
+            "minimum": 1.0,
             "title": "Page Size",
             "description": "The maximum number of businesses to fetch.",
             "example": 3
           },
           "page": {
             "type": "integer",
-            "minimum": 1,
+            "minimum": 1.0,
             "title": "Page",
             "description": "The page number to fetch.",
             "default": 1,
@@ -6160,7 +6154,7 @@
             "maxItems": 1000,
             "title": "Exclude",
             "description": "List of business ids to exclude from the response.",
-            "example": [],
+            "example": null,
             "nullable": true
           },
           "filters": {
@@ -6170,15 +6164,14 @@
               }
             ],
             "title": "Filters",
-            "example": {
-
-            },
+            "example": {},
             "nullable": true
           },
           "next_cursor": {
             "type": "string",
             "title": "Next Cursor",
             "description": "The sort values from the last document returned by the previous page. If provided, cursor pagination is used instead of page-based pagination. send \"null\" to start with next_cursor pagination from the beginning.",
+            "example": null,
             "nullable": true
           }
         },
@@ -6207,21 +6200,21 @@
           },
           "total_results": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Total Results",
             "description": "The total number of businesses that match the filters.",
             "default": 0
           },
           "page": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Page",
             "description": "The page number of the response.",
             "default": 1
           },
           "total_pages": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Total Pages",
             "description": "The total number of pages."
           }
@@ -6250,7 +6243,7 @@
           },
           "total_results": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Total Results",
             "description": "The total number of businesses that match the filters.",
             "default": 0
@@ -6304,13 +6297,13 @@
           },
           "total_results": {
             "type": "integer",
-            "exclusiveMinimum": 0,
+            "exclusiveMinimum": 0.0,
             "title": "Total Results",
             "description": "The total_results number matched businesses"
           },
           "total_matches": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Total Matches",
             "description": "The total number of matches."
           },
@@ -9418,7 +9411,7 @@
               }
             ],
             "title": "Company Size",
-            "description": "Filter by company’s number of employees. Options: [1-10, 11-50, ..., 10001+]",
+            "description": "Filter by company\u2019s number of employees. Options: [1-10, 11-50, ..., 10001+]",
             "example": {
               "values": [
                 "1-10",
@@ -9439,7 +9432,7 @@
               }
             ],
             "title": "Company Revenue",
-            "description": "Filter by company’s annual revenue. Options: [0-500K, 500K-1M, ..., 10B-100B]",
+            "description": "Filter by company\u2019s annual revenue. Options: [0-500K, 500K-1M, ..., 10B-100B]",
             "example": {
               "values": [
                 "0-500K",
@@ -9466,7 +9459,7 @@
               }
             ],
             "title": "Google Category",
-            "description": "Filter by company’s Google business category. Example: [Paving contractor, Retail]",
+            "description": "Filter by company\u2019s Google business category. Example: [Paving contractor, Retail]",
             "example": {
               "values": [
                 "construction"
@@ -9494,7 +9487,7 @@
               }
             ],
             "title": "LinkedIn Category",
-            "description": "Filter by company’s LinkedIn business category. Example: [software development, investment banking]",
+            "description": "Filter by company\u2019s LinkedIn business category. Example: [software development, investment banking]",
             "example": {
               "values": [
                 "retail"
@@ -9588,9 +9581,7 @@
         "additionalProperties": false,
         "type": "object",
         "title": "ProspectsFetchFilters",
-        "example": {
-
-        }
+        "example": {}
       },
       "ProspectsFetchRequest": {
         "properties": {
@@ -9610,23 +9601,23 @@
           },
           "size": {
             "type": "integer",
-            "maximum": 60000,
-            "minimum": 1,
+            "maximum": 60000.0,
+            "minimum": 1.0,
             "title": "Size",
             "description": "The number of prospects to fetch.",
             "example": 3
           },
           "page_size": {
             "type": "integer",
-            "maximum": 500,
-            "minimum": 1,
+            "maximum": 500.0,
+            "minimum": 1.0,
             "title": "Page Size",
             "description": "The maximum number of prospects to fetch.",
             "example": 3
           },
           "page": {
             "type": "integer",
-            "minimum": 1,
+            "minimum": 1.0,
             "title": "Page",
             "description": "The page number to fetch.",
             "default": 1,
@@ -9641,7 +9632,7 @@
             "maxItems": 1000,
             "title": "Exclude",
             "description": "List of prospect ids to exclude from the response.",
-            "example": [],
+            "example": null,
             "nullable": true
           },
           "filters": {
@@ -9651,26 +9642,24 @@
               }
             ],
             "title": "Filters",
-            "example": {
-
-            },
+            "example": {},
             "nullable": true
           },
           "next_cursor": {
             "type": "string",
             "title": "Next Cursor",
             "description": "The sort values from the last document returned by the previous page. If provided, cursor pagination is used instead of page-based pagination. send \"null\" to start with next_cursor pagination from the beginning.",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "max_per_company": {
             "type": "integer",
-            "maximum": 100,
-            "minimum": 1,
+            "maximum": 100.0,
+            "minimum": 1.0,
             "title": "Max Per Company",
             "description": "Limits the number of prospects returned per company.",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -9698,21 +9687,21 @@
           },
           "total_results": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Total Results",
             "description": "The total number of Prospects that match the filters.",
             "default": 0
           },
           "page": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Page",
             "description": "The page number of the response.",
             "default": 1
           },
           "total_pages": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Total Pages",
             "description": "The total number of pages."
           }
@@ -9741,7 +9730,7 @@
           },
           "total_results": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Total Results",
             "description": "The total number of prospects that match the filters.",
             "default": 0
@@ -9795,13 +9784,13 @@
           },
           "total_results": {
             "type": "integer",
-            "exclusiveMinimum": 0,
+            "exclusiveMinimum": 0.0,
             "title": "Total Results",
             "description": "The total_results number matched prospects"
           },
           "total_matches": {
             "type": "integer",
-            "minimum": 0,
+            "minimum": 0.0,
             "title": "Total Matches",
             "description": "The total number of matches."
           },
@@ -10306,8 +10295,8 @@
           },
           "number_of_events": {
             "type": "integer",
-            "maximum": 10,
-            "minimum": 1,
+            "maximum": 10.0,
+            "minimum": 1.0,
             "title": "Number Of Events",
             "description": "Number of events to generate in simulation (between 1 and 10)"
           },
