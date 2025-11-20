@@ -3521,8 +3521,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "parameters": {
             "$ref": "#/components/schemas/BomboraIntentEnrichmentParams"
@@ -3550,8 +3550,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "parameters": {
             "$ref": "#/components/schemas/BomboraIntentEnrichmentParams"
@@ -3811,8 +3811,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "parameters": {
             "type": "object",
@@ -4777,8 +4777,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "parameters": {
             "type": "object",
@@ -5526,8 +5526,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "enrollment_key": {
             "type": "string",
@@ -5590,8 +5590,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "enrollment_id": {
             "type": "string",
@@ -5652,8 +5652,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "enrollment_key": {
             "type": "string",
@@ -5767,8 +5767,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "entity_type": {
             "allOf": [
@@ -6118,8 +6118,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "mode": {
             "allOf": [
@@ -6181,8 +6181,8 @@
             "type": "string",
             "title": "Next Cursor",
             "description": "The sort values from the last document returned by the previous page. If provided, cursor pagination is used instead of page-based pagination. send \"null\" to start with next_cursor pagination from the beginning.",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -6281,8 +6281,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "businesses_to_match": {
             "items": {
@@ -6367,8 +6367,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "filters": {
             "$ref": "#/components/schemas/BusinessesFetchFilters"
@@ -6601,8 +6601,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "parameters": {
             "$ref": "#/components/schemas/CompanyWebsiteKeywordsEnrichmentParams"
@@ -6631,8 +6631,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "parameters": {
             "$ref": "#/components/schemas/CompanyWebsiteKeywordsEnrichmentParams"
@@ -6737,8 +6737,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "from_date": {
             "type": "string",
@@ -7005,8 +7005,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "parameters": {
             "$ref": "#/components/schemas/FinancialIndicatorsEnrichmentParams"
@@ -7034,8 +7034,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "parameters": {
             "$ref": "#/components/schemas/FinancialIndicatorsEnrichmentParams"
@@ -8462,32 +8462,38 @@
           "business_id": {
             "type": "string",
             "title": "Business Id",
-            "description": "Explorium business id"
+            "description": "Explorium business id",
+            "nullable": true
           },
           "full_name": {
             "type": "string",
             "title": "Full Name",
-            "description": "Full name of the person"
+            "description": "Full name of the person",
+            "nullable": true
           },
           "company_name": {
             "type": "string",
             "title": "Company Name",
-            "description": "Company name"
+            "description": "Company name",
+            "nullable": true
           },
           "email": {
             "type": "string",
             "title": "Email",
-            "description": "Email address"
+            "description": "Email address",
+            "nullable": true
           },
           "phone_number": {
             "type": "string",
             "title": "Phone Number",
-            "description": "Phone number"
+            "description": "Phone number",
+            "nullable": true
           },
           "linkedin": {
             "type": "string",
             "title": "Linkedin",
-            "description": "LinkedIn URL"
+            "description": "LinkedIn URL",
+            "nullable": true
           }
         },
         "type": "object",
@@ -8542,8 +8548,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "parameters": {
             "type": "object",
@@ -8573,8 +8579,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "parameters": {
             "type": "object",
@@ -8769,8 +8775,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "parameters": {
             "type": "object",
@@ -8796,8 +8802,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "parameters": {
             "type": "object",
@@ -8986,8 +8992,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "enrollment_key": {
             "type": "string",
@@ -9050,8 +9056,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "enrollment_id": {
             "type": "string",
@@ -9112,8 +9118,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "enrollment_key": {
             "type": "string",
@@ -9191,8 +9197,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "entity_type": {
             "allOf": [
@@ -9613,8 +9619,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "mode": {
             "allOf": [
@@ -9676,8 +9682,8 @@
             "type": "string",
             "title": "Next Cursor",
             "description": "The sort values from the last document returned by the previous page. If provided, cursor pagination is used instead of page-based pagination. send \"null\" to start with next_cursor pagination from the beginning.",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "max_per_company": {
             "type": "integer",
@@ -9685,8 +9691,8 @@
             "minimum": 1.0,
             "title": "Max Per Company",
             "description": "Limits the number of prospects returned per company.",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -9785,8 +9791,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "prospects_to_match": {
             "items": {
@@ -9867,8 +9873,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "filters": {
             "$ref": "#/components/schemas/ProspectsFetchFilters"
@@ -10180,8 +10186,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "partner_id": {
             "type": "string",
@@ -10240,8 +10246,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "partner_id": {
             "type": "string",
@@ -10387,8 +10393,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "parameters": {
             "$ref": "#/components/schemas/WebsiteTrafficEnrichmentParams"
@@ -10416,8 +10422,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "parameters": {
             "$ref": "#/components/schemas/WebsiteTrafficEnrichmentParams"
@@ -10834,8 +10840,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "parameters": {
             "$ref": "#/components/schemas/LinkedInPostsEnrichmentParams"
@@ -10863,8 +10869,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "parameters": {
             "$ref": "#/components/schemas/LinkedInPostsEnrichmentParams"
@@ -10887,8 +10893,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "parameters": {
             "allOf": [
@@ -10922,8 +10928,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "parameters": {
             "allOf": [
