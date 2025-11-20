@@ -6154,7 +6154,7 @@
             "maxItems": 1000,
             "title": "Exclude",
             "description": "List of business ids to exclude from the response.",
-            "default": null,
+            "example": [],
             "nullable": true
           },
           "filters": {
@@ -6171,8 +6171,8 @@
             "type": "string",
             "title": "Next Cursor",
             "description": "The sort values from the last document returned by the previous page. If provided, cursor pagination is used instead of page-based pagination. send \"null\" to start with next_cursor pagination from the beginning.",
-            "default": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           }
         },
         "additionalProperties": false,
@@ -9632,7 +9632,7 @@
             "maxItems": 1000,
             "title": "Exclude",
             "description": "List of prospect ids to exclude from the response.",
-            "default": null,
+            "example": [],
             "nullable": true
           },
           "filters": {
@@ -9649,8 +9649,8 @@
             "type": "string",
             "title": "Next Cursor",
             "description": "The sort values from the last document returned by the previous page. If provided, cursor pagination is used instead of page-based pagination. send \"null\" to start with next_cursor pagination from the beginning.",
-            "default": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "max_per_company": {
             "type": "integer",
@@ -9658,8 +9658,8 @@
             "minimum": 1.0,
             "title": "Max Per Company",
             "description": "Limits the number of prospects returned per company.",
-            "default": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           }
         },
         "additionalProperties": false,
