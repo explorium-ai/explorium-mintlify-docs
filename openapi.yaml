@@ -5794,7 +5794,8 @@
                 "type": "null"
               }
             ],
-            "title": "Timestamp To"
+            "title": "Timestamp To",
+            "nullable": true
           },
           "timestamp_from": {
             "anyOf": [
@@ -5810,7 +5811,8 @@
               }
             ],
             "title": "Timestamp From",
-            "description": "ISO format datetime string or date in format YYYY-MM-DD"
+            "description": "ISO format datetime string or date in format YYYY-MM-DD",
+            "nullable": true
           },
           "business_ids": {
             "items": {
@@ -6142,19 +6144,12 @@
             "example": 3
           },
           "page": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "integer",
             "minimum": 1,
             "title": "Page",
             "description": "The page number to fetch.",
             "default": 1,
-            "example": 1
+            "nullable": true
           },
           "exclude": {
             "items": {
@@ -6181,16 +6176,10 @@
             "nullable": true
           },
           "next_cursor": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "string",
             "title": "Next Cursor",
-            "description": "The sort values from the last document returned by the previous page. If provided, cursor pagination is used instead of page-based pagination. send \"null\" to start with next_cursor pagination from the beginning."
+            "description": "The sort values from the last document returned by the previous page. If provided, cursor pagination is used instead of page-based pagination. send \"null\" to start with next_cursor pagination from the beginning.",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -9215,7 +9204,8 @@
                 "type": "null"
               }
             ],
-            "title": "Timestamp To"
+            "title": "Timestamp To",
+            "nullable": true
           },
           "timestamp_from": {
             "anyOf": [
@@ -9231,7 +9221,8 @@
               }
             ],
             "title": "Timestamp From",
-            "description": "ISO format datetime string or date in format YYYY-MM-DD"
+            "description": "ISO format datetime string or date in format YYYY-MM-DD",
+            "nullable": true
           },
           "prospect_ids": {
             "items": {
@@ -9634,19 +9625,12 @@
             "example": 3
           },
           "page": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "integer",
             "minimum": 1,
             "title": "Page",
             "description": "The page number to fetch.",
             "default": 1,
-            "example": 1
+            "nullable": true
           },
           "exclude": {
             "items": {
@@ -9673,30 +9657,20 @@
             "nullable": true
           },
           "next_cursor": {
-            "anyOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "string",
             "title": "Next Cursor",
-            "description": "The sort values from the last document returned by the previous page. If provided, cursor pagination is used instead of page-based pagination. send \"null\" to start with next_cursor pagination from the beginning."
+            "description": "The sort values from the last document returned by the previous page. If provided, cursor pagination is used instead of page-based pagination. send \"null\" to start with next_cursor pagination from the beginning.",
+            "nullable": true,
+            "example": null
           },
           "max_per_company": {
-            "anyOf": [
-              {
-                "type": "integer"
-              },
-              {
-                "type": "null"
-              }
-            ],
+            "type": "integer",
             "maximum": 100,
             "minimum": 1,
             "title": "Max Per Company",
-            "description": "Limits the number of prospects returned per company."
+            "description": "Limits the number of prospects returned per company.",
+            "nullable": true,
+            "example": null
           }
         },
         "additionalProperties": false,
