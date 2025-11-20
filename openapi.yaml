@@ -3521,6 +3521,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "parameters": {
@@ -3549,6 +3550,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "parameters": {
@@ -3809,6 +3811,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "parameters": {
@@ -4774,6 +4777,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "parameters": {
@@ -5522,6 +5526,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "enrollment_key": {
@@ -5585,6 +5590,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "enrollment_id": {
@@ -5646,6 +5652,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "enrollment_key": {
@@ -5760,6 +5767,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "entity_type": {
@@ -6110,6 +6118,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "mode": {
@@ -6171,8 +6180,8 @@
             "type": "string",
             "title": "Next Cursor",
             "description": "The sort values from the last document returned by the previous page. If provided, cursor pagination is used instead of page-based pagination. send \"null\" to start with next_cursor pagination from the beginning.",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -6271,6 +6280,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "businesses_to_match": {
@@ -6356,6 +6366,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "filters": {
@@ -6589,6 +6600,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "parameters": {
@@ -6618,6 +6630,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "parameters": {
@@ -6723,6 +6736,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "from_date": {
@@ -6990,6 +7004,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "parameters": {
@@ -7018,6 +7033,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "parameters": {
@@ -8525,6 +8541,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "parameters": {
@@ -8555,6 +8572,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "parameters": {
@@ -8750,6 +8768,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "parameters": {
@@ -8776,6 +8795,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "parameters": {
@@ -8965,6 +8985,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "enrollment_key": {
@@ -9028,6 +9049,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "enrollment_id": {
@@ -9089,6 +9111,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "enrollment_key": {
@@ -9167,6 +9190,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "entity_type": {
@@ -9588,6 +9612,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "mode": {
@@ -9649,8 +9674,8 @@
             "type": "string",
             "title": "Next Cursor",
             "description": "The sort values from the last document returned by the previous page. If provided, cursor pagination is used instead of page-based pagination. send \"null\" to start with next_cursor pagination from the beginning.",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           },
           "max_per_company": {
             "type": "integer",
@@ -9658,8 +9683,8 @@
             "minimum": 1.0,
             "title": "Max Per Company",
             "description": "Limits the number of prospects returned per company.",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -9758,6 +9783,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "prospects_to_match": {
@@ -9839,6 +9865,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "filters": {
@@ -10151,6 +10178,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "partner_id": {
@@ -10210,6 +10238,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "partner_id": {
@@ -10356,6 +10385,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "parameters": {
@@ -10384,6 +10414,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "parameters": {
@@ -10801,6 +10832,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "parameters": {
@@ -10829,6 +10861,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "parameters": {
@@ -10852,6 +10885,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "parameters": {
@@ -10886,6 +10920,7 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
+            "example": null,
             "nullable": true
           },
           "parameters": {
