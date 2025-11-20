@@ -6159,10 +6159,13 @@
             },
             "type": "array",
             "maxItems": 1000,
-            "minItems": 1,
             "title": "Exclude",
             "description": "List of business ids to exclude from the response.",
-            "example": [],
+            "nullable": true
+          },
+          "exclude_key": {
+            "type": "string",
+            "title": "Exclude Key",
             "nullable": true
           },
           "filters": {
@@ -9632,8 +9635,7 @@
             "title": "Page",
             "description": "The page number to fetch.",
             "default": 1,
-            "example": 1,
-            "nullable": true
+            "example": 1
           },
           "exclude": {
             "items": {
@@ -9642,11 +9644,13 @@
             },
             "type": "array",
             "maxItems": 1000,
-            "minItems": 1,
             "title": "Exclude",
             "description": "List of prospect ids to exclude from the response.",
-            "example": [],
             "nullable": true
+          },
+          "exclude_key": {
+            "type": "string",
+            "title": "Exclude Key"
           },
           "filters": {
             "allOf": [
@@ -9663,8 +9667,7 @@
           "next_cursor": {
             "type": "string",
             "title": "Next Cursor",
-            "description": "The sort values from the last document returned by the previous page. If provided, cursor pagination is used instead of page-based pagination. send \"null\" to start with next_cursor pagination from the beginning. send \"null\" to start with next_cursor pagination from the beginning.",
-            "nullable": true
+            "description": "The sort values from the last document returned by the previous page. If provided, cursor pagination is used instead of page-based pagination. send \"null\" to start with next_cursor pagination from the beginning."
           },
           "max_per_company": {
             "type": "integer",
