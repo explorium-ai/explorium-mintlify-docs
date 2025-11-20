@@ -8463,36 +8463,42 @@
             "type": "string",
             "title": "Business Id",
             "description": "Explorium business id",
+            "example": null,
             "nullable": true
           },
           "full_name": {
             "type": "string",
             "title": "Full Name",
             "description": "Full name of the person",
+            "example": null,
             "nullable": true
           },
           "company_name": {
             "type": "string",
             "title": "Company Name",
             "description": "Company name",
+            "example": null,
             "nullable": true
           },
           "email": {
             "type": "string",
             "title": "Email",
             "description": "Email address",
+            "example": null,
             "nullable": true
           },
           "phone_number": {
             "type": "string",
             "title": "Phone Number",
             "description": "Phone number",
+            "example": null,
             "nullable": true
           },
           "linkedin": {
             "type": "string",
             "title": "Linkedin",
             "description": "LinkedIn URL",
+            "example": null,
             "nullable": true
           }
         },
