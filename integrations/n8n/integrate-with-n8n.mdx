@@ -2,72 +2,78 @@
 title: "Integrate with n8n"
 ---
 
-This guide walks you through building a chat-style workflow that lets an n8n AI Agent call Explorium’s Model Context Protocol (MCP) tools, powered by Anthropic’s Claude. You’ll end up with a flow like this:
+This guide walks you through building a chat-style workflow that lets an n8n AI Agent call Explorium’s Model Context Protocol (MCP) tools, powered by Anthropic’s Claude.
+You’ll end up with a flow like this:
 
 <Frame>
-  ![](/images/reference/4bfe7f8c7001e122c491342c5e50b8a42df434470ce8a0a05e4ffe85d147815f-Screenshot_2025-04-29_at_14.33.53.png)
+![](/images/reference/4bfe7f8c7001e122c491342c5e50b8a42df434470ce8a0a05e4ffe85d147815f-Screenshot_2025-04-29_at_14.33.53.png)
 </Frame>
 
 ## 1. Prerequisites <Icon icon="screwdriver-wrench" size={24} />
 
-| **Requirement**       | **Notes**                                 |
-| :-------------------- | :---------------------------------------- |
-| n8n @ v1.31+          | Self-hosted or Cloud                      |
+| **Requirement** | **Notes** |
+| :--- | :--- |
+| n8n @ v1.31+ | Self-hosted or Cloud |
 | Explorium **API key** | Get one from your AgentSource Admin Panel |
-| Anthropic **API key** | Needed for Claude 3.x Sonnet              |
-| SSE endpoint          | https://mcp.explorium.ai/mcp              |
+| Anthropic **API key** | Needed for Claude 3.x Sonnet |
+| SSE endpoint | [https://mcp.explorium.ai/sse](https://mcp.explorium.ai/sse) |
+
 
 ## 2. Create Your Flow
 
 <Steps>
-  <Step title="Trigger">
-    When chat message received (built-in)
-  </Step>
-  <Step title="AI Agent">
-    type: Tools Agent
-  </Step>
-  <Step title="Anthropic Chat Model">
-    Claude 4.5 Sonnet
-  </Step>
-  <Step title="Memory">
-    simple in-flow memory
-  </Step>
-  <Step title="MCP Client">
-    calls Explorium tools
-  </Step>
+<Step title="Trigger">
+When chat message received (built-in)
+</Step>
+
+<Step title="AI Agent">
+type: Tools Agent
+</Step>
+
+<Step title="Anthropic Chat Model">
+Claude 3.7 Sonnet
+</Step>
+
+<Step title="Memory">
+simple in-flow memory
+</Step>
+
+<Step title="MCP Client">
+calls Explorium tools
+</Step>
 </Steps>
 
 Connect the nodes just like the overview image (dotted lines = resource connections).
 
 <Frame>
-  ![](/images/reference/4c6e4df60f2087a6a4f653d6976a85a90261dfbf9c79c1a089dd241568e5099b-image.png)
+![](/images/reference/4c6e4df60f2087a6a4f653d6976a85a90261dfbf9c79c1a089dd241568e5099b-image.png)
 </Frame>
 
 ## 3. Configure Each Node
 
 ### 3.1 AI Agent configuration
 
-| Setting           | Value                                                                                                                                                                                                            |
-| :---------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Agent             | Tools Agent                                                                                                                                                                                                      |
-| Source for Prompt | Connected Chat Trigger Node                                                                                                                                                                                      |
-| System Message    | Use a Claude-style system prompt. Example: The assistant is Claude, created by Anthropic. The current date is {{ Date() }}.\\nYou are powered by Explorium's MCP tools. Always call tools when data is required… |
-| Chat Model        | Connect the Anthropic Chat Model node                                                                                                                                                                            |
-| Tool              | Connect the MCP Client node                                                                                                                                                                                      |
-| Memory            | Connect the Memory node                                                                                                                                                                                          |
+| Setting | Value |
+| :--- | :--- |
+| Agent | Tools Agent |
+| Source for Prompt | Connected Chat Trigger Node |
+| System Message | Use a Claude-style system prompt. Example: The assistant is Claude, created by Anthropic. The current date is \{\{ Date() \}\}.\\nYou are powered by Explorium's MCP tools. Always call tools when data is required… |
+| Chat Model | Connect the Anthropic Chat Model node |
+| Tool | Connect the MCP Client node |
+| Memory | Connect the Memory node |
 
 <Frame>
-  ![](/images/reference/a0d1049ff0611fa21b5cf42f2d801f24f341cbd3fca45c64e4e2f5c62651e1a3-image.png)
+![](/images/reference/a0d1049ff0611fa21b5cf42f2d801f24f341cbd3fca45c64e4e2f5c62651e1a3-image.png)
 </Frame>
 
 ### 3.2 Anthropic Chat Model
 
 - **Credential**: the Anthropic account you just created
-- **Model**: Claude 4.5 Sonnet
+- **Model**: Claude 3.7 Sonnet
 - **Enable Thinking**: On (optional, shows the "thinking" indicator)
 
 <Frame>
-  ![](/images/reference/287a18b0cf2ed0cd1c3f5442c81f97525789be0daf2e765c0c7c716ee514012f-image.png)
+![](/images/reference/287a18b0cf2ed0cd1c3f5442c81f97525789be0daf2e765c0c7c716ee514012f-image.png)
 </Frame>
 
 ### 3.3 Anthropic credential
@@ -76,15 +82,15 @@ Enter your Anthropic key and test – you should see Connection tested successfu
 
 ### 3.4 MCP Client node
 
-| Field                      | Value                        |
-| :------------------------- | :--------------------------- |
-| SSE Endpoint               | https://mcp.explorium.ai/mcp |
-| Authentication             | Header Auth                  |
-| Credential for Bearer Auth | Header Auth account          |
-| Tools to include           | All                          |
+| Field | Value |
+| :--- | :--- |
+| SSE Endpoint | [https://mcp.explorium.ai/sse](https://mcp.explorium.ai/sse) |
+| Authentication | Header Auth |
+| Credential for Bearer Auth | Header Auth account |
+| Tools to include | All |
 
 <Frame>
-  ![](/images/reference/3c3bb20d826407ecbf06fbceb5729385b5df435f459740a7167f3f874e8e91ef-image.png)
+![](/images/reference/3c3bb20d826407ecbf06fbceb5729385b5df435f459740a7167f3f874e8e91ef-image.png)
 </Frame>
 
 Fill the header fields:
@@ -93,23 +99,24 @@ Fill the header fields:
 - Value: `<Enter your api key>`
 
 <Frame>
-  ![](/images/reference/a3af8f50960010e8ebc7cf068824cde26635b57a9ac24d7dc25683e84898ff67-image.png)
+![](/images/reference/a3af8f50960010e8ebc7cf068824cde26635b57a9ac24d7dc25683e84898ff67-image.png)
 </Frame>
 
 ## 4. Test It Out
 
 <Steps>
-  <Step>
-    Click **Open chat**  at the bottom of the canvas.
-  </Step>
-  <Step>
-    Ask something data-centric, e.g.
+	<Step>
+	Click **<Icon icon="play" iconType="solid" /> Open chat** at the bottom of the canvas.
+	</Step>
+	<Step>
+	Ask something data-centric, e.g.
+	- "Who is the CMO of Snowflake?"
+	</Step>
 
-    - "Who is the CMO of Snowflake?"
-  </Step>
-  <Step>
-    You should see the MCP Client fire **Match Businesses ➜ Enrich Businesses** and Claude respond with a neatly-formatted answer.
-  </Step>
+	<Step>
+	You should see the MCP Client fire **Match Businesses ➜ Enrich Businesses** and Claude respond with a neatly-formatted answer.
+	</Step>
 </Steps>
 
 ### Happy prospecting! <Icon icon="party-horn" />
+
