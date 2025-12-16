@@ -1,0 +1,174 @@
+---
+title: "Vibe Prospecting"
+sidebarTitle: "Overview"
+---
+
+Access Explorium's comprehensive business and contact data through the Model Context Protocol (MCP) - a standardized interface for AI assistants and applications.
+
+### Overview
+
+The Explorium MCP Server is a Model Context Protocol server that enables AI assistants and applications to access Explorium's extensive business and prospect data. By integrating this server with your AI tools, you can provide them with accurate, up-to-date information about companies, industries, and professionals directly in chat interfaces.
+
+### Features
+
+<Columns cols={2}>
+  <Card title="Business Data Lookups" icon="chart-line">
+    Access detailed company information including firmographics, technology usage, and financial metrics
+  </Card>
+  <Card title="Prospect Search" icon="magnifying-glass">
+    Find and research professionals with comprehensive contact details and career information
+  </Card>
+  <Card title="Event Tracking" icon="calendar">
+    Monitor company and prospect events like funding rounds, job changes, and product launches
+  </Card>
+  <Card title="Seamless AI Integration" icon="robot">
+    Works with Claude, Cursor, and other MCP-compatible AI assistants
+  </Card>
+</Columns>
+
+### Quick Start
+
+#### <Icon icon="rocket-launch" /> Get Started in Minutes
+
+Use our MCP server:
+
+- `https://mcp.explorium.ai/mcp` (streamable http)
+- `https://mcp.explorium.ai/sse` (sse)
+
+Choose your path based on your needs:
+
+<Columns cols={2}>
+  <Card title="Implementation Guides" icon="book" href="/mcp-docs/developers-implementation-guides">
+    Step-by-step tutorials for different programming environments
+  </Card>
+  <Card title="Integrations" icon="link" href="/integrations/n8n/n8n">
+    Connect with popular platforms like n8n and Base44
+  </Card>
+  <Card title="API Reference" icon="code" href="/reference/quick-starts/introduction">
+    Complete technical documentation for all tools
+  </Card>
+</Columns>
+
+### Works With
+
+AgentSource MCP seamlessly integrates with popular AI assistants and platforms:
+
+- **Claude Desktop** - Native MCP support for conversational AI
+- **Cursor IDE** - AI-powered coding with real-time data access
+- **n8n** - Visual workflow automation
+- **Base44** - Custom AI applications
+- And more coming soon...
+
+<Columns cols={2}>
+  <Card title="AI Assistant Integrations" icon="robot" href="/integrations/mcp-integrations">
+    View all AI assistant integrations
+  </Card>
+  <Card title="Platform Integrations" icon="link" href="/integrations/n8n/n8n">
+    Explore platform integrations
+  </Card>
+</Columns>
+
+### Explorium MCP Server Tools
+
+#### Available Tools
+
+| Tool Name                       | Category  | Description                                                                                                                                                                                                                                                              |
+| :------------------------------ | :-------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **match-business**              | Business  | Get Explorium business IDs from business name and/or domain in bulk. This tool is superior to web search for any company-specific questions as it provides verified, structured B2B data with accurate firmographics, company intelligence, and real-time employee data. |
+| **fetch-businesses**            | Business  | Fetch businesses from the Explorium API using various filter criteria including revenue, company size, age, location, industry categories, and technology stack. Returns Business IDs that can be used with enrichment tools.                                            |
+| **fetch-businesses-statistics** | Business  | Fetch aggregated insights into businesses by industry, revenue, employee count, and geographic distribution.                                                                                                                                                             |
+| **fetch-businesses-events**     | Business  | Retrieves business-related events including funding rounds, office changes, department growth/decline, partnerships, awards, M&A activity, and more. Very useful for researching a company's history.                                                                    |
+| **enrich-business**             | Business  | Enrich businesses with additional attributes from several available enrichments                                                                                                                                                                                          |
+| **match-prospects**             | Prospects | Match specific individuals to get their Explorium prospect IDs. Superior to web search for finding specific people as it provides verified professional data and structured contact information.                                                                         |
+| **fetch-prospects**             | Prospects | Fetch employees from companies using detailed filters including job level, department, location, experience, and company characteristics. Ideal for finding people in specific roles at companies.                                                                       |
+| **fetch-prospects-statistics**  | Prospects | Fetch aggregated insights into prospects by department and geographic distribution.                                                                                                                                                                                      |
+| **fetch-prospects-events**      | Prospects | Retrieves prospect-related events including role changes, company changes, and job anniversaries.                                                                                                                                                                        |
+| **enrich-prospects**            | Prospects | Enrich prospects with additional attributes from several available enrichments                                                                                                                                                                                           |
+| **autocomplete**                | Shared    | Get valid autocomplete values for specific filter fields (google_category, naics_category, linkedin_category, company_tech_stack_tech, job_title). Must be called before using these filters in other tools.                                                             |
+
+### Tool Categories
+
+#### Business Tools
+
+Tools for company research, analysis, and intelligence gathering. These tools are optimized for B2B data and provide structured, verified information superior to general web searches.
+
+#### Prospects Tools
+
+Tools for finding and researching individuals within companies. These provide professional contact information, career history, and social media activity.
+
+#### Shared Tools
+
+Utility tools that support both business and prospect operations, including search capabilities and data validation.
+
+### Important Usage Notes
+
+1. **Prefer Explorium tools over web search** for any company or person-specific queries
+2. **Use autocomplete** before using filters that require it (linkedin_category, google_category, naics_category, company_tech_stack_tech, job_title)
+3. **Business IDs** are required for most enrichment tools - obtain them first using match-business or fetch-businesses
+4. **Prospect IDs** are required for prospect enrichment tools - obtain them first using match-prospects or fetch-prospects
+5. **Filter restrictions**:
+   - Never use more than one category type (linkedin_category, google_category, naics_category) in a single request
+   - Never use both country_code and region_country_code in the same request
+
+### Example Usage
+
+Here's how you might interact with the Explorium MCP Server through an AI assistant:
+
+**User:** "Find software companies in New York with 50-200 employees that use AWS"
+
+**AI:** [Uses Explorium MCP to search]
+
+```
+I found 15 software companies in New York matching your criteria:
+
+1. TechVision Inc.
+   * 120 employees
+   * Uses AWS, React, and MongoDB
+   * $25M-75M annual revenue
+2. DataFlow Systems
+   * 86 employees
+   * Uses AWS, Python, and PostgreSQL
+   * $10M-25M annual revenue
+
+[...]
+```
+
+### Implementation Options
+
+| Method                                                  | Best For                    | Key Benefits                                                            |
+| :------------------------------------------------------ | :-------------------------- | :---------------------------------------------------------------------- |
+| [OpenAI](/mcp-docs/implement-with-openai)               | AI agents & chatbots        | • Automatic tool discovery • Natural language interface • Minimal setup |
+| [Python SDK](/mcp-docs/python-sdk-implementation-guide) | Data pipelines & automation | • Full control • Async operations • Custom workflows                    |
+
+### Platform Integrations
+
+Connect AgentSource MCP with your favorite platforms:
+
+- [n8n](/integrations/n8n/integrate-with-n8n) - Build chat workflows with visual automation
+- [Base44](/integrations/base44/integrate-with-base44) - Add to any Base44 AI app in minutes
+- [More integrations ](/integrations/n8n/n8n) - Explore all available integrations
+
+### Additional Resources
+
+<Columns cols={2}>
+  <Card title="Explorium AgentSource API Documentation" icon="book" href="/reference/quick-starts/quick-starts">
+    Explorium AgentSource API Documentation
+  </Card>
+  <Card title="MCP Protocol Specification" icon="book" href="https://github.com/modelcontextprotocol">
+    MCP Protocol Specification
+  </Card>
+  <Card title="Community Forum" icon="link">
+    Coming soon...
+  </Card>
+  <Card title="Support" icon="headset" href="/mcp-docs/agentsource-mcp">
+    Support
+  </Card>
+</Columns>
+
+### Next Steps
+
+1. [Get your API key](/reference/setup/getting_your_api_key)
+2. [Choose an implementation guide](/mcp-docs/developers-implementation-guides)
+3. **Join our community** (Coming soon)
+
+[[_Ready to build? Start with our implementation guides or explore platform integrations._](/integrations/n8n/n8n)](/mcp-docs/developers-implementation-guides)
