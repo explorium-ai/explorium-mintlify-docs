@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Partner Service",
-    "version": "0.2.248"
+    "version": "0.2.264"
   },
   "servers": [
     {
@@ -50,6 +50,17 @@
             },
             "name": "response_bytes",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
           }
         ],
         "responses": {
@@ -115,6 +126,19 @@
         "summary": "Match Businesses",
         "description": "Match a list of businesses attributes to ids.\nReturns a list of the same length and order as the input list, with the matched ids.",
         "operationId": "match_businesses",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -165,6 +189,19 @@
         "summary": "Fetch Businesses",
         "description": "Filters businesses by country, company size, revenue, and more.\nReturns minimal data needed for further filtering, deduplication, or record previews.",
         "operationId": "fetch_businesses",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -223,6 +260,19 @@
         "summary": "Fetch Businesses Events",
         "description": "Create events and fetch for businesses.",
         "operationId": "fetch_businesses_events",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -299,6 +349,17 @@
             },
             "name": "semantic_search",
             "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
           }
         ],
         "responses": {
@@ -345,6 +406,19 @@
         "summary": "Fetch Stats",
         "description": "Fetch stats for businesses.",
         "operationId": "fetch_stats",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -395,6 +469,19 @@
         "summary": "Get Businesses Enrollments",
         "description": "Show businesses events enrollments records for user.",
         "operationId": "get_businesses_enrollments",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -402,6 +489,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/BusinessesEnrollmentsGetResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
@@ -423,6 +520,19 @@
         "summary": "Add Businesses Enrollments",
         "description": "Add enrollments for businesses",
         "operationId": "add_businesses_enrollments",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -471,6 +581,19 @@
         "summary": "Delete Businesses Enrollments",
         "description": "Delete events enrollments records",
         "operationId": "delete_businesses_enrollments",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -519,6 +642,19 @@
         "summary": "Update Businesses Enrollments",
         "description": "Update enrollments for businesses",
         "operationId": "update_businesses_enrollments",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -569,6 +705,19 @@
         "summary": "Match Prospects",
         "description": "Match a list of prospects attributes to ids.\nReturns a list of the same length and order as the input list, with the matched ids.",
         "operationId": "match_prospects",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -618,6 +767,19 @@
         ],
         "summary": "Fetch Prospects",
         "operationId": "fetch_prospects",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -676,6 +838,19 @@
         "summary": "Prospect Fetch Stats",
         "description": "Fetch stats for businesses.",
         "operationId": "prospect_fetch_stats",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -726,6 +901,19 @@
         "summary": "Fetch Prospects Events",
         "description": "Create events and fetch for prospects.",
         "operationId": "fetch_prospects_events",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -792,6 +980,27 @@
             },
             "name": "query",
             "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "title": "Semantic Search",
+              "default": false
+            },
+            "name": "semantic_search",
+            "in": "query"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
           }
         ],
         "responses": {
@@ -838,6 +1047,19 @@
         "summary": "Get Prospects Enrollments",
         "description": "Show prospects events enrollments records for user.",
         "operationId": "get_prospects_enrollments",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -845,6 +1067,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProspectsEnrollmentsGetResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
@@ -866,6 +1098,19 @@
         "summary": "Add Prospects Enrollments",
         "description": "Add enrollments for prospects",
         "operationId": "add_prospects_enrollments",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -914,6 +1159,19 @@
         "summary": "Delete Prospects Enrollments",
         "description": "Delete events enrollments records",
         "operationId": "delete_prospects_enrollments",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -962,6 +1220,19 @@
         "summary": "Update Prospects Enrollments",
         "description": "Update enrollments for prospects",
         "operationId": "update_prospects_enrollments",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1011,6 +1282,19 @@
         ],
         "summary": "Get Active Credits Summary",
         "operationId": "get_active_credits_summary",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -1018,6 +1302,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ActiveCreditSummaryResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
@@ -1040,6 +1334,19 @@
         ],
         "summary": "Get Credit Aggregation",
         "operationId": "get_credit_aggregation",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1090,6 +1397,19 @@
         "summary": "Add Webhook",
         "description": "Add a webhook for events enrollments.",
         "operationId": "add_webhook",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1149,6 +1469,17 @@
             },
             "name": "partner_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
           }
         ],
         "responses": {
@@ -1198,6 +1529,17 @@
             },
             "name": "partner_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
           }
         ],
         "responses": {
@@ -1239,6 +1581,19 @@
         ],
         "summary": "Check Webhook Connectivity",
         "operationId": "check_webhook_connectivity",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1288,6 +1643,19 @@
         ],
         "summary": "Bombora Intent",
         "operationId": "businesses_bombora_intent_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1337,6 +1705,19 @@
         ],
         "summary": "Company Hierarchies",
         "operationId": "businesses_company_hierarchies_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1386,6 +1767,19 @@
         ],
         "summary": "Company Ratings By Employees",
         "operationId": "businesses_company_ratings_by_employees_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1435,6 +1829,19 @@
         ],
         "summary": "Company Website Keywords",
         "operationId": "businesses_company_website_keywords_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1484,6 +1891,19 @@
         ],
         "summary": "Financial Indicators",
         "operationId": "businesses_financial_indicators_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1533,6 +1953,19 @@
         ],
         "summary": "Firmographics",
         "operationId": "businesses_firmographics_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1582,6 +2015,19 @@
         ],
         "summary": "Funding And Acquisition",
         "operationId": "businesses_funding_and_acquisition_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1631,6 +2077,19 @@
         ],
         "summary": "Linkedin Posts",
         "operationId": "businesses_linkedin_posts_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1680,6 +2139,19 @@
         ],
         "summary": "Lookalikes",
         "operationId": "businesses_lookalikes_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1729,6 +2201,19 @@
         ],
         "summary": "Pc Business Challenges 10K",
         "operationId": "businesses_pc_business_challenges_10k_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1778,6 +2263,19 @@
         ],
         "summary": "Pc Competitive Landscape 10K",
         "operationId": "businesses_pc_competitive_landscape_10k_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1827,6 +2325,19 @@
         ],
         "summary": "Pc Strategy 10K",
         "operationId": "businesses_pc_strategy_10k_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1876,6 +2387,19 @@
         ],
         "summary": "Technographics",
         "operationId": "businesses_technographics_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1925,6 +2449,19 @@
         ],
         "summary": "Website Changes",
         "operationId": "businesses_website_changes_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -1974,6 +2511,19 @@
         ],
         "summary": "Website Traffic",
         "operationId": "businesses_website_traffic_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2023,6 +2573,19 @@
         ],
         "summary": "Webstack",
         "operationId": "businesses_webstack_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2072,6 +2635,19 @@
         ],
         "summary": "Workforce Trends",
         "operationId": "businesses_workforce_trends_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2121,6 +2697,19 @@
         ],
         "summary": "Bombora Intent",
         "operationId": "businesses_bombora_intent_bulk_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2170,6 +2759,19 @@
         ],
         "summary": "Company Hierarchies",
         "operationId": "businesses_company_hierarchies_bulk_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2219,6 +2821,19 @@
         ],
         "summary": "Company Ratings By Employees",
         "operationId": "businesses_company_ratings_by_employees_bulk_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2268,6 +2883,19 @@
         ],
         "summary": "Company Website Keywords",
         "operationId": "businesses_company_website_keywords_bulk_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2317,6 +2945,19 @@
         ],
         "summary": "Financial Indicators",
         "operationId": "businesses_financial_indicators_bulk_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2366,6 +3007,19 @@
         ],
         "summary": "Firmographics",
         "operationId": "businesses_firmographics_bulk_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2415,6 +3069,19 @@
         ],
         "summary": "Funding And Acquisition",
         "operationId": "businesses_funding_and_acquisition_bulk_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2464,6 +3131,19 @@
         ],
         "summary": "Linkedin Posts",
         "operationId": "businesses_linkedin_posts_bulk_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2513,6 +3193,19 @@
         ],
         "summary": "Lookalikes",
         "operationId": "businesses_lookalikes_bulk_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2562,6 +3255,19 @@
         ],
         "summary": "Pc Business Challenges 10K",
         "operationId": "businesses_pc_business_challenges_10k_bulk_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2611,6 +3317,19 @@
         ],
         "summary": "Pc Competitive Landscape 10K",
         "operationId": "businesses_pc_competitive_landscape_10k_bulk_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2660,6 +3379,19 @@
         ],
         "summary": "Pc Strategy 10K",
         "operationId": "businesses_pc_strategy_10k_bulk_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2709,6 +3441,19 @@
         ],
         "summary": "Technographics",
         "operationId": "businesses_technographics_bulk_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2758,6 +3503,19 @@
         ],
         "summary": "Website Changes",
         "operationId": "businesses_website_changes_bulk_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2807,6 +3565,19 @@
         ],
         "summary": "Website Traffic",
         "operationId": "businesses_website_traffic_bulk_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2856,6 +3627,19 @@
         ],
         "summary": "Webstack",
         "operationId": "businesses_webstack_bulk_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2905,6 +3689,19 @@
         ],
         "summary": "Workforce Trends",
         "operationId": "businesses_workforce_trends_bulk_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -2954,6 +3751,19 @@
         ],
         "summary": "Contacts Information",
         "operationId": "prospects_contacts_information_bulk_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -3003,6 +3813,19 @@
         ],
         "summary": "Linkedin Posts",
         "operationId": "prospects_linkedin_posts_bulk_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -3052,6 +3875,19 @@
         ],
         "summary": "Profiles",
         "operationId": "prospects_profiles_bulk_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -3101,6 +3937,19 @@
         ],
         "summary": "Contacts Information",
         "operationId": "prospects_contacts_information_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -3150,6 +3999,19 @@
         ],
         "summary": "Linkedin Posts",
         "operationId": "prospects_linkedin_posts_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -3199,6 +4061,19 @@
         ],
         "summary": "Profiles",
         "operationId": "prospects_profiles_enrich",
+        "parameters": [
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -3258,6 +4133,17 @@
             },
             "name": "custom_enrichment_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
           }
         ],
         "requestBody": {
@@ -3319,6 +4205,17 @@
             },
             "name": "enrichment_id",
             "in": "path"
+          },
+          {
+            "required": false,
+            "schema": {
+              "type": "string",
+              "title": "Tenant",
+              "name": "tenant",
+              "auto_error": false
+            },
+            "name": "tenant",
+            "in": "header"
           }
         ],
         "requestBody": {
@@ -3481,7 +4378,8 @@
           "job_level",
           "city_region_country",
           "company_name",
-          "business_intent_topics"
+          "business_intent_topics",
+          "city_region"
         ],
         "title": "AutocompleteType",
         "description": "Enum for autocomplete types."
@@ -3500,8 +4398,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "parameters": {
             "$ref": "#/components/schemas/BomboraIntentEnrichmentParams"
@@ -3529,8 +4427,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "parameters": {
             "$ref": "#/components/schemas/BomboraIntentEnrichmentParams"
@@ -3635,6 +4533,10 @@
             "pattern": "^(aruba|afghanistan|angola|anguilla|\u00e5land\\ islands|albania|andorra|united\\ arab\\ emirates|argentina|armenia|american\\ samoa|antarctica|french\\ southern\\ territories|antigua\\ and\\ barbuda|australia|austria|azerbaijan|burundi|belgium|benin|bonaire,\\ sint\\ eustatius\\ and\\ saba|burkina\\ faso|bangladesh|bulgaria|bahrain|bahamas|bosnia\\ and\\ herzegovina|saint\\ barth\u00e9lemy|belarus|belize|bermuda|bolivia,\\ plurinational\\ state\\ of|brazil|barbados|brunei\\ darussalam|bhutan|bouvet\\ island|botswana|central\\ african\\ republic|canada|cocos\\ \\(keeling\\)\\ islands|switzerland|chile|china|c\u00f4te\\ d'ivoire|cameroon|congo,\\ the\\ democratic\\ republic\\ of\\ the|congo|cook\\ islands|colombia|comoros|cabo\\ verde|costa\\ rica|cuba|cura\u00e7ao|christmas\\ island|cayman\\ islands|cyprus|czechia|germany|djibouti|dominica|denmark|dominican\\ republic|algeria|ecuador|egypt|eritrea|western\\ sahara|spain|estonia|ethiopia|finland|fiji|falkland\\ islands\\ \\(malvinas\\)|france|faroe\\ islands|micronesia,\\ federated\\ states\\ of|gabon|united\\ kingdom|georgia|guernsey|ghana|gibraltar|guinea|guadeloupe|gambia|guinea\\-bissau|equatorial\\ guinea|greece|grenada|greenland|guatemala|french\\ guiana|guam|guyana|hong\\ kong|heard\\ island\\ and\\ mcdonald\\ islands|honduras|croatia|haiti|hungary|indonesia|isle\\ of\\ man|india|british\\ indian\\ ocean\\ territory|ireland|iran,\\ islamic\\ republic\\ of|iraq|iceland|israel|italy|jamaica|jersey|jordan|japan|kazakhstan|kenya|kyrgyzstan|cambodia|kiribati|saint\\ kitts\\ and\\ nevis|korea,\\ republic\\ of|kuwait|lao\\ people's\\ democratic\\ republic|lebanon|liberia|libya|saint\\ lucia|liechtenstein|sri\\ lanka|lesotho|lithuania|luxembourg|latvia|macao|saint\\ martin\\ \\(french\\ part\\)|morocco|monaco|moldova,\\ republic\\ of|madagascar|maldives|mexico|marshall\\ islands|north\\ macedonia|mali|malta|myanmar|montenegro|mongolia|northern\\ mariana\\ islands|mozambique|mauritania|montserrat|martinique|mauritius|malawi|malaysia|mayotte|namibia|new\\ caledonia|niger|norfolk\\ island|nigeria|nicaragua|niue|netherlands|norway|nepal|nauru|new\\ zealand|oman|pakistan|panama|pitcairn|peru|philippines|palau|papua\\ new\\ guinea|poland|puerto\\ rico|korea,\\ democratic\\ people's\\ republic\\ of|portugal|paraguay|palestine,\\ state\\ of|french\\ polynesia|qatar|r\u00e9union|romania|russian\\ federation|rwanda|saudi\\ arabia|sudan|senegal|singapore|south\\ georgia\\ and\\ the\\ south\\ sandwich\\ islands|saint\\ helena,\\ ascension\\ and\\ tristan\\ da\\ cunha|svalbard\\ and\\ jan\\ mayen|solomon\\ islands|sierra\\ leone|el\\ salvador|san\\ marino|somalia|saint\\ pierre\\ and\\ miquelon|serbia|south\\ sudan|sao\\ tome\\ and\\ principe|suriname|slovakia|slovenia|sweden|eswatini|sint\\ maarten\\ \\(dutch\\ part\\)|seychelles|syrian\\ arab\\ republic|turks\\ and\\ caicos\\ islands|chad|togo|thailand|tajikistan|tokelau|turkmenistan|timor\\-leste|tonga|trinidad\\ and\\ tobago|tunisia|turkey|tuvalu|taiwan,\\ province\\ of\\ china|tanzania,\\ united\\ republic\\ of|uganda|ukraine|united\\ states\\ minor\\ outlying\\ islands|uruguay|united\\ states|uzbekistan|holy\\ see\\ \\(vatican\\ city\\ state\\)|saint\\ vincent\\ and\\ the\\ grenadines|venezuela,\\ bolivarian\\ republic\\ of|virgin\\ islands,\\ british|virgin\\ islands,\\ u\\.s\\.|viet\\ nam|vanuatu|wallis\\ and\\ futuna|samoa|kosovo|yemen|south\\ africa|zambia|zimbabwe)$",
             "title": "Country Name"
           },
+          "city_name": {
+            "type": "string",
+            "title": "City Name"
+          },
           "number_of_employees_range": {
             "$ref": "#/components/schemas/NumberOfEmployeesRange"
           },
@@ -3677,6 +4579,13 @@
             },
             "type": "array",
             "title": "Business Intent Topics"
+          },
+          "events": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Events"
           }
         },
         "type": "object",
@@ -3792,8 +4701,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "parameters": {
             "type": "object",
@@ -4758,8 +5667,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "parameters": {
             "type": "object",
@@ -5507,8 +6416,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "enrollment_key": {
             "type": "string",
@@ -5571,8 +6480,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "enrollment_id": {
             "type": "string",
@@ -5633,8 +6542,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "enrollment_key": {
             "type": "string",
@@ -5748,8 +6657,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "entity_type": {
             "allOf": [
@@ -5778,8 +6687,8 @@
             ],
             "title": "Timestamp To",
             "description": "ISO format datetime string or date in format YYYY-MM-DD",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "timestamp_from": {
             "anyOf": [
@@ -5793,8 +6702,8 @@
             ],
             "title": "Timestamp From",
             "description": "ISO format datetime string or date in format YYYY-MM-DD",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "business_ids": {
             "items": {
@@ -6051,6 +6960,23 @@
             },
             "nullable": true
           },
+          "city_region": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/IncludesFilter_Text_"
+              }
+            ],
+            "title": "City Region",
+            "description": "Filter accounts by geographic region, down to city-level granularity. Example: [New York--Jersey City--Newark, NY--NJ].",
+            "example": {
+              "values": [
+                "New York--Jersey City--Newark, NY--NJ",
+                "Los Angeles--Long Beach--Anaheim, CA",
+                "Chicago, IL--IN"
+              ]
+            },
+            "nullable": true
+          },
           "website_keywords": {
             "allOf": [
               {
@@ -6084,6 +7010,39 @@
               "topic_intent_level": "high_intent"
             },
             "nullable": true
+          },
+          "events": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EventTypesFilter_BusinessesEventIdentifier_"
+              }
+            ],
+            "title": "Events",
+            "description": "Filter businesses by specific event types they have experienced. Optionally filter by when events occurred using last_occurrence (days).",
+            "example": {
+              "values": [
+                "increase_in_all_departments"
+              ],
+              "last_occurrence": 90
+            },
+            "nullable": true
+          },
+          "events_occurrence": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/EventsOccurrenceFilter"
+              }
+            ],
+            "title": "Events Occurrence",
+            "description": "Dynamic filter for event occurrences. Specify event names and optional time range.",
+            "example": {
+              "event_names": [
+                "increase_in_all_departments",
+                "decrease_in_operations_department"
+              ],
+              "last_occurrence_days": 90
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -6096,8 +7055,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "mode": {
             "allOf": [
@@ -6142,8 +7101,8 @@
             "maxItems": 1000,
             "title": "Exclude",
             "description": "List of business ids to exclude from the response.",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "filters": {
             "allOf": [
@@ -6159,8 +7118,8 @@
             "type": "string",
             "title": "Next Cursor",
             "description": "The sort values from the last document returned by the previous page. If provided, cursor pagination is used instead of page-based pagination. send \"null\" to start with next_cursor pagination from the beginning.",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           }
         },
         "additionalProperties": false,
@@ -6259,8 +7218,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "businesses_to_match": {
             "items": {
@@ -6345,8 +7304,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "filters": {
             "$ref": "#/components/schemas/BusinessesFetchFilters"
@@ -6580,8 +7539,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "parameters": {
             "$ref": "#/components/schemas/CompanyWebsiteKeywordsEnrichmentParams"
@@ -6610,8 +7569,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "parameters": {
             "$ref": "#/components/schemas/CompanyWebsiteKeywordsEnrichmentParams"
@@ -6716,8 +7675,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "from_date": {
             "type": "string",
@@ -6961,6 +7920,64 @@
         "title": "EventName",
         "description": "An enumeration."
       },
+      "EventTypesFilter_BusinessesEventIdentifier_": {
+        "properties": {
+          "negate": {
+            "type": "boolean",
+            "title": "Negate"
+          },
+          "values": {
+            "items": {
+              "$ref": "#/components/schemas/BusinessesEventIdentifier"
+            },
+            "type": "array"
+          },
+          "last_occurrence": {
+            "type": "integer",
+            "title": "Last Occurrence Days",
+            "description": "Filter events that occurred within the last N days (required)",
+            "example": 90
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "values",
+          "last_occurrence"
+        ],
+        "title": "EventTypesFilter[BusinessesEventIdentifier]"
+      },
+      "EventsOccurrenceFilter": {
+        "properties": {
+          "negate": {
+            "type": "boolean",
+            "title": "Negate"
+          },
+          "event_names": {
+            "items": {},
+            "type": "array",
+            "title": "Event Names",
+            "description": "List of event names to check for occurrence",
+            "example": [
+              "increase_in_all_departments",
+              "decrease_in_operations_department"
+            ]
+          },
+          "last_occurrence_days": {
+            "type": "integer",
+            "title": "Last Occurrence Days",
+            "description": "Filter events that occurred within the last N days",
+            "example": 90,
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "event_names"
+        ],
+        "title": "EventsOccurrenceFilter"
+      },
       "ExistsFilter": {
         "properties": {
           "negate": {
@@ -6984,8 +8001,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "parameters": {
             "$ref": "#/components/schemas/FinancialIndicatorsEnrichmentParams"
@@ -7013,8 +8030,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "parameters": {
             "$ref": "#/components/schemas/FinancialIndicatorsEnrichmentParams"
@@ -7198,7 +8215,6 @@
           },
           "ticker": {
             "type": "string",
-            "pattern": "(?i)^(^XMAI:\\S+$|^XBOM:\\S+$|^BTAM:\\S+$|^FISH:\\S+$|^TUOB:\\S+$|^UBIN:\\S+$|^AIXK:\\S+$|^XMOT:\\S+$|^EXEU:\\S+$|^NBOT:\\S+$|^EBON:\\S+$|^BTEQ:\\S+$|^SGMV:\\S+$|^IMET:\\S+$|^EMLD:\\S+$|^TWJP:\\S+$|^XETU:\\S+$|^SBIJ:\\S+$|^LASP:\\S+$|^MUBL:\\S+$|^TREA:\\S+$|^EXSB:\\S+$|^XBOL:\\S+$|^XLLB:\\S+$|^XMIO:\\S+$|^FRAU:\\S+$|^BLBF:\\S+$|^CESI:\\S+$|^LISZ:\\S+$|^BLOX:\\S+$|^STFL:\\S+$|^BGCO:\\S+$|^JEFS:\\S+$|^XNLI:\\S+$|^ELXE:\\S+$|^VTPS:\\S+$|^XRUS:\\S+$|^ERBX:\\S+$|^XMAB:\\S+$|^SCXS:\\S+$|^XGSE:\\S+$|^FRAA:\\S+$|^CFTW:\\S+$|^XKLS:\\S+$|^FNCS:\\S+$|^ULTX:\\S+$|^LTAA:\\S+$|^XLFX:\\S+$|^ELNO:\\S+$|^NEXX:\\S+$|^XSHE:\\S+$|^MCUR:\\S+$|^XPOR:\\S+$|^KLSH:\\S+$|^ENCL:\\S+$|^GMNI:\\S+$|^XFKA:\\S+$|^MSIP:\\S+$|^XDFM:\\S+$|^IBIS:\\S+$|^XETR:\\S+$|^OMGA:\\S+$|^XJPX:\\S+$|^DBAB:\\S+$|^MTSC:\\S+$|^XEHQ:\\S+$|^REST:\\S+$|^CECS:\\S+$|^FTFS:\\S+$|^UKCA:\\S+$|^LCHC:\\S+$|^ACEX:\\S+$|^UBEC:\\S+$|^IMMH:\\S+$|^CIBP:\\S+$|^MTUS:\\S+$|^PSXD:\\S+$|^BILT:\\S+$|^BMTS:\\S+$|^ABAN:\\S+$|^BOAT:\\S+$|^NSE:\\S+$|^GLMX:\\S+$|^LTSE:\\S+$|^XKBT:\\S+$|^NYSEARCA:\\S+$|^FRAV:\\S+$|^XSOP:\\S+$|^SNUK:\\S+$|^MAKX:\\S+$|^BMCL:\\S+$|^SKYX:\\S+$|^POSE:\\S+$|^EPA:\\S+$|^TSCD:\\S+$|^ASXB:\\S+$|^ELEU:\\S+$|^DEAL:\\S+$|^TNLK:\\S+$|^IFCA:\\S+$|^SELC:\\S+$|^SSEX:\\S+$|^XMOD:\\S+$|^XSEC:\\S+$|^EPRD:\\S+$|^XTEH:\\S+$|^SB1M:\\S+$|^LIFI:\\S+$|^TCDS:\\S+$|^STO:\\S+$|^MHIP:\\S+$|^BCBA:\\S+$|^XDCE:\\S+$|^PSGM:\\S+$|^RMMS:\\S+$|^AURB:\\S+$|^XPXE:\\S+$|^TSGI:\\S+$|^MUNC:\\S+$|^DHLX:\\S+$|^GMGD:\\S+$|^TEGB:\\S+$|^OPCO:\\S+$|^IOGB:\\S+$|^AQED:\\S+$|^XOTP:\\S+$|^FNFI:\\S+$|^WFSE:\\S+$|^GRIF:\\S+$|^ELI:\\S+$|^FNSE:\\S+$|^VSE:\\S+$|^BART:\\S+$|^NORD:\\S+$|^NIBR:\\S+$|^CCO2:\\S+$|^BACR:\\S+$|^GSSI:\\S+$|^NSME:\\S+$|^MNDK:\\S+$|^SEDC:\\S+$|^NEXN:\\S+$|^KAZE:\\S+$|^XBAA:\\S+$|^XWBO:\\S+$|^XHNF:\\S+$|^BERB:\\S+$|^DUSB:\\S+$|^FINR:\\S+$|^GEMX:\\S+$|^DBES:\\S+$|^XDES:\\S+$|^BUYN:\\S+$|^STRM:\\S+$|^MALM:\\S+$|^FWB:\\S+$|^XTUC:\\S+$|^BARK:\\S+$|^XYIE:\\S+$|^KLSE:\\S+$|^TEMR:\\S+$|^IMFD:\\S+$|^CEUO:\\S+$|^MLCO:\\S+$|^NOFF:\\S+$|^TMID:\\S+$|^WIPO:\\S+$|^BGSI:\\S+$|^XERE:\\S+$|^XBTR:\\S+$|^OLLC:\\S+$|^XDAR:\\S+$|^HANA:\\S+$|^IPXP:\\S+$|^XETS:\\S+$|^NOTC:\\S+$|^LMAE:\\S+$|^XBCV:\\S+$|^BANA:\\S+$|^BASX:\\S+$|^XRAS:\\S+$|^EPRL:\\S+$|^EXSI:\\S+$|^GFSO:\\S+$|^CLCH:\\S+$|^XATL:\\S+$|^EBMX:\\S+$|^NYSE:\\S+$|^KRX:\\S+$|^XTXD:\\S+$|^BRED:\\S+$|^NEXO:\\S+$|^BGFX:\\S+$|^EDGO:\\S+$|^AMEX:\\S+$|^NEXT:\\S+$|^MFGL:\\S+$|^PFTQ:\\S+$|^CHEV:\\S+$|^XSWA:\\S+$|^QWIX:\\S+$|^HELA:\\S+$|^BATY:\\S+$|^EESE:\\S+$|^LELE:\\S+$|^GREE:\\S+$|^DRCT:\\S+$|^LMNX:\\S+$|^FSX:\\S+$|^IMCG:\\S+$|^NSXB:\\S+$|^BEAM:\\S+$|^CGGD:\\S+$|^XSPM:\\S+$|^XCUR:\\S+$|^FNUK:\\S+$|^NMRA:\\S+$|^XKAZ:\\S+$|^ALXL:\\S+$|^XEEO:\\S+$|^EDGX:\\S+$|^INGW:\\S+$|^CFIC:\\S+$|^GPBC:\\S+$|^XBBK:\\S+$|^PVMF:\\S+$|^MERD:\\S+$|^UBIS:\\S+$|^EEAL:\\S+$|^SYFX:\\S+$|^KNEM:\\S+$|^ISWE:\\S+$|^TSCB:\\S+$|^BTQG:\\S+$|^IBGH:\\S+$|^XLQC:\\S+$|^MNSE:\\S+$|^IEPA:\\S+$|^MTAA:\\S+$|^RCMA:\\S+$|^CXAM:\\S+$|^BGCD:\\S+$|^LSSI:\\S+$|^GSIL:\\S+$|^LBBW:\\S+$|^ASXP:\\S+$|^TPEO:\\S+$|^XDHA:\\S+$|^XFEX:\\S+$|^TRCK:\\S+$|^ROCO:\\S+$|^HANB:\\S+$|^NBLX:\\S+$|^CIMV:\\S+$|^XIDX:\\S+$|^ZSE:\\S+$|^BTEE:\\S+$|^XMEX:\\S+$|^VNDM:\\S+$|^BHSF:\\S+$|^IEXG:\\S+$|^TSAF:\\S+$|^MUND:\\S+$|^XSAP:\\S+$|^IMIR:\\S+$|^360T:\\S+$|^XGRM:\\S+$|^BACE:\\S+$|^CABV:\\S+$|^OMIP:\\S+$|^XASE:\\S+$|^JISI:\\S+$|^XNGO:\\S+$|^UBSB:\\S+$|^BNPA:\\S+$|^CIOI:\\S+$|^EBHU:\\S+$|^BERC:\\S+$|^COHR:\\S+$|^XQTX:\\S+$|^NZX:\\S+$|^EQSL:\\S+$|^TRDE:\\S+$|^OTCB:\\S+$|^ISWT:\\S+$|^CHIS:\\S+$|^CAPA:\\S+$|^BME:\\S+$|^MFXA:\\S+$|^WIND:\\S+$|^MTAH:\\S+$|^KBLT:\\S+$|^TFSA:\\S+$|^NODX:\\S+$|^BAEP:\\S+$|^AQXA:\\S+$|^TPEL:\\S+$|^ZODM:\\S+$|^XESM:\\S+$|^CAES:\\S+$|^LQFI:\\S+$|^JBSI:\\S+$|^VMFX:\\S+$|^STFX:\\S+$|^XISX:\\S+$|^XMSM:\\S+$|^GTXS:\\S+$|^XEUI:\\S+$|^XABG:\\S+$|^XTXM:\\S+$|^SECC:\\S+$|^TRQX:\\S+$|^TASE:\\S+$|^CSOB:\\S+$|^XIHK:\\S+$|^NYSI:\\S+$|^VABD:\\S+$|^ASEX:\\S+$|^XSES:\\S+$|^SWLV:\\S+$|^XOSD:\\S+$|^MUDX:\\S+$|^CMEC:\\S+$|^XRIS:\\S+$|^UKRE:\\S+$|^NIBC:\\S+$|^XTND:\\S+$|^FXGB:\\S+$|^CEDX:\\S+$|^XMIL:\\S+$|^LMAF:\\S+$|^ROSR:\\S+$|^CPGX:\\S+$|^CLJP:\\S+$|^SGMT:\\S+$|^3579:\\S+$|^RMTF:\\S+$|^SHAR:\\S+$|^ASPI:\\S+$|^XPHL:\\S+$|^ALLT:\\S+$|^ALDP:\\S+$|^BRFQ:\\S+$|^LBWS:\\S+$|^XCOL:\\S+$|^GSIB:\\S+$|^RTSL:\\S+$|^DNFI:\\S+$|^XMAN:\\S+$|^CSEALL:\\S+$|^LEUE:\\S+$|^MANL:\\S+$|^GLPX:\\S+$|^XGCX:\\S+$|^BNPL:\\S+$|^CDSL:\\S+$|^AMLG:\\S+$|^FSME:\\S+$|^WINX:\\S+$|^XHAN:\\S+$|^SEPE:\\S+$|^CMET:\\S+$|^IFXA:\\S+$|^XSDX:\\S+$|^MPRL:\\S+$|^XBCC:\\S+$|^EMID:\\S+$|^OSSG:\\S+$|^JYSI:\\S+$|^SSOB:\\S+$|^XARM:\\S+$|^BEEX:\\S+$|^XECM:\\S+$|^MSTO:\\S+$|^ICXL:\\S+$|^MOSE:\\S+$|^MALX:\\S+$|^XBSE:\\S+$|^AMS:\\S+$|^DUSD:\\S+$|^XNGM:\\S+$|^CEUX:\\S+$|^SANT:\\S+$|^OTCI:\\S+$|^XMSW:\\S+$|^ECEU:\\S+$|^CGND:\\S+$|^TWEO:\\S+$|^XGME:\\S+$|^SWEE:\\S+$|^CXAP:\\S+$|^XCUE:\\S+$|^IMEX:\\S+$|^LISX:\\S+$|^NZE:\\S+$|^XCDE:\\S+$|^EMDR:\\S+$|^BTNL:\\S+$|^XLBM:\\S+$|^ISWA:\\S+$|^IOFI:\\S+$|^MTSB:\\S+$|^STUA:\\S+$|^RTSX:\\S+$|^TMEX:\\S+$|^UICE:\\S+$|^XTIR:\\S+$|^BLIQ:\\S+$|^MESQ:\\S+$|^CECA:\\S+$|^MOCX:\\S+$|^NCME:\\S+$|^BATF:\\S+$|^XEID:\\S+$|^CXAC:\\S+$|^HRTF:\\S+$|^MATN:\\S+$|^UGEN:\\S+$|^BCSE:\\S+$|^NABU:\\S+$|^GMEG:\\S+$|^SVEX:\\S+$|^GLOM:\\S+$|^MKAP:\\S+$|^MSEU:\\S+$|^ACKF:\\S+$|^RBCT:\\S+$|^OMIC:\\S+$|^TOCP:\\S+$|^XSCA:\\S+$|^XCIS:\\S+$|^CMAP:\\S+$|^AQUA:\\S+$|^JPCB:\\S+$|^LYNX:\\S+$|^CGML:\\S+$|^MSPL:\\S+$|^AKIS:\\S+$|^MUBM:\\S+$|^XEBI:\\S+$|^MLEX:\\S+$|^XALT:\\S+$|^SBSI:\\S+$|^CSZH:\\S+$|^BOTC:\\S+$|^XUMP:\\S+$|^R5FX:\\S+$|^XSC3:\\S+$|^RBSI:\\S+$|^ESLO:\\S+$|^EBSS:\\S+$|^TSBX:\\S+$|^CFAU:\\S+$|^NYMS:\\S+$|^SEDX:\\S+$|^XIPO:\\S+$|^XOSE:\\S+$|^BINV:\\S+$|^JEFE:\\S+$|^XNKS:\\S+$|^GSPL:\\S+$|^BKSK:\\S+$|^ODXE:\\S+$|^XOSC:\\S+$|^XMUS:\\S+$|^RABO:\\S+$|^BLBS:\\S+$|^XNYL:\\S+$|^BPKO:\\S+$|^BVUS:\\S+$|^VIUK:\\S+$|^OTCX:\\S+$|^MFOX:\\S+$|^IMCE:\\S+$|^EUWA:\\S+$|^FRTE:\\S+$|^DNDK:\\S+$|^IOTC:\\S+$|^ENSL:\\S+$|^BMEA:\\S+$|^ASXC:\\S+$|^ISWR:\\S+$|^XBCM:\\S+$|^TBSP:\\S+$|^NZFX:\\S+$|^XISA:\\S+$|^BHWA:\\S+$|^KHHU:\\S+$|^DGCX:\\S+$|^ISWO:\\S+$|^XODE:\\S+$|^PAVE:\\S+$|^NPEX:\\S+$|^HPCV:\\S+$|^XNCM:\\S+$|^XATS:\\S+$|^TWSF:\\S+$|^EQUS:\\S+$|^APCL:\\S+$|^BSAB:\\S+$|^EXCP:\\S+$|^BEBG:\\S+$|^XLIS:\\S+$|^ARCO:\\S+$|^CATS:\\S+$|^EQOS:\\S+$|^CLMX:\\S+$|^BATD:\\S+$|^XJNB:\\S+$|^BCXE:\\S+$|^XSTO:\\S+$|^IMCT:\\S+$|^JSER:\\S+$|^LIQF:\\S+$|^XOAM:\\S+$|^XPOT:\\S+$|^SVXI:\\S+$|^NMTF:\\S+$|^XBRN:\\S+$|^XJAS:\\S+$|^CGMD:\\S+$|^BGUK:\\S+$|^CLST:\\S+$|^ENMS:\\S+$|^XVIE:\\S+$|^XEQY:\\S+$|^CXAQ:\\S+$|^SMBE:\\S+$|^XTAF:\\S+$|^VLEX:\\S+$|^EDBT:\\S+$|^MEMX:\\S+$|^XPRA:\\S+$|^EXSY:\\S+$|^HGSP:\\S+$|^EUCC:\\S+$|^XRPM:\\S+$|^JPEU:\\S+$|^TSAD:\\S+$|^BARD:\\S+$|^XGUA:\\S+$|^NABE:\\S+$|^BSTX:\\S+$|^STUC:\\S+$|^XBOS:\\S+$|^HREU:\\S+$|^JLEU:\\S+$|^XLCH:\\S+$|^CGXS:\\S+$|^TRUK:\\S+$|^AFET:\\S+$|^NABA:\\S+$|^GSPX:\\S+$|^XBES:\\S+$|^CEPL:\\S+$|^BOFS:\\S+$|^RTSP:\\S+$|^BLEQ:\\S+$|^XMUN:\\S+$|^BILU:\\S+$|^XKCE:\\S+$|^RBCC:\\S+$|^BLUX:\\S+$|^AQEU:\\S+$|^WFLB:\\S+$|^XBRD:\\S+$|^PROS:\\S+$|^BNSX:\\S+$|^VTLS:\\S+$|^PEPH:\\S+$|^BTEC:\\S+$|^ECSL:\\S+$|^MAXD:\\S+$|^XCYS:\\S+$|^MNIS:\\S+$|^PSE:\\S+$|^XNDQ:\\S+$|^LOTC:\\S+$|^HSFX:\\S+$|^PEEL:\\S+$|^FXPS:\\S+$|^XVPA:\\S+$|^XPOM:\\S+$|^SGMX:\\S+$|^MLES:\\S+$|^AFSL:\\S+$|^FRAB:\\S+$|^BNPS:\\S+$|^TRPX:\\S+$|^MAQU:\\S+$|^RBCE:\\S+$|^ZERO:\\S+$|^LATG:\\S+$|^XBVM:\\S+$|^NXEU:\\S+$|^XDUB:\\S+$|^CCRM:\\S+$|^CXAV:\\S+$|^JSE:\\S+$|^SGAS:\\S+$|^NGXC:\\S+$|^GROW:\\S+$|^IFXC:\\S+$|^NAMX:\\S+$|^TEMM:\\S+$|^TRAS:\\S+$|^CNSX:\\S+$|^XPAE:\\S+$|^TEMI:\\S+$|^TPSE:\\S+$|^GMEO:\\S+$|^TEUR:\\S+$|^INGE:\\S+$|^XTKT:\\S+$|^XTAM:\\S+$|^TEMB:\\S+$|^XSIM:\\S+$|^XKUW:\\S+$|^SPIM:\\S+$|^UKOR:\\S+$|^MAGM:\\S+$|^UTSL:\\S+$|^XPAL:\\S+$|^LMAD:\\S+$|^CAVD:\\S+$|^SUNT:\\S+$|^HRSI:\\S+$|^DOSE:\\S+$|^HSXA:\\S+$|^IMCR:\\S+$|^DAVY:\\S+$|^ASE:\\S+$|^BEUT:\\S+$|^BLEV:\\S+$|^IMEN:\\S+$|^SGMA:\\S+$|^MCSE:\\S+$|^AFSA:\\S+$|^UCBG:\\S+$|^XBIS:\\S+$|^MERF:\\S+$|^XLOD:\\S+$|^BPOL:\\S+$|^NEOC:\\S+$|^BLNK:\\S+$|^UKGD:\\S+$|^DZBK:\\S+$|^GLBX:\\S+$|^TWEA:\\S+$|^MLER:\\S+$|^HCER:\\S+$|^MCID:\\S+$|^BMTF:\\S+$|^OTPR:\\S+$|^IATS:\\S+$|^MDRV:\\S+$|^XAQS:\\S+$|^DCSX:\\S+$|^EDGL:\\S+$|^NXSE:\\S+$|^APAW:\\S+$|^ABXX:\\S+$|^BKK:\\S+$|^ISWB:\\S+$|^XSWB:\\S+$|^HAMN:\\S+$|^MAQL:\\S+$|^RBHU:\\S+$|^SIDX:\\S+$|^SEBA:\\S+$|^CALH:\\S+$|^BBSF:\\S+$|^BELB:\\S+$|^XBXO:\\S+$|^EBXV:\\S+$|^XKIS:\\S+$|^FLTR:\\S+$|^XNOR:\\S+$|^TRQM:\\S+$|^ISEX:\\S+$|^MUSN:\\S+$|^CFBC:\\S+$|^XSPS:\\S+$|^CXAR:\\S+$|^DBHK:\\S+$|^NCML:\\S+$|^SIMV:\\S+$|^BLTX:\\S+$|^MIHI:\\S+$|^NYSD:\\S+$|^IBEX:\\S+$|^XEBS:\\S+$|^AFSX:\\S+$|^NEXL:\\S+$|^XHKF:\\S+$|^DOWE:\\S+$|^XMVL:\\S+$|^INGF:\\S+$|^TAL:\\S+$|^AUTX:\\S+$|^IVZX:\\S+$|^SBIU:\\S+$|^SGX:\\S+$|^ICEL:\\S+$|^FNDK:\\S+$|^IFEN:\\S+$|^TSX:\\S+$|^RSEX:\\S+$|^SSME:\\S+$|^EXVP:\\S+$|^WSE:\\S+$|^DAPA:\\S+$|^INSE:\\S+$|^TWEU:\\S+$|^PLDX:\\S+$|^NOFI:\\S+$|^SMEX:\\S+$|^XETA:\\S+$|^EUFN:\\S+$|^WMTF:\\S+$|^GRSE:\\S+$|^EXMP:\\S+$|^TPIE:\\S+$|^TCML:\\S+$|^XGHA:\\S+$|^APEX:\\S+$|^XBCL:\\S+$|^BBSX:\\S+$|^ARCX:\\S+$|^XDRK:\\S+$|^ATLN:\\S+$|^SSTX:\\S+$|^HMOD:\\S+$|^XSBT:\\S+$|^OCEA:\\S+$|^WINS:\\S+$|^GFIN:\\S+$|^NORX:\\S+$|^WSIN:\\S+$|^XFNO:\\S+$|^DRSP:\\S+$|^SBIL:\\S+$|^PLPS:\\S+$|^VERT:\\S+$|^MTXM:\\S+$|^TRUX:\\S+$|^VUSA:\\S+$|^XMOC:\\S+$|^XTAI:\\S+$|^CBSK:\\S+$|^PJCX:\\S+$|^CRYP:\\S+$|^JADX:\\S+$|^UBSF:\\S+$|^GIPB:\\S+$|^XMDG:\\S+$|^MYTR:\\S+$|^BLPX:\\S+$|^BOTV:\\S+$|^XLJU:\\S+$|^TQEM:\\S+$|^PLPO:\\S+$|^BCSC:\\S+$|^CGCM:\\S+$|^STXS:\\S+$|^SCAG:\\S+$|^HPCX:\\S+$|^NOPS:\\S+$|^SXSI:\\S+$|^XBEL:\\S+$|^XBUL:\\S+$|^LPPM:\\S+$|^ASMT:\\S+$|^TEFD:\\S+$|^XBBJ:\\S+$|^XEMS:\\S+$|^MCXR:\\S+$|^XBRV:\\S+$|^GFIF:\\S+$|^BAMX:\\S+$|^XZCE:\\S+$|^WDER:\\S+$|^DHEL:\\S+$|^EXBO:\\S+$|^CMSF:\\S+$|^BOTE:\\S+$|^VFCM:\\S+$|^TSGB:\\S+$|^FCBT:\\S+$|^GMBG:\\S+$|^ASX:\\S+$|^THEM:\\S+$|^UCIT:\\S+$|^XLIT:\\S+$|^ASTR:\\S+$|^XADS:\\S+$|^SLHB:\\S+$|^ZBUL:\\S+$|^CETI:\\S+$|^EQTB:\\S+$|^XINS:\\S+$|^MTSD:\\S+$|^BGCI:\\S+$|^LICA:\\S+$|^SSBM:\\S+$|^TMCC:\\S+$|^XMON:\\S+$|^NFSC:\\S+$|^EMIR:\\S+$|^IGDL:\\S+$|^XEUR:\\S+$|^NEXF:\\S+$|^FXRS:\\S+$|^ICDX:\\S+$|^CSAU:\\S+$|^THRE:\\S+$|^XDSX:\\S+$|^GBOT:\\S+$|^VAGM:\\S+$|^BSE:\\S+$|^XBSD:\\S+$|^XNYE:\\S+$|^CABK:\\S+$|^XNFI:\\S+$|^C2OX:\\S+$|^T212:\\S+$|^MNFI:\\S+$|^MTXX:\\S+$|^XUNI:\\S+$|^CNSI:\\S+$|^S3FM:\\S+$|^BKLF:\\S+$|^MOTX:\\S+$|^CGDB:\\S+$|^NYSEAMERICAN:\\S+$|^AILT:\\S+$|^XPST:\\S+$|^SHSC:\\S+$|^NDXS:\\S+$|^CGET:\\S+$|^MCX:\\S+$|^XXXX:\\S+$|^EDGA:\\S+$|^TRXE:\\S+$|^BARL:\\S+$|^UBSX:\\S+$|^XMAU:\\S+$|^GFIR:\\S+$|^XKON:\\S+$|^MHBE:\\S+$|^CREM:\\S+$|^XCEC:\\S+$|^PEPQ:\\S+$|^TIRD:\\S+$|^LCUR:\\S+$|^XAFR:\\S+$|^JSJX:\\S+$|^ERST:\\S+$|^XBLK:\\S+$|^SCXO:\\S+$|^ICHK:\\S+$|^DKTC:\\S+$|^BAML:\\S+$|^WBAH:\\S+$|^BLFX:\\S+$|^IPSX:\\S+$|^VFGB:\\S+$|^CHIX:\\S+$|^RBCM:\\S+$|^RICD:\\S+$|^XCNF:\\S+$|^XTNX:\\S+$|^SECE:\\S+$|^TMCY:\\S+$|^BVUK:\\S+$|^ICXR:\\S+$|^XWAR:\\S+$|^XSHG:\\S+$|^VWDA:\\S+$|^MHBP:\\S+$|^BBSI:\\S+$|^ARAX:\\S+$|^BETA:\\S+$|^XTUN:\\S+$|^TDBL:\\S+$|^CHIC:\\S+$|^KNLI:\\S+$|^BREA:\\S+$|^ERIS:\\S+$|^SGMY:\\S+$|^HPSX:\\S+$|^RFBK:\\S+$|^XNCD:\\S+$|^DUSC:\\S+$|^FRAW:\\S+$|^EXOT:\\S+$|^SVES:\\S+$|^NSDQ:\\S+$|^ETFP:\\S+$|^JSEB:\\S+$|^CCML:\\S+$|^IFSM:\\S+$|^POTC:\\S+$|^NLAX:\\S+$|^BNPC:\\S+$|^IFED:\\S+$|^TRWB:\\S+$|^HRTX:\\S+$|^ANLP:\\S+$|^ICOR:\\S+$|^TRFW:\\S+$|^NABL:\\S+$|^MCRY:\\S+$|^MACB:\\S+$|^XPAC:\\S+$|^WSAG:\\S+$|^CAND:\\S+$|^24EX:\\S+$|^KAIX:\\S+$|^XBRU:\\S+$|^XBNV:\\S+$|^PNED:\\S+$|^EXLP:\\S+$|^XBRA:\\S+$|^FAST:\\S+$|^SEBS:\\S+$|^RABL:\\S+$|^GTXE:\\S+$|^BARU:\\S+$|^FNFX:\\S+$|^AUTO:\\S+$|^BARX:\\S+$|^CBSX:\\S+$|^TEGI:\\S+$|^TNLB:\\S+$|^XEDA:\\S+$|^BBOK:\\S+$|^TPEU:\\S+$|^XETB:\\S+$|^FGEX:\\S+$|^XZAG:\\S+$|^NBFL:\\S+$|^UNGB:\\S+$|^SIFX:\\S+$|^TEIR:\\S+$|^IEXD:\\S+$|^CSBX:\\S+$|^ARIA:\\S+$|^XCBO:\\S+$|^CSDA:\\S+$|^FNLV:\\S+$|^LLAT:\\S+$|^XSWX:\\S+$|^ETPA:\\S+$|^ZKBX:\\S+$|^GBWB:\\S+$|^GOTC:\\S+$|^CXRT:\\S+$|^TADAWUL:\\S+$|^TLV:\\S+$|^XSGO:\\S+$|^CBKE:\\S+$|^XCNQ:\\S+$|^NMRJ:\\S+$|^MELO:\\S+$|^CBKS:\\S+$|^BYXD:\\S+$|^XECB:\\S+$|^SISI:\\S+$|^GTCO:\\S+$|^LEVL:\\S+$|^XSTV:\\S+$|^BKLN:\\S+$|^CLPH:\\S+$|^ISBV:\\S+$|^TFEX:\\S+$|^SMFF:\\S+$|^XELX:\\S+$|^BGHX:\\S+$|^ICES:\\S+$|^UBSL:\\S+$|^XSTF:\\S+$|^HSBC:\\S+$|^MICE:\\S+$|^PARX:\\S+$|^XPOS:\\S+$|^AUTP:\\S+$|^ONSE:\\S+$|^GMTF:\\S+$|^HUDX:\\S+$|^BEUP:\\S+$|^CSSX:\\S+$|^ARCH:\\S+$|^OSDS:\\S+$|^UBSI:\\S+$|^UKPX:\\S+$|^XROS:\\S+$|^XRCB:\\S+$|^XPET:\\S+$|^DUMX:\\S+$|^AFSE:\\S+$|^XLOM:\\S+$|^MHBD:\\S+$|^ABNA:\\S+$|^XGDX:\\S+$|^AQEA:\\S+$|^MSRP:\\S+$|^SIAB:\\S+$|^SICS:\\S+$|^NCEL:\\S+$|^BRGA:\\S+$|^XCFF:\\S+$|^XNAS:\\S+$|^SGEX:\\S+$|^ELIX:\\S+$|^XGLO:\\S+$|^XBOG:\\S+$|^HDAT:\\S+$|^AIMX:\\S+$|^FXFM:\\S+$|^EXYY:\\S+$|^PEPW:\\S+$|^LMNR:\\S+$|^TFSD:\\S+$|^ATFX:\\S+$|^XEYE:\\S+$|^VAGL:\\S+$|^SIGA:\\S+$|^BZXD:\\S+$|^MUBE:\\S+$|^TSRE:\\S+$|^XMLI:\\S+$|^DAIW:\\S+$|^FLWX:\\S+$|^MBUL:\\S+$|^BMLB:\\S+$|^EBR:\\S+$|^MAQI:\\S+$|^XMDS:\\S+$|^MBSI:\\S+$|^SCXA:\\S+$|^DNIS:\\S+$|^TSFI:\\S+$|^KBLL:\\S+$|^SAGE:\\S+$|^ABUL:\\S+$|^PBGR:\\S+$|^HAMM:\\S+$|^XKHA:\\S+$|^NTUK:\\S+$|^BBVX:\\S+$|^BATS:\\S+$|^TYO:\\S+$|^CSVW:\\S+$|^XLDX:\\S+$|^NMSX:\\S+$|^SFCL:\\S+$|^XCOR:\\S+$|^TBSA:\\S+$|^BKBR:\\S+$|^WBON:\\S+$|^DEKA:\\S+$|^EVOL:\\S+$|^XBAR:\\S+$|^GFKS:\\S+$|^BSFX:\\S+$|^MTXC:\\S+$|^COTC:\\S+$|^XCX2:\\S+$|^IOFX:\\S+$|^XPSF:\\S+$|^CNOD:\\S+$|^LMEC:\\S+$|^NEOD:\\S+$|^UBSG:\\S+$|^BGFI:\\S+$|^CIBH:\\S+$|^RUSX:\\S+$|^XZIM:\\S+$|^OBKL:\\S+$|^IFBX:\\S+$|^XPIC:\\S+$|^CGEC:\\S+$|^XNCO:\\S+$|^SGMZ:\\S+$|^MFXC:\\S+$|^DBLN:\\S+$|^CGMU:\\S+$|^XKOS:\\S+$|^TDON:\\S+$|^XDLP:\\S+$|^XXSC:\\S+$|^BVCA:\\S+$|^KCCP:\\S+$|^XMOL:\\S+$|^RBIV:\\S+$|^JLQD:\\S+$|^IST:\\S+$|^TPSO:\\S+$|^MIBG:\\S+$|^MBCP:\\S+$|^MAQE:\\S+$|^TSE:\\S+$|^ISWV:\\S+$|^XCSE:\\S+$|^FIED:\\S+$|^ALTX:\\S+$|^AMXO:\\S+$|^NXJP:\\S+$|^BAAD:\\S+$|^EQCA:\\S+$|^XBER:\\S+$|^TPEE:\\S+$|^TRNL:\\S+$|^FINY:\\S+$|^XKSE:\\S+$|^BRDE:\\S+$|^CBTS:\\S+$|^XSTC:\\S+$|^OAPA:\\S+$|^IBER:\\S+$|^CMMT:\\S+$|^BASI:\\S+$|^KBLC:\\S+$|^XBOX:\\S+$|^LMAX:\\S+$|^XOBD:\\S+$|^PEPM:\\S+$|^CHIV:\\S+$|^INCR:\\S+$|^MXNL:\\S+$|^XEMD:\\S+$|^XKIE:\\S+$|^XKHR:\\S+$|^ILCM:\\S+$|^BBLX:\\S+$|^MIZX:\\S+$|^IFUT:\\S+$|^MSSI:\\S+$|^BAIP:\\S+$|^EMIB:\\S+$|^XINE:\\S+$|^IINX:\\S+$|^EUWB:\\S+$|^RBCB:\\S+$|^ONEC:\\S+$|^CHIA:\\S+$|^ASXT:\\S+$|^VDRK:\\S+$|^XPMS:\\S+$|^XBAN:\\S+$|^MUNA:\\S+$|^XLIM:\\S+$|^NAPA:\\S+$|^XHEL:\\S+$|^MHEU:\\S+$|^LIGA:\\S+$|^BOAL:\\S+$|^MBPL:\\S+$|^XICE:\\S+$|^AFSO:\\S+$|^KMUX:\\S+$|^ABSI:\\S+$|^OMEL:\\S+$|^GOVX:\\S+$|^SKBB:\\S+$|^XBOT:\\S+$|^VTX:\\S+$|^IMGB:\\S+$|^MSBI:\\S+$|^SPBE:\\S+$|^BOSP:\\S+$|^XTXE:\\S+$|^HBFR:\\S+$|^JEFX:\\S+$|^GFIB:\\S+$|^LIUH:\\S+$|^FSHX:\\S+$|^BTQE:\\S+$|^GBUL:\\S+$|^GSBE:\\S+$|^ICPM:\\S+$|^OTC:\\S+$|^XSWM:\\S+$|^EXSP:\\S+$|^STAN:\\S+$|^SSIL:\\S+$|^TPIR:\\S+$|^CMES:\\S+$|^XROT:\\S+$|^CRYD:\\S+$|^FISU:\\S+$|^XCFE:\\S+$|^MLSI:\\S+$|^SEMX:\\S+$|^XNEC:\\S+$|^GFSM:\\S+$|^CCEX:\\S+$|^TGSI:\\S+$|^AATS:\\S+$|^MSTX:\\S+$|^TNLA:\\S+$|^STUE:\\S+$|^SHAW:\\S+$|^GLPS:\\S+$|^KOTF:\\S+$|^BISI:\\S+$|^ESTO:\\S+$|^FXSW:\\S+$|^XCME:\\S+$|^XTK2:\\S+$|^PFTS:\\S+$|^BLKX:\\S+$|^PKOP:\\S+$|^PURE:\\S+$|^XUBS:\\S+$|^CPH:\\S+$|^XMRV:\\S+$|^ZARX:\\S+$|^IOTF:\\S+$|^XPSX:\\S+$|^BVMF:\\S+$|^XBLN:\\S+$|^CBAL:\\S+$|^BTLX:\\S+$|^TEFX:\\S+$|^MUFP:\\S+$|^CVE:\\S+$|^FSEF:\\S+$|^USWB:\\S+$|^NSPO:\\S+$|^NYPC:\\S+$|^CLVE:\\S+$|^CCEU:\\S+$|^BRNX:\\S+$|^XZAP:\\S+$|^DSTO:\\S+$|^XLJM:\\S+$|^XNYM:\\S+$|^BCRM:\\S+$|^SECF:\\S+$|^RR4G:\\S+$|^BSLB:\\S+$|^STOX:\\S+$|^XBAB:\\S+$|^CSCF:\\S+$|^XCHG:\\S+$|^VALX:\\S+$|^VCRS:\\S+$|^EQIE:\\S+$|^CIMA:\\S+$|^XSC1:\\S+$|^MTCH:\\S+$|^XBUD:\\S+$|^OTCN:\\S+$|^NESI:\\S+$|^EBSC:\\S+$|^ASPN:\\S+$|^TPIO:\\S+$|^TSIG:\\S+$|^BLUE:\\S+$|^IMFX:\\S+$|^ASXV:\\S+$|^EUWX:\\S+$|^XEQT:\\S+$|^XQOD:\\S+$|^UBSP:\\S+$|^LIQU:\\S+$|^EBRA:\\S+$|^TRAL:\\S+$|^TEMF:\\S+$|^IOMM:\\S+$|^ISSI:\\S+$|^IMCC:\\S+$|^PBUL:\\S+$|^EDGD:\\S+$|^RMMX:\\S+$|^VTEX:\\S+$|^HSTC:\\S+$|^HEL:\\S+$|^DBAG:\\S+$|^TGAT:\\S+$|^PXIL:\\S+$|^ICSH:\\S+$|^XIQS:\\S+$|^XKAR:\\S+$|^XNDU:\\S+$|^TPER:\\S+$|^XEUE:\\S+$|^XPHS:\\S+$|^XCAI:\\S+$|^XCIE:\\S+$|^CFIF:\\S+$|^XGEM:\\S+$|^NASX:\\S+$|^XNSE:\\S+$|^XBEY:\\S+$|^CFIL:\\S+$|^KBCB:\\S+$|^XPHX:\\S+$|^VCMO:\\S+$|^CITX:\\S+$|^IBUL:\\S+$|^XOFF:\\S+$|^HBPL:\\S+$|^IEBS:\\S+$|^VEGA:\\S+$|^SHA:\\S+$|^CGMA:\\S+$|^XLME:\\S+$|^EWRM:\\S+$|^BNPX:\\S+$|^SBAR:\\S+$|^WSIL:\\S+$|^XREP:\\S+$|^DKED:\\S+$|^XSTU:\\S+$|^GSXT:\\S+$|^FRA:\\S+$|^MSEL:\\S+$|^BGFU:\\S+$|^BPSX:\\S+$|^UBSY:\\S+$|^BIVA:\\S+$|^XGMX:\\S+$|^CIBC:\\S+$|^BATP:\\S+$|^ARCA:\\S+$|^LSE:\\S+$|^XLAT:\\S+$|^TWSE:\\S+$|^VWDX:\\S+$|^IFUS:\\S+$|^XFDA:\\S+$|^AWEX:\\S+$|^EBSF:\\S+$|^XSVA:\\S+$|^PINI:\\S+$|^XTAE:\\S+$|^BCFS:\\S+$|^TWHK:\\S+$|^XIEL:\\S+$|^PFXD:\\S+$|^SNSI:\\S+$|^CISD:\\S+$|^XCBT:\\S+$|^NASDAQ:\\S+$|^SZSE:\\S+$|^XCGS:\\S+$|^XNIM:\\S+$|^FINC:\\S+$|^XHAM:\\S+$|^BDEA:\\S+$|^OHVO:\\S+$|^EQOC:\\S+$|^BRDL:\\S+$|^XRMO:\\S+$|^ECGS:\\S+$|^EGSI:\\S+$|^STUF:\\S+$|^XPOW:\\S+$|^BRDS:\\S+$|^XVES:\\S+$|^XOAS:\\S+$|^RENC:\\S+$|^ITGI:\\S+$|^WBKP:\\S+$|^ISWP:\\S+$|^CHIJ:\\S+$|^ROTC:\\S+$|^ALXB:\\S+$|^BELF:\\S+$|^BRVM:\\S+$|^TLCM:\\S+$|^LXJP:\\S+$|^OPEX:\\S+$|^VTBC:\\S+$|^PLPD:\\S+$|^TSXV:\\S+$|^METZ:\\S+$|^CBNL:\\S+$|^AWBX:\\S+$|^EXPM:\\S+$|^MEMD:\\S+$|^KNCM:\\S+$|^CSSI:\\S+$|^BETP:\\S+$|^BCMA:\\S+$|^JPMI:\\S+$|^ATLB:\\S+$|^CFHK:\\S+$|^BBIS:\\S+$|^XBKF:\\S+$|^XVPB:\\S+$|^XBDA:\\S+$|^IKBS:\\S+$|^FNLT:\\S+$|^XLUX:\\S+$|^IMAG:\\S+$|^COAL:\\S+$|^MXLM:\\S+$|^XDPA:\\S+$|^MCXS:\\S+$|^XNXC:\\S+$|^CCLX:\\S+$|^ICE:\\S+$|^IFLX:\\S+$|^ZOBX:\\S+$|^CMEE:\\S+$|^ICOT:\\S+$|^PTPG:\\S+$|^PARK:\\S+$|^ASEF:\\S+$|^WELS:\\S+$|^IOCD:\\S+$|^CHID:\\S+$|^BCEE:\\S+$|^FCME:\\S+$|^BOSC:\\S+$|^DWSF:\\S+$|^FXOP:\\S+$|^IDX:\\S+$|^JPX:\\S+$|^XOAD:\\S+$|^AQXE:\\S+$|^NSEASI:\\S+$|^TRCX:\\S+$|^BVCC:\\S+$|^CBKC:\\S+$|^BATO:\\S+$|^CGMG:\\S+$|^TWGP:\\S+$|^BEIS:\\S+$|^XABC:\\S+$|^CLAU:\\S+$|^AMNL:\\S+$|^ODDO:\\S+$|^CXAN:\\S+$|^FAIR:\\S+$|^ADVT:\\S+$|^FXAL:\\S+$|^HNX:\\S+$|^TRU2:\\S+$|^XGTG:\\S+$|^BGCB:\\S+$|^IFEU:\\S+$|^CSOT:\\S+$|^CBKD:\\S+$|^XPOL:\\S+$|^YLDX:\\S+$|^XUKR:\\S+$|^XRSP:\\S+$|^ETSC:\\S+$|^CSTO:\\S+$|^CGMH:\\S+$|^MUTI:\\S+$|^XSFA:\\S+$|^EXSF:\\S+$|^ECAG:\\S+$|^PEPY:\\S+$|^BIDS:\\S+$|^XETW:\\S+$|^NDEX:\\S+$|^DICE:\\S+$|^IFLL:\\S+$|^DCSE:\\S+$|^SCXF:\\S+$|^ATHL:\\S+$|^XLUS:\\S+$|^XAPA:\\S+$|^NOWX:\\S+$|^CSEC:\\S+$|^FNIS:\\S+$|^SMBD:\\S+$|^XSIB:\\S+$|^DWFI:\\S+$|^MLRQ:\\S+$|^EMBX:\\S+$|^XTAL:\\S+$|^SZSC:\\S+$|^N2EX:\\S+$|^XHKG:\\S+$|^TERE:\\S+$|^PIEU:\\S+$|^GRIO:\\S+$|^BNLD:\\S+$|^XGSX:\\S+$|^SBIV:\\S+$|^XDEX:\\S+$|^XSTM:\\S+$|^XCAS:\\S+$|^UCDE:\\S+$|^CSCL:\\S+$|^TRU1:\\S+$|^XDSM:\\S+$|^BAJM:\\S+$|^AREX:\\S+$|^EQTA:\\S+$|^BMCM:\\S+$|^EXSH:\\S+$|^CONC:\\S+$|^RBCG:\\S+$|^TRQA:\\S+$|^XROX:\\S+$|^XLON:\\S+$|^XMTB:\\S+$|^FICX:\\S+$|^KRME:\\S+$|^XSSC:\\S+$|^IOGI:\\S+$|^CSLB:\\S+$|^XOSL:\\S+$|^TWJT:\\S+$|^GSCO:\\S+$|^SPEX:\\S+$|^BRIX:\\S+$|^XKFE:\\S+$|^SPTR:\\S+$|^NEON:\\S+$|^BSPL:\\S+$|^BOVM:\\S+$|^CAPI:\\S+$|^SWLT:\\S+$|^MLIX:\\S+$|^DSMD:\\S+$|^NLBX:\\S+$|^ODOC:\\S+$|^XJAM:\\S+$|^EXTR:\\S+$|^XNGS:\\S+$|^UBCZ:\\S+$|^CXOT:\\S+$|^XSSE:\\S+$|^DDTX:\\S+$|^TECO:\\S+$|^JNSI:\\S+$|^RSE:\\S+$|^ARKX:\\S+$|^CSIN:\\S+$|^XIMC:\\S+$|^CSE:\\S+$|^BIT:\\S+$|^GFPO:\\S+$|^MTXS:\\S+$|^JESI:\\S+$|^GLLC:\\S+$|^BALT:\\S+$|^AACA:\\S+$|^TPSL:\\S+$|^XLSM:\\S+$|^FINO:\\S+$|^DASH:\\S+$|^XEUM:\\S+$|^SIMD:\\S+$|^XVAL:\\S+$|^PUMA:\\S+$|^XMOS:\\S+$|^ICEO:\\S+$|^LBCW:\\S+$|^LEDG:\\S+$|^XATH:\\S+$|^OSLC:\\S+$|^XDRF:\\S+$|^EQSE:\\S+$|^BAPA:\\S+$|^MISX:\\S+$|^ENAX:\\S+$|^BKKT:\\S+$|^SPDX:\\S+$|^XAFX:\\S+$|^CGMI:\\S+$|^XSEB:\\S+$|^SBEX:\\S+$|^XMAE:\\S+$|^PRSE:\\S+$|^JPSI:\\S+$|^SPXE:\\S+$|^BAPX:\\S+$|^CLTD:\\S+$|^VFSI:\\S+$|^TSMR:\\S+$|^CELP:\\S+$|^MEMM:\\S+$|^BTFE:\\S+$|^AGBP:\\S+$|^CDED:\\S+$|^LBWL:\\S+$|^MASG:\\S+$|^XSTE:\\S+$|^MHEL:\\S+$|^RLBO:\\S+$|^BTBS:\\S+$|^IDXM:\\S+$|^ANTS:\\S+$|^JNST:\\S+$|^CGEB:\\S+$|^VPXB:\\S+$|^INCA:\\S+$|^HUPX:\\S+$|^XSCO:\\S+$|^XPUS:\\S+$|^DOWG:\\S+$|^NILX:\\S+$|^MSAL:\\S+$|^XPBT:\\S+$|^FRAS:\\S+$|^MABX:\\S+$|^XAMM:\\S+$|^WBCL:\\S+$|^EQOD:\\S+$|^GFAM:\\S+$|^XECC:\\S+$|^XTSE:\\S+$|^CCMX:\\S+$|^NEOE:\\S+$|^DKFI:\\S+$|^XBRM:\\S+$|^IMTF:\\S+$|^HESP:\\S+$|^NOSC:\\S+$|^VIRT:\\S+$|^XBIL:\\S+$|^NMCE:\\S+$|^MUSE:\\S+$|^STUB:\\S+$|^XCXD:\\S+$|^VFXO:\\S+$|^XFRA:\\S+$|^BNYC:\\S+$|^XCBF:\\S+$|^BCSL:\\S+$|^WQXL:\\S+$|^TDGF:\\S+$|^HAMB:\\S+$|^XSBI:\\S+$|^EDRF:\\S+$|^NOSI:\\S+$|^XMAL:\\S+$|^PATF:\\S+$|^TRDX:\\S+$|^IMRD:\\S+$|^XNAI:\\S+$|^CURX:\\S+$|^MIDC:\\S+$|^XTK3:\\S+$|^XTSX:\\S+$|^BATE:\\S+$|^AAPA:\\S+$|^MUBP:\\S+$|^XADE:\\S+$|^CBKF:\\S+$|^ECHO:\\S+$|^IMCO:\\S+$|^HPPO:\\S+$|^BNPF:\\S+$|^KBLS:\\S+$|^ALSI:\\S+$|^XMNX:\\S+$|^HRFQ:\\S+$|^AFSI:\\S+$|^XSAT:\\S+$|^FXCM:\\S+$|^NEXS:\\S+$|^AUTB:\\S+$|^KBLM:\\S+$|^CBKA:\\S+$|^A2XX:\\S+$|^EMTF:\\S+$|^FNIX:\\S+$|^XHNX:\\S+$|^XUGA:\\S+$|^XAMS:\\S+$|^XIBE:\\S+$|^NLPX:\\S+$|^TSEF:\\S+$|^HEDE:\\S+$|^APXL:\\S+$|^XSTX:\\S+$|^FNFT:\\S+$|^PUND:\\S+$|^SCXM:\\S+$|^SECD:\\S+$|^XCSX:\\S+$|^SQUA:\\S+$|^XCAL:\\S+$|^HOTC:\\S+$|^ALXP:\\S+$|^TERM:\\S+$|^DNSE:\\S+$|^XIOM:\\S+$|^CIMD:\\S+$|^SMBG:\\S+$|^BOM:\\S+$|^VFMI:\\S+$|^CANX:\\S+$|^TRQB:\\S+$|^XETV:\\S+$|^IMCS:\\S+$|^BMLI:\\S+$|^HPCS:\\S+$|^DOWM:\\S+$|^BSEX:\\S+$|^SIBC:\\S+$|^SPEC:\\S+$|^ICUR:\\S+$|^XLGT:\\S+$|^ENXL:\\S+$|^AFEX:\\S+$|^BLTD:\\S+$|^XCAN:\\S+$|^TREO:\\S+$|^HPCO:\\S+$|^EGMT:\\S+$|^OLBB:\\S+$|^GFBM:\\S+$|^UBSS:\\S+$|^WABR:\\S+$|^UFEX:\\S+$|^NWMS:\\S+$|^TQEX:\\S+$|^NATX:\\S+$|^CLHK:\\S+$|^NASD:\\S+$|^G1XX:\\S+$|^EIXE:\\S+$|^MHBL:\\S+$|^GFOX:\\S+$|^EQTD:\\S+$|^IUOB:\\S+$|^XRMZ:\\S+$|^XNMS:\\S+$|^XNEP:\\S+$|^WBDM:\\S+$|^DBOX:\\S+$|^CEUD:\\S+$|^XSAU:\\S+$|^FREX:\\S+$|^BASP:\\S+$|^BAPE:\\S+$|^XECS:\\S+$|^GSAL:\\S+$|^EXGM:\\S+$|^BMEX:\\S+$|^NYFX:\\S+$|^JPMX:\\S+$|^MATX:\\S+$|^GFIC:\\S+$|^CCFX:\\S+$|^OTCQ:\\S+$|^XDNB:\\S+$|^EXAA:\\S+$|^NDCM:\\S+$|^PINX:\\S+$|^CAVE:\\S+$|^COMG:\\S+$|^CODA:\\S+$|^XSFE:\\S+$|^SWAP:\\S+$|^SMFE:\\S+$|^IFAD:\\S+$|^EPEX:\\S+$|^XBVC:\\S+$|^CGMT:\\S+$|^BNTW:\\S+$|^HMTF:\\S+$|^XTRN:\\S+$|^NPGA:\\S+$|^XALS:\\S+$|^ITGL:\\S+$|^HCHC:\\S+$|^BSME:\\S+$|^FTFM:\\S+$|^IFLO:\\S+$|^XBUE:\\S+$|^XNOM:\\S+$|^DOTS:\\S+$|^TSMM:\\S+$|^XCAY:\\S+$|^BOVA:\\S+$|^XMFX:\\S+$|^LUXSE:\\S+$|^XSGA:\\S+$|^XJSE:\\S+$|^MARF:\\S+$|^XEER:\\S+$|^PIPR:\\S+$|^HAML:\\S+$|^GSEF:\\S+$|^RPWC:\\S+$|^SHE:\\S+$|^ISDA:\\S+$|^XERT:\\S+$|^BBVA:\\S+$|^FBSI:\\S+$|^KOSDAQ:\\S+$|^XSTP:\\S+$|^XKRX:\\S+$|^XSCU:\\S+$|^CFJP:\\S+$|^BBIE:\\S+$|^XMEV:\\S+$|^XISE:\\S+$|^XSAM:\\S+$|^LASF:\\S+$|^XQMH:\\S+$|^KNIG:\\S+$|^IMMM:\\S+$|^XKFB:\\S+$|^IMGI:\\S+$|^BGLU:\\S+$|^XSGB:\\S+$|^SHAD:\\S+$|^MAQJ:\\S+$|^BMV:\\S+$|^XALG:\\S+$|^ECAL:\\S+$|^XMAT:\\S+$|^SGOE:\\S+$|^AURO:\\S+$|^TPIC:\\S+$|^SIGH:\\S+$|^FICO:\\S+$|^XUSE:\\S+$|^XTRZ:\\S+$|^SSBT:\\S+$|^XASX:\\S+$|^XBLB:\\S+$|^GFBO:\\S+$|^MOEX:\\S+$|^CGTR:\\S+$|^BARO:\\S+$|^TWSG:\\S+$|^OTCE:\\S+$|^OPRA:\\S+$|^PDEX:\\S+$|^BNDD:\\S+$|^ICSZ:\\S+$|^EQTC:\\S+$|^GSXL:\\S+$|^PINL:\\S+$|^EBSN:\\S+$|^XKAC:\\S+$|^SGMU:\\S+$|^MFXR:\\S+$|^XSC2:\\S+$|^XMNT:\\S+$|^SEED:\\S+$|^IOIR:\\S+$|^XLAO:\\S+$|^CSEU:\\S+$|^DBMO:\\S+$|^MTSO:\\S+$|^NXUS:\\S+$|^UCBA:\\S+$|^XCYO:\\S+$|^RTSI:\\S+$|^XNZE:\\S+$|^SWX:\\S+$|^MAQX:\\S+$|^RPDX:\\S+$|^TRAX:\\S+$|^SGMW:\\S+$|^XOSA:\\S+$|^XOAA:\\S+$|^4AXE:\\S+$|^XRFQ:\\S+$|^MCXX:\\S+$|^FMTS:\\S+$|^HEGX:\\S+$|^LOUI:\\S+$|^GXMA:\\S+$|^FLTB:\\S+$|^XINV:\\S+$|^IBAL:\\S+$|^XNAF:\\S+$|^XMPW:\\S+$|^OTPB:\\S+$|^CBOE:\\S+$|^XGCL:\\S+$|^BMLS:\\S+$|^ISWN:\\S+$|^UBSC:\\S+$|^PINC:\\S+$|^SWBI:\\S+$|^ABNC:\\S+$|^XMAD:\\S+$|^XDFB:\\S+$|^OCSI:\\S+$|^CSJP:\\S+$|^XICX:\\S+$|^XEUC:\\S+$|^CPTX:\\S+$|^ISWC:\\S+$|^XPUK:\\S+$|^GTSX:\\S+$|^XDUS:\\S+$|^ZAPA:\\S+$|^XDSE:\\S+$|^BEUO:\\S+$|^PPEX:\\S+$|^LBCM:\\S+$|^SEBL:\\S+$|^DIFX:\\S+$|^XBAH:\\S+$|^TSED:\\S+$|^LOYD:\\S+$|^JPBX:\\S+$|^XMTS:\\S+$|^MIVX:\\S+$|^XNAM:\\S+$|^CSAS:\\S+$|^IMED:\\S+$|^NWNV:\\S+$|^CXAW:\\S+$|^TERA:\\S+$|^ICSU:\\S+$|^XGAS:\\S+$|^IOED:\\S+$|^BLBB:\\S+$|^MKAA:\\S+$|^MTSF:\\S+$|^AFDL:\\S+$|^SSE:\\S+$|^IFSG:\\S+$|^GMES:\\S+$|^XOPV:\\S+$|^BETX:\\S+$|^ROFX:\\S+$|^IFLS:\\S+$|^XMGE:\\S+$|^NFSA:\\S+$|^ICTW:\\S+$|^HSBT:\\S+$|^XPRI:\\S+$|^CCXE:\\S+$|^XTK1:\\S+$|^ICKR:\\S+$|^GSXK:\\S+$|^CSMD:\\S+$|^BLXA:\\S+$|^DVFX:\\S+$|^MLVX:\\S+$|^XPRM:\\S+$|^BKDM:\\S+$|^XPAR:\\S+$|^FTUS:\\S+$|^CGIT:\\S+$|^GSXC:\\S+$|^XEEE:\\S+$|^XSCE:\\S+$|^CCMS:\\S+$|^JPMS:\\S+$|^JSES:\\S+$|^RBSX:\\S+$|^XCET:\\S+$|^XBKK:\\S+$|^COMM:\\S+$|^HAMA:\\S+$|^XETF:\\S+$|^SMBB:\\S+$|^CBLC:\\S+$|^MSMS:\\S+$|^RICX:\\S+$|^BASE:\\S+$|^WETP:\\S+$|^CGQT:\\S+$|^ABFI:\\S+$|^MSCO:\\S+$|^XRBM:\\S+$|^BIST:\\S+$|^XOSJ:\\S+$|^BPLC:\\S+$|^UKEX:\\S+$|^SCOT:\\S+$|^BDSK:\\S+$|^DEXE:\\S+$|^MKTF:\\S+$|^FXRQ:\\S+$|^ANZL:\\S+$|^TPSV:\\S+$|^ZFXM:\\S+$|^IMBD:\\S+$|^INGB:\\S+$|^CHIO:\\S+$|^XBND:\\S+$|^SOHO:\\S+$|^TRSI:\\S+$|^TQEB:\\S+$|^XUAX:\\S+$|^CRED:\\S+$|^CGMC:\\S+$|^SIX:\\S+$|^DBLX:\\S+$|^TWEM:\\S+$|^WOOD:\\S+$|^DSME:\\S+$|^BAJD:\\S+$|^CGQD:\\S+$|^STUD:\\S+$|^AMPX:\\S+$|^CITD:\\S+$|^MTXA:\\S+$|^EXSD:\\S+$|^GSXH:\\S+$|^EDDP:\\S+$|^LQED:\\S+$|^NEXD:\\S+$|^IMSB:\\S+$|^ELSE:\\S+$|^EQLD:\\S+$|^ELUK:\\S+$|^INVE:\\S+$|^DASI:\\S+$|^GETB:\\S+$|^XNSA:\\S+$|^TRQC:\\S+$|^XTKS:\\S+$|^SGA2:\\S+$|^XIMM:\\S+$|^SMBP:\\S+$|^OTXB:\\S+$|^ETR:\\S+$|^NFSD:\\S+$|^NEXG:\\S+$|^CSAG:\\S+$|^BGCF:\\S+$|^XNXD:\\S+$|^XGAT:\\S+$|^IPXW:\\S+$|^CSHK:\\S+$|^BNPP:\\S+$|^CASI:\\S+$|^MESI:\\S+$|^BFEX:\\S+$|^HKEX:\\S+$|^PUMX:\\S+$|^XBDV:\\S+$|^LAMP:\\S+$|^ICRO:\\S+$|^LEUF:\\S+$|^WELN:\\S+$|^UCHU:\\S+$|^FXCL:\\S+$|^FINN:\\S+$|^GSCI:\\S+$|^CGEE:\\S+$|^BCDX:\\S+$|^XMER:\\S+$|^XKEM:\\S+$|^XIMA:\\S+$|^PIPE:\\S+$|^CSGI:\\S+$|^LIQH:\\S+$|^XBRT:\\S+$|^XSAF:\\S+$|^BVUR:\\S+$|^BOSD:\\S+$|^SPRZ:\\S+$|^BUX:\\S+$|^MVCX:\\S+$|^CXAF:\\S+$|^PIRM:\\S+$|^LMAO:\\S+$|^XCRO:\\S+$|^IBEQ:\\S+$|^IFXR:\\S+$|^XSEF:\\S+$|^EXDC:\\S+$|^XTRD:\\S+$|^GSEI:\\S+$|^CMCI:\\S+$|^XQUI:\\S+$|^MCAD:\\S+$|^KELR:\\S+$|^XADF:\\S+$|^MUNB:\\S+$|^SEND:\\S+$|^CGMX:\\S+$|^LIUS:\\S+$|^EXOR:\\S+$|^XPTY:\\S+$|^LON:\\S+$|^XBVR:\\S+$|^BKBF:\\S+$|^GMGL:\\S+$|^XNYS:\\S+$|^BFPT:\\S+$|^YKNA:\\S+$|^CBKG:\\S+$|^HKG:\\S+$|^MAQH:\\S+$|^TFSU:\\S+$|^XTFF:\\S+$|^XEUP:\\S+$|^XULA:\\S+$|^HEMO:\\S+$|^XKCM:\\S+$|^CAPL:\\S+$|^XCHI:\\S+$|^ETLX:\\S+$|^XDMI:\\S+$|^JBUL:\\S+$|^BERA:\\S+$|^MAEL:\\S+$|^IECL:\\S+$|^CEPU:\\S+$|^OOTC:\\S+$|^SIGJ:\\S+$|^BTRL:\\S+$|^VIE:\\S+$|^BCMM:\\S+$|^TQEA:\\S+$|^KOME:\\S+$|^VONT:\\S+$|^SSFX:\\S+$|^MERK:\\S+$|^CIMB:\\S+$|^EOTC:\\S+$|^TREU:\\S+$|^XPHO:\\S+$|^JSSI:\\S+$|^NOED:\\S+$|^TRAI:\\S+$|^DUSA:\\S+$|^VFIL:\\S+$|^KLEU:\\S+$|^NXVW:\\S+$|^XIST:\\S+$|^SSBI:\\S+$|^UBSA:\\S+$|^EBSO:\\S+$|^ARCD:\\S+$|^RESF:\\S+$|^OTCM:\\S+$|^FREI:\\S+$|^TOWR:\\S+$|^MLXB:\\S+$|^ICBX:\\S+$|^CDSI:\\S+$|^SKSI:\\S+$|^FNEE:\\S+$|^EXSE:\\S+$|^IMEQ:\\S+$|^XSGE:\\S+$|^TPE:\\S+$|^CRYX:\\S+$|^XBCX:\\S+$|^BCSI:\\S+$|^XFCI:\\S+$|^CIME:\\S+$)$",
             "title": "Ticker"
           },
           "number_of_employees_range": {
@@ -7794,7 +8810,13 @@
               "type": "string"
             },
             "type": "array",
-            "title": "Values"
+            "maxItems": 300,
+            "title": "Job Titles",
+            "description": "List of job titles to filter by. Maximum 300 items allowed.",
+            "example": [
+              "Software Engineer",
+              "Data Scientist"
+            ]
           },
           "include_related_job_titles": {
             "type": "boolean",
@@ -8071,7 +9093,6 @@
           },
           "ticker": {
             "type": "string",
-            "pattern": "(?i)^(^XMAI:\\S+$|^XBOM:\\S+$|^BTAM:\\S+$|^FISH:\\S+$|^TUOB:\\S+$|^UBIN:\\S+$|^AIXK:\\S+$|^XMOT:\\S+$|^EXEU:\\S+$|^NBOT:\\S+$|^EBON:\\S+$|^BTEQ:\\S+$|^SGMV:\\S+$|^IMET:\\S+$|^EMLD:\\S+$|^TWJP:\\S+$|^XETU:\\S+$|^SBIJ:\\S+$|^LASP:\\S+$|^MUBL:\\S+$|^TREA:\\S+$|^EXSB:\\S+$|^XBOL:\\S+$|^XLLB:\\S+$|^XMIO:\\S+$|^FRAU:\\S+$|^BLBF:\\S+$|^CESI:\\S+$|^LISZ:\\S+$|^BLOX:\\S+$|^STFL:\\S+$|^BGCO:\\S+$|^JEFS:\\S+$|^XNLI:\\S+$|^ELXE:\\S+$|^VTPS:\\S+$|^XRUS:\\S+$|^ERBX:\\S+$|^XMAB:\\S+$|^SCXS:\\S+$|^XGSE:\\S+$|^FRAA:\\S+$|^CFTW:\\S+$|^XKLS:\\S+$|^FNCS:\\S+$|^ULTX:\\S+$|^LTAA:\\S+$|^XLFX:\\S+$|^ELNO:\\S+$|^NEXX:\\S+$|^XSHE:\\S+$|^MCUR:\\S+$|^XPOR:\\S+$|^KLSH:\\S+$|^ENCL:\\S+$|^GMNI:\\S+$|^XFKA:\\S+$|^MSIP:\\S+$|^XDFM:\\S+$|^IBIS:\\S+$|^XETR:\\S+$|^OMGA:\\S+$|^XJPX:\\S+$|^DBAB:\\S+$|^MTSC:\\S+$|^XEHQ:\\S+$|^REST:\\S+$|^CECS:\\S+$|^FTFS:\\S+$|^UKCA:\\S+$|^LCHC:\\S+$|^ACEX:\\S+$|^UBEC:\\S+$|^IMMH:\\S+$|^CIBP:\\S+$|^MTUS:\\S+$|^PSXD:\\S+$|^BILT:\\S+$|^BMTS:\\S+$|^ABAN:\\S+$|^BOAT:\\S+$|^NSE:\\S+$|^GLMX:\\S+$|^LTSE:\\S+$|^XKBT:\\S+$|^NYSEARCA:\\S+$|^FRAV:\\S+$|^XSOP:\\S+$|^SNUK:\\S+$|^MAKX:\\S+$|^BMCL:\\S+$|^SKYX:\\S+$|^POSE:\\S+$|^EPA:\\S+$|^TSCD:\\S+$|^ASXB:\\S+$|^ELEU:\\S+$|^DEAL:\\S+$|^TNLK:\\S+$|^IFCA:\\S+$|^SELC:\\S+$|^SSEX:\\S+$|^XMOD:\\S+$|^XSEC:\\S+$|^EPRD:\\S+$|^XTEH:\\S+$|^SB1M:\\S+$|^LIFI:\\S+$|^TCDS:\\S+$|^STO:\\S+$|^MHIP:\\S+$|^BCBA:\\S+$|^XDCE:\\S+$|^PSGM:\\S+$|^RMMS:\\S+$|^AURB:\\S+$|^XPXE:\\S+$|^TSGI:\\S+$|^MUNC:\\S+$|^DHLX:\\S+$|^GMGD:\\S+$|^TEGB:\\S+$|^OPCO:\\S+$|^IOGB:\\S+$|^AQED:\\S+$|^XOTP:\\S+$|^FNFI:\\S+$|^WFSE:\\S+$|^GRIF:\\S+$|^ELI:\\S+$|^FNSE:\\S+$|^VSE:\\S+$|^BART:\\S+$|^NORD:\\S+$|^NIBR:\\S+$|^CCO2:\\S+$|^BACR:\\S+$|^GSSI:\\S+$|^NSME:\\S+$|^MNDK:\\S+$|^SEDC:\\S+$|^NEXN:\\S+$|^KAZE:\\S+$|^XBAA:\\S+$|^XWBO:\\S+$|^XHNF:\\S+$|^BERB:\\S+$|^DUSB:\\S+$|^FINR:\\S+$|^GEMX:\\S+$|^DBES:\\S+$|^XDES:\\S+$|^BUYN:\\S+$|^STRM:\\S+$|^MALM:\\S+$|^FWB:\\S+$|^XTUC:\\S+$|^BARK:\\S+$|^XYIE:\\S+$|^KLSE:\\S+$|^TEMR:\\S+$|^IMFD:\\S+$|^CEUO:\\S+$|^MLCO:\\S+$|^NOFF:\\S+$|^TMID:\\S+$|^WIPO:\\S+$|^BGSI:\\S+$|^XERE:\\S+$|^XBTR:\\S+$|^OLLC:\\S+$|^XDAR:\\S+$|^HANA:\\S+$|^IPXP:\\S+$|^XETS:\\S+$|^NOTC:\\S+$|^LMAE:\\S+$|^XBCV:\\S+$|^BANA:\\S+$|^BASX:\\S+$|^XRAS:\\S+$|^EPRL:\\S+$|^EXSI:\\S+$|^GFSO:\\S+$|^CLCH:\\S+$|^XATL:\\S+$|^EBMX:\\S+$|^NYSE:\\S+$|^KRX:\\S+$|^XTXD:\\S+$|^BRED:\\S+$|^NEXO:\\S+$|^BGFX:\\S+$|^EDGO:\\S+$|^AMEX:\\S+$|^NEXT:\\S+$|^MFGL:\\S+$|^PFTQ:\\S+$|^CHEV:\\S+$|^XSWA:\\S+$|^QWIX:\\S+$|^HELA:\\S+$|^BATY:\\S+$|^EESE:\\S+$|^LELE:\\S+$|^GREE:\\S+$|^DRCT:\\S+$|^LMNX:\\S+$|^FSX:\\S+$|^IMCG:\\S+$|^NSXB:\\S+$|^BEAM:\\S+$|^CGGD:\\S+$|^XSPM:\\S+$|^XCUR:\\S+$|^FNUK:\\S+$|^NMRA:\\S+$|^XKAZ:\\S+$|^ALXL:\\S+$|^XEEO:\\S+$|^EDGX:\\S+$|^INGW:\\S+$|^CFIC:\\S+$|^GPBC:\\S+$|^XBBK:\\S+$|^PVMF:\\S+$|^MERD:\\S+$|^UBIS:\\S+$|^EEAL:\\S+$|^SYFX:\\S+$|^KNEM:\\S+$|^ISWE:\\S+$|^TSCB:\\S+$|^BTQG:\\S+$|^IBGH:\\S+$|^XLQC:\\S+$|^MNSE:\\S+$|^IEPA:\\S+$|^MTAA:\\S+$|^RCMA:\\S+$|^CXAM:\\S+$|^BGCD:\\S+$|^LSSI:\\S+$|^GSIL:\\S+$|^LBBW:\\S+$|^ASXP:\\S+$|^TPEO:\\S+$|^XDHA:\\S+$|^XFEX:\\S+$|^TRCK:\\S+$|^ROCO:\\S+$|^HANB:\\S+$|^NBLX:\\S+$|^CIMV:\\S+$|^XIDX:\\S+$|^ZSE:\\S+$|^BTEE:\\S+$|^XMEX:\\S+$|^VNDM:\\S+$|^BHSF:\\S+$|^IEXG:\\S+$|^TSAF:\\S+$|^MUND:\\S+$|^XSAP:\\S+$|^IMIR:\\S+$|^360T:\\S+$|^XGRM:\\S+$|^BACE:\\S+$|^CABV:\\S+$|^OMIP:\\S+$|^XASE:\\S+$|^JISI:\\S+$|^XNGO:\\S+$|^UBSB:\\S+$|^BNPA:\\S+$|^CIOI:\\S+$|^EBHU:\\S+$|^BERC:\\S+$|^COHR:\\S+$|^XQTX:\\S+$|^NZX:\\S+$|^EQSL:\\S+$|^TRDE:\\S+$|^OTCB:\\S+$|^ISWT:\\S+$|^CHIS:\\S+$|^CAPA:\\S+$|^BME:\\S+$|^MFXA:\\S+$|^WIND:\\S+$|^MTAH:\\S+$|^KBLT:\\S+$|^TFSA:\\S+$|^NODX:\\S+$|^BAEP:\\S+$|^AQXA:\\S+$|^TPEL:\\S+$|^ZODM:\\S+$|^XESM:\\S+$|^CAES:\\S+$|^LQFI:\\S+$|^JBSI:\\S+$|^VMFX:\\S+$|^STFX:\\S+$|^XISX:\\S+$|^XMSM:\\S+$|^GTXS:\\S+$|^XEUI:\\S+$|^XABG:\\S+$|^XTXM:\\S+$|^SECC:\\S+$|^TRQX:\\S+$|^TASE:\\S+$|^CSOB:\\S+$|^XIHK:\\S+$|^NYSI:\\S+$|^VABD:\\S+$|^ASEX:\\S+$|^XSES:\\S+$|^SWLV:\\S+$|^XOSD:\\S+$|^MUDX:\\S+$|^CMEC:\\S+$|^XRIS:\\S+$|^UKRE:\\S+$|^NIBC:\\S+$|^XTND:\\S+$|^FXGB:\\S+$|^CEDX:\\S+$|^XMIL:\\S+$|^LMAF:\\S+$|^ROSR:\\S+$|^CPGX:\\S+$|^CLJP:\\S+$|^SGMT:\\S+$|^3579:\\S+$|^RMTF:\\S+$|^SHAR:\\S+$|^ASPI:\\S+$|^XPHL:\\S+$|^ALLT:\\S+$|^ALDP:\\S+$|^BRFQ:\\S+$|^LBWS:\\S+$|^XCOL:\\S+$|^GSIB:\\S+$|^RTSL:\\S+$|^DNFI:\\S+$|^XMAN:\\S+$|^CSEALL:\\S+$|^LEUE:\\S+$|^MANL:\\S+$|^GLPX:\\S+$|^XGCX:\\S+$|^BNPL:\\S+$|^CDSL:\\S+$|^AMLG:\\S+$|^FSME:\\S+$|^WINX:\\S+$|^XHAN:\\S+$|^SEPE:\\S+$|^CMET:\\S+$|^IFXA:\\S+$|^XSDX:\\S+$|^MPRL:\\S+$|^XBCC:\\S+$|^EMID:\\S+$|^OSSG:\\S+$|^JYSI:\\S+$|^SSOB:\\S+$|^XARM:\\S+$|^BEEX:\\S+$|^XECM:\\S+$|^MSTO:\\S+$|^ICXL:\\S+$|^MOSE:\\S+$|^MALX:\\S+$|^XBSE:\\S+$|^AMS:\\S+$|^DUSD:\\S+$|^XNGM:\\S+$|^CEUX:\\S+$|^SANT:\\S+$|^OTCI:\\S+$|^XMSW:\\S+$|^ECEU:\\S+$|^CGND:\\S+$|^TWEO:\\S+$|^XGME:\\S+$|^SWEE:\\S+$|^CXAP:\\S+$|^XCUE:\\S+$|^IMEX:\\S+$|^LISX:\\S+$|^NZE:\\S+$|^XCDE:\\S+$|^EMDR:\\S+$|^BTNL:\\S+$|^XLBM:\\S+$|^ISWA:\\S+$|^IOFI:\\S+$|^MTSB:\\S+$|^STUA:\\S+$|^RTSX:\\S+$|^TMEX:\\S+$|^UICE:\\S+$|^XTIR:\\S+$|^BLIQ:\\S+$|^MESQ:\\S+$|^CECA:\\S+$|^MOCX:\\S+$|^NCME:\\S+$|^BATF:\\S+$|^XEID:\\S+$|^CXAC:\\S+$|^HRTF:\\S+$|^MATN:\\S+$|^UGEN:\\S+$|^BCSE:\\S+$|^NABU:\\S+$|^GMEG:\\S+$|^SVEX:\\S+$|^GLOM:\\S+$|^MKAP:\\S+$|^MSEU:\\S+$|^ACKF:\\S+$|^RBCT:\\S+$|^OMIC:\\S+$|^TOCP:\\S+$|^XSCA:\\S+$|^XCIS:\\S+$|^CMAP:\\S+$|^AQUA:\\S+$|^JPCB:\\S+$|^LYNX:\\S+$|^CGML:\\S+$|^MSPL:\\S+$|^AKIS:\\S+$|^MUBM:\\S+$|^XEBI:\\S+$|^MLEX:\\S+$|^XALT:\\S+$|^SBSI:\\S+$|^CSZH:\\S+$|^BOTC:\\S+$|^XUMP:\\S+$|^R5FX:\\S+$|^XSC3:\\S+$|^RBSI:\\S+$|^ESLO:\\S+$|^EBSS:\\S+$|^TSBX:\\S+$|^CFAU:\\S+$|^NYMS:\\S+$|^SEDX:\\S+$|^XIPO:\\S+$|^XOSE:\\S+$|^BINV:\\S+$|^JEFE:\\S+$|^XNKS:\\S+$|^GSPL:\\S+$|^BKSK:\\S+$|^ODXE:\\S+$|^XOSC:\\S+$|^XMUS:\\S+$|^RABO:\\S+$|^BLBS:\\S+$|^XNYL:\\S+$|^BPKO:\\S+$|^BVUS:\\S+$|^VIUK:\\S+$|^OTCX:\\S+$|^MFOX:\\S+$|^IMCE:\\S+$|^EUWA:\\S+$|^FRTE:\\S+$|^DNDK:\\S+$|^IOTC:\\S+$|^ENSL:\\S+$|^BMEA:\\S+$|^ASXC:\\S+$|^ISWR:\\S+$|^XBCM:\\S+$|^TBSP:\\S+$|^NZFX:\\S+$|^XISA:\\S+$|^BHWA:\\S+$|^KHHU:\\S+$|^DGCX:\\S+$|^ISWO:\\S+$|^XODE:\\S+$|^PAVE:\\S+$|^NPEX:\\S+$|^HPCV:\\S+$|^XNCM:\\S+$|^XATS:\\S+$|^TWSF:\\S+$|^EQUS:\\S+$|^APCL:\\S+$|^BSAB:\\S+$|^EXCP:\\S+$|^BEBG:\\S+$|^XLIS:\\S+$|^ARCO:\\S+$|^CATS:\\S+$|^EQOS:\\S+$|^CLMX:\\S+$|^BATD:\\S+$|^XJNB:\\S+$|^BCXE:\\S+$|^XSTO:\\S+$|^IMCT:\\S+$|^JSER:\\S+$|^LIQF:\\S+$|^XOAM:\\S+$|^XPOT:\\S+$|^SVXI:\\S+$|^NMTF:\\S+$|^XBRN:\\S+$|^XJAS:\\S+$|^CGMD:\\S+$|^BGUK:\\S+$|^CLST:\\S+$|^ENMS:\\S+$|^XVIE:\\S+$|^XEQY:\\S+$|^CXAQ:\\S+$|^SMBE:\\S+$|^XTAF:\\S+$|^VLEX:\\S+$|^EDBT:\\S+$|^MEMX:\\S+$|^XPRA:\\S+$|^EXSY:\\S+$|^HGSP:\\S+$|^EUCC:\\S+$|^XRPM:\\S+$|^JPEU:\\S+$|^TSAD:\\S+$|^BARD:\\S+$|^XGUA:\\S+$|^NABE:\\S+$|^BSTX:\\S+$|^STUC:\\S+$|^XBOS:\\S+$|^HREU:\\S+$|^JLEU:\\S+$|^XLCH:\\S+$|^CGXS:\\S+$|^TRUK:\\S+$|^AFET:\\S+$|^NABA:\\S+$|^GSPX:\\S+$|^XBES:\\S+$|^CEPL:\\S+$|^BOFS:\\S+$|^RTSP:\\S+$|^BLEQ:\\S+$|^XMUN:\\S+$|^BILU:\\S+$|^XKCE:\\S+$|^RBCC:\\S+$|^BLUX:\\S+$|^AQEU:\\S+$|^WFLB:\\S+$|^XBRD:\\S+$|^PROS:\\S+$|^BNSX:\\S+$|^VTLS:\\S+$|^PEPH:\\S+$|^BTEC:\\S+$|^ECSL:\\S+$|^MAXD:\\S+$|^XCYS:\\S+$|^MNIS:\\S+$|^PSE:\\S+$|^XNDQ:\\S+$|^LOTC:\\S+$|^HSFX:\\S+$|^PEEL:\\S+$|^FXPS:\\S+$|^XVPA:\\S+$|^XPOM:\\S+$|^SGMX:\\S+$|^MLES:\\S+$|^AFSL:\\S+$|^FRAB:\\S+$|^BNPS:\\S+$|^TRPX:\\S+$|^MAQU:\\S+$|^RBCE:\\S+$|^ZERO:\\S+$|^LATG:\\S+$|^XBVM:\\S+$|^NXEU:\\S+$|^XDUB:\\S+$|^CCRM:\\S+$|^CXAV:\\S+$|^JSE:\\S+$|^SGAS:\\S+$|^NGXC:\\S+$|^GROW:\\S+$|^IFXC:\\S+$|^NAMX:\\S+$|^TEMM:\\S+$|^TRAS:\\S+$|^CNSX:\\S+$|^XPAE:\\S+$|^TEMI:\\S+$|^TPSE:\\S+$|^GMEO:\\S+$|^TEUR:\\S+$|^INGE:\\S+$|^XTKT:\\S+$|^XTAM:\\S+$|^TEMB:\\S+$|^XSIM:\\S+$|^XKUW:\\S+$|^SPIM:\\S+$|^UKOR:\\S+$|^MAGM:\\S+$|^UTSL:\\S+$|^XPAL:\\S+$|^LMAD:\\S+$|^CAVD:\\S+$|^SUNT:\\S+$|^HRSI:\\S+$|^DOSE:\\S+$|^HSXA:\\S+$|^IMCR:\\S+$|^DAVY:\\S+$|^ASE:\\S+$|^BEUT:\\S+$|^BLEV:\\S+$|^IMEN:\\S+$|^SGMA:\\S+$|^MCSE:\\S+$|^AFSA:\\S+$|^UCBG:\\S+$|^XBIS:\\S+$|^MERF:\\S+$|^XLOD:\\S+$|^BPOL:\\S+$|^NEOC:\\S+$|^BLNK:\\S+$|^UKGD:\\S+$|^DZBK:\\S+$|^GLBX:\\S+$|^TWEA:\\S+$|^MLER:\\S+$|^HCER:\\S+$|^MCID:\\S+$|^BMTF:\\S+$|^OTPR:\\S+$|^IATS:\\S+$|^MDRV:\\S+$|^XAQS:\\S+$|^DCSX:\\S+$|^EDGL:\\S+$|^NXSE:\\S+$|^APAW:\\S+$|^ABXX:\\S+$|^BKK:\\S+$|^ISWB:\\S+$|^XSWB:\\S+$|^HAMN:\\S+$|^MAQL:\\S+$|^RBHU:\\S+$|^SIDX:\\S+$|^SEBA:\\S+$|^CALH:\\S+$|^BBSF:\\S+$|^BELB:\\S+$|^XBXO:\\S+$|^EBXV:\\S+$|^XKIS:\\S+$|^FLTR:\\S+$|^XNOR:\\S+$|^TRQM:\\S+$|^ISEX:\\S+$|^MUSN:\\S+$|^CFBC:\\S+$|^XSPS:\\S+$|^CXAR:\\S+$|^DBHK:\\S+$|^NCML:\\S+$|^SIMV:\\S+$|^BLTX:\\S+$|^MIHI:\\S+$|^NYSD:\\S+$|^IBEX:\\S+$|^XEBS:\\S+$|^AFSX:\\S+$|^NEXL:\\S+$|^XHKF:\\S+$|^DOWE:\\S+$|^XMVL:\\S+$|^INGF:\\S+$|^TAL:\\S+$|^AUTX:\\S+$|^IVZX:\\S+$|^SBIU:\\S+$|^SGX:\\S+$|^ICEL:\\S+$|^FNDK:\\S+$|^IFEN:\\S+$|^TSX:\\S+$|^RSEX:\\S+$|^SSME:\\S+$|^EXVP:\\S+$|^WSE:\\S+$|^DAPA:\\S+$|^INSE:\\S+$|^TWEU:\\S+$|^PLDX:\\S+$|^NOFI:\\S+$|^SMEX:\\S+$|^XETA:\\S+$|^EUFN:\\S+$|^WMTF:\\S+$|^GRSE:\\S+$|^EXMP:\\S+$|^TPIE:\\S+$|^TCML:\\S+$|^XGHA:\\S+$|^APEX:\\S+$|^XBCL:\\S+$|^BBSX:\\S+$|^ARCX:\\S+$|^XDRK:\\S+$|^ATLN:\\S+$|^SSTX:\\S+$|^HMOD:\\S+$|^XSBT:\\S+$|^OCEA:\\S+$|^WINS:\\S+$|^GFIN:\\S+$|^NORX:\\S+$|^WSIN:\\S+$|^XFNO:\\S+$|^DRSP:\\S+$|^SBIL:\\S+$|^PLPS:\\S+$|^VERT:\\S+$|^MTXM:\\S+$|^TRUX:\\S+$|^VUSA:\\S+$|^XMOC:\\S+$|^XTAI:\\S+$|^CBSK:\\S+$|^PJCX:\\S+$|^CRYP:\\S+$|^JADX:\\S+$|^UBSF:\\S+$|^GIPB:\\S+$|^XMDG:\\S+$|^MYTR:\\S+$|^BLPX:\\S+$|^BOTV:\\S+$|^XLJU:\\S+$|^TQEM:\\S+$|^PLPO:\\S+$|^BCSC:\\S+$|^CGCM:\\S+$|^STXS:\\S+$|^SCAG:\\S+$|^HPCX:\\S+$|^NOPS:\\S+$|^SXSI:\\S+$|^XBEL:\\S+$|^XBUL:\\S+$|^LPPM:\\S+$|^ASMT:\\S+$|^TEFD:\\S+$|^XBBJ:\\S+$|^XEMS:\\S+$|^MCXR:\\S+$|^XBRV:\\S+$|^GFIF:\\S+$|^BAMX:\\S+$|^XZCE:\\S+$|^WDER:\\S+$|^DHEL:\\S+$|^EXBO:\\S+$|^CMSF:\\S+$|^BOTE:\\S+$|^VFCM:\\S+$|^TSGB:\\S+$|^FCBT:\\S+$|^GMBG:\\S+$|^ASX:\\S+$|^THEM:\\S+$|^UCIT:\\S+$|^XLIT:\\S+$|^ASTR:\\S+$|^XADS:\\S+$|^SLHB:\\S+$|^ZBUL:\\S+$|^CETI:\\S+$|^EQTB:\\S+$|^XINS:\\S+$|^MTSD:\\S+$|^BGCI:\\S+$|^LICA:\\S+$|^SSBM:\\S+$|^TMCC:\\S+$|^XMON:\\S+$|^NFSC:\\S+$|^EMIR:\\S+$|^IGDL:\\S+$|^XEUR:\\S+$|^NEXF:\\S+$|^FXRS:\\S+$|^ICDX:\\S+$|^CSAU:\\S+$|^THRE:\\S+$|^XDSX:\\S+$|^GBOT:\\S+$|^VAGM:\\S+$|^BSE:\\S+$|^XBSD:\\S+$|^XNYE:\\S+$|^CABK:\\S+$|^XNFI:\\S+$|^C2OX:\\S+$|^T212:\\S+$|^MNFI:\\S+$|^MTXX:\\S+$|^XUNI:\\S+$|^CNSI:\\S+$|^S3FM:\\S+$|^BKLF:\\S+$|^MOTX:\\S+$|^CGDB:\\S+$|^NYSEAMERICAN:\\S+$|^AILT:\\S+$|^XPST:\\S+$|^SHSC:\\S+$|^NDXS:\\S+$|^CGET:\\S+$|^MCX:\\S+$|^XXXX:\\S+$|^EDGA:\\S+$|^TRXE:\\S+$|^BARL:\\S+$|^UBSX:\\S+$|^XMAU:\\S+$|^GFIR:\\S+$|^XKON:\\S+$|^MHBE:\\S+$|^CREM:\\S+$|^XCEC:\\S+$|^PEPQ:\\S+$|^TIRD:\\S+$|^LCUR:\\S+$|^XAFR:\\S+$|^JSJX:\\S+$|^ERST:\\S+$|^XBLK:\\S+$|^SCXO:\\S+$|^ICHK:\\S+$|^DKTC:\\S+$|^BAML:\\S+$|^WBAH:\\S+$|^BLFX:\\S+$|^IPSX:\\S+$|^VFGB:\\S+$|^CHIX:\\S+$|^RBCM:\\S+$|^RICD:\\S+$|^XCNF:\\S+$|^XTNX:\\S+$|^SECE:\\S+$|^TMCY:\\S+$|^BVUK:\\S+$|^ICXR:\\S+$|^XWAR:\\S+$|^XSHG:\\S+$|^VWDA:\\S+$|^MHBP:\\S+$|^BBSI:\\S+$|^ARAX:\\S+$|^BETA:\\S+$|^XTUN:\\S+$|^TDBL:\\S+$|^CHIC:\\S+$|^KNLI:\\S+$|^BREA:\\S+$|^ERIS:\\S+$|^SGMY:\\S+$|^HPSX:\\S+$|^RFBK:\\S+$|^XNCD:\\S+$|^DUSC:\\S+$|^FRAW:\\S+$|^EXOT:\\S+$|^SVES:\\S+$|^NSDQ:\\S+$|^ETFP:\\S+$|^JSEB:\\S+$|^CCML:\\S+$|^IFSM:\\S+$|^POTC:\\S+$|^NLAX:\\S+$|^BNPC:\\S+$|^IFED:\\S+$|^TRWB:\\S+$|^HRTX:\\S+$|^ANLP:\\S+$|^ICOR:\\S+$|^TRFW:\\S+$|^NABL:\\S+$|^MCRY:\\S+$|^MACB:\\S+$|^XPAC:\\S+$|^WSAG:\\S+$|^CAND:\\S+$|^24EX:\\S+$|^KAIX:\\S+$|^XBRU:\\S+$|^XBNV:\\S+$|^PNED:\\S+$|^EXLP:\\S+$|^XBRA:\\S+$|^FAST:\\S+$|^SEBS:\\S+$|^RABL:\\S+$|^GTXE:\\S+$|^BARU:\\S+$|^FNFX:\\S+$|^AUTO:\\S+$|^BARX:\\S+$|^CBSX:\\S+$|^TEGI:\\S+$|^TNLB:\\S+$|^XEDA:\\S+$|^BBOK:\\S+$|^TPEU:\\S+$|^XETB:\\S+$|^FGEX:\\S+$|^XZAG:\\S+$|^NBFL:\\S+$|^UNGB:\\S+$|^SIFX:\\S+$|^TEIR:\\S+$|^IEXD:\\S+$|^CSBX:\\S+$|^ARIA:\\S+$|^XCBO:\\S+$|^CSDA:\\S+$|^FNLV:\\S+$|^LLAT:\\S+$|^XSWX:\\S+$|^ETPA:\\S+$|^ZKBX:\\S+$|^GBWB:\\S+$|^GOTC:\\S+$|^CXRT:\\S+$|^TADAWUL:\\S+$|^TLV:\\S+$|^XSGO:\\S+$|^CBKE:\\S+$|^XCNQ:\\S+$|^NMRJ:\\S+$|^MELO:\\S+$|^CBKS:\\S+$|^BYXD:\\S+$|^XECB:\\S+$|^SISI:\\S+$|^GTCO:\\S+$|^LEVL:\\S+$|^XSTV:\\S+$|^BKLN:\\S+$|^CLPH:\\S+$|^ISBV:\\S+$|^TFEX:\\S+$|^SMFF:\\S+$|^XELX:\\S+$|^BGHX:\\S+$|^ICES:\\S+$|^UBSL:\\S+$|^XSTF:\\S+$|^HSBC:\\S+$|^MICE:\\S+$|^PARX:\\S+$|^XPOS:\\S+$|^AUTP:\\S+$|^ONSE:\\S+$|^GMTF:\\S+$|^HUDX:\\S+$|^BEUP:\\S+$|^CSSX:\\S+$|^ARCH:\\S+$|^OSDS:\\S+$|^UBSI:\\S+$|^UKPX:\\S+$|^XROS:\\S+$|^XRCB:\\S+$|^XPET:\\S+$|^DUMX:\\S+$|^AFSE:\\S+$|^XLOM:\\S+$|^MHBD:\\S+$|^ABNA:\\S+$|^XGDX:\\S+$|^AQEA:\\S+$|^MSRP:\\S+$|^SIAB:\\S+$|^SICS:\\S+$|^NCEL:\\S+$|^BRGA:\\S+$|^XCFF:\\S+$|^XNAS:\\S+$|^SGEX:\\S+$|^ELIX:\\S+$|^XGLO:\\S+$|^XBOG:\\S+$|^HDAT:\\S+$|^AIMX:\\S+$|^FXFM:\\S+$|^EXYY:\\S+$|^PEPW:\\S+$|^LMNR:\\S+$|^TFSD:\\S+$|^ATFX:\\S+$|^XEYE:\\S+$|^VAGL:\\S+$|^SIGA:\\S+$|^BZXD:\\S+$|^MUBE:\\S+$|^TSRE:\\S+$|^XMLI:\\S+$|^DAIW:\\S+$|^FLWX:\\S+$|^MBUL:\\S+$|^BMLB:\\S+$|^EBR:\\S+$|^MAQI:\\S+$|^XMDS:\\S+$|^MBSI:\\S+$|^SCXA:\\S+$|^DNIS:\\S+$|^TSFI:\\S+$|^KBLL:\\S+$|^SAGE:\\S+$|^ABUL:\\S+$|^PBGR:\\S+$|^HAMM:\\S+$|^XKHA:\\S+$|^NTUK:\\S+$|^BBVX:\\S+$|^BATS:\\S+$|^TYO:\\S+$|^CSVW:\\S+$|^XLDX:\\S+$|^NMSX:\\S+$|^SFCL:\\S+$|^XCOR:\\S+$|^TBSA:\\S+$|^BKBR:\\S+$|^WBON:\\S+$|^DEKA:\\S+$|^EVOL:\\S+$|^XBAR:\\S+$|^GFKS:\\S+$|^BSFX:\\S+$|^MTXC:\\S+$|^COTC:\\S+$|^XCX2:\\S+$|^IOFX:\\S+$|^XPSF:\\S+$|^CNOD:\\S+$|^LMEC:\\S+$|^NEOD:\\S+$|^UBSG:\\S+$|^BGFI:\\S+$|^CIBH:\\S+$|^RUSX:\\S+$|^XZIM:\\S+$|^OBKL:\\S+$|^IFBX:\\S+$|^XPIC:\\S+$|^CGEC:\\S+$|^XNCO:\\S+$|^SGMZ:\\S+$|^MFXC:\\S+$|^DBLN:\\S+$|^CGMU:\\S+$|^XKOS:\\S+$|^TDON:\\S+$|^XDLP:\\S+$|^XXSC:\\S+$|^BVCA:\\S+$|^KCCP:\\S+$|^XMOL:\\S+$|^RBIV:\\S+$|^JLQD:\\S+$|^IST:\\S+$|^TPSO:\\S+$|^MIBG:\\S+$|^MBCP:\\S+$|^MAQE:\\S+$|^TSE:\\S+$|^ISWV:\\S+$|^XCSE:\\S+$|^FIED:\\S+$|^ALTX:\\S+$|^AMXO:\\S+$|^NXJP:\\S+$|^BAAD:\\S+$|^EQCA:\\S+$|^XBER:\\S+$|^TPEE:\\S+$|^TRNL:\\S+$|^FINY:\\S+$|^XKSE:\\S+$|^BRDE:\\S+$|^CBTS:\\S+$|^XSTC:\\S+$|^OAPA:\\S+$|^IBER:\\S+$|^CMMT:\\S+$|^BASI:\\S+$|^KBLC:\\S+$|^XBOX:\\S+$|^LMAX:\\S+$|^XOBD:\\S+$|^PEPM:\\S+$|^CHIV:\\S+$|^INCR:\\S+$|^MXNL:\\S+$|^XEMD:\\S+$|^XKIE:\\S+$|^XKHR:\\S+$|^ILCM:\\S+$|^BBLX:\\S+$|^MIZX:\\S+$|^IFUT:\\S+$|^MSSI:\\S+$|^BAIP:\\S+$|^EMIB:\\S+$|^XINE:\\S+$|^IINX:\\S+$|^EUWB:\\S+$|^RBCB:\\S+$|^ONEC:\\S+$|^CHIA:\\S+$|^ASXT:\\S+$|^VDRK:\\S+$|^XPMS:\\S+$|^XBAN:\\S+$|^MUNA:\\S+$|^XLIM:\\S+$|^NAPA:\\S+$|^XHEL:\\S+$|^MHEU:\\S+$|^LIGA:\\S+$|^BOAL:\\S+$|^MBPL:\\S+$|^XICE:\\S+$|^AFSO:\\S+$|^KMUX:\\S+$|^ABSI:\\S+$|^OMEL:\\S+$|^GOVX:\\S+$|^SKBB:\\S+$|^XBOT:\\S+$|^VTX:\\S+$|^IMGB:\\S+$|^MSBI:\\S+$|^SPBE:\\S+$|^BOSP:\\S+$|^XTXE:\\S+$|^HBFR:\\S+$|^JEFX:\\S+$|^GFIB:\\S+$|^LIUH:\\S+$|^FSHX:\\S+$|^BTQE:\\S+$|^GBUL:\\S+$|^GSBE:\\S+$|^ICPM:\\S+$|^OTC:\\S+$|^XSWM:\\S+$|^EXSP:\\S+$|^STAN:\\S+$|^SSIL:\\S+$|^TPIR:\\S+$|^CMES:\\S+$|^XROT:\\S+$|^CRYD:\\S+$|^FISU:\\S+$|^XCFE:\\S+$|^MLSI:\\S+$|^SEMX:\\S+$|^XNEC:\\S+$|^GFSM:\\S+$|^CCEX:\\S+$|^TGSI:\\S+$|^AATS:\\S+$|^MSTX:\\S+$|^TNLA:\\S+$|^STUE:\\S+$|^SHAW:\\S+$|^GLPS:\\S+$|^KOTF:\\S+$|^BISI:\\S+$|^ESTO:\\S+$|^FXSW:\\S+$|^XCME:\\S+$|^XTK2:\\S+$|^PFTS:\\S+$|^BLKX:\\S+$|^PKOP:\\S+$|^PURE:\\S+$|^XUBS:\\S+$|^CPH:\\S+$|^XMRV:\\S+$|^ZARX:\\S+$|^IOTF:\\S+$|^XPSX:\\S+$|^BVMF:\\S+$|^XBLN:\\S+$|^CBAL:\\S+$|^BTLX:\\S+$|^TEFX:\\S+$|^MUFP:\\S+$|^CVE:\\S+$|^FSEF:\\S+$|^USWB:\\S+$|^NSPO:\\S+$|^NYPC:\\S+$|^CLVE:\\S+$|^CCEU:\\S+$|^BRNX:\\S+$|^XZAP:\\S+$|^DSTO:\\S+$|^XLJM:\\S+$|^XNYM:\\S+$|^BCRM:\\S+$|^SECF:\\S+$|^RR4G:\\S+$|^BSLB:\\S+$|^STOX:\\S+$|^XBAB:\\S+$|^CSCF:\\S+$|^XCHG:\\S+$|^VALX:\\S+$|^VCRS:\\S+$|^EQIE:\\S+$|^CIMA:\\S+$|^XSC1:\\S+$|^MTCH:\\S+$|^XBUD:\\S+$|^OTCN:\\S+$|^NESI:\\S+$|^EBSC:\\S+$|^ASPN:\\S+$|^TPIO:\\S+$|^TSIG:\\S+$|^BLUE:\\S+$|^IMFX:\\S+$|^ASXV:\\S+$|^EUWX:\\S+$|^XEQT:\\S+$|^XQOD:\\S+$|^UBSP:\\S+$|^LIQU:\\S+$|^EBRA:\\S+$|^TRAL:\\S+$|^TEMF:\\S+$|^IOMM:\\S+$|^ISSI:\\S+$|^IMCC:\\S+$|^PBUL:\\S+$|^EDGD:\\S+$|^RMMX:\\S+$|^VTEX:\\S+$|^HSTC:\\S+$|^HEL:\\S+$|^DBAG:\\S+$|^TGAT:\\S+$|^PXIL:\\S+$|^ICSH:\\S+$|^XIQS:\\S+$|^XKAR:\\S+$|^XNDU:\\S+$|^TPER:\\S+$|^XEUE:\\S+$|^XPHS:\\S+$|^XCAI:\\S+$|^XCIE:\\S+$|^CFIF:\\S+$|^XGEM:\\S+$|^NASX:\\S+$|^XNSE:\\S+$|^XBEY:\\S+$|^CFIL:\\S+$|^KBCB:\\S+$|^XPHX:\\S+$|^VCMO:\\S+$|^CITX:\\S+$|^IBUL:\\S+$|^XOFF:\\S+$|^HBPL:\\S+$|^IEBS:\\S+$|^VEGA:\\S+$|^SHA:\\S+$|^CGMA:\\S+$|^XLME:\\S+$|^EWRM:\\S+$|^BNPX:\\S+$|^SBAR:\\S+$|^WSIL:\\S+$|^XREP:\\S+$|^DKED:\\S+$|^XSTU:\\S+$|^GSXT:\\S+$|^FRA:\\S+$|^MSEL:\\S+$|^BGFU:\\S+$|^BPSX:\\S+$|^UBSY:\\S+$|^BIVA:\\S+$|^XGMX:\\S+$|^CIBC:\\S+$|^BATP:\\S+$|^ARCA:\\S+$|^LSE:\\S+$|^XLAT:\\S+$|^TWSE:\\S+$|^VWDX:\\S+$|^IFUS:\\S+$|^XFDA:\\S+$|^AWEX:\\S+$|^EBSF:\\S+$|^XSVA:\\S+$|^PINI:\\S+$|^XTAE:\\S+$|^BCFS:\\S+$|^TWHK:\\S+$|^XIEL:\\S+$|^PFXD:\\S+$|^SNSI:\\S+$|^CISD:\\S+$|^XCBT:\\S+$|^NASDAQ:\\S+$|^SZSE:\\S+$|^XCGS:\\S+$|^XNIM:\\S+$|^FINC:\\S+$|^XHAM:\\S+$|^BDEA:\\S+$|^OHVO:\\S+$|^EQOC:\\S+$|^BRDL:\\S+$|^XRMO:\\S+$|^ECGS:\\S+$|^EGSI:\\S+$|^STUF:\\S+$|^XPOW:\\S+$|^BRDS:\\S+$|^XVES:\\S+$|^XOAS:\\S+$|^RENC:\\S+$|^ITGI:\\S+$|^WBKP:\\S+$|^ISWP:\\S+$|^CHIJ:\\S+$|^ROTC:\\S+$|^ALXB:\\S+$|^BELF:\\S+$|^BRVM:\\S+$|^TLCM:\\S+$|^LXJP:\\S+$|^OPEX:\\S+$|^VTBC:\\S+$|^PLPD:\\S+$|^TSXV:\\S+$|^METZ:\\S+$|^CBNL:\\S+$|^AWBX:\\S+$|^EXPM:\\S+$|^MEMD:\\S+$|^KNCM:\\S+$|^CSSI:\\S+$|^BETP:\\S+$|^BCMA:\\S+$|^JPMI:\\S+$|^ATLB:\\S+$|^CFHK:\\S+$|^BBIS:\\S+$|^XBKF:\\S+$|^XVPB:\\S+$|^XBDA:\\S+$|^IKBS:\\S+$|^FNLT:\\S+$|^XLUX:\\S+$|^IMAG:\\S+$|^COAL:\\S+$|^MXLM:\\S+$|^XDPA:\\S+$|^MCXS:\\S+$|^XNXC:\\S+$|^CCLX:\\S+$|^ICE:\\S+$|^IFLX:\\S+$|^ZOBX:\\S+$|^CMEE:\\S+$|^ICOT:\\S+$|^PTPG:\\S+$|^PARK:\\S+$|^ASEF:\\S+$|^WELS:\\S+$|^IOCD:\\S+$|^CHID:\\S+$|^BCEE:\\S+$|^FCME:\\S+$|^BOSC:\\S+$|^DWSF:\\S+$|^FXOP:\\S+$|^IDX:\\S+$|^JPX:\\S+$|^XOAD:\\S+$|^AQXE:\\S+$|^NSEASI:\\S+$|^TRCX:\\S+$|^BVCC:\\S+$|^CBKC:\\S+$|^BATO:\\S+$|^CGMG:\\S+$|^TWGP:\\S+$|^BEIS:\\S+$|^XABC:\\S+$|^CLAU:\\S+$|^AMNL:\\S+$|^ODDO:\\S+$|^CXAN:\\S+$|^FAIR:\\S+$|^ADVT:\\S+$|^FXAL:\\S+$|^HNX:\\S+$|^TRU2:\\S+$|^XGTG:\\S+$|^BGCB:\\S+$|^IFEU:\\S+$|^CSOT:\\S+$|^CBKD:\\S+$|^XPOL:\\S+$|^YLDX:\\S+$|^XUKR:\\S+$|^XRSP:\\S+$|^ETSC:\\S+$|^CSTO:\\S+$|^CGMH:\\S+$|^MUTI:\\S+$|^XSFA:\\S+$|^EXSF:\\S+$|^ECAG:\\S+$|^PEPY:\\S+$|^BIDS:\\S+$|^XETW:\\S+$|^NDEX:\\S+$|^DICE:\\S+$|^IFLL:\\S+$|^DCSE:\\S+$|^SCXF:\\S+$|^ATHL:\\S+$|^XLUS:\\S+$|^XAPA:\\S+$|^NOWX:\\S+$|^CSEC:\\S+$|^FNIS:\\S+$|^SMBD:\\S+$|^XSIB:\\S+$|^DWFI:\\S+$|^MLRQ:\\S+$|^EMBX:\\S+$|^XTAL:\\S+$|^SZSC:\\S+$|^N2EX:\\S+$|^XHKG:\\S+$|^TERE:\\S+$|^PIEU:\\S+$|^GRIO:\\S+$|^BNLD:\\S+$|^XGSX:\\S+$|^SBIV:\\S+$|^XDEX:\\S+$|^XSTM:\\S+$|^XCAS:\\S+$|^UCDE:\\S+$|^CSCL:\\S+$|^TRU1:\\S+$|^XDSM:\\S+$|^BAJM:\\S+$|^AREX:\\S+$|^EQTA:\\S+$|^BMCM:\\S+$|^EXSH:\\S+$|^CONC:\\S+$|^RBCG:\\S+$|^TRQA:\\S+$|^XROX:\\S+$|^XLON:\\S+$|^XMTB:\\S+$|^FICX:\\S+$|^KRME:\\S+$|^XSSC:\\S+$|^IOGI:\\S+$|^CSLB:\\S+$|^XOSL:\\S+$|^TWJT:\\S+$|^GSCO:\\S+$|^SPEX:\\S+$|^BRIX:\\S+$|^XKFE:\\S+$|^SPTR:\\S+$|^NEON:\\S+$|^BSPL:\\S+$|^BOVM:\\S+$|^CAPI:\\S+$|^SWLT:\\S+$|^MLIX:\\S+$|^DSMD:\\S+$|^NLBX:\\S+$|^ODOC:\\S+$|^XJAM:\\S+$|^EXTR:\\S+$|^XNGS:\\S+$|^UBCZ:\\S+$|^CXOT:\\S+$|^XSSE:\\S+$|^DDTX:\\S+$|^TECO:\\S+$|^JNSI:\\S+$|^RSE:\\S+$|^ARKX:\\S+$|^CSIN:\\S+$|^XIMC:\\S+$|^CSE:\\S+$|^BIT:\\S+$|^GFPO:\\S+$|^MTXS:\\S+$|^JESI:\\S+$|^GLLC:\\S+$|^BALT:\\S+$|^AACA:\\S+$|^TPSL:\\S+$|^XLSM:\\S+$|^FINO:\\S+$|^DASH:\\S+$|^XEUM:\\S+$|^SIMD:\\S+$|^XVAL:\\S+$|^PUMA:\\S+$|^XMOS:\\S+$|^ICEO:\\S+$|^LBCW:\\S+$|^LEDG:\\S+$|^XATH:\\S+$|^OSLC:\\S+$|^XDRF:\\S+$|^EQSE:\\S+$|^BAPA:\\S+$|^MISX:\\S+$|^ENAX:\\S+$|^BKKT:\\S+$|^SPDX:\\S+$|^XAFX:\\S+$|^CGMI:\\S+$|^XSEB:\\S+$|^SBEX:\\S+$|^XMAE:\\S+$|^PRSE:\\S+$|^JPSI:\\S+$|^SPXE:\\S+$|^BAPX:\\S+$|^CLTD:\\S+$|^VFSI:\\S+$|^TSMR:\\S+$|^CELP:\\S+$|^MEMM:\\S+$|^BTFE:\\S+$|^AGBP:\\S+$|^CDED:\\S+$|^LBWL:\\S+$|^MASG:\\S+$|^XSTE:\\S+$|^MHEL:\\S+$|^RLBO:\\S+$|^BTBS:\\S+$|^IDXM:\\S+$|^ANTS:\\S+$|^JNST:\\S+$|^CGEB:\\S+$|^VPXB:\\S+$|^INCA:\\S+$|^HUPX:\\S+$|^XSCO:\\S+$|^XPUS:\\S+$|^DOWG:\\S+$|^NILX:\\S+$|^MSAL:\\S+$|^XPBT:\\S+$|^FRAS:\\S+$|^MABX:\\S+$|^XAMM:\\S+$|^WBCL:\\S+$|^EQOD:\\S+$|^GFAM:\\S+$|^XECC:\\S+$|^XTSE:\\S+$|^CCMX:\\S+$|^NEOE:\\S+$|^DKFI:\\S+$|^XBRM:\\S+$|^IMTF:\\S+$|^HESP:\\S+$|^NOSC:\\S+$|^VIRT:\\S+$|^XBIL:\\S+$|^NMCE:\\S+$|^MUSE:\\S+$|^STUB:\\S+$|^XCXD:\\S+$|^VFXO:\\S+$|^XFRA:\\S+$|^BNYC:\\S+$|^XCBF:\\S+$|^BCSL:\\S+$|^WQXL:\\S+$|^TDGF:\\S+$|^HAMB:\\S+$|^XSBI:\\S+$|^EDRF:\\S+$|^NOSI:\\S+$|^XMAL:\\S+$|^PATF:\\S+$|^TRDX:\\S+$|^IMRD:\\S+$|^XNAI:\\S+$|^CURX:\\S+$|^MIDC:\\S+$|^XTK3:\\S+$|^XTSX:\\S+$|^BATE:\\S+$|^AAPA:\\S+$|^MUBP:\\S+$|^XADE:\\S+$|^CBKF:\\S+$|^ECHO:\\S+$|^IMCO:\\S+$|^HPPO:\\S+$|^BNPF:\\S+$|^KBLS:\\S+$|^ALSI:\\S+$|^XMNX:\\S+$|^HRFQ:\\S+$|^AFSI:\\S+$|^XSAT:\\S+$|^FXCM:\\S+$|^NEXS:\\S+$|^AUTB:\\S+$|^KBLM:\\S+$|^CBKA:\\S+$|^A2XX:\\S+$|^EMTF:\\S+$|^FNIX:\\S+$|^XHNX:\\S+$|^XUGA:\\S+$|^XAMS:\\S+$|^XIBE:\\S+$|^NLPX:\\S+$|^TSEF:\\S+$|^HEDE:\\S+$|^APXL:\\S+$|^XSTX:\\S+$|^FNFT:\\S+$|^PUND:\\S+$|^SCXM:\\S+$|^SECD:\\S+$|^XCSX:\\S+$|^SQUA:\\S+$|^XCAL:\\S+$|^HOTC:\\S+$|^ALXP:\\S+$|^TERM:\\S+$|^DNSE:\\S+$|^XIOM:\\S+$|^CIMD:\\S+$|^SMBG:\\S+$|^BOM:\\S+$|^VFMI:\\S+$|^CANX:\\S+$|^TRQB:\\S+$|^XETV:\\S+$|^IMCS:\\S+$|^BMLI:\\S+$|^HPCS:\\S+$|^DOWM:\\S+$|^BSEX:\\S+$|^SIBC:\\S+$|^SPEC:\\S+$|^ICUR:\\S+$|^XLGT:\\S+$|^ENXL:\\S+$|^AFEX:\\S+$|^BLTD:\\S+$|^XCAN:\\S+$|^TREO:\\S+$|^HPCO:\\S+$|^EGMT:\\S+$|^OLBB:\\S+$|^GFBM:\\S+$|^UBSS:\\S+$|^WABR:\\S+$|^UFEX:\\S+$|^NWMS:\\S+$|^TQEX:\\S+$|^NATX:\\S+$|^CLHK:\\S+$|^NASD:\\S+$|^G1XX:\\S+$|^EIXE:\\S+$|^MHBL:\\S+$|^GFOX:\\S+$|^EQTD:\\S+$|^IUOB:\\S+$|^XRMZ:\\S+$|^XNMS:\\S+$|^XNEP:\\S+$|^WBDM:\\S+$|^DBOX:\\S+$|^CEUD:\\S+$|^XSAU:\\S+$|^FREX:\\S+$|^BASP:\\S+$|^BAPE:\\S+$|^XECS:\\S+$|^GSAL:\\S+$|^EXGM:\\S+$|^BMEX:\\S+$|^NYFX:\\S+$|^JPMX:\\S+$|^MATX:\\S+$|^GFIC:\\S+$|^CCFX:\\S+$|^OTCQ:\\S+$|^XDNB:\\S+$|^EXAA:\\S+$|^NDCM:\\S+$|^PINX:\\S+$|^CAVE:\\S+$|^COMG:\\S+$|^CODA:\\S+$|^XSFE:\\S+$|^SWAP:\\S+$|^SMFE:\\S+$|^IFAD:\\S+$|^EPEX:\\S+$|^XBVC:\\S+$|^CGMT:\\S+$|^BNTW:\\S+$|^HMTF:\\S+$|^XTRN:\\S+$|^NPGA:\\S+$|^XALS:\\S+$|^ITGL:\\S+$|^HCHC:\\S+$|^BSME:\\S+$|^FTFM:\\S+$|^IFLO:\\S+$|^XBUE:\\S+$|^XNOM:\\S+$|^DOTS:\\S+$|^TSMM:\\S+$|^XCAY:\\S+$|^BOVA:\\S+$|^XMFX:\\S+$|^LUXSE:\\S+$|^XSGA:\\S+$|^XJSE:\\S+$|^MARF:\\S+$|^XEER:\\S+$|^PIPR:\\S+$|^HAML:\\S+$|^GSEF:\\S+$|^RPWC:\\S+$|^SHE:\\S+$|^ISDA:\\S+$|^XERT:\\S+$|^BBVA:\\S+$|^FBSI:\\S+$|^KOSDAQ:\\S+$|^XSTP:\\S+$|^XKRX:\\S+$|^XSCU:\\S+$|^CFJP:\\S+$|^BBIE:\\S+$|^XMEV:\\S+$|^XISE:\\S+$|^XSAM:\\S+$|^LASF:\\S+$|^XQMH:\\S+$|^KNIG:\\S+$|^IMMM:\\S+$|^XKFB:\\S+$|^IMGI:\\S+$|^BGLU:\\S+$|^XSGB:\\S+$|^SHAD:\\S+$|^MAQJ:\\S+$|^BMV:\\S+$|^XALG:\\S+$|^ECAL:\\S+$|^XMAT:\\S+$|^SGOE:\\S+$|^AURO:\\S+$|^TPIC:\\S+$|^SIGH:\\S+$|^FICO:\\S+$|^XUSE:\\S+$|^XTRZ:\\S+$|^SSBT:\\S+$|^XASX:\\S+$|^XBLB:\\S+$|^GFBO:\\S+$|^MOEX:\\S+$|^CGTR:\\S+$|^BARO:\\S+$|^TWSG:\\S+$|^OTCE:\\S+$|^OPRA:\\S+$|^PDEX:\\S+$|^BNDD:\\S+$|^ICSZ:\\S+$|^EQTC:\\S+$|^GSXL:\\S+$|^PINL:\\S+$|^EBSN:\\S+$|^XKAC:\\S+$|^SGMU:\\S+$|^MFXR:\\S+$|^XSC2:\\S+$|^XMNT:\\S+$|^SEED:\\S+$|^IOIR:\\S+$|^XLAO:\\S+$|^CSEU:\\S+$|^DBMO:\\S+$|^MTSO:\\S+$|^NXUS:\\S+$|^UCBA:\\S+$|^XCYO:\\S+$|^RTSI:\\S+$|^XNZE:\\S+$|^SWX:\\S+$|^MAQX:\\S+$|^RPDX:\\S+$|^TRAX:\\S+$|^SGMW:\\S+$|^XOSA:\\S+$|^XOAA:\\S+$|^4AXE:\\S+$|^XRFQ:\\S+$|^MCXX:\\S+$|^FMTS:\\S+$|^HEGX:\\S+$|^LOUI:\\S+$|^GXMA:\\S+$|^FLTB:\\S+$|^XINV:\\S+$|^IBAL:\\S+$|^XNAF:\\S+$|^XMPW:\\S+$|^OTPB:\\S+$|^CBOE:\\S+$|^XGCL:\\S+$|^BMLS:\\S+$|^ISWN:\\S+$|^UBSC:\\S+$|^PINC:\\S+$|^SWBI:\\S+$|^ABNC:\\S+$|^XMAD:\\S+$|^XDFB:\\S+$|^OCSI:\\S+$|^CSJP:\\S+$|^XICX:\\S+$|^XEUC:\\S+$|^CPTX:\\S+$|^ISWC:\\S+$|^XPUK:\\S+$|^GTSX:\\S+$|^XDUS:\\S+$|^ZAPA:\\S+$|^XDSE:\\S+$|^BEUO:\\S+$|^PPEX:\\S+$|^LBCM:\\S+$|^SEBL:\\S+$|^DIFX:\\S+$|^XBAH:\\S+$|^TSED:\\S+$|^LOYD:\\S+$|^JPBX:\\S+$|^XMTS:\\S+$|^MIVX:\\S+$|^XNAM:\\S+$|^CSAS:\\S+$|^IMED:\\S+$|^NWNV:\\S+$|^CXAW:\\S+$|^TERA:\\S+$|^ICSU:\\S+$|^XGAS:\\S+$|^IOED:\\S+$|^BLBB:\\S+$|^MKAA:\\S+$|^MTSF:\\S+$|^AFDL:\\S+$|^SSE:\\S+$|^IFSG:\\S+$|^GMES:\\S+$|^XOPV:\\S+$|^BETX:\\S+$|^ROFX:\\S+$|^IFLS:\\S+$|^XMGE:\\S+$|^NFSA:\\S+$|^ICTW:\\S+$|^HSBT:\\S+$|^XPRI:\\S+$|^CCXE:\\S+$|^XTK1:\\S+$|^ICKR:\\S+$|^GSXK:\\S+$|^CSMD:\\S+$|^BLXA:\\S+$|^DVFX:\\S+$|^MLVX:\\S+$|^XPRM:\\S+$|^BKDM:\\S+$|^XPAR:\\S+$|^FTUS:\\S+$|^CGIT:\\S+$|^GSXC:\\S+$|^XEEE:\\S+$|^XSCE:\\S+$|^CCMS:\\S+$|^JPMS:\\S+$|^JSES:\\S+$|^RBSX:\\S+$|^XCET:\\S+$|^XBKK:\\S+$|^COMM:\\S+$|^HAMA:\\S+$|^XETF:\\S+$|^SMBB:\\S+$|^CBLC:\\S+$|^MSMS:\\S+$|^RICX:\\S+$|^BASE:\\S+$|^WETP:\\S+$|^CGQT:\\S+$|^ABFI:\\S+$|^MSCO:\\S+$|^XRBM:\\S+$|^BIST:\\S+$|^XOSJ:\\S+$|^BPLC:\\S+$|^UKEX:\\S+$|^SCOT:\\S+$|^BDSK:\\S+$|^DEXE:\\S+$|^MKTF:\\S+$|^FXRQ:\\S+$|^ANZL:\\S+$|^TPSV:\\S+$|^ZFXM:\\S+$|^IMBD:\\S+$|^INGB:\\S+$|^CHIO:\\S+$|^XBND:\\S+$|^SOHO:\\S+$|^TRSI:\\S+$|^TQEB:\\S+$|^XUAX:\\S+$|^CRED:\\S+$|^CGMC:\\S+$|^SIX:\\S+$|^DBLX:\\S+$|^TWEM:\\S+$|^WOOD:\\S+$|^DSME:\\S+$|^BAJD:\\S+$|^CGQD:\\S+$|^STUD:\\S+$|^AMPX:\\S+$|^CITD:\\S+$|^MTXA:\\S+$|^EXSD:\\S+$|^GSXH:\\S+$|^EDDP:\\S+$|^LQED:\\S+$|^NEXD:\\S+$|^IMSB:\\S+$|^ELSE:\\S+$|^EQLD:\\S+$|^ELUK:\\S+$|^INVE:\\S+$|^DASI:\\S+$|^GETB:\\S+$|^XNSA:\\S+$|^TRQC:\\S+$|^XTKS:\\S+$|^SGA2:\\S+$|^XIMM:\\S+$|^SMBP:\\S+$|^OTXB:\\S+$|^ETR:\\S+$|^NFSD:\\S+$|^NEXG:\\S+$|^CSAG:\\S+$|^BGCF:\\S+$|^XNXD:\\S+$|^XGAT:\\S+$|^IPXW:\\S+$|^CSHK:\\S+$|^BNPP:\\S+$|^CASI:\\S+$|^MESI:\\S+$|^BFEX:\\S+$|^HKEX:\\S+$|^PUMX:\\S+$|^XBDV:\\S+$|^LAMP:\\S+$|^ICRO:\\S+$|^LEUF:\\S+$|^WELN:\\S+$|^UCHU:\\S+$|^FXCL:\\S+$|^FINN:\\S+$|^GSCI:\\S+$|^CGEE:\\S+$|^BCDX:\\S+$|^XMER:\\S+$|^XKEM:\\S+$|^XIMA:\\S+$|^PIPE:\\S+$|^CSGI:\\S+$|^LIQH:\\S+$|^XBRT:\\S+$|^XSAF:\\S+$|^BVUR:\\S+$|^BOSD:\\S+$|^SPRZ:\\S+$|^BUX:\\S+$|^MVCX:\\S+$|^CXAF:\\S+$|^PIRM:\\S+$|^LMAO:\\S+$|^XCRO:\\S+$|^IBEQ:\\S+$|^IFXR:\\S+$|^XSEF:\\S+$|^EXDC:\\S+$|^XTRD:\\S+$|^GSEI:\\S+$|^CMCI:\\S+$|^XQUI:\\S+$|^MCAD:\\S+$|^KELR:\\S+$|^XADF:\\S+$|^MUNB:\\S+$|^SEND:\\S+$|^CGMX:\\S+$|^LIUS:\\S+$|^EXOR:\\S+$|^XPTY:\\S+$|^LON:\\S+$|^XBVR:\\S+$|^BKBF:\\S+$|^GMGL:\\S+$|^XNYS:\\S+$|^BFPT:\\S+$|^YKNA:\\S+$|^CBKG:\\S+$|^HKG:\\S+$|^MAQH:\\S+$|^TFSU:\\S+$|^XTFF:\\S+$|^XEUP:\\S+$|^XULA:\\S+$|^HEMO:\\S+$|^XKCM:\\S+$|^CAPL:\\S+$|^XCHI:\\S+$|^ETLX:\\S+$|^XDMI:\\S+$|^JBUL:\\S+$|^BERA:\\S+$|^MAEL:\\S+$|^IECL:\\S+$|^CEPU:\\S+$|^OOTC:\\S+$|^SIGJ:\\S+$|^BTRL:\\S+$|^VIE:\\S+$|^BCMM:\\S+$|^TQEA:\\S+$|^KOME:\\S+$|^VONT:\\S+$|^SSFX:\\S+$|^MERK:\\S+$|^CIMB:\\S+$|^EOTC:\\S+$|^TREU:\\S+$|^XPHO:\\S+$|^JSSI:\\S+$|^NOED:\\S+$|^TRAI:\\S+$|^DUSA:\\S+$|^VFIL:\\S+$|^KLEU:\\S+$|^NXVW:\\S+$|^XIST:\\S+$|^SSBI:\\S+$|^UBSA:\\S+$|^EBSO:\\S+$|^ARCD:\\S+$|^RESF:\\S+$|^OTCM:\\S+$|^FREI:\\S+$|^TOWR:\\S+$|^MLXB:\\S+$|^ICBX:\\S+$|^CDSI:\\S+$|^SKSI:\\S+$|^FNEE:\\S+$|^EXSE:\\S+$|^IMEQ:\\S+$|^XSGE:\\S+$|^TPE:\\S+$|^CRYX:\\S+$|^XBCX:\\S+$|^BCSI:\\S+$|^XFCI:\\S+$|^CIME:\\S+$)$",
             "title": "Ticker"
           }
         },
@@ -8136,7 +9157,6 @@
           },
           "ticker": {
             "type": "string",
-            "pattern": "(?i)^(^XMAI:\\S+$|^XBOM:\\S+$|^BTAM:\\S+$|^FISH:\\S+$|^TUOB:\\S+$|^UBIN:\\S+$|^AIXK:\\S+$|^XMOT:\\S+$|^EXEU:\\S+$|^NBOT:\\S+$|^EBON:\\S+$|^BTEQ:\\S+$|^SGMV:\\S+$|^IMET:\\S+$|^EMLD:\\S+$|^TWJP:\\S+$|^XETU:\\S+$|^SBIJ:\\S+$|^LASP:\\S+$|^MUBL:\\S+$|^TREA:\\S+$|^EXSB:\\S+$|^XBOL:\\S+$|^XLLB:\\S+$|^XMIO:\\S+$|^FRAU:\\S+$|^BLBF:\\S+$|^CESI:\\S+$|^LISZ:\\S+$|^BLOX:\\S+$|^STFL:\\S+$|^BGCO:\\S+$|^JEFS:\\S+$|^XNLI:\\S+$|^ELXE:\\S+$|^VTPS:\\S+$|^XRUS:\\S+$|^ERBX:\\S+$|^XMAB:\\S+$|^SCXS:\\S+$|^XGSE:\\S+$|^FRAA:\\S+$|^CFTW:\\S+$|^XKLS:\\S+$|^FNCS:\\S+$|^ULTX:\\S+$|^LTAA:\\S+$|^XLFX:\\S+$|^ELNO:\\S+$|^NEXX:\\S+$|^XSHE:\\S+$|^MCUR:\\S+$|^XPOR:\\S+$|^KLSH:\\S+$|^ENCL:\\S+$|^GMNI:\\S+$|^XFKA:\\S+$|^MSIP:\\S+$|^XDFM:\\S+$|^IBIS:\\S+$|^XETR:\\S+$|^OMGA:\\S+$|^XJPX:\\S+$|^DBAB:\\S+$|^MTSC:\\S+$|^XEHQ:\\S+$|^REST:\\S+$|^CECS:\\S+$|^FTFS:\\S+$|^UKCA:\\S+$|^LCHC:\\S+$|^ACEX:\\S+$|^UBEC:\\S+$|^IMMH:\\S+$|^CIBP:\\S+$|^MTUS:\\S+$|^PSXD:\\S+$|^BILT:\\S+$|^BMTS:\\S+$|^ABAN:\\S+$|^BOAT:\\S+$|^NSE:\\S+$|^GLMX:\\S+$|^LTSE:\\S+$|^XKBT:\\S+$|^NYSEARCA:\\S+$|^FRAV:\\S+$|^XSOP:\\S+$|^SNUK:\\S+$|^MAKX:\\S+$|^BMCL:\\S+$|^SKYX:\\S+$|^POSE:\\S+$|^EPA:\\S+$|^TSCD:\\S+$|^ASXB:\\S+$|^ELEU:\\S+$|^DEAL:\\S+$|^TNLK:\\S+$|^IFCA:\\S+$|^SELC:\\S+$|^SSEX:\\S+$|^XMOD:\\S+$|^XSEC:\\S+$|^EPRD:\\S+$|^XTEH:\\S+$|^SB1M:\\S+$|^LIFI:\\S+$|^TCDS:\\S+$|^STO:\\S+$|^MHIP:\\S+$|^BCBA:\\S+$|^XDCE:\\S+$|^PSGM:\\S+$|^RMMS:\\S+$|^AURB:\\S+$|^XPXE:\\S+$|^TSGI:\\S+$|^MUNC:\\S+$|^DHLX:\\S+$|^GMGD:\\S+$|^TEGB:\\S+$|^OPCO:\\S+$|^IOGB:\\S+$|^AQED:\\S+$|^XOTP:\\S+$|^FNFI:\\S+$|^WFSE:\\S+$|^GRIF:\\S+$|^ELI:\\S+$|^FNSE:\\S+$|^VSE:\\S+$|^BART:\\S+$|^NORD:\\S+$|^NIBR:\\S+$|^CCO2:\\S+$|^BACR:\\S+$|^GSSI:\\S+$|^NSME:\\S+$|^MNDK:\\S+$|^SEDC:\\S+$|^NEXN:\\S+$|^KAZE:\\S+$|^XBAA:\\S+$|^XWBO:\\S+$|^XHNF:\\S+$|^BERB:\\S+$|^DUSB:\\S+$|^FINR:\\S+$|^GEMX:\\S+$|^DBES:\\S+$|^XDES:\\S+$|^BUYN:\\S+$|^STRM:\\S+$|^MALM:\\S+$|^FWB:\\S+$|^XTUC:\\S+$|^BARK:\\S+$|^XYIE:\\S+$|^KLSE:\\S+$|^TEMR:\\S+$|^IMFD:\\S+$|^CEUO:\\S+$|^MLCO:\\S+$|^NOFF:\\S+$|^TMID:\\S+$|^WIPO:\\S+$|^BGSI:\\S+$|^XERE:\\S+$|^XBTR:\\S+$|^OLLC:\\S+$|^XDAR:\\S+$|^HANA:\\S+$|^IPXP:\\S+$|^XETS:\\S+$|^NOTC:\\S+$|^LMAE:\\S+$|^XBCV:\\S+$|^BANA:\\S+$|^BASX:\\S+$|^XRAS:\\S+$|^EPRL:\\S+$|^EXSI:\\S+$|^GFSO:\\S+$|^CLCH:\\S+$|^XATL:\\S+$|^EBMX:\\S+$|^NYSE:\\S+$|^KRX:\\S+$|^XTXD:\\S+$|^BRED:\\S+$|^NEXO:\\S+$|^BGFX:\\S+$|^EDGO:\\S+$|^AMEX:\\S+$|^NEXT:\\S+$|^MFGL:\\S+$|^PFTQ:\\S+$|^CHEV:\\S+$|^XSWA:\\S+$|^QWIX:\\S+$|^HELA:\\S+$|^BATY:\\S+$|^EESE:\\S+$|^LELE:\\S+$|^GREE:\\S+$|^DRCT:\\S+$|^LMNX:\\S+$|^FSX:\\S+$|^IMCG:\\S+$|^NSXB:\\S+$|^BEAM:\\S+$|^CGGD:\\S+$|^XSPM:\\S+$|^XCUR:\\S+$|^FNUK:\\S+$|^NMRA:\\S+$|^XKAZ:\\S+$|^ALXL:\\S+$|^XEEO:\\S+$|^EDGX:\\S+$|^INGW:\\S+$|^CFIC:\\S+$|^GPBC:\\S+$|^XBBK:\\S+$|^PVMF:\\S+$|^MERD:\\S+$|^UBIS:\\S+$|^EEAL:\\S+$|^SYFX:\\S+$|^KNEM:\\S+$|^ISWE:\\S+$|^TSCB:\\S+$|^BTQG:\\S+$|^IBGH:\\S+$|^XLQC:\\S+$|^MNSE:\\S+$|^IEPA:\\S+$|^MTAA:\\S+$|^RCMA:\\S+$|^CXAM:\\S+$|^BGCD:\\S+$|^LSSI:\\S+$|^GSIL:\\S+$|^LBBW:\\S+$|^ASXP:\\S+$|^TPEO:\\S+$|^XDHA:\\S+$|^XFEX:\\S+$|^TRCK:\\S+$|^ROCO:\\S+$|^HANB:\\S+$|^NBLX:\\S+$|^CIMV:\\S+$|^XIDX:\\S+$|^ZSE:\\S+$|^BTEE:\\S+$|^XMEX:\\S+$|^VNDM:\\S+$|^BHSF:\\S+$|^IEXG:\\S+$|^TSAF:\\S+$|^MUND:\\S+$|^XSAP:\\S+$|^IMIR:\\S+$|^360T:\\S+$|^XGRM:\\S+$|^BACE:\\S+$|^CABV:\\S+$|^OMIP:\\S+$|^XASE:\\S+$|^JISI:\\S+$|^XNGO:\\S+$|^UBSB:\\S+$|^BNPA:\\S+$|^CIOI:\\S+$|^EBHU:\\S+$|^BERC:\\S+$|^COHR:\\S+$|^XQTX:\\S+$|^NZX:\\S+$|^EQSL:\\S+$|^TRDE:\\S+$|^OTCB:\\S+$|^ISWT:\\S+$|^CHIS:\\S+$|^CAPA:\\S+$|^BME:\\S+$|^MFXA:\\S+$|^WIND:\\S+$|^MTAH:\\S+$|^KBLT:\\S+$|^TFSA:\\S+$|^NODX:\\S+$|^BAEP:\\S+$|^AQXA:\\S+$|^TPEL:\\S+$|^ZODM:\\S+$|^XESM:\\S+$|^CAES:\\S+$|^LQFI:\\S+$|^JBSI:\\S+$|^VMFX:\\S+$|^STFX:\\S+$|^XISX:\\S+$|^XMSM:\\S+$|^GTXS:\\S+$|^XEUI:\\S+$|^XABG:\\S+$|^XTXM:\\S+$|^SECC:\\S+$|^TRQX:\\S+$|^TASE:\\S+$|^CSOB:\\S+$|^XIHK:\\S+$|^NYSI:\\S+$|^VABD:\\S+$|^ASEX:\\S+$|^XSES:\\S+$|^SWLV:\\S+$|^XOSD:\\S+$|^MUDX:\\S+$|^CMEC:\\S+$|^XRIS:\\S+$|^UKRE:\\S+$|^NIBC:\\S+$|^XTND:\\S+$|^FXGB:\\S+$|^CEDX:\\S+$|^XMIL:\\S+$|^LMAF:\\S+$|^ROSR:\\S+$|^CPGX:\\S+$|^CLJP:\\S+$|^SGMT:\\S+$|^3579:\\S+$|^RMTF:\\S+$|^SHAR:\\S+$|^ASPI:\\S+$|^XPHL:\\S+$|^ALLT:\\S+$|^ALDP:\\S+$|^BRFQ:\\S+$|^LBWS:\\S+$|^XCOL:\\S+$|^GSIB:\\S+$|^RTSL:\\S+$|^DNFI:\\S+$|^XMAN:\\S+$|^CSEALL:\\S+$|^LEUE:\\S+$|^MANL:\\S+$|^GLPX:\\S+$|^XGCX:\\S+$|^BNPL:\\S+$|^CDSL:\\S+$|^AMLG:\\S+$|^FSME:\\S+$|^WINX:\\S+$|^XHAN:\\S+$|^SEPE:\\S+$|^CMET:\\S+$|^IFXA:\\S+$|^XSDX:\\S+$|^MPRL:\\S+$|^XBCC:\\S+$|^EMID:\\S+$|^OSSG:\\S+$|^JYSI:\\S+$|^SSOB:\\S+$|^XARM:\\S+$|^BEEX:\\S+$|^XECM:\\S+$|^MSTO:\\S+$|^ICXL:\\S+$|^MOSE:\\S+$|^MALX:\\S+$|^XBSE:\\S+$|^AMS:\\S+$|^DUSD:\\S+$|^XNGM:\\S+$|^CEUX:\\S+$|^SANT:\\S+$|^OTCI:\\S+$|^XMSW:\\S+$|^ECEU:\\S+$|^CGND:\\S+$|^TWEO:\\S+$|^XGME:\\S+$|^SWEE:\\S+$|^CXAP:\\S+$|^XCUE:\\S+$|^IMEX:\\S+$|^LISX:\\S+$|^NZE:\\S+$|^XCDE:\\S+$|^EMDR:\\S+$|^BTNL:\\S+$|^XLBM:\\S+$|^ISWA:\\S+$|^IOFI:\\S+$|^MTSB:\\S+$|^STUA:\\S+$|^RTSX:\\S+$|^TMEX:\\S+$|^UICE:\\S+$|^XTIR:\\S+$|^BLIQ:\\S+$|^MESQ:\\S+$|^CECA:\\S+$|^MOCX:\\S+$|^NCME:\\S+$|^BATF:\\S+$|^XEID:\\S+$|^CXAC:\\S+$|^HRTF:\\S+$|^MATN:\\S+$|^UGEN:\\S+$|^BCSE:\\S+$|^NABU:\\S+$|^GMEG:\\S+$|^SVEX:\\S+$|^GLOM:\\S+$|^MKAP:\\S+$|^MSEU:\\S+$|^ACKF:\\S+$|^RBCT:\\S+$|^OMIC:\\S+$|^TOCP:\\S+$|^XSCA:\\S+$|^XCIS:\\S+$|^CMAP:\\S+$|^AQUA:\\S+$|^JPCB:\\S+$|^LYNX:\\S+$|^CGML:\\S+$|^MSPL:\\S+$|^AKIS:\\S+$|^MUBM:\\S+$|^XEBI:\\S+$|^MLEX:\\S+$|^XALT:\\S+$|^SBSI:\\S+$|^CSZH:\\S+$|^BOTC:\\S+$|^XUMP:\\S+$|^R5FX:\\S+$|^XSC3:\\S+$|^RBSI:\\S+$|^ESLO:\\S+$|^EBSS:\\S+$|^TSBX:\\S+$|^CFAU:\\S+$|^NYMS:\\S+$|^SEDX:\\S+$|^XIPO:\\S+$|^XOSE:\\S+$|^BINV:\\S+$|^JEFE:\\S+$|^XNKS:\\S+$|^GSPL:\\S+$|^BKSK:\\S+$|^ODXE:\\S+$|^XOSC:\\S+$|^XMUS:\\S+$|^RABO:\\S+$|^BLBS:\\S+$|^XNYL:\\S+$|^BPKO:\\S+$|^BVUS:\\S+$|^VIUK:\\S+$|^OTCX:\\S+$|^MFOX:\\S+$|^IMCE:\\S+$|^EUWA:\\S+$|^FRTE:\\S+$|^DNDK:\\S+$|^IOTC:\\S+$|^ENSL:\\S+$|^BMEA:\\S+$|^ASXC:\\S+$|^ISWR:\\S+$|^XBCM:\\S+$|^TBSP:\\S+$|^NZFX:\\S+$|^XISA:\\S+$|^BHWA:\\S+$|^KHHU:\\S+$|^DGCX:\\S+$|^ISWO:\\S+$|^XODE:\\S+$|^PAVE:\\S+$|^NPEX:\\S+$|^HPCV:\\S+$|^XNCM:\\S+$|^XATS:\\S+$|^TWSF:\\S+$|^EQUS:\\S+$|^APCL:\\S+$|^BSAB:\\S+$|^EXCP:\\S+$|^BEBG:\\S+$|^XLIS:\\S+$|^ARCO:\\S+$|^CATS:\\S+$|^EQOS:\\S+$|^CLMX:\\S+$|^BATD:\\S+$|^XJNB:\\S+$|^BCXE:\\S+$|^XSTO:\\S+$|^IMCT:\\S+$|^JSER:\\S+$|^LIQF:\\S+$|^XOAM:\\S+$|^XPOT:\\S+$|^SVXI:\\S+$|^NMTF:\\S+$|^XBRN:\\S+$|^XJAS:\\S+$|^CGMD:\\S+$|^BGUK:\\S+$|^CLST:\\S+$|^ENMS:\\S+$|^XVIE:\\S+$|^XEQY:\\S+$|^CXAQ:\\S+$|^SMBE:\\S+$|^XTAF:\\S+$|^VLEX:\\S+$|^EDBT:\\S+$|^MEMX:\\S+$|^XPRA:\\S+$|^EXSY:\\S+$|^HGSP:\\S+$|^EUCC:\\S+$|^XRPM:\\S+$|^JPEU:\\S+$|^TSAD:\\S+$|^BARD:\\S+$|^XGUA:\\S+$|^NABE:\\S+$|^BSTX:\\S+$|^STUC:\\S+$|^XBOS:\\S+$|^HREU:\\S+$|^JLEU:\\S+$|^XLCH:\\S+$|^CGXS:\\S+$|^TRUK:\\S+$|^AFET:\\S+$|^NABA:\\S+$|^GSPX:\\S+$|^XBES:\\S+$|^CEPL:\\S+$|^BOFS:\\S+$|^RTSP:\\S+$|^BLEQ:\\S+$|^XMUN:\\S+$|^BILU:\\S+$|^XKCE:\\S+$|^RBCC:\\S+$|^BLUX:\\S+$|^AQEU:\\S+$|^WFLB:\\S+$|^XBRD:\\S+$|^PROS:\\S+$|^BNSX:\\S+$|^VTLS:\\S+$|^PEPH:\\S+$|^BTEC:\\S+$|^ECSL:\\S+$|^MAXD:\\S+$|^XCYS:\\S+$|^MNIS:\\S+$|^PSE:\\S+$|^XNDQ:\\S+$|^LOTC:\\S+$|^HSFX:\\S+$|^PEEL:\\S+$|^FXPS:\\S+$|^XVPA:\\S+$|^XPOM:\\S+$|^SGMX:\\S+$|^MLES:\\S+$|^AFSL:\\S+$|^FRAB:\\S+$|^BNPS:\\S+$|^TRPX:\\S+$|^MAQU:\\S+$|^RBCE:\\S+$|^ZERO:\\S+$|^LATG:\\S+$|^XBVM:\\S+$|^NXEU:\\S+$|^XDUB:\\S+$|^CCRM:\\S+$|^CXAV:\\S+$|^JSE:\\S+$|^SGAS:\\S+$|^NGXC:\\S+$|^GROW:\\S+$|^IFXC:\\S+$|^NAMX:\\S+$|^TEMM:\\S+$|^TRAS:\\S+$|^CNSX:\\S+$|^XPAE:\\S+$|^TEMI:\\S+$|^TPSE:\\S+$|^GMEO:\\S+$|^TEUR:\\S+$|^INGE:\\S+$|^XTKT:\\S+$|^XTAM:\\S+$|^TEMB:\\S+$|^XSIM:\\S+$|^XKUW:\\S+$|^SPIM:\\S+$|^UKOR:\\S+$|^MAGM:\\S+$|^UTSL:\\S+$|^XPAL:\\S+$|^LMAD:\\S+$|^CAVD:\\S+$|^SUNT:\\S+$|^HRSI:\\S+$|^DOSE:\\S+$|^HSXA:\\S+$|^IMCR:\\S+$|^DAVY:\\S+$|^ASE:\\S+$|^BEUT:\\S+$|^BLEV:\\S+$|^IMEN:\\S+$|^SGMA:\\S+$|^MCSE:\\S+$|^AFSA:\\S+$|^UCBG:\\S+$|^XBIS:\\S+$|^MERF:\\S+$|^XLOD:\\S+$|^BPOL:\\S+$|^NEOC:\\S+$|^BLNK:\\S+$|^UKGD:\\S+$|^DZBK:\\S+$|^GLBX:\\S+$|^TWEA:\\S+$|^MLER:\\S+$|^HCER:\\S+$|^MCID:\\S+$|^BMTF:\\S+$|^OTPR:\\S+$|^IATS:\\S+$|^MDRV:\\S+$|^XAQS:\\S+$|^DCSX:\\S+$|^EDGL:\\S+$|^NXSE:\\S+$|^APAW:\\S+$|^ABXX:\\S+$|^BKK:\\S+$|^ISWB:\\S+$|^XSWB:\\S+$|^HAMN:\\S+$|^MAQL:\\S+$|^RBHU:\\S+$|^SIDX:\\S+$|^SEBA:\\S+$|^CALH:\\S+$|^BBSF:\\S+$|^BELB:\\S+$|^XBXO:\\S+$|^EBXV:\\S+$|^XKIS:\\S+$|^FLTR:\\S+$|^XNOR:\\S+$|^TRQM:\\S+$|^ISEX:\\S+$|^MUSN:\\S+$|^CFBC:\\S+$|^XSPS:\\S+$|^CXAR:\\S+$|^DBHK:\\S+$|^NCML:\\S+$|^SIMV:\\S+$|^BLTX:\\S+$|^MIHI:\\S+$|^NYSD:\\S+$|^IBEX:\\S+$|^XEBS:\\S+$|^AFSX:\\S+$|^NEXL:\\S+$|^XHKF:\\S+$|^DOWE:\\S+$|^XMVL:\\S+$|^INGF:\\S+$|^TAL:\\S+$|^AUTX:\\S+$|^IVZX:\\S+$|^SBIU:\\S+$|^SGX:\\S+$|^ICEL:\\S+$|^FNDK:\\S+$|^IFEN:\\S+$|^TSX:\\S+$|^RSEX:\\S+$|^SSME:\\S+$|^EXVP:\\S+$|^WSE:\\S+$|^DAPA:\\S+$|^INSE:\\S+$|^TWEU:\\S+$|^PLDX:\\S+$|^NOFI:\\S+$|^SMEX:\\S+$|^XETA:\\S+$|^EUFN:\\S+$|^WMTF:\\S+$|^GRSE:\\S+$|^EXMP:\\S+$|^TPIE:\\S+$|^TCML:\\S+$|^XGHA:\\S+$|^APEX:\\S+$|^XBCL:\\S+$|^BBSX:\\S+$|^ARCX:\\S+$|^XDRK:\\S+$|^ATLN:\\S+$|^SSTX:\\S+$|^HMOD:\\S+$|^XSBT:\\S+$|^OCEA:\\S+$|^WINS:\\S+$|^GFIN:\\S+$|^NORX:\\S+$|^WSIN:\\S+$|^XFNO:\\S+$|^DRSP:\\S+$|^SBIL:\\S+$|^PLPS:\\S+$|^VERT:\\S+$|^MTXM:\\S+$|^TRUX:\\S+$|^VUSA:\\S+$|^XMOC:\\S+$|^XTAI:\\S+$|^CBSK:\\S+$|^PJCX:\\S+$|^CRYP:\\S+$|^JADX:\\S+$|^UBSF:\\S+$|^GIPB:\\S+$|^XMDG:\\S+$|^MYTR:\\S+$|^BLPX:\\S+$|^BOTV:\\S+$|^XLJU:\\S+$|^TQEM:\\S+$|^PLPO:\\S+$|^BCSC:\\S+$|^CGCM:\\S+$|^STXS:\\S+$|^SCAG:\\S+$|^HPCX:\\S+$|^NOPS:\\S+$|^SXSI:\\S+$|^XBEL:\\S+$|^XBUL:\\S+$|^LPPM:\\S+$|^ASMT:\\S+$|^TEFD:\\S+$|^XBBJ:\\S+$|^XEMS:\\S+$|^MCXR:\\S+$|^XBRV:\\S+$|^GFIF:\\S+$|^BAMX:\\S+$|^XZCE:\\S+$|^WDER:\\S+$|^DHEL:\\S+$|^EXBO:\\S+$|^CMSF:\\S+$|^BOTE:\\S+$|^VFCM:\\S+$|^TSGB:\\S+$|^FCBT:\\S+$|^GMBG:\\S+$|^ASX:\\S+$|^THEM:\\S+$|^UCIT:\\S+$|^XLIT:\\S+$|^ASTR:\\S+$|^XADS:\\S+$|^SLHB:\\S+$|^ZBUL:\\S+$|^CETI:\\S+$|^EQTB:\\S+$|^XINS:\\S+$|^MTSD:\\S+$|^BGCI:\\S+$|^LICA:\\S+$|^SSBM:\\S+$|^TMCC:\\S+$|^XMON:\\S+$|^NFSC:\\S+$|^EMIR:\\S+$|^IGDL:\\S+$|^XEUR:\\S+$|^NEXF:\\S+$|^FXRS:\\S+$|^ICDX:\\S+$|^CSAU:\\S+$|^THRE:\\S+$|^XDSX:\\S+$|^GBOT:\\S+$|^VAGM:\\S+$|^BSE:\\S+$|^XBSD:\\S+$|^XNYE:\\S+$|^CABK:\\S+$|^XNFI:\\S+$|^C2OX:\\S+$|^T212:\\S+$|^MNFI:\\S+$|^MTXX:\\S+$|^XUNI:\\S+$|^CNSI:\\S+$|^S3FM:\\S+$|^BKLF:\\S+$|^MOTX:\\S+$|^CGDB:\\S+$|^NYSEAMERICAN:\\S+$|^AILT:\\S+$|^XPST:\\S+$|^SHSC:\\S+$|^NDXS:\\S+$|^CGET:\\S+$|^MCX:\\S+$|^XXXX:\\S+$|^EDGA:\\S+$|^TRXE:\\S+$|^BARL:\\S+$|^UBSX:\\S+$|^XMAU:\\S+$|^GFIR:\\S+$|^XKON:\\S+$|^MHBE:\\S+$|^CREM:\\S+$|^XCEC:\\S+$|^PEPQ:\\S+$|^TIRD:\\S+$|^LCUR:\\S+$|^XAFR:\\S+$|^JSJX:\\S+$|^ERST:\\S+$|^XBLK:\\S+$|^SCXO:\\S+$|^ICHK:\\S+$|^DKTC:\\S+$|^BAML:\\S+$|^WBAH:\\S+$|^BLFX:\\S+$|^IPSX:\\S+$|^VFGB:\\S+$|^CHIX:\\S+$|^RBCM:\\S+$|^RICD:\\S+$|^XCNF:\\S+$|^XTNX:\\S+$|^SECE:\\S+$|^TMCY:\\S+$|^BVUK:\\S+$|^ICXR:\\S+$|^XWAR:\\S+$|^XSHG:\\S+$|^VWDA:\\S+$|^MHBP:\\S+$|^BBSI:\\S+$|^ARAX:\\S+$|^BETA:\\S+$|^XTUN:\\S+$|^TDBL:\\S+$|^CHIC:\\S+$|^KNLI:\\S+$|^BREA:\\S+$|^ERIS:\\S+$|^SGMY:\\S+$|^HPSX:\\S+$|^RFBK:\\S+$|^XNCD:\\S+$|^DUSC:\\S+$|^FRAW:\\S+$|^EXOT:\\S+$|^SVES:\\S+$|^NSDQ:\\S+$|^ETFP:\\S+$|^JSEB:\\S+$|^CCML:\\S+$|^IFSM:\\S+$|^POTC:\\S+$|^NLAX:\\S+$|^BNPC:\\S+$|^IFED:\\S+$|^TRWB:\\S+$|^HRTX:\\S+$|^ANLP:\\S+$|^ICOR:\\S+$|^TRFW:\\S+$|^NABL:\\S+$|^MCRY:\\S+$|^MACB:\\S+$|^XPAC:\\S+$|^WSAG:\\S+$|^CAND:\\S+$|^24EX:\\S+$|^KAIX:\\S+$|^XBRU:\\S+$|^XBNV:\\S+$|^PNED:\\S+$|^EXLP:\\S+$|^XBRA:\\S+$|^FAST:\\S+$|^SEBS:\\S+$|^RABL:\\S+$|^GTXE:\\S+$|^BARU:\\S+$|^FNFX:\\S+$|^AUTO:\\S+$|^BARX:\\S+$|^CBSX:\\S+$|^TEGI:\\S+$|^TNLB:\\S+$|^XEDA:\\S+$|^BBOK:\\S+$|^TPEU:\\S+$|^XETB:\\S+$|^FGEX:\\S+$|^XZAG:\\S+$|^NBFL:\\S+$|^UNGB:\\S+$|^SIFX:\\S+$|^TEIR:\\S+$|^IEXD:\\S+$|^CSBX:\\S+$|^ARIA:\\S+$|^XCBO:\\S+$|^CSDA:\\S+$|^FNLV:\\S+$|^LLAT:\\S+$|^XSWX:\\S+$|^ETPA:\\S+$|^ZKBX:\\S+$|^GBWB:\\S+$|^GOTC:\\S+$|^CXRT:\\S+$|^TADAWUL:\\S+$|^TLV:\\S+$|^XSGO:\\S+$|^CBKE:\\S+$|^XCNQ:\\S+$|^NMRJ:\\S+$|^MELO:\\S+$|^CBKS:\\S+$|^BYXD:\\S+$|^XECB:\\S+$|^SISI:\\S+$|^GTCO:\\S+$|^LEVL:\\S+$|^XSTV:\\S+$|^BKLN:\\S+$|^CLPH:\\S+$|^ISBV:\\S+$|^TFEX:\\S+$|^SMFF:\\S+$|^XELX:\\S+$|^BGHX:\\S+$|^ICES:\\S+$|^UBSL:\\S+$|^XSTF:\\S+$|^HSBC:\\S+$|^MICE:\\S+$|^PARX:\\S+$|^XPOS:\\S+$|^AUTP:\\S+$|^ONSE:\\S+$|^GMTF:\\S+$|^HUDX:\\S+$|^BEUP:\\S+$|^CSSX:\\S+$|^ARCH:\\S+$|^OSDS:\\S+$|^UBSI:\\S+$|^UKPX:\\S+$|^XROS:\\S+$|^XRCB:\\S+$|^XPET:\\S+$|^DUMX:\\S+$|^AFSE:\\S+$|^XLOM:\\S+$|^MHBD:\\S+$|^ABNA:\\S+$|^XGDX:\\S+$|^AQEA:\\S+$|^MSRP:\\S+$|^SIAB:\\S+$|^SICS:\\S+$|^NCEL:\\S+$|^BRGA:\\S+$|^XCFF:\\S+$|^XNAS:\\S+$|^SGEX:\\S+$|^ELIX:\\S+$|^XGLO:\\S+$|^XBOG:\\S+$|^HDAT:\\S+$|^AIMX:\\S+$|^FXFM:\\S+$|^EXYY:\\S+$|^PEPW:\\S+$|^LMNR:\\S+$|^TFSD:\\S+$|^ATFX:\\S+$|^XEYE:\\S+$|^VAGL:\\S+$|^SIGA:\\S+$|^BZXD:\\S+$|^MUBE:\\S+$|^TSRE:\\S+$|^XMLI:\\S+$|^DAIW:\\S+$|^FLWX:\\S+$|^MBUL:\\S+$|^BMLB:\\S+$|^EBR:\\S+$|^MAQI:\\S+$|^XMDS:\\S+$|^MBSI:\\S+$|^SCXA:\\S+$|^DNIS:\\S+$|^TSFI:\\S+$|^KBLL:\\S+$|^SAGE:\\S+$|^ABUL:\\S+$|^PBGR:\\S+$|^HAMM:\\S+$|^XKHA:\\S+$|^NTUK:\\S+$|^BBVX:\\S+$|^BATS:\\S+$|^TYO:\\S+$|^CSVW:\\S+$|^XLDX:\\S+$|^NMSX:\\S+$|^SFCL:\\S+$|^XCOR:\\S+$|^TBSA:\\S+$|^BKBR:\\S+$|^WBON:\\S+$|^DEKA:\\S+$|^EVOL:\\S+$|^XBAR:\\S+$|^GFKS:\\S+$|^BSFX:\\S+$|^MTXC:\\S+$|^COTC:\\S+$|^XCX2:\\S+$|^IOFX:\\S+$|^XPSF:\\S+$|^CNOD:\\S+$|^LMEC:\\S+$|^NEOD:\\S+$|^UBSG:\\S+$|^BGFI:\\S+$|^CIBH:\\S+$|^RUSX:\\S+$|^XZIM:\\S+$|^OBKL:\\S+$|^IFBX:\\S+$|^XPIC:\\S+$|^CGEC:\\S+$|^XNCO:\\S+$|^SGMZ:\\S+$|^MFXC:\\S+$|^DBLN:\\S+$|^CGMU:\\S+$|^XKOS:\\S+$|^TDON:\\S+$|^XDLP:\\S+$|^XXSC:\\S+$|^BVCA:\\S+$|^KCCP:\\S+$|^XMOL:\\S+$|^RBIV:\\S+$|^JLQD:\\S+$|^IST:\\S+$|^TPSO:\\S+$|^MIBG:\\S+$|^MBCP:\\S+$|^MAQE:\\S+$|^TSE:\\S+$|^ISWV:\\S+$|^XCSE:\\S+$|^FIED:\\S+$|^ALTX:\\S+$|^AMXO:\\S+$|^NXJP:\\S+$|^BAAD:\\S+$|^EQCA:\\S+$|^XBER:\\S+$|^TPEE:\\S+$|^TRNL:\\S+$|^FINY:\\S+$|^XKSE:\\S+$|^BRDE:\\S+$|^CBTS:\\S+$|^XSTC:\\S+$|^OAPA:\\S+$|^IBER:\\S+$|^CMMT:\\S+$|^BASI:\\S+$|^KBLC:\\S+$|^XBOX:\\S+$|^LMAX:\\S+$|^XOBD:\\S+$|^PEPM:\\S+$|^CHIV:\\S+$|^INCR:\\S+$|^MXNL:\\S+$|^XEMD:\\S+$|^XKIE:\\S+$|^XKHR:\\S+$|^ILCM:\\S+$|^BBLX:\\S+$|^MIZX:\\S+$|^IFUT:\\S+$|^MSSI:\\S+$|^BAIP:\\S+$|^EMIB:\\S+$|^XINE:\\S+$|^IINX:\\S+$|^EUWB:\\S+$|^RBCB:\\S+$|^ONEC:\\S+$|^CHIA:\\S+$|^ASXT:\\S+$|^VDRK:\\S+$|^XPMS:\\S+$|^XBAN:\\S+$|^MUNA:\\S+$|^XLIM:\\S+$|^NAPA:\\S+$|^XHEL:\\S+$|^MHEU:\\S+$|^LIGA:\\S+$|^BOAL:\\S+$|^MBPL:\\S+$|^XICE:\\S+$|^AFSO:\\S+$|^KMUX:\\S+$|^ABSI:\\S+$|^OMEL:\\S+$|^GOVX:\\S+$|^SKBB:\\S+$|^XBOT:\\S+$|^VTX:\\S+$|^IMGB:\\S+$|^MSBI:\\S+$|^SPBE:\\S+$|^BOSP:\\S+$|^XTXE:\\S+$|^HBFR:\\S+$|^JEFX:\\S+$|^GFIB:\\S+$|^LIUH:\\S+$|^FSHX:\\S+$|^BTQE:\\S+$|^GBUL:\\S+$|^GSBE:\\S+$|^ICPM:\\S+$|^OTC:\\S+$|^XSWM:\\S+$|^EXSP:\\S+$|^STAN:\\S+$|^SSIL:\\S+$|^TPIR:\\S+$|^CMES:\\S+$|^XROT:\\S+$|^CRYD:\\S+$|^FISU:\\S+$|^XCFE:\\S+$|^MLSI:\\S+$|^SEMX:\\S+$|^XNEC:\\S+$|^GFSM:\\S+$|^CCEX:\\S+$|^TGSI:\\S+$|^AATS:\\S+$|^MSTX:\\S+$|^TNLA:\\S+$|^STUE:\\S+$|^SHAW:\\S+$|^GLPS:\\S+$|^KOTF:\\S+$|^BISI:\\S+$|^ESTO:\\S+$|^FXSW:\\S+$|^XCME:\\S+$|^XTK2:\\S+$|^PFTS:\\S+$|^BLKX:\\S+$|^PKOP:\\S+$|^PURE:\\S+$|^XUBS:\\S+$|^CPH:\\S+$|^XMRV:\\S+$|^ZARX:\\S+$|^IOTF:\\S+$|^XPSX:\\S+$|^BVMF:\\S+$|^XBLN:\\S+$|^CBAL:\\S+$|^BTLX:\\S+$|^TEFX:\\S+$|^MUFP:\\S+$|^CVE:\\S+$|^FSEF:\\S+$|^USWB:\\S+$|^NSPO:\\S+$|^NYPC:\\S+$|^CLVE:\\S+$|^CCEU:\\S+$|^BRNX:\\S+$|^XZAP:\\S+$|^DSTO:\\S+$|^XLJM:\\S+$|^XNYM:\\S+$|^BCRM:\\S+$|^SECF:\\S+$|^RR4G:\\S+$|^BSLB:\\S+$|^STOX:\\S+$|^XBAB:\\S+$|^CSCF:\\S+$|^XCHG:\\S+$|^VALX:\\S+$|^VCRS:\\S+$|^EQIE:\\S+$|^CIMA:\\S+$|^XSC1:\\S+$|^MTCH:\\S+$|^XBUD:\\S+$|^OTCN:\\S+$|^NESI:\\S+$|^EBSC:\\S+$|^ASPN:\\S+$|^TPIO:\\S+$|^TSIG:\\S+$|^BLUE:\\S+$|^IMFX:\\S+$|^ASXV:\\S+$|^EUWX:\\S+$|^XEQT:\\S+$|^XQOD:\\S+$|^UBSP:\\S+$|^LIQU:\\S+$|^EBRA:\\S+$|^TRAL:\\S+$|^TEMF:\\S+$|^IOMM:\\S+$|^ISSI:\\S+$|^IMCC:\\S+$|^PBUL:\\S+$|^EDGD:\\S+$|^RMMX:\\S+$|^VTEX:\\S+$|^HSTC:\\S+$|^HEL:\\S+$|^DBAG:\\S+$|^TGAT:\\S+$|^PXIL:\\S+$|^ICSH:\\S+$|^XIQS:\\S+$|^XKAR:\\S+$|^XNDU:\\S+$|^TPER:\\S+$|^XEUE:\\S+$|^XPHS:\\S+$|^XCAI:\\S+$|^XCIE:\\S+$|^CFIF:\\S+$|^XGEM:\\S+$|^NASX:\\S+$|^XNSE:\\S+$|^XBEY:\\S+$|^CFIL:\\S+$|^KBCB:\\S+$|^XPHX:\\S+$|^VCMO:\\S+$|^CITX:\\S+$|^IBUL:\\S+$|^XOFF:\\S+$|^HBPL:\\S+$|^IEBS:\\S+$|^VEGA:\\S+$|^SHA:\\S+$|^CGMA:\\S+$|^XLME:\\S+$|^EWRM:\\S+$|^BNPX:\\S+$|^SBAR:\\S+$|^WSIL:\\S+$|^XREP:\\S+$|^DKED:\\S+$|^XSTU:\\S+$|^GSXT:\\S+$|^FRA:\\S+$|^MSEL:\\S+$|^BGFU:\\S+$|^BPSX:\\S+$|^UBSY:\\S+$|^BIVA:\\S+$|^XGMX:\\S+$|^CIBC:\\S+$|^BATP:\\S+$|^ARCA:\\S+$|^LSE:\\S+$|^XLAT:\\S+$|^TWSE:\\S+$|^VWDX:\\S+$|^IFUS:\\S+$|^XFDA:\\S+$|^AWEX:\\S+$|^EBSF:\\S+$|^XSVA:\\S+$|^PINI:\\S+$|^XTAE:\\S+$|^BCFS:\\S+$|^TWHK:\\S+$|^XIEL:\\S+$|^PFXD:\\S+$|^SNSI:\\S+$|^CISD:\\S+$|^XCBT:\\S+$|^NASDAQ:\\S+$|^SZSE:\\S+$|^XCGS:\\S+$|^XNIM:\\S+$|^FINC:\\S+$|^XHAM:\\S+$|^BDEA:\\S+$|^OHVO:\\S+$|^EQOC:\\S+$|^BRDL:\\S+$|^XRMO:\\S+$|^ECGS:\\S+$|^EGSI:\\S+$|^STUF:\\S+$|^XPOW:\\S+$|^BRDS:\\S+$|^XVES:\\S+$|^XOAS:\\S+$|^RENC:\\S+$|^ITGI:\\S+$|^WBKP:\\S+$|^ISWP:\\S+$|^CHIJ:\\S+$|^ROTC:\\S+$|^ALXB:\\S+$|^BELF:\\S+$|^BRVM:\\S+$|^TLCM:\\S+$|^LXJP:\\S+$|^OPEX:\\S+$|^VTBC:\\S+$|^PLPD:\\S+$|^TSXV:\\S+$|^METZ:\\S+$|^CBNL:\\S+$|^AWBX:\\S+$|^EXPM:\\S+$|^MEMD:\\S+$|^KNCM:\\S+$|^CSSI:\\S+$|^BETP:\\S+$|^BCMA:\\S+$|^JPMI:\\S+$|^ATLB:\\S+$|^CFHK:\\S+$|^BBIS:\\S+$|^XBKF:\\S+$|^XVPB:\\S+$|^XBDA:\\S+$|^IKBS:\\S+$|^FNLT:\\S+$|^XLUX:\\S+$|^IMAG:\\S+$|^COAL:\\S+$|^MXLM:\\S+$|^XDPA:\\S+$|^MCXS:\\S+$|^XNXC:\\S+$|^CCLX:\\S+$|^ICE:\\S+$|^IFLX:\\S+$|^ZOBX:\\S+$|^CMEE:\\S+$|^ICOT:\\S+$|^PTPG:\\S+$|^PARK:\\S+$|^ASEF:\\S+$|^WELS:\\S+$|^IOCD:\\S+$|^CHID:\\S+$|^BCEE:\\S+$|^FCME:\\S+$|^BOSC:\\S+$|^DWSF:\\S+$|^FXOP:\\S+$|^IDX:\\S+$|^JPX:\\S+$|^XOAD:\\S+$|^AQXE:\\S+$|^NSEASI:\\S+$|^TRCX:\\S+$|^BVCC:\\S+$|^CBKC:\\S+$|^BATO:\\S+$|^CGMG:\\S+$|^TWGP:\\S+$|^BEIS:\\S+$|^XABC:\\S+$|^CLAU:\\S+$|^AMNL:\\S+$|^ODDO:\\S+$|^CXAN:\\S+$|^FAIR:\\S+$|^ADVT:\\S+$|^FXAL:\\S+$|^HNX:\\S+$|^TRU2:\\S+$|^XGTG:\\S+$|^BGCB:\\S+$|^IFEU:\\S+$|^CSOT:\\S+$|^CBKD:\\S+$|^XPOL:\\S+$|^YLDX:\\S+$|^XUKR:\\S+$|^XRSP:\\S+$|^ETSC:\\S+$|^CSTO:\\S+$|^CGMH:\\S+$|^MUTI:\\S+$|^XSFA:\\S+$|^EXSF:\\S+$|^ECAG:\\S+$|^PEPY:\\S+$|^BIDS:\\S+$|^XETW:\\S+$|^NDEX:\\S+$|^DICE:\\S+$|^IFLL:\\S+$|^DCSE:\\S+$|^SCXF:\\S+$|^ATHL:\\S+$|^XLUS:\\S+$|^XAPA:\\S+$|^NOWX:\\S+$|^CSEC:\\S+$|^FNIS:\\S+$|^SMBD:\\S+$|^XSIB:\\S+$|^DWFI:\\S+$|^MLRQ:\\S+$|^EMBX:\\S+$|^XTAL:\\S+$|^SZSC:\\S+$|^N2EX:\\S+$|^XHKG:\\S+$|^TERE:\\S+$|^PIEU:\\S+$|^GRIO:\\S+$|^BNLD:\\S+$|^XGSX:\\S+$|^SBIV:\\S+$|^XDEX:\\S+$|^XSTM:\\S+$|^XCAS:\\S+$|^UCDE:\\S+$|^CSCL:\\S+$|^TRU1:\\S+$|^XDSM:\\S+$|^BAJM:\\S+$|^AREX:\\S+$|^EQTA:\\S+$|^BMCM:\\S+$|^EXSH:\\S+$|^CONC:\\S+$|^RBCG:\\S+$|^TRQA:\\S+$|^XROX:\\S+$|^XLON:\\S+$|^XMTB:\\S+$|^FICX:\\S+$|^KRME:\\S+$|^XSSC:\\S+$|^IOGI:\\S+$|^CSLB:\\S+$|^XOSL:\\S+$|^TWJT:\\S+$|^GSCO:\\S+$|^SPEX:\\S+$|^BRIX:\\S+$|^XKFE:\\S+$|^SPTR:\\S+$|^NEON:\\S+$|^BSPL:\\S+$|^BOVM:\\S+$|^CAPI:\\S+$|^SWLT:\\S+$|^MLIX:\\S+$|^DSMD:\\S+$|^NLBX:\\S+$|^ODOC:\\S+$|^XJAM:\\S+$|^EXTR:\\S+$|^XNGS:\\S+$|^UBCZ:\\S+$|^CXOT:\\S+$|^XSSE:\\S+$|^DDTX:\\S+$|^TECO:\\S+$|^JNSI:\\S+$|^RSE:\\S+$|^ARKX:\\S+$|^CSIN:\\S+$|^XIMC:\\S+$|^CSE:\\S+$|^BIT:\\S+$|^GFPO:\\S+$|^MTXS:\\S+$|^JESI:\\S+$|^GLLC:\\S+$|^BALT:\\S+$|^AACA:\\S+$|^TPSL:\\S+$|^XLSM:\\S+$|^FINO:\\S+$|^DASH:\\S+$|^XEUM:\\S+$|^SIMD:\\S+$|^XVAL:\\S+$|^PUMA:\\S+$|^XMOS:\\S+$|^ICEO:\\S+$|^LBCW:\\S+$|^LEDG:\\S+$|^XATH:\\S+$|^OSLC:\\S+$|^XDRF:\\S+$|^EQSE:\\S+$|^BAPA:\\S+$|^MISX:\\S+$|^ENAX:\\S+$|^BKKT:\\S+$|^SPDX:\\S+$|^XAFX:\\S+$|^CGMI:\\S+$|^XSEB:\\S+$|^SBEX:\\S+$|^XMAE:\\S+$|^PRSE:\\S+$|^JPSI:\\S+$|^SPXE:\\S+$|^BAPX:\\S+$|^CLTD:\\S+$|^VFSI:\\S+$|^TSMR:\\S+$|^CELP:\\S+$|^MEMM:\\S+$|^BTFE:\\S+$|^AGBP:\\S+$|^CDED:\\S+$|^LBWL:\\S+$|^MASG:\\S+$|^XSTE:\\S+$|^MHEL:\\S+$|^RLBO:\\S+$|^BTBS:\\S+$|^IDXM:\\S+$|^ANTS:\\S+$|^JNST:\\S+$|^CGEB:\\S+$|^VPXB:\\S+$|^INCA:\\S+$|^HUPX:\\S+$|^XSCO:\\S+$|^XPUS:\\S+$|^DOWG:\\S+$|^NILX:\\S+$|^MSAL:\\S+$|^XPBT:\\S+$|^FRAS:\\S+$|^MABX:\\S+$|^XAMM:\\S+$|^WBCL:\\S+$|^EQOD:\\S+$|^GFAM:\\S+$|^XECC:\\S+$|^XTSE:\\S+$|^CCMX:\\S+$|^NEOE:\\S+$|^DKFI:\\S+$|^XBRM:\\S+$|^IMTF:\\S+$|^HESP:\\S+$|^NOSC:\\S+$|^VIRT:\\S+$|^XBIL:\\S+$|^NMCE:\\S+$|^MUSE:\\S+$|^STUB:\\S+$|^XCXD:\\S+$|^VFXO:\\S+$|^XFRA:\\S+$|^BNYC:\\S+$|^XCBF:\\S+$|^BCSL:\\S+$|^WQXL:\\S+$|^TDGF:\\S+$|^HAMB:\\S+$|^XSBI:\\S+$|^EDRF:\\S+$|^NOSI:\\S+$|^XMAL:\\S+$|^PATF:\\S+$|^TRDX:\\S+$|^IMRD:\\S+$|^XNAI:\\S+$|^CURX:\\S+$|^MIDC:\\S+$|^XTK3:\\S+$|^XTSX:\\S+$|^BATE:\\S+$|^AAPA:\\S+$|^MUBP:\\S+$|^XADE:\\S+$|^CBKF:\\S+$|^ECHO:\\S+$|^IMCO:\\S+$|^HPPO:\\S+$|^BNPF:\\S+$|^KBLS:\\S+$|^ALSI:\\S+$|^XMNX:\\S+$|^HRFQ:\\S+$|^AFSI:\\S+$|^XSAT:\\S+$|^FXCM:\\S+$|^NEXS:\\S+$|^AUTB:\\S+$|^KBLM:\\S+$|^CBKA:\\S+$|^A2XX:\\S+$|^EMTF:\\S+$|^FNIX:\\S+$|^XHNX:\\S+$|^XUGA:\\S+$|^XAMS:\\S+$|^XIBE:\\S+$|^NLPX:\\S+$|^TSEF:\\S+$|^HEDE:\\S+$|^APXL:\\S+$|^XSTX:\\S+$|^FNFT:\\S+$|^PUND:\\S+$|^SCXM:\\S+$|^SECD:\\S+$|^XCSX:\\S+$|^SQUA:\\S+$|^XCAL:\\S+$|^HOTC:\\S+$|^ALXP:\\S+$|^TERM:\\S+$|^DNSE:\\S+$|^XIOM:\\S+$|^CIMD:\\S+$|^SMBG:\\S+$|^BOM:\\S+$|^VFMI:\\S+$|^CANX:\\S+$|^TRQB:\\S+$|^XETV:\\S+$|^IMCS:\\S+$|^BMLI:\\S+$|^HPCS:\\S+$|^DOWM:\\S+$|^BSEX:\\S+$|^SIBC:\\S+$|^SPEC:\\S+$|^ICUR:\\S+$|^XLGT:\\S+$|^ENXL:\\S+$|^AFEX:\\S+$|^BLTD:\\S+$|^XCAN:\\S+$|^TREO:\\S+$|^HPCO:\\S+$|^EGMT:\\S+$|^OLBB:\\S+$|^GFBM:\\S+$|^UBSS:\\S+$|^WABR:\\S+$|^UFEX:\\S+$|^NWMS:\\S+$|^TQEX:\\S+$|^NATX:\\S+$|^CLHK:\\S+$|^NASD:\\S+$|^G1XX:\\S+$|^EIXE:\\S+$|^MHBL:\\S+$|^GFOX:\\S+$|^EQTD:\\S+$|^IUOB:\\S+$|^XRMZ:\\S+$|^XNMS:\\S+$|^XNEP:\\S+$|^WBDM:\\S+$|^DBOX:\\S+$|^CEUD:\\S+$|^XSAU:\\S+$|^FREX:\\S+$|^BASP:\\S+$|^BAPE:\\S+$|^XECS:\\S+$|^GSAL:\\S+$|^EXGM:\\S+$|^BMEX:\\S+$|^NYFX:\\S+$|^JPMX:\\S+$|^MATX:\\S+$|^GFIC:\\S+$|^CCFX:\\S+$|^OTCQ:\\S+$|^XDNB:\\S+$|^EXAA:\\S+$|^NDCM:\\S+$|^PINX:\\S+$|^CAVE:\\S+$|^COMG:\\S+$|^CODA:\\S+$|^XSFE:\\S+$|^SWAP:\\S+$|^SMFE:\\S+$|^IFAD:\\S+$|^EPEX:\\S+$|^XBVC:\\S+$|^CGMT:\\S+$|^BNTW:\\S+$|^HMTF:\\S+$|^XTRN:\\S+$|^NPGA:\\S+$|^XALS:\\S+$|^ITGL:\\S+$|^HCHC:\\S+$|^BSME:\\S+$|^FTFM:\\S+$|^IFLO:\\S+$|^XBUE:\\S+$|^XNOM:\\S+$|^DOTS:\\S+$|^TSMM:\\S+$|^XCAY:\\S+$|^BOVA:\\S+$|^XMFX:\\S+$|^LUXSE:\\S+$|^XSGA:\\S+$|^XJSE:\\S+$|^MARF:\\S+$|^XEER:\\S+$|^PIPR:\\S+$|^HAML:\\S+$|^GSEF:\\S+$|^RPWC:\\S+$|^SHE:\\S+$|^ISDA:\\S+$|^XERT:\\S+$|^BBVA:\\S+$|^FBSI:\\S+$|^KOSDAQ:\\S+$|^XSTP:\\S+$|^XKRX:\\S+$|^XSCU:\\S+$|^CFJP:\\S+$|^BBIE:\\S+$|^XMEV:\\S+$|^XISE:\\S+$|^XSAM:\\S+$|^LASF:\\S+$|^XQMH:\\S+$|^KNIG:\\S+$|^IMMM:\\S+$|^XKFB:\\S+$|^IMGI:\\S+$|^BGLU:\\S+$|^XSGB:\\S+$|^SHAD:\\S+$|^MAQJ:\\S+$|^BMV:\\S+$|^XALG:\\S+$|^ECAL:\\S+$|^XMAT:\\S+$|^SGOE:\\S+$|^AURO:\\S+$|^TPIC:\\S+$|^SIGH:\\S+$|^FICO:\\S+$|^XUSE:\\S+$|^XTRZ:\\S+$|^SSBT:\\S+$|^XASX:\\S+$|^XBLB:\\S+$|^GFBO:\\S+$|^MOEX:\\S+$|^CGTR:\\S+$|^BARO:\\S+$|^TWSG:\\S+$|^OTCE:\\S+$|^OPRA:\\S+$|^PDEX:\\S+$|^BNDD:\\S+$|^ICSZ:\\S+$|^EQTC:\\S+$|^GSXL:\\S+$|^PINL:\\S+$|^EBSN:\\S+$|^XKAC:\\S+$|^SGMU:\\S+$|^MFXR:\\S+$|^XSC2:\\S+$|^XMNT:\\S+$|^SEED:\\S+$|^IOIR:\\S+$|^XLAO:\\S+$|^CSEU:\\S+$|^DBMO:\\S+$|^MTSO:\\S+$|^NXUS:\\S+$|^UCBA:\\S+$|^XCYO:\\S+$|^RTSI:\\S+$|^XNZE:\\S+$|^SWX:\\S+$|^MAQX:\\S+$|^RPDX:\\S+$|^TRAX:\\S+$|^SGMW:\\S+$|^XOSA:\\S+$|^XOAA:\\S+$|^4AXE:\\S+$|^XRFQ:\\S+$|^MCXX:\\S+$|^FMTS:\\S+$|^HEGX:\\S+$|^LOUI:\\S+$|^GXMA:\\S+$|^FLTB:\\S+$|^XINV:\\S+$|^IBAL:\\S+$|^XNAF:\\S+$|^XMPW:\\S+$|^OTPB:\\S+$|^CBOE:\\S+$|^XGCL:\\S+$|^BMLS:\\S+$|^ISWN:\\S+$|^UBSC:\\S+$|^PINC:\\S+$|^SWBI:\\S+$|^ABNC:\\S+$|^XMAD:\\S+$|^XDFB:\\S+$|^OCSI:\\S+$|^CSJP:\\S+$|^XICX:\\S+$|^XEUC:\\S+$|^CPTX:\\S+$|^ISWC:\\S+$|^XPUK:\\S+$|^GTSX:\\S+$|^XDUS:\\S+$|^ZAPA:\\S+$|^XDSE:\\S+$|^BEUO:\\S+$|^PPEX:\\S+$|^LBCM:\\S+$|^SEBL:\\S+$|^DIFX:\\S+$|^XBAH:\\S+$|^TSED:\\S+$|^LOYD:\\S+$|^JPBX:\\S+$|^XMTS:\\S+$|^MIVX:\\S+$|^XNAM:\\S+$|^CSAS:\\S+$|^IMED:\\S+$|^NWNV:\\S+$|^CXAW:\\S+$|^TERA:\\S+$|^ICSU:\\S+$|^XGAS:\\S+$|^IOED:\\S+$|^BLBB:\\S+$|^MKAA:\\S+$|^MTSF:\\S+$|^AFDL:\\S+$|^SSE:\\S+$|^IFSG:\\S+$|^GMES:\\S+$|^XOPV:\\S+$|^BETX:\\S+$|^ROFX:\\S+$|^IFLS:\\S+$|^XMGE:\\S+$|^NFSA:\\S+$|^ICTW:\\S+$|^HSBT:\\S+$|^XPRI:\\S+$|^CCXE:\\S+$|^XTK1:\\S+$|^ICKR:\\S+$|^GSXK:\\S+$|^CSMD:\\S+$|^BLXA:\\S+$|^DVFX:\\S+$|^MLVX:\\S+$|^XPRM:\\S+$|^BKDM:\\S+$|^XPAR:\\S+$|^FTUS:\\S+$|^CGIT:\\S+$|^GSXC:\\S+$|^XEEE:\\S+$|^XSCE:\\S+$|^CCMS:\\S+$|^JPMS:\\S+$|^JSES:\\S+$|^RBSX:\\S+$|^XCET:\\S+$|^XBKK:\\S+$|^COMM:\\S+$|^HAMA:\\S+$|^XETF:\\S+$|^SMBB:\\S+$|^CBLC:\\S+$|^MSMS:\\S+$|^RICX:\\S+$|^BASE:\\S+$|^WETP:\\S+$|^CGQT:\\S+$|^ABFI:\\S+$|^MSCO:\\S+$|^XRBM:\\S+$|^BIST:\\S+$|^XOSJ:\\S+$|^BPLC:\\S+$|^UKEX:\\S+$|^SCOT:\\S+$|^BDSK:\\S+$|^DEXE:\\S+$|^MKTF:\\S+$|^FXRQ:\\S+$|^ANZL:\\S+$|^TPSV:\\S+$|^ZFXM:\\S+$|^IMBD:\\S+$|^INGB:\\S+$|^CHIO:\\S+$|^XBND:\\S+$|^SOHO:\\S+$|^TRSI:\\S+$|^TQEB:\\S+$|^XUAX:\\S+$|^CRED:\\S+$|^CGMC:\\S+$|^SIX:\\S+$|^DBLX:\\S+$|^TWEM:\\S+$|^WOOD:\\S+$|^DSME:\\S+$|^BAJD:\\S+$|^CGQD:\\S+$|^STUD:\\S+$|^AMPX:\\S+$|^CITD:\\S+$|^MTXA:\\S+$|^EXSD:\\S+$|^GSXH:\\S+$|^EDDP:\\S+$|^LQED:\\S+$|^NEXD:\\S+$|^IMSB:\\S+$|^ELSE:\\S+$|^EQLD:\\S+$|^ELUK:\\S+$|^INVE:\\S+$|^DASI:\\S+$|^GETB:\\S+$|^XNSA:\\S+$|^TRQC:\\S+$|^XTKS:\\S+$|^SGA2:\\S+$|^XIMM:\\S+$|^SMBP:\\S+$|^OTXB:\\S+$|^ETR:\\S+$|^NFSD:\\S+$|^NEXG:\\S+$|^CSAG:\\S+$|^BGCF:\\S+$|^XNXD:\\S+$|^XGAT:\\S+$|^IPXW:\\S+$|^CSHK:\\S+$|^BNPP:\\S+$|^CASI:\\S+$|^MESI:\\S+$|^BFEX:\\S+$|^HKEX:\\S+$|^PUMX:\\S+$|^XBDV:\\S+$|^LAMP:\\S+$|^ICRO:\\S+$|^LEUF:\\S+$|^WELN:\\S+$|^UCHU:\\S+$|^FXCL:\\S+$|^FINN:\\S+$|^GSCI:\\S+$|^CGEE:\\S+$|^BCDX:\\S+$|^XMER:\\S+$|^XKEM:\\S+$|^XIMA:\\S+$|^PIPE:\\S+$|^CSGI:\\S+$|^LIQH:\\S+$|^XBRT:\\S+$|^XSAF:\\S+$|^BVUR:\\S+$|^BOSD:\\S+$|^SPRZ:\\S+$|^BUX:\\S+$|^MVCX:\\S+$|^CXAF:\\S+$|^PIRM:\\S+$|^LMAO:\\S+$|^XCRO:\\S+$|^IBEQ:\\S+$|^IFXR:\\S+$|^XSEF:\\S+$|^EXDC:\\S+$|^XTRD:\\S+$|^GSEI:\\S+$|^CMCI:\\S+$|^XQUI:\\S+$|^MCAD:\\S+$|^KELR:\\S+$|^XADF:\\S+$|^MUNB:\\S+$|^SEND:\\S+$|^CGMX:\\S+$|^LIUS:\\S+$|^EXOR:\\S+$|^XPTY:\\S+$|^LON:\\S+$|^XBVR:\\S+$|^BKBF:\\S+$|^GMGL:\\S+$|^XNYS:\\S+$|^BFPT:\\S+$|^YKNA:\\S+$|^CBKG:\\S+$|^HKG:\\S+$|^MAQH:\\S+$|^TFSU:\\S+$|^XTFF:\\S+$|^XEUP:\\S+$|^XULA:\\S+$|^HEMO:\\S+$|^XKCM:\\S+$|^CAPL:\\S+$|^XCHI:\\S+$|^ETLX:\\S+$|^XDMI:\\S+$|^JBUL:\\S+$|^BERA:\\S+$|^MAEL:\\S+$|^IECL:\\S+$|^CEPU:\\S+$|^OOTC:\\S+$|^SIGJ:\\S+$|^BTRL:\\S+$|^VIE:\\S+$|^BCMM:\\S+$|^TQEA:\\S+$|^KOME:\\S+$|^VONT:\\S+$|^SSFX:\\S+$|^MERK:\\S+$|^CIMB:\\S+$|^EOTC:\\S+$|^TREU:\\S+$|^XPHO:\\S+$|^JSSI:\\S+$|^NOED:\\S+$|^TRAI:\\S+$|^DUSA:\\S+$|^VFIL:\\S+$|^KLEU:\\S+$|^NXVW:\\S+$|^XIST:\\S+$|^SSBI:\\S+$|^UBSA:\\S+$|^EBSO:\\S+$|^ARCD:\\S+$|^RESF:\\S+$|^OTCM:\\S+$|^FREI:\\S+$|^TOWR:\\S+$|^MLXB:\\S+$|^ICBX:\\S+$|^CDSI:\\S+$|^SKSI:\\S+$|^FNEE:\\S+$|^EXSE:\\S+$|^IMEQ:\\S+$|^XSGE:\\S+$|^TPE:\\S+$|^CRYX:\\S+$|^XBCX:\\S+$|^BCSI:\\S+$|^XFCI:\\S+$|^CIME:\\S+$)$",
             "title": "Ticker"
           }
         },
@@ -8229,7 +9249,6 @@
           },
           "ticker": {
             "type": "string",
-            "pattern": "(?i)^(^XMAI:\\S+$|^XBOM:\\S+$|^BTAM:\\S+$|^FISH:\\S+$|^TUOB:\\S+$|^UBIN:\\S+$|^AIXK:\\S+$|^XMOT:\\S+$|^EXEU:\\S+$|^NBOT:\\S+$|^EBON:\\S+$|^BTEQ:\\S+$|^SGMV:\\S+$|^IMET:\\S+$|^EMLD:\\S+$|^TWJP:\\S+$|^XETU:\\S+$|^SBIJ:\\S+$|^LASP:\\S+$|^MUBL:\\S+$|^TREA:\\S+$|^EXSB:\\S+$|^XBOL:\\S+$|^XLLB:\\S+$|^XMIO:\\S+$|^FRAU:\\S+$|^BLBF:\\S+$|^CESI:\\S+$|^LISZ:\\S+$|^BLOX:\\S+$|^STFL:\\S+$|^BGCO:\\S+$|^JEFS:\\S+$|^XNLI:\\S+$|^ELXE:\\S+$|^VTPS:\\S+$|^XRUS:\\S+$|^ERBX:\\S+$|^XMAB:\\S+$|^SCXS:\\S+$|^XGSE:\\S+$|^FRAA:\\S+$|^CFTW:\\S+$|^XKLS:\\S+$|^FNCS:\\S+$|^ULTX:\\S+$|^LTAA:\\S+$|^XLFX:\\S+$|^ELNO:\\S+$|^NEXX:\\S+$|^XSHE:\\S+$|^MCUR:\\S+$|^XPOR:\\S+$|^KLSH:\\S+$|^ENCL:\\S+$|^GMNI:\\S+$|^XFKA:\\S+$|^MSIP:\\S+$|^XDFM:\\S+$|^IBIS:\\S+$|^XETR:\\S+$|^OMGA:\\S+$|^XJPX:\\S+$|^DBAB:\\S+$|^MTSC:\\S+$|^XEHQ:\\S+$|^REST:\\S+$|^CECS:\\S+$|^FTFS:\\S+$|^UKCA:\\S+$|^LCHC:\\S+$|^ACEX:\\S+$|^UBEC:\\S+$|^IMMH:\\S+$|^CIBP:\\S+$|^MTUS:\\S+$|^PSXD:\\S+$|^BILT:\\S+$|^BMTS:\\S+$|^ABAN:\\S+$|^BOAT:\\S+$|^NSE:\\S+$|^GLMX:\\S+$|^LTSE:\\S+$|^XKBT:\\S+$|^NYSEARCA:\\S+$|^FRAV:\\S+$|^XSOP:\\S+$|^SNUK:\\S+$|^MAKX:\\S+$|^BMCL:\\S+$|^SKYX:\\S+$|^POSE:\\S+$|^EPA:\\S+$|^TSCD:\\S+$|^ASXB:\\S+$|^ELEU:\\S+$|^DEAL:\\S+$|^TNLK:\\S+$|^IFCA:\\S+$|^SELC:\\S+$|^SSEX:\\S+$|^XMOD:\\S+$|^XSEC:\\S+$|^EPRD:\\S+$|^XTEH:\\S+$|^SB1M:\\S+$|^LIFI:\\S+$|^TCDS:\\S+$|^STO:\\S+$|^MHIP:\\S+$|^BCBA:\\S+$|^XDCE:\\S+$|^PSGM:\\S+$|^RMMS:\\S+$|^AURB:\\S+$|^XPXE:\\S+$|^TSGI:\\S+$|^MUNC:\\S+$|^DHLX:\\S+$|^GMGD:\\S+$|^TEGB:\\S+$|^OPCO:\\S+$|^IOGB:\\S+$|^AQED:\\S+$|^XOTP:\\S+$|^FNFI:\\S+$|^WFSE:\\S+$|^GRIF:\\S+$|^ELI:\\S+$|^FNSE:\\S+$|^VSE:\\S+$|^BART:\\S+$|^NORD:\\S+$|^NIBR:\\S+$|^CCO2:\\S+$|^BACR:\\S+$|^GSSI:\\S+$|^NSME:\\S+$|^MNDK:\\S+$|^SEDC:\\S+$|^NEXN:\\S+$|^KAZE:\\S+$|^XBAA:\\S+$|^XWBO:\\S+$|^XHNF:\\S+$|^BERB:\\S+$|^DUSB:\\S+$|^FINR:\\S+$|^GEMX:\\S+$|^DBES:\\S+$|^XDES:\\S+$|^BUYN:\\S+$|^STRM:\\S+$|^MALM:\\S+$|^FWB:\\S+$|^XTUC:\\S+$|^BARK:\\S+$|^XYIE:\\S+$|^KLSE:\\S+$|^TEMR:\\S+$|^IMFD:\\S+$|^CEUO:\\S+$|^MLCO:\\S+$|^NOFF:\\S+$|^TMID:\\S+$|^WIPO:\\S+$|^BGSI:\\S+$|^XERE:\\S+$|^XBTR:\\S+$|^OLLC:\\S+$|^XDAR:\\S+$|^HANA:\\S+$|^IPXP:\\S+$|^XETS:\\S+$|^NOTC:\\S+$|^LMAE:\\S+$|^XBCV:\\S+$|^BANA:\\S+$|^BASX:\\S+$|^XRAS:\\S+$|^EPRL:\\S+$|^EXSI:\\S+$|^GFSO:\\S+$|^CLCH:\\S+$|^XATL:\\S+$|^EBMX:\\S+$|^NYSE:\\S+$|^KRX:\\S+$|^XTXD:\\S+$|^BRED:\\S+$|^NEXO:\\S+$|^BGFX:\\S+$|^EDGO:\\S+$|^AMEX:\\S+$|^NEXT:\\S+$|^MFGL:\\S+$|^PFTQ:\\S+$|^CHEV:\\S+$|^XSWA:\\S+$|^QWIX:\\S+$|^HELA:\\S+$|^BATY:\\S+$|^EESE:\\S+$|^LELE:\\S+$|^GREE:\\S+$|^DRCT:\\S+$|^LMNX:\\S+$|^FSX:\\S+$|^IMCG:\\S+$|^NSXB:\\S+$|^BEAM:\\S+$|^CGGD:\\S+$|^XSPM:\\S+$|^XCUR:\\S+$|^FNUK:\\S+$|^NMRA:\\S+$|^XKAZ:\\S+$|^ALXL:\\S+$|^XEEO:\\S+$|^EDGX:\\S+$|^INGW:\\S+$|^CFIC:\\S+$|^GPBC:\\S+$|^XBBK:\\S+$|^PVMF:\\S+$|^MERD:\\S+$|^UBIS:\\S+$|^EEAL:\\S+$|^SYFX:\\S+$|^KNEM:\\S+$|^ISWE:\\S+$|^TSCB:\\S+$|^BTQG:\\S+$|^IBGH:\\S+$|^XLQC:\\S+$|^MNSE:\\S+$|^IEPA:\\S+$|^MTAA:\\S+$|^RCMA:\\S+$|^CXAM:\\S+$|^BGCD:\\S+$|^LSSI:\\S+$|^GSIL:\\S+$|^LBBW:\\S+$|^ASXP:\\S+$|^TPEO:\\S+$|^XDHA:\\S+$|^XFEX:\\S+$|^TRCK:\\S+$|^ROCO:\\S+$|^HANB:\\S+$|^NBLX:\\S+$|^CIMV:\\S+$|^XIDX:\\S+$|^ZSE:\\S+$|^BTEE:\\S+$|^XMEX:\\S+$|^VNDM:\\S+$|^BHSF:\\S+$|^IEXG:\\S+$|^TSAF:\\S+$|^MUND:\\S+$|^XSAP:\\S+$|^IMIR:\\S+$|^360T:\\S+$|^XGRM:\\S+$|^BACE:\\S+$|^CABV:\\S+$|^OMIP:\\S+$|^XASE:\\S+$|^JISI:\\S+$|^XNGO:\\S+$|^UBSB:\\S+$|^BNPA:\\S+$|^CIOI:\\S+$|^EBHU:\\S+$|^BERC:\\S+$|^COHR:\\S+$|^XQTX:\\S+$|^NZX:\\S+$|^EQSL:\\S+$|^TRDE:\\S+$|^OTCB:\\S+$|^ISWT:\\S+$|^CHIS:\\S+$|^CAPA:\\S+$|^BME:\\S+$|^MFXA:\\S+$|^WIND:\\S+$|^MTAH:\\S+$|^KBLT:\\S+$|^TFSA:\\S+$|^NODX:\\S+$|^BAEP:\\S+$|^AQXA:\\S+$|^TPEL:\\S+$|^ZODM:\\S+$|^XESM:\\S+$|^CAES:\\S+$|^LQFI:\\S+$|^JBSI:\\S+$|^VMFX:\\S+$|^STFX:\\S+$|^XISX:\\S+$|^XMSM:\\S+$|^GTXS:\\S+$|^XEUI:\\S+$|^XABG:\\S+$|^XTXM:\\S+$|^SECC:\\S+$|^TRQX:\\S+$|^TASE:\\S+$|^CSOB:\\S+$|^XIHK:\\S+$|^NYSI:\\S+$|^VABD:\\S+$|^ASEX:\\S+$|^XSES:\\S+$|^SWLV:\\S+$|^XOSD:\\S+$|^MUDX:\\S+$|^CMEC:\\S+$|^XRIS:\\S+$|^UKRE:\\S+$|^NIBC:\\S+$|^XTND:\\S+$|^FXGB:\\S+$|^CEDX:\\S+$|^XMIL:\\S+$|^LMAF:\\S+$|^ROSR:\\S+$|^CPGX:\\S+$|^CLJP:\\S+$|^SGMT:\\S+$|^3579:\\S+$|^RMTF:\\S+$|^SHAR:\\S+$|^ASPI:\\S+$|^XPHL:\\S+$|^ALLT:\\S+$|^ALDP:\\S+$|^BRFQ:\\S+$|^LBWS:\\S+$|^XCOL:\\S+$|^GSIB:\\S+$|^RTSL:\\S+$|^DNFI:\\S+$|^XMAN:\\S+$|^CSEALL:\\S+$|^LEUE:\\S+$|^MANL:\\S+$|^GLPX:\\S+$|^XGCX:\\S+$|^BNPL:\\S+$|^CDSL:\\S+$|^AMLG:\\S+$|^FSME:\\S+$|^WINX:\\S+$|^XHAN:\\S+$|^SEPE:\\S+$|^CMET:\\S+$|^IFXA:\\S+$|^XSDX:\\S+$|^MPRL:\\S+$|^XBCC:\\S+$|^EMID:\\S+$|^OSSG:\\S+$|^JYSI:\\S+$|^SSOB:\\S+$|^XARM:\\S+$|^BEEX:\\S+$|^XECM:\\S+$|^MSTO:\\S+$|^ICXL:\\S+$|^MOSE:\\S+$|^MALX:\\S+$|^XBSE:\\S+$|^AMS:\\S+$|^DUSD:\\S+$|^XNGM:\\S+$|^CEUX:\\S+$|^SANT:\\S+$|^OTCI:\\S+$|^XMSW:\\S+$|^ECEU:\\S+$|^CGND:\\S+$|^TWEO:\\S+$|^XGME:\\S+$|^SWEE:\\S+$|^CXAP:\\S+$|^XCUE:\\S+$|^IMEX:\\S+$|^LISX:\\S+$|^NZE:\\S+$|^XCDE:\\S+$|^EMDR:\\S+$|^BTNL:\\S+$|^XLBM:\\S+$|^ISWA:\\S+$|^IOFI:\\S+$|^MTSB:\\S+$|^STUA:\\S+$|^RTSX:\\S+$|^TMEX:\\S+$|^UICE:\\S+$|^XTIR:\\S+$|^BLIQ:\\S+$|^MESQ:\\S+$|^CECA:\\S+$|^MOCX:\\S+$|^NCME:\\S+$|^BATF:\\S+$|^XEID:\\S+$|^CXAC:\\S+$|^HRTF:\\S+$|^MATN:\\S+$|^UGEN:\\S+$|^BCSE:\\S+$|^NABU:\\S+$|^GMEG:\\S+$|^SVEX:\\S+$|^GLOM:\\S+$|^MKAP:\\S+$|^MSEU:\\S+$|^ACKF:\\S+$|^RBCT:\\S+$|^OMIC:\\S+$|^TOCP:\\S+$|^XSCA:\\S+$|^XCIS:\\S+$|^CMAP:\\S+$|^AQUA:\\S+$|^JPCB:\\S+$|^LYNX:\\S+$|^CGML:\\S+$|^MSPL:\\S+$|^AKIS:\\S+$|^MUBM:\\S+$|^XEBI:\\S+$|^MLEX:\\S+$|^XALT:\\S+$|^SBSI:\\S+$|^CSZH:\\S+$|^BOTC:\\S+$|^XUMP:\\S+$|^R5FX:\\S+$|^XSC3:\\S+$|^RBSI:\\S+$|^ESLO:\\S+$|^EBSS:\\S+$|^TSBX:\\S+$|^CFAU:\\S+$|^NYMS:\\S+$|^SEDX:\\S+$|^XIPO:\\S+$|^XOSE:\\S+$|^BINV:\\S+$|^JEFE:\\S+$|^XNKS:\\S+$|^GSPL:\\S+$|^BKSK:\\S+$|^ODXE:\\S+$|^XOSC:\\S+$|^XMUS:\\S+$|^RABO:\\S+$|^BLBS:\\S+$|^XNYL:\\S+$|^BPKO:\\S+$|^BVUS:\\S+$|^VIUK:\\S+$|^OTCX:\\S+$|^MFOX:\\S+$|^IMCE:\\S+$|^EUWA:\\S+$|^FRTE:\\S+$|^DNDK:\\S+$|^IOTC:\\S+$|^ENSL:\\S+$|^BMEA:\\S+$|^ASXC:\\S+$|^ISWR:\\S+$|^XBCM:\\S+$|^TBSP:\\S+$|^NZFX:\\S+$|^XISA:\\S+$|^BHWA:\\S+$|^KHHU:\\S+$|^DGCX:\\S+$|^ISWO:\\S+$|^XODE:\\S+$|^PAVE:\\S+$|^NPEX:\\S+$|^HPCV:\\S+$|^XNCM:\\S+$|^XATS:\\S+$|^TWSF:\\S+$|^EQUS:\\S+$|^APCL:\\S+$|^BSAB:\\S+$|^EXCP:\\S+$|^BEBG:\\S+$|^XLIS:\\S+$|^ARCO:\\S+$|^CATS:\\S+$|^EQOS:\\S+$|^CLMX:\\S+$|^BATD:\\S+$|^XJNB:\\S+$|^BCXE:\\S+$|^XSTO:\\S+$|^IMCT:\\S+$|^JSER:\\S+$|^LIQF:\\S+$|^XOAM:\\S+$|^XPOT:\\S+$|^SVXI:\\S+$|^NMTF:\\S+$|^XBRN:\\S+$|^XJAS:\\S+$|^CGMD:\\S+$|^BGUK:\\S+$|^CLST:\\S+$|^ENMS:\\S+$|^XVIE:\\S+$|^XEQY:\\S+$|^CXAQ:\\S+$|^SMBE:\\S+$|^XTAF:\\S+$|^VLEX:\\S+$|^EDBT:\\S+$|^MEMX:\\S+$|^XPRA:\\S+$|^EXSY:\\S+$|^HGSP:\\S+$|^EUCC:\\S+$|^XRPM:\\S+$|^JPEU:\\S+$|^TSAD:\\S+$|^BARD:\\S+$|^XGUA:\\S+$|^NABE:\\S+$|^BSTX:\\S+$|^STUC:\\S+$|^XBOS:\\S+$|^HREU:\\S+$|^JLEU:\\S+$|^XLCH:\\S+$|^CGXS:\\S+$|^TRUK:\\S+$|^AFET:\\S+$|^NABA:\\S+$|^GSPX:\\S+$|^XBES:\\S+$|^CEPL:\\S+$|^BOFS:\\S+$|^RTSP:\\S+$|^BLEQ:\\S+$|^XMUN:\\S+$|^BILU:\\S+$|^XKCE:\\S+$|^RBCC:\\S+$|^BLUX:\\S+$|^AQEU:\\S+$|^WFLB:\\S+$|^XBRD:\\S+$|^PROS:\\S+$|^BNSX:\\S+$|^VTLS:\\S+$|^PEPH:\\S+$|^BTEC:\\S+$|^ECSL:\\S+$|^MAXD:\\S+$|^XCYS:\\S+$|^MNIS:\\S+$|^PSE:\\S+$|^XNDQ:\\S+$|^LOTC:\\S+$|^HSFX:\\S+$|^PEEL:\\S+$|^FXPS:\\S+$|^XVPA:\\S+$|^XPOM:\\S+$|^SGMX:\\S+$|^MLES:\\S+$|^AFSL:\\S+$|^FRAB:\\S+$|^BNPS:\\S+$|^TRPX:\\S+$|^MAQU:\\S+$|^RBCE:\\S+$|^ZERO:\\S+$|^LATG:\\S+$|^XBVM:\\S+$|^NXEU:\\S+$|^XDUB:\\S+$|^CCRM:\\S+$|^CXAV:\\S+$|^JSE:\\S+$|^SGAS:\\S+$|^NGXC:\\S+$|^GROW:\\S+$|^IFXC:\\S+$|^NAMX:\\S+$|^TEMM:\\S+$|^TRAS:\\S+$|^CNSX:\\S+$|^XPAE:\\S+$|^TEMI:\\S+$|^TPSE:\\S+$|^GMEO:\\S+$|^TEUR:\\S+$|^INGE:\\S+$|^XTKT:\\S+$|^XTAM:\\S+$|^TEMB:\\S+$|^XSIM:\\S+$|^XKUW:\\S+$|^SPIM:\\S+$|^UKOR:\\S+$|^MAGM:\\S+$|^UTSL:\\S+$|^XPAL:\\S+$|^LMAD:\\S+$|^CAVD:\\S+$|^SUNT:\\S+$|^HRSI:\\S+$|^DOSE:\\S+$|^HSXA:\\S+$|^IMCR:\\S+$|^DAVY:\\S+$|^ASE:\\S+$|^BEUT:\\S+$|^BLEV:\\S+$|^IMEN:\\S+$|^SGMA:\\S+$|^MCSE:\\S+$|^AFSA:\\S+$|^UCBG:\\S+$|^XBIS:\\S+$|^MERF:\\S+$|^XLOD:\\S+$|^BPOL:\\S+$|^NEOC:\\S+$|^BLNK:\\S+$|^UKGD:\\S+$|^DZBK:\\S+$|^GLBX:\\S+$|^TWEA:\\S+$|^MLER:\\S+$|^HCER:\\S+$|^MCID:\\S+$|^BMTF:\\S+$|^OTPR:\\S+$|^IATS:\\S+$|^MDRV:\\S+$|^XAQS:\\S+$|^DCSX:\\S+$|^EDGL:\\S+$|^NXSE:\\S+$|^APAW:\\S+$|^ABXX:\\S+$|^BKK:\\S+$|^ISWB:\\S+$|^XSWB:\\S+$|^HAMN:\\S+$|^MAQL:\\S+$|^RBHU:\\S+$|^SIDX:\\S+$|^SEBA:\\S+$|^CALH:\\S+$|^BBSF:\\S+$|^BELB:\\S+$|^XBXO:\\S+$|^EBXV:\\S+$|^XKIS:\\S+$|^FLTR:\\S+$|^XNOR:\\S+$|^TRQM:\\S+$|^ISEX:\\S+$|^MUSN:\\S+$|^CFBC:\\S+$|^XSPS:\\S+$|^CXAR:\\S+$|^DBHK:\\S+$|^NCML:\\S+$|^SIMV:\\S+$|^BLTX:\\S+$|^MIHI:\\S+$|^NYSD:\\S+$|^IBEX:\\S+$|^XEBS:\\S+$|^AFSX:\\S+$|^NEXL:\\S+$|^XHKF:\\S+$|^DOWE:\\S+$|^XMVL:\\S+$|^INGF:\\S+$|^TAL:\\S+$|^AUTX:\\S+$|^IVZX:\\S+$|^SBIU:\\S+$|^SGX:\\S+$|^ICEL:\\S+$|^FNDK:\\S+$|^IFEN:\\S+$|^TSX:\\S+$|^RSEX:\\S+$|^SSME:\\S+$|^EXVP:\\S+$|^WSE:\\S+$|^DAPA:\\S+$|^INSE:\\S+$|^TWEU:\\S+$|^PLDX:\\S+$|^NOFI:\\S+$|^SMEX:\\S+$|^XETA:\\S+$|^EUFN:\\S+$|^WMTF:\\S+$|^GRSE:\\S+$|^EXMP:\\S+$|^TPIE:\\S+$|^TCML:\\S+$|^XGHA:\\S+$|^APEX:\\S+$|^XBCL:\\S+$|^BBSX:\\S+$|^ARCX:\\S+$|^XDRK:\\S+$|^ATLN:\\S+$|^SSTX:\\S+$|^HMOD:\\S+$|^XSBT:\\S+$|^OCEA:\\S+$|^WINS:\\S+$|^GFIN:\\S+$|^NORX:\\S+$|^WSIN:\\S+$|^XFNO:\\S+$|^DRSP:\\S+$|^SBIL:\\S+$|^PLPS:\\S+$|^VERT:\\S+$|^MTXM:\\S+$|^TRUX:\\S+$|^VUSA:\\S+$|^XMOC:\\S+$|^XTAI:\\S+$|^CBSK:\\S+$|^PJCX:\\S+$|^CRYP:\\S+$|^JADX:\\S+$|^UBSF:\\S+$|^GIPB:\\S+$|^XMDG:\\S+$|^MYTR:\\S+$|^BLPX:\\S+$|^BOTV:\\S+$|^XLJU:\\S+$|^TQEM:\\S+$|^PLPO:\\S+$|^BCSC:\\S+$|^CGCM:\\S+$|^STXS:\\S+$|^SCAG:\\S+$|^HPCX:\\S+$|^NOPS:\\S+$|^SXSI:\\S+$|^XBEL:\\S+$|^XBUL:\\S+$|^LPPM:\\S+$|^ASMT:\\S+$|^TEFD:\\S+$|^XBBJ:\\S+$|^XEMS:\\S+$|^MCXR:\\S+$|^XBRV:\\S+$|^GFIF:\\S+$|^BAMX:\\S+$|^XZCE:\\S+$|^WDER:\\S+$|^DHEL:\\S+$|^EXBO:\\S+$|^CMSF:\\S+$|^BOTE:\\S+$|^VFCM:\\S+$|^TSGB:\\S+$|^FCBT:\\S+$|^GMBG:\\S+$|^ASX:\\S+$|^THEM:\\S+$|^UCIT:\\S+$|^XLIT:\\S+$|^ASTR:\\S+$|^XADS:\\S+$|^SLHB:\\S+$|^ZBUL:\\S+$|^CETI:\\S+$|^EQTB:\\S+$|^XINS:\\S+$|^MTSD:\\S+$|^BGCI:\\S+$|^LICA:\\S+$|^SSBM:\\S+$|^TMCC:\\S+$|^XMON:\\S+$|^NFSC:\\S+$|^EMIR:\\S+$|^IGDL:\\S+$|^XEUR:\\S+$|^NEXF:\\S+$|^FXRS:\\S+$|^ICDX:\\S+$|^CSAU:\\S+$|^THRE:\\S+$|^XDSX:\\S+$|^GBOT:\\S+$|^VAGM:\\S+$|^BSE:\\S+$|^XBSD:\\S+$|^XNYE:\\S+$|^CABK:\\S+$|^XNFI:\\S+$|^C2OX:\\S+$|^T212:\\S+$|^MNFI:\\S+$|^MTXX:\\S+$|^XUNI:\\S+$|^CNSI:\\S+$|^S3FM:\\S+$|^BKLF:\\S+$|^MOTX:\\S+$|^CGDB:\\S+$|^NYSEAMERICAN:\\S+$|^AILT:\\S+$|^XPST:\\S+$|^SHSC:\\S+$|^NDXS:\\S+$|^CGET:\\S+$|^MCX:\\S+$|^XXXX:\\S+$|^EDGA:\\S+$|^TRXE:\\S+$|^BARL:\\S+$|^UBSX:\\S+$|^XMAU:\\S+$|^GFIR:\\S+$|^XKON:\\S+$|^MHBE:\\S+$|^CREM:\\S+$|^XCEC:\\S+$|^PEPQ:\\S+$|^TIRD:\\S+$|^LCUR:\\S+$|^XAFR:\\S+$|^JSJX:\\S+$|^ERST:\\S+$|^XBLK:\\S+$|^SCXO:\\S+$|^ICHK:\\S+$|^DKTC:\\S+$|^BAML:\\S+$|^WBAH:\\S+$|^BLFX:\\S+$|^IPSX:\\S+$|^VFGB:\\S+$|^CHIX:\\S+$|^RBCM:\\S+$|^RICD:\\S+$|^XCNF:\\S+$|^XTNX:\\S+$|^SECE:\\S+$|^TMCY:\\S+$|^BVUK:\\S+$|^ICXR:\\S+$|^XWAR:\\S+$|^XSHG:\\S+$|^VWDA:\\S+$|^MHBP:\\S+$|^BBSI:\\S+$|^ARAX:\\S+$|^BETA:\\S+$|^XTUN:\\S+$|^TDBL:\\S+$|^CHIC:\\S+$|^KNLI:\\S+$|^BREA:\\S+$|^ERIS:\\S+$|^SGMY:\\S+$|^HPSX:\\S+$|^RFBK:\\S+$|^XNCD:\\S+$|^DUSC:\\S+$|^FRAW:\\S+$|^EXOT:\\S+$|^SVES:\\S+$|^NSDQ:\\S+$|^ETFP:\\S+$|^JSEB:\\S+$|^CCML:\\S+$|^IFSM:\\S+$|^POTC:\\S+$|^NLAX:\\S+$|^BNPC:\\S+$|^IFED:\\S+$|^TRWB:\\S+$|^HRTX:\\S+$|^ANLP:\\S+$|^ICOR:\\S+$|^TRFW:\\S+$|^NABL:\\S+$|^MCRY:\\S+$|^MACB:\\S+$|^XPAC:\\S+$|^WSAG:\\S+$|^CAND:\\S+$|^24EX:\\S+$|^KAIX:\\S+$|^XBRU:\\S+$|^XBNV:\\S+$|^PNED:\\S+$|^EXLP:\\S+$|^XBRA:\\S+$|^FAST:\\S+$|^SEBS:\\S+$|^RABL:\\S+$|^GTXE:\\S+$|^BARU:\\S+$|^FNFX:\\S+$|^AUTO:\\S+$|^BARX:\\S+$|^CBSX:\\S+$|^TEGI:\\S+$|^TNLB:\\S+$|^XEDA:\\S+$|^BBOK:\\S+$|^TPEU:\\S+$|^XETB:\\S+$|^FGEX:\\S+$|^XZAG:\\S+$|^NBFL:\\S+$|^UNGB:\\S+$|^SIFX:\\S+$|^TEIR:\\S+$|^IEXD:\\S+$|^CSBX:\\S+$|^ARIA:\\S+$|^XCBO:\\S+$|^CSDA:\\S+$|^FNLV:\\S+$|^LLAT:\\S+$|^XSWX:\\S+$|^ETPA:\\S+$|^ZKBX:\\S+$|^GBWB:\\S+$|^GOTC:\\S+$|^CXRT:\\S+$|^TADAWUL:\\S+$|^TLV:\\S+$|^XSGO:\\S+$|^CBKE:\\S+$|^XCNQ:\\S+$|^NMRJ:\\S+$|^MELO:\\S+$|^CBKS:\\S+$|^BYXD:\\S+$|^XECB:\\S+$|^SISI:\\S+$|^GTCO:\\S+$|^LEVL:\\S+$|^XSTV:\\S+$|^BKLN:\\S+$|^CLPH:\\S+$|^ISBV:\\S+$|^TFEX:\\S+$|^SMFF:\\S+$|^XELX:\\S+$|^BGHX:\\S+$|^ICES:\\S+$|^UBSL:\\S+$|^XSTF:\\S+$|^HSBC:\\S+$|^MICE:\\S+$|^PARX:\\S+$|^XPOS:\\S+$|^AUTP:\\S+$|^ONSE:\\S+$|^GMTF:\\S+$|^HUDX:\\S+$|^BEUP:\\S+$|^CSSX:\\S+$|^ARCH:\\S+$|^OSDS:\\S+$|^UBSI:\\S+$|^UKPX:\\S+$|^XROS:\\S+$|^XRCB:\\S+$|^XPET:\\S+$|^DUMX:\\S+$|^AFSE:\\S+$|^XLOM:\\S+$|^MHBD:\\S+$|^ABNA:\\S+$|^XGDX:\\S+$|^AQEA:\\S+$|^MSRP:\\S+$|^SIAB:\\S+$|^SICS:\\S+$|^NCEL:\\S+$|^BRGA:\\S+$|^XCFF:\\S+$|^XNAS:\\S+$|^SGEX:\\S+$|^ELIX:\\S+$|^XGLO:\\S+$|^XBOG:\\S+$|^HDAT:\\S+$|^AIMX:\\S+$|^FXFM:\\S+$|^EXYY:\\S+$|^PEPW:\\S+$|^LMNR:\\S+$|^TFSD:\\S+$|^ATFX:\\S+$|^XEYE:\\S+$|^VAGL:\\S+$|^SIGA:\\S+$|^BZXD:\\S+$|^MUBE:\\S+$|^TSRE:\\S+$|^XMLI:\\S+$|^DAIW:\\S+$|^FLWX:\\S+$|^MBUL:\\S+$|^BMLB:\\S+$|^EBR:\\S+$|^MAQI:\\S+$|^XMDS:\\S+$|^MBSI:\\S+$|^SCXA:\\S+$|^DNIS:\\S+$|^TSFI:\\S+$|^KBLL:\\S+$|^SAGE:\\S+$|^ABUL:\\S+$|^PBGR:\\S+$|^HAMM:\\S+$|^XKHA:\\S+$|^NTUK:\\S+$|^BBVX:\\S+$|^BATS:\\S+$|^TYO:\\S+$|^CSVW:\\S+$|^XLDX:\\S+$|^NMSX:\\S+$|^SFCL:\\S+$|^XCOR:\\S+$|^TBSA:\\S+$|^BKBR:\\S+$|^WBON:\\S+$|^DEKA:\\S+$|^EVOL:\\S+$|^XBAR:\\S+$|^GFKS:\\S+$|^BSFX:\\S+$|^MTXC:\\S+$|^COTC:\\S+$|^XCX2:\\S+$|^IOFX:\\S+$|^XPSF:\\S+$|^CNOD:\\S+$|^LMEC:\\S+$|^NEOD:\\S+$|^UBSG:\\S+$|^BGFI:\\S+$|^CIBH:\\S+$|^RUSX:\\S+$|^XZIM:\\S+$|^OBKL:\\S+$|^IFBX:\\S+$|^XPIC:\\S+$|^CGEC:\\S+$|^XNCO:\\S+$|^SGMZ:\\S+$|^MFXC:\\S+$|^DBLN:\\S+$|^CGMU:\\S+$|^XKOS:\\S+$|^TDON:\\S+$|^XDLP:\\S+$|^XXSC:\\S+$|^BVCA:\\S+$|^KCCP:\\S+$|^XMOL:\\S+$|^RBIV:\\S+$|^JLQD:\\S+$|^IST:\\S+$|^TPSO:\\S+$|^MIBG:\\S+$|^MBCP:\\S+$|^MAQE:\\S+$|^TSE:\\S+$|^ISWV:\\S+$|^XCSE:\\S+$|^FIED:\\S+$|^ALTX:\\S+$|^AMXO:\\S+$|^NXJP:\\S+$|^BAAD:\\S+$|^EQCA:\\S+$|^XBER:\\S+$|^TPEE:\\S+$|^TRNL:\\S+$|^FINY:\\S+$|^XKSE:\\S+$|^BRDE:\\S+$|^CBTS:\\S+$|^XSTC:\\S+$|^OAPA:\\S+$|^IBER:\\S+$|^CMMT:\\S+$|^BASI:\\S+$|^KBLC:\\S+$|^XBOX:\\S+$|^LMAX:\\S+$|^XOBD:\\S+$|^PEPM:\\S+$|^CHIV:\\S+$|^INCR:\\S+$|^MXNL:\\S+$|^XEMD:\\S+$|^XKIE:\\S+$|^XKHR:\\S+$|^ILCM:\\S+$|^BBLX:\\S+$|^MIZX:\\S+$|^IFUT:\\S+$|^MSSI:\\S+$|^BAIP:\\S+$|^EMIB:\\S+$|^XINE:\\S+$|^IINX:\\S+$|^EUWB:\\S+$|^RBCB:\\S+$|^ONEC:\\S+$|^CHIA:\\S+$|^ASXT:\\S+$|^VDRK:\\S+$|^XPMS:\\S+$|^XBAN:\\S+$|^MUNA:\\S+$|^XLIM:\\S+$|^NAPA:\\S+$|^XHEL:\\S+$|^MHEU:\\S+$|^LIGA:\\S+$|^BOAL:\\S+$|^MBPL:\\S+$|^XICE:\\S+$|^AFSO:\\S+$|^KMUX:\\S+$|^ABSI:\\S+$|^OMEL:\\S+$|^GOVX:\\S+$|^SKBB:\\S+$|^XBOT:\\S+$|^VTX:\\S+$|^IMGB:\\S+$|^MSBI:\\S+$|^SPBE:\\S+$|^BOSP:\\S+$|^XTXE:\\S+$|^HBFR:\\S+$|^JEFX:\\S+$|^GFIB:\\S+$|^LIUH:\\S+$|^FSHX:\\S+$|^BTQE:\\S+$|^GBUL:\\S+$|^GSBE:\\S+$|^ICPM:\\S+$|^OTC:\\S+$|^XSWM:\\S+$|^EXSP:\\S+$|^STAN:\\S+$|^SSIL:\\S+$|^TPIR:\\S+$|^CMES:\\S+$|^XROT:\\S+$|^CRYD:\\S+$|^FISU:\\S+$|^XCFE:\\S+$|^MLSI:\\S+$|^SEMX:\\S+$|^XNEC:\\S+$|^GFSM:\\S+$|^CCEX:\\S+$|^TGSI:\\S+$|^AATS:\\S+$|^MSTX:\\S+$|^TNLA:\\S+$|^STUE:\\S+$|^SHAW:\\S+$|^GLPS:\\S+$|^KOTF:\\S+$|^BISI:\\S+$|^ESTO:\\S+$|^FXSW:\\S+$|^XCME:\\S+$|^XTK2:\\S+$|^PFTS:\\S+$|^BLKX:\\S+$|^PKOP:\\S+$|^PURE:\\S+$|^XUBS:\\S+$|^CPH:\\S+$|^XMRV:\\S+$|^ZARX:\\S+$|^IOTF:\\S+$|^XPSX:\\S+$|^BVMF:\\S+$|^XBLN:\\S+$|^CBAL:\\S+$|^BTLX:\\S+$|^TEFX:\\S+$|^MUFP:\\S+$|^CVE:\\S+$|^FSEF:\\S+$|^USWB:\\S+$|^NSPO:\\S+$|^NYPC:\\S+$|^CLVE:\\S+$|^CCEU:\\S+$|^BRNX:\\S+$|^XZAP:\\S+$|^DSTO:\\S+$|^XLJM:\\S+$|^XNYM:\\S+$|^BCRM:\\S+$|^SECF:\\S+$|^RR4G:\\S+$|^BSLB:\\S+$|^STOX:\\S+$|^XBAB:\\S+$|^CSCF:\\S+$|^XCHG:\\S+$|^VALX:\\S+$|^VCRS:\\S+$|^EQIE:\\S+$|^CIMA:\\S+$|^XSC1:\\S+$|^MTCH:\\S+$|^XBUD:\\S+$|^OTCN:\\S+$|^NESI:\\S+$|^EBSC:\\S+$|^ASPN:\\S+$|^TPIO:\\S+$|^TSIG:\\S+$|^BLUE:\\S+$|^IMFX:\\S+$|^ASXV:\\S+$|^EUWX:\\S+$|^XEQT:\\S+$|^XQOD:\\S+$|^UBSP:\\S+$|^LIQU:\\S+$|^EBRA:\\S+$|^TRAL:\\S+$|^TEMF:\\S+$|^IOMM:\\S+$|^ISSI:\\S+$|^IMCC:\\S+$|^PBUL:\\S+$|^EDGD:\\S+$|^RMMX:\\S+$|^VTEX:\\S+$|^HSTC:\\S+$|^HEL:\\S+$|^DBAG:\\S+$|^TGAT:\\S+$|^PXIL:\\S+$|^ICSH:\\S+$|^XIQS:\\S+$|^XKAR:\\S+$|^XNDU:\\S+$|^TPER:\\S+$|^XEUE:\\S+$|^XPHS:\\S+$|^XCAI:\\S+$|^XCIE:\\S+$|^CFIF:\\S+$|^XGEM:\\S+$|^NASX:\\S+$|^XNSE:\\S+$|^XBEY:\\S+$|^CFIL:\\S+$|^KBCB:\\S+$|^XPHX:\\S+$|^VCMO:\\S+$|^CITX:\\S+$|^IBUL:\\S+$|^XOFF:\\S+$|^HBPL:\\S+$|^IEBS:\\S+$|^VEGA:\\S+$|^SHA:\\S+$|^CGMA:\\S+$|^XLME:\\S+$|^EWRM:\\S+$|^BNPX:\\S+$|^SBAR:\\S+$|^WSIL:\\S+$|^XREP:\\S+$|^DKED:\\S+$|^XSTU:\\S+$|^GSXT:\\S+$|^FRA:\\S+$|^MSEL:\\S+$|^BGFU:\\S+$|^BPSX:\\S+$|^UBSY:\\S+$|^BIVA:\\S+$|^XGMX:\\S+$|^CIBC:\\S+$|^BATP:\\S+$|^ARCA:\\S+$|^LSE:\\S+$|^XLAT:\\S+$|^TWSE:\\S+$|^VWDX:\\S+$|^IFUS:\\S+$|^XFDA:\\S+$|^AWEX:\\S+$|^EBSF:\\S+$|^XSVA:\\S+$|^PINI:\\S+$|^XTAE:\\S+$|^BCFS:\\S+$|^TWHK:\\S+$|^XIEL:\\S+$|^PFXD:\\S+$|^SNSI:\\S+$|^CISD:\\S+$|^XCBT:\\S+$|^NASDAQ:\\S+$|^SZSE:\\S+$|^XCGS:\\S+$|^XNIM:\\S+$|^FINC:\\S+$|^XHAM:\\S+$|^BDEA:\\S+$|^OHVO:\\S+$|^EQOC:\\S+$|^BRDL:\\S+$|^XRMO:\\S+$|^ECGS:\\S+$|^EGSI:\\S+$|^STUF:\\S+$|^XPOW:\\S+$|^BRDS:\\S+$|^XVES:\\S+$|^XOAS:\\S+$|^RENC:\\S+$|^ITGI:\\S+$|^WBKP:\\S+$|^ISWP:\\S+$|^CHIJ:\\S+$|^ROTC:\\S+$|^ALXB:\\S+$|^BELF:\\S+$|^BRVM:\\S+$|^TLCM:\\S+$|^LXJP:\\S+$|^OPEX:\\S+$|^VTBC:\\S+$|^PLPD:\\S+$|^TSXV:\\S+$|^METZ:\\S+$|^CBNL:\\S+$|^AWBX:\\S+$|^EXPM:\\S+$|^MEMD:\\S+$|^KNCM:\\S+$|^CSSI:\\S+$|^BETP:\\S+$|^BCMA:\\S+$|^JPMI:\\S+$|^ATLB:\\S+$|^CFHK:\\S+$|^BBIS:\\S+$|^XBKF:\\S+$|^XVPB:\\S+$|^XBDA:\\S+$|^IKBS:\\S+$|^FNLT:\\S+$|^XLUX:\\S+$|^IMAG:\\S+$|^COAL:\\S+$|^MXLM:\\S+$|^XDPA:\\S+$|^MCXS:\\S+$|^XNXC:\\S+$|^CCLX:\\S+$|^ICE:\\S+$|^IFLX:\\S+$|^ZOBX:\\S+$|^CMEE:\\S+$|^ICOT:\\S+$|^PTPG:\\S+$|^PARK:\\S+$|^ASEF:\\S+$|^WELS:\\S+$|^IOCD:\\S+$|^CHID:\\S+$|^BCEE:\\S+$|^FCME:\\S+$|^BOSC:\\S+$|^DWSF:\\S+$|^FXOP:\\S+$|^IDX:\\S+$|^JPX:\\S+$|^XOAD:\\S+$|^AQXE:\\S+$|^NSEASI:\\S+$|^TRCX:\\S+$|^BVCC:\\S+$|^CBKC:\\S+$|^BATO:\\S+$|^CGMG:\\S+$|^TWGP:\\S+$|^BEIS:\\S+$|^XABC:\\S+$|^CLAU:\\S+$|^AMNL:\\S+$|^ODDO:\\S+$|^CXAN:\\S+$|^FAIR:\\S+$|^ADVT:\\S+$|^FXAL:\\S+$|^HNX:\\S+$|^TRU2:\\S+$|^XGTG:\\S+$|^BGCB:\\S+$|^IFEU:\\S+$|^CSOT:\\S+$|^CBKD:\\S+$|^XPOL:\\S+$|^YLDX:\\S+$|^XUKR:\\S+$|^XRSP:\\S+$|^ETSC:\\S+$|^CSTO:\\S+$|^CGMH:\\S+$|^MUTI:\\S+$|^XSFA:\\S+$|^EXSF:\\S+$|^ECAG:\\S+$|^PEPY:\\S+$|^BIDS:\\S+$|^XETW:\\S+$|^NDEX:\\S+$|^DICE:\\S+$|^IFLL:\\S+$|^DCSE:\\S+$|^SCXF:\\S+$|^ATHL:\\S+$|^XLUS:\\S+$|^XAPA:\\S+$|^NOWX:\\S+$|^CSEC:\\S+$|^FNIS:\\S+$|^SMBD:\\S+$|^XSIB:\\S+$|^DWFI:\\S+$|^MLRQ:\\S+$|^EMBX:\\S+$|^XTAL:\\S+$|^SZSC:\\S+$|^N2EX:\\S+$|^XHKG:\\S+$|^TERE:\\S+$|^PIEU:\\S+$|^GRIO:\\S+$|^BNLD:\\S+$|^XGSX:\\S+$|^SBIV:\\S+$|^XDEX:\\S+$|^XSTM:\\S+$|^XCAS:\\S+$|^UCDE:\\S+$|^CSCL:\\S+$|^TRU1:\\S+$|^XDSM:\\S+$|^BAJM:\\S+$|^AREX:\\S+$|^EQTA:\\S+$|^BMCM:\\S+$|^EXSH:\\S+$|^CONC:\\S+$|^RBCG:\\S+$|^TRQA:\\S+$|^XROX:\\S+$|^XLON:\\S+$|^XMTB:\\S+$|^FICX:\\S+$|^KRME:\\S+$|^XSSC:\\S+$|^IOGI:\\S+$|^CSLB:\\S+$|^XOSL:\\S+$|^TWJT:\\S+$|^GSCO:\\S+$|^SPEX:\\S+$|^BRIX:\\S+$|^XKFE:\\S+$|^SPTR:\\S+$|^NEON:\\S+$|^BSPL:\\S+$|^BOVM:\\S+$|^CAPI:\\S+$|^SWLT:\\S+$|^MLIX:\\S+$|^DSMD:\\S+$|^NLBX:\\S+$|^ODOC:\\S+$|^XJAM:\\S+$|^EXTR:\\S+$|^XNGS:\\S+$|^UBCZ:\\S+$|^CXOT:\\S+$|^XSSE:\\S+$|^DDTX:\\S+$|^TECO:\\S+$|^JNSI:\\S+$|^RSE:\\S+$|^ARKX:\\S+$|^CSIN:\\S+$|^XIMC:\\S+$|^CSE:\\S+$|^BIT:\\S+$|^GFPO:\\S+$|^MTXS:\\S+$|^JESI:\\S+$|^GLLC:\\S+$|^BALT:\\S+$|^AACA:\\S+$|^TPSL:\\S+$|^XLSM:\\S+$|^FINO:\\S+$|^DASH:\\S+$|^XEUM:\\S+$|^SIMD:\\S+$|^XVAL:\\S+$|^PUMA:\\S+$|^XMOS:\\S+$|^ICEO:\\S+$|^LBCW:\\S+$|^LEDG:\\S+$|^XATH:\\S+$|^OSLC:\\S+$|^XDRF:\\S+$|^EQSE:\\S+$|^BAPA:\\S+$|^MISX:\\S+$|^ENAX:\\S+$|^BKKT:\\S+$|^SPDX:\\S+$|^XAFX:\\S+$|^CGMI:\\S+$|^XSEB:\\S+$|^SBEX:\\S+$|^XMAE:\\S+$|^PRSE:\\S+$|^JPSI:\\S+$|^SPXE:\\S+$|^BAPX:\\S+$|^CLTD:\\S+$|^VFSI:\\S+$|^TSMR:\\S+$|^CELP:\\S+$|^MEMM:\\S+$|^BTFE:\\S+$|^AGBP:\\S+$|^CDED:\\S+$|^LBWL:\\S+$|^MASG:\\S+$|^XSTE:\\S+$|^MHEL:\\S+$|^RLBO:\\S+$|^BTBS:\\S+$|^IDXM:\\S+$|^ANTS:\\S+$|^JNST:\\S+$|^CGEB:\\S+$|^VPXB:\\S+$|^INCA:\\S+$|^HUPX:\\S+$|^XSCO:\\S+$|^XPUS:\\S+$|^DOWG:\\S+$|^NILX:\\S+$|^MSAL:\\S+$|^XPBT:\\S+$|^FRAS:\\S+$|^MABX:\\S+$|^XAMM:\\S+$|^WBCL:\\S+$|^EQOD:\\S+$|^GFAM:\\S+$|^XECC:\\S+$|^XTSE:\\S+$|^CCMX:\\S+$|^NEOE:\\S+$|^DKFI:\\S+$|^XBRM:\\S+$|^IMTF:\\S+$|^HESP:\\S+$|^NOSC:\\S+$|^VIRT:\\S+$|^XBIL:\\S+$|^NMCE:\\S+$|^MUSE:\\S+$|^STUB:\\S+$|^XCXD:\\S+$|^VFXO:\\S+$|^XFRA:\\S+$|^BNYC:\\S+$|^XCBF:\\S+$|^BCSL:\\S+$|^WQXL:\\S+$|^TDGF:\\S+$|^HAMB:\\S+$|^XSBI:\\S+$|^EDRF:\\S+$|^NOSI:\\S+$|^XMAL:\\S+$|^PATF:\\S+$|^TRDX:\\S+$|^IMRD:\\S+$|^XNAI:\\S+$|^CURX:\\S+$|^MIDC:\\S+$|^XTK3:\\S+$|^XTSX:\\S+$|^BATE:\\S+$|^AAPA:\\S+$|^MUBP:\\S+$|^XADE:\\S+$|^CBKF:\\S+$|^ECHO:\\S+$|^IMCO:\\S+$|^HPPO:\\S+$|^BNPF:\\S+$|^KBLS:\\S+$|^ALSI:\\S+$|^XMNX:\\S+$|^HRFQ:\\S+$|^AFSI:\\S+$|^XSAT:\\S+$|^FXCM:\\S+$|^NEXS:\\S+$|^AUTB:\\S+$|^KBLM:\\S+$|^CBKA:\\S+$|^A2XX:\\S+$|^EMTF:\\S+$|^FNIX:\\S+$|^XHNX:\\S+$|^XUGA:\\S+$|^XAMS:\\S+$|^XIBE:\\S+$|^NLPX:\\S+$|^TSEF:\\S+$|^HEDE:\\S+$|^APXL:\\S+$|^XSTX:\\S+$|^FNFT:\\S+$|^PUND:\\S+$|^SCXM:\\S+$|^SECD:\\S+$|^XCSX:\\S+$|^SQUA:\\S+$|^XCAL:\\S+$|^HOTC:\\S+$|^ALXP:\\S+$|^TERM:\\S+$|^DNSE:\\S+$|^XIOM:\\S+$|^CIMD:\\S+$|^SMBG:\\S+$|^BOM:\\S+$|^VFMI:\\S+$|^CANX:\\S+$|^TRQB:\\S+$|^XETV:\\S+$|^IMCS:\\S+$|^BMLI:\\S+$|^HPCS:\\S+$|^DOWM:\\S+$|^BSEX:\\S+$|^SIBC:\\S+$|^SPEC:\\S+$|^ICUR:\\S+$|^XLGT:\\S+$|^ENXL:\\S+$|^AFEX:\\S+$|^BLTD:\\S+$|^XCAN:\\S+$|^TREO:\\S+$|^HPCO:\\S+$|^EGMT:\\S+$|^OLBB:\\S+$|^GFBM:\\S+$|^UBSS:\\S+$|^WABR:\\S+$|^UFEX:\\S+$|^NWMS:\\S+$|^TQEX:\\S+$|^NATX:\\S+$|^CLHK:\\S+$|^NASD:\\S+$|^G1XX:\\S+$|^EIXE:\\S+$|^MHBL:\\S+$|^GFOX:\\S+$|^EQTD:\\S+$|^IUOB:\\S+$|^XRMZ:\\S+$|^XNMS:\\S+$|^XNEP:\\S+$|^WBDM:\\S+$|^DBOX:\\S+$|^CEUD:\\S+$|^XSAU:\\S+$|^FREX:\\S+$|^BASP:\\S+$|^BAPE:\\S+$|^XECS:\\S+$|^GSAL:\\S+$|^EXGM:\\S+$|^BMEX:\\S+$|^NYFX:\\S+$|^JPMX:\\S+$|^MATX:\\S+$|^GFIC:\\S+$|^CCFX:\\S+$|^OTCQ:\\S+$|^XDNB:\\S+$|^EXAA:\\S+$|^NDCM:\\S+$|^PINX:\\S+$|^CAVE:\\S+$|^COMG:\\S+$|^CODA:\\S+$|^XSFE:\\S+$|^SWAP:\\S+$|^SMFE:\\S+$|^IFAD:\\S+$|^EPEX:\\S+$|^XBVC:\\S+$|^CGMT:\\S+$|^BNTW:\\S+$|^HMTF:\\S+$|^XTRN:\\S+$|^NPGA:\\S+$|^XALS:\\S+$|^ITGL:\\S+$|^HCHC:\\S+$|^BSME:\\S+$|^FTFM:\\S+$|^IFLO:\\S+$|^XBUE:\\S+$|^XNOM:\\S+$|^DOTS:\\S+$|^TSMM:\\S+$|^XCAY:\\S+$|^BOVA:\\S+$|^XMFX:\\S+$|^LUXSE:\\S+$|^XSGA:\\S+$|^XJSE:\\S+$|^MARF:\\S+$|^XEER:\\S+$|^PIPR:\\S+$|^HAML:\\S+$|^GSEF:\\S+$|^RPWC:\\S+$|^SHE:\\S+$|^ISDA:\\S+$|^XERT:\\S+$|^BBVA:\\S+$|^FBSI:\\S+$|^KOSDAQ:\\S+$|^XSTP:\\S+$|^XKRX:\\S+$|^XSCU:\\S+$|^CFJP:\\S+$|^BBIE:\\S+$|^XMEV:\\S+$|^XISE:\\S+$|^XSAM:\\S+$|^LASF:\\S+$|^XQMH:\\S+$|^KNIG:\\S+$|^IMMM:\\S+$|^XKFB:\\S+$|^IMGI:\\S+$|^BGLU:\\S+$|^XSGB:\\S+$|^SHAD:\\S+$|^MAQJ:\\S+$|^BMV:\\S+$|^XALG:\\S+$|^ECAL:\\S+$|^XMAT:\\S+$|^SGOE:\\S+$|^AURO:\\S+$|^TPIC:\\S+$|^SIGH:\\S+$|^FICO:\\S+$|^XUSE:\\S+$|^XTRZ:\\S+$|^SSBT:\\S+$|^XASX:\\S+$|^XBLB:\\S+$|^GFBO:\\S+$|^MOEX:\\S+$|^CGTR:\\S+$|^BARO:\\S+$|^TWSG:\\S+$|^OTCE:\\S+$|^OPRA:\\S+$|^PDEX:\\S+$|^BNDD:\\S+$|^ICSZ:\\S+$|^EQTC:\\S+$|^GSXL:\\S+$|^PINL:\\S+$|^EBSN:\\S+$|^XKAC:\\S+$|^SGMU:\\S+$|^MFXR:\\S+$|^XSC2:\\S+$|^XMNT:\\S+$|^SEED:\\S+$|^IOIR:\\S+$|^XLAO:\\S+$|^CSEU:\\S+$|^DBMO:\\S+$|^MTSO:\\S+$|^NXUS:\\S+$|^UCBA:\\S+$|^XCYO:\\S+$|^RTSI:\\S+$|^XNZE:\\S+$|^SWX:\\S+$|^MAQX:\\S+$|^RPDX:\\S+$|^TRAX:\\S+$|^SGMW:\\S+$|^XOSA:\\S+$|^XOAA:\\S+$|^4AXE:\\S+$|^XRFQ:\\S+$|^MCXX:\\S+$|^FMTS:\\S+$|^HEGX:\\S+$|^LOUI:\\S+$|^GXMA:\\S+$|^FLTB:\\S+$|^XINV:\\S+$|^IBAL:\\S+$|^XNAF:\\S+$|^XMPW:\\S+$|^OTPB:\\S+$|^CBOE:\\S+$|^XGCL:\\S+$|^BMLS:\\S+$|^ISWN:\\S+$|^UBSC:\\S+$|^PINC:\\S+$|^SWBI:\\S+$|^ABNC:\\S+$|^XMAD:\\S+$|^XDFB:\\S+$|^OCSI:\\S+$|^CSJP:\\S+$|^XICX:\\S+$|^XEUC:\\S+$|^CPTX:\\S+$|^ISWC:\\S+$|^XPUK:\\S+$|^GTSX:\\S+$|^XDUS:\\S+$|^ZAPA:\\S+$|^XDSE:\\S+$|^BEUO:\\S+$|^PPEX:\\S+$|^LBCM:\\S+$|^SEBL:\\S+$|^DIFX:\\S+$|^XBAH:\\S+$|^TSED:\\S+$|^LOYD:\\S+$|^JPBX:\\S+$|^XMTS:\\S+$|^MIVX:\\S+$|^XNAM:\\S+$|^CSAS:\\S+$|^IMED:\\S+$|^NWNV:\\S+$|^CXAW:\\S+$|^TERA:\\S+$|^ICSU:\\S+$|^XGAS:\\S+$|^IOED:\\S+$|^BLBB:\\S+$|^MKAA:\\S+$|^MTSF:\\S+$|^AFDL:\\S+$|^SSE:\\S+$|^IFSG:\\S+$|^GMES:\\S+$|^XOPV:\\S+$|^BETX:\\S+$|^ROFX:\\S+$|^IFLS:\\S+$|^XMGE:\\S+$|^NFSA:\\S+$|^ICTW:\\S+$|^HSBT:\\S+$|^XPRI:\\S+$|^CCXE:\\S+$|^XTK1:\\S+$|^ICKR:\\S+$|^GSXK:\\S+$|^CSMD:\\S+$|^BLXA:\\S+$|^DVFX:\\S+$|^MLVX:\\S+$|^XPRM:\\S+$|^BKDM:\\S+$|^XPAR:\\S+$|^FTUS:\\S+$|^CGIT:\\S+$|^GSXC:\\S+$|^XEEE:\\S+$|^XSCE:\\S+$|^CCMS:\\S+$|^JPMS:\\S+$|^JSES:\\S+$|^RBSX:\\S+$|^XCET:\\S+$|^XBKK:\\S+$|^COMM:\\S+$|^HAMA:\\S+$|^XETF:\\S+$|^SMBB:\\S+$|^CBLC:\\S+$|^MSMS:\\S+$|^RICX:\\S+$|^BASE:\\S+$|^WETP:\\S+$|^CGQT:\\S+$|^ABFI:\\S+$|^MSCO:\\S+$|^XRBM:\\S+$|^BIST:\\S+$|^XOSJ:\\S+$|^BPLC:\\S+$|^UKEX:\\S+$|^SCOT:\\S+$|^BDSK:\\S+$|^DEXE:\\S+$|^MKTF:\\S+$|^FXRQ:\\S+$|^ANZL:\\S+$|^TPSV:\\S+$|^ZFXM:\\S+$|^IMBD:\\S+$|^INGB:\\S+$|^CHIO:\\S+$|^XBND:\\S+$|^SOHO:\\S+$|^TRSI:\\S+$|^TQEB:\\S+$|^XUAX:\\S+$|^CRED:\\S+$|^CGMC:\\S+$|^SIX:\\S+$|^DBLX:\\S+$|^TWEM:\\S+$|^WOOD:\\S+$|^DSME:\\S+$|^BAJD:\\S+$|^CGQD:\\S+$|^STUD:\\S+$|^AMPX:\\S+$|^CITD:\\S+$|^MTXA:\\S+$|^EXSD:\\S+$|^GSXH:\\S+$|^EDDP:\\S+$|^LQED:\\S+$|^NEXD:\\S+$|^IMSB:\\S+$|^ELSE:\\S+$|^EQLD:\\S+$|^ELUK:\\S+$|^INVE:\\S+$|^DASI:\\S+$|^GETB:\\S+$|^XNSA:\\S+$|^TRQC:\\S+$|^XTKS:\\S+$|^SGA2:\\S+$|^XIMM:\\S+$|^SMBP:\\S+$|^OTXB:\\S+$|^ETR:\\S+$|^NFSD:\\S+$|^NEXG:\\S+$|^CSAG:\\S+$|^BGCF:\\S+$|^XNXD:\\S+$|^XGAT:\\S+$|^IPXW:\\S+$|^CSHK:\\S+$|^BNPP:\\S+$|^CASI:\\S+$|^MESI:\\S+$|^BFEX:\\S+$|^HKEX:\\S+$|^PUMX:\\S+$|^XBDV:\\S+$|^LAMP:\\S+$|^ICRO:\\S+$|^LEUF:\\S+$|^WELN:\\S+$|^UCHU:\\S+$|^FXCL:\\S+$|^FINN:\\S+$|^GSCI:\\S+$|^CGEE:\\S+$|^BCDX:\\S+$|^XMER:\\S+$|^XKEM:\\S+$|^XIMA:\\S+$|^PIPE:\\S+$|^CSGI:\\S+$|^LIQH:\\S+$|^XBRT:\\S+$|^XSAF:\\S+$|^BVUR:\\S+$|^BOSD:\\S+$|^SPRZ:\\S+$|^BUX:\\S+$|^MVCX:\\S+$|^CXAF:\\S+$|^PIRM:\\S+$|^LMAO:\\S+$|^XCRO:\\S+$|^IBEQ:\\S+$|^IFXR:\\S+$|^XSEF:\\S+$|^EXDC:\\S+$|^XTRD:\\S+$|^GSEI:\\S+$|^CMCI:\\S+$|^XQUI:\\S+$|^MCAD:\\S+$|^KELR:\\S+$|^XADF:\\S+$|^MUNB:\\S+$|^SEND:\\S+$|^CGMX:\\S+$|^LIUS:\\S+$|^EXOR:\\S+$|^XPTY:\\S+$|^LON:\\S+$|^XBVR:\\S+$|^BKBF:\\S+$|^GMGL:\\S+$|^XNYS:\\S+$|^BFPT:\\S+$|^YKNA:\\S+$|^CBKG:\\S+$|^HKG:\\S+$|^MAQH:\\S+$|^TFSU:\\S+$|^XTFF:\\S+$|^XEUP:\\S+$|^XULA:\\S+$|^HEMO:\\S+$|^XKCM:\\S+$|^CAPL:\\S+$|^XCHI:\\S+$|^ETLX:\\S+$|^XDMI:\\S+$|^JBUL:\\S+$|^BERA:\\S+$|^MAEL:\\S+$|^IECL:\\S+$|^CEPU:\\S+$|^OOTC:\\S+$|^SIGJ:\\S+$|^BTRL:\\S+$|^VIE:\\S+$|^BCMM:\\S+$|^TQEA:\\S+$|^KOME:\\S+$|^VONT:\\S+$|^SSFX:\\S+$|^MERK:\\S+$|^CIMB:\\S+$|^EOTC:\\S+$|^TREU:\\S+$|^XPHO:\\S+$|^JSSI:\\S+$|^NOED:\\S+$|^TRAI:\\S+$|^DUSA:\\S+$|^VFIL:\\S+$|^KLEU:\\S+$|^NXVW:\\S+$|^XIST:\\S+$|^SSBI:\\S+$|^UBSA:\\S+$|^EBSO:\\S+$|^ARCD:\\S+$|^RESF:\\S+$|^OTCM:\\S+$|^FREI:\\S+$|^TOWR:\\S+$|^MLXB:\\S+$|^ICBX:\\S+$|^CDSI:\\S+$|^SKSI:\\S+$|^FNEE:\\S+$|^EXSE:\\S+$|^IMEQ:\\S+$|^XSGE:\\S+$|^TPE:\\S+$|^CRYX:\\S+$|^XBCX:\\S+$|^BCSI:\\S+$|^XFCI:\\S+$|^CIME:\\S+$)$",
             "title": "Ticker"
           }
         },
@@ -8350,6 +9369,16 @@
           "job_title": {
             "type": "string",
             "title": "Job Title"
+          },
+          "linkedin_url_array": {
+            "items": {
+              "type": "string",
+              "maxLength": 2048,
+              "pattern": "^(https?:)?//(?:(?:[a-z0-9\\u00a1-\\uffff][a-z0-9\\u00a1-\\uffff_-]{0,62})?[a-z0-9\\u00a1-\\uffff]\\.)+[a-z\\u00a1-\\uffff]{2,}\\.?(?:[/?#]\\S*)?$",
+              "format": "uri"
+            },
+            "type": "array",
+            "title": "Linkedin Url Array"
           }
         },
         "type": "object",
@@ -8472,6 +9501,13 @@
             "type": "string",
             "pattern": "^[a-f0-9]{32}$",
             "title": "Business Id"
+          },
+          "linkedin_url_array": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Linkedin Url Array"
           }
         },
         "type": "object",
@@ -8483,43 +9519,43 @@
             "type": "string",
             "title": "Business Id",
             "description": "Explorium business id",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "full_name": {
             "type": "string",
             "title": "Full Name",
             "description": "Full name of the person",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "company_name": {
             "type": "string",
             "title": "Company Name",
             "description": "Company name",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "email": {
             "type": "string",
             "title": "Email",
             "description": "Email address",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "phone_number": {
             "type": "string",
             "title": "Phone Number",
             "description": "Phone number",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "linkedin": {
             "type": "string",
             "title": "Linkedin",
             "description": "LinkedIn URL",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           }
         },
         "type": "object",
@@ -8574,8 +9610,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "parameters": {
             "type": "object",
@@ -8605,8 +9641,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "parameters": {
             "type": "object",
@@ -8801,8 +9837,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "parameters": {
             "type": "object",
@@ -8828,8 +9864,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "parameters": {
             "type": "object",
@@ -9018,8 +10054,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "enrollment_key": {
             "type": "string",
@@ -9082,8 +10118,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "enrollment_id": {
             "type": "string",
@@ -9144,8 +10180,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "enrollment_key": {
             "type": "string",
@@ -9223,8 +10259,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "entity_type": {
             "allOf": [
@@ -9253,8 +10289,8 @@
             ],
             "title": "Timestamp To",
             "description": "ISO format datetime string or date in format YYYY-MM-DD",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "timestamp_from": {
             "anyOf": [
@@ -9268,8 +10304,8 @@
             ],
             "title": "Timestamp From",
             "description": "ISO format datetime string or date in format YYYY-MM-DD",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "prospect_ids": {
             "items": {
@@ -9636,8 +10672,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "mode": {
             "allOf": [
@@ -9682,8 +10718,8 @@
             "maxItems": 1000,
             "title": "Exclude",
             "description": "List of prospect ids to exclude from the response.",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "filters": {
             "allOf": [
@@ -9699,17 +10735,8 @@
             "type": "string",
             "title": "Next Cursor",
             "description": "The sort values from the last document returned by the previous page. If provided, cursor pagination is used instead of page-based pagination. send \"null\" to start with next_cursor pagination from the beginning.",
-            "example": null,
-            "nullable": true
-          },
-          "max_per_company": {
-            "type": "integer",
-            "maximum": 100.0,
-            "minimum": 1.0,
-            "title": "Max Per Company",
-            "description": "Limits the number of prospects returned per company.",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           }
         },
         "additionalProperties": false,
@@ -9808,15 +10835,15 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "prospects_to_match": {
             "items": {
               "$ref": "#/components/schemas/ProspectMatchInput"
             },
             "type": "array",
-            "maxItems": 40,
+            "maxItems": 50,
             "minItems": 1,
             "title": "Prospects To Match"
           }
@@ -9890,8 +10917,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "filters": {
             "$ref": "#/components/schemas/ProspectsFetchFilters"
@@ -10203,8 +11230,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "partner_id": {
             "type": "string",
@@ -10263,8 +11290,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "partner_id": {
             "type": "string",
@@ -10366,15 +11393,50 @@
       "WebhookSimulationEventType": {
         "type": "string",
         "enum": [
-          "new_office",
+          "award",
           "closing_office",
+          "company_award",
+          "cost_cutting",
+          "decrease_in_all_departments",
+          "decrease_in_customer_service_department",
+          "decrease_in_engineering_department",
+          "decrease_in_marketing_department",
+          "decrease_in_operations_department",
+          "decrease_in_sales_department",
+          "employee_joined_company",
           "funding_round",
-          "new_investment",
-          "outages_and_security_breaches",
+          "hiring_in_creative_department",
+          "hiring_in_education_department",
+          "hiring_in_engineering_department",
+          "hiring_in_finance_department",
+          "hiring_in_health_department",
+          "hiring_in_human_resources_department",
+          "hiring_in_legal_department",
+          "hiring_in_marketing_department",
+          "hiring_in_operations_department",
+          "hiring_in_professional_service_department",
+          "hiring_in_sales_department",
+          "hiring_in_support_department",
+          "hiring_in_trade_department",
+          "hiring_in_unknown_department",
+          "increase_in_all_departments",
+          "increase_in_customer_service_department",
+          "increase_in_engineering_department",
+          "increase_in_marketing_department",
+          "increase_in_operations_department",
+          "increase_in_sales_department",
+          "ipo_announcement",
+          "lawsuits_and_legal_issues",
           "merger_and_acquisitions",
+          "new_funding_round",
+          "new_investment",
+          "new_office",
+          "new_partnership",
+          "new_product",
+          "outages_and_security_breaches",
           "prospect_changed_company",
-          "prospect_job_start_anniversary",
-          "prospect_changed_role"
+          "prospect_changed_role",
+          "prospect_job_start_anniversary"
         ],
         "title": "WebhookSimulationEventType",
         "description": "The `WebhookSimulationEventType` class is an enumeration that represents various types of events"
@@ -10410,8 +11472,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "parameters": {
             "$ref": "#/components/schemas/WebsiteTrafficEnrichmentParams"
@@ -10439,8 +11501,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "parameters": {
             "$ref": "#/components/schemas/WebsiteTrafficEnrichmentParams"
@@ -10857,8 +11919,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "parameters": {
             "$ref": "#/components/schemas/LinkedInPostsEnrichmentParams"
@@ -10886,8 +11948,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "parameters": {
             "$ref": "#/components/schemas/LinkedInPostsEnrichmentParams"
@@ -10910,8 +11972,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "parameters": {
             "allOf": [
@@ -10945,8 +12007,8 @@
           "request_context": {
             "type": "object",
             "title": "Request Context",
-            "example": null,
-            "nullable": true
+            "nullable": true,
+            "example": null
           },
           "parameters": {
             "allOf": [
