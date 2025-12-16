@@ -113,6 +113,60 @@ The **Fetch Businesses** endpoint allows users to retrieve business records base
     | `number_of_locations`         | Filter accounts by how many office locations they operate. Example:  `["1", "2-5", "6+"]`                                                                                                                                                      | - Use autocomplete to select location range. - Accepts a list of `values`. - Logic checks for company location count metadata.                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
     | `website_keywords`            | Filter accounts by specific keywords mentioned on their websites. Example:  `["sustainability", "machine learning"]`                                                                                                                           | - Use keyword search to find companies mentioning certain terms. - Accepts free-text keywords or predefined tags. - Logic performs keyword match in indexed website content.                                                                                                                                                                                                                                                                                                                                                                                                                |
     | `topics`                      | Filters businesses based on active research around specific intent topics, returning`business_id` values of companies demonstrating relevant interest. Example: `["machine learning & artificial intelligence: openai", "technology: iphone"]` | - Accepts one or more **topic strings** following Bombora’s taxonomy.<br />- Returns  businesses with a **composite score \>60** for at least one matching topic.<br />- Recommended for pre-filtering businesses prior to enrichment or campaign targeting<br />- Use the autocomplete endpoint with `business_intent_topics` — and with`semantic_search=true` — to discover broader and smarter intent-topic suggestions. <br /><br />Enabling semantic search helps surface wider contextual topics that users are actively researching, ensuring more accurate and effective filtering. |
+    | events.values                 | Filter accounts by specific **business event types** (a list of event identifiers). Example: `["new_product", "employee_joined_company"]`                                                                                                      | - ****`Must be used together with events.last_occurrence.`****<br />- Uses a list of values.<br />- The full list and definitions are available under **Business Events**.                                                                                                                                                                                                                                                                                                                                                                                                                  |
+    | events.last_occurrence        | Filter accounts based on whether the selected events occurred within the last **N days**. Example: `45`                                                                                                                                        | - ****`Must be used together with events.values.`****<br />- Accepts an integer **between 30 and 90**.<br />- Checks events that occurred within the last **N days (lookback window)**.<br />- See the full list of supported event types below. |
+ <Accordion title="Full list of supported event_type values">
+  <br />
+
+  <ul>
+    <li>increase_in_customer_service_department</li>
+    <li>hiring_in_finance_department</li>
+    <li>hiring_in_support_department</li>
+    <li>increase_in_engineering_department</li>
+    <li>decrease_in_customer_service_department</li>
+    <li>hiring_in_operations_department</li>
+    <li>hiring_in_creative_department</li>
+    <li>decrease_in_engineering_department</li>
+    <li>hiring_in_sales_department</li>
+    <li>increase_in_operations_department</li>
+    <li>hiring_in_trade_department</li>
+    <li>decrease_in_marketing_department</li>
+    <li>increase_in_marketing_department</li>
+    <li>hiring_in_marketing_department</li>
+    <li>hiring_in_health_department</li>
+    <li>hiring_in_education_department</li>
+    <li>increase_in_all_departments</li>
+    <li>decrease_in_all_departments</li>
+    <li>decrease_in_sales_department</li>
+    <li>decrease_in_operations_department</li>
+    <li>hiring_in_professional_service_department</li>
+    <li>hiring_in_human_resources_department</li>
+    <li>increase_in_sales_department</li>
+    <li>hiring_in_legal_department</li>
+    <li>hiring_in_unknown_department</li>
+    <li>hiring_in_engineering_department</li>
+    <li>company_award</li>
+    <li>new_product</li>
+    <li>employee_joined_company</li>
+    <li>merger_and_acquisitions</li>
+    <li>lawsuits_and_legal_issues</li>
+    <li>outages_and_security_breaches</li>
+    <li>closing_office</li>
+    <li>new_investment</li>
+    <li>new_office</li>
+    <li>new_partnership</li>
+    <li>cost_cutting</li>
+    <li>new_funding_round</li>
+    <li>award</li>
+    <li>ipo_announcement</li>
+  </ul>
+
+  <p><i>Full definitions and examples for each event type are available under <b>Business Events</b>.</i></p>
+</Accordion>
+
+
+
+    
 
     ### <Icon icon="target" /> Targeting Mid-Sized B2B Software Companies in California for CRM Sales
 
