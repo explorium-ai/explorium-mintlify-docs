@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "Partner Service",
-    "version": "0.2.264"
+    "version": "0.2.273"
   },
   "servers": [
     {
@@ -56,8 +56,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -132,8 +132,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -195,8 +195,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -266,8 +266,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -355,8 +355,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -412,8 +412,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -475,8 +475,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -526,8 +526,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -587,8 +587,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -648,8 +648,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -711,8 +711,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -773,8 +773,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -844,8 +844,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -907,8 +907,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -996,8 +996,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -1053,8 +1053,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -1104,8 +1104,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -1165,8 +1165,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -1226,8 +1226,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -1288,8 +1288,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -1340,8 +1340,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -1403,8 +1403,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -1475,8 +1475,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -1535,8 +1535,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -1587,8 +1587,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -1649,8 +1649,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -1711,8 +1711,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -1773,8 +1773,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -1835,8 +1835,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -1897,8 +1897,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -1959,8 +1959,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -2021,8 +2021,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -2083,8 +2083,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -2145,8 +2145,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -2207,8 +2207,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -2269,8 +2269,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -2331,8 +2331,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -2393,8 +2393,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -2455,8 +2455,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -2517,8 +2517,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -2579,8 +2579,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -2641,8 +2641,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -2703,8 +2703,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -2765,8 +2765,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -2827,8 +2827,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -2889,8 +2889,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -2951,8 +2951,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -3013,8 +3013,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -3075,8 +3075,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -3137,8 +3137,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -3199,8 +3199,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -3261,8 +3261,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -3323,8 +3323,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -3385,8 +3385,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -3447,8 +3447,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -3509,8 +3509,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -3571,8 +3571,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -3633,8 +3633,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -3695,8 +3695,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -3757,8 +3757,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -3819,8 +3819,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -3881,8 +3881,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -3943,8 +3943,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -4005,8 +4005,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -4067,8 +4067,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -4139,8 +4139,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -4211,8 +4211,8 @@
             "schema": {
               "type": "string",
               "title": "Tenant",
-              "name": "tenant",
-              "auto_error": false
+              "auto_error": false,
+              "name": "tenant"
             },
             "name": "tenant",
             "in": "header"
@@ -4606,6 +4606,7 @@
               "type": "string"
             },
             "type": "array",
+            "minItems": 1,
             "title": "Topics"
           },
           "topic_intent_level": {
@@ -7027,20 +7028,16 @@
             },
             "nullable": true
           },
-          "events_occurrence": {
+          "has_website": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/EventsOccurrenceFilter"
+                "$ref": "#/components/schemas/ExistsFilter"
               }
             ],
-            "title": "Events Occurrence",
-            "description": "Dynamic filter for event occurrences. Specify event names and optional time range.",
+            "title": "Has Website",
+            "description": "Filter businesses by whether they have a website. Categories: [True, False]",
             "example": {
-              "event_names": [
-                "increase_in_all_departments",
-                "decrease_in_operations_department"
-              ],
-              "last_occurrence_days": 90
+              "value": true
             },
             "nullable": true
           }
@@ -7118,8 +7115,8 @@
             "type": "string",
             "title": "Next Cursor",
             "description": "The sort values from the last document returned by the previous page. If provided, cursor pagination is used instead of page-based pagination. send \"null\" to start with next_cursor pagination from the beginning.",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -7947,37 +7944,6 @@
         ],
         "title": "EventTypesFilter[BusinessesEventIdentifier]"
       },
-      "EventsOccurrenceFilter": {
-        "properties": {
-          "negate": {
-            "type": "boolean",
-            "title": "Negate"
-          },
-          "event_names": {
-            "items": {},
-            "type": "array",
-            "title": "Event Names",
-            "description": "List of event names to check for occurrence",
-            "example": [
-              "increase_in_all_departments",
-              "decrease_in_operations_department"
-            ]
-          },
-          "last_occurrence_days": {
-            "type": "integer",
-            "title": "Last Occurrence Days",
-            "description": "Filter events that occurred within the last N days",
-            "example": 90,
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "type": "object",
-        "required": [
-          "event_names"
-        ],
-        "title": "EventsOccurrenceFilter"
-      },
       "ExistsFilter": {
         "properties": {
           "negate": {
@@ -8215,6 +8181,7 @@
           },
           "ticker": {
             "type": "string",
+            "pattern": "(?i)^(^VEGA:\\S+$|^DUMX:\\S+$|^XETW:\\S+$|^XTNX:\\S+$|^BNSX:\\S+$|^XCSX:\\S+$|^GMGD:\\S+$|^UBIN:\\S+$|^IFXA:\\S+$|^NESI:\\S+$|^EQIE:\\S+$|^MTXA:\\S+$|^UBSC:\\S+$|^NMRA:\\S+$|^TEUR:\\S+$|^SPDX:\\S+$|^XJNB:\\S+$|^XKEM:\\S+$|^ISWA:\\S+$|^MUNC:\\S+$|^KAIX:\\S+$|^EXSH:\\S+$|^XKCE:\\S+$|^XROS:\\S+$|^XBDA:\\S+$|^ENAX:\\S+$|^HMOD:\\S+$|^MKAP:\\S+$|^GEMX:\\S+$|^IBIS:\\S+$|^DKTC:\\S+$|^XALG:\\S+$|^JPSI:\\S+$|^HSTC:\\S+$|^SECF:\\S+$|^TRQM:\\S+$|^CMAP:\\S+$|^XABG:\\S+$|^XNAS:\\S+$|^NOFF:\\S+$|^CFJP:\\S+$|^TWSF:\\S+$|^UBSS:\\S+$|^CNSX:\\S+$|^IMAG:\\S+$|^BATS:\\S+$|^CBSK:\\S+$|^CRYP:\\S+$|^XNLI:\\S+$|^KBLL:\\S+$|^UBSI:\\S+$|^BNLD:\\S+$|^ETPA:\\S+$|^DUSD:\\S+$|^XMAT:\\S+$|^TMCY:\\S+$|^XLIT:\\S+$|^BLTD:\\S+$|^XUAX:\\S+$|^WELS:\\S+$|^NASDAQ:\\S+$|^ATLB:\\S+$|^BLKX:\\S+$|^BNPA:\\S+$|^TRUK:\\S+$|^PURE:\\S+$|^WBKP:\\S+$|^BTAM:\\S+$|^PLPO:\\S+$|^XECB:\\S+$|^AILT:\\S+$|^GLOM:\\S+$|^XTAI:\\S+$|^BART:\\S+$|^BLEV:\\S+$|^ALTX:\\S+$|^BLNK:\\S+$|^TNLA:\\S+$|^MIDC:\\S+$|^IOED:\\S+$|^BSTX:\\S+$|^STUA:\\S+$|^RLBO:\\S+$|^XPAC:\\S+$|^ZFXM:\\S+$|^CHIA:\\S+$|^PBUL:\\S+$|^CEDX:\\S+$|^CAVE:\\S+$|^GSXK:\\S+$|^TREA:\\S+$|^XTUN:\\S+$|^PJCX:\\S+$|^CLHK:\\S+$|^AFSL:\\S+$|^HPCO:\\S+$|^HSBT:\\S+$|^BIST:\\S+$|^TWSE:\\S+$|^MCRY:\\S+$|^JPMX:\\S+$|^UBSX:\\S+$|^NEON:\\S+$|^CSJP:\\S+$|^OLBB:\\S+$|^EVOL:\\S+$|^EQOD:\\S+$|^XNYL:\\S+$|^MSEU:\\S+$|^TRPX:\\S+$|^XKFB:\\S+$|^IFCA:\\S+$|^TREO:\\S+$|^SHAD:\\S+$|^BBSF:\\S+$|^XZCE:\\S+$|^PINC:\\S+$|^CHIJ:\\S+$|^KOME:\\S+$|^CCRM:\\S+$|^XSVA:\\S+$|^CELP:\\S+$|^XOBD:\\S+$|^XNFI:\\S+$|^EQSE:\\S+$|^XBES:\\S+$|^XCET:\\S+$|^BMEA:\\S+$|^BVCC:\\S+$|^XLFX:\\S+$|^DNDK:\\S+$|^XMVL:\\S+$|^TWGP:\\S+$|^THEM:\\S+$|^HAML:\\S+$|^MALM:\\S+$|^FRA:\\S+$|^XCIS:\\S+$|^SCAG:\\S+$|^INVE:\\S+$|^SBIJ:\\S+$|^UGEN:\\S+$|^BARL:\\S+$|^INGW:\\S+$|^BTEE:\\S+$|^ECGS:\\S+$|^CLTD:\\S+$|^FREX:\\S+$|^HEDE:\\S+$|^GSXT:\\S+$|^CVE:\\S+$|^XIPO:\\S+$|^MXNL:\\S+$|^XINS:\\S+$|^XGRM:\\S+$|^FXCM:\\S+$|^CODA:\\S+$|^NEXS:\\S+$|^XMGE:\\S+$|^XASE:\\S+$|^TFSU:\\S+$|^HANB:\\S+$|^MBCP:\\S+$|^EXCP:\\S+$|^MIVX:\\S+$|^NAPA:\\S+$|^HRFQ:\\S+$|^ICBX:\\S+$|^XNYE:\\S+$|^SCXM:\\S+$|^XCYS:\\S+$|^NXEU:\\S+$|^XMEX:\\S+$|^TSIG:\\S+$|^XEBS:\\S+$|^XCAI:\\S+$|^HSBC:\\S+$|^EXBO:\\S+$|^GSPL:\\S+$|^GFSM:\\S+$|^RSEX:\\S+$|^GPBC:\\S+$|^CCO2:\\S+$|^SMBD:\\S+$|^AREX:\\S+$|^PBGR:\\S+$|^XBND:\\S+$|^DOWM:\\S+$|^BGCF:\\S+$|^XCXD:\\S+$|^CSTO:\\S+$|^XSEF:\\S+$|^NIBC:\\S+$|^XPHL:\\S+$|^NEXG:\\S+$|^EXTR:\\S+$|^TPER:\\S+$|^TEMB:\\S+$|^XCGS:\\S+$|^BMV:\\S+$|^CXAF:\\S+$|^XDCE:\\S+$|^XSTM:\\S+$|^XSGB:\\S+$|^XBAR:\\S+$|^CAES:\\S+$|^SEDX:\\S+$|^TWSG:\\S+$|^SBIU:\\S+$|^MFXC:\\S+$|^TBSP:\\S+$|^DASI:\\S+$|^BRNX:\\S+$|^XDHA:\\S+$|^IECL:\\S+$|^DOTS:\\S+$|^EGSI:\\S+$|^ZERO:\\S+$|^PEPM:\\S+$|^FICO:\\S+$|^HGSP:\\S+$|^UBEC:\\S+$|^IOCD:\\S+$|^BATY:\\S+$|^DCSE:\\S+$|^EQOS:\\S+$|^SIMV:\\S+$|^LBCM:\\S+$|^LUXSE:\\S+$|^HAMA:\\S+$|^MESI:\\S+$|^SEND:\\S+$|^XBDV:\\S+$|^BETP:\\S+$|^CSGI:\\S+$|^GSCO:\\S+$|^HREU:\\S+$|^JBSI:\\S+$|^XPST:\\S+$|^FNFT:\\S+$|^GFIC:\\S+$|^T212:\\S+$|^NXUS:\\S+$|^VLEX:\\S+$|^PINI:\\S+$|^MTSB:\\S+$|^FXFM:\\S+$|^RBSX:\\S+$|^TPSO:\\S+$|^LEUE:\\S+$|^CCXE:\\S+$|^ASE:\\S+$|^FSHX:\\S+$|^EBSO:\\S+$|^XMPW:\\S+$|^TCML:\\S+$|^SLHB:\\S+$|^CFHK:\\S+$|^XLUS:\\S+$|^ALXB:\\S+$|^CSZH:\\S+$|^UBSL:\\S+$|^BNYC:\\S+$|^XRBM:\\S+$|^XDRF:\\S+$|^XCAN:\\S+$|^STUB:\\S+$|^MAQX:\\S+$|^IFEN:\\S+$|^BCEE:\\S+$|^XDSM:\\S+$|^GSXL:\\S+$|^MARF:\\S+$|^TWEA:\\S+$|^ERST:\\S+$|^XJAS:\\S+$|^MAQH:\\S+$|^XTFF:\\S+$|^DSME:\\S+$|^SMFE:\\S+$|^SSBM:\\S+$|^TMCC:\\S+$|^EXSP:\\S+$|^GSCI:\\S+$|^LATG:\\S+$|^BBIS:\\S+$|^SHE:\\S+$|^NPGA:\\S+$|^XFRA:\\S+$|^LMAE:\\S+$|^CGQD:\\S+$|^ASPI:\\S+$|^NZX:\\S+$|^ERBX:\\S+$|^XBSD:\\S+$|^FNIS:\\S+$|^CANX:\\S+$|^ECEU:\\S+$|^DBAG:\\S+$|^EXOR:\\S+$|^MBSI:\\S+$|^DBHK:\\S+$|^XSDX:\\S+$|^MERD:\\S+$|^XEEE:\\S+$|^LBWL:\\S+$|^XBOM:\\S+$|^XRCB:\\S+$|^BCMM:\\S+$|^SWAP:\\S+$|^BELB:\\S+$|^VFMI:\\S+$|^POSE:\\S+$|^JPX:\\S+$|^JNST:\\S+$|^CGMX:\\S+$|^CGML:\\S+$|^IMEQ:\\S+$|^XBBJ:\\S+$|^BLUE:\\S+$|^GRIF:\\S+$|^SWLT:\\S+$|^MUNB:\\S+$|^TEMI:\\S+$|^MSBI:\\S+$|^BRDL:\\S+$|^EQLD:\\S+$|^EDDP:\\S+$|^DBES:\\S+$|^FRAB:\\S+$|^XBOX:\\S+$|^OLLC:\\S+$|^EXMP:\\S+$|^BTLX:\\S+$|^KRME:\\S+$|^RBCM:\\S+$|^CMCI:\\S+$|^CBKD:\\S+$|^CDSL:\\S+$|^VFCM:\\S+$|^BAML:\\S+$|^PVMF:\\S+$|^XLCH:\\S+$|^A2XX:\\S+$|^MCXS:\\S+$|^LMNR:\\S+$|^BMTS:\\S+$|^LSSI:\\S+$|^CSSX:\\S+$|^EDGD:\\S+$|^ARCD:\\S+$|^GOTC:\\S+$|^CISD:\\S+$|^XAPA:\\S+$|^VWDA:\\S+$|^OTPR:\\S+$|^GSIL:\\S+$|^BEEX:\\S+$|^XEQY:\\S+$|^RMMX:\\S+$|^XFKA:\\S+$|^SICS:\\S+$|^XIMM:\\S+$|^XSCO:\\S+$|^KBLC:\\S+$|^TRDE:\\S+$|^TOWR:\\S+$|^ICTW:\\S+$|^IMCC:\\S+$|^RCMA:\\S+$|^CABV:\\S+$|^BOSD:\\S+$|^BALT:\\S+$|^MOSE:\\S+$|^TEFD:\\S+$|^XCHI:\\S+$|^CSSI:\\S+$|^COMM:\\S+$|^BME:\\S+$|^DUSC:\\S+$|^XLQC:\\S+$|^IMCG:\\S+$|^TWEO:\\S+$|^EEAL:\\S+$|^KCCP:\\S+$|^ECAL:\\S+$|^GSEF:\\S+$|^UKRE:\\S+$|^TRFW:\\S+$|^ASXV:\\S+$|^PIPE:\\S+$|^FWB:\\S+$|^MTCH:\\S+$|^XCRO:\\S+$|^PTPG:\\S+$|^SHA:\\S+$|^TSXV:\\S+$|^STUC:\\S+$|^PPEX:\\S+$|^XOSJ:\\S+$|^XBOS:\\S+$|^OTXB:\\S+$|^IMMM:\\S+$|^NXJP:\\S+$|^AQEU:\\S+$|^CCLX:\\S+$|^XKIS:\\S+$|^ASEX:\\S+$|^XARM:\\S+$|^MUBL:\\S+$|^GSEI:\\S+$|^SSE:\\S+$|^TNLB:\\S+$|^BACE:\\S+$|^BOTE:\\S+$|^MAQJ:\\S+$|^ESTO:\\S+$|^SCXO:\\S+$|^IATS:\\S+$|^ELNO:\\S+$|^ECAG:\\S+$|^XSWM:\\S+$|^CEPU:\\S+$|^AWEX:\\S+$|^MSCO:\\S+$|^XCUR:\\S+$|^UFEX:\\S+$|^SISI:\\S+$|^NLBX:\\S+$|^XETA:\\S+$|^XVPB:\\S+$|^EBRA:\\S+$|^ANLP:\\S+$|^SYFX:\\S+$|^CGMU:\\S+$|^ENXL:\\S+$|^BKDM:\\S+$|^XEHQ:\\S+$|^HBPL:\\S+$|^KHHU:\\S+$|^ISSI:\\S+$|^XLBM:\\S+$|^TRAL:\\S+$|^BHWA:\\S+$|^BKBR:\\S+$|^BKSK:\\S+$|^NOFI:\\S+$|^TRCK:\\S+$|^AUTB:\\S+$|^BOTC:\\S+$|^ABNC:\\S+$|^XPMS:\\S+$|^EMLD:\\S+$|^LMEC:\\S+$|^XETU:\\S+$|^SGA2:\\S+$|^BVMF:\\S+$|^CXAN:\\S+$|^IMRD:\\S+$|^GXMA:\\S+$|^IBEX:\\S+$|^BGFX:\\S+$|^MEMM:\\S+$|^XRAS:\\S+$|^ASMT:\\S+$|^MUTI:\\S+$|^HEGX:\\S+$|^BGCB:\\S+$|^XSGA:\\S+$|^BLTX:\\S+$|^SPTR:\\S+$|^XQTX:\\S+$|^ALXP:\\S+$|^XMAN:\\S+$|^ELEU:\\S+$|^LIUH:\\S+$|^LLAT:\\S+$|^AUTX:\\S+$|^TQEM:\\S+$|^BSLB:\\S+$|^PFXD:\\S+$|^BATD:\\S+$|^IOFX:\\S+$|^HRTF:\\S+$|^NOED:\\S+$|^BGCO:\\S+$|^XUNI:\\S+$|^NABE:\\S+$|^RENC:\\S+$|^IFLS:\\S+$|^OSDS:\\S+$|^EPA:\\S+$|^JEFE:\\S+$|^SBIL:\\S+$|^EOTC:\\S+$|^CPGX:\\S+$|^NMRJ:\\S+$|^SGX:\\S+$|^BKLF:\\S+$|^EXEU:\\S+$|^MIZX:\\S+$|^XEDA:\\S+$|^RPWC:\\S+$|^BNDD:\\S+$|^KOTF:\\S+$|^GLPS:\\S+$|^CSLB:\\S+$|^OMGA:\\S+$|^EGMT:\\S+$|^ZSE:\\S+$|^VSE:\\S+$|^XBRM:\\S+$|^BCMA:\\S+$|^XIQS:\\S+$|^XPOM:\\S+$|^NAMX:\\S+$|^TRQB:\\S+$|^IFED:\\S+$|^KNIG:\\S+$|^XCYO:\\S+$|^CXAC:\\S+$|^BAPE:\\S+$|^OMIP:\\S+$|^SMFF:\\S+$|^XEID:\\S+$|^VONT:\\S+$|^XPUK:\\S+$|^NFSA:\\S+$|^ELIX:\\S+$|^XPOS:\\S+$|^BFEX:\\S+$|^STFX:\\S+$|^ETSC:\\S+$|^DUSB:\\S+$|^IBUL:\\S+$|^GSBE:\\S+$|^TFSD:\\S+$|^FTFS:\\S+$|^XIDX:\\S+$|^AFSX:\\S+$|^FINO:\\S+$|^EXSD:\\S+$|^XSAP:\\S+$|^FXGB:\\S+$|^VABD:\\S+$|^CATS:\\S+$|^MCXR:\\S+$|^HMTF:\\S+$|^XAMM:\\S+$|^HOTC:\\S+$|^AFSO:\\S+$|^XNYS:\\S+$|^EXYY:\\S+$|^ZODM:\\S+$|^NIBR:\\S+$|^DOWE:\\S+$|^IMCR:\\S+$|^XTRD:\\S+$|^BNPX:\\S+$|^TQEB:\\S+$|^HANA:\\S+$|^XCDE:\\S+$|^SHSC:\\S+$|^MLES:\\S+$|^UBCZ:\\S+$|^CBSX:\\S+$|^VTEX:\\S+$|^NYSI:\\S+$|^BEUO:\\S+$|^WINX:\\S+$|^MSAL:\\S+$|^JSER:\\S+$|^XEER:\\S+$|^ACEX:\\S+$|^CMEE:\\S+$|^EBSF:\\S+$|^ICE:\\S+$|^XSPM:\\S+$|^XBAA:\\S+$|^MHIP:\\S+$|^XSC1:\\S+$|^CSEALL:\\S+$|^LCUR:\\S+$|^VNDM:\\S+$|^NORD:\\S+$|^GMEO:\\S+$|^CXOT:\\S+$|^XMDS:\\S+$|^ISWB:\\S+$|^TECO:\\S+$|^XBIS:\\S+$|^BARD:\\S+$|^HUPX:\\S+$|^CREM:\\S+$|^XFNO:\\S+$|^SWX:\\S+$|^GBOT:\\S+$|^SSBT:\\S+$|^APXL:\\S+$|^TRU1:\\S+$|^XBRU:\\S+$|^XINE:\\S+$|^DAIW:\\S+$|^LTAA:\\S+$|^XMIL:\\S+$|^TSGB:\\S+$|^SGMU:\\S+$|^XDES:\\S+$|^ACKF:\\S+$|^BLPX:\\S+$|^XOPV:\\S+$|^RTSP:\\S+$|^XMAB:\\S+$|^XSTO:\\S+$|^IMCS:\\S+$|^MAGM:\\S+$|^SGMW:\\S+$|^TPSV:\\S+$|^GFKS:\\S+$|^XSTP:\\S+$|^XPBT:\\S+$|^TNLK:\\S+$|^CFTW:\\S+$|^COAL:\\S+$|^ICSU:\\S+$|^XSIB:\\S+$|^XETV:\\S+$|^ETLX:\\S+$|^ILCM:\\S+$|^LMAO:\\S+$|^IFSG:\\S+$|^SGEX:\\S+$|^XRMO:\\S+$|^LASP:\\S+$|^BAPX:\\S+$|^CGMC:\\S+$|^N2EX:\\S+$|^XPHO:\\S+$|^XROT:\\S+$|^EMTF:\\S+$|^MHBP:\\S+$|^GFIR:\\S+$|^SGMT:\\S+$|^RBCT:\\S+$|^WETP:\\S+$|^BBLX:\\S+$|^ARCA:\\S+$|^CBKA:\\S+$|^BOAL:\\S+$|^XAQS:\\S+$|^SNSI:\\S+$|^CEPL:\\S+$|^NLPX:\\S+$|^XOFF:\\S+$|^CFAU:\\S+$|^XVAL:\\S+$|^PKOP:\\S+$|^BRED:\\S+$|^IFXR:\\S+$|^XOSL:\\S+$|^MBUL:\\S+$|^CIMA:\\S+$|^VAGM:\\S+$|^ULTX:\\S+$|^XSBI:\\S+$|^HRTX:\\S+$|^ENSL:\\S+$|^XODE:\\S+$|^XHNX:\\S+$|^WINS:\\S+$|^MERK:\\S+$|^XCBF:\\S+$|^IBER:\\S+$|^GMGL:\\S+$|^NEXX:\\S+$|^XGTG:\\S+$|^DHLX:\\S+$|^CSVW:\\S+$|^XSTV:\\S+$|^TREU:\\S+$|^GRIO:\\S+$|^XFDA:\\S+$|^XTAM:\\S+$|^PINL:\\S+$|^BCSI:\\S+$|^CXAQ:\\S+$|^SGMY:\\S+$|^TDON:\\S+$|^IMCE:\\S+$|^BPOL:\\S+$|^RSE:\\S+$|^CNSI:\\S+$|^CAND:\\S+$|^CCMS:\\S+$|^VTLS:\\S+$|^XMNT:\\S+$|^CAPI:\\S+$|^FGEX:\\S+$|^ASXP:\\S+$|^XMSW:\\S+$|^IMCO:\\S+$|^KNCM:\\S+$|^JESI:\\S+$|^XTRN:\\S+$|^ICXR:\\S+$|^XPSF:\\S+$|^HKEX:\\S+$|^BOM:\\S+$|^XRUS:\\S+$|^MUNA:\\S+$|^XLOM:\\S+$|^XCNF:\\S+$|^SGMA:\\S+$|^NMCE:\\S+$|^TPEL:\\S+$|^LPPM:\\S+$|^LOYD:\\S+$|^PFTQ:\\S+$|^WSIN:\\S+$|^KNEM:\\S+$|^FNCS:\\S+$|^BIT:\\S+$|^XPAL:\\S+$|^SELC:\\S+$|^FAST:\\S+$|^MCSE:\\S+$|^XRFQ:\\S+$|^LISZ:\\S+$|^CSAG:\\S+$|^XLON:\\S+$|^XNGO:\\S+$|^WFSE:\\S+$|^ICSZ:\\S+$|^TPEU:\\S+$|^BCBA:\\S+$|^BCXE:\\S+$|^ANTS:\\S+$|^CPTX:\\S+$|^XTKS:\\S+$|^XSC2:\\S+$|^FNEE:\\S+$|^NABU:\\S+$|^VIUK:\\S+$|^ISWN:\\S+$|^ICKR:\\S+$|^XGMX:\\S+$|^WMTF:\\S+$|^LTSE:\\S+$|^REST:\\S+$|^EUCC:\\S+$|^TSAD:\\S+$|^XCSE:\\S+$|^MIBG:\\S+$|^AQUA:\\S+$|^CCEX:\\S+$|^OMEL:\\S+$|^SEED:\\S+$|^XIBE:\\S+$|^GFAM:\\S+$|^JYSI:\\S+$|^MALX:\\S+$|^DNFI:\\S+$|^IOFI:\\S+$|^ESLO:\\S+$|^ICXL:\\S+$|^XBXO:\\S+$|^WOOD:\\S+$|^XGHA:\\S+$|^STUD:\\S+$|^HCER:\\S+$|^XEYE:\\S+$|^MSEL:\\S+$|^MANL:\\S+$|^EUWA:\\S+$|^IOTC:\\S+$|^LIQU:\\S+$|^BNPP:\\S+$|^XSAU:\\S+$|^STO:\\S+$|^3579:\\S+$|^AQXE:\\S+$|^CHIV:\\S+$|^EBON:\\S+$|^XDMI:\\S+$|^SKBB:\\S+$|^UNGB:\\S+$|^GOVX:\\S+$|^IMBD:\\S+$|^SSIL:\\S+$|^GETB:\\S+$|^CCEU:\\S+$|^PIEU:\\S+$|^XOAS:\\S+$|^DVFX:\\S+$|^EMDR:\\S+$|^TWHK:\\S+$|^XALS:\\S+$|^TPSL:\\S+$|^XMEV:\\S+$|^PXIL:\\S+$|^SNUK:\\S+$|^NSXB:\\S+$|^XNCD:\\S+$|^DUSA:\\S+$|^ALLT:\\S+$|^XATL:\\S+$|^BCSC:\\S+$|^EXSB:\\S+$|^CSAS:\\S+$|^MBPL:\\S+$|^OHVO:\\S+$|^AATS:\\S+$|^FINN:\\S+$|^XICE:\\S+$|^XBAN:\\S+$|^GMTF:\\S+$|^GMES:\\S+$|^XCAS:\\S+$|^DSMD:\\S+$|^OTCE:\\S+$|^XELX:\\S+$|^IMMH:\\S+$|^RESF:\\S+$|^XSOP:\\S+$|^MSPL:\\S+$|^IMSB:\\S+$|^XETS:\\S+$|^XVPA:\\S+$|^NCEL:\\S+$|^CSEU:\\S+$|^XKAC:\\S+$|^XNIM:\\S+$|^CSCL:\\S+$|^BASI:\\S+$|^PARX:\\S+$|^XSES:\\S+$|^CGXS:\\S+$|^XLDX:\\S+$|^XBOL:\\S+$|^XHEL:\\S+$|^BMCM:\\S+$|^OCSI:\\S+$|^ICRO:\\S+$|^XMUS:\\S+$|^XSCE:\\S+$|^INGB:\\S+$|^STUF:\\S+$|^XBCV:\\S+$|^XLIM:\\S+$|^EQTA:\\S+$|^XMOC:\\S+$|^ODXE:\\S+$|^EBHU:\\S+$|^SPEX:\\S+$|^TRNL:\\S+$|^HAMM:\\S+$|^MUFP:\\S+$|^XSIM:\\S+$|^TRWB:\\S+$|^KLEU:\\S+$|^TRXE:\\S+$|^XCFF:\\S+$|^SIAB:\\S+$|^WBDM:\\S+$|^CAPA:\\S+$|^AFSE:\\S+$|^TRAX:\\S+$|^CBOE:\\S+$|^BRIX:\\S+$|^JNSI:\\S+$|^PEPY:\\S+$|^XGUA:\\S+$|^BNPS:\\S+$|^TSCB:\\S+$|^TPIC:\\S+$|^MTSC:\\S+$|^ABSI:\\S+$|^DBAB:\\S+$|^MXLM:\\S+$|^NBOT:\\S+$|^XCEC:\\S+$|^IMFX:\\S+$|^NEXD:\\S+$|^CLCH:\\S+$|^XBTR:\\S+$|^MERF:\\S+$|^XPET:\\S+$|^XERT:\\S+$|^XRIS:\\S+$|^FISH:\\S+$|^DBMO:\\S+$|^BIDS:\\S+$|^ICOR:\\S+$|^RMTF:\\S+$|^XGSE:\\S+$|^GMEG:\\S+$|^NYFX:\\S+$|^KELR:\\S+$|^XSC3:\\S+$|^XCFE:\\S+$|^BARX:\\S+$|^BBOK:\\S+$|^NILX:\\S+$|^CGMG:\\S+$|^BCRM:\\S+$|^EWRM:\\S+$|^CMEC:\\S+$|^XLAO:\\S+$|^GTCO:\\S+$|^GSIB:\\S+$|^XESM:\\S+$|^ISWO:\\S+$|^CGIT:\\S+$|^XMNX:\\S+$|^ASXT:\\S+$|^BVCA:\\S+$|^TPEE:\\S+$|^CIMD:\\S+$|^FNIX:\\S+$|^XULA:\\S+$|^BKKT:\\S+$|^UBSG:\\S+$|^JLQD:\\S+$|^XLAT:\\S+$|^ISEX:\\S+$|^AFEX:\\S+$|^LON:\\S+$|^EPEX:\\S+$|^EQTC:\\S+$|^ELSE:\\S+$|^EUWB:\\S+$|^XPOR:\\S+$|^STOX:\\S+$|^XSEB:\\S+$|^C2OX:\\S+$|^XNCO:\\S+$|^LIUS:\\S+$|^NEOC:\\S+$|^TUOB:\\S+$|^CASI:\\S+$|^OTCM:\\S+$|^CURX:\\S+$|^XEUM:\\S+$|^EUFN:\\S+$|^BMLS:\\S+$|^R5FX:\\S+$|^CDSI:\\S+$|^FINC:\\S+$|^RBCE:\\S+$|^SEBL:\\S+$|^AMXO:\\S+$|^CXAR:\\S+$|^XSGE:\\S+$|^CMET:\\S+$|^XETR:\\S+$|^THRE:\\S+$|^CCML:\\S+$|^CBKF:\\S+$|^AQXA:\\S+$|^IPXW:\\S+$|^FMTS:\\S+$|^MAQU:\\S+$|^EDRF:\\S+$|^DZBK:\\S+$|^XLLB:\\S+$|^MELO:\\S+$|^MSTX:\\S+$|^GLPX:\\S+$|^FXPS:\\S+$|^BFPT:\\S+$|^XZIM:\\S+$|^LEUF:\\S+$|^FNLV:\\S+$|^FXRQ:\\S+$|^EPRL:\\S+$|^XEMS:\\S+$|^FXOP:\\S+$|^CMMT:\\S+$|^CMSF:\\S+$|^XIMA:\\S+$|^NOPS:\\S+$|^PUND:\\S+$|^KLSH:\\S+$|^NFSD:\\S+$|^BHSF:\\S+$|^DOSE:\\S+$|^NSE:\\S+$|^BATE:\\S+$|^BMTF:\\S+$|^JSSI:\\S+$|^SHAR:\\S+$|^MICE:\\S+$|^NXSE:\\S+$|^DRCT:\\S+$|^SECD:\\S+$|^XOSA:\\S+$|^EBR:\\S+$|^WDER:\\S+$|^HNX:\\S+$|^XMRV:\\S+$|^DGCX:\\S+$|^MVCX:\\S+$|^BOTV:\\S+$|^BEUT:\\S+$|^BNPF:\\S+$|^BACR:\\S+$|^XSEC:\\S+$|^FCBT:\\S+$|^RICD:\\S+$|^PLPD:\\S+$|^OTCI:\\S+$|^DNIS:\\S+$|^HDAT:\\S+$|^NEXN:\\S+$|^RFBK:\\S+$|^OBKL:\\S+$|^UKCA:\\S+$|^TWEM:\\S+$|^TEMF:\\S+$|^XMON:\\S+$|^DEXE:\\S+$|^FIED:\\S+$|^XKHR:\\S+$|^MKTF:\\S+$|^MUND:\\S+$|^CGQT:\\S+$|^NPEX:\\S+$|^AURO:\\S+$|^UCHU:\\S+$|^XSAM:\\S+$|^ISWR:\\S+$|^XYIE:\\S+$|^XEEO:\\S+$|^DBLN:\\S+$|^ICES:\\S+$|^ETR:\\S+$|^TEMR:\\S+$|^SGOE:\\S+$|^XLJM:\\S+$|^CHIC:\\S+$|^SSTX:\\S+$|^BPKO:\\S+$|^XUSE:\\S+$|^WQXL:\\S+$|^ALXL:\\S+$|^SSBI:\\S+$|^LASF:\\S+$|^BTEQ:\\S+$|^TCDS:\\S+$|^XNDQ:\\S+$|^SFCL:\\S+$|^AIMX:\\S+$|^LBCW:\\S+$|^DAVY:\\S+$|^XCOL:\\S+$|^XPHX:\\S+$|^BCFS:\\S+$|^XKON:\\S+$|^XCME:\\S+$|^NATX:\\S+$|^LELE:\\S+$|^XPUS:\\S+$|^NASD:\\S+$|^MLSI:\\S+$|^CSE:\\S+$|^BIVA:\\S+$|^ICHK:\\S+$|^CECA:\\S+$|^ICDX:\\S+$|^PUMA:\\S+$|^KRX:\\S+$|^NGXC:\\S+$|^EQOC:\\S+$|^SSFX:\\S+$|^BKBF:\\S+$|^XHKF:\\S+$|^LBWS:\\S+$|^ABUL:\\S+$|^BMLB:\\S+$|^XBRT:\\S+$|^UICE:\\S+$|^UCBA:\\S+$|^CGMA:\\S+$|^IMCT:\\S+$|^BAMX:\\S+$|^BLIQ:\\S+$|^XNEC:\\S+$|^CIOI:\\S+$|^INCA:\\S+$|^XTK1:\\S+$|^RBIV:\\S+$|^SEBA:\\S+$|^VUSA:\\S+$|^IFAD:\\S+$|^CSHK:\\S+$|^VFXO:\\S+$|^ELI:\\S+$|^MLRQ:\\S+$|^AGBP:\\S+$|^TRU2:\\S+$|^IEXD:\\S+$|^HPCV:\\S+$|^AFSA:\\S+$|^XBIL:\\S+$|^ASX:\\S+$|^NODX:\\S+$|^TSX:\\S+$|^XATH:\\S+$|^PINX:\\S+$|^XCOR:\\S+$|^FNDK:\\S+$|^CGEB:\\S+$|^XCUE:\\S+$|^XSSC:\\S+$|^NEXO:\\S+$|^BSME:\\S+$|^XLJU:\\S+$|^IFBX:\\S+$|^SBSI:\\S+$|^SUNT:\\S+$|^GFPO:\\S+$|^TRQC:\\S+$|^XCX2:\\S+$|^XDSE:\\S+$|^BMLI:\\S+$|^HKG:\\S+$|^CIBH:\\S+$|^ITGL:\\S+$|^BUYN:\\S+$|^XECS:\\S+$|^XIST:\\S+$|^BPSX:\\S+$|^TEFX:\\S+$|^CNOD:\\S+$|^XBAH:\\S+$|^HSXA:\\S+$|^ISBV:\\S+$|^EXSE:\\S+$|^OMIC:\\S+$|^MPRL:\\S+$|^YLDX:\\S+$|^BAIP:\\S+$|^SECC:\\S+$|^TSAF:\\S+$|^ENMS:\\S+$|^PLPS:\\S+$|^DIFX:\\S+$|^MTXM:\\S+$|^CEUX:\\S+$|^CSIN:\\S+$|^IEPA:\\S+$|^LISX:\\S+$|^BLBF:\\S+$|^GSPX:\\S+$|^ZARX:\\S+$|^EDGX:\\S+$|^STXS:\\S+$|^UBIS:\\S+$|^DHEL:\\S+$|^TPIO:\\S+$|^BASE:\\S+$|^XGLO:\\S+$|^CBKS:\\S+$|^RTSL:\\S+$|^BASX:\\S+$|^HPPO:\\S+$|^JPCB:\\S+$|^BRDE:\\S+$|^SBAR:\\S+$|^ARAX:\\S+$|^KBCB:\\S+$|^LEVL:\\S+$|^XXSC:\\S+$|^MHBD:\\S+$|^HCHC:\\S+$|^KAZE:\\S+$|^SIFX:\\S+$|^PDEX:\\S+$|^FRTE:\\S+$|^TERM:\\S+$|^TRCX:\\S+$|^BGSI:\\S+$|^IBEQ:\\S+$|^CLJP:\\S+$|^IGDL:\\S+$|^XKBT:\\S+$|^EMBX:\\S+$|^XOSE:\\S+$|^XGCX:\\S+$|^TSED:\\S+$|^BLFX:\\S+$|^BSE:\\S+$|^COTC:\\S+$|^XPAE:\\S+$|^XSSE:\\S+$|^BATF:\\S+$|^UKEX:\\S+$|^FNFX:\\S+$|^RR4G:\\S+$|^XMTB:\\S+$|^MTAH:\\S+$|^CGMH:\\S+$|^XKOS:\\S+$|^XTSE:\\S+$|^TSMM:\\S+$|^MSMS:\\S+$|^CGET:\\S+$|^IFLX:\\S+$|^WSE:\\S+$|^EQSL:\\S+$|^EXDC:\\S+$|^NYSE:\\S+$|^BILT:\\S+$|^ASXC:\\S+$|^EUWX:\\S+$|^BRDS:\\S+$|^XSAF:\\S+$|^IFUT:\\S+$|^SIGA:\\S+$|^CCFX:\\S+$|^XNZE:\\S+$|^BVUR:\\S+$|^PEPH:\\S+$|^BSAB:\\S+$|^XNCM:\\S+$|^JSES:\\S+$|^XCIE:\\S+$|^OTCX:\\S+$|^USWB:\\S+$|^ISWV:\\S+$|^EDGA:\\S+$|^XBRA:\\S+$|^BDSK:\\S+$|^DNSE:\\S+$|^PATF:\\S+$|^NXVW:\\S+$|^XNOM:\\S+$|^IEBS:\\S+$|^WBAH:\\S+$|^XJSE:\\S+$|^XMOS:\\S+$|^SPBE:\\S+$|^MTSF:\\S+$|^MUSE:\\S+$|^GFIN:\\S+$|^DWSF:\\S+$|^XBLN:\\S+$|^XNKS:\\S+$|^GFSO:\\S+$|^NEXF:\\S+$|^XEUE:\\S+$|^CIMB:\\S+$|^MOCX:\\S+$|^TSGI:\\S+$|^AUTP:\\S+$|^CGTR:\\S+$|^DICE:\\S+$|^CSOB:\\S+$|^SBIV:\\S+$|^XSHE:\\S+$|^LIGA:\\S+$|^CGND:\\S+$|^IKBS:\\S+$|^FXCL:\\S+$|^NASX:\\S+$|^XTAE:\\S+$|^MOTX:\\S+$|^FNSE:\\S+$|^XHAN:\\S+$|^VAGL:\\S+$|^EMIR:\\S+$|^EDGO:\\S+$|^IMGI:\\S+$|^NABA:\\S+$|^WABR:\\S+$|^BVUK:\\S+$|^HUDX:\\S+$|^CSAU:\\S+$|^XPOW:\\S+$|^RICX:\\S+$|^XALT:\\S+$|^BTRL:\\S+$|^ERIS:\\S+$|^SEMX:\\S+$|^XDLP:\\S+$|^OTCQ:\\S+$|^XIOM:\\S+$|^EBXV:\\S+$|^NFSC:\\S+$|^IMTF:\\S+$|^XKSE:\\S+$|^ISWE:\\S+$|^XEUC:\\S+$|^BASP:\\S+$|^TSBX:\\S+$|^TYO:\\S+$|^TDGF:\\S+$|^KNLI:\\S+$|^GLLC:\\S+$|^TADAWUL:\\S+$|^DAPA:\\S+$|^HELA:\\S+$|^XCNQ:\\S+$|^DEKA:\\S+$|^XTXE:\\S+$|^SMBB:\\S+$|^BGHX:\\S+$|^HAMN:\\S+$|^ARKX:\\S+$|^XNXD:\\S+$|^SMBP:\\S+$|^RMMS:\\S+$|^JPMS:\\S+$|^IUOB:\\S+$|^BGFI:\\S+$|^LSE:\\S+$|^OTC:\\S+$|^ATFX:\\S+$|^CXRT:\\S+$|^XNOR:\\S+$|^CRYX:\\S+$|^XNAM:\\S+$|^XBBK:\\S+$|^VERT:\\S+$|^NZE:\\S+$|^FRAV:\\S+$|^XBCL:\\S+$|^FCME:\\S+$|^XRMZ:\\S+$|^MHBE:\\S+$|^ECSL:\\S+$|^BERB:\\S+$|^RPDX:\\S+$|^CHIO:\\S+$|^XPRA:\\S+$|^EXAA:\\S+$|^JBUL:\\S+$|^VFGB:\\S+$|^DBLX:\\S+$|^CHIS:\\S+$|^XMLI:\\S+$|^VIE:\\S+$|^HSFX:\\S+$|^POTC:\\S+$|^CSOT:\\S+$|^NMTF:\\S+$|^KOSDAQ:\\S+$|^CLMX:\\S+$|^UTSL:\\S+$|^XSWA:\\S+$|^SMBG:\\S+$|^CGEE:\\S+$|^BRVM:\\S+$|^RBCB:\\S+$|^AACA:\\S+$|^CEUO:\\S+$|^EMID:\\S+$|^WBON:\\S+$|^MCUR:\\S+$|^ATLN:\\S+$|^XZAP:\\S+$|^ARCH:\\S+$|^24EX:\\S+$|^XECM:\\S+$|^OCEA:\\S+$|^XKRX:\\S+$|^BOSP:\\S+$|^XASX:\\S+$|^XMFX:\\S+$|^ODOC:\\S+$|^XTKT:\\S+$|^GBUL:\\S+$|^PUMX:\\S+$|^TRUX:\\S+$|^OPEX:\\S+$|^SMEX:\\S+$|^XBKK:\\S+$|^VCRS:\\S+$|^XSHG:\\S+$|^VMFX:\\S+$|^XSTE:\\S+$|^G1XX:\\S+$|^XOAM:\\S+$|^XSAT:\\S+$|^CLPH:\\S+$|^EBSC:\\S+$|^MUBM:\\S+$|^PSXD:\\S+$|^XECC:\\S+$|^BKK:\\S+$|^CRYD:\\S+$|^IMIR:\\S+$|^MTXX:\\S+$|^HPCX:\\S+$|^CSMD:\\S+$|^ICPM:\\S+$|^IOTF:\\S+$|^SGMX:\\S+$|^DKED:\\S+$|^ENCL:\\S+$|^CHID:\\S+$|^XLGT:\\S+$|^FINR:\\S+$|^MAQE:\\S+$|^BILU:\\S+$|^AMS:\\S+$|^RBCG:\\S+$|^FSME:\\S+$|^MCX:\\S+$|^XTIR:\\S+$|^XKAR:\\S+$|^SPEC:\\S+$|^XBEY:\\S+$|^RABL:\\S+$|^CEUD:\\S+$|^XBVR:\\S+$|^PEPW:\\S+$|^CONC:\\S+$|^CLAU:\\S+$|^NOWX:\\S+$|^HPCS:\\S+$|^MLIX:\\S+$|^TDBL:\\S+$|^BARU:\\S+$|^UKGD:\\S+$|^XDUB:\\S+$|^SIGH:\\S+$|^TIRD:\\S+$|^JLEU:\\S+$|^TEGI:\\S+$|^XDFB:\\S+$|^AWBX:\\S+$|^TSFI:\\S+$|^INCR:\\S+$|^BRGA:\\S+$|^TASE:\\S+$|^ISWP:\\S+$|^XMIO:\\S+$|^IOGI:\\S+$|^NSME:\\S+$|^LIFI:\\S+$|^XTSX:\\S+$|^XTXD:\\S+$|^NOSI:\\S+$|^XNEP:\\S+$|^XPOL:\\S+$|^SPXE:\\S+$|^MCAD:\\S+$|^BGCD:\\S+$|^XICX:\\S+$|^BUX:\\S+$|^BOAT:\\S+$|^MISX:\\S+$|^NSEASI:\\S+$|^BMCL:\\S+$|^IMEX:\\S+$|^TPIE:\\S+$|^XISX:\\S+$|^MFOX:\\S+$|^FINY:\\S+$|^XPAR:\\S+$|^XTEH:\\S+$|^XNMS:\\S+$|^LIQH:\\S+$|^XDAR:\\S+$|^DDTX:\\S+$|^INGE:\\S+$|^EDBT:\\S+$|^BSFX:\\S+$|^NCME:\\S+$|^MSSI:\\S+$|^ONSE:\\S+$|^SEBS:\\S+$|^BLBS:\\S+$|^FLTR:\\S+$|^FNLT:\\S+$|^MNFI:\\S+$|^BBSX:\\S+$|^AQEA:\\S+$|^AKIS:\\S+$|^CBNL:\\S+$|^IOIR:\\S+$|^FREI:\\S+$|^XTND:\\S+$|^UBSP:\\S+$|^SANT:\\S+$|^ICSH:\\S+$|^ABFI:\\S+$|^STAN:\\S+$|^GBWB:\\S+$|^MEMX:\\S+$|^XNDU:\\S+$|^DWFI:\\S+$|^NORX:\\S+$|^GTXS:\\S+$|^XTAF:\\S+$|^SVEX:\\S+$|^XBOT:\\S+$|^XDRK:\\S+$|^XABC:\\S+$|^SXSI:\\S+$|^BOSC:\\S+$|^XDFM:\\S+$|^SWEE:\\S+$|^BEAM:\\S+$|^OAPA:\\S+$|^NOSC:\\S+$|^IINX:\\S+$|^SMBE:\\S+$|^OTCB:\\S+$|^XNAF:\\S+$|^PRSE:\\S+$|^MCID:\\S+$|^FAIR:\\S+$|^EBMX:\\S+$|^XOSD:\\S+$|^CGMI:\\S+$|^XEUI:\\S+$|^IOMM:\\S+$|^INGF:\\S+$|^IBGH:\\S+$|^CXAW:\\S+$|^TWJT:\\S+$|^BBVA:\\S+$|^XMAU:\\S+$|^MYTR:\\S+$|^SBEX:\\S+$|^TMEX:\\S+$|^XIMC:\\S+$|^SEDC:\\S+$|^CXAP:\\S+$|^TSMR:\\S+$|^AMPX:\\S+$|^SCXS:\\S+$|^XQUI:\\S+$|^JPBX:\\S+$|^MLVX:\\S+$|^GFIB:\\S+$|^GFBO:\\S+$|^EQCA:\\S+$|^EXSI:\\S+$|^XSCA:\\S+$|^SSOB:\\S+$|^SHAW:\\S+$|^XMUN:\\S+$|^XNSA:\\S+$|^CSEC:\\S+$|^GMBG:\\S+$|^KLSE:\\S+$|^BRFQ:\\S+$|^XKCM:\\S+$|^VTX:\\S+$|^PFTS:\\S+$|^XISE:\\S+$|^EQUS:\\S+$|^VDRK:\\S+$|^FNFI:\\S+$|^TGAT:\\S+$|^EXLP:\\S+$|^XETF:\\S+$|^XNGS:\\S+$|^XUKR:\\S+$|^SGMV:\\S+$|^XZAG:\\S+$|^NSPO:\\S+$|^LQED:\\S+$|^BTBS:\\S+$|^XSFA:\\S+$|^SQUA:\\S+$|^XPHS:\\S+$|^FICX:\\S+$|^ROTC:\\S+$|^TFSA:\\S+$|^NSDQ:\\S+$|^GFIF:\\S+$|^XTK3:\\S+$|^XRSP:\\S+$|^TPEO:\\S+$|^EMIB:\\S+$|^BOVM:\\S+$|^CIBC:\\S+$|^JSJX:\\S+$|^XDEX:\\S+$|^XKHA:\\S+$|^BNPL:\\S+$|^ROSR:\\S+$|^IMEN:\\S+$|^DEAL:\\S+$|^MAXD:\\S+$|^BTQE:\\S+$|^MSTO:\\S+$|^TSEF:\\S+$|^MUDX:\\S+$|^HEMO:\\S+$|^CHIX:\\S+$|^XHKG:\\S+$|^SZSE:\\S+$|^LMNX:\\S+$|^ZKBX:\\S+$|^TMID:\\S+$|^XPRM:\\S+$|^PEPQ:\\S+$|^QWIX:\\S+$|^IFUS:\\S+$|^EBSN:\\S+$|^IMED:\\S+$|^VTBC:\\S+$|^CPH:\\S+$|^HAMB:\\S+$|^XHNF:\\S+$|^TPE:\\S+$|^IFXC:\\S+$|^SPIM:\\S+$|^MTUS:\\S+$|^SB1M:\\S+$|^AMNL:\\S+$|^ABNA:\\S+$|^BDEA:\\S+$|^EXGM:\\S+$|^XNAI:\\S+$|^IPXP:\\S+$|^JSEB:\\S+$|^XBVM:\\S+$|^NEOD:\\S+$|^XBAB:\\S+$|^BVUS:\\S+$|^XBSE:\\S+$|^CGGD:\\S+$|^HPSX:\\S+$|^GREE:\\S+$|^UBSA:\\S+$|^MTSO:\\S+$|^S3FM:\\S+$|^XPIC:\\S+$|^MABX:\\S+$|^IFEU:\\S+$|^MTXS:\\S+$|^LQFI:\\S+$|^XROX:\\S+$|^XUBS:\\S+$|^MEMD:\\S+$|^HEL:\\S+$|^MTXC:\\S+$|^XBUD:\\S+$|^FRAS:\\S+$|^XERE:\\S+$|^WFLB:\\S+$|^CDED:\\S+$|^XCBT:\\S+$|^XAFX:\\S+$|^MFXA:\\S+$|^XLIS:\\S+$|^SIMD:\\S+$|^MNSE:\\S+$|^XGME:\\S+$|^STUE:\\S+$|^BLOX:\\S+$|^FXAL:\\S+$|^XBLB:\\S+$|^BLXA:\\S+$|^ASEF:\\S+$|^XISA:\\S+$|^BBVX:\\S+$|^JADX:\\S+$|^LOTC:\\S+$|^TQEA:\\S+$|^AUTO:\\S+$|^ARCO:\\S+$|^XLUX:\\S+$|^FLTB:\\S+$|^XIEL:\\S+$|^UCDE:\\S+$|^NDCM:\\S+$|^CBAL:\\S+$|^FTUS:\\S+$|^SPRZ:\\S+$|^MUBP:\\S+$|^CFIL:\\S+$|^ASTR:\\S+$|^ODDO:\\S+$|^IDX:\\S+$|^EXSF:\\S+$|^VALX:\\S+$|^NABL:\\S+$|^LIQF:\\S+$|^SCXA:\\S+$|^ONEC:\\S+$|^EIXE:\\S+$|^ALSI:\\S+$|^INSE:\\S+$|^NYPC:\\S+$|^BEBG:\\S+$|^RTSI:\\S+$|^JSE:\\S+$|^NYMS:\\S+$|^XTAL:\\S+$|^SCXF:\\S+$|^STFL:\\S+$|^NDEX:\\S+$|^ROCO:\\S+$|^CCMX:\\S+$|^XSGO:\\S+$|^XSWX:\\S+$|^XVES:\\S+$|^XPOT:\\S+$|^PNED:\\S+$|^DOWG:\\S+$|^SKSI:\\S+$|^XKUW:\\S+$|^PSE:\\S+$|^XVIE:\\S+$|^NDXS:\\S+$|^BMEX:\\S+$|^XMER:\\S+$|^4AXE:\\S+$|^IST:\\S+$|^SGMZ:\\S+$|^JISI:\\S+$|^ASPN:\\S+$|^COMG:\\S+$|^TRSI:\\S+$|^FBSI:\\S+$|^ALDP:\\S+$|^CGMT:\\S+$|^SCOT:\\S+$|^TSCD:\\S+$|^TERA:\\S+$|^CSDA:\\S+$|^CBKE:\\S+$|^ELXE:\\S+$|^KMUX:\\S+$|^BAEP:\\S+$|^SIGJ:\\S+$|^BLUX:\\S+$|^LOUI:\\S+$|^CFIC:\\S+$|^JEFS:\\S+$|^NYSEARCA:\\S+$|^IFLO:\\S+$|^SVES:\\S+$|^XMOD:\\S+$|^KBLT:\\S+$|^EESE:\\S+$|^RBSI:\\S+$|^MTAA:\\S+$|^XLSM:\\S+$|^XFCI:\\S+$|^XCHG:\\S+$|^DKFI:\\S+$|^NCML:\\S+$|^XMAE:\\S+$|^NWNV:\\S+$|^BARO:\\S+$|^EXSY:\\S+$|^XKAZ:\\S+$|^TRAS:\\S+$|^BREA:\\S+$|^MLCO:\\S+$|^XBUE:\\S+$|^ADVT:\\S+$|^OTPB:\\S+$|^TWEU:\\S+$|^FRAU:\\S+$|^IMGB:\\S+$|^XLOD:\\S+$|^XPRI:\\S+$|^XAFR:\\S+$|^XTXM:\\S+$|^MIHI:\\S+$|^XNYM:\\S+$|^EXOT:\\S+$|^WSIL:\\S+$|^CLST:\\S+$|^LBBW:\\S+$|^BSEX:\\S+$|^XOAA:\\S+$|^MKAA:\\S+$|^XSTC:\\S+$|^IMET:\\S+$|^IDXM:\\S+$|^ZOBX:\\S+$|^CRED:\\S+$|^KBLS:\\S+$|^TRDX:\\S+$|^GROW:\\S+$|^XINV:\\S+$|^EXVP:\\S+$|^TRAI:\\S+$|^GSXC:\\S+$|^HESP:\\S+$|^SWBI:\\S+$|^AFET:\\S+$|^XUMP:\\S+$|^MAQL:\\S+$|^XLME:\\S+$|^UCIT:\\S+$|^AQED:\\S+$|^GSAL:\\S+$|^ICEO:\\S+$|^MCXX:\\S+$|^VTPS:\\S+$|^XWAR:\\S+$|^NLAX:\\S+$|^BGFU:\\S+$|^ISWT:\\S+$|^XSTU:\\S+$|^XBLK:\\S+$|^AMEX:\\S+$|^XGAT:\\S+$|^XMSM:\\S+$|^ETFP:\\S+$|^XBRD:\\S+$|^ISWC:\\S+$|^ABXX:\\S+$|^XFEX:\\S+$|^TGSI:\\S+$|^XMDG:\\S+$|^BKLN:\\S+$|^CXAM:\\S+$|^CABK:\\S+$|^UBSY:\\S+$|^MAEL:\\S+$|^XGDX:\\S+$|^FSX:\\S+$|^APEX:\\S+$|^NEXL:\\S+$|^BLBB:\\S+$|^IEXG:\\S+$|^IPSX:\\S+$|^CSBX:\\S+$|^BYXD:\\S+$|^BOFS:\\S+$|^OTCN:\\S+$|^SAGE:\\S+$|^ITGI:\\S+$|^XTK2:\\S+$|^BGUK:\\S+$|^METZ:\\S+$|^XBUL:\\S+$|^BAAD:\\S+$|^XEUP:\\S+$|^ECHO:\\S+$|^FISU:\\S+$|^XREP:\\S+$|^GFOX:\\S+$|^XTUC:\\S+$|^CGMD:\\S+$|^XPXE:\\S+$|^FRAW:\\S+$|^MACB:\\S+$|^XGEM:\\S+$|^TLCM:\\S+$|^GLBX:\\S+$|^XCBO:\\S+$|^MASG:\\S+$|^UKPX:\\S+$|^IBAL:\\S+$|^SGAS:\\S+$|^BISI:\\S+$|^YKNA:\\S+$|^CETI:\\S+$|^BBIE:\\S+$|^PEEL:\\S+$|^CMES:\\S+$|^XSWB:\\S+$|^XDUS:\\S+$|^XOTP:\\S+$|^XNXC:\\S+$|^AURB:\\S+$|^XMTS:\\S+$|^XMAI:\\S+$|^XKLS:\\S+$|^TEIR:\\S+$|^XADS:\\S+$|^XOSC:\\S+$|^JPMI:\\S+$|^BETX:\\S+$|^ELUK:\\S+$|^SECE:\\S+$|^BCDX:\\S+$|^WIPO:\\S+$|^BPLC:\\S+$|^DSTO:\\S+$|^FRAA:\\S+$|^UCBG:\\S+$|^XBOG:\\S+$|^AIXK:\\S+$|^ICUR:\\S+$|^MAKX:\\S+$|^GFBM:\\S+$|^VIRT:\\S+$|^XATS:\\S+$|^EQTB:\\S+$|^XGSX:\\S+$|^AFSI:\\S+$|^BTQG:\\S+$|^RUSX:\\S+$|^GMNI:\\S+$|^OSLC:\\S+$|^LMAX:\\S+$|^FNUK:\\S+$|^PLDX:\\S+$|^GIPB:\\S+$|^FXRS:\\S+$|^CBLC:\\S+$|^NBLX:\\S+$|^WIND:\\S+$|^ATHL:\\S+$|^MSRP:\\S+$|^XETB:\\S+$|^BATP:\\S+$|^CECS:\\S+$|^BANA:\\S+$|^IOGB:\\S+$|^XBER:\\S+$|^ABAN:\\S+$|^BCSE:\\S+$|^XEMD:\\S+$|^DASH:\\S+$|^XQOD:\\S+$|^PIRM:\\S+$|^MNDK:\\S+$|^TFEX:\\S+$|^SWLV:\\S+$|^BBSI:\\S+$|^ZAPA:\\S+$|^CAVD:\\S+$|^ARCX:\\S+$|^TAL:\\S+$|^XPSX:\\S+$|^CFIF:\\S+$|^BCSL:\\S+$|^MHBL:\\S+$|^XMOT:\\S+$|^WBCL:\\S+$|^XCAL:\\S+$|^TWJP:\\S+$|^XCAY:\\S+$|^ICOT:\\S+$|^NOTC:\\S+$|^BGCI:\\S+$|^BTNL:\\S+$|^XMAD:\\S+$|^OOTC:\\S+$|^MESQ:\\S+$|^CGDB:\\S+$|^MATN:\\S+$|^TSRE:\\S+$|^SSME:\\S+$|^XBVC:\\S+$|^MHEU:\\S+$|^VWDX:\\S+$|^MNIS:\\S+$|^TEGB:\\S+$|^XSBT:\\S+$|^TBSA:\\S+$|^XOAD:\\S+$|^TERE:\\S+$|^MOEX:\\S+$|^CIME:\\S+$|^XQMH:\\S+$|^SSEX:\\S+$|^TQEX:\\S+$|^XADE:\\S+$|^GTXE:\\S+$|^XDSX:\\S+$|^SIX:\\S+$|^FSEF:\\S+$|^BETA:\\S+$|^MSIP:\\S+$|^EQTD:\\S+$|^SKYX:\\S+$|^XIHK:\\S+$|^BINV:\\S+$|^RTSX:\\S+$|^GRSE:\\S+$|^BLEQ:\\S+$|^SIBC:\\S+$|^XEUR:\\S+$|^SEPE:\\S+$|^ISDA:\\S+$|^XWBO:\\S+$|^GTSX:\\S+$|^RBHU:\\S+$|^FXSW:\\S+$|^DRSP:\\S+$|^HRSI:\\S+$|^BNTW:\\S+$|^CXAV:\\S+$|^BEUP:\\S+$|^BELF:\\S+$|^XNSE:\\S+$|^COHR:\\S+$|^XBNV:\\S+$|^BSPL:\\S+$|^BTFE:\\S+$|^MATX:\\S+$|^APAW:\\S+$|^KBLM:\\S+$|^XSFE:\\S+$|^TLV:\\S+$|^EBSS:\\S+$|^FTFM:\\S+$|^PARK:\\S+$|^CBKG:\\S+$|^ZBUL:\\S+$|^OPCO:\\S+$|^CHEV:\\S+$|^XSPS:\\S+$|^NZFX:\\S+$|^CITD:\\S+$|^CESI:\\S+$|^EPRD:\\S+$|^BAPA:\\S+$|^OSSG:\\S+$|^SVXI:\\S+$|^PSGM:\\S+$|^XSTF:\\S+$|^VFIL:\\S+$|^TRQA:\\S+$|^MAQI:\\S+$|^CLVE:\\S+$|^BTEC:\\S+$|^AMLG:\\S+$|^XEBI:\\S+$|^MFXR:\\S+$|^BNPC:\\S+$|^XHAM:\\S+$|^CITX:\\S+$|^BERC:\\S+$|^GSSI:\\S+$|^XEQT:\\S+$|^CGCM:\\S+$|^XMAL:\\S+$|^BAJD:\\S+$|^TSE:\\S+$|^XNGM:\\S+$|^XKFE:\\S+$|^NEOE:\\S+$|^GSXH:\\S+$|^TRQX:\\S+$|^SIDX:\\S+$|^MLEX:\\S+$|^WELN:\\S+$|^DBOX:\\S+$|^LICA:\\S+$|^LCHC:\\S+$|^CGEC:\\S+$|^UKOR:\\S+$|^SOHO:\\S+$|^HBFR:\\S+$|^XBRV:\\S+$|^CAPL:\\S+$|^ARIA:\\S+$|^STRM:\\S+$|^UBSB:\\S+$|^LXJP:\\S+$|^NMSX:\\S+$|^RBCC:\\S+$|^CBKC:\\S+$|^FLWX:\\S+$|^AAPA:\\S+$|^BAJM:\\S+$|^NTUK:\\S+$|^XBCC:\\S+$|^XSTX:\\S+$|^XBCX:\\S+$|^LAMP:\\S+$|^TPIR:\\S+$|^XKIE:\\S+$|^JPEU:\\S+$|^LMAF:\\S+$|^VFSI:\\S+$|^OPRA:\\S+$|^MLER:\\S+$|^XDPA:\\S+$|^XGCL:\\S+$|^BATO:\\S+$|^MFGL:\\S+$|^LEDG:\\S+$|^XAMS:\\S+$|^360T:\\S+$|^XTRZ:\\S+$|^IFLL:\\S+$|^PROS:\\S+$|^XJAM:\\S+$|^IFSM:\\S+$|^DCSX:\\S+$|^CALH:\\S+$|^BOVA:\\S+$|^LYNX:\\S+$|^NYSEAMERICAN:\\S+$|^BERA:\\S+$|^NYSD:\\S+$|^ICEL:\\S+$|^EXPM:\\S+$|^CBTS:\\S+$|^JEFX:\\S+$|^CIMV:\\S+$|^XMOL:\\S+$|^WSAG:\\S+$|^XSCU:\\S+$|^PAVE:\\S+$|^MUSN:\\S+$|^RABO:\\S+$|^XADF:\\S+$|^TPSE:\\S+$|^SZSC:\\S+$|^BGLU:\\S+$|^ASXB:\\S+$|^XDNB:\\S+$|^TOCP:\\S+$|^ROFX:\\S+$|^XBEL:\\S+$|^APCL:\\S+$|^LMAD:\\S+$|^XBCM:\\S+$|^MDRV:\\S+$|^NBFL:\\S+$|^XRPM:\\S+$|^XXXX:\\S+$|^MLXB:\\S+$|^UBSF:\\S+$|^EDGL:\\S+$|^XJPX:\\S+$|^BZXD:\\S+$|^BEIS:\\S+$|^TEMM:\\S+$|^ANZL:\\S+$|^XGAS:\\S+$|^XUGA:\\S+$|^NWMS:\\S+$|^XPTY:\\S+$|^MTSD:\\S+$|^PIPR:\\S+$|^XBKF:\\S+$|^IVZX:\\S+$|^IMFD:\\S+$|^AFDL:\\S+$|^CFBC:\\S+$|^GLMX:\\S+$|^CSCF:\\S+$|^VPXB:\\S+$|^MUBE:\\S+$|^BARK:\\S+$|^MHEL:\\S+$|^NEXT:\\S+$|^CIBP:\\S+$|^XBRN:\\S+$|^VCMO:\\S+$)$",
             "title": "Ticker"
           },
           "number_of_employees_range": {
@@ -9093,6 +9060,7 @@
           },
           "ticker": {
             "type": "string",
+            "pattern": "(?i)^(^VEGA:\\S+$|^DUMX:\\S+$|^XETW:\\S+$|^XTNX:\\S+$|^BNSX:\\S+$|^XCSX:\\S+$|^GMGD:\\S+$|^UBIN:\\S+$|^IFXA:\\S+$|^NESI:\\S+$|^EQIE:\\S+$|^MTXA:\\S+$|^UBSC:\\S+$|^NMRA:\\S+$|^TEUR:\\S+$|^SPDX:\\S+$|^XJNB:\\S+$|^XKEM:\\S+$|^ISWA:\\S+$|^MUNC:\\S+$|^KAIX:\\S+$|^EXSH:\\S+$|^XKCE:\\S+$|^XROS:\\S+$|^XBDA:\\S+$|^ENAX:\\S+$|^HMOD:\\S+$|^MKAP:\\S+$|^GEMX:\\S+$|^IBIS:\\S+$|^DKTC:\\S+$|^XALG:\\S+$|^JPSI:\\S+$|^HSTC:\\S+$|^SECF:\\S+$|^TRQM:\\S+$|^CMAP:\\S+$|^XABG:\\S+$|^XNAS:\\S+$|^NOFF:\\S+$|^CFJP:\\S+$|^TWSF:\\S+$|^UBSS:\\S+$|^CNSX:\\S+$|^IMAG:\\S+$|^BATS:\\S+$|^CBSK:\\S+$|^CRYP:\\S+$|^XNLI:\\S+$|^KBLL:\\S+$|^UBSI:\\S+$|^BNLD:\\S+$|^ETPA:\\S+$|^DUSD:\\S+$|^XMAT:\\S+$|^TMCY:\\S+$|^XLIT:\\S+$|^BLTD:\\S+$|^XUAX:\\S+$|^WELS:\\S+$|^NASDAQ:\\S+$|^ATLB:\\S+$|^BLKX:\\S+$|^BNPA:\\S+$|^TRUK:\\S+$|^PURE:\\S+$|^WBKP:\\S+$|^BTAM:\\S+$|^PLPO:\\S+$|^XECB:\\S+$|^AILT:\\S+$|^GLOM:\\S+$|^XTAI:\\S+$|^BART:\\S+$|^BLEV:\\S+$|^ALTX:\\S+$|^BLNK:\\S+$|^TNLA:\\S+$|^MIDC:\\S+$|^IOED:\\S+$|^BSTX:\\S+$|^STUA:\\S+$|^RLBO:\\S+$|^XPAC:\\S+$|^ZFXM:\\S+$|^CHIA:\\S+$|^PBUL:\\S+$|^CEDX:\\S+$|^CAVE:\\S+$|^GSXK:\\S+$|^TREA:\\S+$|^XTUN:\\S+$|^PJCX:\\S+$|^CLHK:\\S+$|^AFSL:\\S+$|^HPCO:\\S+$|^HSBT:\\S+$|^BIST:\\S+$|^TWSE:\\S+$|^MCRY:\\S+$|^JPMX:\\S+$|^UBSX:\\S+$|^NEON:\\S+$|^CSJP:\\S+$|^OLBB:\\S+$|^EVOL:\\S+$|^EQOD:\\S+$|^XNYL:\\S+$|^MSEU:\\S+$|^TRPX:\\S+$|^XKFB:\\S+$|^IFCA:\\S+$|^TREO:\\S+$|^SHAD:\\S+$|^BBSF:\\S+$|^XZCE:\\S+$|^PINC:\\S+$|^CHIJ:\\S+$|^KOME:\\S+$|^CCRM:\\S+$|^XSVA:\\S+$|^CELP:\\S+$|^XOBD:\\S+$|^XNFI:\\S+$|^EQSE:\\S+$|^XBES:\\S+$|^XCET:\\S+$|^BMEA:\\S+$|^BVCC:\\S+$|^XLFX:\\S+$|^DNDK:\\S+$|^XMVL:\\S+$|^TWGP:\\S+$|^THEM:\\S+$|^HAML:\\S+$|^MALM:\\S+$|^FRA:\\S+$|^XCIS:\\S+$|^SCAG:\\S+$|^INVE:\\S+$|^SBIJ:\\S+$|^UGEN:\\S+$|^BARL:\\S+$|^INGW:\\S+$|^BTEE:\\S+$|^ECGS:\\S+$|^CLTD:\\S+$|^FREX:\\S+$|^HEDE:\\S+$|^GSXT:\\S+$|^CVE:\\S+$|^XIPO:\\S+$|^MXNL:\\S+$|^XINS:\\S+$|^XGRM:\\S+$|^FXCM:\\S+$|^CODA:\\S+$|^NEXS:\\S+$|^XMGE:\\S+$|^XASE:\\S+$|^TFSU:\\S+$|^HANB:\\S+$|^MBCP:\\S+$|^EXCP:\\S+$|^MIVX:\\S+$|^NAPA:\\S+$|^HRFQ:\\S+$|^ICBX:\\S+$|^XNYE:\\S+$|^SCXM:\\S+$|^XCYS:\\S+$|^NXEU:\\S+$|^XMEX:\\S+$|^TSIG:\\S+$|^XEBS:\\S+$|^XCAI:\\S+$|^HSBC:\\S+$|^EXBO:\\S+$|^GSPL:\\S+$|^GFSM:\\S+$|^RSEX:\\S+$|^GPBC:\\S+$|^CCO2:\\S+$|^SMBD:\\S+$|^AREX:\\S+$|^PBGR:\\S+$|^XBND:\\S+$|^DOWM:\\S+$|^BGCF:\\S+$|^XCXD:\\S+$|^CSTO:\\S+$|^XSEF:\\S+$|^NIBC:\\S+$|^XPHL:\\S+$|^NEXG:\\S+$|^EXTR:\\S+$|^TPER:\\S+$|^TEMB:\\S+$|^XCGS:\\S+$|^BMV:\\S+$|^CXAF:\\S+$|^XDCE:\\S+$|^XSTM:\\S+$|^XSGB:\\S+$|^XBAR:\\S+$|^CAES:\\S+$|^SEDX:\\S+$|^TWSG:\\S+$|^SBIU:\\S+$|^MFXC:\\S+$|^TBSP:\\S+$|^DASI:\\S+$|^BRNX:\\S+$|^XDHA:\\S+$|^IECL:\\S+$|^DOTS:\\S+$|^EGSI:\\S+$|^ZERO:\\S+$|^PEPM:\\S+$|^FICO:\\S+$|^HGSP:\\S+$|^UBEC:\\S+$|^IOCD:\\S+$|^BATY:\\S+$|^DCSE:\\S+$|^EQOS:\\S+$|^SIMV:\\S+$|^LBCM:\\S+$|^LUXSE:\\S+$|^HAMA:\\S+$|^MESI:\\S+$|^SEND:\\S+$|^XBDV:\\S+$|^BETP:\\S+$|^CSGI:\\S+$|^GSCO:\\S+$|^HREU:\\S+$|^JBSI:\\S+$|^XPST:\\S+$|^FNFT:\\S+$|^GFIC:\\S+$|^T212:\\S+$|^NXUS:\\S+$|^VLEX:\\S+$|^PINI:\\S+$|^MTSB:\\S+$|^FXFM:\\S+$|^RBSX:\\S+$|^TPSO:\\S+$|^LEUE:\\S+$|^CCXE:\\S+$|^ASE:\\S+$|^FSHX:\\S+$|^EBSO:\\S+$|^XMPW:\\S+$|^TCML:\\S+$|^SLHB:\\S+$|^CFHK:\\S+$|^XLUS:\\S+$|^ALXB:\\S+$|^CSZH:\\S+$|^UBSL:\\S+$|^BNYC:\\S+$|^XRBM:\\S+$|^XDRF:\\S+$|^XCAN:\\S+$|^STUB:\\S+$|^MAQX:\\S+$|^IFEN:\\S+$|^BCEE:\\S+$|^XDSM:\\S+$|^GSXL:\\S+$|^MARF:\\S+$|^TWEA:\\S+$|^ERST:\\S+$|^XJAS:\\S+$|^MAQH:\\S+$|^XTFF:\\S+$|^DSME:\\S+$|^SMFE:\\S+$|^SSBM:\\S+$|^TMCC:\\S+$|^EXSP:\\S+$|^GSCI:\\S+$|^LATG:\\S+$|^BBIS:\\S+$|^SHE:\\S+$|^NPGA:\\S+$|^XFRA:\\S+$|^LMAE:\\S+$|^CGQD:\\S+$|^ASPI:\\S+$|^NZX:\\S+$|^ERBX:\\S+$|^XBSD:\\S+$|^FNIS:\\S+$|^CANX:\\S+$|^ECEU:\\S+$|^DBAG:\\S+$|^EXOR:\\S+$|^MBSI:\\S+$|^DBHK:\\S+$|^XSDX:\\S+$|^MERD:\\S+$|^XEEE:\\S+$|^LBWL:\\S+$|^XBOM:\\S+$|^XRCB:\\S+$|^BCMM:\\S+$|^SWAP:\\S+$|^BELB:\\S+$|^VFMI:\\S+$|^POSE:\\S+$|^JPX:\\S+$|^JNST:\\S+$|^CGMX:\\S+$|^CGML:\\S+$|^IMEQ:\\S+$|^XBBJ:\\S+$|^BLUE:\\S+$|^GRIF:\\S+$|^SWLT:\\S+$|^MUNB:\\S+$|^TEMI:\\S+$|^MSBI:\\S+$|^BRDL:\\S+$|^EQLD:\\S+$|^EDDP:\\S+$|^DBES:\\S+$|^FRAB:\\S+$|^XBOX:\\S+$|^OLLC:\\S+$|^EXMP:\\S+$|^BTLX:\\S+$|^KRME:\\S+$|^RBCM:\\S+$|^CMCI:\\S+$|^CBKD:\\S+$|^CDSL:\\S+$|^VFCM:\\S+$|^BAML:\\S+$|^PVMF:\\S+$|^XLCH:\\S+$|^A2XX:\\S+$|^MCXS:\\S+$|^LMNR:\\S+$|^BMTS:\\S+$|^LSSI:\\S+$|^CSSX:\\S+$|^EDGD:\\S+$|^ARCD:\\S+$|^GOTC:\\S+$|^CISD:\\S+$|^XAPA:\\S+$|^VWDA:\\S+$|^OTPR:\\S+$|^GSIL:\\S+$|^BEEX:\\S+$|^XEQY:\\S+$|^RMMX:\\S+$|^XFKA:\\S+$|^SICS:\\S+$|^XIMM:\\S+$|^XSCO:\\S+$|^KBLC:\\S+$|^TRDE:\\S+$|^TOWR:\\S+$|^ICTW:\\S+$|^IMCC:\\S+$|^RCMA:\\S+$|^CABV:\\S+$|^BOSD:\\S+$|^BALT:\\S+$|^MOSE:\\S+$|^TEFD:\\S+$|^XCHI:\\S+$|^CSSI:\\S+$|^COMM:\\S+$|^BME:\\S+$|^DUSC:\\S+$|^XLQC:\\S+$|^IMCG:\\S+$|^TWEO:\\S+$|^EEAL:\\S+$|^KCCP:\\S+$|^ECAL:\\S+$|^GSEF:\\S+$|^UKRE:\\S+$|^TRFW:\\S+$|^ASXV:\\S+$|^PIPE:\\S+$|^FWB:\\S+$|^MTCH:\\S+$|^XCRO:\\S+$|^PTPG:\\S+$|^SHA:\\S+$|^TSXV:\\S+$|^STUC:\\S+$|^PPEX:\\S+$|^XOSJ:\\S+$|^XBOS:\\S+$|^OTXB:\\S+$|^IMMM:\\S+$|^NXJP:\\S+$|^AQEU:\\S+$|^CCLX:\\S+$|^XKIS:\\S+$|^ASEX:\\S+$|^XARM:\\S+$|^MUBL:\\S+$|^GSEI:\\S+$|^SSE:\\S+$|^TNLB:\\S+$|^BACE:\\S+$|^BOTE:\\S+$|^MAQJ:\\S+$|^ESTO:\\S+$|^SCXO:\\S+$|^IATS:\\S+$|^ELNO:\\S+$|^ECAG:\\S+$|^XSWM:\\S+$|^CEPU:\\S+$|^AWEX:\\S+$|^MSCO:\\S+$|^XCUR:\\S+$|^UFEX:\\S+$|^SISI:\\S+$|^NLBX:\\S+$|^XETA:\\S+$|^XVPB:\\S+$|^EBRA:\\S+$|^ANLP:\\S+$|^SYFX:\\S+$|^CGMU:\\S+$|^ENXL:\\S+$|^BKDM:\\S+$|^XEHQ:\\S+$|^HBPL:\\S+$|^KHHU:\\S+$|^ISSI:\\S+$|^XLBM:\\S+$|^TRAL:\\S+$|^BHWA:\\S+$|^BKBR:\\S+$|^BKSK:\\S+$|^NOFI:\\S+$|^TRCK:\\S+$|^AUTB:\\S+$|^BOTC:\\S+$|^ABNC:\\S+$|^XPMS:\\S+$|^EMLD:\\S+$|^LMEC:\\S+$|^XETU:\\S+$|^SGA2:\\S+$|^BVMF:\\S+$|^CXAN:\\S+$|^IMRD:\\S+$|^GXMA:\\S+$|^IBEX:\\S+$|^BGFX:\\S+$|^MEMM:\\S+$|^XRAS:\\S+$|^ASMT:\\S+$|^MUTI:\\S+$|^HEGX:\\S+$|^BGCB:\\S+$|^XSGA:\\S+$|^BLTX:\\S+$|^SPTR:\\S+$|^XQTX:\\S+$|^ALXP:\\S+$|^XMAN:\\S+$|^ELEU:\\S+$|^LIUH:\\S+$|^LLAT:\\S+$|^AUTX:\\S+$|^TQEM:\\S+$|^BSLB:\\S+$|^PFXD:\\S+$|^BATD:\\S+$|^IOFX:\\S+$|^HRTF:\\S+$|^NOED:\\S+$|^BGCO:\\S+$|^XUNI:\\S+$|^NABE:\\S+$|^RENC:\\S+$|^IFLS:\\S+$|^OSDS:\\S+$|^EPA:\\S+$|^JEFE:\\S+$|^SBIL:\\S+$|^EOTC:\\S+$|^CPGX:\\S+$|^NMRJ:\\S+$|^SGX:\\S+$|^BKLF:\\S+$|^EXEU:\\S+$|^MIZX:\\S+$|^XEDA:\\S+$|^RPWC:\\S+$|^BNDD:\\S+$|^KOTF:\\S+$|^GLPS:\\S+$|^CSLB:\\S+$|^OMGA:\\S+$|^EGMT:\\S+$|^ZSE:\\S+$|^VSE:\\S+$|^XBRM:\\S+$|^BCMA:\\S+$|^XIQS:\\S+$|^XPOM:\\S+$|^NAMX:\\S+$|^TRQB:\\S+$|^IFED:\\S+$|^KNIG:\\S+$|^XCYO:\\S+$|^CXAC:\\S+$|^BAPE:\\S+$|^OMIP:\\S+$|^SMFF:\\S+$|^XEID:\\S+$|^VONT:\\S+$|^XPUK:\\S+$|^NFSA:\\S+$|^ELIX:\\S+$|^XPOS:\\S+$|^BFEX:\\S+$|^STFX:\\S+$|^ETSC:\\S+$|^DUSB:\\S+$|^IBUL:\\S+$|^GSBE:\\S+$|^TFSD:\\S+$|^FTFS:\\S+$|^XIDX:\\S+$|^AFSX:\\S+$|^FINO:\\S+$|^EXSD:\\S+$|^XSAP:\\S+$|^FXGB:\\S+$|^VABD:\\S+$|^CATS:\\S+$|^MCXR:\\S+$|^HMTF:\\S+$|^XAMM:\\S+$|^HOTC:\\S+$|^AFSO:\\S+$|^XNYS:\\S+$|^EXYY:\\S+$|^ZODM:\\S+$|^NIBR:\\S+$|^DOWE:\\S+$|^IMCR:\\S+$|^XTRD:\\S+$|^BNPX:\\S+$|^TQEB:\\S+$|^HANA:\\S+$|^XCDE:\\S+$|^SHSC:\\S+$|^MLES:\\S+$|^UBCZ:\\S+$|^CBSX:\\S+$|^VTEX:\\S+$|^NYSI:\\S+$|^BEUO:\\S+$|^WINX:\\S+$|^MSAL:\\S+$|^JSER:\\S+$|^XEER:\\S+$|^ACEX:\\S+$|^CMEE:\\S+$|^EBSF:\\S+$|^ICE:\\S+$|^XSPM:\\S+$|^XBAA:\\S+$|^MHIP:\\S+$|^XSC1:\\S+$|^CSEALL:\\S+$|^LCUR:\\S+$|^VNDM:\\S+$|^NORD:\\S+$|^GMEO:\\S+$|^CXOT:\\S+$|^XMDS:\\S+$|^ISWB:\\S+$|^TECO:\\S+$|^XBIS:\\S+$|^BARD:\\S+$|^HUPX:\\S+$|^CREM:\\S+$|^XFNO:\\S+$|^SWX:\\S+$|^GBOT:\\S+$|^SSBT:\\S+$|^APXL:\\S+$|^TRU1:\\S+$|^XBRU:\\S+$|^XINE:\\S+$|^DAIW:\\S+$|^LTAA:\\S+$|^XMIL:\\S+$|^TSGB:\\S+$|^SGMU:\\S+$|^XDES:\\S+$|^ACKF:\\S+$|^BLPX:\\S+$|^XOPV:\\S+$|^RTSP:\\S+$|^XMAB:\\S+$|^XSTO:\\S+$|^IMCS:\\S+$|^MAGM:\\S+$|^SGMW:\\S+$|^TPSV:\\S+$|^GFKS:\\S+$|^XSTP:\\S+$|^XPBT:\\S+$|^TNLK:\\S+$|^CFTW:\\S+$|^COAL:\\S+$|^ICSU:\\S+$|^XSIB:\\S+$|^XETV:\\S+$|^ETLX:\\S+$|^ILCM:\\S+$|^LMAO:\\S+$|^IFSG:\\S+$|^SGEX:\\S+$|^XRMO:\\S+$|^LASP:\\S+$|^BAPX:\\S+$|^CGMC:\\S+$|^N2EX:\\S+$|^XPHO:\\S+$|^XROT:\\S+$|^EMTF:\\S+$|^MHBP:\\S+$|^GFIR:\\S+$|^SGMT:\\S+$|^RBCT:\\S+$|^WETP:\\S+$|^BBLX:\\S+$|^ARCA:\\S+$|^CBKA:\\S+$|^BOAL:\\S+$|^XAQS:\\S+$|^SNSI:\\S+$|^CEPL:\\S+$|^NLPX:\\S+$|^XOFF:\\S+$|^CFAU:\\S+$|^XVAL:\\S+$|^PKOP:\\S+$|^BRED:\\S+$|^IFXR:\\S+$|^XOSL:\\S+$|^MBUL:\\S+$|^CIMA:\\S+$|^VAGM:\\S+$|^ULTX:\\S+$|^XSBI:\\S+$|^HRTX:\\S+$|^ENSL:\\S+$|^XODE:\\S+$|^XHNX:\\S+$|^WINS:\\S+$|^MERK:\\S+$|^XCBF:\\S+$|^IBER:\\S+$|^GMGL:\\S+$|^NEXX:\\S+$|^XGTG:\\S+$|^DHLX:\\S+$|^CSVW:\\S+$|^XSTV:\\S+$|^TREU:\\S+$|^GRIO:\\S+$|^XFDA:\\S+$|^XTAM:\\S+$|^PINL:\\S+$|^BCSI:\\S+$|^CXAQ:\\S+$|^SGMY:\\S+$|^TDON:\\S+$|^IMCE:\\S+$|^BPOL:\\S+$|^RSE:\\S+$|^CNSI:\\S+$|^CAND:\\S+$|^CCMS:\\S+$|^VTLS:\\S+$|^XMNT:\\S+$|^CAPI:\\S+$|^FGEX:\\S+$|^ASXP:\\S+$|^XMSW:\\S+$|^IMCO:\\S+$|^KNCM:\\S+$|^JESI:\\S+$|^XTRN:\\S+$|^ICXR:\\S+$|^XPSF:\\S+$|^HKEX:\\S+$|^BOM:\\S+$|^XRUS:\\S+$|^MUNA:\\S+$|^XLOM:\\S+$|^XCNF:\\S+$|^SGMA:\\S+$|^NMCE:\\S+$|^TPEL:\\S+$|^LPPM:\\S+$|^LOYD:\\S+$|^PFTQ:\\S+$|^WSIN:\\S+$|^KNEM:\\S+$|^FNCS:\\S+$|^BIT:\\S+$|^XPAL:\\S+$|^SELC:\\S+$|^FAST:\\S+$|^MCSE:\\S+$|^XRFQ:\\S+$|^LISZ:\\S+$|^CSAG:\\S+$|^XLON:\\S+$|^XNGO:\\S+$|^WFSE:\\S+$|^ICSZ:\\S+$|^TPEU:\\S+$|^BCBA:\\S+$|^BCXE:\\S+$|^ANTS:\\S+$|^CPTX:\\S+$|^XTKS:\\S+$|^XSC2:\\S+$|^FNEE:\\S+$|^NABU:\\S+$|^VIUK:\\S+$|^ISWN:\\S+$|^ICKR:\\S+$|^XGMX:\\S+$|^WMTF:\\S+$|^LTSE:\\S+$|^REST:\\S+$|^EUCC:\\S+$|^TSAD:\\S+$|^XCSE:\\S+$|^MIBG:\\S+$|^AQUA:\\S+$|^CCEX:\\S+$|^OMEL:\\S+$|^SEED:\\S+$|^XIBE:\\S+$|^GFAM:\\S+$|^JYSI:\\S+$|^MALX:\\S+$|^DNFI:\\S+$|^IOFI:\\S+$|^ESLO:\\S+$|^ICXL:\\S+$|^XBXO:\\S+$|^WOOD:\\S+$|^XGHA:\\S+$|^STUD:\\S+$|^HCER:\\S+$|^XEYE:\\S+$|^MSEL:\\S+$|^MANL:\\S+$|^EUWA:\\S+$|^IOTC:\\S+$|^LIQU:\\S+$|^BNPP:\\S+$|^XSAU:\\S+$|^STO:\\S+$|^3579:\\S+$|^AQXE:\\S+$|^CHIV:\\S+$|^EBON:\\S+$|^XDMI:\\S+$|^SKBB:\\S+$|^UNGB:\\S+$|^GOVX:\\S+$|^IMBD:\\S+$|^SSIL:\\S+$|^GETB:\\S+$|^CCEU:\\S+$|^PIEU:\\S+$|^XOAS:\\S+$|^DVFX:\\S+$|^EMDR:\\S+$|^TWHK:\\S+$|^XALS:\\S+$|^TPSL:\\S+$|^XMEV:\\S+$|^PXIL:\\S+$|^SNUK:\\S+$|^NSXB:\\S+$|^XNCD:\\S+$|^DUSA:\\S+$|^ALLT:\\S+$|^XATL:\\S+$|^BCSC:\\S+$|^EXSB:\\S+$|^CSAS:\\S+$|^MBPL:\\S+$|^OHVO:\\S+$|^AATS:\\S+$|^FINN:\\S+$|^XICE:\\S+$|^XBAN:\\S+$|^GMTF:\\S+$|^GMES:\\S+$|^XCAS:\\S+$|^DSMD:\\S+$|^OTCE:\\S+$|^XELX:\\S+$|^IMMH:\\S+$|^RESF:\\S+$|^XSOP:\\S+$|^MSPL:\\S+$|^IMSB:\\S+$|^XETS:\\S+$|^XVPA:\\S+$|^NCEL:\\S+$|^CSEU:\\S+$|^XKAC:\\S+$|^XNIM:\\S+$|^CSCL:\\S+$|^BASI:\\S+$|^PARX:\\S+$|^XSES:\\S+$|^CGXS:\\S+$|^XLDX:\\S+$|^XBOL:\\S+$|^XHEL:\\S+$|^BMCM:\\S+$|^OCSI:\\S+$|^ICRO:\\S+$|^XMUS:\\S+$|^XSCE:\\S+$|^INGB:\\S+$|^STUF:\\S+$|^XBCV:\\S+$|^XLIM:\\S+$|^EQTA:\\S+$|^XMOC:\\S+$|^ODXE:\\S+$|^EBHU:\\S+$|^SPEX:\\S+$|^TRNL:\\S+$|^HAMM:\\S+$|^MUFP:\\S+$|^XSIM:\\S+$|^TRWB:\\S+$|^KLEU:\\S+$|^TRXE:\\S+$|^XCFF:\\S+$|^SIAB:\\S+$|^WBDM:\\S+$|^CAPA:\\S+$|^AFSE:\\S+$|^TRAX:\\S+$|^CBOE:\\S+$|^BRIX:\\S+$|^JNSI:\\S+$|^PEPY:\\S+$|^XGUA:\\S+$|^BNPS:\\S+$|^TSCB:\\S+$|^TPIC:\\S+$|^MTSC:\\S+$|^ABSI:\\S+$|^DBAB:\\S+$|^MXLM:\\S+$|^NBOT:\\S+$|^XCEC:\\S+$|^IMFX:\\S+$|^NEXD:\\S+$|^CLCH:\\S+$|^XBTR:\\S+$|^MERF:\\S+$|^XPET:\\S+$|^XERT:\\S+$|^XRIS:\\S+$|^FISH:\\S+$|^DBMO:\\S+$|^BIDS:\\S+$|^ICOR:\\S+$|^RMTF:\\S+$|^XGSE:\\S+$|^GMEG:\\S+$|^NYFX:\\S+$|^KELR:\\S+$|^XSC3:\\S+$|^XCFE:\\S+$|^BARX:\\S+$|^BBOK:\\S+$|^NILX:\\S+$|^CGMG:\\S+$|^BCRM:\\S+$|^EWRM:\\S+$|^CMEC:\\S+$|^XLAO:\\S+$|^GTCO:\\S+$|^GSIB:\\S+$|^XESM:\\S+$|^ISWO:\\S+$|^CGIT:\\S+$|^XMNX:\\S+$|^ASXT:\\S+$|^BVCA:\\S+$|^TPEE:\\S+$|^CIMD:\\S+$|^FNIX:\\S+$|^XULA:\\S+$|^BKKT:\\S+$|^UBSG:\\S+$|^JLQD:\\S+$|^XLAT:\\S+$|^ISEX:\\S+$|^AFEX:\\S+$|^LON:\\S+$|^EPEX:\\S+$|^EQTC:\\S+$|^ELSE:\\S+$|^EUWB:\\S+$|^XPOR:\\S+$|^STOX:\\S+$|^XSEB:\\S+$|^C2OX:\\S+$|^XNCO:\\S+$|^LIUS:\\S+$|^NEOC:\\S+$|^TUOB:\\S+$|^CASI:\\S+$|^OTCM:\\S+$|^CURX:\\S+$|^XEUM:\\S+$|^EUFN:\\S+$|^BMLS:\\S+$|^R5FX:\\S+$|^CDSI:\\S+$|^FINC:\\S+$|^RBCE:\\S+$|^SEBL:\\S+$|^AMXO:\\S+$|^CXAR:\\S+$|^XSGE:\\S+$|^CMET:\\S+$|^XETR:\\S+$|^THRE:\\S+$|^CCML:\\S+$|^CBKF:\\S+$|^AQXA:\\S+$|^IPXW:\\S+$|^FMTS:\\S+$|^MAQU:\\S+$|^EDRF:\\S+$|^DZBK:\\S+$|^XLLB:\\S+$|^MELO:\\S+$|^MSTX:\\S+$|^GLPX:\\S+$|^FXPS:\\S+$|^BFPT:\\S+$|^XZIM:\\S+$|^LEUF:\\S+$|^FNLV:\\S+$|^FXRQ:\\S+$|^EPRL:\\S+$|^XEMS:\\S+$|^FXOP:\\S+$|^CMMT:\\S+$|^CMSF:\\S+$|^XIMA:\\S+$|^NOPS:\\S+$|^PUND:\\S+$|^KLSH:\\S+$|^NFSD:\\S+$|^BHSF:\\S+$|^DOSE:\\S+$|^NSE:\\S+$|^BATE:\\S+$|^BMTF:\\S+$|^JSSI:\\S+$|^SHAR:\\S+$|^MICE:\\S+$|^NXSE:\\S+$|^DRCT:\\S+$|^SECD:\\S+$|^XOSA:\\S+$|^EBR:\\S+$|^WDER:\\S+$|^HNX:\\S+$|^XMRV:\\S+$|^DGCX:\\S+$|^MVCX:\\S+$|^BOTV:\\S+$|^BEUT:\\S+$|^BNPF:\\S+$|^BACR:\\S+$|^XSEC:\\S+$|^FCBT:\\S+$|^RICD:\\S+$|^PLPD:\\S+$|^OTCI:\\S+$|^DNIS:\\S+$|^HDAT:\\S+$|^NEXN:\\S+$|^RFBK:\\S+$|^OBKL:\\S+$|^UKCA:\\S+$|^TWEM:\\S+$|^TEMF:\\S+$|^XMON:\\S+$|^DEXE:\\S+$|^FIED:\\S+$|^XKHR:\\S+$|^MKTF:\\S+$|^MUND:\\S+$|^CGQT:\\S+$|^NPEX:\\S+$|^AURO:\\S+$|^UCHU:\\S+$|^XSAM:\\S+$|^ISWR:\\S+$|^XYIE:\\S+$|^XEEO:\\S+$|^DBLN:\\S+$|^ICES:\\S+$|^ETR:\\S+$|^TEMR:\\S+$|^SGOE:\\S+$|^XLJM:\\S+$|^CHIC:\\S+$|^SSTX:\\S+$|^BPKO:\\S+$|^XUSE:\\S+$|^WQXL:\\S+$|^ALXL:\\S+$|^SSBI:\\S+$|^LASF:\\S+$|^BTEQ:\\S+$|^TCDS:\\S+$|^XNDQ:\\S+$|^SFCL:\\S+$|^AIMX:\\S+$|^LBCW:\\S+$|^DAVY:\\S+$|^XCOL:\\S+$|^XPHX:\\S+$|^BCFS:\\S+$|^XKON:\\S+$|^XCME:\\S+$|^NATX:\\S+$|^LELE:\\S+$|^XPUS:\\S+$|^NASD:\\S+$|^MLSI:\\S+$|^CSE:\\S+$|^BIVA:\\S+$|^ICHK:\\S+$|^CECA:\\S+$|^ICDX:\\S+$|^PUMA:\\S+$|^KRX:\\S+$|^NGXC:\\S+$|^EQOC:\\S+$|^SSFX:\\S+$|^BKBF:\\S+$|^XHKF:\\S+$|^LBWS:\\S+$|^ABUL:\\S+$|^BMLB:\\S+$|^XBRT:\\S+$|^UICE:\\S+$|^UCBA:\\S+$|^CGMA:\\S+$|^IMCT:\\S+$|^BAMX:\\S+$|^BLIQ:\\S+$|^XNEC:\\S+$|^CIOI:\\S+$|^INCA:\\S+$|^XTK1:\\S+$|^RBIV:\\S+$|^SEBA:\\S+$|^VUSA:\\S+$|^IFAD:\\S+$|^CSHK:\\S+$|^VFXO:\\S+$|^ELI:\\S+$|^MLRQ:\\S+$|^AGBP:\\S+$|^TRU2:\\S+$|^IEXD:\\S+$|^HPCV:\\S+$|^AFSA:\\S+$|^XBIL:\\S+$|^ASX:\\S+$|^NODX:\\S+$|^TSX:\\S+$|^XATH:\\S+$|^PINX:\\S+$|^XCOR:\\S+$|^FNDK:\\S+$|^CGEB:\\S+$|^XCUE:\\S+$|^XSSC:\\S+$|^NEXO:\\S+$|^BSME:\\S+$|^XLJU:\\S+$|^IFBX:\\S+$|^SBSI:\\S+$|^SUNT:\\S+$|^GFPO:\\S+$|^TRQC:\\S+$|^XCX2:\\S+$|^XDSE:\\S+$|^BMLI:\\S+$|^HKG:\\S+$|^CIBH:\\S+$|^ITGL:\\S+$|^BUYN:\\S+$|^XECS:\\S+$|^XIST:\\S+$|^BPSX:\\S+$|^TEFX:\\S+$|^CNOD:\\S+$|^XBAH:\\S+$|^HSXA:\\S+$|^ISBV:\\S+$|^EXSE:\\S+$|^OMIC:\\S+$|^MPRL:\\S+$|^YLDX:\\S+$|^BAIP:\\S+$|^SECC:\\S+$|^TSAF:\\S+$|^ENMS:\\S+$|^PLPS:\\S+$|^DIFX:\\S+$|^MTXM:\\S+$|^CEUX:\\S+$|^CSIN:\\S+$|^IEPA:\\S+$|^LISX:\\S+$|^BLBF:\\S+$|^GSPX:\\S+$|^ZARX:\\S+$|^EDGX:\\S+$|^STXS:\\S+$|^UBIS:\\S+$|^DHEL:\\S+$|^TPIO:\\S+$|^BASE:\\S+$|^XGLO:\\S+$|^CBKS:\\S+$|^RTSL:\\S+$|^BASX:\\S+$|^HPPO:\\S+$|^JPCB:\\S+$|^BRDE:\\S+$|^SBAR:\\S+$|^ARAX:\\S+$|^KBCB:\\S+$|^LEVL:\\S+$|^XXSC:\\S+$|^MHBD:\\S+$|^HCHC:\\S+$|^KAZE:\\S+$|^SIFX:\\S+$|^PDEX:\\S+$|^FRTE:\\S+$|^TERM:\\S+$|^TRCX:\\S+$|^BGSI:\\S+$|^IBEQ:\\S+$|^CLJP:\\S+$|^IGDL:\\S+$|^XKBT:\\S+$|^EMBX:\\S+$|^XOSE:\\S+$|^XGCX:\\S+$|^TSED:\\S+$|^BLFX:\\S+$|^BSE:\\S+$|^COTC:\\S+$|^XPAE:\\S+$|^XSSE:\\S+$|^BATF:\\S+$|^UKEX:\\S+$|^FNFX:\\S+$|^RR4G:\\S+$|^XMTB:\\S+$|^MTAH:\\S+$|^CGMH:\\S+$|^XKOS:\\S+$|^XTSE:\\S+$|^TSMM:\\S+$|^MSMS:\\S+$|^CGET:\\S+$|^IFLX:\\S+$|^WSE:\\S+$|^EQSL:\\S+$|^EXDC:\\S+$|^NYSE:\\S+$|^BILT:\\S+$|^ASXC:\\S+$|^EUWX:\\S+$|^BRDS:\\S+$|^XSAF:\\S+$|^IFUT:\\S+$|^SIGA:\\S+$|^CCFX:\\S+$|^XNZE:\\S+$|^BVUR:\\S+$|^PEPH:\\S+$|^BSAB:\\S+$|^XNCM:\\S+$|^JSES:\\S+$|^XCIE:\\S+$|^OTCX:\\S+$|^USWB:\\S+$|^ISWV:\\S+$|^EDGA:\\S+$|^XBRA:\\S+$|^BDSK:\\S+$|^DNSE:\\S+$|^PATF:\\S+$|^NXVW:\\S+$|^XNOM:\\S+$|^IEBS:\\S+$|^WBAH:\\S+$|^XJSE:\\S+$|^XMOS:\\S+$|^SPBE:\\S+$|^MTSF:\\S+$|^MUSE:\\S+$|^GFIN:\\S+$|^DWSF:\\S+$|^XBLN:\\S+$|^XNKS:\\S+$|^GFSO:\\S+$|^NEXF:\\S+$|^XEUE:\\S+$|^CIMB:\\S+$|^MOCX:\\S+$|^TSGI:\\S+$|^AUTP:\\S+$|^CGTR:\\S+$|^DICE:\\S+$|^CSOB:\\S+$|^SBIV:\\S+$|^XSHE:\\S+$|^LIGA:\\S+$|^CGND:\\S+$|^IKBS:\\S+$|^FXCL:\\S+$|^NASX:\\S+$|^XTAE:\\S+$|^MOTX:\\S+$|^FNSE:\\S+$|^XHAN:\\S+$|^VAGL:\\S+$|^EMIR:\\S+$|^EDGO:\\S+$|^IMGI:\\S+$|^NABA:\\S+$|^WABR:\\S+$|^BVUK:\\S+$|^HUDX:\\S+$|^CSAU:\\S+$|^XPOW:\\S+$|^RICX:\\S+$|^XALT:\\S+$|^BTRL:\\S+$|^ERIS:\\S+$|^SEMX:\\S+$|^XDLP:\\S+$|^OTCQ:\\S+$|^XIOM:\\S+$|^EBXV:\\S+$|^NFSC:\\S+$|^IMTF:\\S+$|^XKSE:\\S+$|^ISWE:\\S+$|^XEUC:\\S+$|^BASP:\\S+$|^TSBX:\\S+$|^TYO:\\S+$|^TDGF:\\S+$|^KNLI:\\S+$|^GLLC:\\S+$|^TADAWUL:\\S+$|^DAPA:\\S+$|^HELA:\\S+$|^XCNQ:\\S+$|^DEKA:\\S+$|^XTXE:\\S+$|^SMBB:\\S+$|^BGHX:\\S+$|^HAMN:\\S+$|^ARKX:\\S+$|^XNXD:\\S+$|^SMBP:\\S+$|^RMMS:\\S+$|^JPMS:\\S+$|^IUOB:\\S+$|^BGFI:\\S+$|^LSE:\\S+$|^OTC:\\S+$|^ATFX:\\S+$|^CXRT:\\S+$|^XNOR:\\S+$|^CRYX:\\S+$|^XNAM:\\S+$|^XBBK:\\S+$|^VERT:\\S+$|^NZE:\\S+$|^FRAV:\\S+$|^XBCL:\\S+$|^FCME:\\S+$|^XRMZ:\\S+$|^MHBE:\\S+$|^ECSL:\\S+$|^BERB:\\S+$|^RPDX:\\S+$|^CHIO:\\S+$|^XPRA:\\S+$|^EXAA:\\S+$|^JBUL:\\S+$|^VFGB:\\S+$|^DBLX:\\S+$|^CHIS:\\S+$|^XMLI:\\S+$|^VIE:\\S+$|^HSFX:\\S+$|^POTC:\\S+$|^CSOT:\\S+$|^NMTF:\\S+$|^KOSDAQ:\\S+$|^CLMX:\\S+$|^UTSL:\\S+$|^XSWA:\\S+$|^SMBG:\\S+$|^CGEE:\\S+$|^BRVM:\\S+$|^RBCB:\\S+$|^AACA:\\S+$|^CEUO:\\S+$|^EMID:\\S+$|^WBON:\\S+$|^MCUR:\\S+$|^ATLN:\\S+$|^XZAP:\\S+$|^ARCH:\\S+$|^24EX:\\S+$|^XECM:\\S+$|^OCEA:\\S+$|^XKRX:\\S+$|^BOSP:\\S+$|^XASX:\\S+$|^XMFX:\\S+$|^ODOC:\\S+$|^XTKT:\\S+$|^GBUL:\\S+$|^PUMX:\\S+$|^TRUX:\\S+$|^OPEX:\\S+$|^SMEX:\\S+$|^XBKK:\\S+$|^VCRS:\\S+$|^XSHG:\\S+$|^VMFX:\\S+$|^XSTE:\\S+$|^G1XX:\\S+$|^XOAM:\\S+$|^XSAT:\\S+$|^CLPH:\\S+$|^EBSC:\\S+$|^MUBM:\\S+$|^PSXD:\\S+$|^XECC:\\S+$|^BKK:\\S+$|^CRYD:\\S+$|^IMIR:\\S+$|^MTXX:\\S+$|^HPCX:\\S+$|^CSMD:\\S+$|^ICPM:\\S+$|^IOTF:\\S+$|^SGMX:\\S+$|^DKED:\\S+$|^ENCL:\\S+$|^CHID:\\S+$|^XLGT:\\S+$|^FINR:\\S+$|^MAQE:\\S+$|^BILU:\\S+$|^AMS:\\S+$|^RBCG:\\S+$|^FSME:\\S+$|^MCX:\\S+$|^XTIR:\\S+$|^XKAR:\\S+$|^SPEC:\\S+$|^XBEY:\\S+$|^RABL:\\S+$|^CEUD:\\S+$|^XBVR:\\S+$|^PEPW:\\S+$|^CONC:\\S+$|^CLAU:\\S+$|^NOWX:\\S+$|^HPCS:\\S+$|^MLIX:\\S+$|^TDBL:\\S+$|^BARU:\\S+$|^UKGD:\\S+$|^XDUB:\\S+$|^SIGH:\\S+$|^TIRD:\\S+$|^JLEU:\\S+$|^TEGI:\\S+$|^XDFB:\\S+$|^AWBX:\\S+$|^TSFI:\\S+$|^INCR:\\S+$|^BRGA:\\S+$|^TASE:\\S+$|^ISWP:\\S+$|^XMIO:\\S+$|^IOGI:\\S+$|^NSME:\\S+$|^LIFI:\\S+$|^XTSX:\\S+$|^XTXD:\\S+$|^NOSI:\\S+$|^XNEP:\\S+$|^XPOL:\\S+$|^SPXE:\\S+$|^MCAD:\\S+$|^BGCD:\\S+$|^XICX:\\S+$|^BUX:\\S+$|^BOAT:\\S+$|^MISX:\\S+$|^NSEASI:\\S+$|^BMCL:\\S+$|^IMEX:\\S+$|^TPIE:\\S+$|^XISX:\\S+$|^MFOX:\\S+$|^FINY:\\S+$|^XPAR:\\S+$|^XTEH:\\S+$|^XNMS:\\S+$|^LIQH:\\S+$|^XDAR:\\S+$|^DDTX:\\S+$|^INGE:\\S+$|^EDBT:\\S+$|^BSFX:\\S+$|^NCME:\\S+$|^MSSI:\\S+$|^ONSE:\\S+$|^SEBS:\\S+$|^BLBS:\\S+$|^FLTR:\\S+$|^FNLT:\\S+$|^MNFI:\\S+$|^BBSX:\\S+$|^AQEA:\\S+$|^AKIS:\\S+$|^CBNL:\\S+$|^IOIR:\\S+$|^FREI:\\S+$|^XTND:\\S+$|^UBSP:\\S+$|^SANT:\\S+$|^ICSH:\\S+$|^ABFI:\\S+$|^STAN:\\S+$|^GBWB:\\S+$|^MEMX:\\S+$|^XNDU:\\S+$|^DWFI:\\S+$|^NORX:\\S+$|^GTXS:\\S+$|^XTAF:\\S+$|^SVEX:\\S+$|^XBOT:\\S+$|^XDRK:\\S+$|^XABC:\\S+$|^SXSI:\\S+$|^BOSC:\\S+$|^XDFM:\\S+$|^SWEE:\\S+$|^BEAM:\\S+$|^OAPA:\\S+$|^NOSC:\\S+$|^IINX:\\S+$|^SMBE:\\S+$|^OTCB:\\S+$|^XNAF:\\S+$|^PRSE:\\S+$|^MCID:\\S+$|^FAIR:\\S+$|^EBMX:\\S+$|^XOSD:\\S+$|^CGMI:\\S+$|^XEUI:\\S+$|^IOMM:\\S+$|^INGF:\\S+$|^IBGH:\\S+$|^CXAW:\\S+$|^TWJT:\\S+$|^BBVA:\\S+$|^XMAU:\\S+$|^MYTR:\\S+$|^SBEX:\\S+$|^TMEX:\\S+$|^XIMC:\\S+$|^SEDC:\\S+$|^CXAP:\\S+$|^TSMR:\\S+$|^AMPX:\\S+$|^SCXS:\\S+$|^XQUI:\\S+$|^JPBX:\\S+$|^MLVX:\\S+$|^GFIB:\\S+$|^GFBO:\\S+$|^EQCA:\\S+$|^EXSI:\\S+$|^XSCA:\\S+$|^SSOB:\\S+$|^SHAW:\\S+$|^XMUN:\\S+$|^XNSA:\\S+$|^CSEC:\\S+$|^GMBG:\\S+$|^KLSE:\\S+$|^BRFQ:\\S+$|^XKCM:\\S+$|^VTX:\\S+$|^PFTS:\\S+$|^XISE:\\S+$|^EQUS:\\S+$|^VDRK:\\S+$|^FNFI:\\S+$|^TGAT:\\S+$|^EXLP:\\S+$|^XETF:\\S+$|^XNGS:\\S+$|^XUKR:\\S+$|^SGMV:\\S+$|^XZAG:\\S+$|^NSPO:\\S+$|^LQED:\\S+$|^BTBS:\\S+$|^XSFA:\\S+$|^SQUA:\\S+$|^XPHS:\\S+$|^FICX:\\S+$|^ROTC:\\S+$|^TFSA:\\S+$|^NSDQ:\\S+$|^GFIF:\\S+$|^XTK3:\\S+$|^XRSP:\\S+$|^TPEO:\\S+$|^EMIB:\\S+$|^BOVM:\\S+$|^CIBC:\\S+$|^JSJX:\\S+$|^XDEX:\\S+$|^XKHA:\\S+$|^BNPL:\\S+$|^ROSR:\\S+$|^IMEN:\\S+$|^DEAL:\\S+$|^MAXD:\\S+$|^BTQE:\\S+$|^MSTO:\\S+$|^TSEF:\\S+$|^MUDX:\\S+$|^HEMO:\\S+$|^CHIX:\\S+$|^XHKG:\\S+$|^SZSE:\\S+$|^LMNX:\\S+$|^ZKBX:\\S+$|^TMID:\\S+$|^XPRM:\\S+$|^PEPQ:\\S+$|^QWIX:\\S+$|^IFUS:\\S+$|^EBSN:\\S+$|^IMED:\\S+$|^VTBC:\\S+$|^CPH:\\S+$|^HAMB:\\S+$|^XHNF:\\S+$|^TPE:\\S+$|^IFXC:\\S+$|^SPIM:\\S+$|^MTUS:\\S+$|^SB1M:\\S+$|^AMNL:\\S+$|^ABNA:\\S+$|^BDEA:\\S+$|^EXGM:\\S+$|^XNAI:\\S+$|^IPXP:\\S+$|^JSEB:\\S+$|^XBVM:\\S+$|^NEOD:\\S+$|^XBAB:\\S+$|^BVUS:\\S+$|^XBSE:\\S+$|^CGGD:\\S+$|^HPSX:\\S+$|^GREE:\\S+$|^UBSA:\\S+$|^MTSO:\\S+$|^S3FM:\\S+$|^XPIC:\\S+$|^MABX:\\S+$|^IFEU:\\S+$|^MTXS:\\S+$|^LQFI:\\S+$|^XROX:\\S+$|^XUBS:\\S+$|^MEMD:\\S+$|^HEL:\\S+$|^MTXC:\\S+$|^XBUD:\\S+$|^FRAS:\\S+$|^XERE:\\S+$|^WFLB:\\S+$|^CDED:\\S+$|^XCBT:\\S+$|^XAFX:\\S+$|^MFXA:\\S+$|^XLIS:\\S+$|^SIMD:\\S+$|^MNSE:\\S+$|^XGME:\\S+$|^STUE:\\S+$|^BLOX:\\S+$|^FXAL:\\S+$|^XBLB:\\S+$|^BLXA:\\S+$|^ASEF:\\S+$|^XISA:\\S+$|^BBVX:\\S+$|^JADX:\\S+$|^LOTC:\\S+$|^TQEA:\\S+$|^AUTO:\\S+$|^ARCO:\\S+$|^XLUX:\\S+$|^FLTB:\\S+$|^XIEL:\\S+$|^UCDE:\\S+$|^NDCM:\\S+$|^CBAL:\\S+$|^FTUS:\\S+$|^SPRZ:\\S+$|^MUBP:\\S+$|^CFIL:\\S+$|^ASTR:\\S+$|^ODDO:\\S+$|^IDX:\\S+$|^EXSF:\\S+$|^VALX:\\S+$|^NABL:\\S+$|^LIQF:\\S+$|^SCXA:\\S+$|^ONEC:\\S+$|^EIXE:\\S+$|^ALSI:\\S+$|^INSE:\\S+$|^NYPC:\\S+$|^BEBG:\\S+$|^RTSI:\\S+$|^JSE:\\S+$|^NYMS:\\S+$|^XTAL:\\S+$|^SCXF:\\S+$|^STFL:\\S+$|^NDEX:\\S+$|^ROCO:\\S+$|^CCMX:\\S+$|^XSGO:\\S+$|^XSWX:\\S+$|^XVES:\\S+$|^XPOT:\\S+$|^PNED:\\S+$|^DOWG:\\S+$|^SKSI:\\S+$|^XKUW:\\S+$|^PSE:\\S+$|^XVIE:\\S+$|^NDXS:\\S+$|^BMEX:\\S+$|^XMER:\\S+$|^4AXE:\\S+$|^IST:\\S+$|^SGMZ:\\S+$|^JISI:\\S+$|^ASPN:\\S+$|^COMG:\\S+$|^TRSI:\\S+$|^FBSI:\\S+$|^ALDP:\\S+$|^CGMT:\\S+$|^SCOT:\\S+$|^TSCD:\\S+$|^TERA:\\S+$|^CSDA:\\S+$|^CBKE:\\S+$|^ELXE:\\S+$|^KMUX:\\S+$|^BAEP:\\S+$|^SIGJ:\\S+$|^BLUX:\\S+$|^LOUI:\\S+$|^CFIC:\\S+$|^JEFS:\\S+$|^NYSEARCA:\\S+$|^IFLO:\\S+$|^SVES:\\S+$|^XMOD:\\S+$|^KBLT:\\S+$|^EESE:\\S+$|^RBSI:\\S+$|^MTAA:\\S+$|^XLSM:\\S+$|^XFCI:\\S+$|^XCHG:\\S+$|^DKFI:\\S+$|^NCML:\\S+$|^XMAE:\\S+$|^NWNV:\\S+$|^BARO:\\S+$|^EXSY:\\S+$|^XKAZ:\\S+$|^TRAS:\\S+$|^BREA:\\S+$|^MLCO:\\S+$|^XBUE:\\S+$|^ADVT:\\S+$|^OTPB:\\S+$|^TWEU:\\S+$|^FRAU:\\S+$|^IMGB:\\S+$|^XLOD:\\S+$|^XPRI:\\S+$|^XAFR:\\S+$|^XTXM:\\S+$|^MIHI:\\S+$|^XNYM:\\S+$|^EXOT:\\S+$|^WSIL:\\S+$|^CLST:\\S+$|^LBBW:\\S+$|^BSEX:\\S+$|^XOAA:\\S+$|^MKAA:\\S+$|^XSTC:\\S+$|^IMET:\\S+$|^IDXM:\\S+$|^ZOBX:\\S+$|^CRED:\\S+$|^KBLS:\\S+$|^TRDX:\\S+$|^GROW:\\S+$|^XINV:\\S+$|^EXVP:\\S+$|^TRAI:\\S+$|^GSXC:\\S+$|^HESP:\\S+$|^SWBI:\\S+$|^AFET:\\S+$|^XUMP:\\S+$|^MAQL:\\S+$|^XLME:\\S+$|^UCIT:\\S+$|^AQED:\\S+$|^GSAL:\\S+$|^ICEO:\\S+$|^MCXX:\\S+$|^VTPS:\\S+$|^XWAR:\\S+$|^NLAX:\\S+$|^BGFU:\\S+$|^ISWT:\\S+$|^XSTU:\\S+$|^XBLK:\\S+$|^AMEX:\\S+$|^XGAT:\\S+$|^XMSM:\\S+$|^ETFP:\\S+$|^XBRD:\\S+$|^ISWC:\\S+$|^ABXX:\\S+$|^XFEX:\\S+$|^TGSI:\\S+$|^XMDG:\\S+$|^BKLN:\\S+$|^CXAM:\\S+$|^CABK:\\S+$|^UBSY:\\S+$|^MAEL:\\S+$|^XGDX:\\S+$|^FSX:\\S+$|^APEX:\\S+$|^NEXL:\\S+$|^BLBB:\\S+$|^IEXG:\\S+$|^IPSX:\\S+$|^CSBX:\\S+$|^BYXD:\\S+$|^BOFS:\\S+$|^OTCN:\\S+$|^SAGE:\\S+$|^ITGI:\\S+$|^XTK2:\\S+$|^BGUK:\\S+$|^METZ:\\S+$|^XBUL:\\S+$|^BAAD:\\S+$|^XEUP:\\S+$|^ECHO:\\S+$|^FISU:\\S+$|^XREP:\\S+$|^GFOX:\\S+$|^XTUC:\\S+$|^CGMD:\\S+$|^XPXE:\\S+$|^FRAW:\\S+$|^MACB:\\S+$|^XGEM:\\S+$|^TLCM:\\S+$|^GLBX:\\S+$|^XCBO:\\S+$|^MASG:\\S+$|^UKPX:\\S+$|^IBAL:\\S+$|^SGAS:\\S+$|^BISI:\\S+$|^YKNA:\\S+$|^CETI:\\S+$|^BBIE:\\S+$|^PEEL:\\S+$|^CMES:\\S+$|^XSWB:\\S+$|^XDUS:\\S+$|^XOTP:\\S+$|^XNXC:\\S+$|^AURB:\\S+$|^XMTS:\\S+$|^XMAI:\\S+$|^XKLS:\\S+$|^TEIR:\\S+$|^XADS:\\S+$|^XOSC:\\S+$|^JPMI:\\S+$|^BETX:\\S+$|^ELUK:\\S+$|^SECE:\\S+$|^BCDX:\\S+$|^WIPO:\\S+$|^BPLC:\\S+$|^DSTO:\\S+$|^FRAA:\\S+$|^UCBG:\\S+$|^XBOG:\\S+$|^AIXK:\\S+$|^ICUR:\\S+$|^MAKX:\\S+$|^GFBM:\\S+$|^VIRT:\\S+$|^XATS:\\S+$|^EQTB:\\S+$|^XGSX:\\S+$|^AFSI:\\S+$|^BTQG:\\S+$|^RUSX:\\S+$|^GMNI:\\S+$|^OSLC:\\S+$|^LMAX:\\S+$|^FNUK:\\S+$|^PLDX:\\S+$|^GIPB:\\S+$|^FXRS:\\S+$|^CBLC:\\S+$|^NBLX:\\S+$|^WIND:\\S+$|^ATHL:\\S+$|^MSRP:\\S+$|^XETB:\\S+$|^BATP:\\S+$|^CECS:\\S+$|^BANA:\\S+$|^IOGB:\\S+$|^XBER:\\S+$|^ABAN:\\S+$|^BCSE:\\S+$|^XEMD:\\S+$|^DASH:\\S+$|^XQOD:\\S+$|^PIRM:\\S+$|^MNDK:\\S+$|^TFEX:\\S+$|^SWLV:\\S+$|^BBSI:\\S+$|^ZAPA:\\S+$|^CAVD:\\S+$|^ARCX:\\S+$|^TAL:\\S+$|^XPSX:\\S+$|^CFIF:\\S+$|^BCSL:\\S+$|^MHBL:\\S+$|^XMOT:\\S+$|^WBCL:\\S+$|^XCAL:\\S+$|^TWJP:\\S+$|^XCAY:\\S+$|^ICOT:\\S+$|^NOTC:\\S+$|^BGCI:\\S+$|^BTNL:\\S+$|^XMAD:\\S+$|^OOTC:\\S+$|^MESQ:\\S+$|^CGDB:\\S+$|^MATN:\\S+$|^TSRE:\\S+$|^SSME:\\S+$|^XBVC:\\S+$|^MHEU:\\S+$|^VWDX:\\S+$|^MNIS:\\S+$|^TEGB:\\S+$|^XSBT:\\S+$|^TBSA:\\S+$|^XOAD:\\S+$|^TERE:\\S+$|^MOEX:\\S+$|^CIME:\\S+$|^XQMH:\\S+$|^SSEX:\\S+$|^TQEX:\\S+$|^XADE:\\S+$|^GTXE:\\S+$|^XDSX:\\S+$|^SIX:\\S+$|^FSEF:\\S+$|^BETA:\\S+$|^MSIP:\\S+$|^EQTD:\\S+$|^SKYX:\\S+$|^XIHK:\\S+$|^BINV:\\S+$|^RTSX:\\S+$|^GRSE:\\S+$|^BLEQ:\\S+$|^SIBC:\\S+$|^XEUR:\\S+$|^SEPE:\\S+$|^ISDA:\\S+$|^XWBO:\\S+$|^GTSX:\\S+$|^RBHU:\\S+$|^FXSW:\\S+$|^DRSP:\\S+$|^HRSI:\\S+$|^BNTW:\\S+$|^CXAV:\\S+$|^BEUP:\\S+$|^BELF:\\S+$|^XNSE:\\S+$|^COHR:\\S+$|^XBNV:\\S+$|^BSPL:\\S+$|^BTFE:\\S+$|^MATX:\\S+$|^APAW:\\S+$|^KBLM:\\S+$|^XSFE:\\S+$|^TLV:\\S+$|^EBSS:\\S+$|^FTFM:\\S+$|^PARK:\\S+$|^CBKG:\\S+$|^ZBUL:\\S+$|^OPCO:\\S+$|^CHEV:\\S+$|^XSPS:\\S+$|^NZFX:\\S+$|^CITD:\\S+$|^CESI:\\S+$|^EPRD:\\S+$|^BAPA:\\S+$|^OSSG:\\S+$|^SVXI:\\S+$|^PSGM:\\S+$|^XSTF:\\S+$|^VFIL:\\S+$|^TRQA:\\S+$|^MAQI:\\S+$|^CLVE:\\S+$|^BTEC:\\S+$|^AMLG:\\S+$|^XEBI:\\S+$|^MFXR:\\S+$|^BNPC:\\S+$|^XHAM:\\S+$|^CITX:\\S+$|^BERC:\\S+$|^GSSI:\\S+$|^XEQT:\\S+$|^CGCM:\\S+$|^XMAL:\\S+$|^BAJD:\\S+$|^TSE:\\S+$|^XNGM:\\S+$|^XKFE:\\S+$|^NEOE:\\S+$|^GSXH:\\S+$|^TRQX:\\S+$|^SIDX:\\S+$|^MLEX:\\S+$|^WELN:\\S+$|^DBOX:\\S+$|^LICA:\\S+$|^LCHC:\\S+$|^CGEC:\\S+$|^UKOR:\\S+$|^SOHO:\\S+$|^HBFR:\\S+$|^XBRV:\\S+$|^CAPL:\\S+$|^ARIA:\\S+$|^STRM:\\S+$|^UBSB:\\S+$|^LXJP:\\S+$|^NMSX:\\S+$|^RBCC:\\S+$|^CBKC:\\S+$|^FLWX:\\S+$|^AAPA:\\S+$|^BAJM:\\S+$|^NTUK:\\S+$|^XBCC:\\S+$|^XSTX:\\S+$|^XBCX:\\S+$|^LAMP:\\S+$|^TPIR:\\S+$|^XKIE:\\S+$|^JPEU:\\S+$|^LMAF:\\S+$|^VFSI:\\S+$|^OPRA:\\S+$|^MLER:\\S+$|^XDPA:\\S+$|^XGCL:\\S+$|^BATO:\\S+$|^MFGL:\\S+$|^LEDG:\\S+$|^XAMS:\\S+$|^360T:\\S+$|^XTRZ:\\S+$|^IFLL:\\S+$|^PROS:\\S+$|^XJAM:\\S+$|^IFSM:\\S+$|^DCSX:\\S+$|^CALH:\\S+$|^BOVA:\\S+$|^LYNX:\\S+$|^NYSEAMERICAN:\\S+$|^BERA:\\S+$|^NYSD:\\S+$|^ICEL:\\S+$|^EXPM:\\S+$|^CBTS:\\S+$|^JEFX:\\S+$|^CIMV:\\S+$|^XMOL:\\S+$|^WSAG:\\S+$|^XSCU:\\S+$|^PAVE:\\S+$|^MUSN:\\S+$|^RABO:\\S+$|^XADF:\\S+$|^TPSE:\\S+$|^SZSC:\\S+$|^BGLU:\\S+$|^ASXB:\\S+$|^XDNB:\\S+$|^TOCP:\\S+$|^ROFX:\\S+$|^XBEL:\\S+$|^APCL:\\S+$|^LMAD:\\S+$|^XBCM:\\S+$|^MDRV:\\S+$|^NBFL:\\S+$|^XRPM:\\S+$|^XXXX:\\S+$|^MLXB:\\S+$|^UBSF:\\S+$|^EDGL:\\S+$|^XJPX:\\S+$|^BZXD:\\S+$|^BEIS:\\S+$|^TEMM:\\S+$|^ANZL:\\S+$|^XGAS:\\S+$|^XUGA:\\S+$|^NWMS:\\S+$|^XPTY:\\S+$|^MTSD:\\S+$|^PIPR:\\S+$|^XBKF:\\S+$|^IVZX:\\S+$|^IMFD:\\S+$|^AFDL:\\S+$|^CFBC:\\S+$|^GLMX:\\S+$|^CSCF:\\S+$|^VPXB:\\S+$|^MUBE:\\S+$|^BARK:\\S+$|^MHEL:\\S+$|^NEXT:\\S+$|^CIBP:\\S+$|^XBRN:\\S+$|^VCMO:\\S+$)$",
             "title": "Ticker"
           }
         },
@@ -9157,6 +9125,7 @@
           },
           "ticker": {
             "type": "string",
+            "pattern": "(?i)^(^VEGA:\\S+$|^DUMX:\\S+$|^XETW:\\S+$|^XTNX:\\S+$|^BNSX:\\S+$|^XCSX:\\S+$|^GMGD:\\S+$|^UBIN:\\S+$|^IFXA:\\S+$|^NESI:\\S+$|^EQIE:\\S+$|^MTXA:\\S+$|^UBSC:\\S+$|^NMRA:\\S+$|^TEUR:\\S+$|^SPDX:\\S+$|^XJNB:\\S+$|^XKEM:\\S+$|^ISWA:\\S+$|^MUNC:\\S+$|^KAIX:\\S+$|^EXSH:\\S+$|^XKCE:\\S+$|^XROS:\\S+$|^XBDA:\\S+$|^ENAX:\\S+$|^HMOD:\\S+$|^MKAP:\\S+$|^GEMX:\\S+$|^IBIS:\\S+$|^DKTC:\\S+$|^XALG:\\S+$|^JPSI:\\S+$|^HSTC:\\S+$|^SECF:\\S+$|^TRQM:\\S+$|^CMAP:\\S+$|^XABG:\\S+$|^XNAS:\\S+$|^NOFF:\\S+$|^CFJP:\\S+$|^TWSF:\\S+$|^UBSS:\\S+$|^CNSX:\\S+$|^IMAG:\\S+$|^BATS:\\S+$|^CBSK:\\S+$|^CRYP:\\S+$|^XNLI:\\S+$|^KBLL:\\S+$|^UBSI:\\S+$|^BNLD:\\S+$|^ETPA:\\S+$|^DUSD:\\S+$|^XMAT:\\S+$|^TMCY:\\S+$|^XLIT:\\S+$|^BLTD:\\S+$|^XUAX:\\S+$|^WELS:\\S+$|^NASDAQ:\\S+$|^ATLB:\\S+$|^BLKX:\\S+$|^BNPA:\\S+$|^TRUK:\\S+$|^PURE:\\S+$|^WBKP:\\S+$|^BTAM:\\S+$|^PLPO:\\S+$|^XECB:\\S+$|^AILT:\\S+$|^GLOM:\\S+$|^XTAI:\\S+$|^BART:\\S+$|^BLEV:\\S+$|^ALTX:\\S+$|^BLNK:\\S+$|^TNLA:\\S+$|^MIDC:\\S+$|^IOED:\\S+$|^BSTX:\\S+$|^STUA:\\S+$|^RLBO:\\S+$|^XPAC:\\S+$|^ZFXM:\\S+$|^CHIA:\\S+$|^PBUL:\\S+$|^CEDX:\\S+$|^CAVE:\\S+$|^GSXK:\\S+$|^TREA:\\S+$|^XTUN:\\S+$|^PJCX:\\S+$|^CLHK:\\S+$|^AFSL:\\S+$|^HPCO:\\S+$|^HSBT:\\S+$|^BIST:\\S+$|^TWSE:\\S+$|^MCRY:\\S+$|^JPMX:\\S+$|^UBSX:\\S+$|^NEON:\\S+$|^CSJP:\\S+$|^OLBB:\\S+$|^EVOL:\\S+$|^EQOD:\\S+$|^XNYL:\\S+$|^MSEU:\\S+$|^TRPX:\\S+$|^XKFB:\\S+$|^IFCA:\\S+$|^TREO:\\S+$|^SHAD:\\S+$|^BBSF:\\S+$|^XZCE:\\S+$|^PINC:\\S+$|^CHIJ:\\S+$|^KOME:\\S+$|^CCRM:\\S+$|^XSVA:\\S+$|^CELP:\\S+$|^XOBD:\\S+$|^XNFI:\\S+$|^EQSE:\\S+$|^XBES:\\S+$|^XCET:\\S+$|^BMEA:\\S+$|^BVCC:\\S+$|^XLFX:\\S+$|^DNDK:\\S+$|^XMVL:\\S+$|^TWGP:\\S+$|^THEM:\\S+$|^HAML:\\S+$|^MALM:\\S+$|^FRA:\\S+$|^XCIS:\\S+$|^SCAG:\\S+$|^INVE:\\S+$|^SBIJ:\\S+$|^UGEN:\\S+$|^BARL:\\S+$|^INGW:\\S+$|^BTEE:\\S+$|^ECGS:\\S+$|^CLTD:\\S+$|^FREX:\\S+$|^HEDE:\\S+$|^GSXT:\\S+$|^CVE:\\S+$|^XIPO:\\S+$|^MXNL:\\S+$|^XINS:\\S+$|^XGRM:\\S+$|^FXCM:\\S+$|^CODA:\\S+$|^NEXS:\\S+$|^XMGE:\\S+$|^XASE:\\S+$|^TFSU:\\S+$|^HANB:\\S+$|^MBCP:\\S+$|^EXCP:\\S+$|^MIVX:\\S+$|^NAPA:\\S+$|^HRFQ:\\S+$|^ICBX:\\S+$|^XNYE:\\S+$|^SCXM:\\S+$|^XCYS:\\S+$|^NXEU:\\S+$|^XMEX:\\S+$|^TSIG:\\S+$|^XEBS:\\S+$|^XCAI:\\S+$|^HSBC:\\S+$|^EXBO:\\S+$|^GSPL:\\S+$|^GFSM:\\S+$|^RSEX:\\S+$|^GPBC:\\S+$|^CCO2:\\S+$|^SMBD:\\S+$|^AREX:\\S+$|^PBGR:\\S+$|^XBND:\\S+$|^DOWM:\\S+$|^BGCF:\\S+$|^XCXD:\\S+$|^CSTO:\\S+$|^XSEF:\\S+$|^NIBC:\\S+$|^XPHL:\\S+$|^NEXG:\\S+$|^EXTR:\\S+$|^TPER:\\S+$|^TEMB:\\S+$|^XCGS:\\S+$|^BMV:\\S+$|^CXAF:\\S+$|^XDCE:\\S+$|^XSTM:\\S+$|^XSGB:\\S+$|^XBAR:\\S+$|^CAES:\\S+$|^SEDX:\\S+$|^TWSG:\\S+$|^SBIU:\\S+$|^MFXC:\\S+$|^TBSP:\\S+$|^DASI:\\S+$|^BRNX:\\S+$|^XDHA:\\S+$|^IECL:\\S+$|^DOTS:\\S+$|^EGSI:\\S+$|^ZERO:\\S+$|^PEPM:\\S+$|^FICO:\\S+$|^HGSP:\\S+$|^UBEC:\\S+$|^IOCD:\\S+$|^BATY:\\S+$|^DCSE:\\S+$|^EQOS:\\S+$|^SIMV:\\S+$|^LBCM:\\S+$|^LUXSE:\\S+$|^HAMA:\\S+$|^MESI:\\S+$|^SEND:\\S+$|^XBDV:\\S+$|^BETP:\\S+$|^CSGI:\\S+$|^GSCO:\\S+$|^HREU:\\S+$|^JBSI:\\S+$|^XPST:\\S+$|^FNFT:\\S+$|^GFIC:\\S+$|^T212:\\S+$|^NXUS:\\S+$|^VLEX:\\S+$|^PINI:\\S+$|^MTSB:\\S+$|^FXFM:\\S+$|^RBSX:\\S+$|^TPSO:\\S+$|^LEUE:\\S+$|^CCXE:\\S+$|^ASE:\\S+$|^FSHX:\\S+$|^EBSO:\\S+$|^XMPW:\\S+$|^TCML:\\S+$|^SLHB:\\S+$|^CFHK:\\S+$|^XLUS:\\S+$|^ALXB:\\S+$|^CSZH:\\S+$|^UBSL:\\S+$|^BNYC:\\S+$|^XRBM:\\S+$|^XDRF:\\S+$|^XCAN:\\S+$|^STUB:\\S+$|^MAQX:\\S+$|^IFEN:\\S+$|^BCEE:\\S+$|^XDSM:\\S+$|^GSXL:\\S+$|^MARF:\\S+$|^TWEA:\\S+$|^ERST:\\S+$|^XJAS:\\S+$|^MAQH:\\S+$|^XTFF:\\S+$|^DSME:\\S+$|^SMFE:\\S+$|^SSBM:\\S+$|^TMCC:\\S+$|^EXSP:\\S+$|^GSCI:\\S+$|^LATG:\\S+$|^BBIS:\\S+$|^SHE:\\S+$|^NPGA:\\S+$|^XFRA:\\S+$|^LMAE:\\S+$|^CGQD:\\S+$|^ASPI:\\S+$|^NZX:\\S+$|^ERBX:\\S+$|^XBSD:\\S+$|^FNIS:\\S+$|^CANX:\\S+$|^ECEU:\\S+$|^DBAG:\\S+$|^EXOR:\\S+$|^MBSI:\\S+$|^DBHK:\\S+$|^XSDX:\\S+$|^MERD:\\S+$|^XEEE:\\S+$|^LBWL:\\S+$|^XBOM:\\S+$|^XRCB:\\S+$|^BCMM:\\S+$|^SWAP:\\S+$|^BELB:\\S+$|^VFMI:\\S+$|^POSE:\\S+$|^JPX:\\S+$|^JNST:\\S+$|^CGMX:\\S+$|^CGML:\\S+$|^IMEQ:\\S+$|^XBBJ:\\S+$|^BLUE:\\S+$|^GRIF:\\S+$|^SWLT:\\S+$|^MUNB:\\S+$|^TEMI:\\S+$|^MSBI:\\S+$|^BRDL:\\S+$|^EQLD:\\S+$|^EDDP:\\S+$|^DBES:\\S+$|^FRAB:\\S+$|^XBOX:\\S+$|^OLLC:\\S+$|^EXMP:\\S+$|^BTLX:\\S+$|^KRME:\\S+$|^RBCM:\\S+$|^CMCI:\\S+$|^CBKD:\\S+$|^CDSL:\\S+$|^VFCM:\\S+$|^BAML:\\S+$|^PVMF:\\S+$|^XLCH:\\S+$|^A2XX:\\S+$|^MCXS:\\S+$|^LMNR:\\S+$|^BMTS:\\S+$|^LSSI:\\S+$|^CSSX:\\S+$|^EDGD:\\S+$|^ARCD:\\S+$|^GOTC:\\S+$|^CISD:\\S+$|^XAPA:\\S+$|^VWDA:\\S+$|^OTPR:\\S+$|^GSIL:\\S+$|^BEEX:\\S+$|^XEQY:\\S+$|^RMMX:\\S+$|^XFKA:\\S+$|^SICS:\\S+$|^XIMM:\\S+$|^XSCO:\\S+$|^KBLC:\\S+$|^TRDE:\\S+$|^TOWR:\\S+$|^ICTW:\\S+$|^IMCC:\\S+$|^RCMA:\\S+$|^CABV:\\S+$|^BOSD:\\S+$|^BALT:\\S+$|^MOSE:\\S+$|^TEFD:\\S+$|^XCHI:\\S+$|^CSSI:\\S+$|^COMM:\\S+$|^BME:\\S+$|^DUSC:\\S+$|^XLQC:\\S+$|^IMCG:\\S+$|^TWEO:\\S+$|^EEAL:\\S+$|^KCCP:\\S+$|^ECAL:\\S+$|^GSEF:\\S+$|^UKRE:\\S+$|^TRFW:\\S+$|^ASXV:\\S+$|^PIPE:\\S+$|^FWB:\\S+$|^MTCH:\\S+$|^XCRO:\\S+$|^PTPG:\\S+$|^SHA:\\S+$|^TSXV:\\S+$|^STUC:\\S+$|^PPEX:\\S+$|^XOSJ:\\S+$|^XBOS:\\S+$|^OTXB:\\S+$|^IMMM:\\S+$|^NXJP:\\S+$|^AQEU:\\S+$|^CCLX:\\S+$|^XKIS:\\S+$|^ASEX:\\S+$|^XARM:\\S+$|^MUBL:\\S+$|^GSEI:\\S+$|^SSE:\\S+$|^TNLB:\\S+$|^BACE:\\S+$|^BOTE:\\S+$|^MAQJ:\\S+$|^ESTO:\\S+$|^SCXO:\\S+$|^IATS:\\S+$|^ELNO:\\S+$|^ECAG:\\S+$|^XSWM:\\S+$|^CEPU:\\S+$|^AWEX:\\S+$|^MSCO:\\S+$|^XCUR:\\S+$|^UFEX:\\S+$|^SISI:\\S+$|^NLBX:\\S+$|^XETA:\\S+$|^XVPB:\\S+$|^EBRA:\\S+$|^ANLP:\\S+$|^SYFX:\\S+$|^CGMU:\\S+$|^ENXL:\\S+$|^BKDM:\\S+$|^XEHQ:\\S+$|^HBPL:\\S+$|^KHHU:\\S+$|^ISSI:\\S+$|^XLBM:\\S+$|^TRAL:\\S+$|^BHWA:\\S+$|^BKBR:\\S+$|^BKSK:\\S+$|^NOFI:\\S+$|^TRCK:\\S+$|^AUTB:\\S+$|^BOTC:\\S+$|^ABNC:\\S+$|^XPMS:\\S+$|^EMLD:\\S+$|^LMEC:\\S+$|^XETU:\\S+$|^SGA2:\\S+$|^BVMF:\\S+$|^CXAN:\\S+$|^IMRD:\\S+$|^GXMA:\\S+$|^IBEX:\\S+$|^BGFX:\\S+$|^MEMM:\\S+$|^XRAS:\\S+$|^ASMT:\\S+$|^MUTI:\\S+$|^HEGX:\\S+$|^BGCB:\\S+$|^XSGA:\\S+$|^BLTX:\\S+$|^SPTR:\\S+$|^XQTX:\\S+$|^ALXP:\\S+$|^XMAN:\\S+$|^ELEU:\\S+$|^LIUH:\\S+$|^LLAT:\\S+$|^AUTX:\\S+$|^TQEM:\\S+$|^BSLB:\\S+$|^PFXD:\\S+$|^BATD:\\S+$|^IOFX:\\S+$|^HRTF:\\S+$|^NOED:\\S+$|^BGCO:\\S+$|^XUNI:\\S+$|^NABE:\\S+$|^RENC:\\S+$|^IFLS:\\S+$|^OSDS:\\S+$|^EPA:\\S+$|^JEFE:\\S+$|^SBIL:\\S+$|^EOTC:\\S+$|^CPGX:\\S+$|^NMRJ:\\S+$|^SGX:\\S+$|^BKLF:\\S+$|^EXEU:\\S+$|^MIZX:\\S+$|^XEDA:\\S+$|^RPWC:\\S+$|^BNDD:\\S+$|^KOTF:\\S+$|^GLPS:\\S+$|^CSLB:\\S+$|^OMGA:\\S+$|^EGMT:\\S+$|^ZSE:\\S+$|^VSE:\\S+$|^XBRM:\\S+$|^BCMA:\\S+$|^XIQS:\\S+$|^XPOM:\\S+$|^NAMX:\\S+$|^TRQB:\\S+$|^IFED:\\S+$|^KNIG:\\S+$|^XCYO:\\S+$|^CXAC:\\S+$|^BAPE:\\S+$|^OMIP:\\S+$|^SMFF:\\S+$|^XEID:\\S+$|^VONT:\\S+$|^XPUK:\\S+$|^NFSA:\\S+$|^ELIX:\\S+$|^XPOS:\\S+$|^BFEX:\\S+$|^STFX:\\S+$|^ETSC:\\S+$|^DUSB:\\S+$|^IBUL:\\S+$|^GSBE:\\S+$|^TFSD:\\S+$|^FTFS:\\S+$|^XIDX:\\S+$|^AFSX:\\S+$|^FINO:\\S+$|^EXSD:\\S+$|^XSAP:\\S+$|^FXGB:\\S+$|^VABD:\\S+$|^CATS:\\S+$|^MCXR:\\S+$|^HMTF:\\S+$|^XAMM:\\S+$|^HOTC:\\S+$|^AFSO:\\S+$|^XNYS:\\S+$|^EXYY:\\S+$|^ZODM:\\S+$|^NIBR:\\S+$|^DOWE:\\S+$|^IMCR:\\S+$|^XTRD:\\S+$|^BNPX:\\S+$|^TQEB:\\S+$|^HANA:\\S+$|^XCDE:\\S+$|^SHSC:\\S+$|^MLES:\\S+$|^UBCZ:\\S+$|^CBSX:\\S+$|^VTEX:\\S+$|^NYSI:\\S+$|^BEUO:\\S+$|^WINX:\\S+$|^MSAL:\\S+$|^JSER:\\S+$|^XEER:\\S+$|^ACEX:\\S+$|^CMEE:\\S+$|^EBSF:\\S+$|^ICE:\\S+$|^XSPM:\\S+$|^XBAA:\\S+$|^MHIP:\\S+$|^XSC1:\\S+$|^CSEALL:\\S+$|^LCUR:\\S+$|^VNDM:\\S+$|^NORD:\\S+$|^GMEO:\\S+$|^CXOT:\\S+$|^XMDS:\\S+$|^ISWB:\\S+$|^TECO:\\S+$|^XBIS:\\S+$|^BARD:\\S+$|^HUPX:\\S+$|^CREM:\\S+$|^XFNO:\\S+$|^SWX:\\S+$|^GBOT:\\S+$|^SSBT:\\S+$|^APXL:\\S+$|^TRU1:\\S+$|^XBRU:\\S+$|^XINE:\\S+$|^DAIW:\\S+$|^LTAA:\\S+$|^XMIL:\\S+$|^TSGB:\\S+$|^SGMU:\\S+$|^XDES:\\S+$|^ACKF:\\S+$|^BLPX:\\S+$|^XOPV:\\S+$|^RTSP:\\S+$|^XMAB:\\S+$|^XSTO:\\S+$|^IMCS:\\S+$|^MAGM:\\S+$|^SGMW:\\S+$|^TPSV:\\S+$|^GFKS:\\S+$|^XSTP:\\S+$|^XPBT:\\S+$|^TNLK:\\S+$|^CFTW:\\S+$|^COAL:\\S+$|^ICSU:\\S+$|^XSIB:\\S+$|^XETV:\\S+$|^ETLX:\\S+$|^ILCM:\\S+$|^LMAO:\\S+$|^IFSG:\\S+$|^SGEX:\\S+$|^XRMO:\\S+$|^LASP:\\S+$|^BAPX:\\S+$|^CGMC:\\S+$|^N2EX:\\S+$|^XPHO:\\S+$|^XROT:\\S+$|^EMTF:\\S+$|^MHBP:\\S+$|^GFIR:\\S+$|^SGMT:\\S+$|^RBCT:\\S+$|^WETP:\\S+$|^BBLX:\\S+$|^ARCA:\\S+$|^CBKA:\\S+$|^BOAL:\\S+$|^XAQS:\\S+$|^SNSI:\\S+$|^CEPL:\\S+$|^NLPX:\\S+$|^XOFF:\\S+$|^CFAU:\\S+$|^XVAL:\\S+$|^PKOP:\\S+$|^BRED:\\S+$|^IFXR:\\S+$|^XOSL:\\S+$|^MBUL:\\S+$|^CIMA:\\S+$|^VAGM:\\S+$|^ULTX:\\S+$|^XSBI:\\S+$|^HRTX:\\S+$|^ENSL:\\S+$|^XODE:\\S+$|^XHNX:\\S+$|^WINS:\\S+$|^MERK:\\S+$|^XCBF:\\S+$|^IBER:\\S+$|^GMGL:\\S+$|^NEXX:\\S+$|^XGTG:\\S+$|^DHLX:\\S+$|^CSVW:\\S+$|^XSTV:\\S+$|^TREU:\\S+$|^GRIO:\\S+$|^XFDA:\\S+$|^XTAM:\\S+$|^PINL:\\S+$|^BCSI:\\S+$|^CXAQ:\\S+$|^SGMY:\\S+$|^TDON:\\S+$|^IMCE:\\S+$|^BPOL:\\S+$|^RSE:\\S+$|^CNSI:\\S+$|^CAND:\\S+$|^CCMS:\\S+$|^VTLS:\\S+$|^XMNT:\\S+$|^CAPI:\\S+$|^FGEX:\\S+$|^ASXP:\\S+$|^XMSW:\\S+$|^IMCO:\\S+$|^KNCM:\\S+$|^JESI:\\S+$|^XTRN:\\S+$|^ICXR:\\S+$|^XPSF:\\S+$|^HKEX:\\S+$|^BOM:\\S+$|^XRUS:\\S+$|^MUNA:\\S+$|^XLOM:\\S+$|^XCNF:\\S+$|^SGMA:\\S+$|^NMCE:\\S+$|^TPEL:\\S+$|^LPPM:\\S+$|^LOYD:\\S+$|^PFTQ:\\S+$|^WSIN:\\S+$|^KNEM:\\S+$|^FNCS:\\S+$|^BIT:\\S+$|^XPAL:\\S+$|^SELC:\\S+$|^FAST:\\S+$|^MCSE:\\S+$|^XRFQ:\\S+$|^LISZ:\\S+$|^CSAG:\\S+$|^XLON:\\S+$|^XNGO:\\S+$|^WFSE:\\S+$|^ICSZ:\\S+$|^TPEU:\\S+$|^BCBA:\\S+$|^BCXE:\\S+$|^ANTS:\\S+$|^CPTX:\\S+$|^XTKS:\\S+$|^XSC2:\\S+$|^FNEE:\\S+$|^NABU:\\S+$|^VIUK:\\S+$|^ISWN:\\S+$|^ICKR:\\S+$|^XGMX:\\S+$|^WMTF:\\S+$|^LTSE:\\S+$|^REST:\\S+$|^EUCC:\\S+$|^TSAD:\\S+$|^XCSE:\\S+$|^MIBG:\\S+$|^AQUA:\\S+$|^CCEX:\\S+$|^OMEL:\\S+$|^SEED:\\S+$|^XIBE:\\S+$|^GFAM:\\S+$|^JYSI:\\S+$|^MALX:\\S+$|^DNFI:\\S+$|^IOFI:\\S+$|^ESLO:\\S+$|^ICXL:\\S+$|^XBXO:\\S+$|^WOOD:\\S+$|^XGHA:\\S+$|^STUD:\\S+$|^HCER:\\S+$|^XEYE:\\S+$|^MSEL:\\S+$|^MANL:\\S+$|^EUWA:\\S+$|^IOTC:\\S+$|^LIQU:\\S+$|^BNPP:\\S+$|^XSAU:\\S+$|^STO:\\S+$|^3579:\\S+$|^AQXE:\\S+$|^CHIV:\\S+$|^EBON:\\S+$|^XDMI:\\S+$|^SKBB:\\S+$|^UNGB:\\S+$|^GOVX:\\S+$|^IMBD:\\S+$|^SSIL:\\S+$|^GETB:\\S+$|^CCEU:\\S+$|^PIEU:\\S+$|^XOAS:\\S+$|^DVFX:\\S+$|^EMDR:\\S+$|^TWHK:\\S+$|^XALS:\\S+$|^TPSL:\\S+$|^XMEV:\\S+$|^PXIL:\\S+$|^SNUK:\\S+$|^NSXB:\\S+$|^XNCD:\\S+$|^DUSA:\\S+$|^ALLT:\\S+$|^XATL:\\S+$|^BCSC:\\S+$|^EXSB:\\S+$|^CSAS:\\S+$|^MBPL:\\S+$|^OHVO:\\S+$|^AATS:\\S+$|^FINN:\\S+$|^XICE:\\S+$|^XBAN:\\S+$|^GMTF:\\S+$|^GMES:\\S+$|^XCAS:\\S+$|^DSMD:\\S+$|^OTCE:\\S+$|^XELX:\\S+$|^IMMH:\\S+$|^RESF:\\S+$|^XSOP:\\S+$|^MSPL:\\S+$|^IMSB:\\S+$|^XETS:\\S+$|^XVPA:\\S+$|^NCEL:\\S+$|^CSEU:\\S+$|^XKAC:\\S+$|^XNIM:\\S+$|^CSCL:\\S+$|^BASI:\\S+$|^PARX:\\S+$|^XSES:\\S+$|^CGXS:\\S+$|^XLDX:\\S+$|^XBOL:\\S+$|^XHEL:\\S+$|^BMCM:\\S+$|^OCSI:\\S+$|^ICRO:\\S+$|^XMUS:\\S+$|^XSCE:\\S+$|^INGB:\\S+$|^STUF:\\S+$|^XBCV:\\S+$|^XLIM:\\S+$|^EQTA:\\S+$|^XMOC:\\S+$|^ODXE:\\S+$|^EBHU:\\S+$|^SPEX:\\S+$|^TRNL:\\S+$|^HAMM:\\S+$|^MUFP:\\S+$|^XSIM:\\S+$|^TRWB:\\S+$|^KLEU:\\S+$|^TRXE:\\S+$|^XCFF:\\S+$|^SIAB:\\S+$|^WBDM:\\S+$|^CAPA:\\S+$|^AFSE:\\S+$|^TRAX:\\S+$|^CBOE:\\S+$|^BRIX:\\S+$|^JNSI:\\S+$|^PEPY:\\S+$|^XGUA:\\S+$|^BNPS:\\S+$|^TSCB:\\S+$|^TPIC:\\S+$|^MTSC:\\S+$|^ABSI:\\S+$|^DBAB:\\S+$|^MXLM:\\S+$|^NBOT:\\S+$|^XCEC:\\S+$|^IMFX:\\S+$|^NEXD:\\S+$|^CLCH:\\S+$|^XBTR:\\S+$|^MERF:\\S+$|^XPET:\\S+$|^XERT:\\S+$|^XRIS:\\S+$|^FISH:\\S+$|^DBMO:\\S+$|^BIDS:\\S+$|^ICOR:\\S+$|^RMTF:\\S+$|^XGSE:\\S+$|^GMEG:\\S+$|^NYFX:\\S+$|^KELR:\\S+$|^XSC3:\\S+$|^XCFE:\\S+$|^BARX:\\S+$|^BBOK:\\S+$|^NILX:\\S+$|^CGMG:\\S+$|^BCRM:\\S+$|^EWRM:\\S+$|^CMEC:\\S+$|^XLAO:\\S+$|^GTCO:\\S+$|^GSIB:\\S+$|^XESM:\\S+$|^ISWO:\\S+$|^CGIT:\\S+$|^XMNX:\\S+$|^ASXT:\\S+$|^BVCA:\\S+$|^TPEE:\\S+$|^CIMD:\\S+$|^FNIX:\\S+$|^XULA:\\S+$|^BKKT:\\S+$|^UBSG:\\S+$|^JLQD:\\S+$|^XLAT:\\S+$|^ISEX:\\S+$|^AFEX:\\S+$|^LON:\\S+$|^EPEX:\\S+$|^EQTC:\\S+$|^ELSE:\\S+$|^EUWB:\\S+$|^XPOR:\\S+$|^STOX:\\S+$|^XSEB:\\S+$|^C2OX:\\S+$|^XNCO:\\S+$|^LIUS:\\S+$|^NEOC:\\S+$|^TUOB:\\S+$|^CASI:\\S+$|^OTCM:\\S+$|^CURX:\\S+$|^XEUM:\\S+$|^EUFN:\\S+$|^BMLS:\\S+$|^R5FX:\\S+$|^CDSI:\\S+$|^FINC:\\S+$|^RBCE:\\S+$|^SEBL:\\S+$|^AMXO:\\S+$|^CXAR:\\S+$|^XSGE:\\S+$|^CMET:\\S+$|^XETR:\\S+$|^THRE:\\S+$|^CCML:\\S+$|^CBKF:\\S+$|^AQXA:\\S+$|^IPXW:\\S+$|^FMTS:\\S+$|^MAQU:\\S+$|^EDRF:\\S+$|^DZBK:\\S+$|^XLLB:\\S+$|^MELO:\\S+$|^MSTX:\\S+$|^GLPX:\\S+$|^FXPS:\\S+$|^BFPT:\\S+$|^XZIM:\\S+$|^LEUF:\\S+$|^FNLV:\\S+$|^FXRQ:\\S+$|^EPRL:\\S+$|^XEMS:\\S+$|^FXOP:\\S+$|^CMMT:\\S+$|^CMSF:\\S+$|^XIMA:\\S+$|^NOPS:\\S+$|^PUND:\\S+$|^KLSH:\\S+$|^NFSD:\\S+$|^BHSF:\\S+$|^DOSE:\\S+$|^NSE:\\S+$|^BATE:\\S+$|^BMTF:\\S+$|^JSSI:\\S+$|^SHAR:\\S+$|^MICE:\\S+$|^NXSE:\\S+$|^DRCT:\\S+$|^SECD:\\S+$|^XOSA:\\S+$|^EBR:\\S+$|^WDER:\\S+$|^HNX:\\S+$|^XMRV:\\S+$|^DGCX:\\S+$|^MVCX:\\S+$|^BOTV:\\S+$|^BEUT:\\S+$|^BNPF:\\S+$|^BACR:\\S+$|^XSEC:\\S+$|^FCBT:\\S+$|^RICD:\\S+$|^PLPD:\\S+$|^OTCI:\\S+$|^DNIS:\\S+$|^HDAT:\\S+$|^NEXN:\\S+$|^RFBK:\\S+$|^OBKL:\\S+$|^UKCA:\\S+$|^TWEM:\\S+$|^TEMF:\\S+$|^XMON:\\S+$|^DEXE:\\S+$|^FIED:\\S+$|^XKHR:\\S+$|^MKTF:\\S+$|^MUND:\\S+$|^CGQT:\\S+$|^NPEX:\\S+$|^AURO:\\S+$|^UCHU:\\S+$|^XSAM:\\S+$|^ISWR:\\S+$|^XYIE:\\S+$|^XEEO:\\S+$|^DBLN:\\S+$|^ICES:\\S+$|^ETR:\\S+$|^TEMR:\\S+$|^SGOE:\\S+$|^XLJM:\\S+$|^CHIC:\\S+$|^SSTX:\\S+$|^BPKO:\\S+$|^XUSE:\\S+$|^WQXL:\\S+$|^ALXL:\\S+$|^SSBI:\\S+$|^LASF:\\S+$|^BTEQ:\\S+$|^TCDS:\\S+$|^XNDQ:\\S+$|^SFCL:\\S+$|^AIMX:\\S+$|^LBCW:\\S+$|^DAVY:\\S+$|^XCOL:\\S+$|^XPHX:\\S+$|^BCFS:\\S+$|^XKON:\\S+$|^XCME:\\S+$|^NATX:\\S+$|^LELE:\\S+$|^XPUS:\\S+$|^NASD:\\S+$|^MLSI:\\S+$|^CSE:\\S+$|^BIVA:\\S+$|^ICHK:\\S+$|^CECA:\\S+$|^ICDX:\\S+$|^PUMA:\\S+$|^KRX:\\S+$|^NGXC:\\S+$|^EQOC:\\S+$|^SSFX:\\S+$|^BKBF:\\S+$|^XHKF:\\S+$|^LBWS:\\S+$|^ABUL:\\S+$|^BMLB:\\S+$|^XBRT:\\S+$|^UICE:\\S+$|^UCBA:\\S+$|^CGMA:\\S+$|^IMCT:\\S+$|^BAMX:\\S+$|^BLIQ:\\S+$|^XNEC:\\S+$|^CIOI:\\S+$|^INCA:\\S+$|^XTK1:\\S+$|^RBIV:\\S+$|^SEBA:\\S+$|^VUSA:\\S+$|^IFAD:\\S+$|^CSHK:\\S+$|^VFXO:\\S+$|^ELI:\\S+$|^MLRQ:\\S+$|^AGBP:\\S+$|^TRU2:\\S+$|^IEXD:\\S+$|^HPCV:\\S+$|^AFSA:\\S+$|^XBIL:\\S+$|^ASX:\\S+$|^NODX:\\S+$|^TSX:\\S+$|^XATH:\\S+$|^PINX:\\S+$|^XCOR:\\S+$|^FNDK:\\S+$|^CGEB:\\S+$|^XCUE:\\S+$|^XSSC:\\S+$|^NEXO:\\S+$|^BSME:\\S+$|^XLJU:\\S+$|^IFBX:\\S+$|^SBSI:\\S+$|^SUNT:\\S+$|^GFPO:\\S+$|^TRQC:\\S+$|^XCX2:\\S+$|^XDSE:\\S+$|^BMLI:\\S+$|^HKG:\\S+$|^CIBH:\\S+$|^ITGL:\\S+$|^BUYN:\\S+$|^XECS:\\S+$|^XIST:\\S+$|^BPSX:\\S+$|^TEFX:\\S+$|^CNOD:\\S+$|^XBAH:\\S+$|^HSXA:\\S+$|^ISBV:\\S+$|^EXSE:\\S+$|^OMIC:\\S+$|^MPRL:\\S+$|^YLDX:\\S+$|^BAIP:\\S+$|^SECC:\\S+$|^TSAF:\\S+$|^ENMS:\\S+$|^PLPS:\\S+$|^DIFX:\\S+$|^MTXM:\\S+$|^CEUX:\\S+$|^CSIN:\\S+$|^IEPA:\\S+$|^LISX:\\S+$|^BLBF:\\S+$|^GSPX:\\S+$|^ZARX:\\S+$|^EDGX:\\S+$|^STXS:\\S+$|^UBIS:\\S+$|^DHEL:\\S+$|^TPIO:\\S+$|^BASE:\\S+$|^XGLO:\\S+$|^CBKS:\\S+$|^RTSL:\\S+$|^BASX:\\S+$|^HPPO:\\S+$|^JPCB:\\S+$|^BRDE:\\S+$|^SBAR:\\S+$|^ARAX:\\S+$|^KBCB:\\S+$|^LEVL:\\S+$|^XXSC:\\S+$|^MHBD:\\S+$|^HCHC:\\S+$|^KAZE:\\S+$|^SIFX:\\S+$|^PDEX:\\S+$|^FRTE:\\S+$|^TERM:\\S+$|^TRCX:\\S+$|^BGSI:\\S+$|^IBEQ:\\S+$|^CLJP:\\S+$|^IGDL:\\S+$|^XKBT:\\S+$|^EMBX:\\S+$|^XOSE:\\S+$|^XGCX:\\S+$|^TSED:\\S+$|^BLFX:\\S+$|^BSE:\\S+$|^COTC:\\S+$|^XPAE:\\S+$|^XSSE:\\S+$|^BATF:\\S+$|^UKEX:\\S+$|^FNFX:\\S+$|^RR4G:\\S+$|^XMTB:\\S+$|^MTAH:\\S+$|^CGMH:\\S+$|^XKOS:\\S+$|^XTSE:\\S+$|^TSMM:\\S+$|^MSMS:\\S+$|^CGET:\\S+$|^IFLX:\\S+$|^WSE:\\S+$|^EQSL:\\S+$|^EXDC:\\S+$|^NYSE:\\S+$|^BILT:\\S+$|^ASXC:\\S+$|^EUWX:\\S+$|^BRDS:\\S+$|^XSAF:\\S+$|^IFUT:\\S+$|^SIGA:\\S+$|^CCFX:\\S+$|^XNZE:\\S+$|^BVUR:\\S+$|^PEPH:\\S+$|^BSAB:\\S+$|^XNCM:\\S+$|^JSES:\\S+$|^XCIE:\\S+$|^OTCX:\\S+$|^USWB:\\S+$|^ISWV:\\S+$|^EDGA:\\S+$|^XBRA:\\S+$|^BDSK:\\S+$|^DNSE:\\S+$|^PATF:\\S+$|^NXVW:\\S+$|^XNOM:\\S+$|^IEBS:\\S+$|^WBAH:\\S+$|^XJSE:\\S+$|^XMOS:\\S+$|^SPBE:\\S+$|^MTSF:\\S+$|^MUSE:\\S+$|^GFIN:\\S+$|^DWSF:\\S+$|^XBLN:\\S+$|^XNKS:\\S+$|^GFSO:\\S+$|^NEXF:\\S+$|^XEUE:\\S+$|^CIMB:\\S+$|^MOCX:\\S+$|^TSGI:\\S+$|^AUTP:\\S+$|^CGTR:\\S+$|^DICE:\\S+$|^CSOB:\\S+$|^SBIV:\\S+$|^XSHE:\\S+$|^LIGA:\\S+$|^CGND:\\S+$|^IKBS:\\S+$|^FXCL:\\S+$|^NASX:\\S+$|^XTAE:\\S+$|^MOTX:\\S+$|^FNSE:\\S+$|^XHAN:\\S+$|^VAGL:\\S+$|^EMIR:\\S+$|^EDGO:\\S+$|^IMGI:\\S+$|^NABA:\\S+$|^WABR:\\S+$|^BVUK:\\S+$|^HUDX:\\S+$|^CSAU:\\S+$|^XPOW:\\S+$|^RICX:\\S+$|^XALT:\\S+$|^BTRL:\\S+$|^ERIS:\\S+$|^SEMX:\\S+$|^XDLP:\\S+$|^OTCQ:\\S+$|^XIOM:\\S+$|^EBXV:\\S+$|^NFSC:\\S+$|^IMTF:\\S+$|^XKSE:\\S+$|^ISWE:\\S+$|^XEUC:\\S+$|^BASP:\\S+$|^TSBX:\\S+$|^TYO:\\S+$|^TDGF:\\S+$|^KNLI:\\S+$|^GLLC:\\S+$|^TADAWUL:\\S+$|^DAPA:\\S+$|^HELA:\\S+$|^XCNQ:\\S+$|^DEKA:\\S+$|^XTXE:\\S+$|^SMBB:\\S+$|^BGHX:\\S+$|^HAMN:\\S+$|^ARKX:\\S+$|^XNXD:\\S+$|^SMBP:\\S+$|^RMMS:\\S+$|^JPMS:\\S+$|^IUOB:\\S+$|^BGFI:\\S+$|^LSE:\\S+$|^OTC:\\S+$|^ATFX:\\S+$|^CXRT:\\S+$|^XNOR:\\S+$|^CRYX:\\S+$|^XNAM:\\S+$|^XBBK:\\S+$|^VERT:\\S+$|^NZE:\\S+$|^FRAV:\\S+$|^XBCL:\\S+$|^FCME:\\S+$|^XRMZ:\\S+$|^MHBE:\\S+$|^ECSL:\\S+$|^BERB:\\S+$|^RPDX:\\S+$|^CHIO:\\S+$|^XPRA:\\S+$|^EXAA:\\S+$|^JBUL:\\S+$|^VFGB:\\S+$|^DBLX:\\S+$|^CHIS:\\S+$|^XMLI:\\S+$|^VIE:\\S+$|^HSFX:\\S+$|^POTC:\\S+$|^CSOT:\\S+$|^NMTF:\\S+$|^KOSDAQ:\\S+$|^CLMX:\\S+$|^UTSL:\\S+$|^XSWA:\\S+$|^SMBG:\\S+$|^CGEE:\\S+$|^BRVM:\\S+$|^RBCB:\\S+$|^AACA:\\S+$|^CEUO:\\S+$|^EMID:\\S+$|^WBON:\\S+$|^MCUR:\\S+$|^ATLN:\\S+$|^XZAP:\\S+$|^ARCH:\\S+$|^24EX:\\S+$|^XECM:\\S+$|^OCEA:\\S+$|^XKRX:\\S+$|^BOSP:\\S+$|^XASX:\\S+$|^XMFX:\\S+$|^ODOC:\\S+$|^XTKT:\\S+$|^GBUL:\\S+$|^PUMX:\\S+$|^TRUX:\\S+$|^OPEX:\\S+$|^SMEX:\\S+$|^XBKK:\\S+$|^VCRS:\\S+$|^XSHG:\\S+$|^VMFX:\\S+$|^XSTE:\\S+$|^G1XX:\\S+$|^XOAM:\\S+$|^XSAT:\\S+$|^CLPH:\\S+$|^EBSC:\\S+$|^MUBM:\\S+$|^PSXD:\\S+$|^XECC:\\S+$|^BKK:\\S+$|^CRYD:\\S+$|^IMIR:\\S+$|^MTXX:\\S+$|^HPCX:\\S+$|^CSMD:\\S+$|^ICPM:\\S+$|^IOTF:\\S+$|^SGMX:\\S+$|^DKED:\\S+$|^ENCL:\\S+$|^CHID:\\S+$|^XLGT:\\S+$|^FINR:\\S+$|^MAQE:\\S+$|^BILU:\\S+$|^AMS:\\S+$|^RBCG:\\S+$|^FSME:\\S+$|^MCX:\\S+$|^XTIR:\\S+$|^XKAR:\\S+$|^SPEC:\\S+$|^XBEY:\\S+$|^RABL:\\S+$|^CEUD:\\S+$|^XBVR:\\S+$|^PEPW:\\S+$|^CONC:\\S+$|^CLAU:\\S+$|^NOWX:\\S+$|^HPCS:\\S+$|^MLIX:\\S+$|^TDBL:\\S+$|^BARU:\\S+$|^UKGD:\\S+$|^XDUB:\\S+$|^SIGH:\\S+$|^TIRD:\\S+$|^JLEU:\\S+$|^TEGI:\\S+$|^XDFB:\\S+$|^AWBX:\\S+$|^TSFI:\\S+$|^INCR:\\S+$|^BRGA:\\S+$|^TASE:\\S+$|^ISWP:\\S+$|^XMIO:\\S+$|^IOGI:\\S+$|^NSME:\\S+$|^LIFI:\\S+$|^XTSX:\\S+$|^XTXD:\\S+$|^NOSI:\\S+$|^XNEP:\\S+$|^XPOL:\\S+$|^SPXE:\\S+$|^MCAD:\\S+$|^BGCD:\\S+$|^XICX:\\S+$|^BUX:\\S+$|^BOAT:\\S+$|^MISX:\\S+$|^NSEASI:\\S+$|^BMCL:\\S+$|^IMEX:\\S+$|^TPIE:\\S+$|^XISX:\\S+$|^MFOX:\\S+$|^FINY:\\S+$|^XPAR:\\S+$|^XTEH:\\S+$|^XNMS:\\S+$|^LIQH:\\S+$|^XDAR:\\S+$|^DDTX:\\S+$|^INGE:\\S+$|^EDBT:\\S+$|^BSFX:\\S+$|^NCME:\\S+$|^MSSI:\\S+$|^ONSE:\\S+$|^SEBS:\\S+$|^BLBS:\\S+$|^FLTR:\\S+$|^FNLT:\\S+$|^MNFI:\\S+$|^BBSX:\\S+$|^AQEA:\\S+$|^AKIS:\\S+$|^CBNL:\\S+$|^IOIR:\\S+$|^FREI:\\S+$|^XTND:\\S+$|^UBSP:\\S+$|^SANT:\\S+$|^ICSH:\\S+$|^ABFI:\\S+$|^STAN:\\S+$|^GBWB:\\S+$|^MEMX:\\S+$|^XNDU:\\S+$|^DWFI:\\S+$|^NORX:\\S+$|^GTXS:\\S+$|^XTAF:\\S+$|^SVEX:\\S+$|^XBOT:\\S+$|^XDRK:\\S+$|^XABC:\\S+$|^SXSI:\\S+$|^BOSC:\\S+$|^XDFM:\\S+$|^SWEE:\\S+$|^BEAM:\\S+$|^OAPA:\\S+$|^NOSC:\\S+$|^IINX:\\S+$|^SMBE:\\S+$|^OTCB:\\S+$|^XNAF:\\S+$|^PRSE:\\S+$|^MCID:\\S+$|^FAIR:\\S+$|^EBMX:\\S+$|^XOSD:\\S+$|^CGMI:\\S+$|^XEUI:\\S+$|^IOMM:\\S+$|^INGF:\\S+$|^IBGH:\\S+$|^CXAW:\\S+$|^TWJT:\\S+$|^BBVA:\\S+$|^XMAU:\\S+$|^MYTR:\\S+$|^SBEX:\\S+$|^TMEX:\\S+$|^XIMC:\\S+$|^SEDC:\\S+$|^CXAP:\\S+$|^TSMR:\\S+$|^AMPX:\\S+$|^SCXS:\\S+$|^XQUI:\\S+$|^JPBX:\\S+$|^MLVX:\\S+$|^GFIB:\\S+$|^GFBO:\\S+$|^EQCA:\\S+$|^EXSI:\\S+$|^XSCA:\\S+$|^SSOB:\\S+$|^SHAW:\\S+$|^XMUN:\\S+$|^XNSA:\\S+$|^CSEC:\\S+$|^GMBG:\\S+$|^KLSE:\\S+$|^BRFQ:\\S+$|^XKCM:\\S+$|^VTX:\\S+$|^PFTS:\\S+$|^XISE:\\S+$|^EQUS:\\S+$|^VDRK:\\S+$|^FNFI:\\S+$|^TGAT:\\S+$|^EXLP:\\S+$|^XETF:\\S+$|^XNGS:\\S+$|^XUKR:\\S+$|^SGMV:\\S+$|^XZAG:\\S+$|^NSPO:\\S+$|^LQED:\\S+$|^BTBS:\\S+$|^XSFA:\\S+$|^SQUA:\\S+$|^XPHS:\\S+$|^FICX:\\S+$|^ROTC:\\S+$|^TFSA:\\S+$|^NSDQ:\\S+$|^GFIF:\\S+$|^XTK3:\\S+$|^XRSP:\\S+$|^TPEO:\\S+$|^EMIB:\\S+$|^BOVM:\\S+$|^CIBC:\\S+$|^JSJX:\\S+$|^XDEX:\\S+$|^XKHA:\\S+$|^BNPL:\\S+$|^ROSR:\\S+$|^IMEN:\\S+$|^DEAL:\\S+$|^MAXD:\\S+$|^BTQE:\\S+$|^MSTO:\\S+$|^TSEF:\\S+$|^MUDX:\\S+$|^HEMO:\\S+$|^CHIX:\\S+$|^XHKG:\\S+$|^SZSE:\\S+$|^LMNX:\\S+$|^ZKBX:\\S+$|^TMID:\\S+$|^XPRM:\\S+$|^PEPQ:\\S+$|^QWIX:\\S+$|^IFUS:\\S+$|^EBSN:\\S+$|^IMED:\\S+$|^VTBC:\\S+$|^CPH:\\S+$|^HAMB:\\S+$|^XHNF:\\S+$|^TPE:\\S+$|^IFXC:\\S+$|^SPIM:\\S+$|^MTUS:\\S+$|^SB1M:\\S+$|^AMNL:\\S+$|^ABNA:\\S+$|^BDEA:\\S+$|^EXGM:\\S+$|^XNAI:\\S+$|^IPXP:\\S+$|^JSEB:\\S+$|^XBVM:\\S+$|^NEOD:\\S+$|^XBAB:\\S+$|^BVUS:\\S+$|^XBSE:\\S+$|^CGGD:\\S+$|^HPSX:\\S+$|^GREE:\\S+$|^UBSA:\\S+$|^MTSO:\\S+$|^S3FM:\\S+$|^XPIC:\\S+$|^MABX:\\S+$|^IFEU:\\S+$|^MTXS:\\S+$|^LQFI:\\S+$|^XROX:\\S+$|^XUBS:\\S+$|^MEMD:\\S+$|^HEL:\\S+$|^MTXC:\\S+$|^XBUD:\\S+$|^FRAS:\\S+$|^XERE:\\S+$|^WFLB:\\S+$|^CDED:\\S+$|^XCBT:\\S+$|^XAFX:\\S+$|^MFXA:\\S+$|^XLIS:\\S+$|^SIMD:\\S+$|^MNSE:\\S+$|^XGME:\\S+$|^STUE:\\S+$|^BLOX:\\S+$|^FXAL:\\S+$|^XBLB:\\S+$|^BLXA:\\S+$|^ASEF:\\S+$|^XISA:\\S+$|^BBVX:\\S+$|^JADX:\\S+$|^LOTC:\\S+$|^TQEA:\\S+$|^AUTO:\\S+$|^ARCO:\\S+$|^XLUX:\\S+$|^FLTB:\\S+$|^XIEL:\\S+$|^UCDE:\\S+$|^NDCM:\\S+$|^CBAL:\\S+$|^FTUS:\\S+$|^SPRZ:\\S+$|^MUBP:\\S+$|^CFIL:\\S+$|^ASTR:\\S+$|^ODDO:\\S+$|^IDX:\\S+$|^EXSF:\\S+$|^VALX:\\S+$|^NABL:\\S+$|^LIQF:\\S+$|^SCXA:\\S+$|^ONEC:\\S+$|^EIXE:\\S+$|^ALSI:\\S+$|^INSE:\\S+$|^NYPC:\\S+$|^BEBG:\\S+$|^RTSI:\\S+$|^JSE:\\S+$|^NYMS:\\S+$|^XTAL:\\S+$|^SCXF:\\S+$|^STFL:\\S+$|^NDEX:\\S+$|^ROCO:\\S+$|^CCMX:\\S+$|^XSGO:\\S+$|^XSWX:\\S+$|^XVES:\\S+$|^XPOT:\\S+$|^PNED:\\S+$|^DOWG:\\S+$|^SKSI:\\S+$|^XKUW:\\S+$|^PSE:\\S+$|^XVIE:\\S+$|^NDXS:\\S+$|^BMEX:\\S+$|^XMER:\\S+$|^4AXE:\\S+$|^IST:\\S+$|^SGMZ:\\S+$|^JISI:\\S+$|^ASPN:\\S+$|^COMG:\\S+$|^TRSI:\\S+$|^FBSI:\\S+$|^ALDP:\\S+$|^CGMT:\\S+$|^SCOT:\\S+$|^TSCD:\\S+$|^TERA:\\S+$|^CSDA:\\S+$|^CBKE:\\S+$|^ELXE:\\S+$|^KMUX:\\S+$|^BAEP:\\S+$|^SIGJ:\\S+$|^BLUX:\\S+$|^LOUI:\\S+$|^CFIC:\\S+$|^JEFS:\\S+$|^NYSEARCA:\\S+$|^IFLO:\\S+$|^SVES:\\S+$|^XMOD:\\S+$|^KBLT:\\S+$|^EESE:\\S+$|^RBSI:\\S+$|^MTAA:\\S+$|^XLSM:\\S+$|^XFCI:\\S+$|^XCHG:\\S+$|^DKFI:\\S+$|^NCML:\\S+$|^XMAE:\\S+$|^NWNV:\\S+$|^BARO:\\S+$|^EXSY:\\S+$|^XKAZ:\\S+$|^TRAS:\\S+$|^BREA:\\S+$|^MLCO:\\S+$|^XBUE:\\S+$|^ADVT:\\S+$|^OTPB:\\S+$|^TWEU:\\S+$|^FRAU:\\S+$|^IMGB:\\S+$|^XLOD:\\S+$|^XPRI:\\S+$|^XAFR:\\S+$|^XTXM:\\S+$|^MIHI:\\S+$|^XNYM:\\S+$|^EXOT:\\S+$|^WSIL:\\S+$|^CLST:\\S+$|^LBBW:\\S+$|^BSEX:\\S+$|^XOAA:\\S+$|^MKAA:\\S+$|^XSTC:\\S+$|^IMET:\\S+$|^IDXM:\\S+$|^ZOBX:\\S+$|^CRED:\\S+$|^KBLS:\\S+$|^TRDX:\\S+$|^GROW:\\S+$|^XINV:\\S+$|^EXVP:\\S+$|^TRAI:\\S+$|^GSXC:\\S+$|^HESP:\\S+$|^SWBI:\\S+$|^AFET:\\S+$|^XUMP:\\S+$|^MAQL:\\S+$|^XLME:\\S+$|^UCIT:\\S+$|^AQED:\\S+$|^GSAL:\\S+$|^ICEO:\\S+$|^MCXX:\\S+$|^VTPS:\\S+$|^XWAR:\\S+$|^NLAX:\\S+$|^BGFU:\\S+$|^ISWT:\\S+$|^XSTU:\\S+$|^XBLK:\\S+$|^AMEX:\\S+$|^XGAT:\\S+$|^XMSM:\\S+$|^ETFP:\\S+$|^XBRD:\\S+$|^ISWC:\\S+$|^ABXX:\\S+$|^XFEX:\\S+$|^TGSI:\\S+$|^XMDG:\\S+$|^BKLN:\\S+$|^CXAM:\\S+$|^CABK:\\S+$|^UBSY:\\S+$|^MAEL:\\S+$|^XGDX:\\S+$|^FSX:\\S+$|^APEX:\\S+$|^NEXL:\\S+$|^BLBB:\\S+$|^IEXG:\\S+$|^IPSX:\\S+$|^CSBX:\\S+$|^BYXD:\\S+$|^BOFS:\\S+$|^OTCN:\\S+$|^SAGE:\\S+$|^ITGI:\\S+$|^XTK2:\\S+$|^BGUK:\\S+$|^METZ:\\S+$|^XBUL:\\S+$|^BAAD:\\S+$|^XEUP:\\S+$|^ECHO:\\S+$|^FISU:\\S+$|^XREP:\\S+$|^GFOX:\\S+$|^XTUC:\\S+$|^CGMD:\\S+$|^XPXE:\\S+$|^FRAW:\\S+$|^MACB:\\S+$|^XGEM:\\S+$|^TLCM:\\S+$|^GLBX:\\S+$|^XCBO:\\S+$|^MASG:\\S+$|^UKPX:\\S+$|^IBAL:\\S+$|^SGAS:\\S+$|^BISI:\\S+$|^YKNA:\\S+$|^CETI:\\S+$|^BBIE:\\S+$|^PEEL:\\S+$|^CMES:\\S+$|^XSWB:\\S+$|^XDUS:\\S+$|^XOTP:\\S+$|^XNXC:\\S+$|^AURB:\\S+$|^XMTS:\\S+$|^XMAI:\\S+$|^XKLS:\\S+$|^TEIR:\\S+$|^XADS:\\S+$|^XOSC:\\S+$|^JPMI:\\S+$|^BETX:\\S+$|^ELUK:\\S+$|^SECE:\\S+$|^BCDX:\\S+$|^WIPO:\\S+$|^BPLC:\\S+$|^DSTO:\\S+$|^FRAA:\\S+$|^UCBG:\\S+$|^XBOG:\\S+$|^AIXK:\\S+$|^ICUR:\\S+$|^MAKX:\\S+$|^GFBM:\\S+$|^VIRT:\\S+$|^XATS:\\S+$|^EQTB:\\S+$|^XGSX:\\S+$|^AFSI:\\S+$|^BTQG:\\S+$|^RUSX:\\S+$|^GMNI:\\S+$|^OSLC:\\S+$|^LMAX:\\S+$|^FNUK:\\S+$|^PLDX:\\S+$|^GIPB:\\S+$|^FXRS:\\S+$|^CBLC:\\S+$|^NBLX:\\S+$|^WIND:\\S+$|^ATHL:\\S+$|^MSRP:\\S+$|^XETB:\\S+$|^BATP:\\S+$|^CECS:\\S+$|^BANA:\\S+$|^IOGB:\\S+$|^XBER:\\S+$|^ABAN:\\S+$|^BCSE:\\S+$|^XEMD:\\S+$|^DASH:\\S+$|^XQOD:\\S+$|^PIRM:\\S+$|^MNDK:\\S+$|^TFEX:\\S+$|^SWLV:\\S+$|^BBSI:\\S+$|^ZAPA:\\S+$|^CAVD:\\S+$|^ARCX:\\S+$|^TAL:\\S+$|^XPSX:\\S+$|^CFIF:\\S+$|^BCSL:\\S+$|^MHBL:\\S+$|^XMOT:\\S+$|^WBCL:\\S+$|^XCAL:\\S+$|^TWJP:\\S+$|^XCAY:\\S+$|^ICOT:\\S+$|^NOTC:\\S+$|^BGCI:\\S+$|^BTNL:\\S+$|^XMAD:\\S+$|^OOTC:\\S+$|^MESQ:\\S+$|^CGDB:\\S+$|^MATN:\\S+$|^TSRE:\\S+$|^SSME:\\S+$|^XBVC:\\S+$|^MHEU:\\S+$|^VWDX:\\S+$|^MNIS:\\S+$|^TEGB:\\S+$|^XSBT:\\S+$|^TBSA:\\S+$|^XOAD:\\S+$|^TERE:\\S+$|^MOEX:\\S+$|^CIME:\\S+$|^XQMH:\\S+$|^SSEX:\\S+$|^TQEX:\\S+$|^XADE:\\S+$|^GTXE:\\S+$|^XDSX:\\S+$|^SIX:\\S+$|^FSEF:\\S+$|^BETA:\\S+$|^MSIP:\\S+$|^EQTD:\\S+$|^SKYX:\\S+$|^XIHK:\\S+$|^BINV:\\S+$|^RTSX:\\S+$|^GRSE:\\S+$|^BLEQ:\\S+$|^SIBC:\\S+$|^XEUR:\\S+$|^SEPE:\\S+$|^ISDA:\\S+$|^XWBO:\\S+$|^GTSX:\\S+$|^RBHU:\\S+$|^FXSW:\\S+$|^DRSP:\\S+$|^HRSI:\\S+$|^BNTW:\\S+$|^CXAV:\\S+$|^BEUP:\\S+$|^BELF:\\S+$|^XNSE:\\S+$|^COHR:\\S+$|^XBNV:\\S+$|^BSPL:\\S+$|^BTFE:\\S+$|^MATX:\\S+$|^APAW:\\S+$|^KBLM:\\S+$|^XSFE:\\S+$|^TLV:\\S+$|^EBSS:\\S+$|^FTFM:\\S+$|^PARK:\\S+$|^CBKG:\\S+$|^ZBUL:\\S+$|^OPCO:\\S+$|^CHEV:\\S+$|^XSPS:\\S+$|^NZFX:\\S+$|^CITD:\\S+$|^CESI:\\S+$|^EPRD:\\S+$|^BAPA:\\S+$|^OSSG:\\S+$|^SVXI:\\S+$|^PSGM:\\S+$|^XSTF:\\S+$|^VFIL:\\S+$|^TRQA:\\S+$|^MAQI:\\S+$|^CLVE:\\S+$|^BTEC:\\S+$|^AMLG:\\S+$|^XEBI:\\S+$|^MFXR:\\S+$|^BNPC:\\S+$|^XHAM:\\S+$|^CITX:\\S+$|^BERC:\\S+$|^GSSI:\\S+$|^XEQT:\\S+$|^CGCM:\\S+$|^XMAL:\\S+$|^BAJD:\\S+$|^TSE:\\S+$|^XNGM:\\S+$|^XKFE:\\S+$|^NEOE:\\S+$|^GSXH:\\S+$|^TRQX:\\S+$|^SIDX:\\S+$|^MLEX:\\S+$|^WELN:\\S+$|^DBOX:\\S+$|^LICA:\\S+$|^LCHC:\\S+$|^CGEC:\\S+$|^UKOR:\\S+$|^SOHO:\\S+$|^HBFR:\\S+$|^XBRV:\\S+$|^CAPL:\\S+$|^ARIA:\\S+$|^STRM:\\S+$|^UBSB:\\S+$|^LXJP:\\S+$|^NMSX:\\S+$|^RBCC:\\S+$|^CBKC:\\S+$|^FLWX:\\S+$|^AAPA:\\S+$|^BAJM:\\S+$|^NTUK:\\S+$|^XBCC:\\S+$|^XSTX:\\S+$|^XBCX:\\S+$|^LAMP:\\S+$|^TPIR:\\S+$|^XKIE:\\S+$|^JPEU:\\S+$|^LMAF:\\S+$|^VFSI:\\S+$|^OPRA:\\S+$|^MLER:\\S+$|^XDPA:\\S+$|^XGCL:\\S+$|^BATO:\\S+$|^MFGL:\\S+$|^LEDG:\\S+$|^XAMS:\\S+$|^360T:\\S+$|^XTRZ:\\S+$|^IFLL:\\S+$|^PROS:\\S+$|^XJAM:\\S+$|^IFSM:\\S+$|^DCSX:\\S+$|^CALH:\\S+$|^BOVA:\\S+$|^LYNX:\\S+$|^NYSEAMERICAN:\\S+$|^BERA:\\S+$|^NYSD:\\S+$|^ICEL:\\S+$|^EXPM:\\S+$|^CBTS:\\S+$|^JEFX:\\S+$|^CIMV:\\S+$|^XMOL:\\S+$|^WSAG:\\S+$|^XSCU:\\S+$|^PAVE:\\S+$|^MUSN:\\S+$|^RABO:\\S+$|^XADF:\\S+$|^TPSE:\\S+$|^SZSC:\\S+$|^BGLU:\\S+$|^ASXB:\\S+$|^XDNB:\\S+$|^TOCP:\\S+$|^ROFX:\\S+$|^XBEL:\\S+$|^APCL:\\S+$|^LMAD:\\S+$|^XBCM:\\S+$|^MDRV:\\S+$|^NBFL:\\S+$|^XRPM:\\S+$|^XXXX:\\S+$|^MLXB:\\S+$|^UBSF:\\S+$|^EDGL:\\S+$|^XJPX:\\S+$|^BZXD:\\S+$|^BEIS:\\S+$|^TEMM:\\S+$|^ANZL:\\S+$|^XGAS:\\S+$|^XUGA:\\S+$|^NWMS:\\S+$|^XPTY:\\S+$|^MTSD:\\S+$|^PIPR:\\S+$|^XBKF:\\S+$|^IVZX:\\S+$|^IMFD:\\S+$|^AFDL:\\S+$|^CFBC:\\S+$|^GLMX:\\S+$|^CSCF:\\S+$|^VPXB:\\S+$|^MUBE:\\S+$|^BARK:\\S+$|^MHEL:\\S+$|^NEXT:\\S+$|^CIBP:\\S+$|^XBRN:\\S+$|^VCMO:\\S+$)$",
             "title": "Ticker"
           }
         },
@@ -9249,6 +9218,7 @@
           },
           "ticker": {
             "type": "string",
+            "pattern": "(?i)^(^VEGA:\\S+$|^DUMX:\\S+$|^XETW:\\S+$|^XTNX:\\S+$|^BNSX:\\S+$|^XCSX:\\S+$|^GMGD:\\S+$|^UBIN:\\S+$|^IFXA:\\S+$|^NESI:\\S+$|^EQIE:\\S+$|^MTXA:\\S+$|^UBSC:\\S+$|^NMRA:\\S+$|^TEUR:\\S+$|^SPDX:\\S+$|^XJNB:\\S+$|^XKEM:\\S+$|^ISWA:\\S+$|^MUNC:\\S+$|^KAIX:\\S+$|^EXSH:\\S+$|^XKCE:\\S+$|^XROS:\\S+$|^XBDA:\\S+$|^ENAX:\\S+$|^HMOD:\\S+$|^MKAP:\\S+$|^GEMX:\\S+$|^IBIS:\\S+$|^DKTC:\\S+$|^XALG:\\S+$|^JPSI:\\S+$|^HSTC:\\S+$|^SECF:\\S+$|^TRQM:\\S+$|^CMAP:\\S+$|^XABG:\\S+$|^XNAS:\\S+$|^NOFF:\\S+$|^CFJP:\\S+$|^TWSF:\\S+$|^UBSS:\\S+$|^CNSX:\\S+$|^IMAG:\\S+$|^BATS:\\S+$|^CBSK:\\S+$|^CRYP:\\S+$|^XNLI:\\S+$|^KBLL:\\S+$|^UBSI:\\S+$|^BNLD:\\S+$|^ETPA:\\S+$|^DUSD:\\S+$|^XMAT:\\S+$|^TMCY:\\S+$|^XLIT:\\S+$|^BLTD:\\S+$|^XUAX:\\S+$|^WELS:\\S+$|^NASDAQ:\\S+$|^ATLB:\\S+$|^BLKX:\\S+$|^BNPA:\\S+$|^TRUK:\\S+$|^PURE:\\S+$|^WBKP:\\S+$|^BTAM:\\S+$|^PLPO:\\S+$|^XECB:\\S+$|^AILT:\\S+$|^GLOM:\\S+$|^XTAI:\\S+$|^BART:\\S+$|^BLEV:\\S+$|^ALTX:\\S+$|^BLNK:\\S+$|^TNLA:\\S+$|^MIDC:\\S+$|^IOED:\\S+$|^BSTX:\\S+$|^STUA:\\S+$|^RLBO:\\S+$|^XPAC:\\S+$|^ZFXM:\\S+$|^CHIA:\\S+$|^PBUL:\\S+$|^CEDX:\\S+$|^CAVE:\\S+$|^GSXK:\\S+$|^TREA:\\S+$|^XTUN:\\S+$|^PJCX:\\S+$|^CLHK:\\S+$|^AFSL:\\S+$|^HPCO:\\S+$|^HSBT:\\S+$|^BIST:\\S+$|^TWSE:\\S+$|^MCRY:\\S+$|^JPMX:\\S+$|^UBSX:\\S+$|^NEON:\\S+$|^CSJP:\\S+$|^OLBB:\\S+$|^EVOL:\\S+$|^EQOD:\\S+$|^XNYL:\\S+$|^MSEU:\\S+$|^TRPX:\\S+$|^XKFB:\\S+$|^IFCA:\\S+$|^TREO:\\S+$|^SHAD:\\S+$|^BBSF:\\S+$|^XZCE:\\S+$|^PINC:\\S+$|^CHIJ:\\S+$|^KOME:\\S+$|^CCRM:\\S+$|^XSVA:\\S+$|^CELP:\\S+$|^XOBD:\\S+$|^XNFI:\\S+$|^EQSE:\\S+$|^XBES:\\S+$|^XCET:\\S+$|^BMEA:\\S+$|^BVCC:\\S+$|^XLFX:\\S+$|^DNDK:\\S+$|^XMVL:\\S+$|^TWGP:\\S+$|^THEM:\\S+$|^HAML:\\S+$|^MALM:\\S+$|^FRA:\\S+$|^XCIS:\\S+$|^SCAG:\\S+$|^INVE:\\S+$|^SBIJ:\\S+$|^UGEN:\\S+$|^BARL:\\S+$|^INGW:\\S+$|^BTEE:\\S+$|^ECGS:\\S+$|^CLTD:\\S+$|^FREX:\\S+$|^HEDE:\\S+$|^GSXT:\\S+$|^CVE:\\S+$|^XIPO:\\S+$|^MXNL:\\S+$|^XINS:\\S+$|^XGRM:\\S+$|^FXCM:\\S+$|^CODA:\\S+$|^NEXS:\\S+$|^XMGE:\\S+$|^XASE:\\S+$|^TFSU:\\S+$|^HANB:\\S+$|^MBCP:\\S+$|^EXCP:\\S+$|^MIVX:\\S+$|^NAPA:\\S+$|^HRFQ:\\S+$|^ICBX:\\S+$|^XNYE:\\S+$|^SCXM:\\S+$|^XCYS:\\S+$|^NXEU:\\S+$|^XMEX:\\S+$|^TSIG:\\S+$|^XEBS:\\S+$|^XCAI:\\S+$|^HSBC:\\S+$|^EXBO:\\S+$|^GSPL:\\S+$|^GFSM:\\S+$|^RSEX:\\S+$|^GPBC:\\S+$|^CCO2:\\S+$|^SMBD:\\S+$|^AREX:\\S+$|^PBGR:\\S+$|^XBND:\\S+$|^DOWM:\\S+$|^BGCF:\\S+$|^XCXD:\\S+$|^CSTO:\\S+$|^XSEF:\\S+$|^NIBC:\\S+$|^XPHL:\\S+$|^NEXG:\\S+$|^EXTR:\\S+$|^TPER:\\S+$|^TEMB:\\S+$|^XCGS:\\S+$|^BMV:\\S+$|^CXAF:\\S+$|^XDCE:\\S+$|^XSTM:\\S+$|^XSGB:\\S+$|^XBAR:\\S+$|^CAES:\\S+$|^SEDX:\\S+$|^TWSG:\\S+$|^SBIU:\\S+$|^MFXC:\\S+$|^TBSP:\\S+$|^DASI:\\S+$|^BRNX:\\S+$|^XDHA:\\S+$|^IECL:\\S+$|^DOTS:\\S+$|^EGSI:\\S+$|^ZERO:\\S+$|^PEPM:\\S+$|^FICO:\\S+$|^HGSP:\\S+$|^UBEC:\\S+$|^IOCD:\\S+$|^BATY:\\S+$|^DCSE:\\S+$|^EQOS:\\S+$|^SIMV:\\S+$|^LBCM:\\S+$|^LUXSE:\\S+$|^HAMA:\\S+$|^MESI:\\S+$|^SEND:\\S+$|^XBDV:\\S+$|^BETP:\\S+$|^CSGI:\\S+$|^GSCO:\\S+$|^HREU:\\S+$|^JBSI:\\S+$|^XPST:\\S+$|^FNFT:\\S+$|^GFIC:\\S+$|^T212:\\S+$|^NXUS:\\S+$|^VLEX:\\S+$|^PINI:\\S+$|^MTSB:\\S+$|^FXFM:\\S+$|^RBSX:\\S+$|^TPSO:\\S+$|^LEUE:\\S+$|^CCXE:\\S+$|^ASE:\\S+$|^FSHX:\\S+$|^EBSO:\\S+$|^XMPW:\\S+$|^TCML:\\S+$|^SLHB:\\S+$|^CFHK:\\S+$|^XLUS:\\S+$|^ALXB:\\S+$|^CSZH:\\S+$|^UBSL:\\S+$|^BNYC:\\S+$|^XRBM:\\S+$|^XDRF:\\S+$|^XCAN:\\S+$|^STUB:\\S+$|^MAQX:\\S+$|^IFEN:\\S+$|^BCEE:\\S+$|^XDSM:\\S+$|^GSXL:\\S+$|^MARF:\\S+$|^TWEA:\\S+$|^ERST:\\S+$|^XJAS:\\S+$|^MAQH:\\S+$|^XTFF:\\S+$|^DSME:\\S+$|^SMFE:\\S+$|^SSBM:\\S+$|^TMCC:\\S+$|^EXSP:\\S+$|^GSCI:\\S+$|^LATG:\\S+$|^BBIS:\\S+$|^SHE:\\S+$|^NPGA:\\S+$|^XFRA:\\S+$|^LMAE:\\S+$|^CGQD:\\S+$|^ASPI:\\S+$|^NZX:\\S+$|^ERBX:\\S+$|^XBSD:\\S+$|^FNIS:\\S+$|^CANX:\\S+$|^ECEU:\\S+$|^DBAG:\\S+$|^EXOR:\\S+$|^MBSI:\\S+$|^DBHK:\\S+$|^XSDX:\\S+$|^MERD:\\S+$|^XEEE:\\S+$|^LBWL:\\S+$|^XBOM:\\S+$|^XRCB:\\S+$|^BCMM:\\S+$|^SWAP:\\S+$|^BELB:\\S+$|^VFMI:\\S+$|^POSE:\\S+$|^JPX:\\S+$|^JNST:\\S+$|^CGMX:\\S+$|^CGML:\\S+$|^IMEQ:\\S+$|^XBBJ:\\S+$|^BLUE:\\S+$|^GRIF:\\S+$|^SWLT:\\S+$|^MUNB:\\S+$|^TEMI:\\S+$|^MSBI:\\S+$|^BRDL:\\S+$|^EQLD:\\S+$|^EDDP:\\S+$|^DBES:\\S+$|^FRAB:\\S+$|^XBOX:\\S+$|^OLLC:\\S+$|^EXMP:\\S+$|^BTLX:\\S+$|^KRME:\\S+$|^RBCM:\\S+$|^CMCI:\\S+$|^CBKD:\\S+$|^CDSL:\\S+$|^VFCM:\\S+$|^BAML:\\S+$|^PVMF:\\S+$|^XLCH:\\S+$|^A2XX:\\S+$|^MCXS:\\S+$|^LMNR:\\S+$|^BMTS:\\S+$|^LSSI:\\S+$|^CSSX:\\S+$|^EDGD:\\S+$|^ARCD:\\S+$|^GOTC:\\S+$|^CISD:\\S+$|^XAPA:\\S+$|^VWDA:\\S+$|^OTPR:\\S+$|^GSIL:\\S+$|^BEEX:\\S+$|^XEQY:\\S+$|^RMMX:\\S+$|^XFKA:\\S+$|^SICS:\\S+$|^XIMM:\\S+$|^XSCO:\\S+$|^KBLC:\\S+$|^TRDE:\\S+$|^TOWR:\\S+$|^ICTW:\\S+$|^IMCC:\\S+$|^RCMA:\\S+$|^CABV:\\S+$|^BOSD:\\S+$|^BALT:\\S+$|^MOSE:\\S+$|^TEFD:\\S+$|^XCHI:\\S+$|^CSSI:\\S+$|^COMM:\\S+$|^BME:\\S+$|^DUSC:\\S+$|^XLQC:\\S+$|^IMCG:\\S+$|^TWEO:\\S+$|^EEAL:\\S+$|^KCCP:\\S+$|^ECAL:\\S+$|^GSEF:\\S+$|^UKRE:\\S+$|^TRFW:\\S+$|^ASXV:\\S+$|^PIPE:\\S+$|^FWB:\\S+$|^MTCH:\\S+$|^XCRO:\\S+$|^PTPG:\\S+$|^SHA:\\S+$|^TSXV:\\S+$|^STUC:\\S+$|^PPEX:\\S+$|^XOSJ:\\S+$|^XBOS:\\S+$|^OTXB:\\S+$|^IMMM:\\S+$|^NXJP:\\S+$|^AQEU:\\S+$|^CCLX:\\S+$|^XKIS:\\S+$|^ASEX:\\S+$|^XARM:\\S+$|^MUBL:\\S+$|^GSEI:\\S+$|^SSE:\\S+$|^TNLB:\\S+$|^BACE:\\S+$|^BOTE:\\S+$|^MAQJ:\\S+$|^ESTO:\\S+$|^SCXO:\\S+$|^IATS:\\S+$|^ELNO:\\S+$|^ECAG:\\S+$|^XSWM:\\S+$|^CEPU:\\S+$|^AWEX:\\S+$|^MSCO:\\S+$|^XCUR:\\S+$|^UFEX:\\S+$|^SISI:\\S+$|^NLBX:\\S+$|^XETA:\\S+$|^XVPB:\\S+$|^EBRA:\\S+$|^ANLP:\\S+$|^SYFX:\\S+$|^CGMU:\\S+$|^ENXL:\\S+$|^BKDM:\\S+$|^XEHQ:\\S+$|^HBPL:\\S+$|^KHHU:\\S+$|^ISSI:\\S+$|^XLBM:\\S+$|^TRAL:\\S+$|^BHWA:\\S+$|^BKBR:\\S+$|^BKSK:\\S+$|^NOFI:\\S+$|^TRCK:\\S+$|^AUTB:\\S+$|^BOTC:\\S+$|^ABNC:\\S+$|^XPMS:\\S+$|^EMLD:\\S+$|^LMEC:\\S+$|^XETU:\\S+$|^SGA2:\\S+$|^BVMF:\\S+$|^CXAN:\\S+$|^IMRD:\\S+$|^GXMA:\\S+$|^IBEX:\\S+$|^BGFX:\\S+$|^MEMM:\\S+$|^XRAS:\\S+$|^ASMT:\\S+$|^MUTI:\\S+$|^HEGX:\\S+$|^BGCB:\\S+$|^XSGA:\\S+$|^BLTX:\\S+$|^SPTR:\\S+$|^XQTX:\\S+$|^ALXP:\\S+$|^XMAN:\\S+$|^ELEU:\\S+$|^LIUH:\\S+$|^LLAT:\\S+$|^AUTX:\\S+$|^TQEM:\\S+$|^BSLB:\\S+$|^PFXD:\\S+$|^BATD:\\S+$|^IOFX:\\S+$|^HRTF:\\S+$|^NOED:\\S+$|^BGCO:\\S+$|^XUNI:\\S+$|^NABE:\\S+$|^RENC:\\S+$|^IFLS:\\S+$|^OSDS:\\S+$|^EPA:\\S+$|^JEFE:\\S+$|^SBIL:\\S+$|^EOTC:\\S+$|^CPGX:\\S+$|^NMRJ:\\S+$|^SGX:\\S+$|^BKLF:\\S+$|^EXEU:\\S+$|^MIZX:\\S+$|^XEDA:\\S+$|^RPWC:\\S+$|^BNDD:\\S+$|^KOTF:\\S+$|^GLPS:\\S+$|^CSLB:\\S+$|^OMGA:\\S+$|^EGMT:\\S+$|^ZSE:\\S+$|^VSE:\\S+$|^XBRM:\\S+$|^BCMA:\\S+$|^XIQS:\\S+$|^XPOM:\\S+$|^NAMX:\\S+$|^TRQB:\\S+$|^IFED:\\S+$|^KNIG:\\S+$|^XCYO:\\S+$|^CXAC:\\S+$|^BAPE:\\S+$|^OMIP:\\S+$|^SMFF:\\S+$|^XEID:\\S+$|^VONT:\\S+$|^XPUK:\\S+$|^NFSA:\\S+$|^ELIX:\\S+$|^XPOS:\\S+$|^BFEX:\\S+$|^STFX:\\S+$|^ETSC:\\S+$|^DUSB:\\S+$|^IBUL:\\S+$|^GSBE:\\S+$|^TFSD:\\S+$|^FTFS:\\S+$|^XIDX:\\S+$|^AFSX:\\S+$|^FINO:\\S+$|^EXSD:\\S+$|^XSAP:\\S+$|^FXGB:\\S+$|^VABD:\\S+$|^CATS:\\S+$|^MCXR:\\S+$|^HMTF:\\S+$|^XAMM:\\S+$|^HOTC:\\S+$|^AFSO:\\S+$|^XNYS:\\S+$|^EXYY:\\S+$|^ZODM:\\S+$|^NIBR:\\S+$|^DOWE:\\S+$|^IMCR:\\S+$|^XTRD:\\S+$|^BNPX:\\S+$|^TQEB:\\S+$|^HANA:\\S+$|^XCDE:\\S+$|^SHSC:\\S+$|^MLES:\\S+$|^UBCZ:\\S+$|^CBSX:\\S+$|^VTEX:\\S+$|^NYSI:\\S+$|^BEUO:\\S+$|^WINX:\\S+$|^MSAL:\\S+$|^JSER:\\S+$|^XEER:\\S+$|^ACEX:\\S+$|^CMEE:\\S+$|^EBSF:\\S+$|^ICE:\\S+$|^XSPM:\\S+$|^XBAA:\\S+$|^MHIP:\\S+$|^XSC1:\\S+$|^CSEALL:\\S+$|^LCUR:\\S+$|^VNDM:\\S+$|^NORD:\\S+$|^GMEO:\\S+$|^CXOT:\\S+$|^XMDS:\\S+$|^ISWB:\\S+$|^TECO:\\S+$|^XBIS:\\S+$|^BARD:\\S+$|^HUPX:\\S+$|^CREM:\\S+$|^XFNO:\\S+$|^SWX:\\S+$|^GBOT:\\S+$|^SSBT:\\S+$|^APXL:\\S+$|^TRU1:\\S+$|^XBRU:\\S+$|^XINE:\\S+$|^DAIW:\\S+$|^LTAA:\\S+$|^XMIL:\\S+$|^TSGB:\\S+$|^SGMU:\\S+$|^XDES:\\S+$|^ACKF:\\S+$|^BLPX:\\S+$|^XOPV:\\S+$|^RTSP:\\S+$|^XMAB:\\S+$|^XSTO:\\S+$|^IMCS:\\S+$|^MAGM:\\S+$|^SGMW:\\S+$|^TPSV:\\S+$|^GFKS:\\S+$|^XSTP:\\S+$|^XPBT:\\S+$|^TNLK:\\S+$|^CFTW:\\S+$|^COAL:\\S+$|^ICSU:\\S+$|^XSIB:\\S+$|^XETV:\\S+$|^ETLX:\\S+$|^ILCM:\\S+$|^LMAO:\\S+$|^IFSG:\\S+$|^SGEX:\\S+$|^XRMO:\\S+$|^LASP:\\S+$|^BAPX:\\S+$|^CGMC:\\S+$|^N2EX:\\S+$|^XPHO:\\S+$|^XROT:\\S+$|^EMTF:\\S+$|^MHBP:\\S+$|^GFIR:\\S+$|^SGMT:\\S+$|^RBCT:\\S+$|^WETP:\\S+$|^BBLX:\\S+$|^ARCA:\\S+$|^CBKA:\\S+$|^BOAL:\\S+$|^XAQS:\\S+$|^SNSI:\\S+$|^CEPL:\\S+$|^NLPX:\\S+$|^XOFF:\\S+$|^CFAU:\\S+$|^XVAL:\\S+$|^PKOP:\\S+$|^BRED:\\S+$|^IFXR:\\S+$|^XOSL:\\S+$|^MBUL:\\S+$|^CIMA:\\S+$|^VAGM:\\S+$|^ULTX:\\S+$|^XSBI:\\S+$|^HRTX:\\S+$|^ENSL:\\S+$|^XODE:\\S+$|^XHNX:\\S+$|^WINS:\\S+$|^MERK:\\S+$|^XCBF:\\S+$|^IBER:\\S+$|^GMGL:\\S+$|^NEXX:\\S+$|^XGTG:\\S+$|^DHLX:\\S+$|^CSVW:\\S+$|^XSTV:\\S+$|^TREU:\\S+$|^GRIO:\\S+$|^XFDA:\\S+$|^XTAM:\\S+$|^PINL:\\S+$|^BCSI:\\S+$|^CXAQ:\\S+$|^SGMY:\\S+$|^TDON:\\S+$|^IMCE:\\S+$|^BPOL:\\S+$|^RSE:\\S+$|^CNSI:\\S+$|^CAND:\\S+$|^CCMS:\\S+$|^VTLS:\\S+$|^XMNT:\\S+$|^CAPI:\\S+$|^FGEX:\\S+$|^ASXP:\\S+$|^XMSW:\\S+$|^IMCO:\\S+$|^KNCM:\\S+$|^JESI:\\S+$|^XTRN:\\S+$|^ICXR:\\S+$|^XPSF:\\S+$|^HKEX:\\S+$|^BOM:\\S+$|^XRUS:\\S+$|^MUNA:\\S+$|^XLOM:\\S+$|^XCNF:\\S+$|^SGMA:\\S+$|^NMCE:\\S+$|^TPEL:\\S+$|^LPPM:\\S+$|^LOYD:\\S+$|^PFTQ:\\S+$|^WSIN:\\S+$|^KNEM:\\S+$|^FNCS:\\S+$|^BIT:\\S+$|^XPAL:\\S+$|^SELC:\\S+$|^FAST:\\S+$|^MCSE:\\S+$|^XRFQ:\\S+$|^LISZ:\\S+$|^CSAG:\\S+$|^XLON:\\S+$|^XNGO:\\S+$|^WFSE:\\S+$|^ICSZ:\\S+$|^TPEU:\\S+$|^BCBA:\\S+$|^BCXE:\\S+$|^ANTS:\\S+$|^CPTX:\\S+$|^XTKS:\\S+$|^XSC2:\\S+$|^FNEE:\\S+$|^NABU:\\S+$|^VIUK:\\S+$|^ISWN:\\S+$|^ICKR:\\S+$|^XGMX:\\S+$|^WMTF:\\S+$|^LTSE:\\S+$|^REST:\\S+$|^EUCC:\\S+$|^TSAD:\\S+$|^XCSE:\\S+$|^MIBG:\\S+$|^AQUA:\\S+$|^CCEX:\\S+$|^OMEL:\\S+$|^SEED:\\S+$|^XIBE:\\S+$|^GFAM:\\S+$|^JYSI:\\S+$|^MALX:\\S+$|^DNFI:\\S+$|^IOFI:\\S+$|^ESLO:\\S+$|^ICXL:\\S+$|^XBXO:\\S+$|^WOOD:\\S+$|^XGHA:\\S+$|^STUD:\\S+$|^HCER:\\S+$|^XEYE:\\S+$|^MSEL:\\S+$|^MANL:\\S+$|^EUWA:\\S+$|^IOTC:\\S+$|^LIQU:\\S+$|^BNPP:\\S+$|^XSAU:\\S+$|^STO:\\S+$|^3579:\\S+$|^AQXE:\\S+$|^CHIV:\\S+$|^EBON:\\S+$|^XDMI:\\S+$|^SKBB:\\S+$|^UNGB:\\S+$|^GOVX:\\S+$|^IMBD:\\S+$|^SSIL:\\S+$|^GETB:\\S+$|^CCEU:\\S+$|^PIEU:\\S+$|^XOAS:\\S+$|^DVFX:\\S+$|^EMDR:\\S+$|^TWHK:\\S+$|^XALS:\\S+$|^TPSL:\\S+$|^XMEV:\\S+$|^PXIL:\\S+$|^SNUK:\\S+$|^NSXB:\\S+$|^XNCD:\\S+$|^DUSA:\\S+$|^ALLT:\\S+$|^XATL:\\S+$|^BCSC:\\S+$|^EXSB:\\S+$|^CSAS:\\S+$|^MBPL:\\S+$|^OHVO:\\S+$|^AATS:\\S+$|^FINN:\\S+$|^XICE:\\S+$|^XBAN:\\S+$|^GMTF:\\S+$|^GMES:\\S+$|^XCAS:\\S+$|^DSMD:\\S+$|^OTCE:\\S+$|^XELX:\\S+$|^IMMH:\\S+$|^RESF:\\S+$|^XSOP:\\S+$|^MSPL:\\S+$|^IMSB:\\S+$|^XETS:\\S+$|^XVPA:\\S+$|^NCEL:\\S+$|^CSEU:\\S+$|^XKAC:\\S+$|^XNIM:\\S+$|^CSCL:\\S+$|^BASI:\\S+$|^PARX:\\S+$|^XSES:\\S+$|^CGXS:\\S+$|^XLDX:\\S+$|^XBOL:\\S+$|^XHEL:\\S+$|^BMCM:\\S+$|^OCSI:\\S+$|^ICRO:\\S+$|^XMUS:\\S+$|^XSCE:\\S+$|^INGB:\\S+$|^STUF:\\S+$|^XBCV:\\S+$|^XLIM:\\S+$|^EQTA:\\S+$|^XMOC:\\S+$|^ODXE:\\S+$|^EBHU:\\S+$|^SPEX:\\S+$|^TRNL:\\S+$|^HAMM:\\S+$|^MUFP:\\S+$|^XSIM:\\S+$|^TRWB:\\S+$|^KLEU:\\S+$|^TRXE:\\S+$|^XCFF:\\S+$|^SIAB:\\S+$|^WBDM:\\S+$|^CAPA:\\S+$|^AFSE:\\S+$|^TRAX:\\S+$|^CBOE:\\S+$|^BRIX:\\S+$|^JNSI:\\S+$|^PEPY:\\S+$|^XGUA:\\S+$|^BNPS:\\S+$|^TSCB:\\S+$|^TPIC:\\S+$|^MTSC:\\S+$|^ABSI:\\S+$|^DBAB:\\S+$|^MXLM:\\S+$|^NBOT:\\S+$|^XCEC:\\S+$|^IMFX:\\S+$|^NEXD:\\S+$|^CLCH:\\S+$|^XBTR:\\S+$|^MERF:\\S+$|^XPET:\\S+$|^XERT:\\S+$|^XRIS:\\S+$|^FISH:\\S+$|^DBMO:\\S+$|^BIDS:\\S+$|^ICOR:\\S+$|^RMTF:\\S+$|^XGSE:\\S+$|^GMEG:\\S+$|^NYFX:\\S+$|^KELR:\\S+$|^XSC3:\\S+$|^XCFE:\\S+$|^BARX:\\S+$|^BBOK:\\S+$|^NILX:\\S+$|^CGMG:\\S+$|^BCRM:\\S+$|^EWRM:\\S+$|^CMEC:\\S+$|^XLAO:\\S+$|^GTCO:\\S+$|^GSIB:\\S+$|^XESM:\\S+$|^ISWO:\\S+$|^CGIT:\\S+$|^XMNX:\\S+$|^ASXT:\\S+$|^BVCA:\\S+$|^TPEE:\\S+$|^CIMD:\\S+$|^FNIX:\\S+$|^XULA:\\S+$|^BKKT:\\S+$|^UBSG:\\S+$|^JLQD:\\S+$|^XLAT:\\S+$|^ISEX:\\S+$|^AFEX:\\S+$|^LON:\\S+$|^EPEX:\\S+$|^EQTC:\\S+$|^ELSE:\\S+$|^EUWB:\\S+$|^XPOR:\\S+$|^STOX:\\S+$|^XSEB:\\S+$|^C2OX:\\S+$|^XNCO:\\S+$|^LIUS:\\S+$|^NEOC:\\S+$|^TUOB:\\S+$|^CASI:\\S+$|^OTCM:\\S+$|^CURX:\\S+$|^XEUM:\\S+$|^EUFN:\\S+$|^BMLS:\\S+$|^R5FX:\\S+$|^CDSI:\\S+$|^FINC:\\S+$|^RBCE:\\S+$|^SEBL:\\S+$|^AMXO:\\S+$|^CXAR:\\S+$|^XSGE:\\S+$|^CMET:\\S+$|^XETR:\\S+$|^THRE:\\S+$|^CCML:\\S+$|^CBKF:\\S+$|^AQXA:\\S+$|^IPXW:\\S+$|^FMTS:\\S+$|^MAQU:\\S+$|^EDRF:\\S+$|^DZBK:\\S+$|^XLLB:\\S+$|^MELO:\\S+$|^MSTX:\\S+$|^GLPX:\\S+$|^FXPS:\\S+$|^BFPT:\\S+$|^XZIM:\\S+$|^LEUF:\\S+$|^FNLV:\\S+$|^FXRQ:\\S+$|^EPRL:\\S+$|^XEMS:\\S+$|^FXOP:\\S+$|^CMMT:\\S+$|^CMSF:\\S+$|^XIMA:\\S+$|^NOPS:\\S+$|^PUND:\\S+$|^KLSH:\\S+$|^NFSD:\\S+$|^BHSF:\\S+$|^DOSE:\\S+$|^NSE:\\S+$|^BATE:\\S+$|^BMTF:\\S+$|^JSSI:\\S+$|^SHAR:\\S+$|^MICE:\\S+$|^NXSE:\\S+$|^DRCT:\\S+$|^SECD:\\S+$|^XOSA:\\S+$|^EBR:\\S+$|^WDER:\\S+$|^HNX:\\S+$|^XMRV:\\S+$|^DGCX:\\S+$|^MVCX:\\S+$|^BOTV:\\S+$|^BEUT:\\S+$|^BNPF:\\S+$|^BACR:\\S+$|^XSEC:\\S+$|^FCBT:\\S+$|^RICD:\\S+$|^PLPD:\\S+$|^OTCI:\\S+$|^DNIS:\\S+$|^HDAT:\\S+$|^NEXN:\\S+$|^RFBK:\\S+$|^OBKL:\\S+$|^UKCA:\\S+$|^TWEM:\\S+$|^TEMF:\\S+$|^XMON:\\S+$|^DEXE:\\S+$|^FIED:\\S+$|^XKHR:\\S+$|^MKTF:\\S+$|^MUND:\\S+$|^CGQT:\\S+$|^NPEX:\\S+$|^AURO:\\S+$|^UCHU:\\S+$|^XSAM:\\S+$|^ISWR:\\S+$|^XYIE:\\S+$|^XEEO:\\S+$|^DBLN:\\S+$|^ICES:\\S+$|^ETR:\\S+$|^TEMR:\\S+$|^SGOE:\\S+$|^XLJM:\\S+$|^CHIC:\\S+$|^SSTX:\\S+$|^BPKO:\\S+$|^XUSE:\\S+$|^WQXL:\\S+$|^ALXL:\\S+$|^SSBI:\\S+$|^LASF:\\S+$|^BTEQ:\\S+$|^TCDS:\\S+$|^XNDQ:\\S+$|^SFCL:\\S+$|^AIMX:\\S+$|^LBCW:\\S+$|^DAVY:\\S+$|^XCOL:\\S+$|^XPHX:\\S+$|^BCFS:\\S+$|^XKON:\\S+$|^XCME:\\S+$|^NATX:\\S+$|^LELE:\\S+$|^XPUS:\\S+$|^NASD:\\S+$|^MLSI:\\S+$|^CSE:\\S+$|^BIVA:\\S+$|^ICHK:\\S+$|^CECA:\\S+$|^ICDX:\\S+$|^PUMA:\\S+$|^KRX:\\S+$|^NGXC:\\S+$|^EQOC:\\S+$|^SSFX:\\S+$|^BKBF:\\S+$|^XHKF:\\S+$|^LBWS:\\S+$|^ABUL:\\S+$|^BMLB:\\S+$|^XBRT:\\S+$|^UICE:\\S+$|^UCBA:\\S+$|^CGMA:\\S+$|^IMCT:\\S+$|^BAMX:\\S+$|^BLIQ:\\S+$|^XNEC:\\S+$|^CIOI:\\S+$|^INCA:\\S+$|^XTK1:\\S+$|^RBIV:\\S+$|^SEBA:\\S+$|^VUSA:\\S+$|^IFAD:\\S+$|^CSHK:\\S+$|^VFXO:\\S+$|^ELI:\\S+$|^MLRQ:\\S+$|^AGBP:\\S+$|^TRU2:\\S+$|^IEXD:\\S+$|^HPCV:\\S+$|^AFSA:\\S+$|^XBIL:\\S+$|^ASX:\\S+$|^NODX:\\S+$|^TSX:\\S+$|^XATH:\\S+$|^PINX:\\S+$|^XCOR:\\S+$|^FNDK:\\S+$|^CGEB:\\S+$|^XCUE:\\S+$|^XSSC:\\S+$|^NEXO:\\S+$|^BSME:\\S+$|^XLJU:\\S+$|^IFBX:\\S+$|^SBSI:\\S+$|^SUNT:\\S+$|^GFPO:\\S+$|^TRQC:\\S+$|^XCX2:\\S+$|^XDSE:\\S+$|^BMLI:\\S+$|^HKG:\\S+$|^CIBH:\\S+$|^ITGL:\\S+$|^BUYN:\\S+$|^XECS:\\S+$|^XIST:\\S+$|^BPSX:\\S+$|^TEFX:\\S+$|^CNOD:\\S+$|^XBAH:\\S+$|^HSXA:\\S+$|^ISBV:\\S+$|^EXSE:\\S+$|^OMIC:\\S+$|^MPRL:\\S+$|^YLDX:\\S+$|^BAIP:\\S+$|^SECC:\\S+$|^TSAF:\\S+$|^ENMS:\\S+$|^PLPS:\\S+$|^DIFX:\\S+$|^MTXM:\\S+$|^CEUX:\\S+$|^CSIN:\\S+$|^IEPA:\\S+$|^LISX:\\S+$|^BLBF:\\S+$|^GSPX:\\S+$|^ZARX:\\S+$|^EDGX:\\S+$|^STXS:\\S+$|^UBIS:\\S+$|^DHEL:\\S+$|^TPIO:\\S+$|^BASE:\\S+$|^XGLO:\\S+$|^CBKS:\\S+$|^RTSL:\\S+$|^BASX:\\S+$|^HPPO:\\S+$|^JPCB:\\S+$|^BRDE:\\S+$|^SBAR:\\S+$|^ARAX:\\S+$|^KBCB:\\S+$|^LEVL:\\S+$|^XXSC:\\S+$|^MHBD:\\S+$|^HCHC:\\S+$|^KAZE:\\S+$|^SIFX:\\S+$|^PDEX:\\S+$|^FRTE:\\S+$|^TERM:\\S+$|^TRCX:\\S+$|^BGSI:\\S+$|^IBEQ:\\S+$|^CLJP:\\S+$|^IGDL:\\S+$|^XKBT:\\S+$|^EMBX:\\S+$|^XOSE:\\S+$|^XGCX:\\S+$|^TSED:\\S+$|^BLFX:\\S+$|^BSE:\\S+$|^COTC:\\S+$|^XPAE:\\S+$|^XSSE:\\S+$|^BATF:\\S+$|^UKEX:\\S+$|^FNFX:\\S+$|^RR4G:\\S+$|^XMTB:\\S+$|^MTAH:\\S+$|^CGMH:\\S+$|^XKOS:\\S+$|^XTSE:\\S+$|^TSMM:\\S+$|^MSMS:\\S+$|^CGET:\\S+$|^IFLX:\\S+$|^WSE:\\S+$|^EQSL:\\S+$|^EXDC:\\S+$|^NYSE:\\S+$|^BILT:\\S+$|^ASXC:\\S+$|^EUWX:\\S+$|^BRDS:\\S+$|^XSAF:\\S+$|^IFUT:\\S+$|^SIGA:\\S+$|^CCFX:\\S+$|^XNZE:\\S+$|^BVUR:\\S+$|^PEPH:\\S+$|^BSAB:\\S+$|^XNCM:\\S+$|^JSES:\\S+$|^XCIE:\\S+$|^OTCX:\\S+$|^USWB:\\S+$|^ISWV:\\S+$|^EDGA:\\S+$|^XBRA:\\S+$|^BDSK:\\S+$|^DNSE:\\S+$|^PATF:\\S+$|^NXVW:\\S+$|^XNOM:\\S+$|^IEBS:\\S+$|^WBAH:\\S+$|^XJSE:\\S+$|^XMOS:\\S+$|^SPBE:\\S+$|^MTSF:\\S+$|^MUSE:\\S+$|^GFIN:\\S+$|^DWSF:\\S+$|^XBLN:\\S+$|^XNKS:\\S+$|^GFSO:\\S+$|^NEXF:\\S+$|^XEUE:\\S+$|^CIMB:\\S+$|^MOCX:\\S+$|^TSGI:\\S+$|^AUTP:\\S+$|^CGTR:\\S+$|^DICE:\\S+$|^CSOB:\\S+$|^SBIV:\\S+$|^XSHE:\\S+$|^LIGA:\\S+$|^CGND:\\S+$|^IKBS:\\S+$|^FXCL:\\S+$|^NASX:\\S+$|^XTAE:\\S+$|^MOTX:\\S+$|^FNSE:\\S+$|^XHAN:\\S+$|^VAGL:\\S+$|^EMIR:\\S+$|^EDGO:\\S+$|^IMGI:\\S+$|^NABA:\\S+$|^WABR:\\S+$|^BVUK:\\S+$|^HUDX:\\S+$|^CSAU:\\S+$|^XPOW:\\S+$|^RICX:\\S+$|^XALT:\\S+$|^BTRL:\\S+$|^ERIS:\\S+$|^SEMX:\\S+$|^XDLP:\\S+$|^OTCQ:\\S+$|^XIOM:\\S+$|^EBXV:\\S+$|^NFSC:\\S+$|^IMTF:\\S+$|^XKSE:\\S+$|^ISWE:\\S+$|^XEUC:\\S+$|^BASP:\\S+$|^TSBX:\\S+$|^TYO:\\S+$|^TDGF:\\S+$|^KNLI:\\S+$|^GLLC:\\S+$|^TADAWUL:\\S+$|^DAPA:\\S+$|^HELA:\\S+$|^XCNQ:\\S+$|^DEKA:\\S+$|^XTXE:\\S+$|^SMBB:\\S+$|^BGHX:\\S+$|^HAMN:\\S+$|^ARKX:\\S+$|^XNXD:\\S+$|^SMBP:\\S+$|^RMMS:\\S+$|^JPMS:\\S+$|^IUOB:\\S+$|^BGFI:\\S+$|^LSE:\\S+$|^OTC:\\S+$|^ATFX:\\S+$|^CXRT:\\S+$|^XNOR:\\S+$|^CRYX:\\S+$|^XNAM:\\S+$|^XBBK:\\S+$|^VERT:\\S+$|^NZE:\\S+$|^FRAV:\\S+$|^XBCL:\\S+$|^FCME:\\S+$|^XRMZ:\\S+$|^MHBE:\\S+$|^ECSL:\\S+$|^BERB:\\S+$|^RPDX:\\S+$|^CHIO:\\S+$|^XPRA:\\S+$|^EXAA:\\S+$|^JBUL:\\S+$|^VFGB:\\S+$|^DBLX:\\S+$|^CHIS:\\S+$|^XMLI:\\S+$|^VIE:\\S+$|^HSFX:\\S+$|^POTC:\\S+$|^CSOT:\\S+$|^NMTF:\\S+$|^KOSDAQ:\\S+$|^CLMX:\\S+$|^UTSL:\\S+$|^XSWA:\\S+$|^SMBG:\\S+$|^CGEE:\\S+$|^BRVM:\\S+$|^RBCB:\\S+$|^AACA:\\S+$|^CEUO:\\S+$|^EMID:\\S+$|^WBON:\\S+$|^MCUR:\\S+$|^ATLN:\\S+$|^XZAP:\\S+$|^ARCH:\\S+$|^24EX:\\S+$|^XECM:\\S+$|^OCEA:\\S+$|^XKRX:\\S+$|^BOSP:\\S+$|^XASX:\\S+$|^XMFX:\\S+$|^ODOC:\\S+$|^XTKT:\\S+$|^GBUL:\\S+$|^PUMX:\\S+$|^TRUX:\\S+$|^OPEX:\\S+$|^SMEX:\\S+$|^XBKK:\\S+$|^VCRS:\\S+$|^XSHG:\\S+$|^VMFX:\\S+$|^XSTE:\\S+$|^G1XX:\\S+$|^XOAM:\\S+$|^XSAT:\\S+$|^CLPH:\\S+$|^EBSC:\\S+$|^MUBM:\\S+$|^PSXD:\\S+$|^XECC:\\S+$|^BKK:\\S+$|^CRYD:\\S+$|^IMIR:\\S+$|^MTXX:\\S+$|^HPCX:\\S+$|^CSMD:\\S+$|^ICPM:\\S+$|^IOTF:\\S+$|^SGMX:\\S+$|^DKED:\\S+$|^ENCL:\\S+$|^CHID:\\S+$|^XLGT:\\S+$|^FINR:\\S+$|^MAQE:\\S+$|^BILU:\\S+$|^AMS:\\S+$|^RBCG:\\S+$|^FSME:\\S+$|^MCX:\\S+$|^XTIR:\\S+$|^XKAR:\\S+$|^SPEC:\\S+$|^XBEY:\\S+$|^RABL:\\S+$|^CEUD:\\S+$|^XBVR:\\S+$|^PEPW:\\S+$|^CONC:\\S+$|^CLAU:\\S+$|^NOWX:\\S+$|^HPCS:\\S+$|^MLIX:\\S+$|^TDBL:\\S+$|^BARU:\\S+$|^UKGD:\\S+$|^XDUB:\\S+$|^SIGH:\\S+$|^TIRD:\\S+$|^JLEU:\\S+$|^TEGI:\\S+$|^XDFB:\\S+$|^AWBX:\\S+$|^TSFI:\\S+$|^INCR:\\S+$|^BRGA:\\S+$|^TASE:\\S+$|^ISWP:\\S+$|^XMIO:\\S+$|^IOGI:\\S+$|^NSME:\\S+$|^LIFI:\\S+$|^XTSX:\\S+$|^XTXD:\\S+$|^NOSI:\\S+$|^XNEP:\\S+$|^XPOL:\\S+$|^SPXE:\\S+$|^MCAD:\\S+$|^BGCD:\\S+$|^XICX:\\S+$|^BUX:\\S+$|^BOAT:\\S+$|^MISX:\\S+$|^NSEASI:\\S+$|^BMCL:\\S+$|^IMEX:\\S+$|^TPIE:\\S+$|^XISX:\\S+$|^MFOX:\\S+$|^FINY:\\S+$|^XPAR:\\S+$|^XTEH:\\S+$|^XNMS:\\S+$|^LIQH:\\S+$|^XDAR:\\S+$|^DDTX:\\S+$|^INGE:\\S+$|^EDBT:\\S+$|^BSFX:\\S+$|^NCME:\\S+$|^MSSI:\\S+$|^ONSE:\\S+$|^SEBS:\\S+$|^BLBS:\\S+$|^FLTR:\\S+$|^FNLT:\\S+$|^MNFI:\\S+$|^BBSX:\\S+$|^AQEA:\\S+$|^AKIS:\\S+$|^CBNL:\\S+$|^IOIR:\\S+$|^FREI:\\S+$|^XTND:\\S+$|^UBSP:\\S+$|^SANT:\\S+$|^ICSH:\\S+$|^ABFI:\\S+$|^STAN:\\S+$|^GBWB:\\S+$|^MEMX:\\S+$|^XNDU:\\S+$|^DWFI:\\S+$|^NORX:\\S+$|^GTXS:\\S+$|^XTAF:\\S+$|^SVEX:\\S+$|^XBOT:\\S+$|^XDRK:\\S+$|^XABC:\\S+$|^SXSI:\\S+$|^BOSC:\\S+$|^XDFM:\\S+$|^SWEE:\\S+$|^BEAM:\\S+$|^OAPA:\\S+$|^NOSC:\\S+$|^IINX:\\S+$|^SMBE:\\S+$|^OTCB:\\S+$|^XNAF:\\S+$|^PRSE:\\S+$|^MCID:\\S+$|^FAIR:\\S+$|^EBMX:\\S+$|^XOSD:\\S+$|^CGMI:\\S+$|^XEUI:\\S+$|^IOMM:\\S+$|^INGF:\\S+$|^IBGH:\\S+$|^CXAW:\\S+$|^TWJT:\\S+$|^BBVA:\\S+$|^XMAU:\\S+$|^MYTR:\\S+$|^SBEX:\\S+$|^TMEX:\\S+$|^XIMC:\\S+$|^SEDC:\\S+$|^CXAP:\\S+$|^TSMR:\\S+$|^AMPX:\\S+$|^SCXS:\\S+$|^XQUI:\\S+$|^JPBX:\\S+$|^MLVX:\\S+$|^GFIB:\\S+$|^GFBO:\\S+$|^EQCA:\\S+$|^EXSI:\\S+$|^XSCA:\\S+$|^SSOB:\\S+$|^SHAW:\\S+$|^XMUN:\\S+$|^XNSA:\\S+$|^CSEC:\\S+$|^GMBG:\\S+$|^KLSE:\\S+$|^BRFQ:\\S+$|^XKCM:\\S+$|^VTX:\\S+$|^PFTS:\\S+$|^XISE:\\S+$|^EQUS:\\S+$|^VDRK:\\S+$|^FNFI:\\S+$|^TGAT:\\S+$|^EXLP:\\S+$|^XETF:\\S+$|^XNGS:\\S+$|^XUKR:\\S+$|^SGMV:\\S+$|^XZAG:\\S+$|^NSPO:\\S+$|^LQED:\\S+$|^BTBS:\\S+$|^XSFA:\\S+$|^SQUA:\\S+$|^XPHS:\\S+$|^FICX:\\S+$|^ROTC:\\S+$|^TFSA:\\S+$|^NSDQ:\\S+$|^GFIF:\\S+$|^XTK3:\\S+$|^XRSP:\\S+$|^TPEO:\\S+$|^EMIB:\\S+$|^BOVM:\\S+$|^CIBC:\\S+$|^JSJX:\\S+$|^XDEX:\\S+$|^XKHA:\\S+$|^BNPL:\\S+$|^ROSR:\\S+$|^IMEN:\\S+$|^DEAL:\\S+$|^MAXD:\\S+$|^BTQE:\\S+$|^MSTO:\\S+$|^TSEF:\\S+$|^MUDX:\\S+$|^HEMO:\\S+$|^CHIX:\\S+$|^XHKG:\\S+$|^SZSE:\\S+$|^LMNX:\\S+$|^ZKBX:\\S+$|^TMID:\\S+$|^XPRM:\\S+$|^PEPQ:\\S+$|^QWIX:\\S+$|^IFUS:\\S+$|^EBSN:\\S+$|^IMED:\\S+$|^VTBC:\\S+$|^CPH:\\S+$|^HAMB:\\S+$|^XHNF:\\S+$|^TPE:\\S+$|^IFXC:\\S+$|^SPIM:\\S+$|^MTUS:\\S+$|^SB1M:\\S+$|^AMNL:\\S+$|^ABNA:\\S+$|^BDEA:\\S+$|^EXGM:\\S+$|^XNAI:\\S+$|^IPXP:\\S+$|^JSEB:\\S+$|^XBVM:\\S+$|^NEOD:\\S+$|^XBAB:\\S+$|^BVUS:\\S+$|^XBSE:\\S+$|^CGGD:\\S+$|^HPSX:\\S+$|^GREE:\\S+$|^UBSA:\\S+$|^MTSO:\\S+$|^S3FM:\\S+$|^XPIC:\\S+$|^MABX:\\S+$|^IFEU:\\S+$|^MTXS:\\S+$|^LQFI:\\S+$|^XROX:\\S+$|^XUBS:\\S+$|^MEMD:\\S+$|^HEL:\\S+$|^MTXC:\\S+$|^XBUD:\\S+$|^FRAS:\\S+$|^XERE:\\S+$|^WFLB:\\S+$|^CDED:\\S+$|^XCBT:\\S+$|^XAFX:\\S+$|^MFXA:\\S+$|^XLIS:\\S+$|^SIMD:\\S+$|^MNSE:\\S+$|^XGME:\\S+$|^STUE:\\S+$|^BLOX:\\S+$|^FXAL:\\S+$|^XBLB:\\S+$|^BLXA:\\S+$|^ASEF:\\S+$|^XISA:\\S+$|^BBVX:\\S+$|^JADX:\\S+$|^LOTC:\\S+$|^TQEA:\\S+$|^AUTO:\\S+$|^ARCO:\\S+$|^XLUX:\\S+$|^FLTB:\\S+$|^XIEL:\\S+$|^UCDE:\\S+$|^NDCM:\\S+$|^CBAL:\\S+$|^FTUS:\\S+$|^SPRZ:\\S+$|^MUBP:\\S+$|^CFIL:\\S+$|^ASTR:\\S+$|^ODDO:\\S+$|^IDX:\\S+$|^EXSF:\\S+$|^VALX:\\S+$|^NABL:\\S+$|^LIQF:\\S+$|^SCXA:\\S+$|^ONEC:\\S+$|^EIXE:\\S+$|^ALSI:\\S+$|^INSE:\\S+$|^NYPC:\\S+$|^BEBG:\\S+$|^RTSI:\\S+$|^JSE:\\S+$|^NYMS:\\S+$|^XTAL:\\S+$|^SCXF:\\S+$|^STFL:\\S+$|^NDEX:\\S+$|^ROCO:\\S+$|^CCMX:\\S+$|^XSGO:\\S+$|^XSWX:\\S+$|^XVES:\\S+$|^XPOT:\\S+$|^PNED:\\S+$|^DOWG:\\S+$|^SKSI:\\S+$|^XKUW:\\S+$|^PSE:\\S+$|^XVIE:\\S+$|^NDXS:\\S+$|^BMEX:\\S+$|^XMER:\\S+$|^4AXE:\\S+$|^IST:\\S+$|^SGMZ:\\S+$|^JISI:\\S+$|^ASPN:\\S+$|^COMG:\\S+$|^TRSI:\\S+$|^FBSI:\\S+$|^ALDP:\\S+$|^CGMT:\\S+$|^SCOT:\\S+$|^TSCD:\\S+$|^TERA:\\S+$|^CSDA:\\S+$|^CBKE:\\S+$|^ELXE:\\S+$|^KMUX:\\S+$|^BAEP:\\S+$|^SIGJ:\\S+$|^BLUX:\\S+$|^LOUI:\\S+$|^CFIC:\\S+$|^JEFS:\\S+$|^NYSEARCA:\\S+$|^IFLO:\\S+$|^SVES:\\S+$|^XMOD:\\S+$|^KBLT:\\S+$|^EESE:\\S+$|^RBSI:\\S+$|^MTAA:\\S+$|^XLSM:\\S+$|^XFCI:\\S+$|^XCHG:\\S+$|^DKFI:\\S+$|^NCML:\\S+$|^XMAE:\\S+$|^NWNV:\\S+$|^BARO:\\S+$|^EXSY:\\S+$|^XKAZ:\\S+$|^TRAS:\\S+$|^BREA:\\S+$|^MLCO:\\S+$|^XBUE:\\S+$|^ADVT:\\S+$|^OTPB:\\S+$|^TWEU:\\S+$|^FRAU:\\S+$|^IMGB:\\S+$|^XLOD:\\S+$|^XPRI:\\S+$|^XAFR:\\S+$|^XTXM:\\S+$|^MIHI:\\S+$|^XNYM:\\S+$|^EXOT:\\S+$|^WSIL:\\S+$|^CLST:\\S+$|^LBBW:\\S+$|^BSEX:\\S+$|^XOAA:\\S+$|^MKAA:\\S+$|^XSTC:\\S+$|^IMET:\\S+$|^IDXM:\\S+$|^ZOBX:\\S+$|^CRED:\\S+$|^KBLS:\\S+$|^TRDX:\\S+$|^GROW:\\S+$|^XINV:\\S+$|^EXVP:\\S+$|^TRAI:\\S+$|^GSXC:\\S+$|^HESP:\\S+$|^SWBI:\\S+$|^AFET:\\S+$|^XUMP:\\S+$|^MAQL:\\S+$|^XLME:\\S+$|^UCIT:\\S+$|^AQED:\\S+$|^GSAL:\\S+$|^ICEO:\\S+$|^MCXX:\\S+$|^VTPS:\\S+$|^XWAR:\\S+$|^NLAX:\\S+$|^BGFU:\\S+$|^ISWT:\\S+$|^XSTU:\\S+$|^XBLK:\\S+$|^AMEX:\\S+$|^XGAT:\\S+$|^XMSM:\\S+$|^ETFP:\\S+$|^XBRD:\\S+$|^ISWC:\\S+$|^ABXX:\\S+$|^XFEX:\\S+$|^TGSI:\\S+$|^XMDG:\\S+$|^BKLN:\\S+$|^CXAM:\\S+$|^CABK:\\S+$|^UBSY:\\S+$|^MAEL:\\S+$|^XGDX:\\S+$|^FSX:\\S+$|^APEX:\\S+$|^NEXL:\\S+$|^BLBB:\\S+$|^IEXG:\\S+$|^IPSX:\\S+$|^CSBX:\\S+$|^BYXD:\\S+$|^BOFS:\\S+$|^OTCN:\\S+$|^SAGE:\\S+$|^ITGI:\\S+$|^XTK2:\\S+$|^BGUK:\\S+$|^METZ:\\S+$|^XBUL:\\S+$|^BAAD:\\S+$|^XEUP:\\S+$|^ECHO:\\S+$|^FISU:\\S+$|^XREP:\\S+$|^GFOX:\\S+$|^XTUC:\\S+$|^CGMD:\\S+$|^XPXE:\\S+$|^FRAW:\\S+$|^MACB:\\S+$|^XGEM:\\S+$|^TLCM:\\S+$|^GLBX:\\S+$|^XCBO:\\S+$|^MASG:\\S+$|^UKPX:\\S+$|^IBAL:\\S+$|^SGAS:\\S+$|^BISI:\\S+$|^YKNA:\\S+$|^CETI:\\S+$|^BBIE:\\S+$|^PEEL:\\S+$|^CMES:\\S+$|^XSWB:\\S+$|^XDUS:\\S+$|^XOTP:\\S+$|^XNXC:\\S+$|^AURB:\\S+$|^XMTS:\\S+$|^XMAI:\\S+$|^XKLS:\\S+$|^TEIR:\\S+$|^XADS:\\S+$|^XOSC:\\S+$|^JPMI:\\S+$|^BETX:\\S+$|^ELUK:\\S+$|^SECE:\\S+$|^BCDX:\\S+$|^WIPO:\\S+$|^BPLC:\\S+$|^DSTO:\\S+$|^FRAA:\\S+$|^UCBG:\\S+$|^XBOG:\\S+$|^AIXK:\\S+$|^ICUR:\\S+$|^MAKX:\\S+$|^GFBM:\\S+$|^VIRT:\\S+$|^XATS:\\S+$|^EQTB:\\S+$|^XGSX:\\S+$|^AFSI:\\S+$|^BTQG:\\S+$|^RUSX:\\S+$|^GMNI:\\S+$|^OSLC:\\S+$|^LMAX:\\S+$|^FNUK:\\S+$|^PLDX:\\S+$|^GIPB:\\S+$|^FXRS:\\S+$|^CBLC:\\S+$|^NBLX:\\S+$|^WIND:\\S+$|^ATHL:\\S+$|^MSRP:\\S+$|^XETB:\\S+$|^BATP:\\S+$|^CECS:\\S+$|^BANA:\\S+$|^IOGB:\\S+$|^XBER:\\S+$|^ABAN:\\S+$|^BCSE:\\S+$|^XEMD:\\S+$|^DASH:\\S+$|^XQOD:\\S+$|^PIRM:\\S+$|^MNDK:\\S+$|^TFEX:\\S+$|^SWLV:\\S+$|^BBSI:\\S+$|^ZAPA:\\S+$|^CAVD:\\S+$|^ARCX:\\S+$|^TAL:\\S+$|^XPSX:\\S+$|^CFIF:\\S+$|^BCSL:\\S+$|^MHBL:\\S+$|^XMOT:\\S+$|^WBCL:\\S+$|^XCAL:\\S+$|^TWJP:\\S+$|^XCAY:\\S+$|^ICOT:\\S+$|^NOTC:\\S+$|^BGCI:\\S+$|^BTNL:\\S+$|^XMAD:\\S+$|^OOTC:\\S+$|^MESQ:\\S+$|^CGDB:\\S+$|^MATN:\\S+$|^TSRE:\\S+$|^SSME:\\S+$|^XBVC:\\S+$|^MHEU:\\S+$|^VWDX:\\S+$|^MNIS:\\S+$|^TEGB:\\S+$|^XSBT:\\S+$|^TBSA:\\S+$|^XOAD:\\S+$|^TERE:\\S+$|^MOEX:\\S+$|^CIME:\\S+$|^XQMH:\\S+$|^SSEX:\\S+$|^TQEX:\\S+$|^XADE:\\S+$|^GTXE:\\S+$|^XDSX:\\S+$|^SIX:\\S+$|^FSEF:\\S+$|^BETA:\\S+$|^MSIP:\\S+$|^EQTD:\\S+$|^SKYX:\\S+$|^XIHK:\\S+$|^BINV:\\S+$|^RTSX:\\S+$|^GRSE:\\S+$|^BLEQ:\\S+$|^SIBC:\\S+$|^XEUR:\\S+$|^SEPE:\\S+$|^ISDA:\\S+$|^XWBO:\\S+$|^GTSX:\\S+$|^RBHU:\\S+$|^FXSW:\\S+$|^DRSP:\\S+$|^HRSI:\\S+$|^BNTW:\\S+$|^CXAV:\\S+$|^BEUP:\\S+$|^BELF:\\S+$|^XNSE:\\S+$|^COHR:\\S+$|^XBNV:\\S+$|^BSPL:\\S+$|^BTFE:\\S+$|^MATX:\\S+$|^APAW:\\S+$|^KBLM:\\S+$|^XSFE:\\S+$|^TLV:\\S+$|^EBSS:\\S+$|^FTFM:\\S+$|^PARK:\\S+$|^CBKG:\\S+$|^ZBUL:\\S+$|^OPCO:\\S+$|^CHEV:\\S+$|^XSPS:\\S+$|^NZFX:\\S+$|^CITD:\\S+$|^CESI:\\S+$|^EPRD:\\S+$|^BAPA:\\S+$|^OSSG:\\S+$|^SVXI:\\S+$|^PSGM:\\S+$|^XSTF:\\S+$|^VFIL:\\S+$|^TRQA:\\S+$|^MAQI:\\S+$|^CLVE:\\S+$|^BTEC:\\S+$|^AMLG:\\S+$|^XEBI:\\S+$|^MFXR:\\S+$|^BNPC:\\S+$|^XHAM:\\S+$|^CITX:\\S+$|^BERC:\\S+$|^GSSI:\\S+$|^XEQT:\\S+$|^CGCM:\\S+$|^XMAL:\\S+$|^BAJD:\\S+$|^TSE:\\S+$|^XNGM:\\S+$|^XKFE:\\S+$|^NEOE:\\S+$|^GSXH:\\S+$|^TRQX:\\S+$|^SIDX:\\S+$|^MLEX:\\S+$|^WELN:\\S+$|^DBOX:\\S+$|^LICA:\\S+$|^LCHC:\\S+$|^CGEC:\\S+$|^UKOR:\\S+$|^SOHO:\\S+$|^HBFR:\\S+$|^XBRV:\\S+$|^CAPL:\\S+$|^ARIA:\\S+$|^STRM:\\S+$|^UBSB:\\S+$|^LXJP:\\S+$|^NMSX:\\S+$|^RBCC:\\S+$|^CBKC:\\S+$|^FLWX:\\S+$|^AAPA:\\S+$|^BAJM:\\S+$|^NTUK:\\S+$|^XBCC:\\S+$|^XSTX:\\S+$|^XBCX:\\S+$|^LAMP:\\S+$|^TPIR:\\S+$|^XKIE:\\S+$|^JPEU:\\S+$|^LMAF:\\S+$|^VFSI:\\S+$|^OPRA:\\S+$|^MLER:\\S+$|^XDPA:\\S+$|^XGCL:\\S+$|^BATO:\\S+$|^MFGL:\\S+$|^LEDG:\\S+$|^XAMS:\\S+$|^360T:\\S+$|^XTRZ:\\S+$|^IFLL:\\S+$|^PROS:\\S+$|^XJAM:\\S+$|^IFSM:\\S+$|^DCSX:\\S+$|^CALH:\\S+$|^BOVA:\\S+$|^LYNX:\\S+$|^NYSEAMERICAN:\\S+$|^BERA:\\S+$|^NYSD:\\S+$|^ICEL:\\S+$|^EXPM:\\S+$|^CBTS:\\S+$|^JEFX:\\S+$|^CIMV:\\S+$|^XMOL:\\S+$|^WSAG:\\S+$|^XSCU:\\S+$|^PAVE:\\S+$|^MUSN:\\S+$|^RABO:\\S+$|^XADF:\\S+$|^TPSE:\\S+$|^SZSC:\\S+$|^BGLU:\\S+$|^ASXB:\\S+$|^XDNB:\\S+$|^TOCP:\\S+$|^ROFX:\\S+$|^XBEL:\\S+$|^APCL:\\S+$|^LMAD:\\S+$|^XBCM:\\S+$|^MDRV:\\S+$|^NBFL:\\S+$|^XRPM:\\S+$|^XXXX:\\S+$|^MLXB:\\S+$|^UBSF:\\S+$|^EDGL:\\S+$|^XJPX:\\S+$|^BZXD:\\S+$|^BEIS:\\S+$|^TEMM:\\S+$|^ANZL:\\S+$|^XGAS:\\S+$|^XUGA:\\S+$|^NWMS:\\S+$|^XPTY:\\S+$|^MTSD:\\S+$|^PIPR:\\S+$|^XBKF:\\S+$|^IVZX:\\S+$|^IMFD:\\S+$|^AFDL:\\S+$|^CFBC:\\S+$|^GLMX:\\S+$|^CSCF:\\S+$|^VPXB:\\S+$|^MUBE:\\S+$|^BARK:\\S+$|^MHEL:\\S+$|^NEXT:\\S+$|^CIBP:\\S+$|^XBRN:\\S+$|^VCMO:\\S+$)$",
             "title": "Ticker"
           }
         },
@@ -10660,6 +10630,19 @@
                 "Google"
               ]
             }
+          },
+          "has_website": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ExistsFilter"
+              }
+            ],
+            "title": "Has Website",
+            "description": "Filter prospects by whether their company has a website. Categories: [True, False]",
+            "example": {
+              "value": true
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -10735,8 +10718,8 @@
             "type": "string",
             "title": "Next Cursor",
             "description": "The sort values from the last document returned by the previous page. If provided, cursor pagination is used instead of page-based pagination. send \"null\" to start with next_cursor pagination from the beginning.",
-            "nullable": true,
-            "example": null
+            "example": null,
+            "nullable": true
           }
         },
         "additionalProperties": false,
