@@ -101,7 +101,7 @@ The **Fetch Businesses** endpoint allows users to retrieve business records base
     | `country_code`                | Filter accounts by their HQ’s country using alpha-2 country codes. Example:  `["us", "ca"]`                                                                                                                                                    | - Use autocomplete to search by country name and select the correct two-letter code. - Uses a list of `values`. - Logic checks whether the country code matches the account location.                                                                                                                                                                                                                                                                                                                                                                                                       |
     | `region_country_code`         | Filter accounts by their HQ’s region using ISO 3166-2 country-subdivision codes. Example:  `["us-ut", "us-ca"]`                                                                                                                                | - Use autocomplete to search for a region after selecting a country. Format will automatically apply as `country-region` (e.g., `us-ca`). - Uses multiple `values`. - Logic verifies if the region code matches the structured field.                                                                                                                                                                                                                                                                                                                                                       |
     | `city_region_country`         | Filter accounts by geographic region, down to city-level granularity. Example:  `["San Francisco, CA, US"]`                                                                                                                                    | - Use autocomplete with cascading dropdowns (country → region → city). - Accepts a list of full location strings. - Logic checks address fields for match.                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-    | `company_size`                | Filter accounts by the number of employees at all company sites. Categories:  `["1-10", "11-50", ..., "10001+"]`                                                                                                                               | - Use autocomplete to search and select a size bracket from the predefined list. - Uses multiple `values`. - Logic maps input values to normalized size brackets.                                                                                                                                                                                                                                                                                                                                                                                                                           |
+    | `filters.city_region`         | Filter accounts by geographic region with city-level granularity. Example: `["New York--Jersey City--Newark, NY--NJ"]`                                                                                                                         | - Use autocomplete to search and select the exact city region name as defined in the system.<br />- Uses a list of values.<br />- Only exact values returned by autocomplete are supported (free text is not supported).<br />- Logic checks whether the account is mapped to the selected city region.                                                                                                                                                                                                                                                                                     |
     | `company_revenue`             | Filter accounts by annual revenue generated at all company sites. Categories:  `["0-500K", ..., "10B-100B"]`                                                                                                                                   | - Use autocomplete to search and select a revenue range from the predefined list. - Accepts a list of `values`. - Logic compares revenue input against company revenue fields.                                                                                                                                                                                                                                                                                                                                                                                                              |
     | `company_age`                 | Filter accounts by how many years since they were established. Categories:  `["0-3", "3-6", ..., "20+"]`                                                                                                                                       | - Use autocomplete to select a range representing company age. - Accepts multiple `values`. - Logic compares establishment year against current date to determine match.                                                                                                                                                                                                                                                                                                                                                                                                                    |
     | `google_category`             | Filter accounts by their classified Google business category. Example:  `["Paving contractor", "Retail"]`                                                                                                                                      | - Use autocomplete to search and select from Google’s list of business categories. - Accepts `values`. - Logic filters companies based on Google’s classification field.                                                                                                                                                                                                                                                                                                                                                                                                                    |
@@ -114,60 +114,138 @@ The **Fetch Businesses** endpoint allows users to retrieve business records base
     | `website_keywords`            | Filter accounts by specific keywords mentioned on their websites. Example:  `["sustainability", "machine learning"]`                                                                                                                           | - Use keyword search to find companies mentioning certain terms. - Accepts free-text keywords or predefined tags. - Logic performs keyword match in indexed website content.                                                                                                                                                                                                                                                                                                                                                                                                                |
     | `topics`                      | Filters businesses based on active research around specific intent topics, returning`business_id` values of companies demonstrating relevant interest. Example: `["machine learning & artificial intelligence: openai", "technology: iphone"]` | - Accepts one or more **topic strings** following Bombora’s taxonomy.<br />- Returns  businesses with a **composite score \>60** for at least one matching topic.<br />- Recommended for pre-filtering businesses prior to enrichment or campaign targeting<br />- Use the autocomplete endpoint with `business_intent_topics` — and with`semantic_search=true` — to discover broader and smarter intent-topic suggestions. <br /><br />Enabling semantic search helps surface wider contextual topics that users are actively researching, ensuring more accurate and effective filtering. |
     | events.values                 | Filter accounts by specific **business event types** (a list of event identifiers). Example: `["new_product", "employee_joined_company"]`                                                                                                      | - ****`Must be used together with events.last_occurrence.`****<br />- Uses a list of values.<br />- The full list and definitions are available under **Business Events**.                                                                                                                                                                                                                                                                                                                                                                                                                  |
-    | events.last_occurrence        | Filter accounts based on whether the selected events occurred within the last **N days**. Example: `45`                                                                                                                                        | - ****`Must be used together with events.values.`****<br />- Accepts an integer **between 30 and 90**.<br />- Checks events that occurred within the last **N days (lookback window)**.<br />- See the full list of supported event types below. |
- <Accordion title="Full list of supported event_type values">
-  <br />
+    | events.last_occurrence        | Filter accounts based on whether the selected events occurred within the last **N days**. Example: `45`                                                                                                                                        | - ****`Must be used together with events.values.`****<br />- Accepts an integer **between 30 and 90**.<br />- Checks events that occurred within the last **N days (lookback window)**.<br />- See the full list of supported event types below.                                                                                                                                                                                                                                                                                                                                            |
 
-  <ul>
-    <li>increase_in_customer_service_department</li>
-    <li>hiring_in_finance_department</li>
-    <li>hiring_in_support_department</li>
-    <li>increase_in_engineering_department</li>
-    <li>decrease_in_customer_service_department</li>
-    <li>hiring_in_operations_department</li>
-    <li>hiring_in_creative_department</li>
-    <li>decrease_in_engineering_department</li>
-    <li>hiring_in_sales_department</li>
-    <li>increase_in_operations_department</li>
-    <li>hiring_in_trade_department</li>
-    <li>decrease_in_marketing_department</li>
-    <li>increase_in_marketing_department</li>
-    <li>hiring_in_marketing_department</li>
-    <li>hiring_in_health_department</li>
-    <li>hiring_in_education_department</li>
-    <li>increase_in_all_departments</li>
-    <li>decrease_in_all_departments</li>
-    <li>decrease_in_sales_department</li>
-    <li>decrease_in_operations_department</li>
-    <li>hiring_in_professional_service_department</li>
-    <li>hiring_in_human_resources_department</li>
-    <li>increase_in_sales_department</li>
-    <li>hiring_in_legal_department</li>
-    <li>hiring_in_unknown_department</li>
-    <li>hiring_in_engineering_department</li>
-    <li>company_award</li>
-    <li>new_product</li>
-    <li>employee_joined_company</li>
-    <li>merger_and_acquisitions</li>
-    <li>lawsuits_and_legal_issues</li>
-    <li>outages_and_security_breaches</li>
-    <li>closing_office</li>
-    <li>new_investment</li>
-    <li>new_office</li>
-    <li>new_partnership</li>
-    <li>cost_cutting</li>
-    <li>new_funding_round</li>
-    <li>award</li>
-    <li>ipo_announcement</li>
-  </ul>
+    <Accordion title="Full list of supported event_type values">
+      <br />
 
-  <p><i>Full definitions and examples for each event type are available under <b>Business Events</b>.</i></p>
-</Accordion>
+      <ul>
+      <li>
+      increase_in_customer_service_department</li>
 
+       <li>
+      hiring_in_finance_department</li>
 
+       <li>
+      hiring_in_support_department</li>
 
-    
+       <li>
+      increase_in_engineering_department</li>
 
+       <li>
+      decrease_in_customer_service_department</li>
+
+       <li>
+      hiring_in_operations_department</li>
+
+       <li>
+      hiring_in_creative_department</li>
+
+       <li>
+      decrease_in_engineering_department</li>
+
+       <li>
+      hiring_in_sales_department</li>
+
+       <li>
+      increase_in_operations_department</li>
+
+       <li>
+      hiring_in_trade_department</li>
+
+       <li>
+      decrease_in_marketing_department</li>
+
+       <li>
+      increase_in_marketing_department</li>
+
+       <li>
+      hiring_in_marketing_department</li>
+
+       <li>
+      hiring_in_health_department</li>
+
+       <li>
+      hiring_in_education_department</li>
+
+       <li>
+      increase_in_all_departments</li>
+
+       <li>
+      decrease_in_all_departments</li>
+
+       <li>
+      decrease_in_sales_department</li>
+
+       <li>
+      decrease_in_operations_department</li>
+
+       <li>
+      hiring_in_professional_service_department</li>
+
+       <li>
+      hiring_in_human_resources_department</li>
+
+       <li>
+      increase_in_sales_department</li>
+
+       <li>
+      hiring_in_legal_department</li>
+
+       <li>
+      hiring_in_unknown_department</li>
+
+       <li>
+      hiring_in_engineering_department</li>
+
+       <li>
+      company_award</li>
+
+       <li>
+      new_product</li>
+
+       <li>
+      employee_joined_company</li>
+
+       <li>
+      merger_and_acquisitions</li>
+
+       <li>
+      lawsuits_and_legal_issues</li>
+
+       <li>
+      outages_and_security_breaches</li>
+
+       <li>
+      closing_office</li>
+
+       <li>
+      new_investment</li>
+
+       <li>
+      new_office</li>
+
+       <li>
+      new_partnership</li>
+
+       <li>
+      cost_cutting</li>
+
+       <li>
+      new_funding_round</li>
+
+       <li>
+      award</li>
+
+       <li>
+      ipo_announcement</li>
+
+      </ul>
+
+      <p>
+      <i>Full definitions and examples for each event type are available under <b>Business Events</b>.</i>
+      </p>
+    </Accordion>
     ### <Icon icon="target" /> Targeting Mid-Sized B2B Software Companies in California for CRM Sales
 
     #### <Icon icon="magnifying-glass" /> Use Case:A CRM software vendor wants to sell customer relationship management tools to mid-sized software companies in California. The filters ensure that companies already use CRM tools but may be looking for an upgrade.
