@@ -246,7 +246,7 @@
             ]
           }
         ]
-      },
+      },      
       {
         "tab": "Integrations",
         "icon": "circles-overlap",
@@ -279,6 +279,18 @@
               "integrations/zapier/zapier"              
             ]      
           }          
+        ]
+      },
+      {
+        "tab": "Vibe Prospecting",
+        "icon": "wave-pulse",
+        "groups": [
+          {               
+            "group": "Vibe Prospecting",
+            "pages": [
+              "vibeprospecting/vibeprospecting"                           
+            ]
+          }
         ]
       },
       {
