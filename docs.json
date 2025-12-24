@@ -284,11 +284,18 @@
       {
         "tab": "Vibe Prospecting",
         "icon": "wave-pulse",
+        "hidden": true,
         "groups": [
           {               
             "group": "Vibe Prospecting",
             "pages": [
-              "vibe-prospecting/vibeprospecting"                           
+              "vibe-prospecting/vibeprospecting",
+              "vibe-prospecting/getting-started",
+              "vibe-prospecting/advanced-filters",
+              "vibe-prospecting/best-practices",
+              "vibe-prospecting/hub",
+              "vibe-prospecting/troubleshooting",
+              "vibe-prospecting/tips-and-tricks"
             ]
           }
         ]

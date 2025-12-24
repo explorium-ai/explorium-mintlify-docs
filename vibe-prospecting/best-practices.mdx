@@ -1,0 +1,177 @@
+---
+title: "Best Practices"
+---
+
+## Best Practices
+
+### Writing Effective Queries
+
+**Be Specific About What You Need**
+
+✅ **Good**: "Find CTOs at Series B fintech companies in San Francisco with 50-200 employees"
+
+❌ **Avoid**: "Find some tech people"
+
+**Combine Multiple Criteria**
+
+✅ **Good**: "Sales directors at SaaS companies that raised funding in the last 90 days and use Salesforce"
+
+❌ **Avoid**: Making separate searches that could be combined
+
+**Use Natural Language**
+
+✅ **Good**: "Companies that recently expanded their engineering teams"
+
+❌ **Avoid**: Trying to write filter syntax manually
+
+---
+
+### Understanding Entity Types
+
+Vibe Prospecting works with two entity types:
+
+**Choose "Prospects" when you need:**
+
+- Individual people/contacts
+- Email addresses or phone numbers
+- Specific job titles or roles
+- Decision-makers at companies
+
+**Choose "Businesses" when you need:**
+
+- Company information only
+- Firmographics or technographics
+- Market research data
+- Lists of organizations
+
+**The AI automatically determines entity type**, but mentioning "people," "contacts," or "executives" will ensure prospect results.
+
+---
+
+### Optimizing Credit Usage
+
+**1. Start with statistics**
+
+Before running expensive prospect searches:
+
+```
+What's the market size of cybersecurity companies with 100-500 employees in the US?
+```
+
+This helps validate your target market without using credits.
+
+**2. Review samples before exporting**
+
+Always check the sample preview to ensure:
+
+- Results match your expectations
+- Data quality meets your needs
+- Cost is acceptable for your budget
+
+**3. Use exclusion lists**
+
+Prevent duplicate spending:
+
+```
+Find new prospects, but exclude entities I've already exported
+```
+
+**4. Be precise with enrichments**
+
+Only request enrichments you'll actually use:
+
+```
+Enrich with contacts only
+```
+
+vs.
+
+```
+Enrich with everything available
+```
+
+---
+
+### Handling Large Datasets
+
+**For queries returning 1,000+ results:**
+
+The system caps at 1,000 results per query. To get more:
+
+```
+First query: "Find SaaS companies in California with 100-500 employees"
+Second query: "Find SaaS companies in New York with 100-500 employees"
+```
+
+Split by geography, industry subcategory, or company size.
+
+---
+
+## Working with Enrichments
+
+### When to Enrich
+
+Enrichments add detailed information but consume additional credits. Request them when:
+
+1. **You need contact information**: Always use `enrich-prospects-contacts` for emails/phones
+2. **You need company details**: Use `enrich-business-firmographics` for basic company info
+3. **You need technology insights**: Use `enrich-business-technographics` for full tech stack
+4. **You need funding data**: Use `enrich-business-funding-and-acquisitions` for investment history
+
+### Enrichment Examples
+
+**Getting Email Addresses**
+
+```
+Find marketing managers at fintech companies, and get their email addresses
+```
+
+AI automatically applies: `enrich-prospects-contacts`
+
+**Getting Company Technology Stack**
+
+```
+Show me which technologies are used by top e-commerce companies
+```
+
+AI automatically applies: `enrich-business-technographics`
+
+**Multiple Enrichments**
+
+```
+Find CTOs at recently funded companies and get their emails, plus company funding details
+```
+
+AI applies both: `enrich-prospects-contacts` and `enrich-business-funding-and-acquisitions`
+
+---
+
+## Understanding Costs
+
+### Credit System
+
+Vibe Prospecting uses Explorium credits:
+
+- **Base fetch**: ~1 credit per entity
+- **Enrichments**: Additional credits per enrichment type per entity
+- **Events**: Additional credits when fetching detailed event information
+
+### Cost Estimation
+
+Before any export, you'll see:
+
+```
+Export Cost: 450 credits
+
+Sample Preview (5 of 150):
+[Table with sample data and cost_in_credits column]
+
+Ready to Export? Get all 150 prospects with full details
+👉 Say "export" to download the complete dataset as CSV 👈
+```
+
+**Never auto-exports** - you always approve costs first.
+
+---
+
+## 
