@@ -2,15 +2,13 @@
 title: "Best Practices"
 ---
 
-## Best Practices
-
 ### Writing Effective Queries
 
 **Be Specific About What You Need**
 
-✅ **Good**: "Find CTOs at Series B fintech companies in San Francisco with 50-200 employees"
+✅ **Good**: "Find CTOs at fintech companies in San Francisco with 50-200 employees"
 
-❌ **Avoid**: "Find some tech people"
+❌ **Avoid**: "Find tech people in us"
 
 **Combine Multiple Criteria**
 
@@ -50,7 +48,7 @@ Vibe Prospecting works with two entity types:
 
 ### Optimizing Credit Usage
 
-**1. Start with statistics**
+**1. Use statistics**
 
 Before running expensive prospect searches:
 
@@ -58,7 +56,7 @@ Before running expensive prospect searches:
 What's the market size of cybersecurity companies with 100-500 employees in the US?
 ```
 
-This helps validate your target market without using credits.
+This helps validate your target market before commiting to a full list creation.
 
 **2. Review samples before exporting**
 
@@ -81,13 +79,13 @@ Find new prospects, but exclude entities I've already exported
 Only request enrichments you'll actually use:
 
 ```
-Enrich with contacts only
+Enrich with email only
 ```
 
 vs.
 
 ```
-Enrich with everything available
+Enrich with contacts
 ```
 
 ---
@@ -113,10 +111,10 @@ Split by geography, industry subcategory, or company size.
 
 Enrichments add detailed information but consume additional credits. Request them when:
 
-1. **You need contact information**: Always use `enrich-prospects-contacts` for emails/phones
-2. **You need company details**: Use `enrich-business-firmographics` for basic company info
-3. **You need technology insights**: Use `enrich-business-technographics` for full tech stack
-4. **You need funding data**: Use `enrich-business-funding-and-acquisitions` for investment history
+1. **You need contact information**: Always enrich with `contacts` for emails/phones
+2. **You need company details**: Use`firmographics`for basic company info
+3. **You need technology insights**: Use`technographics` for full tech stack
+4. **You need funding data**: Use`funding-and-acquisitions` for investment history
 
 ### Enrichment Examples
 
@@ -126,7 +124,7 @@ Enrichments add detailed information but consume additional credits. Request the
 Find marketing managers at fintech companies, and get their email addresses
 ```
 
-AI automatically applies: `enrich-prospects-contacts`
+AI automatically enrich with contacts
 
 **Getting Company Technology Stack**
 
@@ -134,7 +132,7 @@ AI automatically applies: `enrich-prospects-contacts`
 Show me which technologies are used by top e-commerce companies
 ```
 
-AI automatically applies: `enrich-business-technographics`
+AI automatically applies technographics
 
 **Multiple Enrichments**
 
@@ -142,7 +140,7 @@ AI automatically applies: `enrich-business-technographics`
 Find CTOs at recently funded companies and get their emails, plus company funding details
 ```
 
-AI applies both: `enrich-prospects-contacts` and `enrich-business-funding-and-acquisitions`
+AI applies both contacts and funding-and-acquisitions
 
 ---
 
@@ -150,7 +148,7 @@ AI applies both: `enrich-prospects-contacts` and `enrich-business-funding-and-ac
 
 ### Credit System
 
-Vibe Prospecting uses Explorium credits:
+Vibe Prospecting uses credits:
 
 - **Base fetch**: ~1 credit per entity
 - **Enrichments**: Additional credits per enrichment type per entity
