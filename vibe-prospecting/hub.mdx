@@ -6,7 +6,7 @@ title: "The Hub"
 
 ### Accessing The Hub
 
-[IMAGE PLACEHOLDER: Hub dashboard showing datasets, credit usage, and upload button]
+![Screenshot2025 12 25at9 46 35](/images/Screenshot2025-12-25at9.46.35.png)
 
 The Hub is your central workspace for managing all prospecting data.
 
@@ -54,7 +54,7 @@ Exclude all prospects from my "Q4 2024 Outreach" dataset
 **Using Exclusion Lists**
 
 ```
-Find new VPs of Sales at fintech companies, but exclude anyone I've already contacted
+Find new VPs of Sales at fintech companies, but exclude anyone I've already exported
 ```
 
 AI automatically applies your default exclusion list.
@@ -71,33 +71,37 @@ AI automatically applies your default exclusion list.
 
 **How to Upload**
 
-[IMAGE PLACEHOLDER: CSV upload interface with drag-and-drop area]
+![Screenshot2025 12 25at9 50 42](/images/Screenshot2025-12-25at9.50.42.png)
 
 **Step 1: Prepare Your CSV**
 
-Your CSV should contain:
+Your CSV should contain at least one of these fields:
 
 For businesses:
 
 ```
-company_name,domain
-Explorium,explorium.ai
-Anthropic,anthropic.com
+business_name
+business_website
+business_domain
+business_id
 ```
 
 For prospects:
 
 ```
-full_name,company_name,email
-John Smith,Acme Corp,john@acme.com
-Jane Doe,Acme Corp,jane@acme.com
+prospect_full_name
+prospect_business_name
+prospect_email
+prospect_phone_number
+prospect_linkedin
+prospect_id
 ```
 
 **Step 2: Upload to Hub**
 
-1. Click "Upload CSV" in the Hub
-2. Drag and drop your file or click to browse
 3. Map your CSV columns to Explorium fields
+1. Click "Lists" in the Hub
+2. Drag and drop your file or click to browse
 4. Review mapping and confirm upload
 
 **Step 3: Process Your Data**
@@ -105,7 +109,7 @@ Jane Doe,Acme Corp,jane@acme.com
 Once uploaded, tell the AI what you want:
 
 ```
-Find all C-level executives at the companies in my uploaded list
+Find all C-level executives at the companies in my uploaded list <list name>
 ```
 
 Or:
@@ -125,10 +129,10 @@ Review the sample, approve costs, and export as usual.
 **Refining Previous Searches**
 
 ```
-From my last search of SaaS companies, find only those in California
+enrich my last dataset of SaaS companies with technographics
 ```
 
-AI uses `businesses_reference_table` to filter previous results without re-fetching.
+AI enriches your dataset with technographics
 
 **Cross-Referencing Datasets**
 
