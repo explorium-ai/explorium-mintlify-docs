@@ -427,9 +427,11 @@
     "source": "/docs/:slug*", 
     "destination": "/deprecated-docs/:slug*" 
   },
-  
 
-
+  {
+    "source": "/categories",
+    "destination": "/reference/businesses/autocomplete/linkedin_categories"
+  },
 
   { "source": "/reference/quick-starts", "destination": "/reference/quick-starts/quick-starts" },
   { "source": "/reference/introduction", "destination": "/reference/quick-starts/introduction" },
