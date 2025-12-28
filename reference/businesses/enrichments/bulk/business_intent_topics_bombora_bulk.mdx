@@ -46,8 +46,6 @@ Raw intent data powered by:
       - To build this list, use the Autocomplete endpoint with `business_intent_topics` — and preferably `semantic_search=true` — to retrieve a broader, smarter set of intent topics.
 
         This ensures your topic list is accurate, relevant, and aligned with Bombora’s taxonomy.
-
-
     - `min_score` — optional integer \> 60. If omitted, the default threshold is 60.
 
     > 💡 **Recommendation:**\
@@ -73,7 +71,7 @@ Raw intent data powered by:
   <Accordion title="Example  — Request with `min_score` & Response">
     ```json
     curl -X 'POST' \
-      'https://api.explorium.ai/v1/businesses/bombora_intent/enrich' \
+      'https://api.explorium.ai/v1/businesses/bombora_intent/bulk_enrich' \
       -H 'accept: application/json' \
       -H 'api_key: "your api_key" \
       -H 'Content-Type: application/json' \
@@ -85,7 +83,7 @@ Raw intent data powered by:
         ],
         "min_score": 76
       },
-      "business_id": "8adce3ca1cef0c986b22310e369a0793"
+      "business_id": ["8adce3ca1cef0c986b22310e369a0793"]
     }
     ```
 
