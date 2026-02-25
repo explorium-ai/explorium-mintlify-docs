@@ -4390,8 +4390,7 @@
               "or",
               "and"
             ],
-            "title": "Operator",
-            "default": "or"
+            "title": "Operator"
           }
         },
         "additionalProperties": false,
@@ -8951,8 +8950,7 @@
               "or",
               "and"
             ],
-            "title": "Operator",
-            "default": "or"
+            "title": "Operator"
           },
           "include_related_job_titles": {
             "type": "boolean",
