@@ -1,0 +1,352 @@
+---
+title: "Pagination"
+description: "Learn how to paginate through large result sets using offset-based or cursor-based (search_after) pagination."
+---
+
+## Overview
+
+The Explorium API supports two pagination modes for the **Fetch Businesses** (`POST /v1/businesses`) and **Fetch Prospects** (`POST /v1/prospects`) endpoints:
+
+| Mode                                | Best For                                          | Max Results          |
+| ----------------------------------- | ------------------------------------------------- | -------------------- |
+| **Offset-based** (page / page_size) | Small to medium datasets, random page access      | Up to 60,000 records |
+| **Cursor-based** (search_after)     | Large datasets, streaming all results efficiently | No limit             |
+
+Both modes return results in pages of up to **500 records** each.
+
+---
+
+## Offset-Based Pagination
+
+Offset-based pagination uses `page` and `page_size` parameters to retrieve specific pages of results. This is the simplest approach and works well when you need random access to any page.
+
+### Parameters
+
+| Parameter   | Type   | Required | Description                                                                             |
+| ----------- | ------ | -------- | --------------------------------------------------------------------------------------- |
+| `size`      | Number | No       | Maximum total records to return across all pages. Defaults to 60,000. Must be ≤ 60,000. |
+| `page_size` | Number | Yes      | Number of records per page. Maximum: 500.                                               |
+| `page`      | Number | No       | Page number to retrieve (1-based). Defaults to 1.                                       |
+
+### How It Works
+
+1. Send your first request with `page: 1` and your desired `page_size`.
+2. The response includes `total_results`, `total_pages`, and `page` so you know how many pages are available.
+3. Increment `page` to retrieve subsequent pages until you reach `total_pages`.
+
+### Example Request
+
+```bash
+curl -X POST "https://api.explorium.ai/v1/businesses" \
+  -H "api_key: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "filters": {
+      "country_code": { "values": ["US"] },
+      "company_size": { "values": ["51-200"] }
+    },
+    "mode": "full",
+    "size": 500,
+    "page_size": 100,
+    "page": 1
+  }'
+```
+
+### Example Response
+
+```json
+{
+  "response_context": {
+    "correlation_id": "abc123",
+    "request_status": "success",
+    "time_took_in_seconds": 0.45
+  },
+  "data": [ ... ],
+  "total_results": 500,
+  "page": 1,
+  "total_pages": 5
+}
+```
+
+### Full Python Example
+
+```python
+import requests
+
+API_KEY = "YOUR_API_KEY"
+BASE_URL = "https://api.explorium.ai/v1/businesses"
+
+headers = {
+    "api_key": API_KEY,
+    "Content-Type": "application/json"
+}
+
+payload = {
+    "filters": {
+        "country_code": {"values": ["US"]},
+        "company_size": {"values": ["51-200"]}
+    },
+    "mode": "full",
+    "size": 500,
+    "page_size": 100,
+    "page": 1
+}
+
+all_results = []
+
+while True:
+    response = requests.post(BASE_URL, headers=headers, json=payload)
+    data = response.json()
+
+    all_results.extend(data["data"])
+    print(f"Page {data['page']}/{data['total_pages']} — fetched {len(data['data'])} records")
+
+    if data["page"] >= data["total_pages"]:
+        break
+
+    payload["page"] += 1
+
+print(f"Total records collected: {len(all_results)}")
+```
+
+---
+
+## Cursor-Based Pagination (Search After)
+
+Cursor-based pagination uses an opaque `next_cursor` token to iterate through results sequentially. This mode is more efficient for large datasets because it avoids the performance overhead of deep page offsets.
+
+### Parameters
+
+| Parameter     | Type   | Required | Description                                                                         |
+| ------------- | ------ | -------- | ----------------------------------------------------------------------------------- |
+| `page_size`   | Number | Yes      | Number of records per page. Maximum: 100.                                           |
+| `next_cursor` | String | Yes      | Cursor token from a previous response. Omit or set to `null` for the first request. |
+
+<Note>
+  When using cursor-based pagination, the `size` parameter is **optional and ignored**. The response will return the true `total_results` count regardless of any `size` value provided.
+</Note>
+
+### How It Works
+
+1. Send your first request **with**`next_cursor` set to `null`.
+2. The response includes a `page` object with `size` (number of records returned) and `next_cursor`.
+3. Pass the `next_cursor` value from the response into your next request.
+4. Repeat until `next_cursor` is `null`, which indicates you've reached the last page.
+
+### Example Request — First Page
+
+```bash
+curl -X POST "https://api.explorium.ai/v1/businesses" \
+  -H "api_key: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "filters": {
+      "country_code": { "values": ["US"] },
+      "company_size": { "values": ["51-200"] }
+    },
+    "mode": "full",
+    "page_size": 100,
+    "next_cursor": null
+  }'
+```
+
+### Example Response — First Page
+
+```json
+{
+  "response_context": {
+    "correlation_id": "def456",
+    "request_status": "success",
+    "time_took_in_seconds": 0.38
+  },
+  "data": [ ... ],
+  "total_results": 12350,
+  "page": {
+    "size": 100,
+    "next_cursor": "eyJzZWFyY2hfYWZ0ZXIiOiBbMTcwOTEyMzQ1Nl19"
+  }
+}
+```
+
+### Example Request — Next Page
+
+Pass the `next_cursor` from the previous response:
+
+```bash
+curl -X POST "https://api.explorium.ai/v1/businesses" \
+  -H "api_key: YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "filters": {
+      "country_code": { "values": ["US"] },
+      "company_size": { "values": ["51-200"] }
+    },
+    "mode": "full",
+    "page_size": 100,
+    "next_cursor": "eyJzZWFyY2hfYWZ0ZXIiOiBbMTcwOTEyMzQ1Nl19"
+  }'
+```
+
+### Example Response — Last Page
+
+When there are no more results, `next_cursor` is `null`:
+
+```json
+{
+  "response_context": {
+    "correlation_id": "ghi789",
+    "request_status": "success",
+    "time_took_in_seconds": 0.29
+  },
+  "data": [ ... ],
+  "total_results": 12350,
+  "page": {
+    "size": 50,
+    "next_cursor": null
+  }
+}
+```
+
+### Full Python Example
+
+```python
+import requests
+
+API_KEY = "YOUR_API_KEY"
+BASE_URL = "https://api.explorium.ai/v1/businesses"
+
+headers = {
+    "api_key": API_KEY,
+    "Content-Type": "application/json"
+}
+
+payload = {
+    "filters": {
+        "country_code": {"values": ["US"]},
+        "company_size": {"values": ["51-200"]}
+    },
+    "mode": "full",
+    "page_size": 100,
+    "next_cursor": None
+}
+
+all_results = []
+page_count = 0
+
+while True:
+    response = requests.post(BASE_URL, headers=headers, json=payload)
+    data = response.json()
+
+    all_results.extend(data["data"])
+    page_count += 1
+
+    page_info = data["page"]
+    print(f"Page {page_count} — fetched {page_info['size']} records (total available: {data['total_results']})")
+
+    if page_info["next_cursor"] is None:
+        break
+
+    payload["next_cursor"] = page_info["next_cursor"]
+
+print(f"Total records collected: {len(all_results)}")
+```
+
+---
+
+## Response Format Comparison
+
+The response structure differs slightly depending on which pagination mode you use.
+
+<Tabs>
+  <Tab title="Offset-Based Response">
+    ```json
+    {
+      "response_context": { ... },
+      "data": [ ... ],
+      "total_results": 500,
+      "page": 1,
+      "total_pages": 5
+    }
+    ```
+
+    | Field           | Type   | Description                                |
+    | --------------- | ------ | ------------------------------------------ |
+    | `total_results` | Number | Total matching records (capped by `size`). |
+    | `page`          | Number | Current page number.                       |
+    | `total_pages`   | Number | Total number of pages available.           |
+  </Tab>
+  <Tab title="Cursor-Based Response">
+    ```json
+    {
+      "response_context": { ... },
+      "data": [ ... ],
+      "total_results": 12350,
+      "page": {
+        "size": 100,
+        "next_cursor": "eyJzZWFyY2hfYWZ0..."
+      }
+    }
+    ```
+
+    | Field              | Type           | Description                                            |
+    | ------------------ | -------------- | ------------------------------------------------------ |
+    | `total_results`    | Number         | True total count of matching records.                  |
+    | `page.size`        | Number         | Number of records returned in this page.               |
+    | `page.next_cursor` | String \| null | Cursor for the next page. `null` when no more results. |
+  </Tab>
+</Tabs>
+
+---
+
+## Choosing the Right Mode
+
+<CardGroup cols={2}>
+  <Card icon="list-ol" title="Use Offset-Based When">
+    - You need to jump to a specific page number.
+    - Your result set is small to medium (under ~10,000 records).
+    - You want to display a page selector UI (e.g., "Page 3 of 12").
+    - You need to know the total page count upfront.
+  </Card>
+  <Card icon="forward" title="Use Cursor-Based When">
+    - You're iterating through all results sequentially.
+    - Your result set is large (10,000+ records).
+    - You want consistent performance regardless of how deep you paginate.
+    - You need the true `total_results` count independent of the `size` parameter.
+  </Card>
+</CardGroup>
+
+---
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Always set page_size explicitly">
+    While `page_size` has a default, setting it explicitly (recommended: **100**) ensures predictable response sizes and makes your code easier to reason about.
+  </Accordion>
+  <Accordion title="Handle the last page gracefully">
+    The last page of results will often contain fewer records than `page_size`. In offset mode, check `page >= total_pages`. In cursor mode, check `next_cursor == null`.
+  </Accordion>
+  <Accordion title="Don't mix pagination modes">
+    Use either `page` (offset-based) or `next_cursor` (cursor-based) in a given request — not both. If `next_cursor` is provided, the API uses cursor-based pagination and the `page` parameter is ignored.
+  </Accordion>
+  <Accordion title="Cursor tokens are opaque">
+    Treat `next_cursor` values as opaque strings. Don't attempt to parse, modify, or construct them. Always use the exact value returned by the API.
+  </Accordion>
+  <Accordion title="Keep filters consistent across pages">
+    When paginating through results (in either mode), always send the same `filters` and `mode` parameters with each request. Changing filters mid-pagination will produce inconsistent results.
+  </Accordion>
+  <Accordion title="Implement retry logic">
+    For large pagination jobs, implement retry logic with exponential backoff in case of transient errors. Save the last successful `next_cursor` or `page` number so you can resume without re-fetching.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Supported Endpoints
+
+Both pagination modes are available on the following endpoints:
+
+| Endpoint                                                   | Method | Path             |
+| ---------------------------------------------------------- | ------ | ---------------- |
+| [Fetch Businesses](/reference/businesses/fetch_businesses) | POST   | `/v1/businesses` |
+| [Fetch Prospects](/reference/prospects/fetch_prospects)    | POST   | `/v1/prospects`  |

@@ -25,6 +25,20 @@
    }
  },
   "navigation": {
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Contact Us",
+          "icon": "headset",
+          "href": "https://www.explorium.ai/about#contact?utm_source=developers"
+        },
+        {
+          "anchor": "Blog",
+          "icon": "newspaper",
+          "href": "https://www.explorium.ai/blog?utm_source=developers"
+        }
+      ]
+    },
     "tabs": [
       {
         "tab": "API Reference",
@@ -42,7 +56,7 @@
                 ]
               },
               {
-                "group":"Authentication & Setup",
+                "group": "Authentication & Setup",
                 "pages": [
                   "reference/setup/account_access",
                   "reference/setup/getting_your_api_key",
@@ -69,7 +83,7 @@
                       "reference/businesses/autocomplete/businesses_autocomplete",
                       "reference/businesses/autocomplete/linkedin_categories"
                     ]
-                  },                  
+                  },
                   {
                     "group": "Businesses Events",
                     "pages": [
@@ -139,11 +153,11 @@
                       "reference/businesses/enrichments/bulk/strategic_insights_bulk_enrich",
                       "reference/businesses/enrichments/bulk/company_website_content_changes_bulk_enrich",
                       "reference/businesses/enrichments/bulk/businesses_workforce_trends_bulk_enrich",
-"reference/businesses/enrichments/bulk/lookalike_companies_bulk_enrich",
-"reference/businesses/enrichments/bulk/webstack_bulk_enrich",
-"reference/businesses/enrichments/bulk/company_hierarchy_bulk_enrich",
-"reference/businesses/enrichments/bulk/business_website_traffic_bulk_enrich",
-"reference/businesses/enrichments/bulk/business_intent_topics_bombora_bulk"
+                      "reference/businesses/enrichments/bulk/lookalike_companies_bulk_enrich",
+                      "reference/businesses/enrichments/bulk/webstack_bulk_enrich",
+                      "reference/businesses/enrichments/bulk/company_hierarchy_bulk_enrich",
+                      "reference/businesses/enrichments/bulk/business_website_traffic_bulk_enrich",
+                      "reference/businesses/enrichments/bulk/business_intent_topics_bombora_bulk"
                     ]
                   }
                 ]
@@ -204,6 +218,7 @@
                   "reference/webhooks/check_webhook_connectivity"
                 ]
               },
+              "reference/pagination",
               "reference/error-handling",
               "reference/rate-limit",
               {
@@ -214,8 +229,8 @@
                 ]
               },
               "reference/support-help-center",
-              "reference/additional_resources",              
-              "reference/data"         
+              "reference/additional_resources",
+              "reference/data"
             ]
           },
           {
@@ -230,7 +245,7 @@
         "tab": "Explorium MCP",
         "icon": "message-code",
         "groups": [
-          {               
+          {
             "group": "AgentSource MCP",
             "pages": [
               "mcp-docs/agentsource-mcp",
@@ -240,28 +255,28 @@
                   "mcp-docs/developers-implementation-guides",
                   "mcp-docs/implement-with-langgraph",
                   "mcp-docs/implement-with-openai",
-                  "mcp-docs/python-sdk-implementation-guide"                  
+                  "mcp-docs/python-sdk-implementation-guide"
                 ]
-              }              
+              }
             ]
           }
         ]
-      },      
+      },
       {
         "tab": "Integrations",
         "icon": "circles-overlap",
-        "groups": [           
+        "groups": [
           {
-          "group": "MCP Integrations",
-          "pages": [
-            "integrations/mcp-integrations",
-            "integrations/claude/claude-desktop-integration",
-            "integrations/cursor/cursor-integration",
-            "integrations/n8n/integrate-with-n8n",
-            "integrations/zapier/integrate-with-zapier",
-            "integrations/base44/integrate-with-base44"
-          ]
-        },
+            "group": "MCP Integrations",
+            "pages": [
+              "integrations/mcp-integrations",
+              "integrations/claude/claude-desktop-integration",
+              "integrations/cursor/cursor-integration",
+              "integrations/n8n/integrate-with-n8n",
+              "integrations/zapier/integrate-with-zapier",
+              "integrations/base44/integrate-with-base44"
+            ]
+          },
           {
             "group": "Integrations templates",
             "pages": [
@@ -276,9 +291,9 @@
                   "integrations/n8n/hubspot-contact-enrichment"
                 ]
               },
-              "integrations/zapier/zapier"              
-            ]      
-          }          
+              "integrations/zapier/zapier"
+            ]
+          }
         ]
       },
       {
@@ -286,7 +301,7 @@
         "icon": "wave-pulse",
         "hidden": true,
         "groups": [
-          {               
+          {
             "group": "Vibe Prospecting",
             "pages": [
               "vibe-prospecting/vibeprospecting",
@@ -306,31 +321,31 @@
         "hidden": true,
         "groups": [
           {
-            "group": "Platform documentation",            
+            "group": "Platform documentation",
             "pages": [
               "deprecated-docs/getting-started",
               "deprecated-docs/getting-your-api-key",
               "deprecated-docs/platform-usage-consumption",
               {
-            "group": "Integrations",
-            "pages": [
-              "deprecated-docs/connectors",
-              "deprecated-docs/salesforce-integrations",
-              "deprecated-docs/salesforce-import",
-              {
-                "group": "Salesforce export - Insert new objects",
+                "group": "Integrations",
                 "pages": [
-                  "deprecated-docs/salesforce-export-insert-new-objects",
-                  "deprecated-docs/mandatory-fields",
-                  "deprecated-docs/sfdc-error-cods"                
+                  "deprecated-docs/connectors",
+                  "deprecated-docs/salesforce-integrations",
+                  "deprecated-docs/salesforce-import",
+                  {
+                    "group": "Salesforce export - Insert new objects",
+                    "pages": [
+                      "deprecated-docs/salesforce-export-insert-new-objects",
+                      "deprecated-docs/mandatory-fields",
+                      "deprecated-docs/sfdc-error-cods"
+                    ]
+                  },
+                  "deprecated-docs/hubspot-integration",
+                  "deprecated-docs/hubspot-import",
+                  "deprecated-docs/snowflake-integration"
                 ]
-              },              
-              "deprecated-docs/hubspot-integration",
-              "deprecated-docs/hubspot-import",
-              "deprecated-docs/snowflake-integration"              
-            ]
-          },
-          {
+              },
+              {
                 "group": "Transformations",
                 "pages": [
                   "deprecated-docs/gpt-guidelines"
@@ -346,16 +361,16 @@
               {
                 "group": "Salesforce Connector via Platform",
                 "pages": [
-              "deprecated-docs/salesforce-connector",
-              "deprecated-docs/uploading-data-from-a-salesforce-object",
-              "deprecated-docs/connecting-to-microsoft-azure-blob",
-              "deprecated-docs/connecting-to-sftp",
-              "deprecated-docs/connecting-to-google-bigquery",
-              "deprecated-docs/connecting-to-mysql",
-              "deprecated-docs/connecting-to-postgres"
-                ]              
+                  "deprecated-docs/salesforce-connector",
+                  "deprecated-docs/uploading-data-from-a-salesforce-object",
+                  "deprecated-docs/connecting-to-microsoft-azure-blob",
+                  "deprecated-docs/connecting-to-sftp",
+                  "deprecated-docs/connecting-to-google-bigquery",
+                  "deprecated-docs/connecting-to-mysql",
+                  "deprecated-docs/connecting-to-postgres"
+                ]
               },
-              "deprecated-docs/viewing-credits-usage-reports"           
+              "deprecated-docs/viewing-credits-usage-reports"
             ]
           },
           {
@@ -364,23 +379,9 @@
               "deprecated-docs/tam-dashboard"
             ]
           }
-        ] 
+        ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Contact Us",
-          "href": "https://www.explorium.ai/about#contact?utm_source=developers",
-          "icon": "headset"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://www.explorium.ai/blog?utm_source=developers",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/light.svg",
