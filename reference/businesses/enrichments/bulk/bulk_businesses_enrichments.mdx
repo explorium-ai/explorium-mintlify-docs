@@ -17,7 +17,6 @@ By leveraging bulk enrichment, businesses can:
 
 This API is ideal for **large-scale business intelligence, batch data processing, CRM enrichment, and predictive analytics.**
 
-
 ## Key Features & Benefits
 
 ### High-Scale Data Processing
@@ -33,25 +32,25 @@ This API is ideal for **large-scale business intelligence, batch data processing
 ## How to Use Bulk Businesses Enrichments
 
 <Steps>
-<Step title="Obtain a List of Business IDs:">
-Use the **Match Businesses API** to retrieve business IDs for the companies you wish to enrich.
-</Step>
-<Step title="Prepare the API Request:">
-Structure your request by including an array of up to **50 business IDs**.
-</Step>
-<Step title="Submit the Request:">
-Send a `POST` request to the Bulk Businesses Enrichments API.
-</Step>
-<Step title="Analyze & Utilize the Data:">
-Integrate the enriched data into your **analytics, CRM, or decision-making processes**.
-</Step>
+  <Step title="Obtain a List of Business IDs:">
+    Use the **Match Businesses API** to retrieve business IDs for the companies you wish to enrich.
+  </Step>
+  <Step title="Prepare the API Request:">
+    Structure your request by including an array of up to **50 business IDs**.
+  </Step>
+  <Step title="Submit the Request:">
+    Send a `POST` request to the Bulk Businesses Enrichments API.
+  </Step>
+  <Step title="Analyze & Utilize the Data:">
+    Integrate the enriched data into your **analytics, CRM, or decision-making processes**.
+  </Step>
 </Steps>
 
 ### Example API Request (cURL):
 
 ```bash cURL
 curl -X POST \
-  "https://api.explorium.ai/v1/businesses/bulk-enrich" \
+ "https://api.explorium.ai/v1/businesses/{enrichment_name}/bulk_enrich" \
   -H "API_KEY: your_api_key_here" \
   -H "Content-Type: application/json" \
   -d '{
@@ -63,12 +62,13 @@ curl -X POST \
 }'
 ```
 
-
 ## Best Practices
 
 - **Use the Match Businesses API** to obtain business IDs before submitting bulk enrichment requests.
+- **Each enrichment** type must be **called separately** using its dedicated endpoint.
 - **Prioritize bulk processing** for large datasets instead of making multiple single requests.
+- You can run multiple enrichment types sequentially (e.g., firmographics, financials, workforce) for comprehensive business profiling.
 - **Leverage batch results** to enrich **sales leads, customer insights, and predictive analytics.**
 - **Combine multiple enrichments** (firmographics, financials, workforce) for comprehensive business profiling.
 
-<Icon icon="thumbtack" color="red" iconType="solid"/> **For detailed API specifications and request examples, refer to the enrichment endpoints in this documentation.**
+<Icon icon="thumbtack" iconType="solid" color="red" /> **For detailed API specifications and request examples, refer to the enrichment endpoints in this documentation.**
