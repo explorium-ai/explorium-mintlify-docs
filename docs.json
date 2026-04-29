@@ -22,7 +22,8 @@
    },
    "examples": {
      "prefill": false
-   }
+  },
+  "openapi": "openai.json"
  },
   "navigation": {
     "global": {
