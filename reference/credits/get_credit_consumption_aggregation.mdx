@@ -48,6 +48,12 @@ api_key: YOUR_API_KEY
   **Example:** `"America/New_York"`
 </ParamField>
 
+<ParamField body="key_name" type="string">
+  Optional API key name to scope aggregation results to a specific API key. When provided, only credit consumption associated with the named API key is included in the response.
+
+  **Example:** `"production-key"`
+</ParamField>
+
 ## Response
 
 Returns a JSON object containing aggregated credit consumption data:
@@ -194,6 +200,20 @@ curl --request POST \
     "to_date": "2025-08-24T00:00:00Z",
     "resolution": "day",
     "timezone": "America/New_York"
+  }'
+```
+
+
+```bash Scoped to API Key
+curl --request POST \
+  --url https://api.explorium.ai/v1/credits/aggregation \
+  --header 'Content-Type: application/json' \
+  --header 'api_key: YOUR_API_KEY' \
+  --data '{
+    "from_date": "2025-08-17T00:00:00Z",
+    "to_date": "2025-08-24T00:00:00Z",
+    "resolution": "day",
+    "key_name": "production-key"
   }'
 ```
 
