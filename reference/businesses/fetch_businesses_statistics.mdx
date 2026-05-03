@@ -1,6 +1,6 @@
 ---
-openapi: "post /v1/businesses/stats"
 title: "Business Statistics"
+openapi: "post /v1/businesses/stats"
 ---
 
 ## Description
@@ -9,26 +9,29 @@ The **Fetch Business Statistics** endpoint provides **aggregated insights** into
 
 <AccordionGroup>
   <Accordion title="Coverage">
-    | Attribute                     | Coverage Details                                          |
-    | :---------------------------- | :-------------------------------------------------------- |
-    | **Total Businesses Analyzed** | 80M+ businesses across 150+ countries                     |
-    | **Industry Breakdown**        | Distribution across 50+ industry categories               |
-    | **Revenue Distribution**      | Aggregated revenue insights, ranging from $1M-$10T+       |
-    | **Company Size Analysis**     | Categorized by employee count (1-10, 11-50, 51-200, etc.) |
-    | **Geographic Segmentation**   | Supports regional and country-level filtering             |
+    | Attribute | Coverage Details |
+    | :-- | :-- |
+    | **Total Businesses Analyzed** | 80M\+ businesses across 150\+ countries |
+    | **Industry Breakdown** | Distribution across 50\+ industry categories |
+    | **Revenue Distribution** |  |
+    | **Company Size Analysis** | Categorized by employee count (1-10, 11-50, 51-200, etc.) |
+    | **Geographic Segmentation** | Supports regional and country-level filtering |
   </Accordion>
+
   <Accordion title="How It Works">
     - **Input:** Define filter parameters such as industry, region, and company size.
     - **Processing:** The system aggregates data across relevant datasets to generate statistics.
     - **Output:** A structured response with key insights into business distribution and segmentation.
   </Accordion>
+
   <Accordion title="Query Parameters">
-    | Parameter             | Type   | Description                                                                       |
-    | :-------------------- | :----- | :-------------------------------------------------------------------------------- |
-    | `filters`             | Object | Defines the filtering criteria for statistics retrieval (e.g., country, industry) |
-    | `region_country_code` | Array  | Filters businesses by specific regions within countries (e.g., `us-ca`, `us-ga`)  |
-    | `company_size`        | Array  | Filters by number of employees (e.g., `1-10`, `11-50`, `51-200`)                  |
+    | Parameter | Type | Description |
+    | :-- | :-- | :-- |
+    | `filters` | Object | Defines the filtering criteria for statistics retrieval (e.g., country, industry) |
+    | `region_country_code` | Array | Filters businesses by specific regions within countries (e.g., `us-ca`, `us-ga`) |
+    | `company_size` | Array | Filters by number of employees (e.g., `1-10`, `11-50`, `51-200`) |
   </Accordion>
+
   <Accordion title="Example Request (cURL)">
     ```shell Bash
     curl --request POST \
@@ -58,6 +61,7 @@ The **Fetch Business Statistics** endpoint provides **aggregated insights** into
     }'
     ```
   </Accordion>
+
   <Accordion title="Example Response">
     ```json JSON
     {
@@ -87,16 +91,18 @@ The **Fetch Business Statistics** endpoint provides **aggregated insights** into
     }
     ```
   </Accordion>
+
   <Accordion title="Schema Explanation">
-    | Field           | Type   | Description                                                         |
-    | :-------------- | :----- | :------------------------------------------------------------------ |
-    | `filters`       | Object | Defines the filtering criteria for the statistics request.          |
-    | `total_results` | Number | Total number of businesses included in the statistics.              |
-    | `stats`         | Object | Contains breakdowns by category, revenue, employees, and locations. |
+    | Field | Type | Description |
+    | :-- | :-- | :-- |
+    | `filters` | Object | Defines the filtering criteria for the statistics request. |
+    | `total_results` | Number | Total number of businesses included in the statistics. |
+    | `stats` | Object | Contains breakdowns by category, revenue, employees, and locations. |
   </Accordion>
+
   <Accordion title="Best Practices">
     - **Use targeted filters** to focus on specific industries or regions.
-    - **Combine multiple attributes** (e.g., `region_country_code` + `company_size`) for in-depth segmentation.
+    - **Combine multiple attributes** (e.g., `region_country_code` \+ `company_size`) for in-depth segmentation.
     - **Utilize aggregated insights** to optimize marketing strategies and market analysis.
 
     ### <Icon icon="magnifying-glass" /> **Note on Filter Usage**
@@ -110,7 +116,7 @@ The **Fetch Business Statistics** endpoint provides **aggregated insights** into
 
 ## Body Params - Try Me Example
 
-```
+```text
 filters:
   region_country_code: us-ca, us-ga, us-ut
   company_size: 1-10, 11-50, 51-200
