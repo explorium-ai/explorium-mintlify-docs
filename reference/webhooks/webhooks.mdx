@@ -18,7 +18,7 @@ Webhooks enable you to receive real-time notifications when important events occ
 ## Webhook Architecture
 
 Each partner can register one webhook URL that serves as the destination for all event notifications. When you enroll businesses or prospects for event monitoring, all triggered events are sent to this webhook.\
-To differentiate between various monitoring use cases, you can assign a unique enrollment_key when enrolling entities. This key is included in every event notification, allowing you to route and process events according to your internal systems.
+To differentiate between various monitoring use cases, you can assign a unique enrollment\_key when enrolling entities. This key is included in every event notification, allowing you to route and process events according to your internal systems.
 
 ## Step 1: Register Your Webhook
 
@@ -54,7 +54,7 @@ Register a webhook URL where Explorium will send event notifications.
 }
 ```
 
-**Important Security Note**: The webhook_secret is used to verify event authenticity. Store this securely and never expose it publicly.
+**Important Security Note**: The webhook\_secret is used to verify event authenticity. Store this securely and never expose it publicly.
 
 ### Webhook Limitations
 
@@ -178,8 +178,8 @@ Once your webhook is set, You can run more enhanced testing, that will allow you
 
 Use the same Test webhook connectivity url, with these parameters:
 
-- **event_name**: event type to simulate (currently available types: new_office, closing_office, funding_round, new_investment, outages_and_security_breaches)
-- **number_of_events**: the number of simulated events to receive.
+- **event\_name**: event type to simulate  - available types for simulation: new\_office, closing\_office, funding\_round, new\_investment, outages\_and\_security\_breaches (please note: enrollment is allowed on all of our event types)
+- **number\_of\_events**: the number of simulated events to receive.
 
 ### Request:
 
@@ -205,7 +205,7 @@ Use the same Test webhook connectivity url, with these parameters:
 }
 ```
 
-- This will result in pushing 3 "funding_round" events to your webhook.\
+- This will result in pushing 3 "funding\_round" events to your webhook.\
   You can use the response to validate your event handling logic.
 
 ## Step 4: Enroll for Events
@@ -304,7 +304,7 @@ When an enrolled event is triggered, you'll receive a payload like this:
 
 ## Best Practices
 
-1. **Use the enrollment_key effectively**: Structure your enrollment keys to match your internal systems and use cases.
+1. **Use the enrollment\_key effectively**: Structure your enrollment keys to match your internal systems and use cases.
 2. **Set up monitoring**: Implement monitoring for your webhook endpoint to detect any delivery failures.
 3. **Validate all signatures**: Always verify the event signature to ensure authenticity before processing.
 4. **Use proper Content-Type**: Ensure your webhook handler accepts and responds with the application/json JSON Content-Type.
@@ -315,16 +315,20 @@ When an enrolled event is triggered, you'll receive a payload like this:
   <Accordion title="How many webhooks can I register per partner ID?">
     You can register only one webhook URL per partner ID. This URL will receive all event notifications.
   </Accordion>
+
   <Accordion title="Is there a limit to how many businesses or prospects I can enroll?">
     While each enrollment request is limited to 20 IDs, there's no limit on the total number of IDs you can enroll across multiple requests.
   </Accordion>
+
   <Accordion title="How do I differentiate between different monitoring use cases?">
-    Use the enrollment_key parameter when enrolling entities. This key is included in every event notification, allowing you to route and process events according to your internal systems.
+    Use the enrollment\_key parameter when enrolling entities. This key is included in every event notification, allowing you to route and process events according to your internal systems.
   </Accordion>
+
   <Accordion title="What happens if I register a new webhook?">
     Registering a new webhook will override your previous webhook configuration and generate a new webhook secret. All event notifications will be sent to the new URL.
   </Accordion>
+
   <Accordion title="How can I test my webhook implementation?">
-    Use the /webhooks/check_connectivity endpoint to validate your webhook handler is properly receiving and processing events.
+    Use the /webhooks/check\_connectivity endpoint to validate your webhook handler is properly receiving and processing events.
   </Accordion>
 </AccordionGroup>
