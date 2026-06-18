@@ -56,6 +56,27 @@ Register a webhook URL where Explorium will send event notifications.
 
 **Important Security Note**: The webhook\_secret is used to verify event authenticity. Store this securely and never expose it publicly.
 
+### Optional Registration Parameters
+
+In addition to `partner_id` and `webhook_url`, the registration endpoint accepts:
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `headers` | `string[]` | Custom HTTP headers Explorium sends with **every** event delivery, in `"Header-Name: value"` format. Use this to attach authentication (e.g. a bearer token) or any header your receiver requires. |
+| `payload_format` | `string` | Controls the shape of the delivered request body. `json` (default) sends the event object as-is. `stringified_json` wraps the event so it can be consumed by destinations that expect a single text field — see [Using Webhooks with Claude Code Routines](#using-webhooks-with-claude-code-routines). |
+
+```json
+{
+  "partner_id": "your_partner_id",
+  "webhook_url": "https://your-domain.com/webhook-handler",
+  "headers": [
+    "Authorization: Bearer your_token",
+    "X-Custom-Header: value"
+  ],
+  "payload_format": "json"
+}
+```
+
 ### Webhook Limitations
 
 - You can register only one webhook URL per partner ID
@@ -112,16 +133,16 @@ async def receive_event(request: Request):
     received_signature = request.headers.get("X-Signature")
     received_timestamp = request.headers.get('X-Timestamp')
 
-    # Ensure Content-Type is application/json JSON
+    # Ensure Content-Type is application/json
     content_type = request.headers.get('Content-Type', '')
-    if not content_type.startswith('application/json JSON'):
-        raise HTTPException(status_code=415, detail="Content-Type must be application/json JSON")
+    if not content_type.startswith('application/json'):
+        raise HTTPException(status_code=415, detail="Content-Type must be application/json")
 
     if not received_signature or not received_timestamp or not verify_signature(payload, received_signature, received_timestamp):
         raise HTTPException(status_code=400, detail="Invalid signature")
 
     # Process the event data
-    event_data = await request.json JSON()
+    event_data = await request.json()
     print(f"Received event: {event_data}")
     
     # Extract the enrollment_key to determine how to process this event
@@ -178,7 +199,7 @@ Once your webhook is set, You can run more enhanced testing, that will allow you
 
 Use the same Test webhook connectivity url, with these parameters:
 
-- **event\_name**: event type to simulate (new\_office, closing\_office, funding\_round, new\_investment, outages\_and\_security\_breaches, etc...)
+- **event\_name**: event type to simulate (currently available types: new\_office, closing\_office, funding\_round, new\_investment, outages\_and\_security\_breaches)
 - **number\_of\_events**: the number of simulated events to receive.
 
 ### Request:
@@ -286,6 +307,82 @@ When an enrolled event is triggered, you'll receive a payload like this:
 `entity_id`: The ID of the business or prospect that triggered the event \
 `data`: Event-specific data (varies by event type)
 
+## Using Webhooks with Claude Code Routines
+
+[Claude Code routines](https://docs.claude.com/en/docs/claude-code/routines) can run automatically in response to an external HTTP request through an **API trigger**. You can point an Explorium webhook directly at a routine's trigger URL so that every Explorium event fires the routine — and, with the right `payload_format`, the event data is delivered straight into the routine for processing. No relay or intermediate service is required.
+
+### How it works
+
+A routine's API trigger exposes a _fire_ URL of the form:
+
+```text
+POST https://api.anthropic.com/v1/claude_code/routines/{trigger_id}/fire
+```
+
+This endpoint:
+
+- Requires an `Authorization: Bearer <token>` header (generated when you create the routine) and an `anthropic-version: 2023-06-01` header.
+- Injects the request body's `text` field into the routine as its input, and ignores other top-level fields.
+
+Because the routine only reads a `text` field, Explorium's default event object isn't consumed by the routine on its own. Setting `payload_format` to `stringified_json` tells Explorium to deliver the event in a routine-compatible shape:
+
+```json
+{
+  "text": "{\"event_name\": \"new_funding_round\", \"data\": { ... }, \"business_id\": \"...\", ...}"
+}
+```
+
+The `text` value is the complete Explorium event object serialized as a JSON string, so the routine can parse it and act on the event.
+
+### Step 1 — Create the routine
+
+In **claude.ai → Code → Routines**, create a routine and choose the **API** trigger ("Trigger from your own code by sending a POST request"). Copy:
+
+- the trigger's **fire URL**, and
+- the **token** generated for the trigger.
+
+In the routine instructions, tell Claude that each run will receive an Explorium event payload and describe what it should do with it (for example, summarize the event, enrich the entity, or alert a channel).
+
+### Step 2 — Register the webhook
+
+Register the routine's fire URL as your webhook, supplying the required headers and `payload_format: "stringified_json"`:
+
+```json
+{
+  "partner_id": "your_partner_id",
+  "webhook_url": "https://api.anthropic.com/v1/claude_code/routines/{trigger_id}/fire",
+  "headers": [
+    "Authorization: Bearer sk-ant-oat01-...",
+    "anthropic-version: 2023-06-01"
+  ],
+  "payload_format": "stringified_json"
+}
+```
+
+<Note>
+  The `anthropic-version` header is required — without it the routine endpoint rejects the delivery with a `400` error. Each event is delivered as a separate POST, so one routine run is triggered per event.
+</Note>
+
+### Step 3 — Test it
+
+Use the [connectivity endpoint](#step-3-test-webhook-connectivity) to push simulated events to your routine:
+
+```json
+{
+  "partner_id": "your_partner_id",
+  "simulation": {
+    "event_name": "new_funding_round",
+    "number_of_events": 3
+  }
+}
+```
+
+A `"request_status": "success"` response means the routine accepted the events. Open the routine's sessions in claude.ai to see each event rendered and processed.
+
+<Warning>
+  The token stored in `headers` can trigger your routine. Treat it as a secret, and rotate it if it may have been exposed.
+</Warning>
+
 ## Managing Your Webhook
 
 ### Get Webhook Details
@@ -307,7 +404,7 @@ When an enrolled event is triggered, you'll receive a payload like this:
 1. **Use the enrollment\_key effectively**: Structure your enrollment keys to match your internal systems and use cases.
 2. **Set up monitoring**: Implement monitoring for your webhook endpoint to detect any delivery failures.
 3. **Validate all signatures**: Always verify the event signature to ensure authenticity before processing.
-4. **Use proper Content-Type**: Ensure your webhook handler accepts and responds with the application/json JSON Content-Type.
+4. **Use proper Content-Type**: Ensure your webhook handler accepts and responds with the application/json Content-Type.
 
 ## Frequently Asked Questions
 
@@ -330,5 +427,9 @@ When an enrolled event is triggered, you'll receive a payload like this:
 
   <Accordion title="How can I test my webhook implementation?">
     Use the /webhooks/check\_connectivity endpoint to validate your webhook handler is properly receiving and processing events.
+  </Accordion>
+
+  <Accordion title="Can I trigger a Claude Code routine from a webhook?">
+    Yes. Point your webhook at the routine's API-trigger fire URL, pass the routine's `Authorization` and `anthropic-version: 2023-06-01` headers via the `headers` parameter, and set `payload_format` to `stringified_json`. See [Using Webhooks with Claude Code Routines](#using-webhooks-with-claude-code-routines).
   </Accordion>
 </AccordionGroup>
