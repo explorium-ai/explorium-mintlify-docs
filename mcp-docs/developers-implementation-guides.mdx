@@ -32,7 +32,6 @@ Build intelligent agents that can automatically discover and use AgentSource too
 
 <Columns cols={2}>
   <Card title="Get Started with OpenAI" icon="rocket-launch" horizontal href="/mcp-docs/implement-with-openai">
-    
   </Card>
 </Columns>
 
@@ -58,7 +57,6 @@ Native Python implementation for developers who need fine-grained control over d
 
 <Columns cols={2}>
   <Card title="Get Started with Python SDK" icon="rocket-launch" horizontal href="/mcp-docs/python-sdk-implementation-guide">
-    
   </Card>
 </Columns>
 
@@ -77,22 +75,21 @@ Build sophisticated AI agents with state management and complex decision trees u
 
 <Columns cols={2}>
   <Card title="Get Started with LangGraph" icon="rocket-launch" horizontal href="/mcp-docs/implement-with-langgraph">
-    
   </Card>
 </Columns>
 
 ## Quick Comparison
 
-| Feature              | OpenAI     | Python SDK     | LangGraph         |
-| :------------------- | :--------- | :------------- | :---------------- |
-| **Setup Complexity** | Low        | Medium         | Medium            |
-| **Best For**         | AI Agents  | Data Pipelines | Complex Workflows |
-| **Language**         | Python     | Python         | Python            |
-| **Tool Discovery**   | Automatic  | Manual         | Automatic         |
-| **Response Format**  | Structured | JSON           | Structured        |
-| **Async Support**    | ✓          | ✓              | ✓                 |
-| **State Management** | Limited    | Custom         | Built-in          |
-| **Error Handling**   | Built-in   | Manual         | Built-in          |
+| Feature | OpenAI | Python SDK | LangGraph |
+| :-- | :-- | :-- | :-- |
+| **Setup Complexity** | Low | Medium | Medium |
+| **Best For** | AI Agents | Data Pipelines | Complex Workflows |
+| **Language** | Python | Python | Python |
+| **Tool Discovery** | Automatic | Manual | Automatic |
+| **Response Format** | Structured | JSON | Structured |
+| **Async Support** | ✓ | ✓ | ✓ |
+| **State Management** | Limited | Custom | Built-in |
+| **Error Handling** | Built-in | Manual | Built-in |
 
 ## Getting Started
 
@@ -101,7 +98,7 @@ Build sophisticated AI agents with state management and complex decision trees u
 Before implementing AgentSource MCP, ensure you have:
 
 1. **AgentSource API Key** - [Get your API key](/reference/setup/getting_your_api_key)
-2. **Development Environment** - Python 3.8+ recommended
+2. **Development Environment** - Python 3.8\+ recommended
 3. **Basic Understanding** - Familiarity with REST APIs and async programming
 
 ### Core Concepts
@@ -193,43 +190,97 @@ Effective MCP performance is highly dependent on your system prompt. You may nee
 
 Below is the system prompt used in Explorium's MCP Playground. This can serve as a baseline for your implementation:
 
-```
-The assistant is **AgentSource**, created by Explorium.   
-Current date: {currentDateTime} 
-You are an **interactive Explorium API agent**.   
-Your job: demonstrate Explorium's data power through real-time research. 
+```text
+The assistant is **AgentSource**, created by Explorium.
+Current date: {currentDateTime}
 
-## 1. Workflow 
-1. **Search session** – for lists of companies.   
-   * Call `get_search_filters` first and use only the returned filters.   
-2. **Research session** – for a specific company.   
-   * Call `create_company_research_session`. 
+You are an interactive Explorium data agent. Your job is to help users find and research
+companies and people using Explorium's B2B data, and to demonstrate that data's value through
+accurate, real-time research.
 
-At each step:   
-- State how many matches were found.   
-- Wait for further user input.   
-- Suggest useful enrichments when relevant. 
+## 1. Tools you have
 
-## 2. Response style 
-* Mention that you are using the Explorium API (not tool names or "sessions"). 
-  * e.g. "I'm searching Explorium's database…" 
-* **Do not mention internal function names (`get_search_filters`, etc.).** 
-* Write in **Markdown**.   
-  * Use tables for multi-row output, for example:
-| Company | Location | Revenue | 
-|---------|----------|---------| 
-| …       | …        | …       |
+Business tools:
+- `autocomplete` — resolve valid filter values BEFORE filtering. Required before using
+  google_category, naics_category, linkedin_category, company_tech_stack_tech,
+  business_intent_topics, or job_title.
+- `fetch-businesses` — find companies by filters (location, size, revenue, industry category,
+  tech stack, intent). Returns business IDs plus minimal fields.
+- `enrich-business` — add firmographics, descriptions, financials, tech stack, etc. to business
+  IDs returned by fetch-businesses or match-business.
+- `match-business` — resolve specific company names/domains to business IDs.
+- `fetch-businesses-statistics` — aggregate counts by industry, size, revenue, geography.
+- `fetch-businesses-events` — funding, hiring, M&A, and other company events.
 
-* After a table, keep extra text minimal.   
-* On tool error or no data: reply only "An error occurred." 
+Prospect tools:
+- `fetch-prospects` — find people at companies by role, department, seniority, location.
+- `match-prospects` — resolve specific named people to prospect IDs.
+- `enrich-prospects` — add contact details and profile data to prospect IDs.
+- `fetch-prospects-statistics`, `fetch-prospects-events` — aggregates and events for people.
 
-## 3. Search-filter rules 
-* Autocomplete queries must include **all** user concepts.   
-* If multiple industries are mentioned, include them all. 
+## 2. Core workflow
 
-## 4. Internet usage 
-Only query the public web if the Explorium API lacks the answer; 
-tell the user when you do.
+For a list of companies:
+  1. Resolve every filter value that needs it with `autocomplete` (industry category, tech,
+     intent topics).
+  2. Call `fetch-businesses` ONCE with the resolved filters to get business IDs.
+  3. Call `enrich-business` on those IDs to get the attributes the user asked for (employee
+     count, revenue, description, etc.).
+
+For people at companies: fetch-businesses → fetch-prospects → enrich-prospects.
+For a specific named company or person: use match-business / match-prospects first to get the
+ID, then enrich.
+
+`fetch-businesses` and `fetch-prospects` return MINIMAL data by design. Missing fields like
+revenue or description are EXPECTED, not an error — retrieve them with the matching enrich tool.
+Do NOT re-run the search to try to fill them in.
+
+## 3. Filter rules (hard constraints)
+
+- Always call `autocomplete` for valid values before using: google_category, naics_category,
+  linkedin_category, company_tech_stack_tech, business_intent_topics, job_title. Pass EVERY
+  concept from the user's request into autocomplete.
+- Use only ONE industry category type per request — google_category OR naics_category OR
+  linkedin_category, never more than one.
+- Never use both country_code and region_country_code in the same request.
+- Buying intent or interest (e.g. "interested in Salesforce", "evaluating CRM") is NOT an
+  industry. Resolve it with `autocomplete` on `business_intent_topics` with semantic_search=true,
+  then pass it as the intent filter. Do not try to express intent as an industry category.
+- Map fuzzy sizes to the API's buckets (e.g. "50 to 200 employees" → "51-200").
+
+## 4. Loop prevention (important)
+
+- Never call the same tool twice with identical arguments. If you already have a result, use it.
+- Make at most ONE attempt to reformulate a search. If a fetch returns zero results, do NOT keep
+  retrying with new filter guesses. Stop, tell the user what you searched for, and ask them to
+  relax or clarify one constraint.
+- If a constraint cannot be expressed with the available filters, say so explicitly instead of
+  looping to approximate it.
+- Plan the full tool sequence before you start, then execute it once. A normal company-list
+  answer is: a few autocomplete calls → one fetch-businesses → one enrich-business → final answer.
+
+## 5. Response style
+
+- Say you're using "Explorium's database" — never expose internal tool or function names to the
+  user.
+- Write in Markdown. Use a table for multi-row results, e.g.:
+
+  | Company | Location | Employees | Revenue |
+  |---------|----------|-----------|---------|
+  | …       | …        | …         | …       |
+
+- Keep prose after a table minimal.
+- State how many matches were found.
+- On a tool error or no data, give a short, honest message (e.g. "I couldn't find companies
+  matching all of those criteria — want me to widen the location or drop the intent filter?").
+  Do not retry silently.
+- Be transparent about gaps: if you couldn't satisfy part of the request (e.g. an intent signal
+  wasn't available), say so rather than returning loosely-matching results as if they fit.
+
+## 6. Web usage
+
+Only use the public web if Explorium's data can't answer the question, and tell the user when
+you do.
 ```
 
 **Customization Tips**
@@ -248,15 +299,14 @@ When adapting this system prompt for your application:
 
 We **highly recommend** using **Claude Sonnet** models for optimal performance:
 
-- Claude 4.5 Sonnet (primary recommendation)
-- Claude 4.0 Sonnet (alternative)
+- Claude 4.6 Sonnet (primary recommendation)
 
 **Alternative Models**
 
 If you need to use alternative models, the following have been tested:
 
+- OpenAI GPT-5.4
 - OpenAI GPT-5
-- OpenAI GPT-4.1
 
 Note: Results may vary with non-Claude models. We recommend thorough testing if using alternatives.
 
@@ -312,13 +362,63 @@ Consider these additional parameter recommendations:
 - ❌ Insufficient error handling instructions
 - ❌ Vague or ambiguous workflow instructions
 
+## Troubleshooting: tool-call loops ("safety limit" / "recursion limit" errors)
+
+### Symptom
+
+Your agent intermittently stops with an error like `MCP tool loop hit safety limit`, `recursion limit reached`, or `max turns exceeded`. The same query sometimes succeeds and sometimes fails.
+
+### What's actually happening
+
+This is **not an Explorium error.** The Explorium API only returns standard HTTP status codes (see _Error Handling_). Messages about a "loop", "safety limit", "recursion limit", or "max turns" come from **your agent framework**, which caps how many tool calls the model may make in a single turn:
+
+- LangGraph / LangChain → `recursion_limit`
+- OpenAI Agents SDK → `max_turns`
+- Custom loops → your own iteration counter
+
+The cap is doing its job — it stops a model that kept calling tools without producing a final answer. The real question is _why the model kept calling tools._
+
+### Common causes
+
+1. **An intent/interest constraint is treated as an industry.** Requests like "companies interested in Salesforce" describe buying intent, not a firmographic. If the model tries to find an industry category for it, it will autocomplete and re-search repeatedly and never converge. Resolve intent with `autocomplete` on `business_intent_topics` (`semantic_search=true`) and pass it as the intent filter.
+2. **Industry taxonomy thrash.** Only one category type (`google_category`, `naics_category`, or `linkedin_category`) may be used per request. If the model can't get a clean match from one taxonomy, it may keep switching taxonomies and re-searching. Pin the workflow to a single category type.
+3. **Empty enrichment fields misread as failure.** `fetch-businesses` and `fetch-prospects` return minimal data by design — fields like revenue, employee range, and description are empty until you call `enrich-business` / `enrich-prospects`. If your prompt doesn't make the fetch→enrich split explicit, the model may read the sparse result as a failed search and re-query.
+4. **No "stop" condition on empty results.** When a search legitimately returns zero matches, the model will often keep guessing new filter combinations. Instruct it to stop after one reformulation and ask the user to relax a constraint.
+5. **An outdated or mismatched system prompt.** If your prompt references tools that don't exist on the server, the model can't find them and improvises in a loop. Make sure your prompt's tool names match the tools the MCP server actually exposes (`autocomplete`, `fetch-businesses`, `enrich-business`, `match-business`, `fetch-prospects`, …).
+6. **High temperature or a non-recommended model.** Temperatures above ~0.1 and non-Claude models produce inconsistent tool calling. Use a low temperature (Explorium uses 0.05) and a Claude Sonnet model.
+
+### How to prevent it
+
+**System prompt guardrails** (built into the reference system prompt):
+
+- Never call the same tool twice with identical arguments.
+- Allow at most one search reformulation; on zero results, stop and ask the user to relax a constraint.
+- Treat missing fields from fetch tools as expected — enrich, don't re-fetch.
+- Use one industry category type per request; never combine `country_code` and `region_country_code`.
+- Resolve buying intent via `business_intent_topics` \+ `semantic_search`, not as an industry.
+
+**Harness settings:**
+
+- Keep a sane iteration cap — a correct company-list answer needs only a handful of tool calls (a few autocomplete → one fetch → one enrich).
+- Catch the cap and return a friendly message instead of surfacing a raw framework error.
+
+**Model parameters:**
+
+- Temperature 0.0–0.1, Claude Sonnet 4.6 and above, and don't cap `max_tokens`.
+
+### How to debug a loop
+
+1. **Log every tool call with its arguments.** A loop almost always shows up as the same tool called repeatedly with near-identical inputs — commonly alternating `autocomplete` ↔ `fetch-businesses`.
+2. **Check for an intent phrase being forced into an industry filter** (the most common trigger).
+3. **Confirm your prompt's tool names match the server's tools.**
+4. **For real API errors (4xx/5xx),** capture the `correlation_id` from the response and include it when contacting `support@explorium.ai`.
+
 ## Need Help?
 
 ### <Icon icon="book" size={24} /> Resources
 
 <Columns cols={2}>
   <Card title="AgentSource MCP API Reference" icon="book" horizontal href="/reference/quick-starts/introduction">
-    
   </Card>
 </Columns>
 
