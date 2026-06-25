@@ -1,0 +1,214 @@
+---
+title: "Per-Call Credit Usage"
+description: "Opt in to per-call credit reporting and receive the exact credits deducted for each API request directly in the response."
+---
+
+## Overview
+
+The **Per-Call Credit Usage** feature lets you see exactly how many credits a request consumed, returned inline with that request's response. This gives you call-level visibility into consumption so you can track, attribute, and optimize your usage in real time, without making a separate call to the [Credit Consumption Aggregation](/reference/credits/get_credit_consumption_aggregation) endpoint.
+
+The feature is **opt-in**. It is enabled per request via a request header and has **no effect** on existing integrations that don't send the header.
+
+<Icon icon="thumbtack" iconType="solid" color="red" size={22} /> **Why is this useful?**
+
+- **Real-time cost attribution** — Know the cost of each call as it happens, without polling an aggregation endpoint.
+- **Usage optimization** — Compare the credit cost of different filters, modes, and page sizes to tune your queries.
+- **Accurate downstream reporting** — Tooling and integrations (such as MCP-based agents) can report precise resource usage back to the caller.
+
+<Note>
+  Enabling this feature does **not** consume additional credits. It only reports the credits already deducted for the request you made.
+</Note>
+
+## Enabling Per-Call Credit Usage
+
+Opt in by sending the following request header:
+
+```bash
+credit-usage: true
+```
+
+When this header is present and set to `true`, the response includes an additional `credit_usage` object alongside the standard payload. When the header is **omitted** or set to **any other value**, the response is returned unchanged.
+
+## Request Header
+
+<ParamField header="credit-usage" default="false" type="boolean">
+  Set to `true` to include the `credit_usage` object in the response.
+
+  Any other value, or omitting the header entirely, leaves the response unchanged. The header is case-insensitive in its value (`true` / `True`).
+</ParamField>
+
+## Response
+
+When opted in, the standard response payload is returned with one additional top-level field:
+
+<ResponseField name="credit_usage" type="object">
+  Credit consumption details for this specific API call. Present only when the request includes `credit-usage: true`.
+
+  <Expandable title="properties">
+    <ResponseField name="total_results" type="integer">
+      The number of results included in this specific response (i.e. the records actually returned by this call).
+    </ResponseField>
+
+    <ResponseField name="total_credits" type="integer">
+      The number of credits deducted for this specific API call.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<Note>
+  `credit_usage.total_results` reports the number of records **returned and billed in this call**, which is not the same as the top-level `total_results` field that some endpoints return. The top-level `total_results` reflects the **total number of records that match your filters** across all pages, while `credit_usage.total_results` reflects only what this single response returned.
+</Note>
+
+## Examples
+
+### Request
+
+<CodeGroup>
+
+```bash Fetch Businesses
+curl --request POST \
+  --url https://api.explorium.ai/v1/businesses \
+  --header 'Content-Type: application/json' \
+  --header 'api_key: YOUR_API_KEY' \
+  --header 'credit-usage: true' \
+  --data '{
+    "mode": "full",
+    "size": 100,
+    "page_size": 100,
+    "page": 1,
+    "filters": {
+      "country_code": {
+        "values": ["us"]
+      },
+      "company_size": {
+        "values": ["11-50", "51-200"]
+      }
+    }
+  }'
+```
+
+```python Python
+import requests
+
+url = "https://api.explorium.ai/v1/businesses"
+headers = {
+    "Content-Type": "application/json",
+    "api_key": "YOUR_API_KEY",
+    "credit-usage": "true",
+}
+payload = {
+    "mode": "full",
+    "size": 100,
+    "page_size": 100,
+    "page": 1,
+    "filters": {
+        "country_code": {"values": ["us"]},
+        "company_size": {"values": ["11-50", "51-200"]},
+    },
+}
+
+response = requests.post(url, headers=headers, json=payload)
+data = response.json()
+
+print(data["credit_usage"]["total_credits"])
+```
+
+```javascript Node.js
+const response = await fetch("https://api.explorium.ai/v1/businesses", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "api_key": "YOUR_API_KEY",
+    "credit-usage": "true",
+  },
+  body: JSON.stringify({
+    mode: "full",
+    size: 100,
+    page_size: 100,
+    page: 1,
+    filters: {
+      country_code: { values: ["us"] },
+      company_size: { values: ["11-50", "51-200"] },
+    },
+  }),
+});
+
+const data = await response.json();
+console.log(data.credit_usage.total_credits);
+```
+
+</CodeGroup>
+
+### Response
+
+<ResponseExample>
+
+```json Opted In (credit-usage: true)
+{
+  "response_context": {
+    "correlation_id": "5618d686ecb849fda660c3023acf3120",
+    "request_status": "success",
+    "time_took_in_seconds": 0.42
+  },
+  "total_results": 4321,
+  "page": 1,
+  "data": [
+    {
+      "business_id": "8adce3ca1cef0c986b22310e369a0793",
+      "name": "Acme Corporation",
+      "domain": "acme.com"
+    }
+  ],
+  "credit_usage": {
+    "total_results": 100,
+    "total_credits": 100
+  }
+}
+```
+
+```json Opted Out (header omitted)
+{
+  "response_context": {
+    "correlation_id": "5618d686ecb849fda660c3023acf3120",
+    "request_status": "success",
+    "time_took_in_seconds": 0.42
+  },
+  "total_results": 4321,
+  "page": 1,
+  "data": [
+    {
+      "business_id": "8adce3ca1cef0c986b22310e369a0793",
+      "name": "Acme Corporation",
+      "domain": "acme.com"
+    }
+  ]
+}
+```
+
+</ResponseExample>
+
+## Behavior
+
+| Header value | Response behavior |
+| :-- | :-- |
+| `credit-usage: true` | Standard payload **plus** the `credit_usage` object. |
+| Any other value | Standard payload, unchanged. No `credit_usage` object. |
+| Header omitted | Standard payload, unchanged. No `credit_usage` object. |
+
+Because the field is only added when you explicitly opt in, existing integrations are unaffected and the change is fully backward compatible.
+
+## Supported Endpoints
+
+The `credit-usage` header is supported across the credit-consuming partner service endpoints, including:
+
+- **Businesses** — Fetch Businesses, Match Businesses, Fetch Businesses Statistics, Business Enrichments, and Business Events.
+- **Prospects** — Fetch Prospects, Match Prospects, Prospect Enrichments, and Prospect Events.
+
+Endpoints that do not consume credits ignore the header and return their standard response.
+
+## Related
+
+- [Tracking Your Credits](/reference/credits/tracking_your_credits) — Monitor overall usage in the Admin Portal.
+- [Get Credit Consumption Aggregation](/reference/credits/get_credit_consumption_aggregation) — Retrieve aggregated consumption across time ranges or endpoints.
+
+<Icon icon="envelope-dot" size={22} /> Need help? Contact [support@explorium.ai](mailto:support@explorium.ai).

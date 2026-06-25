@@ -226,7 +226,8 @@
                 "group": "Credits",
                 "pages": [
                   "reference/credits/get_active_credits_summary",
-                  "reference/credits/get_credit_consumption_aggregation"
+                  "reference/credits/get_credit_consumption_aggregation",
+                  "reference/credits/per-call-credit-usage"
                 ]
               },
               "reference/support-help-center",
