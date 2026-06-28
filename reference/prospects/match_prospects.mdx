@@ -22,17 +22,19 @@ The **Match Prospects** endpoint allows users to accurately match individual pro
     2. **Processing:** The system cross-references internal datasets and returns the best possible matches.
     3. **Output:** A structured response with matched **Prospect IDs**, maintaining the same order as the input list.
   </Accordion>
+
   <Accordion title="Request Schema">
-    | Field                    | Type   | Description                                                      |
-    | :----------------------- | :----- | :--------------------------------------------------------------- |
-    | **prospects_to_match:**  | Array  | A list of prospect fetchers to match                             |
-    | `email`                  | String | The prospect's email address                                     |
-    | `phone_number`           | String | The prospect's phone number                                      |
-    | `full_name`              | String | The prospect's full name (must be accompanied by `company_name`) |
-    | `company_name`           | String | The prospect's company name (must be accompanied by `full_name`) |
-    | `linkedin`               | String | LinkedIn profile URL                                             |
-    | `business_id` (optional) | String | Filters the match to a specific company                          |
+    | Field | Type | Description |
+    | :-- | :-- | :-- |
+    | **prospects\_to\_match:** | Array | A list of prospect fetchers to match |
+    | `email` | String | The prospect's email address |
+    | `phone_number` | String | The prospect's phone number |
+    | `full_name` | String | The prospect's full name (must be accompanied by `company_name`) |
+    | `company_name` | String | The prospect's company name (must be accompanied by `full_name`) |
+    | `linkedin` | String | LinkedIn profile URL |
+    | `business_id` (optional) | String | Filters the match to a specific company |
   </Accordion>
+
   <Accordion title="Example Request (cURL)">
     ```shell Bash
     curl -X POST "https://api.explorium.ai/v1/prospects/match" \
@@ -57,6 +59,7 @@ The **Match Prospects** endpoint allows users to accurately match individual pro
     }'
     ```
   </Accordion>
+
   <Accordion title="Example Response">
     ```json JSON
     {
@@ -106,13 +109,19 @@ The **Match Prospects** endpoint allows users to accurately match individual pro
     
     ```
   </Accordion>
+
   <Accordion title="Best Practices">
     - **Use multiple fetchers** whenever possible to increase match accuracy.
     - **Combine with** `business_id` **to refine matches to a specific company.**
     - **Ensure accurate and up-to-date data** for improved results.
     - **Handle** `null` **values** in responses where no match is found.
     - **Use the input field** when sending multiple queries to match your queries with the results.
+    - **Mind your rate limit:** each prospect in the array counts as one query, so a 50-prospect match request uses 50 of your 200 queries per minute. See [Rate Limit](/reference/rate-limit) for details.
   </Accordion>
 </AccordionGroup>
 
 <Icon icon="thumbtack" iconType="solid" color="red" /> **For more details on request formats and usage, refer to the API documentation.**
+
+<Warning>
+  **Rate limits are counted per query, not per request.** Each prospect in the `prospects_to_match` array counts as a separate query toward your [rate limit](/reference/rate-limit). A single request that matches 50 prospects consumes **50 queries** from your 200-queries-per-minute limit — not 1. Batching reduces HTTP/network overhead, but it does **not** reduce the number of queries counted against your rate limit. Size your batches accordingly.
+</Warning>

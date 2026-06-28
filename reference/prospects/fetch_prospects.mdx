@@ -1098,7 +1098,6 @@ The **Fetch Prospects** endpoint allows users to retrieve a list of prospect rec
     - Ensure data freshness by running regular queries to keep prospect information up-to-date.
     - Be mindful of filter coverage – some filters may return fewer results due to lower data availability, while broader filters may yield larger result sets.
     - If you are not certain about the exact job title, it’s recommended to set `include_related_job_titles=true` to expand and include semantically  related roles.
-    - **Mind your rate limit:** each prospect in the array counts as one query, so a 50-prospect match request uses 50 of your 200 queries per minute. See [Rate Limit](/reference/rate-limit) for details.
   </Accordion>
 </AccordionGroup>
 
@@ -1115,7 +1114,3 @@ filters:
     has_email:
       value: true
 ```
-
-<Warning>
-  **Rate limits are counted per query, not per request.** Each prospect in the `prospects_to_match` array counts as a separate query toward your [rate limit](/reference/rate-limit). A single request that matches 50 prospects consumes **50 queries** from your 200-queries-per-minute limit — not 1. Batching reduces HTTP/network overhead, but it does **not** reduce the number of queries counted against your rate limit. Size your batches accordingly.
-</Warning>
