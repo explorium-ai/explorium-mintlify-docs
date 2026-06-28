@@ -1,6 +1,6 @@
 ---
-openapi: "post /v1/businesses/match"
 title: "Match Businesses"
+openapi: "post /v1/businesses/match"
 ---
 
 ## Description
@@ -13,12 +13,13 @@ Once a business is successfully matched, its **Business ID** becomes the **prima
 
 <AccordionGroup>
   <Accordion title="Coverage">
-    | Attribute             | Coverage Details                                               |
-    | :-------------------- | :------------------------------------------------------------- |
-    | **Total Businesses**  | 80M+ businesses across 150+ countries                          |
+    | Attribute | Coverage Details |
+    | :-- | :-- |
+    | **Total Businesses** | 80M\+ businesses across 150\+ countries |
     | **Matching Accuracy** | Advanced entity resolution for precise business identification |
-    | **Real-Time Updates** | Ensures the latest business records are used for matching      |
+    | **Real-Time Updates** | Ensures the latest business records are used for matching |
   </Accordion>
+
   <Accordion title="How It Works">
     ### How It Works
 
@@ -32,7 +33,7 @@ Once a business is successfully matched, its **Business ID** becomes the **prima
 
     When using the **Business Match** endpoint, the system applies a multi-step resolution strategy based on the fields you provide — primarily `name` and `website`.
 
-    #### 1. Primary Matching — Smart Fuzzy Logic (Name + Website)
+    #### 1. Primary Matching — Smart Fuzzy Logic (Name \+ Website)
 
     We begin by attempting to match the business using both the company name and website domain.\
     The company name is evaluated using a smart fuzzy matching algorithm designed to handle:
@@ -53,7 +54,7 @@ Once a business is successfully matched, its **Business ID** becomes the **prima
 
     ### Important Notes
 
-    - Fallback matching from **name + website → website only** occurs only when both fields are provided.
+    - Fallback matching from **name \+ website → website only** occurs only when both fields are provided.
     - If only the website is supplied, it will be used directly for matching.
     - If only the name is provided, matching relies solely on fuzzy name resolution without domain anchoring.
     - This logic is aligned with the AgentSource model, which emphasizes main site-level resolution (not individual branches).
@@ -62,13 +63,13 @@ Once a business is successfully matched, its **Business ID** becomes the **prima
 
     ### Example Scenarios
 
-    | Input                                               | Matching Outcome                             |
-    | :-------------------------------------------------- | :------------------------------------------- |
-    | `Name: Starbucks EMEA`, `Website: starbucks.com`    | Match using name + website (fuzzy supported) |
-    | `Name: abcxyz`, `Website: starbucks.com`            | Fallback — match using website only          |
-    | `Name: Starbucks`, `Website: fakeurl.xyz`           | No match — invalid domain                    |
-    | `Name: (empty)`, `Website: starbucks.com`           | Match using website only                     |
-    | `Name: Starbuks Intl Ltd`, `Website: starbucks.com` | Match using fuzzy logic + website            |
+    | Input | Matching Outcome |
+    | :-- | :-- |
+    | `Name: Starbucks EMEA`, `Website: starbucks.com` | Match using name \+ website (fuzzy supported) |
+    | `Name: abcxyz`, `Website: starbucks.com` | Fallback — match using website only |
+    | `Name: Starbucks`, `Website: fakeurl.xyz` | No match — invalid domain |
+    | `Name: (empty)`, `Website: starbucks.com` | Match using website only |
+    | `Name: Starbuks Intl Ltd`, `Website: starbucks.com` | Match using fuzzy logic \+ website |
 
     ### Recommendation
 
@@ -77,22 +78,26 @@ Once a business is successfully matched, its **Business ID** becomes the **prima
     - Always include both `name` and `website` when calling the Business Match endpoint.
     - This enables the system to apply smart fuzzy matching **and** fallback recovery for unmatched names — maximizing accuracy, coverage, and confidence.
   </Accordion>
+
   <Accordion title="Schema Explanation">
-    | **Field**             | **Type** | **Description**                                                            |
-    | :-------------------- | :------- | :------------------------------------------------------------------------- |
-    | `businesses_to_match` | Array    | List of business identifiers to match (can include name, domain, LinkedIn) |
-    | `name`                | String   | Business name provided for matching                                        |
-    | `domain`              | String   | Business domain provided for matching                                      |
-    | `linkedin_url`        | String   | LinkedIn company profile URL (optional, improves matching accuracy)        |
-    | `business_id`         | String   | Unique identifier for the matched business (null if not found)             |
+    | **Field** | **Type** | **Description** |
+    | :-- | :-- | :-- |
+    | `businesses_to_match` | Array | List of business identifiers to match (can include name, domain, LinkedIn) |
+    | `name` | String | Business name provided for matching |
+    | `domain` | String | Business domain provided for matching |
+    | `linkedin_url` | String | LinkedIn company profile URL (optional, improves matching accuracy) |
+    | `business_id` | String | Unique identifier for the matched business (null if not found) |
   </Accordion>
+
   <Accordion title="Best Practices">
     - **Always store the Business ID** – It serves as the key for all future enrichment and analytics.
-    - **Use multiple identifiers** (e.g., name + domain, or LinkedIn URL) for **higher match accuracy**.
-    - **Batch requests efficiently** to optimize API performance.
+    - **Use multiple identifiers** (e.g., name \+ domain, or LinkedIn URL) for **higher match accuracy**.
+    - **Batch requests** to reduce HTTP overhead — but note that each business in the array counts as one query against your rate limit.
+    - **Mind your rate limit:** a 50-business match request uses 50 of your 200 queries per minute. See [Rate Limit](/reference/rate-limit) for details.
     - **Handle null values gracefully** to account for unmatched businesses.
     - **Update and validate input data regularly** to ensure the most accurate matches.
   </Accordion>
+
   <Accordion title="Body Params – Example with LinkedIn URL">
     ```json
     {
@@ -114,10 +119,14 @@ Once a business is successfully matched, its **Business ID** becomes the **prima
 
 ## Body Params - Try Me Example
 
-```
+```text
 name: Apple
 domain: apple.com
 
 name: Microsoft
 domain: microsoft.com
 ```
+
+<Warning>
+  **Rate limits are counted per query, not per request.** Each business in the `businesses_to_match` array counts as a separate query toward your [rate limit](/reference/rate-limit). A single request that matches 50 businesses consumes **50 queries** from your 200-queries-per-minute limit — not 1. Batching reduces HTTP/network overhead, but it does **not** reduce the number of queries counted against your rate limit. Size your batches accordingly.
+</Warning>
