@@ -7,22 +7,26 @@ sidebarTitle: "Overview"
 
 The **Bulk Prospects Enrichments** feature enables users to enrich up to **50 prospects in a single request**, streamlining the process of gathering and enhancing lead data. This feature is particularly valuable for sales and marketing teams aiming to scale their prospecting efforts efficiently.
 
-<Icon icon="map-in" /> **Key Benefits:**
+**Key Benefits:**
 
 - **Bulk Processing:** Enrich multiple prospects simultaneously, saving time and reducing manual effort.
 - **Enhanced Data Completeness:** Retrieve verified **contact details, social media presence, and professional profiles** in one go.
 - **Improved Lead Scoring:** Gain deeper insights into prospects, enabling more accurate segmentation and targeting.
 
+<Warning>
+  **Rate limits are counted per query, not per request.** Each prospect ID you include in a bulk request counts as a separate query toward your [rate limit](/reference/rate-limit). A single request with 50 prospect IDs consumes **50 queries** from your 200-queries-per-minute limit — not 1. Batching reduces HTTP/network overhead, but it does **not** reduce the number of queries counted against your rate limit. Size your batches accordingly.
+</Warning>
+
 ## How It Works
 
-1. **Input:** Provide up to **50`prospect_id` values**, obtained from the **Match Prospects** endpoint.
+1. **Input:** Provide up to **50 `prospect_id` values**, obtained from the **Match Prospects** endpoint.
 2. **Processing:** The system retrieves verified contact information, social media presence, and professional details.
 3. **Output:** Returns structured data in the same order as the input, ensuring easy mapping.
 
 ### Request Schema
 
 | Field | Type | Description |
-| :--- | :--- | :--- |
+| --- | --- | --- |
 | `prospect_id` | Array | A list of up to **50 unique prospect IDs** (Required) |
 
 ### Example Request (cURL):
@@ -44,10 +48,10 @@ curl -X POST \
 
 ## Best Practices
 
-- **Use`Match Prospects` first** to obtain valid `prospect_id` values before enrichment.
-- **Batch enrichments strategically** to maximize efficiency within the 50-ID limit.
+- **Use `Match Prospects` first** to obtain valid `prospect_id` values before enrichment.
+- **Batch enrichments strategically** to maximize HTTP efficiency within the 50-ID limit.
+- **Mind your rate limit:** each prospect ID counts as one query, so a 50-ID request uses 50 of your 200 queries per minute. See [Rate Limit](/reference/rate-limit) for details.
 - **Leverage multiple enrichments** (e.g., **contact details, workplace history, social media activity**) for a full prospect profile.
 - **Monitor data quality** by periodically verifying returned results and adjusting filters as needed.
 
 The **Bulk Prospects Enrichments** feature is an essential tool for organizations looking to **streamline lead enrichment**, **enhance data completeness**, and **boost engagement strategies at scale**. By leveraging this capability, teams can significantly **reduce manual work** while improving the quality of prospect insights for sales and marketing efforts.
-
