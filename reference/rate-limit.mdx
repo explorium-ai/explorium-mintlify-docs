@@ -4,20 +4,42 @@ title: "Rate Limit"
 
 ## Overview
 
-Our API implements rate limiting to ensure fair usage and maintain service stability for all users. When you exceed the rate limit, you'll receive a `429 Too Many Requests` response with helpful headers to guide your retry strategy.
+Our API implements rate limiting to ensure fair usage and maintain service stability for all users. Rate limits are measured in **queries** (not HTTP requests — see [How Queries Are Counted](#how-queries-are-counted) below). When you exceed the rate limit, you'll receive a `429 Too Many Requests` response with helpful headers to guide your retry strategy.
 
 ## Rate Limits
 
-- **Default Rate Limit**: 200 requests per minute per API key
+- **Default Rate Limit**: 200 queries per minute per API key
 - **Rate Limit Window**: 60-second sliding window
 
+## How Queries Are Counted
+
+Rate limits are counted in **queries**, not in HTTP requests. The number of queries a single API call consumes depends on the endpoint type:
+
+- **Single-entity endpoints**: one request equals one query.
+- **Bulk / batch endpoints** (such as the enrichment and match endpoints): each row (entity) in the request payload counts as a separate query. A single HTTP request that submits 50 entities consumes **50 queries** against your limit — not 1.
+
+<Warning>
+  A single API call is **not** always a single query. When you send a batch of 50 entities to a bulk endpoint, that one request counts as **50 queries** toward your per-minute limit.
+</Warning>
+
+### Examples
+
+| API call | Endpoint type | Entities in payload | Queries counted |
+| :-- | :-- | :-- | :-- |
+| Enrich a batch of 50 businesses | Bulk | 50 | 50 |
+| Match a batch of 10 prospects | Bulk | 10 | 10 |
+| Enrich a single business | Single | 1 | 1 |
+
+Because each entity is a query, the `X-RateLimit-Remaining` header decrements by the number of entities in your request — not by 1 per call. Size your batches accordingly to stay within the 200-queries-per-minute limit.
+
 ### Rate Limit Headers
+
 When making requests to our API, the following headers are included in every response to help you track your usage:
 
 | Header | Description | Example |
-| :--- | :--- | :--- |
-| `X-RateLimit-Limit` | Maximum number of requests allowed in the current window | `200` |
-| `X-RateLimit-Remaining` | Number of requests remaining in the current window | `150` |
+| :-- | :-- | :-- |
+| `X-RateLimit-Limit` | Maximum number of queries allowed in the current window | `200` |
+| `X-RateLimit-Remaining` | Number of queries remaining in the current window | `150` |
 | `X-RateLimit-Reset` | Unix timestamp when the rate limit window resets | `1234567890` |
 | `Retry-After` | Number of seconds to wait before retrying (only included in 429 responses) | `60` |
 
@@ -47,12 +69,13 @@ Content-Type: application/json
 1. **Always check for 429 responses** and implement exponential backoff
 2. **Respect the Retry-After header** - this tells you the minimum time to wait
 3. **Monitor your usage** using the `X-RateLimit-Remaining` header
-4. **Implement preemptive throttling** when `X-RateLimit-Remaining` is low
-
+4. **Account for batch size** - remember each entity in a bulk request counts as a query
+5. **Implement preemptive throttling** when `X-RateLimit-Remaining` is low
 
 ### Example Implementation
 
 <CodeGroup>
+
 ```python Python expandable
 import time
 import requests
@@ -121,6 +144,7 @@ try:
 except Exception as e:
     print(f'Error: {e}')
 ```
+
 ```javascript JavaScript expandable
 const axios = require('axios');
 
@@ -138,16 +162,16 @@ class APIClient {
       try {
         const response = await axios({
           method: options.method || 'GET',
-          url: \`${this.baseURL}${endpoint}\`,
+          url: `${this.baseURL}${endpoint}`,
           headers: {
-            'Authorization': \`Bearer ${this.apiKey}\`,
+            'Authorization': `Bearer ${this.apiKey}`,
             ...options.headers
           },
           ...options
         });
 
         // Log rate limit info
-        console.log(\`Rate Limit Remaining: ${response.headers['x-ratelimit-remaining']}\`);
+        console.log(`Rate Limit Remaining: ${response.headers['x-ratelimit-remaining']}`);
 
         return response.data;
       } catch (error) {
@@ -160,7 +184,7 @@ class APIClient {
             ? parseInt(retryAfter) * 1000
             : Math.min(1000 * Math.pow(2, retryCount), 60000);
 
-          console.log(\`Rate limit hit. Retrying after ${delay/1000} seconds...\`);
+          console.log(`Rate limit hit. Retrying after ${delay/1000} seconds...`);
 
           if (retryCount < maxRetries) {
             await this.sleep(delay);
@@ -200,8 +224,7 @@ async function fetchData() {
 
 ### Preemptive Rate Limiting
 
-To avoid hitting rate limits, monitor the `X-RateLimit-Remaining` header and implement throttling:
-
+To avoid hitting rate limits, monitor the `X-RateLimit-Remaining` header and implement throttling. Remember that `X-RateLimit-Remaining` reflects queries remaining, so a single bulk request can consume many at once:
 
 ```javascript JavaScript
 // JavaScript example
@@ -211,32 +234,26 @@ if (response.headers['x-ratelimit-remaining'] < 10) {
 }
 ```
 
-
-
 ## Frequently Asked Questions
 
 <AccordionGroup>
-<Accordion title="What happens if I consistently hit rate limits?">
+  <Accordion title="What happens if I consistently hit rate limits?">
+    Repeated rate limit violations may result in temporary suspension of API access. Implement proper retry logic and consider upgrading your plan if you need higher limits.
+  </Accordion>
 
-Repeated rate limit violations may result in temporary suspension of API access. Implement proper retry logic and consider upgrading your plan if you need higher limits.
+  <Accordion title="How is the rate limit window calculated?">
+    We use a sliding window approach that tracks queries over the past 60 seconds. Each query timestamp is recorded, and queries older than 60 seconds are removed from the count.
+  </Accordion>
 
-</Accordion>
+  <Accordion title="How are queries counted for bulk or batch endpoints?">
+    The rate limit counts queries, not HTTP requests. For bulk and batch endpoints (such as enrichment and match), every row (entity) in your request payload counts as one query. For example, a single request that submits 50 entities to a batch endpoint consumes 50 queries from your per-minute limit — not 1. Single-entity endpoints count as one query per request.
+  </Accordion>
 
-<Accordion title="How is the rate limit window calculated?">
+  <Accordion title="Are rate limits applied per API key or per IP address?">
+    Rate limits are applied per API key. Each API key has its own independent rate limit counter.
+  </Accordion>
 
-We use a sliding window approach that tracks requests over the past 60 seconds. Each request timestamp is recorded, and requests older than 60 seconds are removed from the count.
-
-</Accordion>
-
-<Accordion title="Are rate limits applied per API key or per IP address?">
-
-Rate limits are applied per API key. Each API key has its own independent rate limit counter.
-
-</Accordion>
-
-<Accordion title="Do different endpoints have different rate limits?">
-
-Currently, all endpoints share the same rate limit of 200 requests per minute. Some endpoints may have additional specific limits which will be documented separately.
-
-</Accordion>
+  <Accordion title="Do different endpoints have different rate limits?">
+    Currently, all endpoints share the same rate limit of 200 queries per minute. Keep in mind that bulk and batch endpoints count each entity in the payload as a separate query, so a single call to those endpoints can consume multiple queries. Some endpoints may have additional specific limits which will be documented separately.
+  </Accordion>
 </AccordionGroup>
