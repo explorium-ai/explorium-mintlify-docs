@@ -65,7 +65,8 @@
                     "group": "Billing & Credits",
                     "pages": [
                       "reference/credits/tracking_your_credits",
-                      "reference/credits/credit_plans"
+                      "reference/credits/credit_plans",
+                      "reference/credits/auto-refill-credits"
                     ]
                   },
                   "reference/setup/user_management"
