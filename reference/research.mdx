@@ -1,0 +1,420 @@
+---
+title: "Research (Beta)"
+description: "Run a custom, AI-powered research task over a list of businesses or prospects using a natural-language query or a prompt template, grounded in real-time web data."
+hidden: true
+---
+
+<Note>
+  **Beta.** The Research endpoint is currently in beta. The request/response shape and credit model may change before general availability. Pin your integration to the examples below and watch the changelog for updates.
+</Note>
+
+## Overview
+
+The **Research** endpoint runs a **custom, AI-powered analysis** over a list of entities. Instead of returning a fixed enrichment schema, you describe the task — either as a natural-language **`query`** or as a **`prompt_template`** — and define the exact shape of the result with an **`output_schema`**. For each entity, the engine resolves its profile, optionally performs **real-time web research**, and returns structured JSON that conforms to your schema.
+
+Research runs on **two entity types**, each with its own endpoint that follows the standard bulk-enrichment convention:
+
+| Entity | Endpoint |
+| :-- | :-- |
+| **Businesses** | `POST /v1/businesses/research/bulk_enrich` |
+| **Prospects** | `POST /v1/prospects/research/bulk_enrich` |
+
+Both endpoints accept the same `parameters` (`query` / `prompt_template` \+ `output_schema`); they differ only in the entity list and identifier (`business_id` vs `prospect_id`).
+
+This is ideal when an off-the-shelf enrichment doesn't exist for your use case, for example:
+
+- **Custom classification** — e.g. B2B vs B2C, ICP fit, seniority or buying-role inference.
+- **Fit scoring with reasoning** — score each account or contact against a value proposition and explain why.
+- **Campaign-ready copy** — one-line segments or personalized openers tailored per entity.
+
+Each entity is processed independently against your prompt and schema, so a single request can research many records at once.
+
+## Real-time web research
+
+What sets Research apart from standard enrichments is that the engine can **ground its analysis in live web data**, not just the data already on file. Per entity, it can:
+
+- **Run a SERP search** and use the top results as context for the model.
+- **Search and scrape** the most relevant web pages and pass that content to the model as grounding context.
+
+You steer this directly from your instruction — for example, _"…use web search to validate if the description is insufficient"_ or _"…use web search to supplement missing context."_ When the resolved profile is enough, the model can answer from it; when it isn't, the model can reach out to the web.
+
+<Note>
+  Because some rows trigger live web lookups, per-entity latency varies and can take several seconds. Size your batches and set client timeouts accordingly.
+</Note>
+
+<AccordionGroup>
+  <Accordion title="How It Works">
+    - **Input:** A list of entities (each identified by a `business_id` or `prospect_id`, with optional `custom_fields`) plus a `parameters` object containing **either** a `query` **or** a `prompt_template`, and an `output_schema`.
+    - **Processing:** For each entity, Explorium resolves the profile and builds a `record` context. When you pass a `query`, an internal LLM first generates an optimized prompt from your instruction, the available `record` fields, and the available research functions. When you pass a `prompt_template`, your prompt is used as-is. The engine then runs the prompt — performing web research where instructed — and produces structured output constrained to your `output_schema`.
+    - **Output:** One result row per input entity. Each successful row contains the generated fields defined by your `output_schema`; failed rows are returned with an `_error` field rather than being dropped.
+  </Accordion>
+
+  <Accordion title="`query` vs `prompt_template`">
+    You must provide **exactly one** of `query` or `prompt_template`. Sending both, or neither, returns a validation error.
+
+    |  | `query` | `prompt_template` |
+    | :-- | :-- | :-- |
+    | **What you write** | A natural-language instruction describing the insight you want | A prompt with placeholders that reference fields on the `record` |
+    | **Prompt construction** | An internal LLM composes an optimized prompt from your instruction, the available `record` fields, and the available research functions | Your prompt is passed to the engine as-is, with no modification |
+    | **Best for** | End-user-facing flows (VP chat, Hub) and quick, general instructions | Precise, repeatable prompts; power users; programmatic/MCP access where the caller builds the prompt itself |
+    | **Research functions** | Selected automatically by the prompt generator | Can be invoked inline by the prompt author (e.g. read-relevant-links and other research functions) |
+    | **Custom fields** | Available to the model as part of the entity context | Referenced explicitly, e.g. `{{ record['campaign_name'] }}` |
+  </Accordion>
+
+  <Accordion title="The `record` context">
+    When rendering a `prompt_template` (and when the model composes a prompt from a `query`), each entity is represented by a `record` object. The `record` contains:
+
+    - **Explorium profile fields** resolved from the identifier. For **businesses**, fields such as `record['OrganizationName']` and `record['Description']`. For **prospects**, fields such as `record['full_name']`, `record['job_title']`, and `record['company_name']`.
+    - **Any `custom_fields`** you supplied for that entity — for example `record['campaign_name']`.
+
+    Reference these in a `prompt_template` using `{{ record['FieldName'] }}`. Custom fields are merged into the same `record` namespace as the profile fields, so they're referenced the same way.
+  </Accordion>
+</AccordionGroup>
+
+## Endpoints
+
+```text
+POST https://api.explorium.ai/v1/businesses/research/bulk_enrich
+POST https://api.explorium.ai/v1/prospects/research/bulk_enrich
+```
+
+Authenticate with your API key in the `api_key` header. See the [Authentication Guide](/reference/setup/getting_your_api_key) for how to obtain one.
+
+## Request
+
+The request body has two top-level keys: the **entity list** and the **`parameters`**.
+
+The entity list key depends on the endpoint:
+
+- **Businesses:** `businesses`, where each item has a `business_id`.
+- **Prospects:** `prospects`, where each item has a `prospect_id`.
+
+In both cases each item may include an optional `custom_fields` object, and the `parameters` object is identical across both endpoints.
+
+<ParamField body="businesses / prospects" type="object[]" required>
+  The list of entities to research. Each entity is processed independently, and results are returned in the same order. Use `businesses` for the businesses endpoint and `prospects` for the prospects endpoint.
+
+  <Expandable title="entity object">
+    <ParamField body="business_id / prospect_id" type="string" required>
+      The Explorium identifier to research — `business_id` for businesses, `prospect_id` for prospects. Obtain IDs from [Match Businesses](/reference/businesses/match_businesses) / [Fetch Businesses](/reference/businesses/fetch_businesses) or [Match Prospects](/reference/prospects/match_prospects) / [Fetch Prospects](/reference/prospects/fetch_prospects).
+    </ParamField>
+
+    <ParamField body="custom_fields" type="object">
+      Optional key–value pairs to attach to this entity. Each key is merged into the `record` context and can be referenced from a `prompt_template` (e.g. `{{ record['campaign_name'] }}`) or used by the model when composing a prompt from a `query`. Values are treated as strings.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField body="parameters" type="object" required>
+  Controls how the analysis is generated and what shape it takes. Identical for both endpoints.
+
+  <Expandable title="parameters object">
+    <ParamField body="query" type="string">
+      A natural-language instruction describing the research task. An internal LLM composes the final prompt from this instruction, the available `record` fields, and the available research functions. **Mutually exclusive with `prompt_template`** — provide exactly one.
+    </ParamField>
+
+    <ParamField body="prompt_template" type="string">
+      A prompt used directly by the engine, with no modification. Reference `record` fields with `{{ record['FieldName'] }}`, and invoke research functions inline as needed. **Mutually exclusive with `query`** — provide exactly one.
+    </ParamField>
+
+    <ParamField body="output_schema" type="object" required>
+      A JSON Schema describing the structure of each result. The model returns JSON constrained to this schema. Supports `type`, `properties`, `description`, `enum`, `minimum`/`maximum`, and `required`. Use clear field descriptions and constraints to improve consistency.
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<Warning>
+  Provide **either** `query` **or** `prompt_template`, never both and never neither. Requests that violate this return a `422` validation error.
+</Warning>
+
+### Examples
+
+<Tabs>
+  <Tab title="Businesses">
+    <CodeGroup>
+
+    ```json Using a prompt_template
+    {
+      "businesses": [
+        {
+          "business_id": "8adce3ca1cef0c986b22310e369a0793",
+          "custom_fields": { "campaign_name": "Q1 enterprise push" }
+        },
+        {
+          "business_id": "340c8040bd50cbab9c7df718bbe51cc9",
+          "custom_fields": { "campaign_name": "SMB awareness" }
+        }
+      ],
+      "parameters": {
+        "prompt_template": "For {{ record['OrganizationName'] }}, write a one-sentence segment for campaign {{ record['campaign_name'] }}. Use description: {{ record['Description'] }}.",
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "segment": { "type": "string", "description": "One-sentence campaign segment" },
+            "campaign_fit": { "type": "string", "description": "Brief assessment of campaign fit" }
+          },
+          "required": ["segment", "campaign_fit"]
+        }
+      }
+    }
+    ```
+
+    ```json Using a query (B2B / B2C classifier)
+    {
+      "businesses": [
+        { "business_id": "8adce3ca1cef0c986b22310e369a0793" },
+        { "business_id": "340c8040bd50cbab9c7df718bbe51cc9" }
+      ],
+      "parameters": {
+        "query": "Using the company profile, classify whether this company primarily sells to businesses (B2B) or consumers (B2C). Explain your reasoning.",
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "btb_btc": { "type": "string", "enum": ["B2B", "B2C", "Both"], "description": "Whether the company is primarily B2B, B2C, or both" },
+            "reasoning": { "type": "string", "description": "Brief explanation for the classification" }
+          },
+          "required": ["btb_btc", "reasoning"]
+        }
+      }
+    }
+    ```
+
+    ```json Using a query (company fit scorer)
+    {
+      "businesses": [
+        { "business_id": "8adce3ca1cef0c986b22310e369a0793" }
+      ],
+      "parameters": {
+        "query": "Based on the company profile, score how well this company fits the following value proposition on a scale of 1-10 and explain why: 'A B2B SaaS tool that helps mid-market sales teams automate outbound prospecting.' Use web search to supplement missing context.",
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "fit_score": { "type": "integer", "minimum": 1, "maximum": 10, "description": "How well the company fits the value proposition (1 = poor fit, 10 = perfect fit)" },
+            "fit_reasoning": { "type": "string", "description": "2-3 sentence explanation of the score" }
+          },
+          "required": ["fit_score", "fit_reasoning"]
+        }
+      }
+    }
+    ```
+
+    </CodeGroup>
+  </Tab>
+  <Tab title="Prospects">
+    <CodeGroup>
+
+    ```json Using a prompt_template
+    {
+      "prospects": [
+        {
+          "prospect_id": "ee936e451b50c70e068e1b54e106cb89173198c4",
+          "custom_fields": { "campaign_name": "Q1 enterprise push" }
+        }
+      ],
+      "parameters": {
+        "prompt_template": "Write a one-line personalized opener for {{ record['full_name'] }}, {{ record['job_title'] }} at {{ record['company_name'] }}, for campaign {{ record['campaign_name'] }}.",
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "opener": { "type": "string", "description": "One-line personalized outreach opener" },
+            "angle": { "type": "string", "description": "The hook or angle the opener leans on" }
+          },
+          "required": ["opener", "angle"]
+        }
+      }
+    }
+    ```
+
+    ```json Using a query (decision-maker check)
+    {
+      "prospects": [
+        { "prospect_id": "ee936e451b50c70e068e1b54e106cb89173198c4" }
+      ],
+      "parameters": {
+        "query": "Based on this person's role and company, assess whether they are likely a decision-maker for purchasing sales software. Explain your reasoning.",
+        "output_schema": {
+          "type": "object",
+          "properties": {
+            "decision_maker": { "type": "string", "enum": ["Yes", "No", "Influencer"], "description": "Whether the prospect is a decision-maker, a non-decision-maker, or an influencer" },
+            "reasoning": { "type": "string", "description": "Brief explanation for the assessment" }
+          },
+          "required": ["decision_maker", "reasoning"]
+        }
+      }
+    }
+    ```
+
+    </CodeGroup>
+  </Tab>
+</Tabs>
+
+### Example request (cURL)
+
+<CodeGroup>
+
+```bash Businesses
+curl --request POST \
+  --url https://api.explorium.ai/v1/businesses/research/bulk_enrich \
+  --header 'accept: application/json' \
+  --header 'api_key: your_api_key_here' \
+  --header 'content-type: application/json' \
+  --data '{
+    "businesses": [
+      { "business_id": "8adce3ca1cef0c986b22310e369a0793" },
+      { "business_id": "340c8040bd50cbab9c7df718bbe51cc9" }
+    ],
+    "parameters": {
+      "query": "Classify whether this company primarily sells to businesses (B2B) or consumers (B2C). Explain your reasoning.",
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "btb_btc": { "type": "string", "enum": ["B2B", "B2C", "Both"], "description": "Whether the company is primarily B2B, B2C, or both" },
+          "reasoning": { "type": "string", "description": "Brief explanation for the classification" }
+        },
+        "required": ["btb_btc", "reasoning"]
+      }
+    }
+  }'
+```
+
+```bash Prospects
+curl --request POST \
+  --url https://api.explorium.ai/v1/prospects/research/bulk_enrich \
+  --header 'accept: application/json' \
+  --header 'api_key: your_api_key_here' \
+  --header 'content-type: application/json' \
+  --data '{
+    "prospects": [
+      { "prospect_id": "ee936e451b50c70e068e1b54e106cb89173198c4" }
+    ],
+    "parameters": {
+      "query": "Assess whether this person is likely a decision-maker for purchasing sales software. Explain your reasoning.",
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "decision_maker": { "type": "string", "enum": ["Yes", "No", "Influencer"], "description": "Whether the prospect is a decision-maker, a non-decision-maker, or an influencer" },
+          "reasoning": { "type": "string", "description": "Brief explanation for the assessment" }
+        },
+        "required": ["decision_maker", "reasoning"]
+      }
+    }
+  }'
+```
+
+</CodeGroup>
+
+## Response
+
+A successful request returns a `200` with a `results` array — one entry per input entity, in input order — plus counters for how many rows were processed and how many failed.
+
+Each successful result contains the entity identifier (`business_id` or `prospect_id`) and the generated fields defined by your `output_schema`. Rows that could not be processed are **not dropped**; they are returned with an `_error` field describing what went wrong.
+
+<ResponseField name="results" type="object[]">
+  One result per input entity, in input order.
+
+  <Expandable title="result object">
+    <ResponseField name="business_id / prospect_id" type="string">
+      The identifier this result corresponds to.
+    </ResponseField>
+
+    <ResponseField name="<output_schema fields>" type="varies">
+      The generated fields, conforming to the `output_schema` supplied in the request (present on success).
+    </ResponseField>
+
+    <ResponseField name="_error" type="string">
+      Present only when the row failed. Describes the failure; the generated fields are omitted for this row.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="rows_processed" type="integer">
+  The number of entities successfully processed.
+</ResponseField>
+
+<ResponseField name="rows_failed" type="integer">
+  The number of entities that failed and were returned with an `_error`.
+</ResponseField>
+
+### Example response
+
+<CodeGroup>
+
+```json Businesses
+{
+  "results": [
+    {
+      "business_id": "8adce3ca1cef0c986b22310e369a0793",
+      "btb_btc": "B2B",
+      "reasoning": "The company sells software and services to enterprise organizations rather than individual consumers."
+    },
+    {
+      "business_id": "340c8040bd50cbab9c7df718bbe51cc9",
+      "btb_btc": "B2C",
+      "reasoning": "Its products are marketed and sold directly to individual end users."
+    }
+  ],
+  "rows_processed": 2,
+  "rows_failed": 0
+}
+```
+
+```json Prospects
+{
+  "results": [
+    {
+      "prospect_id": "ee936e451b50c70e068e1b54e106cb89173198c4",
+      "decision_maker": "Yes",
+      "reasoning": "Their title indicates ownership of the sales function, with budget authority over tooling."
+    }
+  ],
+  "rows_processed": 1,
+  "rows_failed": 0
+}
+```
+
+</CodeGroup>
+
+### Example failed row
+
+```json
+{
+  "business_id": "f12c9a77b0e34d51a9c0b8e2d7f4a6c3",
+  "_error": "Unable to resolve a profile for this identifier."
+}
+```
+
+## Per-call credit usage
+
+The Research endpoints support the opt-in [Per-Call Credit Usage](/reference/credits/per-call-credit-usage) header. Send `credit-usage: true` to receive a `credit_usage` object alongside the response, reporting the exact credits deducted for the call. This is the recommended way to track research costs while you tune prompts and schemas during the beta.
+
+```bash
+credit-usage: true
+```
+
+## Best practices
+
+- **Be explicit in your schema.** Use clear field `description`s, and `enum` / `minimum` / `maximum` constraints, so the model returns consistent, parseable values.
+- **Keep outputs focused.** Smaller, well-scoped schemas produce more reliable results than large free-form objects.
+- **Tell the model when to use the web.** If a task may need information beyond the resolved profile, say so in your instruction (e.g. _"use web search to supplement missing context"_).
+- **Prefer `prompt_template` for repeatable pipelines** where you need full control over wording, injected fields, and inline research functions; use `query` for quick, natural-language instructions.
+- **Resolve identifiers first** with [Match Businesses](/reference/businesses/match_businesses) or [Match Prospects](/reference/prospects/match_prospects) so the engine has a profile to work from.
+- **Attach context with `custom_fields`** (e.g. campaign name, segment) rather than hard-coding it into every prompt.
+- **Handle `_error` rows.** Iterate over `results` and check for `_error` before reading the generated fields.
+
+<Warning>
+  **Rate limits are counted per query, not per request.** Each entity in the `businesses` / `prospects` array counts as a separate query toward your [rate limit](/reference/rate-limit). A single request that researches 50 entities consumes **50 queries** from your 200-queries-per-minute limit — not 1. Batching reduces HTTP/network overhead, but it does **not** reduce the number of queries counted against your rate limit. Size your batches accordingly.
+</Warning>
+
+## Errors
+
+<ResponseField name="422 Validation Error" type="object">
+  Returned when the request body is invalid — for example when both `query` and `prompt_template` are provided, when neither is provided, or when `output_schema` is missing or malformed.
+
+  <Expandable title="properties">
+    <ResponseField name="detail" type="object[]">
+      A list of validation errors, each with `loc` (location of the error), `msg` (human-readable message), and `type`.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+See [Error Handling](/reference/error-handling) for the full list of status codes and retry guidance.
