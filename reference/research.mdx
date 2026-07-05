@@ -25,18 +25,14 @@ This is ideal when an off-the-shelf enrichment doesn't exist for your use case, 
 
 - **Custom classification** — e.g. B2B vs B2C, ICP fit, seniority or buying-role inference.
 - **Fit scoring with reasoning** — score each account or contact against a value proposition and explain why.
-- **Campaign-ready copy** — one-line segments or personalized openers tailored per entity.
-
-Each entity is processed independently against your prompt and schema, so a single request can research many records at once.
+- **Campaign-ready copy** — one-line segments or personalized openers tailored per entity. Each entity is processed independently against your prompt and schema, so a single request can research many records at once.
 
 ## Real-time web research
 
 What sets Research apart from standard enrichments is that the engine can **ground its analysis in live web data**, not just the data already on file. Per entity, it can:
 
 - **Run a SERP search** and use the top results as context for the model.
-- **Search and scrape** the most relevant web pages and pass that content to the model as grounding context.
-
-You steer this directly from your instruction — for example, _"…use web search to validate if the description is insufficient"_ or _"…use web search to supplement missing context."_ When the resolved profile is enough, the model can answer from it; when it isn't, the model can reach out to the web.
+- **Search and scrape** the most relevant web pages and pass that content to the model as grounding context. You steer this directly from your instruction — for example, _"…use web search to validate if the description is insufficient"_ or _"…use web search to supplement missing context."_ When the resolved profile is enough, the model can answer from it; when it isn't, the model can reach out to the web.
 
 <Note>
   Because some rows trigger live web lookups, per-entity latency varies and can take several seconds. Size your batches and set client timeouts accordingly.
@@ -64,12 +60,64 @@ You steer this directly from your instruction — for example, _"…use web sear
   <Accordion title="The `record` context">
     When rendering a `prompt_template` (and when the model composes a prompt from a `query`), each entity is represented by a `record` object. The `record` contains:
 
-    - **Explorium profile fields** resolved from the identifier. For **businesses**, fields such as `record['OrganizationName']` and `record['Description']`. For **prospects**, fields such as `record['full_name']`, `record['job_title']`, and `record['company_name']`.
+    - **Explorium profile fields** resolved from the identifier. For **businesses**, fields such as `record['OrganizationName']` and `record['Description']`. For **prospects**, fields such as `record['FullName']`, `record['JobTitle']`, and `record['OrganizationName']`.
     - **Any `custom_fields`** you supplied for that entity — for example `record['campaign_name']`.
 
-    Reference these in a `prompt_template` using `{{ record['FieldName'] }}`. Custom fields are merged into the same `record` namespace as the profile fields, so they're referenced the same way.
+    Reference these in a `prompt_template` using `{{ record['FieldName'] }}`. Custom fields are merged into the same `record` namespace as the profile fields, so they're referenced the same way. See [Record fields](#record-fields) for the full list of supported fields per entity type.
   </Accordion>
 </AccordionGroup>
+
+## Record fields
+
+Inside a `prompt_template`, reference any of the fields below with `{{ record['FieldName'] }}`. When you pass a `query` instead, these same fields are made available to the prompt generator as the entity's context. The available fields depend on the endpoint you call.
+
+### Businesses
+
+Available on the `businesses` endpoint.
+
+| Field | Description |
+| :-- | :-- |
+| `OrganizationName` | The company's full organization name. |
+| `name` | The company's common or display name. |
+| `Url` | The company's website URL. |
+| `Description` | A free-text description of the company and what it does. |
+| `LinkedInIndustry` | The company's industry as classified on LinkedIn. |
+| `GoogleCategory` | The company's business category as classified by Google. |
+| `EmployeeRange` | The company's employee headcount range (e.g. `51-200`). |
+| `RevenueRange` | The company's estimated annual revenue range. |
+| `OperationalStatus` | Whether the company is currently active or operational. |
+| `FoundingYear` | The year the company was founded. |
+| `NaicsDescription` | The company's NAICS industry classification, as a text description. |
+| `Specialties` | The company's stated areas of focus or specialties. |
+| `Location` | The company's primary or headquarters location. |
+
+### Prospects
+
+Available on the `prospects` endpoint.
+
+| Field | Description |
+| :-- | :-- |
+| `FullName` | The prospect's full name. |
+| `JobTitle` | The prospect's current job title. |
+| `JobTitleLevel` | The seniority level of the prospect's role (e.g. Manager, Director, VP, C-Suite). |
+| `JobDepartment` | The department or function the prospect works in (e.g. Sales, Engineering). |
+| `Summary` | A short professional summary or bio for the prospect. |
+| `OrganizationName` | The name of the company the prospect currently works at. |
+| `Url` | The website URL of the prospect's current company. |
+| `JobCompanyIndustry` | The industry of the prospect's current company. |
+| `JobCompanySize` | The employee-size range of the prospect's current company. |
+| `JobCompanyDescription` | A description of the prospect's current company. |
+| `LocationName` | The prospect's location (city, region, and/or country). |
+| `LinkedInUrl` | The URL of the prospect's LinkedIn profile. |
+| `Skills` | The prospect's listed skills. |
+
+### Custom fields
+
+Any key you attach in `custom_fields` is merged into the same `record` object and can be referenced exactly like a profile field — for example `{{ record['campaign_name'] }}`. There is no fixed list: use whatever keys you send per entity. Values are treated as strings.
+
+<Note>
+  Profile fields are populated from the entity's resolved Explorium profile, so a given field may be empty when that attribute isn't available for the entity. Write prompts that degrade gracefully when a field is missing, and instruct the model to use web research to fill gaps where appropriate.
+</Note>
 
 ## Endpoints
 
@@ -87,9 +135,7 @@ The request body has two top-level keys: the **entity list** and the **`paramete
 The entity list key depends on the endpoint:
 
 - **Businesses:** `businesses`, where each item has a `business_id`.
-- **Prospects:** `prospects`, where each item has a `prospect_id`.
-
-In both cases each item may include an optional `custom_fields` object, and the `parameters` object is identical across both endpoints.
+- **Prospects:** `prospects`, where each item has a `prospect_id`. In both cases each item may include an optional `custom_fields` object, and the `parameters` object is identical across both endpoints.
 
 <ParamField body="businesses / prospects" type="object[]" required>
   The list of entities to research. Each entity is processed independently, and results are returned in the same order. Use `businesses` for the businesses endpoint and `prospects` for the prospects endpoint.
