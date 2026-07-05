@@ -212,7 +212,7 @@ In both cases each item may include an optional `custom_fields` object, and the 
         }
       ],
       "parameters": {
-        "prompt_template": "Write a one-line personalized opener for {{ record['full_name'] }}, {{ record['job_title'] }} at {{ record['company_name'] }}, for campaign {{ record['campaign_name'] }}.",
+        "prompt_template": "Write a one-line personalized opener for {{ record['FullName'] }}, {{ record['JobTitle'] }} at {{ record['OrganizationName'] }}, for campaign {{ record['campaign_name'] }}.",
         "output_schema": {
           "type": "object",
           "properties": {
