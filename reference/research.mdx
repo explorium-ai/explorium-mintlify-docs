@@ -53,7 +53,7 @@ What sets Research apart from standard enrichments is that the engine can **grou
     | **What you write** | A natural-language instruction describing the insight you want | A prompt with placeholders that reference fields on the `record` |
     | **Prompt construction** | An internal LLM composes an optimized prompt from your instruction, the available `record` fields, and the available research functions | Your prompt is passed to the engine as-is, with no modification |
     | **Best for** | End-user-facing flows (VP chat, Hub) and quick, general instructions | Precise, repeatable prompts; power users; programmatic/MCP access where the caller builds the prompt itself |
-    | **Research functions** | Selected automatically by the prompt generator | Can be invoked inline by the prompt author (e.g. read-relevant-links and other research functions) |
+    | **Research functions** | Selected automatically by the prompt generator | Invoked inline by the prompt author — up to two per template (see [Research functions](#research-functions)) |
     | **Custom fields** | Available to the model as part of the entity context | Referenced explicitly, e.g. `{{ record['campaign_name'] }}` |
   </Accordion>
 
@@ -119,6 +119,136 @@ Any key you attach in `custom_fields` is merged into the same `record` object an
   Profile fields are populated from the entity's resolved Explorium profile, so a given field may be empty when that attribute isn't available for the entity. Write prompts that degrade gracefully when a field is missing, and instruct the model to use web research to fill gaps where appropriate.
 </Note>
 
+## Research functions
+
+Inside a `prompt_template`, you can call **research functions** to ground the analysis in live web data. Render them with `{{ ... }}` just like a record field: the function runs first, and its output — SERP results or scraped page text — is injected into the prompt as context before the model reasons over it. Their arguments are typically built from `record` fields (e.g. `record['OrganizationName']`, `record['Url']`).
+
+You can use **up to two** research functions in a single `prompt_template`.
+
+<Note>
+  These functions apply to `prompt_template` only. When you pass a `query`, the prompt generator selects and invokes the appropriate research functions automatically based on your instruction — you don't call them explicitly.
+</Note>
+
+### `ReadMostRelevantLinks`
+
+Runs a SERP search for `query` and scrapes the top `max_results` result pages, injecting their combined content into the prompt as grounding context. Use it when the company or person isn't well described by the resolved profile alone and you want fresh, broad web context.
+
+<ParamField query="query" type="string" required>
+  The search query to run. Commonly built from a record field, e.g. `record['OrganizationName']`.
+</ParamField>
+
+<ParamField query="max_results" type="integer">
+  The number of top SERP results to fetch and scrape.
+</ParamField>
+
+```text
+{{ ReadMostRelevantLinks(query=record['OrganizationName'], max_results=4) }}
+```
+
+<CodeGroup>
+
+```json Businesses — SERP search + scrape
+{
+  "business_id": "8adce3ca1cef0c986b22310e369a0793",
+  "parameters": {
+    "prompt_template": "{{ ReadMostRelevantLinks(query=record['OrganizationName'], max_results=4) }}\n\nUsing the company description {{ record['Description'] }} and website {{ record['Url'] }}, classify whether {{ record['OrganizationName'] }} primarily sells to businesses (B2B) or consumers (B2C). Explain your reasoning.",
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "btb_btc": {
+          "type": "string",
+          "enum": ["B2B", "B2C", "Both"],
+          "description": "Whether the company is primarily B2B, B2C, or both"
+        },
+        "reasoning": {
+          "type": "string",
+          "description": "Brief explanation for the classification"
+        }
+      },
+      "required": ["btb_btc", "reasoning"]
+    }
+  }
+}
+```
+
+</CodeGroup>
+
+### `ReadUrlText`
+
+Scrapes the text content of a single URL and injects it into the prompt as grounding context. Use it when you already know the exact page to read — most often the entity's own website via `record['Url']`.
+
+<ParamField query="url" type="string" required>
+  The URL of the page to scrape, e.g. `record['Url']`.
+</ParamField>
+
+```text
+{{ ReadUrlText(url=record['Url']) }}
+```
+
+<CodeGroup>
+
+```json Prospects — scrape a specific URL
+{
+  "prospect_id": "5d86c0d8eae6bdd60515685670a4a2ad49981945",
+  "parameters": {
+    "prompt_template": "{{ ReadUrlText(url=record['Url']) }}\n\nEvaluate whether {{ record['FullName'] }} ({{ record['JobTitle'] }} at {{ record['OrganizationName'] }}) is a strong fit for an enterprise data platform. Use summary {{ record['Summary'] }}, skills {{ record['Skills'] }}, and company website content from {{ record['Url'] }}.",
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "fit_score": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10,
+          "description": "Prospect fit score from 1 to 10"
+        },
+        "reasoning": {
+          "type": "string",
+          "description": "Brief explanation for the score"
+        }
+      },
+      "required": ["fit_score", "reasoning"]
+    }
+  }
+}
+```
+
+</CodeGroup>
+
+### Using two functions together
+
+You can combine both functions in one `prompt_template` (the two-function maximum). Here the model reads the company's own site with `ReadUrlText` and supplements it with broader web results from `ReadMostRelevantLinks` before answering.
+
+<CodeGroup>
+
+```json Businesses — scrape site + SERP search
+{
+  "business_id": "8adce3ca1cef0c986b22310e369a0793",
+  "parameters": {
+    "prompt_template": "{{ ReadUrlText(url=record['Url']) }}\n\n{{ ReadMostRelevantLinks(query=record['OrganizationName'], max_results=3) }}\n\nUsing the company's own website and the most relevant web results, summarize what {{ record['OrganizationName'] }} does and identify its primary target market.",
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "summary": {
+          "type": "string",
+          "description": "One-paragraph summary of what the company does"
+        },
+        "target_market": {
+          "type": "string",
+          "description": "The company's primary target market"
+        }
+      },
+      "required": ["summary", "target_market"]
+    }
+  }
+}
+```
+
+</CodeGroup>
+
+<Warning>
+  A `prompt_template` may reference **at most two** research functions. Adding a third returns a validation error. Each function that runs performs live web I/O, so it adds latency to that row — prefer `ReadUrlText` when you know the exact page, and reserve `ReadMostRelevantLinks` for cases that need broader discovery.
+</Warning>
+
 ## Endpoints
 
 ```text
@@ -160,7 +290,7 @@ The entity list key depends on the endpoint:
     </ParamField>
 
     <ParamField body="prompt_template" type="string">
-      A prompt used directly by the engine, with no modification. Reference `record` fields with `{{ record['FieldName'] }}`, and invoke research functions inline as needed. **Mutually exclusive with `query`** — provide exactly one.
+      A prompt used directly by the engine, with no modification. Reference `record` fields with `{{ record['FieldName'] }}`, and invoke [research functions](#research-functions) inline as needed (up to two per template). **Mutually exclusive with `query`** — provide exactly one.
     </ParamField>
 
     <ParamField body="output_schema" type="object" required>
