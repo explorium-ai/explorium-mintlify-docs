@@ -25,7 +25,6 @@ Raw intent data powered by:
 <img
   src="/download.png"
   alt="Image(1) Pn"
-  title=""
   className="mx-auto"
   style={{ width:"45%" }}
 />
@@ -42,14 +41,33 @@ Raw intent data powered by:
 
     - `topic_parameters` — semicolon-separated list of "category: topic" filters\
       (e.g., `technology: ios;other: vendor profiling`).
-      - To build this list, use the Autocomplete endpoint with `business_intent_topics` — and preferably `semantic_search=true` — to retrieve a broader, smarter set of intent topics.
 
-        This ensures your topic list is accurate, relevant, and aligned with Bombora’s taxonomy.
+    To build this list, use the Autocomplete endpoint with`business_intent_topics` — and preferably `semantic_search=true` — to retrieve a broader, smarter set of intent topics. This ensures your topic list is accurate, relevant, and aligned with Bombora’s taxonomy.\
+    You can also download the full topics list if needed (see details below).
+
     - `min_score` — optional integer \> 60. If omitted, the default threshold is 60.
 
     > 💡 **Recommendation:**\
     > To achieve a meaningful and accurate measurement of intent, it is strongly recommended to include **at least 12 topics** that reflect the company’s genuine areas of interest.\
     > Providing too few topics — or omitting the list entirely — will return _all_ available topics for the company, which may include many unrelated subjects and lead to misleading or noisy intent insights.
+
+    ### **Intent Topics Reference List**
+
+    There are two ways to discover valid intent topics for the `topics` parameter:
+
+    <CardGroup cols={2}>
+      <Card title="Autocomplete API" icon="magnifying-glass" href="/reference/businesses/autocomplete">
+        Query the Autocomplete endpoint with `business_intent_topics` (preferably with `semantic_search=true`) to interactively find topics relevant to your use case.
+      </Card>
+
+      <Card title="Download Full Topics List (CSV)" icon="file-csv" href="https://assets.explorium.ai/reference/bombora/bombora-topics.csv">
+        Download the complete list of supported Bombora intent topics as a CSV file. The list is refreshed weekly to stay aligned with Bombora's taxonomy.
+      </Card>
+    </CardGroup>
+
+    <Note>
+      The CSV contains a single `intent_topic` column, with each row formatted as `category: topic` (e.g., `accounting: accounts payable`) — the exact format expected by the `topics` parameter. The file is automatically regenerated **once a week** to reflect the latest Bombora taxonomy, so we recommend re-downloading it periodically rather than caching a local copy long-term.
+    </Note>
 
     ### **Processing**
 
@@ -63,8 +81,9 @@ Raw intent data powered by:
 
     ### **Output**
 
-    Returns, for each input business_id, the company’s top intent topics, including the composite score, engagement level, and weekly timestamp.
+    Returns, for each input business\_id, the company’s top intent topics, including the composite score, engagement level, and weekly timestamp.
   </Accordion>
+
   <Accordion title="Example  — Request with `min_score` & Response">
     ```json
     curl -X 'POST' \
@@ -104,6 +123,7 @@ Raw intent data powered by:
     }
     ```
   </Accordion>
+
   <Accordion title="Best Practices">
     - **`Always provide valid business_id inputs`** retrieved from the **Match Businesses** API.
     - **`Specify topic_parameters`** to focus enrichment results on relevant industries or technologies.
@@ -112,15 +132,16 @@ Raw intent data powered by:
     - **Combine intent data** with firmographic and technographic enrichments for full go-to-market insights.
     - **Use the Autocomplete endpoint** with `business_intent_topics` — and preferably `semantic_search=true` — to build accurate and relevant `topic_parameters` before running enrichment.
   </Accordion>
+
   <Accordion title="Intent Topics Output Signals">
-    | Signal          | API Name        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | Data Type |
-    | --------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------- |
-    | level_of_intent | Level of Intent | Indicates how actively a company engaged with selected topics during the past week.<br /><br />**Calculation:** Number of topics with a composite score above 25% **divided by** the total number of input topics.<br /><br />**Ranges:**<br />• \>25% → _In-Depth Research_<br />• 5–25% → _Active Research_<br />• \<5% → _Early Research_<br /><br /><br />**Recommendation:** To ensure a meaningful and accurate reflection of intent, it is recommended to input **at least 12 topics**that are relevant to the areas of interest.<br /><br />Returns `null` when no input topics are available. | CATEGORY  |
-    | topic_count     | Topic Count     | Shows the number of topics with a composite score above 60, relative to all topics evaluated (e.g., 5/5). When no input topics are provided, all topics are returned.                                                                                                                                                                                                                                                                                                                                                                                                                                  | TEXT      |
-    | intent_topics   | Intent Topics   | Contains an array of objects summarizing the company’s active interest in specific Bombora topics over a given week. Each object includes the topic name, category, composite score, and date.                                                                                                                                                                                                                                                                                                                                                                                                         | TEXT      |
-    | company_website | Company Website | The company’s primary website or domain URL.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | URL       |
-    | company_name    | Company Name    | The official or recognized name of the company.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | TEXT      |
-    | date_stamp      | date            | The date of the most recent Bombora data file (weekly), in format YYYYMMDD                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | TEXT      |
+    | Signal | API Name | Description | Data Type |
+    | --- | --- | --- | --- |
+    | level\_of\_intent | Level of Intent | Indicates how actively a company engaged with selected topics during the past week.<br /><br />**Calculation:** Number of topics with a composite score above 25% **divided by** the total number of input topics.<br /><br />**Ranges:**<br />• \>25% → _In-Depth Research_<br />• 5–25% → _Active Research_<br />• \<5% → _Early Research_<br /><br /><br />**Recommendation:** To ensure a meaningful and accurate reflection of intent, it is recommended to input **at least 12 topics**that are relevant to the areas of interest.<br /><br />Returns `null` when no input topics are available. | CATEGORY |
+    | topic\_count | Topic Count | Shows the number of topics with a composite score above 60, relative to all topics evaluated (e.g., 5/5). When no input topics are provided, all topics are returned. | TEXT |
+    | intent\_topics | Intent Topics | Contains an array of objects summarizing the company’s active interest in specific Bombora topics over a given week. Each object includes the topic name, category, composite score, and date. | TEXT |
+    | company\_website | Company Website | The company’s primary website or domain URL. | URL |
+    | company\_name | Company Name | The official or recognized name of the company. | TEXT |
+    | date\_stamp | date | The date of the most recent Bombora data file (weekly), in format YYYYMMDD | TEXT |
   </Accordion>
 </AccordionGroup>
 
