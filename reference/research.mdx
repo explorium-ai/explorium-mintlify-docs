@@ -39,9 +39,9 @@ What sets Research apart from standard enrichments is that the engine can **grou
 
 <AccordionGroup>
   <Accordion title="How It Works">
-    - **Input:** A list of entities (each identified by a `business_id` or `prospect_id`, with optional `custom_fields`) plus a `parameters` object containing **either** a `query` **or** a `prompt_template`, and an `output_schema`.
-    - **Processing:** For each entity, Explorium resolves the profile and builds a `record` context. When you pass a `query`, an internal LLM first generates an optimized prompt from your instruction, the available `record` fields, and the available research functions. When you pass a `prompt_template`, your prompt is used as-is. The engine then runs the prompt — performing web research where instructed — and produces structured output constrained to your `output_schema`.
-    - **Output:** One result row per input entity. Each successful row contains the generated fields defined by your `output_schema`; failed rows are returned with an `_error` field rather than being dropped.
+    - **Input:** A list of entities (each identified by a `business_id` or `prospect_id`, with optional `custom_fields`) plus a `parameters` object containing **either** a `query` **or** a `prompt_template`, and an `output_schema` (required with `prompt_template`, optional with `query`).
+    - **Processing:** For each entity, Explorium resolves the profile and builds a `record` context. When you pass a `query`, an internal LLM first generates an optimized prompt from your instruction, the available `record` fields, and the available research functions — and, if you didn't supply an `output_schema`, generates one as well. When you pass a `prompt_template`, your prompt is used as-is. The engine then runs the prompt — performing web research where instructed — and produces structured output constrained to the schema.
+    - **Output:** One result row per input entity, returned under `data`. Each successful row contains the generated fields defined by the `output_schema`; failed rows are returned with an `_error` field rather than being dropped.
   </Accordion>
 
   <Accordion title="`query` vs `prompt_template`">
@@ -54,6 +54,7 @@ What sets Research apart from standard enrichments is that the engine can **grou
     | **Best for** | End-user-facing flows (VP chat, Hub) and quick, general instructions | Precise, repeatable prompts; power users; programmatic/MCP access where the caller builds the prompt itself |
     | **Research functions** | Selected automatically by the prompt generator | Invoked inline by the prompt author — up to two per template (see [Research functions](#research-functions)) |
     | **Custom fields** | Available to the model as part of the entity context | Referenced explicitly, e.g. `{{ record['campaign_name'] }}` |
+    | **`output_schema`** | Optional — generated automatically from your instruction if omitted | Required — omitting it returns a validation error |
   </Accordion>
 
   <Accordion title="The `record` context">
@@ -292,8 +293,10 @@ The entity list key depends on the endpoint:
       A prompt used directly by the engine, with no modification. Reference `record` fields with `{{ record['FieldName'] }}`, and invoke [research functions](#research-functions) inline as needed (up to two per template). **Mutually exclusive with `query`** — provide exactly one.
     </ParamField>
 
-    <ParamField body="output_schema" type="object" required>
+    <ParamField body="output_schema" type="object">
       A JSON Schema describing the structure of each result. The model returns JSON constrained to this schema. Supports `type`, `properties`, `description`, `enum`, `minimum`/`maximum`, and `required`. Use clear field descriptions and constraints to improve consistency.
+
+      **Required with `prompt_template`** — omitting it returns a validation error. **Optional with `query`** — if omitted, the engine generates an appropriate schema from your instruction automatically. Provide one explicitly whenever your pipeline depends on a stable, predictable result shape.
     </ParamField>
   </Expandable>
 </ParamField>
@@ -480,11 +483,11 @@ curl --request POST \
 
 ## Response
 
-A successful request returns a `200` with a `results` array — one entry per input entity, in input order — plus counters for how many rows were processed and how many failed.
+A successful request returns a `200` with a `data` array — one entry per input entity, in input order — plus a `total_results` count.
 
-Each successful result contains the entity identifier (`business_id` or `prospect_id`) and the generated fields defined by your `output_schema`. Rows that could not be processed are **not dropped**; they are returned with an `_error` field describing what went wrong.
+Each successful result contains the entity identifier (`business_id` or `prospect_id`) and the generated fields defined by the `output_schema`. Rows that could not be processed are **not dropped**; they are returned with an `_error` field describing what went wrong.
 
-<ResponseField name="results" type="object[]">
+<ResponseField name="data" type="object[]">
   One result per input entity, in input order.
 
   <Expandable title="result object">
@@ -493,7 +496,7 @@ Each successful result contains the entity identifier (`business_id` or `prospec
     </ResponseField>
 
     <ResponseField name="<output_schema fields>" type="varies">
-      The generated fields, conforming to the `output_schema` supplied in the request (present on success).
+      The generated fields, conforming to the `output_schema` — the one supplied in the request, or the auto-generated one when using `query` without a schema (present on success).
     </ResponseField>
 
     <ResponseField name="_error" type="string">
@@ -502,12 +505,8 @@ Each successful result contains the entity identifier (`business_id` or `prospec
   </Expandable>
 </ResponseField>
 
-<ResponseField name="rows_processed" type="integer">
-  The number of entities successfully processed.
-</ResponseField>
-
-<ResponseField name="rows_failed" type="integer">
-  The number of entities that failed and were returned with an `_error`.
+<ResponseField name="total_results" type="integer">
+  The total number of results returned in `data`.
 </ResponseField>
 
 ### Example response
@@ -516,7 +515,7 @@ Each successful result contains the entity identifier (`business_id` or `prospec
 
 ```json Businesses
 {
-  "results": [
+  "data": [
     {
       "business_id": "8adce3ca1cef0c986b22310e369a0793",
       "btb_btc": "B2B",
@@ -528,22 +527,20 @@ Each successful result contains the entity identifier (`business_id` or `prospec
       "reasoning": "Its products are marketed and sold directly to individual end users."
     }
   ],
-  "rows_processed": 2,
-  "rows_failed": 0
+  "total_results": 2
 }
 ```
 
 ```json Prospects
 {
-  "results": [
+  "data": [
     {
       "prospect_id": "ee936e451b50c70e068e1b54e106cb89173198c4",
       "decision_maker": "Yes",
       "reasoning": "Their title indicates ownership of the sales function, with budget authority over tooling."
     }
   ],
-  "rows_processed": 1,
-  "rows_failed": 0
+  "total_results": 1
 }
 ```
 
@@ -574,7 +571,7 @@ credit-usage: true
 - **Prefer `prompt_template` for repeatable pipelines** where you need full control over wording, injected fields, and inline research functions; use `query` for quick, natural-language instructions.
 - **Resolve identifiers first** with [Match Businesses](/reference/businesses/match_businesses) or [Match Prospects](/reference/prospects/match_prospects) so the engine has a profile to work from.
 - **Attach context with `custom_fields`** (e.g. campaign name, segment) rather than hard-coding it into every prompt.
-- **Handle `_error` rows.** Iterate over `results` and check for `_error` before reading the generated fields.
+- **Handle `_error` rows.** Iterate over `data` and check for `_error` before reading the generated fields.
 
 <Warning>
   **Rate limits are counted per query, not per request.** Each entity in the `businesses` / `prospects` array counts as a separate query toward your [rate limit](/reference/rate-limit). A single request that researches 50 entities consumes **50 queries** from your 200-queries-per-minute limit — not 1. Batching reduces HTTP/network overhead, but it does **not** reduce the number of queries counted against your rate limit. Size your batches accordingly.
@@ -583,7 +580,7 @@ credit-usage: true
 ## Errors
 
 <ResponseField name="422 Validation Error" type="object">
-  Returned when the request body is invalid — for example when both `query` and `prompt_template` are provided, when neither is provided, or when `output_schema` is missing or malformed.
+  Returned when the request body is invalid — for example when both `query` and `prompt_template` are provided, when neither is provided, when `prompt_template` is used without an `output_schema`, or when the `output_schema` is malformed.
 
   <Expandable title="properties">
     <ResponseField name="detail" type="object[]">
