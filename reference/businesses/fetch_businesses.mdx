@@ -150,6 +150,10 @@ The **Fetch Businesses** endpoint allows users to retrieve business records base
     | `include_operating_locations` | When `include_operating_locations=true` (default), the location filter matches companies that operate in the requested area even if their HQ is elsewhere; when `false`, only HQ location is matched.<br />Example: a search for companies in the UK can return Samsung when `include_operating_locations=true` (operations in the UK), but not when `false` if Samsung HQ is outside the UK. | - Default is `true`.  - Use `false` when you want results strictly based on HQ location only. |
     | `business_id` | Filter businesses by a specific list of Explorium business IDs | Use this to re-filter or enrich a known set of businesses from previous queries or your own data. Accepts an array of IDs in the `value` field. Can be combined with other filters for further refinement. |
 
+    <Tip>
+      **Finding valid intent topics:** You can discover supported intent topic values in two ways — use the [Autocomplete endpoint](/reference/businesses/autocomplete) with `business_intent_topics` (preferably with `semantic_search=true`) for interactive, relevance-ranked suggestions, or [download the full topics list as a CSV](https://assets.explorium.ai/reference/bombora/bombora-topics.csv), which is refreshed weekly with the complete Bombora taxonomy. Topics follow the `category: topic` format (e.g., `technology: ios`).
+    </Tip>
+
     <Accordion title="Full list of supported event_type values">
       - increase\_in\_customer\_service\_department
       - hiring\_in\_finance\_department
