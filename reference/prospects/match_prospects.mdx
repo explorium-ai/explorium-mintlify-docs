@@ -72,7 +72,6 @@ Matching is not a single lookup — each record you send runs through a **sequen
       -H "API_KEY: your_api_key_here" \
       -H "Content-Type: application/json" \
       -d '{
-    
      "request_context": {},
       "prospects_to_match": [
         {
@@ -169,3 +168,7 @@ Matching is not a single lookup — each record you send runs through a **sequen
 </AccordionGroup>
 
 <Icon icon="thumbtack" iconType="solid" color="red" /> **For more details on request formats and usage, refer to the API documentation.**
+
+<Warning>
+  **Rate limits are counted per query, not per request.** Each prospect in the `prospects_to_match` array counts as a separate query toward your [rate limit](/reference/rate-limit). A single request that matches 50 prospects consumes **50 queries** from your 200-queries-per-minute limit — not 1. Batching reduces HTTP/network overhead, but it does **not** reduce the number of queries counted against your rate limit. Size your batches accordingly.
+</Warning>
