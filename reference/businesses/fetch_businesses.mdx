@@ -199,6 +199,42 @@ The **Fetch Businesses** endpoint allows users to retrieve business records base
       **_Full definitions and examples for each event type are available under Business Events._**
     </Accordion>
   </Accordion>
+
+  <Accordion title="Fetch Businesses Output Signal">
+    The response returns a `data` array of business records matching your filters, along with pagination metadata. Each business record contains the following signals:
+
+    | Signal API | Name | Description | Data Type |
+    | :-- | :-- | :-- | :-- |
+    | business\_id | Explorium entity ID | Explorium's 32-character unique entity ID associated with the company. Use this ID for all subsequent enrichment, events, and prospect-fetching calls. | string |
+    | name | Company name | Name of the company. | string |
+    | domain | Company domain | The company's website domain (e.g., `apple.com`). | string |
+    | website | Company website | Company's main website URL. | string |
+    | logo | Business logo | Link to the company's logo. | url |
+    | business\_description | Business description | An overview or summary of the business' mission statement, offered services, and general industry. | string |
+    | country\_name | Country | The country where the company's headquarters are located. | string |
+    | region | Region | State or region where the company's headquarters are located. | string |
+    | city\_name | City | The city where the company's headquarters are located. | string |
+    | number\_of\_employees\_range | Number of employees range all sites | Assigned employee-count range category across all company sites, including the headquarters and all branches (e.g., `11-50`). | string |
+    | yearly\_revenue\_range | Yearly revenue range all sites | Assigned revenue range category, generated at all company sites, measured per fiscal year (e.g., `1M-5M`). | string |
+    | naics | NAICS | 2017 North American Industry Classification System code that classifies the particular organization or business. | integer |
+    | naics\_description | NAICS description | Description of the 2017 NAICS industry code. | string |
+    | sic\_code | SIC code | Company's Standard Industrial Classification code. | string |
+    | sic\_code\_description | SIC code description | Description of the company's Standard Industrial Classification code. | string |
+    | linkedin\_profile | LinkedIn® profile | Company's LinkedIn® profile page. | string |
+    | business\_intent\_topics | Business intent topics | Intent topics (Bombora taxonomy) the business is actively researching. Populated when filtering by `business_intent_topics`. | array\<object\> |
+    | events | Business events | Business event types associated with the company (e.g., `new_funding_round`). Populated when filtering by `events`. | array\<string\> |
+
+    In addition to `data`, the response includes pagination metadata:
+
+    | Signal API | Name | Description | Data Type |
+    | :-- | :-- | :-- | :-- |
+    | response\_context | Response context | Metadata about the request, including `correlation_id`, `request_status`, and `time_took_in_seconds`. | object |
+    | total\_results | Total results | The total number of businesses that match the filters. | integer |
+    | page | Page | The page number of the response. When using cursor pagination, this is an object containing `size` and `next_cursor` instead. | integer / object |
+    | total\_pages | Total pages | The total number of pages (page-based pagination only). | integer |
+
+    ---
+  </Accordion>
 </AccordionGroup>
 
 <Icon icon="thumbtack" iconType="solid" color="red" /> For detailed endpoint explanations, request examples, and integration tips, explore the documentation sections above.
