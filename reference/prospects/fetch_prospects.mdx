@@ -1099,6 +1099,46 @@ The **Fetch Prospects** endpoint allows users to retrieve a list of prospect rec
     - Be mindful of filter coverage – some filters may return fewer results due to lower data availability, while broader filters may yield larger result sets.
     - If you are not certain about the exact job title, it’s recommended to set `include_related_job_titles=true` to expand and include semantically  related roles.
   </Accordion>
+
+  <Accordion title="Fetch Prospects Output Signal">
+    The response returns a `data` array of prospect records matching your filters, along with pagination metadata. Each prospect record contains the following signals (`mode: full`):
+
+    | Signal API | Name | Description | Data Type |
+    | :-- | :-- | :-- | :-- |
+    | prospect\_id | Explorium prospect ID | Explorium's 40-character unique prospect ID associated with the individual. Use this ID for all subsequent prospect enrichment calls. | string |
+    | first\_name | First name | The prospect's first name. | string |
+    | last\_name | Last name | The prospect's last name. | string |
+    | full\_name | Full name | The prospect's full name. | string |
+    | professional\_email\_hashed | Professional email (hashed) | Hashed representation of the prospect's professional email address. Use the Contacts Information enrichment to retrieve actual contact details. | string |
+    | country\_name | Country | The country where the prospect is located. Note this is the prospect's location, which may differ from the company headquarters location. | string |
+    | region\_name | Region | State or region where the prospect is located. | string |
+    | city | City | The city where the prospect is located. | string |
+    | linkedin | LinkedIn® profile | The prospect's primary LinkedIn® profile URL. | string |
+    | linkedin\_url\_array | LinkedIn® URL variations | All LinkedIn® profile URL variations associated with the prospect. | array\<string\> |
+    | job\_title | Job title | The prospect's current job title. | string |
+    | job\_level\_main | Main job level | The primary job level classification of the prospect's current role (e.g., `director`, `manager`, `c-suite`). | string |
+    | job\_level\_array | Job levels | All job level classifications associated with the prospect's current role. | array\<string\> |
+    | job\_department\_main | Main job department | The primary department classification of the prospect's current role (e.g., `Engineering`, `Sales`). | string |
+    | job\_department\_array | Job departments | All department classifications associated with the prospect's current role. | array\<string\> |
+    | job\_department | Job department (legacy) | Single-value department classification. May be `null`; prefer `job_department_main` and `job_department_array`. | string |
+    | job\_seniority\_level | Job seniority level (legacy) | Seniority level classification. May contain `null`; prefer `job_level_main` and `job_level_array`. | array\<string\> |
+    | experience | Experience | List of positions from the prospect's work history. | array\<string\> |
+    | skills | Skills | Professional skills listed by the prospect. | array\<string\> |
+    | interests | Interests | Personal and professional interests listed by the prospect. | array\<string\> |
+    | company\_name | Company name | The name of the prospect's current employer. | string |
+    | company\_website | Company website | The website of the prospect's current employer. | string |
+    | company\_linkedin | Company LinkedIn® | The LinkedIn® page of the prospect's current employer. | string |
+    | business\_id | Explorium entity ID | Explorium's 32-character unique entity ID of the prospect's current employer. Use this to join prospect records with business enrichments. | string |
+
+    In addition to `data`, the response includes pagination metadata:
+
+    | Signal API | Name | Description | Data Type |
+    | :-- | :-- | :-- | :-- |
+    | response\_context | Response context | Metadata about the request, including `correlation_id`, `request_status`, and `time_took_in_seconds`. | object |
+    | total\_results | Total results | The total number of prospects that match the filters. | integer |
+    | page | Page | The page number of the response. When using cursor pagination, this is an object containing `size` and `next_cursor` instead. | integer / object |
+    | total\_pages | Total pages | The total number of pages (page-based pagination only). | integer |
+  </Accordion>
 </AccordionGroup>
 
 ## Body Params - Try Me Example
