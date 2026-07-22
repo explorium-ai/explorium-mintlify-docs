@@ -1,11 +1,17 @@
 ---
-openapi: "post /v1/businesses/linkedin_posts/enrich"
-title: "Company’s social media presence"
+title: "Company's social media presence"
+openapi: "POST /v1/businesses/linkedin_posts/enrich"
 ---
 
 ## Description
 
 The **Company's Social Media Presence Enrichment** endpoint provides insights into a company's **Social media activity, engagement trends, and posting behavior**. This dataset is valuable for **brand analysts, marketers, and business strategists** looking to assess **corporate communication trends and social media reach**.
+
+<Warning>
+  **Credit usage — charged per requested ID**
+
+  Unlike other enrichment endpoints, which charge credits only for entity IDs that return results, this endpoint charges credits for **every `business_id` included in the request — whether or not results are returned**. A request that returns no posts still consumes credits.
+</Warning>
 
 The data includes:
 
@@ -21,28 +27,45 @@ This information is sourced from **public Social media data and corporate social
     - **Processing:** The system retrieves Social media activity, post frequency, and engagement trends.
     - **Output:** A structured response summarizing social media presence and key engagement metrics.
   </Accordion>
+
+  <Accordion title="Credit Usage">
+    This endpoint uses a different charging model than other enrichment endpoints:
+
+    | Endpoint type | Charging model |
+    | :-- | :-- |
+    | Other enrichment endpoints | Credits charged **per entity ID that returns results** — no results, no charge. |
+    | **This endpoint (LinkedIn posts)** | Credits charged **per requested `business_id`**, regardless of whether results are returned. |
+
+    To avoid spending credits on IDs that are unlikely to return data, make sure you use **valid business IDs** retrieved from the **Match Businesses** endpoint.
+  </Accordion>
+
   <Accordion title="Best Practices">
     - **Use social media insights** to track brand perception and digital engagement trends.
     - **Analyze posting behavior** to understand a company's content strategy and outreach.
     - **Leverage engagement data** to benchmark a company's influence against competitors.
     - **Monitor trending topics** to gain insights into corporate priorities and industry focus.
   </Accordion>
+
   <Accordion title="Company's Social Media Presence Output Signal">
-    | SignalAPI          | Name                    | Description                                                        | Data Type |
-    | :----------------- | :---------------------- | :----------------------------------------------------------------- | :-------- |
-    | post_text          | Post text content       | Text content of the LinkedIn® post published by company profile.   | string    |
-    | days_since_posted  | Days since post         | Number of days since the post was published by the company.        | integer   |
-    | post_url           | LinkedIn® post URL      | URL to the LinkedIn® post published by individual.                 | url       |
-    | number_of_comments | Number of post comments | Number of comments on the company's post by time of collection.    | integer   |
-    | number_of_likes    | Number of post likes    | Number of likes the company's post received by time of collection. | integer   |
-    | created_at         | Time of posting         | Timestamp of when the company's post was published.                | datetime  |
+    | SignalAPI | Name | Description | Data Type |
+    | :-- | :-- | :-- | :-- |
+    | post\_text | Post text content | Text content of the LinkedIn® post published by company profile. | string |
+    | days\_since\_posted | Days since post | Number of days since the post was published by the company. | integer |
+    | post\_url | LinkedIn® post URL | URL to the LinkedIn® post published by individual. | url |
+    | number\_of\_comments | Number of post comments | Number of comments on the company's post by time of collection. | integer |
+    | number\_of\_likes | Number of post likes | Number of likes the company's post received by time of collection. | integer |
+    | created\_at | Time of posting | Timestamp of when the company's post was published. | datetime |
   </Accordion>
 </AccordionGroup>
+
+<Icon icon="thumbtack" iconType="solid" color="red" /> **Key Consideration:**
+
+- **Credits are charged per requested `business_id`, even when no results are returned** — unlike other enrichment endpoints, which charge only for IDs that return data.
 
 <Icon icon="thumbtack" iconType="solid" color="red" /> For additional enrichment options, explore related API endpoints below.
 
 ## Body Params - Try Me Example
 
-```
+```text
 business_id: 8adce3ca1cef0c986b22310e369a0793
 ```

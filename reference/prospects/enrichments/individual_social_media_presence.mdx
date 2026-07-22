@@ -1,15 +1,21 @@
 ---
-title: "Individual’s social media presence"
-openapi: "post /v1/prospects/linkedin_posts/enrich"
+title: "Individual's social media presence"
+openapi: "POST /v1/prospects/linkedin_posts/enrich"
 ---
 
 ### Introduction
 
-The **Individual’s Social Media Presence Enrichments** API provides insights into a prospect’s social media activity. This endpoint retrieves public posts from professional networks, allowing businesses to analyze engagement trends, content topics, and prospect interests for better outreach and marketing strategies.
+The **Individual's Social Media Presence Enrichments** API provides insights into a prospect's social media activity. This endpoint retrieves public posts from professional networks, allowing businesses to analyze engagement trends, content topics, and prospect interests for better outreach and marketing strategies.
+
+<Warning>
+  **Credit usage — charged per requested ID**
+
+  Unlike other enrichment endpoints, which charge credits only for entity IDs that return results, this endpoint charges credits for **every `prospect_id` included in the request — whether or not results are returned**. A request that returns no posts still consumes credits.
+</Warning>
 
 <Icon icon="thumbtack" iconType="solid" color="red" /> **Key Benefits:**
 
-- Gain **real-time visibility** into a prospect’s social media activity.
+- Gain **real-time visibility** into a prospect's social media activity.
 - Understand **professional interests, opinions, and engagement**.
 - Improve **personalized outreach** by leveraging recent posts and topics of discussion.
 - Track changes in **professional communication patterns** over time.
@@ -20,10 +26,22 @@ The **Individual’s Social Media Presence Enrichments** API provides insights i
     2. **Processing:** The system gathers publicly available social media posts and organizes them into a structured format.
     3. **Output:** A response containing recent posts, links to content, and engagement details.
   </Accordion>
+
   <Accordion title="Request Schema">
-    | Field         | Type   | Description                                     |
-    | :------------ | :----- | :---------------------------------------------- |
+    | Field | Type | Description |
+    | :-- | :-- | :-- |
     | `prospect_id` | String | A unique identifier for the prospect (Required) |
+  </Accordion>
+
+  <Accordion title="Credit Usage">
+    This endpoint uses a different charging model than other enrichment endpoints:
+
+    | Endpoint type | Charging model |
+    | :-- | :-- |
+    | Other enrichment endpoints | Credits charged **per entity ID that returns results** — no results, no charge. |
+    | **This endpoint (LinkedIn posts)** | Credits charged **per requested `prospect_id`**, regardless of whether results are returned. |
+
+    To avoid spending credits on IDs that are unlikely to return data, make sure you use **valid prospect IDs** retrieved from the **Match Prospects** endpoint.
   </Accordion>
 
   <Accordion title="Best Practices">
@@ -33,20 +51,22 @@ The **Individual’s Social Media Presence Enrichments** API provides insights i
     - **Leverage content analysis** for personalized outreach.
     - **Monitor recent social media activity** to track industry trends and thought leadership.
   </Accordion>
-  <Accordion title="Individual’s Social Media Presence Output Signal">
-    | Signal             | API Name                | Description                                                           | Data Type Final |
-    | :----------------- | :---------------------- | :-------------------------------------------------------------------- | :-------------- |
-    | created_at         | Time of posting         | Timestamp of when the individual's post was published.                | datetime        |
-    | number_of_likes    | Number of post likes    | Number of likes the individual's post received by time of collection. | integer         |
-    | post_url           | LinkedIn® post URL      | URL to the LinkedIn® post published by individual.                    | url             |
-    | number_of_comments | Number of post comments | Number of comments on the individual's post by time of collection.    | integer         |
-    | days_since_posted  | Days since post         | Number of days since the post was published by the individual.        | integer         |
-    | post_text          | Post text content       | Text content of the LinkedIn® post published by individual.           | string          |
+
+  <Accordion title="Individual's Social Media Presence Output Signal">
+    | Signal | API Name | Description | Data Type Final |
+    | :-- | :-- | :-- | :-- |
+    | created\_at | Time of posting | Timestamp of when the individual's post was published. | datetime |
+    | number\_of\_likes | Number of post likes | Number of likes the individual's post received by time of collection. | integer |
+    | post\_url | LinkedIn® post URL | URL to the LinkedIn® post published by individual. | url |
+    | number\_of\_comments | Number of post comments | Number of comments on the individual's post by time of collection. | integer |
+    | days\_since\_posted | Days since post | Number of days since the post was published by the individual. | integer |
+    | post\_text | Post text content | Text content of the LinkedIn® post published by individual. | string |
   </Accordion>
 </AccordionGroup>
 
 <Icon icon="thumbtack" iconType="solid" color="red" /> **Key Consideration:**
 
+- **Credits are charged per requested `prospect_id`, even when no results are returned** — unlike other enrichment endpoints, which charge only for IDs that return data.
 - Posts retrieved are from publicly available social media content.
 - Engagement data (likes, comments) may not always be available.
 - Ensure **valid prospect IDs** (from **Match Prospects**) to retrieve accurate data.
@@ -54,6 +74,6 @@ The **Individual’s Social Media Presence Enrichments** API provides insights i
 
 ## Body Params - Try Me Example
 
-```
+```text
 prospect_id: ee936e451b50c70e068e1b54e106cb89173198c4
 ```
