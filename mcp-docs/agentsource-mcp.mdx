@@ -11,6 +11,22 @@ Access Explorium's comprehensive business and contact data through the Model Con
 
 The Explorium MCP Server is a Model Context Protocol server that enables AI assistants and applications to access Explorium's extensive business and prospect data. By integrating this server with your AI tools, you can provide them with accurate, up-to-date information about companies, industries, and professionals directly in chat interfaces.
 
+### Which Explorium tool is right for you?
+
+Explorium offers three ways to reach the same underlying B2B data. The difference is where each one runs and how much of the prospecting workflow you want to build yourself: the Vibe Prospecting connector and plugin wrap an Explorium AI agent that chooses filters for you, while AgentSource MCP gives you the raw tools to compose yourself.
+
+|                  | [Vibe Prospecting connector](https://vibeprospecting.ai/?utm_source=explorium&utm_campaign=developers)   | [Vibe Prospecting plugin](https://vibeprospecting.ai/?utm_source=explorium&utm_campaign=developers) | AgentSource MCP                                                                             |
+| :--------------- | :------------------------------------------------------------------------------------------------------ | :-------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------ |
+| **Runs in**      | Claude.ai, Claude Desktop, Gemini CLI, Cursor, and other MCP clients that support OAuth                 | Claude Code, OpenAI Codex                                                                           | Any MCP client or custom agent — Claude Desktop, Cursor, n8n, Base44, or your own code       |
+| **Best for**     | Conversational prospecting, research, quick lists                                                       | File-based workflows, CSV enrichment, repeatable automations                                        | Building your own agents, data pipelines, and product features                               |
+| **How it works** | An Explorium AI agent turns a plain-English request into the right filters                              | The same agent, driven from your terminal so it can read and write local files                      | You call the 11 MCP tools directly and control every filter                                  |
+| **Setup**        | One-click connect + OAuth in the browser — no API key                                                   | CLI install + OAuth login                                                                           | API key + MCP endpoint (`https://mcp.explorium.ai/mcp`)                                      |
+| **Output**       | In-chat results and Hub exports                                                                         | CSV/JSON files                                                                   | Structured JSON tool responses you handle in your own code                                   |
+
+<Tip>
+  Not building an integration? Start with [Vibe Prospecting](https://vibeprospecting.ai/?utm_source=explorium&utm_campaign=developers) — it needs no API key and no code. Choose AgentSource MCP when you need full control over filters and want to embed Explorium data into your own agent or pipeline.
+</Tip>
+
 ### Features
 
 <Columns cols={2}>
