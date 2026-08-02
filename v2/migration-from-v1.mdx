@@ -1,0 +1,88 @@
+---
+title: "Migrating from v1 to v2"
+sidebarTitle: "Migrating from v1"
+description: "How to move an existing AgentSource v1 integration to v2, including endpoint mapping, breaking changes, and the v1 deprecation timeline."
+---
+
+<Info>
+  **Draft.** Describes planned v2 behavior ahead of GA.
+</Info>
+
+## There is no hard cutover
+
+v2 ships alongside v1. v1 keeps running in parallel and is wound down in stages, so you have a full migration window and can move at your own pace.
+
+## v1 deprecation timeline
+
+<Warning>
+  Timing is **indicative** and subject to minor change. T0 is v2 GA.
+</Warning>
+
+| Stage | Timing | What happens |
+| :--- | :--- | :--- |
+| **Parallel availability** | At v2 GA (T0) | v2 and v1 run side by side. v1 is marked deprecated, with deprecation / sunset signaling, but stays fully functional. |
+| **v1 end of support** | ~6 months after T0 | v1 is no longer actively supported — no new fixes, signals, or SLA. Endpoints still respond, but all customers should be migrated by this point. |
+| **v1 retirement** | ~12 months after T0 | v1 is fully sunset and decommissioned; v1 endpoints no longer serve traffic. |
+
+## Migration steps
+
+<Steps>
+  <Step title="Move to /v2 paths">
+    Replace the `/v1` prefix with `/v2` on every endpoint. See the [mapping](#endpoint-mapping) below.
+  </Step>
+  <Step title="Collapse bulk calls into single endpoints">
+    Drop the `/bulk_enrich` suffix. The single endpoint accepts one ID or a list of IDs, so a bulk call becomes the same endpoint with a list payload.
+  </Step>
+  <Step title="Pick sync or async">
+    Use `.../enrich` for immediate results, or `.../job` for large runs. Async is capped at 10K input records and 24 hours per job.
+  </Step>
+  <Step title="Update renamed paths and fields">
+    Rename `contacts_information` to `contact_information`, and update the corrected [signal field names](/v2/whats-new#signal-fixes).
+  </Step>
+  <Step title="Handle removed response fields">
+    Stop reading `entity_id`, `display_name` on business LinkedIn posts, the nested `emails` / `phones` contact fields, and the address signals on `company_ratings_by_employees`.
+  </Step>
+  <Step title="Check changed fetch defaults">
+    Remove the `size` pagination parameter, and set `include_operating_locations` explicitly if you relied on the old default.
+  </Step>
+</Steps>
+
+## Endpoint mapping
+
+| v1 | v2 | Notes |
+| :--- | :--- | :--- |
+| `/v1/businesses/{enrichment}/bulk_enrich` | `/v2/businesses/{enrichment}/enrich`<br />`/v2/businesses/{enrichment}/job` | Bulk route removed; pick sync or async |
+| `/v1/prospects/contacts_information/bulk_enrich` | `/v2/prospects/contact_information/enrich`<br />`/v2/prospects/contact_information/job` | Also renamed |
+| `/v1/businesses/research/bulk_enrich` | `/v2/businesses/research/enrich` | Async variant follows post-beta |
+| `/v1/prospects/research/bulk_enrich` | `/v2/prospects/research/enrich` | Async variant follows post-beta |
+| Business / prospect autocomplete routes | `/v2/autocomplete` | Consolidated into one endpoint |
+| `/v1/businesses/match`, `/v1/businesses`, `/v1/businesses/stats` | `/v2/...` equivalents | Path change only |
+| `/v1/prospects/match`, `/v1/prospects`, `/v1/prospects/stats` | `/v2/...` equivalents | Path change only |
+| Events, enrollments, webhooks, credits | `/v2/...` equivalents | Path change only |
+
+## Breaking changes checklist
+
+- [ ] `/v2` path prefix applied everywhere
+- [ ] `/bulk_enrich` calls collapsed into `/enrich` or `/job`
+- [ ] `contacts_information` renamed to `contact_information`
+- [ ] `founding_stage` → `funding_stage`, `founding_date` → `funding_date`
+- [ ] `professions_email` → `professional_email`
+- [ ] `entity_id` no longer read
+- [ ] `display_name` no longer read from business LinkedIn posts
+- [ ] Nested `emails` / `phones` contact fields no longer read
+- [ ] Address signals no longer read from `company_ratings_by_employees`
+- [ ] `size` pagination parameter removed
+- [ ] `include_operating_locations` set explicitly
+- [ ] Async payloads within the 10K record limit
+- [ ] Autocomplete calls pointed at `/v2/autocomplete`
+
+## Related
+
+<Columns cols={2}>
+  <Card title="What's new" icon="sparkles" href="/v2/whats-new">
+    The full change list
+  </Card>
+  <Card title="Conventions" icon="list-check" href="/v2/conventions">
+    Rules that apply across every v2 endpoint
+  </Card>
+</Columns>

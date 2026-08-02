@@ -1,0 +1,78 @@
+---
+title: "What's new in v2"
+sidebarTitle: "What's new"
+description: "Every change in AgentSource v2: structural conventions, new Research endpoints, renamed fields, removed response fields, and new limits."
+---
+
+<Info>
+  **Draft.** Describes planned v2 behavior ahead of GA.
+</Info>
+
+## Structural changes
+
+| Change | Detail |
+| :--- | :--- |
+| **Path versioning** | Every endpoint moves under `/v2`, replacing its `/v1` equivalent |
+| **No bulk endpoints** | A single endpoint accepts one ID or a list of IDs; `/bulk_enrich` routes are removed |
+| **Sync/async pairing** | Every enrichment exposes `.../enrich` and `.../job` |
+| **Autocomplete consolidation** | One `/v2/autocomplete` endpoint replaces the per-entity autocomplete routes |
+
+## New capabilities
+
+- **[Research (GenAI) endpoints](/v2/endpoints/research)** — custom AI-powered research over businesses or prospects, with a caller-defined `output_schema` and optional real-time web grounding. In beta.
+- **[Async job infrastructure](/v2/async-jobs)** — shared job submission, status, and result retrieval behind every `.../job` endpoint.
+- **Contact async endpoint** — runs the Better-contact waterfall.
+
+## Signal fixes
+
+Misspelled field names corrected in v2:
+
+| Endpoint / feature | Current (typo) | Correct in v2 |
+| :--- | :--- | :--- |
+| `POST /v2/businesses/events` → `new_funding_round` payload | `founding_stage` | `funding_stage` |
+| `POST /v2/businesses/events` → `new_funding_round` payload | `founding_date` | `funding_date` |
+| `POST /v2/prospects/contact_information/enrich` → `ContactsInformationOutputSchema` | `professions_email` (title "Professions Email", format: email) | `professional_email` |
+
+## Renamed
+
+| v1 | v2 |
+| :--- | :--- |
+| `contacts_information` endpoint | `contact_information` |
+
+## Removed fields
+
+<Warning>
+  These are breaking changes for any consumer reading the fields below.
+</Warning>
+
+- `entity_id` — no longer returned for enrichments
+- `display_name` — removed from the business `linkedin_posts` enrichment response
+- `emails` and `phones` — the old nested JSON fields are removed from the contact response
+- Address signals removed from the `company_ratings_by_employees` enrichment:
+  - `company_city`
+  - `company_country_code`
+  - `company_region`
+  - `company_street`
+  - `company_zip_code`
+
+## Changed defaults and parameters
+
+- The `size` parameter is **removed** from pagination in fetch. The default stays 60K.
+- `include_operating_locations` in business fetch now defaults to **`false`**.
+
+## New limits
+
+| Limit | Value |
+| :--- | :--- |
+| Async enrichment input size | Max 10,000 records |
+| Async job run time | Max 24 hours |
+
+## Coming in Phase 2
+
+`max_per_company` support. See the [release plan](/v2/release-plan).
+
+## Next
+
+<Card title="Migrating from v1" icon="arrow-right-arrow-left" href="/v2/migration-from-v1">
+  Endpoint mapping and the v1 deprecation timeline
+</Card>

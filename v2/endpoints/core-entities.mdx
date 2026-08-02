@@ -1,0 +1,49 @@
+---
+title: "Core entity endpoints"
+sidebarTitle: "Core entities"
+description: "Match, fetch, and stats endpoints for businesses and prospects in AgentSource v2."
+---
+
+<Info>
+  **Draft.** Describes planned v2 behavior ahead of GA.
+</Info>
+
+The core entity endpoints resolve identifiers, retrieve entities by filter, and return aggregate statistics. All are **synchronous**.
+
+## Businesses
+
+| Purpose | Endpoint |
+| :--- | :--- |
+| Match | `/v2/businesses/match` |
+| Fetch | `/v2/businesses` |
+| Stats | `/v2/businesses/stats` |
+
+## Prospects
+
+| Purpose | Endpoint |
+| :--- | :--- |
+| Match | `/v2/prospects/match` |
+| Fetch | `/v2/prospects` |
+| Stats | `/v2/prospects/stats` |
+
+## Changes from v1
+
+<Warning>
+  Two fetch behaviors change in v2:
+
+  - The `size` parameter is **removed** from pagination. The default stays 60K.
+  - `include_operating_locations` in business fetch now defaults to **`false`**.
+</Warning>
+
+`max_per_company` support is planned for [Phase 2](/v2/release-plan).
+
+## Related
+
+<Columns cols={2}>
+  <Card title="Enrichments" icon="layer-group" href="/v2/endpoints/enrichments">
+    Enrich the IDs these endpoints return
+  </Card>
+  <Card title="Autocomplete" icon="magnifying-glass" href="/v2/endpoints/autocomplete">
+    Valid values for filter fields
+  </Card>
+</Columns>

@@ -1,0 +1,50 @@
+---
+title: "v2 release plan"
+sidebarTitle: "Release plan"
+description: "AgentSource v2 ships in two phases: the full v2 API surface first, followed by an improvements pass."
+---
+
+<Info>
+  **Draft.** Scope and timing are subject to change.
+</Info>
+
+v2 is delivered in two phases: the full v2 API surface first — including the new Research (GenAI) endpoints, currently in beta — followed by an improvements pass.
+
+| Phase | Focus | What ships |
+| :--- | :--- | :--- |
+| **Phase 1** | Full v2 release | The full v2 surface: Research (GenAI) endpoints (beta), async job infrastructure, sync + async enrichments, autocomplete consolidation, match/fetch/stats, events, webhooks, credits, signal fixes, and cleanup. Ships with full documentation. |
+| **Phase 2** | Improvements | `max_per_company` support. More to come. |
+
+## Phase 1 — Full v2 release
+
+Everything below lands together.
+
+| Area | Summary |
+| :--- | :--- |
+| [Research (GenAI)](/v2/endpoints/research) | Custom AI-powered research over businesses or prospects. Beta; sync only for now. |
+| [Async job infrastructure](/v2/async-jobs) | Job submission plus status and result endpoints behind every `.../job` route. |
+| [Autocomplete](/v2/endpoints/autocomplete) | Consolidated to a single `/v2/autocomplete` endpoint. |
+| [Enrichments](/v2/endpoints/enrichments) | 17 business and 3 prospect enrichments, each sync and async. |
+| [Core entities](/v2/endpoints/core-entities) | Match, fetch, and stats for businesses and prospects. |
+| [Events](/v2/endpoints/events) | Business and prospect events plus enrollments. |
+| [Webhooks](/v2/endpoints/webhooks) | Add, get, delete, and connectivity check. |
+| [Credits](/v2/endpoints/credits) | Balance and aggregation. |
+| Contact async endpoint | Better-contact waterfall. |
+| [Signal fixes](/v2/whats-new#signal-fixes) | Corrected field names. |
+| [Cleanup](/v2/whats-new#removed-fields) | Removed response fields, changed defaults, and new async limits. |
+
+## Phase 2 — Improvements
+
+- Add `max_per_company` support.
+- More to come.
+
+## Related
+
+<Columns cols={2}>
+  <Card title="What's new" icon="sparkles" href="/v2/whats-new">
+    The full change list
+  </Card>
+  <Card title="Migrating from v1" icon="arrow-right-arrow-left" href="/v2/migration-from-v1">
+    Deprecation timeline and migration steps
+  </Card>
+</Columns>

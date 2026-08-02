@@ -1,0 +1,50 @@
+---
+title: "Async job infrastructure"
+sidebarTitle: "Async jobs"
+description: "How AgentSource v2 async endpoints work: job submission, status polling, and result retrieval, plus the input and runtime limits."
+---
+
+<Info>
+  **Draft.** Describes planned v2 behavior ahead of GA. The concrete job submission, status, and result paths are not yet finalized.
+</Info>
+
+## Overview
+
+Every `.../job` endpoint in v2 runs through a shared async job layer. Instead of returning results inline, a job endpoint accepts your input, returns a job reference, and then exposes:
+
+- **Job submission** — start the run
+- **Status** — check job state
+- **Results** — retrieve output once the job completes
+
+All async-supported endpoints share this layer, so the submission and polling pattern is identical no matter which enrichment you run.
+
+## Limits
+
+| Limit | Value |
+| :--- | :--- |
+| Maximum input size per async enrichment | 10,000 records |
+| Maximum job run time | 24 hours |
+
+## Which endpoints are async
+
+Every enrichment has an async variant — see [Enrichments](/v2/endpoints/enrichments) for the full list of `.../job` paths.
+
+Some parts of the surface are **sync only**:
+
+- [Core entity endpoints](/v2/endpoints/core-entities) — match, fetch, stats
+- [Events and enrollments](/v2/endpoints/events)
+- [Webhooks](/v2/endpoints/webhooks)
+- [Credits](/v2/endpoints/credits)
+
+<Note>
+  During the Research beta, [Research](/v2/endpoints/research) runs in **sync mode only**. The async `.../job` variant follows the standard pairing once it ships.
+</Note>
+
+## To be documented
+
+The following are not yet specified and will be filled in before GA:
+
+- Exact job submission, status, and results paths
+- Job state values and their transitions
+- Result retrieval format and retention window
+- Behavior when a job exceeds the 24-hour limit

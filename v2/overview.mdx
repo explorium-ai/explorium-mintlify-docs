@@ -1,0 +1,66 @@
+---
+title: "AgentSource v2"
+sidebarTitle: "Overview"
+description: "AgentSource v2 is a full re-cut of the API surface: consistent /v2 paths, one endpoint per enrichment instead of separate bulk routes, a sync/async pair for every enrichment, and new AI-powered Research endpoints."
+---
+
+<Info>
+  **Draft.** These pages are being written ahead of the v2 GA and describe planned behavior. Paths, fields, and timing may still change.
+</Info>
+
+## What AgentSource v2 is
+
+v2 is a redesign of the AgentSource API surface rather than a new product. The same data is available, reached through a more consistent set of endpoints:
+
+- **One path prefix.** Every endpoint moves under `/v2`, replacing its `/v1` equivalent.
+- **No separate bulk routes.** A single endpoint takes either one ID or a list of IDs, so `/bulk_enrich` disappears.
+- **Sync and async for every enrichment.** Each enrichment exposes `.../enrich` for immediate results and `.../job` for large runs through the async job infrastructure.
+- **New Research (GenAI) endpoints.** Run a custom, AI-powered research task over a list of businesses or prospects, with your own output schema. Currently in beta.
+
+See [Conventions](/v2/conventions) for the rules that apply across every endpoint.
+
+## Migrating from v1
+
+v2 ships **without a hard cutover**. v1 keeps running in parallel and is wound down in stages, so you can migrate at your own pace.
+
+<Columns cols={2}>
+  <Card title="What's new" icon="sparkles" href="/v2/whats-new">
+    Every change in v2, including removed fields and renamed signals
+  </Card>
+  <Card title="Migrating from v1" icon="arrow-right-arrow-left" href="/v2/migration-from-v1">
+    Endpoint mapping and the v1 deprecation timeline
+  </Card>
+</Columns>
+
+## The v2 surface
+
+<Columns cols={2}>
+  <Card title="Core entities" icon="building" href="/v2/endpoints/core-entities">
+    Match, fetch, and stats for businesses and prospects
+  </Card>
+  <Card title="Enrichments" icon="layer-group" href="/v2/endpoints/enrichments">
+    17 business and 3 prospect enrichments, each sync and async
+  </Card>
+  <Card title="Research (GenAI)" icon="wand-magic-sparkles" href="/v2/endpoints/research">
+    Custom AI research tasks with a caller-defined output schema
+  </Card>
+  <Card title="Async jobs" icon="clock" href="/v2/async-jobs">
+    Submit, poll, and retrieve results for long-running work
+  </Card>
+  <Card title="Events" icon="calendar" href="/v2/endpoints/events">
+    Business and prospect events, plus enrollments
+  </Card>
+  <Card title="Webhooks" icon="webhook" href="/v2/endpoints/webhooks">
+    Register and verify delivery destinations
+  </Card>
+  <Card title="Credits" icon="coins" href="/v2/endpoints/credits">
+    Balance and usage aggregation
+  </Card>
+  <Card title="Autocomplete" icon="magnifying-glass" href="/v2/endpoints/autocomplete">
+    A single consolidated endpoint for all filter values
+  </Card>
+</Columns>
+
+## Release phases
+
+v2 is delivered in two phases. Phase 1 is the full API surface; Phase 2 is an improvements pass. See the [release plan](/v2/release-plan) for what lands in each.

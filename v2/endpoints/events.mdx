@@ -1,0 +1,54 @@
+---
+title: "Events endpoints"
+sidebarTitle: "Events"
+description: "Business and prospect event endpoints in AgentSource v2, including event enrollments."
+---
+
+<Info>
+  **Draft.** Describes planned v2 behavior ahead of GA.
+</Info>
+
+All event endpoints are **synchronous**.
+
+## Business events
+
+| Purpose | Endpoint |
+| :--- | :--- |
+| Events | `/v2/businesses/events` |
+| Enrollments — Add | `/v2/businesses/events/enrollments` |
+| Enrollments — Update | `/v2/businesses/events/enrollments` |
+| Enrollments — Delete | `/v2/businesses/events/enrollments` |
+| Enrollments — Get | `/v2/businesses/events/enrollments` |
+
+## Prospect events
+
+| Purpose | Endpoint |
+| :--- | :--- |
+| Events | `/v2/prospects/events` |
+| Enrollments — Add | `/v2/prospects/events/enrollments` |
+| Enrollments — Update | `/v2/prospects/events/enrollments` |
+| Enrollments — Delete | `/v2/prospects/events/enrollments` |
+| Enrollments — Get | `/v2/prospects/events/enrollments` |
+
+<Note>
+  The four enrollment operations share one path. The HTTP methods that distinguish them are not yet specified in the v2 plan and will be documented before GA.
+</Note>
+
+## Renamed fields
+
+The `new_funding_round` event payload on `POST /v2/businesses/events` corrects two misspelled field names:
+
+| Current (typo) | Correct in v2 |
+| :--- | :--- |
+| `founding_stage` | `funding_stage` |
+| `founding_date` | `funding_date` |
+
+<Warning>
+  **Breaking change.** Any consumer reading `founding_stage` or `founding_date` from a `new_funding_round` payload must be updated. See [What's new](/v2/whats-new#signal-fixes).
+</Warning>
+
+## Related
+
+<Card title="Webhooks" icon="webhook" href="/v2/endpoints/webhooks">
+  Deliver events to your own endpoints
+</Card>

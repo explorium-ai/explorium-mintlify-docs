@@ -1,0 +1,33 @@
+---
+title: "Webhooks endpoints"
+sidebarTitle: "Webhooks"
+description: "Register, retrieve, delete, and connectivity-check webhook destinations in AgentSource v2."
+---
+
+<Info>
+  **Draft.** Describes planned v2 behavior ahead of GA.
+</Info>
+
+All webhook endpoints are **synchronous**.
+
+| Purpose | Endpoint |
+| :--- | :--- |
+| Add | `/v2/webhooks` |
+| Get | `/v2/webhooks/{partner_id}` |
+| Delete | `/v2/webhooks/{partner_id}` |
+| Check connectivity | `/v2/webhooks/check_connectivity` |
+
+<Note>
+  Webhook behavior itself — payload shape, retries, and delivery guarantees — is unchanged in scope by the v2 plan. Only the path prefix moves to `/v2`.
+</Note>
+
+## Related
+
+<Columns cols={2}>
+  <Card title="Events" icon="calendar" href="/v2/endpoints/events">
+    The events delivered to your webhooks
+  </Card>
+  <Card title="v1 webhooks reference" icon="book" href="/reference/webhooks/webhooks">
+    Current webhook documentation
+  </Card>
+</Columns>

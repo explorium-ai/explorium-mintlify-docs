@@ -1,0 +1,35 @@
+---
+title: "Autocomplete"
+sidebarTitle: "Autocomplete"
+description: "AgentSource v2 consolidates autocomplete into a single endpoint, replacing the separate business and prospect autocomplete routes."
+---
+
+<Info>
+  **Draft.** Describes planned v2 behavior ahead of GA.
+</Info>
+
+## Single endpoint
+
+Autocomplete is consolidated to one endpoint:
+
+```
+POST /v2/autocomplete
+```
+
+There are no longer separate autocomplete endpoints under `prospects` and `businesses`.
+
+<Warning>
+  **Breaking change.** Any v1 code calling a business- or prospect-specific autocomplete path must move to `/v2/autocomplete`.
+</Warning>
+
+## To be documented
+
+- The parameter used to select which field to autocomplete
+- The full list of supported fields
+- Response format
+
+## Related
+
+<Card title="Core entities" icon="building" href="/v2/endpoints/core-entities">
+  Use autocomplete values in match, fetch, and stats filters
+</Card>

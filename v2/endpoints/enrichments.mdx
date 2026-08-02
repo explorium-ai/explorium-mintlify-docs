@@ -1,0 +1,75 @@
+---
+title: "Enrichment endpoints"
+sidebarTitle: "Enrichments"
+description: "All 17 business and 3 prospect enrichments in AgentSource v2, each with a synchronous /enrich and an asynchronous /job variant."
+---
+
+<Info>
+  **Draft.** Describes planned v2 behavior ahead of GA.
+</Info>
+
+Every enrichment ships both a **sync** and an **async** variant, and every endpoint accepts either a single ID (a string) or a list of IDs. See [Conventions](/v2/conventions).
+
+All paths below are `POST`.
+
+## Business enrichments
+
+17 enrichments are available for businesses.
+
+| Enrichment | Sync | Async |
+| :--- | :--- | :--- |
+| `firmographics` | `/v2/businesses/firmographics/enrich` | `/v2/businesses/firmographics/job` |
+| `technographics` | `/v2/businesses/technographics/enrich` | `/v2/businesses/technographics/job` |
+| `linkedin_posts` | `/v2/businesses/linkedin_posts/enrich` | `/v2/businesses/linkedin_posts/job` |
+| `company_ratings_by_employees` | `/v2/businesses/company_ratings_by_employees/enrich` | `/v2/businesses/company_ratings_by_employees/job` |
+| `company_website_keywords` | `/v2/businesses/company_website_keywords/enrich` | `/v2/businesses/company_website_keywords/job` |
+| `financial_indicators` | `/v2/businesses/financial_indicators/enrich` | `/v2/businesses/financial_indicators/job` |
+| `funding_and_acquisition` | `/v2/businesses/funding_and_acquisition/enrich` | `/v2/businesses/funding_and_acquisition/job` |
+| `pc_business_challenges_10k` | `/v2/businesses/pc_business_challenges_10k/enrich` | `/v2/businesses/pc_business_challenges_10k/job` |
+| `pc_competitive_landscape_10k` | `/v2/businesses/pc_competitive_landscape_10k/enrich` | `/v2/businesses/pc_competitive_landscape_10k/job` |
+| `pc_strategy_10k` | `/v2/businesses/pc_strategy_10k/enrich` | `/v2/businesses/pc_strategy_10k/job` |
+| `website_changes` | `/v2/businesses/website_changes/enrich` | `/v2/businesses/website_changes/job` |
+| `workforce_trends` | `/v2/businesses/workforce_trends/enrich` | `/v2/businesses/workforce_trends/job` |
+| `lookalikes` | `/v2/businesses/lookalikes/enrich` | `/v2/businesses/lookalikes/job` |
+| `webstack` | `/v2/businesses/webstack/enrich` | `/v2/businesses/webstack/job` |
+| `company_hierarchies` | `/v2/businesses/company_hierarchies/enrich` | `/v2/businesses/company_hierarchies/job` |
+| `website_traffic` | `/v2/businesses/website_traffic/enrich` | `/v2/businesses/website_traffic/job` |
+| `bombora_intent` | `/v2/businesses/bombora_intent/enrich` | `/v2/businesses/bombora_intent/job` |
+
+## Prospect enrichments
+
+3 enrichments are available for prospects, with the same sync/async pairing.
+
+| Enrichment | Sync | Async |
+| :--- | :--- | :--- |
+| `contact_information` | `/v2/prospects/contact_information/enrich` | `/v2/prospects/contact_information/job` |
+| `linkedin_posts` | `/v2/prospects/linkedin_posts/enrich` | `/v2/prospects/linkedin_posts/job` |
+| `profiles` | `/v2/prospects/profiles/enrich` | `/v2/prospects/profiles/job` |
+
+<Warning>
+  **Renamed in v2.** The v1 `contacts_information` endpoint becomes `contact_information` (singular "contact"). Update both the path and any code that keys off the endpoint name.
+</Warning>
+
+## Response changes
+
+These apply across enrichments in v2 — see [What's new](/v2/whats-new) for the full list:
+
+- `entity_id` is no longer returned.
+- `display_name` is removed from the business `linkedin_posts` response.
+- The old nested `emails` and `phones` JSON fields are removed from the contact response.
+- Address signals (`company_city`, `company_country_code`, `company_region`, `company_street`, `company_zip_code`) are removed from `company_ratings_by_employees`.
+
+## Contact async endpoint
+
+The contact async endpoint runs the Better-contact waterfall. Details are still being finalized.
+
+## Related
+
+<Columns cols={2}>
+  <Card title="Async jobs" icon="clock" href="/v2/async-jobs">
+    Limits and polling for the `/job` variants
+  </Card>
+  <Card title="Research (GenAI)" icon="wand-magic-sparkles" href="/v2/endpoints/research">
+    Custom AI-powered enrichment
+  </Card>
+</Columns>
