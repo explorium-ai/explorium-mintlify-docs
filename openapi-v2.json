@@ -7,8 +7,8 @@
  },
  "servers": [
   {
-   "url": "https://platform-dev-us-app.explorium.ai/api/partner-service",
-   "description": "AgentSource dev server (v2 is not yet on production)"
+   "url": "https://api.explorium.ai",
+   "description": "AgentSource Server"
   }
  ],
  "paths": {
