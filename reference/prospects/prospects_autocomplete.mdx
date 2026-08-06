@@ -14,10 +14,11 @@ The **Prospects Autocomplete** endpoint provides **real-time suggestions** for p
     - **Output:** A structured response containing suggested values for the given input.
   </Accordion>
   <Accordion title="Query Parameters">
-    | Parameter | Type   | Description                                                                        |
-    | --------- | ------ | ---------------------------------------------------------------------------------- |
-    | `field`   | String | The field for which autocomplete is requested (e.g., `country`, `job_department`). |
-    | `query`   | String | Partial text input to generate suggestions.                                        |
+    | Parameter         | Type    | Description                                                                                                                                                                           |
+    | :---------------- | :------ | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+    | `field`           | String  | The field for which autocomplete is requested (e.g., `country`, `job_department`).                                                                                                     |
+    | `query`           | String  | Partial text input to generate suggestions.                                                                                                                                           |
+    | `semantic_search` | Boolean | Optional. When `true`, enables semantic autocomplete to return a broader, topic-aware set of suggestions. This parameter is intended for use with the `business_intent_topics` field. |
   </Accordion>
   <Accordion title="Example Request (cURL)">
     ```shell Bash
@@ -27,21 +28,30 @@ The **Prospects Autocomplete** endpoint provides **real-time suggestions** for p
     ```
   </Accordion>
   <Accordion title="Supported Autocomplete Fields & Example Inputs" icon="thumbtack" iconType="solid">
-    | **Filter**            | **Description**                                                          | **Example Input**                                |
-    | --------------------- | ------------------------------------------------------------------------ | ------------------------------------------------ |
-    | `country`             | Autocomplete for country names                                           | `"Uni"` → United States, United Kingdom          |
-    | `country_code`        | Autocomplete for country codes (ISO 2-letter)                            | `"US"` → United States                           |
-    | `region_country_code` | Autocomplete for region-based country codes                              | `"EU"` → European Union countries                |
-    | `city_region_country` | Free-text location input that includes city, region, or country          | `"berlin, germany"` or `"california, us"`        |
-    | `google_category`     | Google's business category classification                                | `"E-com"` → E-commerce                           |
-    | `naics_category`      | Industry classification based on NAICS codes                             | `"541512"` → Computer Systems Design Services    |
-    | `linkedin_category`   | Industry classification from LinkedIn data                               | `"Retail"` → Retail Industry                     |
-    | `company_name`        | Free-text match or partial match on company name                         | `"micros"` → Microsoft, MicroStrategy            |
-    | `company_size`        | Autocomplete for company sizes (by number of employees)                  | `"500"` → Companies with ~500 employees          |
-    | `company_revenue`     | Revenue-based classification (**K, M, B, T** for thousands to trillions) | `"100M"` → \$100 Million+                        |
-    | `job_title`           | Autocomplete for job titles                                              | `"Soft"` → Software Engineer, Software Developer |
-    | `job_department`      | Autocomplete for job departments                                         | `"Eng"` → Engineering, Product Engineering       |
-    | `job_level`           | Job seniority levels                                                     | `"Senior"` → Senior Manager, Senior Engineer     |
+    The prospects and businesses autocomplete endpoints support the same set of fields.
+
+    | **Filter**                      | **Description**                                                                                                                                                                                      | **Example Input**                                       |
+    | :------------------------------ | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------ |
+    | `country`                       | Autocomplete for country names                                                                                                                                                                       | `"Uni"` → United States, United Kingdom                 |
+    | `country_code`                  | Autocomplete for country codes (ISO 2-letter)                                                                                                                                                        | `"US"` → United States                                  |
+    | `region_country_code`           | Autocomplete for region-based country codes                                                                                                                                                          | `"EU"` → European Union countries                       |
+    | `google_category`               | Google's business category classification                                                                                                                                                            | `"E-com"` → E-commerce                                  |
+    | `naics_category`                | Industry classification based on NAICS codes                                                                                                                                                         | `"541512"` → Computer Systems Design Services           |
+    | `linkedin_category`             | Industry classification from LinkedIn data                                                                                                                                                           | `"Retail"` → Retail Industry                            |
+    | `company_tech_stack_tech`       | Technologies used by a company                                                                                                                                                                       | `"Cloud"` → Cloud Computing, Cloud Security             |
+    | `company_tech_stack_categories` | Technology categories used by the company                                                                                                                                                            | `"Marketing"` → CRM, AdTech                             |
+    | `job_title`                     | Autocomplete for job titles                                                                                                                                                                          | `"Soft"` → Software Engineer, Software Developer        |
+    | `company_size`                  | Autocomplete for company sizes (by number of employees)                                                                                                                                              | `"500"` → Companies with ~500 employees                 |
+    | `company_revenue`               | Revenue-based classification (**K, M, B, T** for thousands, millions, billions, trillions)                                                                                                           | `"100M"` → \$100 Million+                               |
+    | `number_of_locations`           | Number of physical company locations                                                                                                                                                                 | `"1"` → Companies with a single location                |
+    | `company_age`                   | Company age in years                                                                                                                                                                                 | `"10"` → Companies older than 10 years                  |
+    | `job_department`                | Autocomplete for job departments                                                                                                                                                                     | `"Eng"` → Engineering, Product Engineering              |
+    | `job_level`                     | Job seniority levels                                                                                                                                                                                 | `"Senior"` → Senior Manager, Senior Engineer            |
+    | `skills`                        | Skills listed on a prospect's profile                                                                                                                                                                | `"Pyth"` → Python, Python Scripting                     |
+    | `interests`                     | Professional interests listed on a prospect's profile                                                                                                                                                | `"Sustain"` → Sustainability, Sustainable Energy        |
+    | `city_region_country`           | Free-text location input that includes city, region, or country                                                                                                                                      | `"berlin, germany"` or `"california, us"`               |
+    | `company_name`                  | Free-text match or partial match on company name                                                                                                                                                     | `"micros"` → Microsoft, MicroStrategy                   |
+    | `business_intent_topics`        | Business intent topics — <br />It is recommended to use `semantic_search=true` to receive a broader and smarter autocomplete result that identifies wider semantic connections to the searched term. | `"cloud"` → technology: cloudflare, cloud: cloud server |
   </Accordion>
   <Accordion title="Example Response">
     ```json JSON expandable
@@ -76,6 +86,7 @@ The **Prospects Autocomplete** endpoint provides **real-time suggestions** for p
   </Accordion>
   <Accordion title="Best Practices">
     - **Use precise queries** to get the most relevant autocomplete results.
+    - Enable `semantic_search=true` when working with **business intent topics** to receive broader, smarter, and semantically-aware suggestions.
     - **Optimize search fields** by implementing real-time feedback mechanisms.
     - **Restrict field selection** to avoid unnecessary queries and improve API efficiency.
     - **Combine with filtering APIs** to refine user selections dynamically.
