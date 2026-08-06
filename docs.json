@@ -23,7 +23,10 @@
    "examples": {
      "prefill": false
   },
-  "openapi": "openapi.json"
+  "openapi": [
+    "openapi.json",
+    "openapi-v2.json"
+  ]
  },
   "navigation": {
     "global": {
