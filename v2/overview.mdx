@@ -5,8 +5,12 @@ description: "AgentSource v2 is a full re-cut of the API surface: consistent /v2
 ---
 
 <Info>
-  **Draft.** These pages are being written ahead of the v2 GA and describe planned behavior. Paths, fields, and timing may still change.
+  **Draft.** These pages are being written ahead of the v2 GA. Paths, fields, and timing may still change.
 </Info>
+
+<Warning>
+  **The API playground on these pages points at the dev environment**, because v2 is not yet on production. Requests you send from the playground hit `https://platform-dev-us-app.explorium.ai/api/partner-service` and need a dev API key. The server must be switched to `https://api.explorium.ai` before v2 docs go live.
+</Warning>
 
 ## What AgentSource v2 is
 
@@ -35,7 +39,7 @@ v2 ships **without a hard cutover**. v1 keeps running in parallel and is wound d
 ## The v2 surface
 
 <Columns cols={2}>
-  <Card title="Core entities" icon="building" href="/v2/endpoints/core-entities">
+  <Card title="Core entities" icon="building" href="/v2/businesses/fetch_businesses">
     Match, fetch, and stats for businesses and prospects
   </Card>
   <Card title="Enrichments" icon="layer-group" href="/v2/endpoints/enrichments">
@@ -53,10 +57,10 @@ v2 ships **without a hard cutover**. v1 keeps running in parallel and is wound d
   <Card title="Webhooks" icon="webhook" href="/v2/endpoints/webhooks">
     Register and verify delivery destinations
   </Card>
-  <Card title="Credits" icon="coins" href="/v2/endpoints/credits">
+  <Card title="Credits" icon="coins" href="/v2/credits/get_credits">
     Balance and usage aggregation
   </Card>
-  <Card title="Autocomplete" icon="magnifying-glass" href="/v2/endpoints/autocomplete">
+  <Card title="Autocomplete" icon="magnifying-glass" href="/v2/autocomplete">
     A single consolidated endpoint for all filter values
   </Card>
 </Columns>

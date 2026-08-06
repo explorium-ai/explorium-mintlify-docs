@@ -1,53 +1,49 @@
 ---
 title: "Enrichment endpoints"
-sidebarTitle: "Enrichments"
+sidebarTitle: "Overview"
 description: "All 17 business and 3 prospect enrichments in AgentSource v2, each with a synchronous /enrich and an asynchronous /job variant."
 ---
 
 <Info>
-  **Draft.** Describes planned v2 behavior ahead of GA.
+  **Draft.** Describes v2 ahead of GA.
 </Info>
 
-Every enrichment ships both a **sync** and an **async** variant, and every endpoint accepts either a single ID (a string) or a list of IDs. See [Conventions](/v2/conventions).
+Every enrichment ships both a **sync** (`.../enrich`) and an **async** (`.../job`) variant, and every endpoint accepts either a single ID or a list of IDs. See [v2 conventions](/v2/conventions) and [async jobs](/v2/async-jobs).
 
-All paths below are `POST`.
+All enrichment endpoints are `POST`.
 
-## Business enrichments
+## Business enrichments (17)
 
-17 enrichments are available for businesses.
+| Enrichment | Key | Sync | Async |
+| :--- | :--- | :--- | :--- |
+| Firmographics | `firmographics` | [Sync](/v2/businesses/enrichments/firmographics_enrich) | [Async](/v2/businesses/enrichments/firmographics_job) |
+| Technographics | `technographics` | [Sync](/v2/businesses/enrichments/technographics_enrich) | [Async](/v2/businesses/enrichments/technographics_job) |
+| LinkedIn posts | `linkedin_posts` | [Sync](/v2/businesses/enrichments/linkedin_posts_enrich) | [Async](/v2/businesses/enrichments/linkedin_posts_job) |
+| Company ratings by employees | `company_ratings_by_employees` | [Sync](/v2/businesses/enrichments/company_ratings_by_employees_enrich) | [Async](/v2/businesses/enrichments/company_ratings_by_employees_job) |
+| Company website keywords | `company_website_keywords` | [Sync](/v2/businesses/enrichments/company_website_keywords_enrich) | [Async](/v2/businesses/enrichments/company_website_keywords_job) |
+| Financial indicators | `financial_indicators` | [Sync](/v2/businesses/enrichments/financial_indicators_enrich) | [Async](/v2/businesses/enrichments/financial_indicators_job) |
+| Funding and acquisition | `funding_and_acquisition` | [Sync](/v2/businesses/enrichments/funding_and_acquisition_enrich) | [Async](/v2/businesses/enrichments/funding_and_acquisition_job) |
+| Business challenges (10-K) | `pc_business_challenges_10k` | [Sync](/v2/businesses/enrichments/pc_business_challenges_10k_enrich) | [Async](/v2/businesses/enrichments/pc_business_challenges_10k_job) |
+| Competitive landscape (10-K) | `pc_competitive_landscape_10k` | [Sync](/v2/businesses/enrichments/pc_competitive_landscape_10k_enrich) | [Async](/v2/businesses/enrichments/pc_competitive_landscape_10k_job) |
+| Strategy (10-K) | `pc_strategy_10k` | [Sync](/v2/businesses/enrichments/pc_strategy_10k_enrich) | [Async](/v2/businesses/enrichments/pc_strategy_10k_job) |
+| Website changes | `website_changes` | [Sync](/v2/businesses/enrichments/website_changes_enrich) | [Async](/v2/businesses/enrichments/website_changes_job) |
+| Workforce trends | `workforce_trends` | [Sync](/v2/businesses/enrichments/workforce_trends_enrich) | [Async](/v2/businesses/enrichments/workforce_trends_job) |
+| Lookalikes | `lookalikes` | [Sync](/v2/businesses/enrichments/lookalikes_enrich) | [Async](/v2/businesses/enrichments/lookalikes_job) |
+| Webstack | `webstack` | [Sync](/v2/businesses/enrichments/webstack_enrich) | [Async](/v2/businesses/enrichments/webstack_job) |
+| Company hierarchies | `company_hierarchies` | [Sync](/v2/businesses/enrichments/company_hierarchies_enrich) | [Async](/v2/businesses/enrichments/company_hierarchies_job) |
+| Website traffic | `website_traffic` | [Sync](/v2/businesses/enrichments/website_traffic_enrich) | [Async](/v2/businesses/enrichments/website_traffic_job) |
+| Bombora intent | `bombora_intent` | [Sync](/v2/businesses/enrichments/bombora_intent_enrich) | [Async](/v2/businesses/enrichments/bombora_intent_job) |
 
-| Enrichment | Sync | Async |
-| :--- | :--- | :--- |
-| `firmographics` | `/v2/businesses/firmographics/enrich` | `/v2/businesses/firmographics/job` |
-| `technographics` | `/v2/businesses/technographics/enrich` | `/v2/businesses/technographics/job` |
-| `linkedin_posts` | `/v2/businesses/linkedin_posts/enrich` | `/v2/businesses/linkedin_posts/job` |
-| `company_ratings_by_employees` | `/v2/businesses/company_ratings_by_employees/enrich` | `/v2/businesses/company_ratings_by_employees/job` |
-| `company_website_keywords` | `/v2/businesses/company_website_keywords/enrich` | `/v2/businesses/company_website_keywords/job` |
-| `financial_indicators` | `/v2/businesses/financial_indicators/enrich` | `/v2/businesses/financial_indicators/job` |
-| `funding_and_acquisition` | `/v2/businesses/funding_and_acquisition/enrich` | `/v2/businesses/funding_and_acquisition/job` |
-| `pc_business_challenges_10k` | `/v2/businesses/pc_business_challenges_10k/enrich` | `/v2/businesses/pc_business_challenges_10k/job` |
-| `pc_competitive_landscape_10k` | `/v2/businesses/pc_competitive_landscape_10k/enrich` | `/v2/businesses/pc_competitive_landscape_10k/job` |
-| `pc_strategy_10k` | `/v2/businesses/pc_strategy_10k/enrich` | `/v2/businesses/pc_strategy_10k/job` |
-| `website_changes` | `/v2/businesses/website_changes/enrich` | `/v2/businesses/website_changes/job` |
-| `workforce_trends` | `/v2/businesses/workforce_trends/enrich` | `/v2/businesses/workforce_trends/job` |
-| `lookalikes` | `/v2/businesses/lookalikes/enrich` | `/v2/businesses/lookalikes/job` |
-| `webstack` | `/v2/businesses/webstack/enrich` | `/v2/businesses/webstack/job` |
-| `company_hierarchies` | `/v2/businesses/company_hierarchies/enrich` | `/v2/businesses/company_hierarchies/job` |
-| `website_traffic` | `/v2/businesses/website_traffic/enrich` | `/v2/businesses/website_traffic/job` |
-| `bombora_intent` | `/v2/businesses/bombora_intent/enrich` | `/v2/businesses/bombora_intent/job` |
+## Prospect enrichments (3)
 
-## Prospect enrichments
-
-3 enrichments are available for prospects, with the same sync/async pairing.
-
-| Enrichment | Sync | Async |
-| :--- | :--- | :--- |
-| `contact_information` | `/v2/prospects/contact_information/enrich` | `/v2/prospects/contact_information/job` |
-| `linkedin_posts` | `/v2/prospects/linkedin_posts/enrich` | `/v2/prospects/linkedin_posts/job` |
-| `profiles` | `/v2/prospects/profiles/enrich` | `/v2/prospects/profiles/job` |
+| Enrichment | Key | Sync | Async |
+| :--- | :--- | :--- | :--- |
+| Contact information | `contact_information` | [Sync](/v2/prospects/enrichments/contact_information_enrich) | [Async](/v2/prospects/enrichments/contact_information_job) |
+| LinkedIn posts | `linkedin_posts` | [Sync](/v2/prospects/enrichments/linkedin_posts_enrich) | [Async](/v2/prospects/enrichments/linkedin_posts_job) |
+| Profiles | `profiles` | [Sync](/v2/prospects/enrichments/profiles_enrich) | [Async](/v2/prospects/enrichments/profiles_job) |
 
 <Warning>
-  **Renamed in v2.** The v1 `contacts_information` endpoint becomes `contact_information` (singular "contact"). Update both the path and any code that keys off the endpoint name.
+  **Renamed in v2.** The v1 `contacts_information` endpoint becomes `contact_information` (singular). Update both the path and any code keyed off the endpoint name.
 </Warning>
 
 ## Response changes
@@ -59,15 +55,11 @@ These apply across enrichments in v2 — see [What's new](/v2/whats-new) for the
 - The old nested `emails` and `phones` JSON fields are removed from the contact response.
 - Address signals (`company_city`, `company_country_code`, `company_region`, `company_street`, `company_zip_code`) are removed from `company_ratings_by_employees`.
 
-## Contact async endpoint
-
-The contact async endpoint runs the Better-contact waterfall. Details are still being finalized.
-
 ## Related
 
 <Columns cols={2}>
   <Card title="Async jobs" icon="clock" href="/v2/async-jobs">
-    Limits and polling for the `/job` variants
+    Submitting, polling, and cancelling `/job` runs
   </Card>
   <Card title="Research (GenAI)" icon="wand-magic-sparkles" href="/v2/endpoints/research">
     Custom AI-powered enrichment

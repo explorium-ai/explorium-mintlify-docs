@@ -21,13 +21,13 @@ Results can optionally be grounded in real-time web data.
 
 | Entity | Sync | Async |
 | :--- | :--- | :--- |
-| Businesses | `/v2/businesses/research/enrich` | `/v2/businesses/research/job` |
-| Prospects | `/v2/prospects/research/enrich` | `/v2/prospects/research/job` |
+| Businesses | [`/v2/businesses/research/enrich`](/v2/research/businesses_research_enrich) | [`/v2/businesses/research/job`](/v2/research/businesses_research_job) |
+| Prospects | [`/v2/prospects/research/enrich`](/v2/research/prospects_research_enrich) | [`/v2/prospects/research/job`](/v2/research/prospects_research_job) |
 
 Both are `POST` and follow the standard [v2 conventions](/v2/conventions) — no `/bulk_enrich` suffix, and a single endpoint accepts one ID or a list of IDs.
 
 <Note>
-  During the beta, Research runs in **sync mode only**. The async `.../job` variant follows the standard sync/async pairing via the [async job infrastructure](/v2/async-jobs) once it ships.
+  During the beta, Research runs in **sync mode only**, even though the `.../job` variants are already present in the spec. The async variants follow the standard sync/async pairing via the [async job infrastructure](/v2/async-jobs).
 </Note>
 
 ## Availability today

@@ -1,22 +1,38 @@
 ---
 title: "Async job infrastructure"
-sidebarTitle: "Async jobs"
-description: "How AgentSource v2 async endpoints work: job submission, status polling, and result retrieval, plus the input and runtime limits."
+sidebarTitle: "Overview"
+description: "How AgentSource v2 async endpoints work: job submission, status polling, cancellation, dataset upload, and the input and runtime limits."
 ---
 
 <Info>
-  **Draft.** Describes planned v2 behavior ahead of GA. The concrete job submission, status, and result paths are not yet finalized.
+  **Draft.** Describes v2 ahead of GA. The endpoints below exist on the dev environment.
 </Info>
 
 ## Overview
 
-Every `.../job` endpoint in v2 runs through a shared async job layer. Instead of returning results inline, a job endpoint accepts your input, returns a job reference, and then exposes:
+Every `.../job` endpoint in v2 runs through a shared async job layer. Instead of returning results inline, a job endpoint accepts your input and returns a job reference. You then poll for state and collect results.
 
-- **Job submission** — start the run
-- **Status** — check job state
-- **Results** — retrieve output once the job completes
+<Steps>
+  <Step title="Submit">
+    Call any `.../job` enrichment endpoint — for example [Firmographics (async)](/v2/businesses/enrichments/firmographics_job).
+  </Step>
+  <Step title="Poll">
+    Call [Get job status](/v2/jobs/get_job_status) with the returned job ID to check state and retrieve results once complete.
+  </Step>
+  <Step title="Cancel (optional)">
+    Call [Cancel job](/v2/jobs/cancel_job) to stop a job that is queued or running.
+  </Step>
+</Steps>
 
-All async-supported endpoints share this layer, so the submission and polling pattern is identical no matter which enrichment you run.
+## Endpoints
+
+| Purpose | Endpoint |
+| :--- | :--- |
+| Job status and results | `GET /v2/jobs/status/{job_id}` |
+| Cancel a job | `POST /v2/jobs/cancel/{job_id}` |
+| Upload an entity ID dataset as job input | `POST /v2/async/entity-id-datasets/upload` |
+
+For large input lists, [upload a dataset](/v2/jobs/upload_entity_id_dataset) instead of sending every ID inline.
 
 ## Limits
 
@@ -27,24 +43,14 @@ All async-supported endpoints share this layer, so the submission and polling pa
 
 ## Which endpoints are async
 
-Every enrichment has an async variant — see [Enrichments](/v2/endpoints/enrichments) for the full list of `.../job` paths.
+Every enrichment has an async variant — see the **Async** groups under Business enrichments and Prospect enrichments in the sidebar, or the [enrichments overview](/v2/endpoints/enrichments).
 
-Some parts of the surface are **sync only**:
+These are **sync only**:
 
-- [Core entity endpoints](/v2/endpoints/core-entities) — match, fetch, stats
-- [Events and enrollments](/v2/endpoints/events)
-- [Webhooks](/v2/endpoints/webhooks)
-- [Credits](/v2/endpoints/credits)
+- Match, fetch, and stats for [businesses](/v2/businesses/fetch_businesses) and [prospects](/v2/prospects/fetch_prospects)
+- [Autocomplete](/v2/autocomplete)
+- [Credits](/v2/credits/get_credits)
 
 <Note>
-  During the Research beta, [Research](/v2/endpoints/research) runs in **sync mode only**. The async `.../job` variant follows the standard pairing once it ships.
+  During the Research beta, [Research](/v2/endpoints/research) runs in **sync mode only**, even though the `.../job` variants are already present in the spec.
 </Note>
-
-## To be documented
-
-The following are not yet specified and will be filled in before GA:
-
-- Exact job submission, status, and results paths
-- Job state values and their transitions
-- Result retrieval format and retention window
-- Behavior when a job exceeds the 24-hour limit

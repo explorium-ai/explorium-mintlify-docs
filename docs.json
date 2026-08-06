@@ -405,32 +405,135 @@
                 "pages": [
                   "v2/overview",
                   "v2/whats-new",
-                  "v2/migration-from-v1"
-                ]
-              },
-              {
-                "group": "Concepts",
-                "pages": [
+                  "v2/migration-from-v1",
                   "v2/conventions",
-                  "v2/async-jobs"
-                ]
-              },
-              {
-                "group": "Endpoints",
-                "pages": [
-                  "v2/endpoints/core-entities",
-                  "v2/endpoints/enrichments",
-                  "v2/endpoints/research",
-                  "v2/endpoints/events",
-                  "v2/endpoints/webhooks",
-                  "v2/endpoints/credits",
-                  "v2/endpoints/autocomplete"
-                ]
-              },
-              {
-                "group": "Release",
-                "pages": [
                   "v2/release-plan"
+                ]
+              },
+              {
+                "group": "Businesses",
+                "pages": [
+                  "v2/businesses/match_businesses",
+                  "v2/businesses/fetch_businesses",
+                  "v2/businesses/fetch_businesses_statistics"
+                ]
+              },
+              {
+                "group": "Business enrichments",
+                "pages": [
+                  "v2/endpoints/enrichments",
+                  {
+                    "group": "Sync",
+                    "pages": [
+                      "v2/businesses/enrichments/firmographics_enrich",
+                      "v2/businesses/enrichments/technographics_enrich",
+                      "v2/businesses/enrichments/linkedin_posts_enrich",
+                      "v2/businesses/enrichments/company_ratings_by_employees_enrich",
+                      "v2/businesses/enrichments/company_website_keywords_enrich",
+                      "v2/businesses/enrichments/financial_indicators_enrich",
+                      "v2/businesses/enrichments/funding_and_acquisition_enrich",
+                      "v2/businesses/enrichments/pc_business_challenges_10k_enrich",
+                      "v2/businesses/enrichments/pc_competitive_landscape_10k_enrich",
+                      "v2/businesses/enrichments/pc_strategy_10k_enrich",
+                      "v2/businesses/enrichments/website_changes_enrich",
+                      "v2/businesses/enrichments/workforce_trends_enrich",
+                      "v2/businesses/enrichments/lookalikes_enrich",
+                      "v2/businesses/enrichments/webstack_enrich",
+                      "v2/businesses/enrichments/company_hierarchies_enrich",
+                      "v2/businesses/enrichments/website_traffic_enrich",
+                      "v2/businesses/enrichments/bombora_intent_enrich"
+                    ]
+                  },
+                  {
+                    "group": "Async",
+                    "pages": [
+                      "v2/businesses/enrichments/firmographics_job",
+                      "v2/businesses/enrichments/technographics_job",
+                      "v2/businesses/enrichments/linkedin_posts_job",
+                      "v2/businesses/enrichments/company_ratings_by_employees_job",
+                      "v2/businesses/enrichments/company_website_keywords_job",
+                      "v2/businesses/enrichments/financial_indicators_job",
+                      "v2/businesses/enrichments/funding_and_acquisition_job",
+                      "v2/businesses/enrichments/pc_business_challenges_10k_job",
+                      "v2/businesses/enrichments/pc_competitive_landscape_10k_job",
+                      "v2/businesses/enrichments/pc_strategy_10k_job",
+                      "v2/businesses/enrichments/website_changes_job",
+                      "v2/businesses/enrichments/workforce_trends_job",
+                      "v2/businesses/enrichments/lookalikes_job",
+                      "v2/businesses/enrichments/webstack_job",
+                      "v2/businesses/enrichments/company_hierarchies_job",
+                      "v2/businesses/enrichments/website_traffic_job",
+                      "v2/businesses/enrichments/bombora_intent_job"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Prospects",
+                "pages": [
+                  "v2/prospects/match_prospects",
+                  "v2/prospects/fetch_prospects",
+                  "v2/prospects/fetch_prospects_statistics"
+                ]
+              },
+              {
+                "group": "Prospect enrichments",
+                "pages": [
+                  {
+                    "group": "Sync",
+                    "pages": [
+                      "v2/prospects/enrichments/contact_information_enrich",
+                      "v2/prospects/enrichments/linkedin_posts_enrich",
+                      "v2/prospects/enrichments/profiles_enrich"
+                    ]
+                  },
+                  {
+                    "group": "Async",
+                    "pages": [
+                      "v2/prospects/enrichments/contact_information_job",
+                      "v2/prospects/enrichments/linkedin_posts_job",
+                      "v2/prospects/enrichments/profiles_job"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Research (GenAI)",
+                "pages": [
+                  "v2/endpoints/research",
+                  "v2/research/businesses_research_enrich",
+                  "v2/research/businesses_research_job",
+                  "v2/research/prospects_research_enrich",
+                  "v2/research/prospects_research_job"
+                ]
+              },
+              {
+                "group": "Async jobs",
+                "pages": [
+                  "v2/async-jobs",
+                  "v2/jobs/get_job_status",
+                  "v2/jobs/cancel_job",
+                  "v2/jobs/upload_entity_id_dataset"
+                ]
+              },
+              {
+                "group": "Autocomplete",
+                "pages": [
+                  "v2/autocomplete"
+                ]
+              },
+              {
+                "group": "Credits",
+                "pages": [
+                  "v2/credits/get_credits",
+                  "v2/credits/credits_aggregation"
+                ]
+              },
+              {
+                "group": "Planned for v2",
+                "pages": [
+                  "v2/endpoints/events",
+                  "v2/endpoints/webhooks"
                 ]
               }
             ]
