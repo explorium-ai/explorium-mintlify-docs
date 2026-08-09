@@ -4,6 +4,45 @@ sidebarTitle: "Firmographics"
 openapi: "post /v2/businesses/firmographics/job"
 ---
 
-Asynchronous `firmographics` enrichment for businesses.
+<Note>
+  **Asynchronous variant.** This submits a job through the [async job infrastructure](/v2/async-jobs) — poll [job status](/v2/jobs/get_job_status) for progress and results. Limits: max 10,000 input records, max 24-hour run time.
 
-This is the asynchronous variant. It submits a job through the [async job infrastructure](/v2/async-jobs); poll [job status](/v2/jobs/get_job_status) for progress and results. Limits: max 10,000 input records, max 24-hour run time.
+  For the full output signal reference, see [the synchronous endpoint](/v2/businesses/enrichments/firmographics_enrich).
+</Note>
+
+<AccordionGroup>
+  <Accordion title="How It Works">
+    - **Input:** Provide a list of up to 10,000 `business_ids`.
+    - **Processing:** The system retrieves enriched data for all submitted businesses in a **single request**.
+    - **Output:** A structured response with the requested enrichment data for each business.
+  </Accordion>
+  <Accordion title="Example Request (cURL)">
+    ```shell Bash
+    curl --request POST \
+         --url https://api.explorium.ai/v2/businesses/firmographics/job \
+         --header 'accept: application/json' \
+         --header 'api_key: your_api_key_here' \
+         --header 'content-type: application/json' \
+         --data '{
+      "business_ids": [
+        "8adce3ca1cef0c986b22310e369a0793",
+        "a34bacf839b923770b2c360eefa26748"
+      ]
+    }'
+    ```
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **Batch process multiple businesses** to improve API efficiency and reduce request overhead.
+    - **Use firmographic, technographic, and financial indicators** together for comprehensive business profiling.
+    - **Monitor funding and workforce trends** to track business growth and hiring activity.
+    - **Leverage competitive landscape data** to benchmark businesses against industry peers.
+  </Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" iconType="solid" color="red" /> For additional enrichment options, explore related API endpoints below.
+
+### Body Params - Try Me Example
+
+```
+business_ids: ["8adce3ca1cef0c986b22310e369a0793", "a34bacf839b923770b2c360eefa26748"]
+```

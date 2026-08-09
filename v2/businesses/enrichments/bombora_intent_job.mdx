@@ -4,6 +4,133 @@ sidebarTitle: "Bombora intent"
 openapi: "post /v2/businesses/bombora_intent/job"
 ---
 
-Asynchronous `bombora_intent` enrichment for businesses.
+### **Description**
 
-This is the asynchronous variant. It submits a job through the [async job infrastructure](/v2/async-jobs); poll [job status](/v2/jobs/get_job_status) for progress and results. Limits: max 10,000 input records, max 24-hour run time.
+The **Business Intent Topics (Bombora) — Asynchronous** enrichment enables you to retrieve intent topic insights for **multiple businesses in a single request**.\
+It reveals which topics each company is actively researching online, offering comprehensive visibility into collective business interests and buying intent across a portfolio of accounts.
+
+Powered by **Bombora’s weekly intent dataset**, the enrichment analyzes topic-level content consumption patterns to detect **surging interest signals** and **engagement intensity** at the company level.
+
+For each provided company (`business_id`), the enrichment returns a **ranked list of intent topics** with a **composite score above 60**, grouped by category and timestamped by week.\
+The results highlight which topics each business is researching most intensely and classify them by **intent level** (_In-Depth, Active, Early_).
+
+This enrichment is particularly useful for:
+
+- **Account prioritization:** Identify which companies across your target list are currently researching relevant topics.
+- **Intent-driven segmentation:** Group accounts by research activity and level of engagement.
+- **ABM automation:** Scale intent-based personalization to entire account lists.
+- **Pipeline acceleration:** Detect surging interest signals across multiple prospects simultaneously.
+
+**Refresh cadence:** Weekly
+
+Raw intent data powered by:
+
+<img
+  src="/download.png"
+  alt="Image(1) Pn"
+  title=""
+  className="mx-auto"
+  style={{ width:"45%" }}
+/>
+
+---
+
+<Note>
+  **Asynchronous variant.** This submits a job through the [async job infrastructure](/v2/async-jobs) — poll [job status](/v2/jobs/get_job_status) for progress and results. Limits: max 10,000 input records, max 24-hour run time.
+
+  For the full output signal reference, see [the synchronous endpoint](/v2/businesses/enrichments/bombora_intent_enrich).
+</Note>
+
+<AccordionGroup>
+  <Accordion title="How It Works">
+    ### **Input**
+
+    Provide a list of `business_id` values obtained from the **Match Businesses API**.
+
+    **Optional parameters:**
+
+    - `topic_parameters` — semicolon-separated list of "category: topic" filters (e.g., `technology: ios;other: vendor profiling`).
+      - To build this list, use the Autocomplete endpoint with `business_intent_topics` — and preferably `semantic_search=true` — to retrieve a broader, smarter set of intent topics.
+
+        This ensures your topic list is accurate, relevant, and aligned with Bombora’s taxonomy.
+    - `min_score` — optional integer \> 60. If omitted, the default threshold is 60.
+
+    > 💡 **Recommendation:**\
+    > To achieve a meaningful and accurate measurement of intent, it is strongly recommended to include **at least 12 topics** that reflect the company’s genuine areas of interest.\
+    > Providing too few topics — or omitting the list entirely — will return _all_ available topics for the company, which may include a wide variety of unrelated subjects and lead to misleading or noisy intent insights.
+
+    ---
+
+    ### **Processing**
+
+    The enrichment process queries Bombora’s weekly dataset to identify surging topics for each company in the provided list.\
+    Only topics with `composite_score >= threshold` are returned, where:
+
+    - `threshold = min_score` (if provided and \>60)
+    - otherwise `threshold = 60` (default)
+
+    ---
+
+    ### **Output**
+
+    Returns, for each input business_id, the company’s top intent topics, including the composite score, engagement level, and weekly timestamp.
+  </Accordion>
+  <Accordion title="Example  — Request with `min_score` & Response">
+    ```json
+    curl -X 'POST' \
+      'https://api.explorium.ai/v2/businesses/bombora_intent/job' \
+      -H 'accept: application/json' \
+      -H 'api_key: "your api_key" \
+      -H 'Content-Type: application/json' \
+      -d '{
+      "request_context": {},
+      "parameters": {
+        "topics": [
+          "training & development: corporate universities;training & development: career management;training & development: group coaching;training & development: classroom management;training & development: experiential learning;training & development: gmat test preparation;training & development: seminars and educational programs;training & development: sat preparation;training & development: team building;training & development: gmat test preparation;training & development: essential skills;training & development: gre test preparation"
+        ],
+        "min_score": 76
+      },
+      "business_id": ["8adce3ca1cef0c986b22310e369a0793"]
+    }
+    ```
+
+    ```json
+    {
+      "response_context": {
+        "correlation_id": "34e96a94f55d40a18994f55b2f36ecb8",
+        "request_status": "success",
+        "time_took_in_seconds": 43.515
+      },
+      "data": {
+        "business_id": "8adce3ca1cef0c986b22310e369a0793",
+        "company_name": "apple",
+        "company_website": "apple.com",
+        "date_stamp": "20251102",
+        "intent_topics": "[{\"topic\":\"training & development: gmat test preparation\",\"composite_score\":76},{\"topic\":\"training & development: seminars and educational programs\",\"composite_score\":82},{\"topic\":\"training & development: classroom management\",\"composite_score\":77},{\"topic\":\"training & development: experiential learning\",\"composite_score\":76}]",
+        "level_of_intent": "In Depth Research",
+        "topic_count": "4 / 12"
+      }
+    }
+    ```
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **`Always provide valid business_id inputs`** retrieved from the **Match Businesses** API.
+    - **`Specify topic_parameters`** to focus enrichment results on relevant industries or technologies.
+    - **`Use min_score`** only if you wish to raise the threshold above 60 — values ≤60 are not valid.
+    - **Check for null values** — if Bombora has no data for a given domain, all topic-related fields will return null.
+    - **Combine intent data** with firmographic and technographic enrichments for full go-to-market insights.
+    - **Use the Autocomplete endpoint** with `business_intent_topics` — and preferably `semantic_search=true` — to build accurate and relevant `topic_parameters` before running enrichment.
+  </Accordion>
+  <Accordion title="Intent Topics Output Signals">
+    | Signal          | API Name        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Data Type |
+    | --------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------- |
+    | level_of_intent | Level of Intent | Indicates how actively a company engaged with selected topics during the past week.<br /><br />**Calculation:** Number of topics with a composite score above 25% **divided by** the total number of input topics.<br /><br />**Ranges:**<br />• \>25% → _In-Depth Research_<br />• 5–25% → _Active Research_<br />• \<5% → _Early Research_<br /><br />**Recommendation:** To ensure a meaningful and accurate reflection of intent, it is recommended to input **at least 12 topics**that are relevant to the areas of interest.<br /><br />Returns `null` when no input topics are available. | CATEGORY  |
+    | topic_count     | Topic Count     | Shows the number of topics with a composite score above 60, relative to all topics evaluated (e.g., 5/5). When no input topics are provided, all topics are returned.                                                                                                                                                                                                                                                                                                                                                                                                                            | TEXT      |
+    | intent_topics   | Intent Topics   | Contains an array of objects summarizing the company’s active interest in specific Bombora topics over a given week. Each object includes the topic name, category, composite score, and date.                                                                                                                                                                                                                                                                                                                                                                                                   | TEXT      |
+    | company_website | Company Website | The company’s primary website or domain URL.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | URL       |
+    | company_name    | Company Name    | The official or recognized name of the company.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | TEXT      |
+    | date_stamp      | date            | The date of the most recent Bombora data file (weekly), in format YYYYMMDD                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       | TEXT      |
+  </Accordion>
+</AccordionGroup>
+
+📌 \_For additional enrichment options, explore related API endpoints below.

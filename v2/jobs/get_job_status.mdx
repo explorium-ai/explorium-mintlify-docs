@@ -4,6 +4,35 @@ sidebarTitle: "Get job status"
 openapi: "get /v2/jobs/status/{job_id}"
 ---
 
-Check the state of an async job and retrieve its results once complete.
+## Description
 
-Every `.../job` endpoint runs through this layer — see [async jobs](/v2/async-jobs).
+The **Get Job Status** endpoint returns the current state of an asynchronous job and, once the job has finished, its results. Every `.../job` endpoint in v2 runs through this shared layer, so the polling pattern is identical no matter which enrichment you submitted.
+
+<AccordionGroup>
+  <Accordion title="How It Works">
+    - **Input:** Provide the `job_id` returned when you submitted the job.
+    - **Processing:** The system looks up the job and reports its current state.
+    - **Output:** A structured response containing the job's status, its input summary, timing, credit usage, and — once complete — its results.
+  </Accordion>
+  <Accordion title="Response Schema">
+    | Field             | Type   | Description                                                                 |
+    | :---------------- | :----- | :-------------------------------------------------------------------------- |
+    | `job_id`          | string | Identifier of the job (required)                                            |
+    | `status`          | string | Current state of the job (required)                                         |
+    | `input`           | object | Summary of the input the job was submitted with (required)                  |
+    | `timing`          | object | Submission and completion timestamps (required)                             |
+    | `credit_usage`    | object | Credits consumed by the job                                                 |
+    | `results`         | object | Job output, present once the job has completed                              |
+    | `additional_data` | object | Any supplementary information about the run                                 |
+    | `error`           | object | Error detail, present when the job failed                                   |
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **Poll at a sensible interval** rather than continuously — large jobs can run for a long time.
+    - **Store the `job_id`** returned at submission; it is the only handle on the run.
+    - **Check `status` before reading `results`** — results are only populated once the job has completed.
+    - **Read `credit_usage`** to track consumption per job.
+    - **Cancel jobs you no longer need** with [Cancel job](/v2/jobs/cancel_job) rather than letting them run to completion.
+  </Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" iconType="solid" color="red" /> **Jobs run for a maximum of 24 hours. See [async jobs](/v2/async-jobs) for the full submit → poll → retrieve flow.**

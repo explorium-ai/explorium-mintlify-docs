@@ -4,6 +4,91 @@ sidebarTitle: "Contact information"
 openapi: "post /v2/prospects/contact_information/enrich"
 ---
 
-Synchronous `contact_information` enrichment for prospects. Results are returned in the response.
+### Introduction
 
-This endpoint accepts either a single ID (a string) or a list of IDs — see [v2 conventions](/v2/conventions).
+The **Contact details enrichments** API provides detailed information about individual prospects, including contact details, professional emails, and phone numbers. This API is crucial for lead enrichment, personalized outreach, and enhancing sales intelligence workflows.
+
+<Icon icon="thumbtack" iconType="solid" color="red" /> **Key Benefits:**
+
+- Access **validated contact information** for prospects.
+- Retrieve **multiple email addresses**, including personal and professional.
+- Ensure **accurate and up-to-date data** for prospecting and engagement.
+
+### Endpoint: `POST /prospects/contact_information/enrich`
+
+<Note>
+  **v2:** this endpoint accepts either a single ID (a string) or a list of up to 50 IDs — the separate `/bulk_enrich` route is gone. See [v2 conventions](/v2/conventions).
+</Note>
+
+<AccordionGroup>
+  <Accordion title="How It Works">
+    1. **Input:** Provide a `prospect_id` (retrieved from the **Match Prospects** endpoint) to retrieve enrichment details.
+    2. **Processing:** The system scans and fetches available data from multiple sources.
+    3. **Output:** A structured response containing contact details, emails, and phone numbers.
+  </Accordion>
+  <Accordion title="Request Schema">
+    | Field         | Type   | Description                                     |
+    | :------------ | :----- | :---------------------------------------------- |
+    | `prospect_id` | String | A unique identifier for the prospect (Required) |
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **Use verified prospect IDs** for accurate enrichment.
+    - **Cross-check multiple contact points** to reach prospects effectively.
+    - **Store enriched data in CRM** for seamless sales workflows.
+    - **Update prospect details regularly** to maintain accuracy in outreach campaigns.
+  </Accordion>
+  <Accordion title="Contacts Information Output Signal">
+    | Signal                    | API Name                                        | Description                                                                                                                                                                                                                                                                                                                                                                                                                                              | Data Type Final |
+    | :------------------------ | :---------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------- |
+    | professional_email_status | Individual's professional email validity status | Recommended validity status for the listed 'Professional email' address. Returns one of the following possible values: 'valid' emails are determined as safe to email, 'invalid' emails are addresses we recommend to erase from mailing lists, 'catch-all' emails are created as a precaution by domain owners. For recommendations on how best to use 'catch all' emails, read more on our resource center page 'Email validation: catch-all domains'. | object          |
+    | emails                    | Individual's emails                             | List of all email addresses associated with the individual labeled as a professional or personal email address.                                                                                                                                                                                                                                                                                                                                          | array           |
+    | professions_email         | Individual's professional email                 | Current professional email address associated with the individual                                                                                                                                                                                                                                                                                                                                                                                        | string          |
+    | mobile_phone              | Individual's mobile phone                       | Individual's direct dial mobile phone number.                                                                                                                                                                                                                                                                                                                                                                                                            | string          |
+    | phone_numbers             | Individual's phone numbers                      | List of all phone numbers associated with the individual.                                                                                                                                                                                                                                                                                                                                                                                                | array           |
+  </Accordion>
+</AccordionGroup>
+
+## Body Params - Try Me Example
+
+```
+prospect_id: ee936e451b50c70e068e1b54e106cb89173198c4
+```
+
+**Email Only (2 credits):**
+
+```json
+  {
+    "prospect_id": "ee936e451b50c70e068e1b54e106cb89173198c4",
+    "parameters": {
+      "contact_types": ["email"]
+    }
+  }
+```
+
+**Phone Only (5 credits):**
+
+```json
+{
+    "prospect_id": "ee936e451b50c70e068e1b54e106cb89173198c4",
+    "parameters": {
+      "contact_types": ["phone"]
+    }
+  }
+```
+
+**Both Email and Phone (5 credits) - Default behavior:**
+
+```json
+{
+    "prospect_id": "ee936e451b50c70e068e1b54e106cb89173198c4",
+    "parameters": {
+      "contact_types": ["email", "phone"]
+    }
+  }
+```
+
+**Backward Compatible (no parameters = all contact types):**
+
+```
+prospect_id: ee936e451b50c70e068e1b54e106cb89173198c4
+```

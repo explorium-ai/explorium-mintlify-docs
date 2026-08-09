@@ -4,6 +4,60 @@ sidebarTitle: "Company ratings by employees"
 openapi: "post /v2/businesses/company_ratings_by_employees/enrich"
 ---
 
-Synchronous `company_ratings_by_employees` enrichment for businesses. Results are returned in the response.
+## Description
 
-This endpoint accepts either a single ID (a string) or a list of IDs — see [v2 conventions](/v2/conventions).
+The **Company Ratings by Employees Enrichment** endpoint provides **insights into company reputation and workplace experience**. This dataset is based on online ratings and reviews published by **current and former employees, as well as interview candidates**.
+
+These ratings cover various aspects of company culture, **management quality, work-life balance, salary satisfaction, and overall employee sentiment**. The data is sourced from leading job review platforms, ensuring **high credibility and relevance**.
+
+<Note>
+  **v2:** address signals (`company_city`, `company_country_code`, `company_region`, `company_street`, `company_zip_code`) are no longer returned by this enrichment.
+
+  **v2:** this endpoint accepts either a single ID (a string) or a list of up to 50 IDs — the separate `/bulk_enrich` route is gone. See [v2 conventions](/v2/conventions).
+</Note>
+
+<AccordionGroup>
+  <Accordion title="How It Works">
+    - **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
+    - **Processing:** The system retrieves aggregated ratings and structured feedback.
+    - **Output:** A structured response with key rating metrics and employee sentiment analysis.
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **Use company ratings** to evaluate employer reputation before partnerships, investments, or sales outreach.
+    - **Combine ratings with firmographic data** to create a holistic view of a company's stability and employee satisfaction.
+    - **Monitor trends over time** to detect shifts in employee sentiment and workplace culture.
+    - **Cross-reference ratings with workforce trends** for deeper insights into employee retention and hiring dynamics.
+  </Accordion>
+  <Accordion title="Company Ratings by Employees Output Signal">
+    | SignalAPI                     | Name                                 | Description                                                                                                                                           | Data Type |
+    | :---------------------------- | :----------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- | :-------- |
+    | company_country               | Company's country                    | The country where the company's headquarters are located.                                                                                             | string    |
+    | company_name                  | Company's name                       | The name of the company.                                                                                                                              | string    |
+    | company_url                   | Company's URL                        | The URL of the website associated with the company.                                                                                                   | url       |
+    | experience_negative           | Negative experience                  | Percentage out of interviewees who published reviews that reported having a negative sentiment following a job interview.                             | float     |
+    | experience_neutral            | Neutral experience                   | Percentage out of interviewees who published reviews that reported having a neutral sentiment following a job interview.                              | float     |
+    | experience_positive           | Positive experience                  | Percentage out of interviewees who published reviews that reported having a positive sentiment following a job interview.                             | float     |
+    | ratings_all_reviews_count     | Number of ratings                    | Overall number of company ratings published by current and former employees.                                                                          | float     |
+    | ratings_business_outlook      | Business outlook rating              | The percentage out of current and former employees who published reviews that believe the company will succeed in the near future.                    | float     |
+    | ratings_career_opportunities  | Career opportunities rating          | Current and former Employees rating between 1-5 of the personal career development opportunities at the company. \| 1=low rating, 5=high rating       | float     |
+    | ratings_ceo_approval          | CEO approval rating                  | The percent of current and former employees that published reviews who approved of the company's CEO.                                                 | float     |
+    | ratings_ceo_approval_count    | CEO approval ratings count           | Number of CEO approval ratings collected.                                                                                                             | float     |
+    | ratings_compensation_benefits | Compensation benefits rating         | Compensation and benefits rating between 1-5 published by its current and former employees. \| 1=low rating, 5=high rating                            | float     |
+    | ratings_cutlure_values        | Culture values rating                | Culture values rating between 1-5 as rated by its current and former employees. \| 1=low rating, 5=high rating                                        | float     |
+    | ratings_diversity_inclusion   | Diversity inclusion rating           | Diversity inclusion rating between 1-5 as viewed by the company’s current and former employees. \| 1=low rating, 5=high rating                        | float     |
+    | ratings_overall               | Overall Ratings                      | A company’s overall score between 1-5 rated by its employees, interviewees and former employees. \| 1=low rating, 5=high rating                       | float     |
+    | ratings_recommend_to_friend   | Recommend to friend rating           | The chance that a current or former employee will recommend a friend to work in said company.                                                         | float     |
+    | ratings_senior_management     | Senior management rating             | Rating between 1-5 of the senior management as viewed by its current and former employees. \| 1=low rating, 5=high rating                             | float     |
+    | ratings_work_life_balance     | Work life balance rating             | Work life balance rating between 1-5 as viewed by its current and former employees. \| 1=low rating, 5=high rating                                    | float     |
+    | total_reviews_count           | Total reviews count                  | Total number of company reviews published by current and former employees.                                                                            | float     |
+    | company_score                 | Trend of company rating by employees | A dictionary listing the overall company score rated by current and former employees over the recent year between 1-5. \| 1=low rating, 5=high rating | array     |
+  </Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" iconType="solid" color="red" /> For additional enrichment options, explore related API endpoints below.
+
+## Body Params - Try Me Example
+
+```
+business_id: 8adce3ca1cef0c986b22310e369a0793
+```

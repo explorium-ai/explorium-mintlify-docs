@@ -4,6 +4,73 @@ sidebarTitle: "LinkedIn posts"
 openapi: "post /v2/businesses/linkedin_posts/enrich"
 ---
 
-Synchronous `linkedin_posts` enrichment for businesses. Results are returned in the response.
+## Description
 
-This endpoint accepts either a single ID (a string) or a list of IDs — see [v2 conventions](/v2/conventions).
+The **Company's Social Media Presence Enrichment** endpoint provides insights into a company's **Social media activity, engagement trends, and posting behavior**. This dataset is valuable for **brand analysts, marketers, and business strategists** looking to assess **corporate communication trends and social media reach**.
+
+<Warning>
+  **Credit usage — charged per requested ID**
+
+  Unlike other enrichment endpoints, which charge credits only for entity IDs that return results, this endpoint charges credits for **every `business_id` included in the request — whether or not results are returned**. A request that returns no posts still consumes credits.
+</Warning>
+
+The data includes:
+
+- **Volume of Social media posts** over a given period.
+- **Engagement metrics**, such as likes, shares, and comments.
+- **Trending topics and key themes** in company communications.
+
+This information is sourced from **public Social media data and corporate social media feeds** to offer a **comprehensive view of a company's digital engagement and brand presence**.
+
+<Note>
+  **v2:** this endpoint accepts either a single ID (a string) or a list of up to 50 IDs — the separate `/bulk_enrich` route is gone. See [v2 conventions](/v2/conventions).
+</Note>
+
+<AccordionGroup>
+  <Accordion title="How It Works">
+    - **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
+    - **Processing:** The system retrieves Social media activity, post frequency, and engagement trends.
+    - **Output:** A structured response summarizing social media presence and key engagement metrics.
+  </Accordion>
+
+  <Accordion title="Credit Usage">
+    This endpoint uses a different charging model than other enrichment endpoints:
+
+    | Endpoint type | Charging model |
+    | :-- | :-- |
+    | Other enrichment endpoints | Credits charged **per entity ID that returns results** — no results, no charge. |
+    | **This endpoint (LinkedIn posts)** | Credits charged **per requested `business_id`**, regardless of whether results are returned. |
+
+    To avoid spending credits on IDs that are unlikely to return data, make sure you use **valid business IDs** retrieved from the **Match Businesses** endpoint.
+  </Accordion>
+
+  <Accordion title="Best Practices">
+    - **Use social media insights** to track brand perception and digital engagement trends.
+    - **Analyze posting behavior** to understand a company's content strategy and outreach.
+    - **Leverage engagement data** to benchmark a company's influence against competitors.
+    - **Monitor trending topics** to gain insights into corporate priorities and industry focus.
+  </Accordion>
+
+  <Accordion title="Company's Social Media Presence Output Signal">
+    | SignalAPI | Name | Description | Data Type |
+    | :-- | :-- | :-- | :-- |
+    | post\_text | Post text content | Text content of the LinkedIn® post published by company profile. | string |
+    | days\_since\_posted | Days since post | Number of days since the post was published by the company. | integer |
+    | post\_url | LinkedIn® post URL | URL to the LinkedIn® post published by individual. | url |
+    | number\_of\_comments | Number of post comments | Number of comments on the company's post by time of collection. | integer |
+    | number\_of\_likes | Number of post likes | Number of likes the company's post received by time of collection. | integer |
+    | created\_at | Time of posting | Timestamp of when the company's post was published. | datetime |
+  </Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" iconType="solid" color="red" /> **Key Consideration:**
+
+- **Credits are charged per requested `business_id`, even when no results are returned** — unlike other enrichment endpoints, which charge only for IDs that return data.
+
+<Icon icon="thumbtack" iconType="solid" color="red" /> For additional enrichment options, explore related API endpoints below.
+
+## Body Params - Try Me Example
+
+```text
+business_id: 8adce3ca1cef0c986b22310e369a0793
+```

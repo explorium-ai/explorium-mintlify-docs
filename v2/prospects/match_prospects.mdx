@@ -4,6 +4,175 @@ sidebarTitle: "Match prospects"
 openapi: "post /v2/prospects/match"
 ---
 
-Resolve individuals to Explorium prospect IDs.
+### Introduction
 
-This endpoint accepts either a single ID (a string) or a list of IDs — see [v2 conventions](/v2/conventions).
+The **Match Prospects** endpoint allows users to accurately match individual prospects to unique **Prospect IDs** using multiple fetchers, such as email, phone number, LinkedIn profile, or name and company combination. This ensures accurate lead identification and enhances sales and marketing workflows.
+
+<Icon icon="thumbtack" iconType="solid" color="red" /> **Key Benefits:**
+
+- Match and validate **lead data** across multiple fetchers.
+- Enhance **B2B prospecting** by linking leads to business profiles.
+- Improve **lead scoring and segmentation** with high-quality matches.
+- Reduce **data duplication** and inconsistencies.
+
+### Endpoint: `POST /v2/prospects/match`
+
+### How Matching Works: The Waterfall
+
+Matching is not a single lookup — each record you send runs through a **sequential matching waterfall**. Identifiers are attempted in a fixed priority order, from the most reliable to the least. As soon as a record matches at a step, it is resolved and **removed from the waterfall**; later steps only apply to records that are still unmatched.
+
+| Priority | Match step | Fields passed (in order) | Notes |
+| :-- | :-- | :-- | :-- |
+| 1 | **LinkedIn** | `business_id` → `linkedin` | Highest-confidence identifier — always attempted first |
+| 2 | **Email** | `business_id` → `email` |  |
+| 3 | **Phone** | `business_id` → `phone_number` |  |
+| 4 | **Name \+ company** | `business_id` → `company_name` → `full_name` | Requires **both**`full_name` and `company_name` |
+| 5 | **Name \+ business ID** | `business_id` → `full_name` | Runs **only** when `business_id` is provided in the record |
+
+<Note>
+  **`business_id` is supplementary context, not a required identifier.** When provided, it is applied at every waterfall step to scope the match to a specific company, which improves precision. It is never used to match a prospect on its own.
+</Note>
+
+<Warning>
+  **What is never matched:**
+
+  - `full_name` **on its own** — full name is only matched together with `company_name` (step 4) or `business_id` (step 5). A record containing only `full_name` always returns `prospect_id: null`.
+  - `company_name` **on its own** — company name is only used in combination with `full_name`.
+  - `business_id` **on its own** — it scopes a match to a company but cannot identify a prospect by itself.
+</Warning>
+
+**Practical implications:**
+
+- If a record contains multiple identifiers (e.g., both `linkedin` and `email`), it is matched at the **highest-priority step that succeeds** — in this example, LinkedIn is attempted first, and email is only tried if the LinkedIn match fails.
+- Each record is matched **at most once**. Once matched, it does not continue to lower-priority steps.
+- Adding `business_id` never hurts — it refines every step it participates in.
+
+<Note>
+  **v2:** this endpoint accepts either a single ID (a string) or a list of up to 50 IDs — the separate `/bulk_enrich` route is gone. See [v2 conventions](/v2/conventions).
+</Note>
+
+<AccordionGroup>
+  <Accordion title="How It Works">
+    1. **Input:** Provide a list of prospects with at least one fetcher (e.g., email, phone number, LinkedIn URL, or name & company).
+    2. **Processing:** Each record runs through the matching waterfall described above — identifiers are attempted in priority order (LinkedIn → email → phone → name & company → name & business ID), and a record exits the waterfall as soon as it matches.
+    3. **Output:** A structured response with matched **Prospect IDs**, maintaining the same order as the input list. Records that cannot be matched return `prospect_id: null`.
+  </Accordion>
+
+  <Accordion title="Request Schema">
+    | Field | Type | Description |
+    | :-- | :-- | :-- |
+    | **prospects\_to\_match:** | Array | A list of prospect fetchers to match |
+    | `linkedin` | String | LinkedIn profile URL — the highest-priority identifier in the matching waterfall |
+    | `email` | String | The prospect's email address |
+    | `phone_number` | String | The prospect's phone number |
+    | `full_name` | String | The prospect's full name — must be accompanied by `company_name` or `business_id`; never matched on its own |
+    | `company_name` | String | The prospect's company name — only used in combination with `full_name` |
+    | `business_id` (optional) | String | Scopes the match to a specific company at every waterfall step; supplementary context, not a standalone identifier |
+  </Accordion>
+
+  <Accordion title="Example Request (cURL)">
+    ```shell Bash
+    curl -X POST "https://api.explorium.ai/v2/prospects/match" \
+      -H "API_KEY: your_api_key_here" \
+      -H "Content-Type: application/json" \
+      -d '{
+     "request_context": {},
+      "prospects_to_match": [
+        {
+          "business_id": "19fbe842a2e51db95d4f92333f2cc63a",
+          "linkedin": "https://www.linkedin.com/in/russell-lumpkin-07585b128"
+        },
+        {
+          "full_name": "Richard Branson", 
+          "company_name": "Virgin"
+        },
+        {
+          "email": "satyan@microsoft.com"
+        },
+        {
+          "full_name": "John Smith"
+        }
+      ]
+    }'
+    ```
+  </Accordion>
+
+  <Accordion title="Example Response">
+    Note the fourth record: it contains only `full_name`, so it never enters any waterfall step and returns `prospect_id: null`.
+
+    ```json JSON
+    {
+      "response_context": {
+        "correlation_id": "68d2e054ffa149dab8d09c59f1092091",
+        "request_status": "success",
+        "time_took_in_seconds": 0
+      },
+      "total_results": 4,
+      "total_matches": 3,
+      "matched_prospects": [
+        {
+          "input": {
+            "business_id": "19fbe842a2e51db95d4f92333f2cc63a",
+            "full_name": null,
+            "company_name": null,
+            "email": null,
+            "phone_number": null,
+            "linkedin": "https://www.linkedin.com/in/russell-lumpkin-07585b128"
+          },
+          "prospect_id": "6ffd52c681452e2da8aac7ec3efb174f4604734c"
+        },
+        {
+          "input": {
+            "business_id": null,
+            "full_name": "Richard Branson",
+            "company_name": "Virgin",
+            "email": null,
+            "phone_number": null,
+            "linkedin": null
+          },
+          "prospect_id": "46ab818ec439a76489024b5727abdf194dfa3329"
+        },
+        {
+          "input": {
+            "business_id": null,
+            "full_name": null,
+            "company_name": null,
+            "email": "satyan@microsoft.com",
+            "phone_number": null,
+            "linkedin": null
+          },
+          "prospect_id": "f80a80fb6b3d55dfefd269bb35c2049e050876ae"
+        },
+        {
+          "input": {
+            "business_id": null,
+            "full_name": "John Smith",
+            "company_name": null,
+            "email": null,
+            "phone_number": null,
+            "linkedin": null
+          },
+          "prospect_id": null
+        }
+      ]
+    }
+    
+    ```
+  </Accordion>
+
+  <Accordion title="Best Practices">
+    - **Provide the strongest identifier you have.** LinkedIn URLs match with the highest confidence, followed by email and phone. Name-based matching is the last resort in the waterfall.
+    - **Use multiple fetchers** whenever possible — the waterfall automatically uses the highest-priority one that succeeds.
+    - **Combine with** `business_id` **to refine matches to a specific company** — it improves precision at every step, and it is required for matching on `full_name` without a `company_name`.
+    - **Never send** `full_name` **alone** — it will always return `null`. Pair it with `company_name` or `business_id`.
+    - **Ensure accurate and up-to-date data** for improved results.
+    - **Handle** `null` **values** in responses where no match is found.
+    - **Use the input field** when sending multiple queries to match your queries with the results.
+  </Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" iconType="solid" color="red" /> **For more details on request formats and usage, refer to the API documentation.**
+
+<Warning>
+  **Rate limits are counted per query, not per request.** Each prospect in the `prospects_to_match` array counts as a separate query toward your [rate limit](/reference/rate-limit). A single request that matches 50 prospects consumes **50 queries** from your 200-queries-per-minute limit — not 1. Batching reduces HTTP/network overhead, but it does **not** reduce the number of queries counted against your rate limit. Size your batches accordingly.
+</Warning>

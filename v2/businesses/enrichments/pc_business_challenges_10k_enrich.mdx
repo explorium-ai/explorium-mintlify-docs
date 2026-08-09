@@ -4,6 +4,60 @@ sidebarTitle: "Business challenges (10-K)"
 openapi: "post /v2/businesses/pc_business_challenges_10k/enrich"
 ---
 
-Synchronous `pc_business_challenges_10k` enrichment for businesses. Results are returned in the response.
+## Description
 
-This endpoint accepts either a single ID (a string) or a list of IDs — see [v2 conventions](/v2/conventions).
+The **Business Challenges Enrichment** endpoint provides insights into a company's **investment history, advisory board, and funding rounds**. This dataset helps users analyze **ownership structure, investor involvement, and financial growth trends**.
+
+The data includes:
+
+- **Historical funding rounds**, including investors and deal amounts
+- **IPO details**, such as valuation and issuance date
+- **Board of advisors and leadership insights**
+- **Acquisition history and M&A details**
+
+This information is sourced from **regulatory filings, public disclosures, and investment databases** to provide **a comprehensive view of financial backing and corporate strategy**.
+
+<Note>
+  **v2:** this endpoint accepts either a single ID (a string) or a list of up to 50 IDs — the separate `/bulk_enrich` route is gone. See [v2 conventions](/v2/conventions).
+</Note>
+
+<AccordionGroup>
+  <Accordion title="How It Works">
+    - **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
+    - **Processing:** The system retrieves funding rounds, IPO details, and advisory board members.
+    - **Output:** A structured response summarizing key investment details and corporate leadership.
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **Use funding insights** to track a company's financial growth and investment backing.
+    - **Analyze advisory board members** to assess strategic leadership and governance.
+    - **Leverage IPO data** for evaluating newly public companies and market positioning.
+    - **Cross-reference funding data** with firmographics and financial metrics for deeper investment insights.
+  </Accordion>
+  <Accordion title="Business Challenges Output Signal">
+    | SignalAPI                     | Name                                | Description                                                                                                                                                                                                                                                                                  | Data Type |
+    | :---------------------------- | :---------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------- |
+    | technological_disruption      | Company's innovation                | Text describing the company's technological disruption and innovation. Insights extracted from publicly published reports.                                                                                                                                                                   | array     |
+    | link_to_html                  | 10-K filing document link           | URL linking to the main HTML document of the company's specific 10-K filing, containing financial statements, management analysis, and other key information submitted to the SEC.                                                                                                           | url       |
+    | link_to_filing_details        | 10-K filing index link              | URL linking to the index page of the company's specific 10-K filing, which lists the main filing document, exhibits, and supplemental files submitted to the SEC.                                                                                                                            | url       |
+    | form_type                     | Form type                           | Type of form that was filed by the company. In most cases the form type is 10-K.                                                                                                                                                                                                             | string    |
+    | accession_number              | File's accession number             | Unique identifier for the file submitted by the company to the SEC, including the company’s CIK, the fiscal year of the filing, and the sequential number of the filing within that year.                                                                                                    | string    |
+    | company_data_security_breach  | Company's data security breaches    | Text describing the company's data security breaches. Insights extracted from publicly published reports.                                                                                                                                                                                    | array     |
+    | company_market_saturation     | Company's market saturation         | Text describing the company's market saturation. Insights extracted from publicly published reports.                                                                                                                                                                                         | array     |
+    | form_description              | Form description                    | Summary of the filing, including the type of form submitted, the statutory authority requiring its submission, and details on whether specific disclosures are included or excluded. The filing is prepared and submitted by the company it pertains to, in compliance with SEC regulations. | string    |
+    | company_name                  | Company name                        | Name of the company.                                                                                                                                                                                                                                                                         | string    |
+    | cik                           | Company's CIK                       | Unique numeric identifier assigned by the SEC distinguishing a company in the EDGAR filing system. Typically consists of up to 10 digits and may include leading zeros. Used for retrieving financial filings and compliance documents.                                                      | string    |
+    | filed_at                      | Time of filing                      | Date and time the filing was submitted, formatted YYYY-MM-DDTHH:MM:SS±HH:MM.                                                                                                                                                                                                                 | string    |
+    | company_data_security_privacy | Company's data security and privacy | Text describing the company's data security and privacy approach. Insights extracted from publicly published reports.                                                                                                                                                                        | array     |
+    | company_competition           | Company's competition               | Text describing the company's competitive landscape. Insights extracted from publicly published reports.                                                                                                                                                                                     | array     |
+    | company_customer_adoption     | Company's customer adoption         | Text describing the company's customer adoption. Insights extracted from publicly published reports.                                                                                                                                                                                         | array     |
+    | ticker                        | Ticker symbol                       | Stock symbol associated with the company, that is compiled of an arrangement of characters representing publicly-traded securities on an exchange. The symbol is used to place trade orders.                                                                                                 | string    |
+  </Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" iconType="solid" color="red" /> For additional enrichment options, explore related API endpoints below.
+
+## Body Params - Try Me Example
+
+```
+business_id: 8adce3ca1cef0c986b22310e369a0793
+```

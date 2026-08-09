@@ -4,8 +4,1152 @@ sidebarTitle: "Fetch prospects"
 openapi: "post /v2/prospects"
 ---
 
-Retrieve prospects matching a set of filters.
+### Introduction
 
-<Note>
-  The `size` pagination parameter is removed in v2; the default stays 60K. `max_per_company` support is planned for [Phase 2](/v2/release-plan).
-</Note>
+The **Fetch Prospects** endpoint allows users to retrieve a list of prospect records based on filtering criteria such as job level, department, or other professional attributes. This API is essential for sales intelligence, lead enrichment, and prospecting workflows.
+
+<Icon icon="thumbtack" iconType="solid" color="red" /> **Key Benefits:**
+
+- Identify **high-value prospects** based on job roles, seniority, and industry.
+- Enhance **lead scoring and segmentation** with structured data.
+- Retrieve **up-to-date professional details** to optimize outreach.
+- Integrate seamlessly with existing **CRM and marketing automation** platforms.
+- Consideration:
+  - Not all filters have a high coverage rate. Using a filter with low data coverage may result in a smaller set of returned results.
+  - Conversely, using broader filters can yield more results. For example, if filtering by a very specific attribute results in few matches, expanding the filter criteria may increase the number of retrieved records.
+  - When filtering by location, note that there are two distinct filter types: company location and prospect location. For example, the `company_country_code` filter applies to the company's headquarters location, while the `country_code` filter applies to the individual prospect's location. This distinction is particularly important for global companies where prospects may be distributed across different locations than the company headquarters.
+
+### Endpoint:`POST /prospects`
+
+<AccordionGroup>
+  <Accordion title="How It Works">
+    1. **Input:** Provide filters such as job level, department, or industry to refine prospect search.
+    2. **Processing:** The system scans and retrieves relevant prospect records.
+    3. **Output:** A structured response containing matched prospect data.
+  </Accordion>
+
+  <Accordion title="Request Schema">
+    | Field | Type | Description |
+    | --- | --- | --- |
+    | `mode` | String | `full` |
+    | `page_size` | Number | Max number of records per page - up to 100 |
+    | `page` | Number | Page number to retrieve |
+    | `filters` | Object | Filter object (see Filters Object below) |
+  </Accordion>
+
+  <Accordion title="Pagination, Filtering & Modes Parameters">
+    ### Data Fetching: Pagination, Filtering & Modes
+
+    The API supports flexible data fetching through **pagination**, **filtering**, and optional **modes** to customize the amount and structure of the returned data.
+
+    #### Pagination
+
+    To efficiently retrieve large datasets, use the following parameters to paginate the results:
+
+    | Parameter | Type | Description |
+    | --- | --- | --- |
+    | `page_size` | Number | Number of records to return per page.   Maximum value: 100. |
+    | `page` | Number | The page number to retrieve (1-based index).   Defaults to 1 if not specified. |
+
+    **Behavior Notes:**
+
+        - If pagination parameters are omitted, the API may return a default page size (implementation-specific).
+
+    #### Filtering
+
+    Filters allow you to narrow down results based on specific field values. All filters must be included in the request body under the `"filters"` key, as a JSON object.
+
+    Each filter field accepts:
+
+    - `value`: for a single filter value (e.g. `"value": "true"`)
+    - `values`: for multiple possible matches (e.g. `"values": ["director", "manager"]`)
+
+    **Example Request Body:**
+
+    ```json
+    {
+      "filters": {
+        "job_level": {
+          "values": ["director", "manager"]
+        },
+        "has_email": {
+          "value": "true"
+        }
+      }
+    }
+    ```
+
+    **Filter Matching Logic:**
+
+    - Fields using `value` are matched exactly.
+    - Fields using `values` are matched using an **OR** condition.
+    - Filters are combined using an **AND** across different fields.
+
+    #### Mode Parameter
+
+    The optional `mode` parameter defines the level of detail in the returned data.
+
+    | Mode | Description |
+    | --- | --- |
+    | `full` | Returns the complete data object for each prospect.   Use this when full detail is required for processing or display. |
+
+    #### Best Practices
+
+    - Always use `page_size` to control payload size for better performance.
+    -     - Apply filters whenever possible to reduce response size and processing time.
+  </Accordion>
+
+  <Accordion title="Prospect Filters">
+    ### Prospect Filters Reference
+
+    | Parameter | Description | Notes / Best Practices |
+    | --- | --- | --- |
+    | has\_email | Filter prospects by whether they have an email. Categories: \[True, False\] | Enter `true` to find only prospects with email addresses, or `false` to exclude them. Uses a single `value` (true/false). Logic is based on checking the existence of a value in the email field. |
+    | has\_phone\_number | Filter prospects by whether they have a phone number. Categories: \[True, False\] | Use `true` to get only prospects with phone numbers. Useful when planning outreach via phone. Uses a single `value`. Logic checks whether the phone field is populated. |
+    | job\_title | Filter prospects by their job titles. Example: \[Sales Representative, SEO specialist, Technical Support Engineer\] | Enter one or more job titles as free text. The filter matches prospects whose title includes all the words. For more consistent results, prefer using job\_level and job\_department. Uses a single `value` with flexible keyword matching. Logic ensures all words appear in the target field, regardless of order. |
+    | include\_related\_job\_titles<br />(Used inside job\_title filter) | Expand filtering results to include related job titles. | When set to `true`, the system broadens the search to include job titles that are semantically or hierarchically related to the provided title(s). Default is `false`. Useful for retrieving a wider range of relevant roles. |
+    | job\_level | Filter prospects by their job level. **Examples Categories**: manager, president, senior manager, owner, advisor, freelancer, junior, director, c-suite, board member, senior non-managerial, non-managerial, partner, vice president, founder, training, unpaid | Use autocomplete to search and select job levels. You can choose one or more values. The response fields (`job_level_array`, `job_level_main`) provide enriched  context. Examples of new levels: manager, president, senior manager, owner, advisor, freelancer, junior, director, c-suite, board member, senior non-managerial, non-managerial, partner, vice president, founder, training, unpaid |
+    | job\_department | Filter prospects by their job department. **Examples Categories:** retail, engineering, customer success, administration, education, security, healthcare, public service, partnerships, creative, strategy, real estate, procurement, IT, data, c-suite, manufacturing, support, logistics, product, sales, design, marketing, finance, R&D, trade, human resources, legal, operations. | Use autocomplete to browse and select departments. Works best when combined with job\_level to ensure title coverage across organizations. The response fields (`job_department_array`, `job_department_main`) provide enriched  context. Examples of new departments: retail, engineering, customer success, administration, education, security, healthcare, public service, partnerships, creative, strategy, real estate, procurement, IT, data, c-suite, manufacturing, support, logistics, product, sales, design, marketing, finance, R&D, trade, human resources, legal, operations. |
+    | skills | Filter prospects by the skills listed on their profile. Example: \[python, project management, salesforce\] | Use the `skills` autocomplete to search and select valid values — free text that does not match a known skill will not return results. Accepts a list of `values`, matched with **OR**. Logic checks the prospect's `skills` field. Combine with job\_department or job\_level to narrow to a specific role. |
+    | interests | Filter prospects by their professional interests. Example: \[artificial intelligence, sustainability, fintech\] | Use the `interests` autocomplete to search and select valid values — free text that does not match a known interest will not return results. Accepts a list of `values`, matched with **OR**. Logic checks the prospect's `interests` field. Useful for personalizing outreach. |
+    | business\_id | Filter prospects by account. Use Explorium entity IDs. Example: \[EXP\_ENTITY\_ID\_1, EXP\_ENTITY\_ID\_2\]\[EXP\_ENTITY\_ID\_1, EXP\_ENTITY\_ID\_2\] | Paste one or more valid business IDs. These are specific identifiers in the system. |
+    | country\_code | Filter prospects by country using alpha-2 codes. Example: \[us, ca\] | Use the country autocomplete to search by country name and select the correct two-letter code. This avoids manual errors and ensures valid input. Uses a list of `values`. Logic checks whether the country code matches. |
+    | region\_country\_code | Filter prospects by region using ISO 3166-2 codes. Example: \[us-ut, us-ca\] | First choose a country in the autocomplete, then select a region. The code will be formatted as `country-region` (e.g., `us-ca`). Uses `values`. Logic checks for region code inclusion. |
+    | city\_region\_country | Filter by city, region, and country of the company location. Example: \["New York, NY, US"\] | Use cascading autocomplete to select a country, then region and city. The full location string is used for precise geographic targeting. Accepts multiple `values`. Logic checks structured address fields. |
+    | company\_size | Filter by company’s number of employees. Options: \[1-10, 11-50, ..., 10001\+\] | Use autocomplete to select the company size range you're interested in. Helpful for distinguishing between small businesses and large enterprises. Accepts multiple `values`. Internally maps to normalized size brackets. |
+    | company\_revenue | Filter by company’s annual revenue. Options: \[0-500K, 500K-1M, ..., 10B-100B\] | Use autocomplete to choose from available revenue brackets. Each value represents a range, making segmentation simple and accurate. Accepts `values`. The logic compares the company revenue field against the selected bracket range. |
+    | google\_category | Filter by company’s Google business category. Example: \[Paving contractor, Retail\] | Use autocomplete to find and apply relevant business categories based on Google's classifications. Accepts `values`. The logic checks category labels against company classification metadata. |
+    | naics\_category | Filter by NAICS code (2, 4, or full). Example: \[23, 5611\] | Use autocomplete to find relevant industry codes. Recommended for accurate industry classification. Uses multiple `values`. Logic compares NAICS codes to industry metadata. |
+    | linkedin\_category | Filter by company’s LinkedIn business category. Example: \[software development, investment banking\] | Use autocomplete to choose from LinkedIn’s available business categories to align with industry filters. Accepts `values`. Filters based on company category tags provided by LinkedIn. |
+    | company\_country\_code | Filter by company HQ country using alpha-2 codes. Example: \[us, ca\] | Use the country autocomplete to select the appropriate country code. This ensures accurate targeting based on company location. Accepts `values`. Matches against the company’s registered country code. |
+    | company\_region\_country\_code | Filter by company HQ region using ISO 3166-2 codes. Example: \[us-ut, us-ca\] | Start by choosing the company’s country, then use autocomplete to select the relevant region. This automatically formats the code correctly. Accepts multiple `values`. Matches structured region codes from company metadata. |
+    | total\_experience\_months | Filter by total months of experience. | You can specify minimum (`gte`) and/or maximum (`lte`) months of experience. For example, use `gte: 60` to filter for 5\+ years. This uses a numeric `value` range. Logic compares experience duration against thresholds. |
+    | current\_role\_months | Filter by number of months in current role. | Use `gte` or `lte` to define how long the prospect has held their current position. Great for identifying newly promoted prospects or those with long tenure. Accepts a numeric range of `value`. Logic checks against current role start date. |
+    | company\_name | Filter by company name. Example: \["Meta", "Tesla"\] | - Use autocomplete to search and select company names. <br />- Enter one or more full company names. <br />- Useful for targeting specific known organizations. <br />- Accepts a list of `values`. <br />- Matching is  exact match. |
+    | company\_age | Filter accounts by how many years since they were established. Categories:  \["0-3", "3-6", ..., "20\+"\] | - Use autocomplete to select a range representing company age. - Accepts multiple `values`. - Logic compares establishment year against current date to determine match. |
+    | has\_website | Filter businesses by whether they have a website. Categories: `[True, False]` | - Uses a list of boolean values.<br />- Best practice: set to `True` to focus on companies with an online presence. |
+    | is\_public\_company | Filter businesses by whether they are publicly traded (have a stock ticker). Categories: \[True, False\] | - Uses a list of boolean values.<br />- Best practice: set to `True` when targeting enterprise/public companies with verified ticker data. |
+    | company\_number\_of\_locations | Filter accounts by how many office locations they operate. Example:  `["1", "2-5", "6+"]` | - Use autocomplete to select location range. - Accepts a list of `values`. - Logic checks for company location count metadata. |
+    | prospect\_id | Filter prospects by a specific list of Explorium prospect IDs | Use to re-filter or enrich a known set of prospects from previous queries or your own data. Accepts an array of IDs in the `value` field. Can be combined with other filters for further refinement. |
+
+    ### <Icon icon="bullseye-arrow" /> **Prospecting HR Directors at Healthcare Companies in Texas for Payroll Software**
+
+    #### <Icon icon="magnifying-glass" /> Use Case:
+
+    A payroll software provider wants to sell to HR directors at mid-sized healthcare organizations in Texas who handle payroll compliance and workforce management.
+
+    #### <Icon icon="filter" /> Filters:
+
+    - **Company Country Code**: `["us"]`
+    - **Company Region (State Code)**: `["us-tx"]`
+    - **Company Size**: `["501-1000"]`
+    - **Company Revenue**: `["75M-200M"]`
+    - **NAICS Category**: `["62"]` _(Healthcare & Social Assistance)_
+    - **Job Level**: `["director", "manager", "vp"]`
+    - **Job Department**: `["human resources"]`
+    - **Has Email**: `["True"]`
+
+    #### <Icon icon="bullseye-arrow" /> Targeting CFOs of Investment Banks in New York for Financial Compliance Software
+
+    A regulatory compliance software provider wants to reach out to CFOs at mid-sized investment banks in New York who have been in their role for over two years and are likely leading compliance initiatives.
+
+    #### <Icon icon="filter" /> Filters:
+
+    - **Company Country Code**: `["us"]`
+    - **Company Region (State Code)**: `["us-ny"]`
+    - **Company Size**: `["1001-5000"]`
+    - **Company Revenue**: `["500M-1B"]`
+    - **LinkedIn Category**: `["investment banking"]`
+    - **Job Department**: `["finance"]`
+    - **Job Level**: `["CXO"]`
+    - **Has Email**: `["True"]`
+    - **Has Phone Number**: `["True"]`
+  </Accordion>
+
+  <Accordion title="Example Request (cURL)">
+    ```curl cURL expandable
+    {
+      "request_context": {},
+      "mode": "full",
+      "size": 10,
+      "page_size": 10,
+      "page": 1,
+      "exclude": [
+        "a5fbfab4d7221b144efecbe83e55cbf80b64bd50"
+      ],
+      "filters": {
+        "has_email": {
+          "value": true
+        },
+        "has_phone_number": {
+          "value": true
+        },
+        "job_level": {
+          "values": [
+            "owner",
+            "cxo",
+            "vp",
+            "director",
+            "senior",
+            "manager",
+            "partner",
+            "non-managerial",
+            "founder",
+            "training",
+            "c-suite"
+          ]
+        },
+        "job_department": {
+          "values": [
+            "real estate",
+            "Customer service",
+            "Trades",
+            "design",
+            "Public relations",
+            "Legal",
+            "Operations",
+            "Media",
+            "Sales",
+            "Marketing",
+            "Finance",
+            "Engineering",
+            "Education",
+            "General",
+            "Health",
+            "Design",
+            "Human resources"
+          ]
+        },
+        "business_id": {
+          "values": [
+            "8adce3ca1cef0c986b22310e369a0793",
+            "340c8040bd50cbab9c7df718bbe51cc9"
+          ]
+        },
+        "total_experience_months": {
+          "gte": 1,
+          "lte": 10
+        },
+        "country_code": {
+          "values": [
+            "US",
+            "CA"
+          ]
+        },
+        "current_role_months": {
+          "gte": 1,
+          "lte": 10
+        },
+        "company_size": {
+          "values": [
+            "1-10",
+            "11-50",
+            "51-200",
+            "201-500",
+            "501-1000",
+            "1001-5000",
+            "5001-10000",
+            "10001+"
+          ]
+        },
+        "company_revenue": {
+          "values": [
+            "0-500K",
+            "500K-1M",
+            "1M-5M",
+            "5M-10M",
+            "10M-25M",
+            "25M-75M",
+            "75M-200M",
+            "200M-500M",
+            "500M-1B",
+            "1B-10B",
+            "10B-100B",
+            "100B-1T",
+            "1T-10T",
+            "10T+"
+          ]
+        },
+        "job_title": {
+          "values": [
+            "Software Engineer",
+            "Data Scientist"
+          ],
+        "include_related_job_titles":true
+        }
+      }
+    }
+    
+    ```
+
+    <Icon icon="thumbtack" iconType="solid" color="red" /> **`Mode full`** : Returns additional attributes such as job history, social links, and experience.
+
+    ```curl cURL expandable
+    {
+      "response_context": {
+        "correlation_id": "2b0c4ecacc794e858323e90363ce71fa",
+        "request_status": "success",
+        "time_took_in_seconds": 2.228
+      },
+      "data": [
+        {
+          "prospect_id": "f7ab66ae5d2df8e5dd2a5b8cf5510984e6e051bb",
+          "professional_email_hashed": null,
+          "first_name": "Srini",
+          "last_name": "Nimmala",
+          "full_name": "Srini Nimmala",
+          "country_name": "united states",
+          "region_name": "california",
+          "city": "cupertino",
+          "linkedin": "linkedin.com/in/ACoAAAHvTaIBI71da_m7_EldbLT9Kf3136qRCeg",
+          "experience": [
+            "Senior software engineer",
+            "ios cellular software",
+            "Software engineer",
+            "Senior software engineer",
+            "Principal engineering manager",
+            "ios cellular software",
+            "Director of software engineering",
+            "ios cellular software",
+            "Engineering manager",
+            "ios cellular software",
+            "Principal staff engineer",
+            "Senior engineering manager",
+            "ios cellular software",
+            "Software architect",
+            "ios cellular software",
+            "Software engineer"
+          ],
+          "skills": [
+            "Lte"
+          ],
+          "interests": null,
+          "company_name": "Apple",
+          "company_website": "apple.com",
+          "company_linkedin": "linkedin.com/company/apple",
+          "job_department": null,
+          "job_department_array": [
+            "engineering"
+          ],
+          "job_department_main": "Engineering",
+          "job_seniority_level": [
+            null
+          ],
+          "job_level_array": [
+            "director"
+          ],
+          "job_level_main": "director",
+          "job_title": "Director of software engineering, ios cellular software",
+          "business_id": "8adce3ca1cef0c986b22310e369a0793",
+          "linkedin_url_array": [
+            "linkedin.com/in/ACoAAAHvTaIBI71da_m7_EldbLT9Kf3136qRCeg",
+            "linkedin.com/in/srini-nimmala-a02a54a"
+          ]
+        },
+        {
+          "prospect_id": "eeb96f23df0d9db472b32230a7a773f355ffba7c",
+          "professional_email_hashed": null,
+          "first_name": "Prateek",
+          "last_name": "Gogia",
+          "full_name": "Prateek Gogia",
+          "country_name": "united states",
+          "region_name": "washington",
+          "city": "seattle",
+          "linkedin": "linkedin.com/in/ACoAAAOURPoBA9PLHU3E9YOMmLjLxFIcULevf70",
+          "experience": [
+            "Senior software engineer",
+            "Senior software engineer",
+            "Senior software engineering manager",
+            "Software engineer",
+            "Software engineer",
+            "Sotware engineer",
+            "Junior server / network administrator",
+            "Software development manager"
+          ],
+          "skills": [
+            "Software management",
+            "Golang",
+            "Cloud computing",
+            "Docker",
+            "Distributed systems",
+            "Container",
+            "Tcp/ip",
+            "Software development",
+            "Routing",
+            "Security",
+            "Internet protocol suite (tcp/ip)",
+            "Computer networking",
+            "Linux",
+            "Restful webservices",
+            "C",
+            "Github",
+            "Switches",
+            "Amazon web services (aws)",
+            "Python",
+            "Leadership",
+            "Network virtualization",
+            "Networking",
+            "Switching",
+            "Vxlan",
+            "Software defined networking",
+            "L2/l3 protocols",
+            "Osi model",
+            "Vlan",
+            "Kubernetes",
+            "Microservices"
+          ],
+          "interests": null,
+          "company_name": "Apple",
+          "company_website": "apple.com",
+          "company_linkedin": "linkedin.com/company/apple",
+          "job_department": "Engineering",
+          "job_department_array": [
+            "engineering"
+          ],
+          "job_department_main": "Engineering",
+          "job_seniority_level": [
+            "manager"
+          ],
+          "job_level_array": [
+            "manager"
+          ],
+          "job_level_main": "manager",
+          "job_title": "Senior software engineering manager",
+          "business_id": "8adce3ca1cef0c986b22310e369a0793",
+          "linkedin_url_array": [
+            "linkedin.com/in/ACoAAAOURPoBA9PLHU3E9YOMmLjLxFIcULevf70",
+            "linkedin.com/in/prateekgogia"
+          ]
+        },
+        {
+          "prospect_id": "9aa792bb28263435aebf4140fd76d403f770de88",
+          "professional_email_hashed": null,
+          "first_name": "Hariharan",
+          "last_name": "Sukumar",
+          "full_name": "Hariharan Sukumar",
+          "country_name": "united states",
+          "region_name": "california",
+          "city": "san diego",
+          "linkedin": "linkedin.com/in/ACoAAA2Rz4wBn2Ip9ZFKvmE3tTkNASHea5cH5_A",
+          "experience": [
+            "Ai / ml research",
+            "Senior engineer",
+            "Engineer",
+            "Engineer",
+            "staff",
+            "Software engineering manager",
+            "Software engineering manager",
+            "Engineer",
+            "Interim engineering intern",
+            "Software engineering manager",
+            "ai research",
+            "Software engineer"
+          ],
+          "skills": [
+            "Object-oriented programming (oop)",
+            "Real-time operating systems (rtos)",
+            "C++",
+            "Device drivers",
+            "Embedded c",
+            "Artificial intelligence (ai)",
+            "Team management",
+            "Problem solving",
+            "Embedded operating systems",
+            "Embedded software programming",
+            "Machine learning",
+            "Microsoft office",
+            "Microsoft excel",
+            "Microsoft word",
+            "Powerpoint",
+            "English",
+            "Research",
+            "Windows",
+            "Outlook",
+            "Photoshop",
+            "C",
+            "Wcdma",
+            "Lte",
+            "Umts",
+            "3gpp",
+            "Wireless",
+            "Debugging",
+            "Embedded systems",
+            "System on a chip (soc)",
+            "Telecommunications",
+            "Software development",
+            "Firmware",
+            "3g",
+            "Mobile communications",
+            "Embedded software"
+          ],
+          "interests": null,
+          "company_name": "Apple",
+          "company_website": "apple.com",
+          "company_linkedin": "linkedin.com/company/apple",
+          "job_department": "Engineering",
+          "job_department_array": [
+            "engineering"
+          ],
+          "job_department_main": "Engineering",
+          "job_seniority_level": [
+            "manager"
+          ],
+          "job_level_array": [
+            "manager"
+          ],
+          "job_level_main": "manager",
+          "job_title": "Software engineering manager",
+          "business_id": "8adce3ca1cef0c986b22310e369a0793",
+          "linkedin_url_array": [
+            "linkedin.com/in/ACoAAA2Rz4wBn2Ip9ZFKvmE3tTkNASHea5cH5_A",
+            "linkedin.com/in/hariharan-sukumar-5a42ab64"
+          ]
+        },
+        {
+          "prospect_id": "68aa73a73350546d04d462b2458eff1590c5799c",
+          "professional_email_hashed": null,
+          "first_name": "Yifeng",
+          "last_name": "Yuan",
+          "full_name": "Yifeng Yuan",
+          "country_name": "united states",
+          "region_name": "massachusetts",
+          "city": "somerville",
+          "linkedin": "linkedin.com/in/ACoAAALhDU4BFnCPUCXff5rBg6n1XbERlJ_N4tw",
+          "experience": [
+            "Test engineer",
+            "Researcher",
+            "Application engineer intern",
+            "Test development engineer",
+            "Senior engineer",
+            "design evaluation engineer",
+            "Staff engineer",
+            "design evaluation engineer",
+            "Product test engineer",
+            "Engineering manager",
+            "Soc rfic integration and validation engineer",
+            "Test engineer",
+            "Rf desense engineering intern",
+            "Product engineering intern"
+          ],
+          "skills": [
+            "Matlab",
+            "Spectrum analyzer",
+            "Network analyzer",
+            "Rf",
+            "Microwave",
+            "Debugging",
+            "C++",
+            "C",
+            "Simulink",
+            "Pspice",
+            "Visual basic",
+            "Ansoft designer",
+            "Autocad",
+            "Labview",
+            "Pspice",
+            "Git",
+            "Cadence",
+            "Analog",
+            "Agilent ads",
+            "Vector network analyzer",
+            "Gpib",
+            "Hfss",
+            "Sonnet",
+            "Ate",
+            "Devices interfacing",
+            "Analog cmos circuits",
+            "Mmic",
+            "Emc",
+            "Schematic",
+            "Microsoft office"
+          ],
+          "interests": null,
+          "company_name": "Apple",
+          "company_website": "apple.com",
+          "company_linkedin": "linkedin.com/company/apple",
+          "job_department": "Engineering",
+          "job_department_array": [
+            "engineering"
+          ],
+          "job_department_main": "Engineering",
+          "job_seniority_level": [
+            "manager"
+          ],
+          "job_level_array": [
+            "manager",
+            "non-managerial"
+          ],
+          "job_level_main": "manager",
+          "job_title": "Soc rfic integration and validation engineer",
+          "business_id": "8adce3ca1cef0c986b22310e369a0793",
+          "linkedin_url_array": [
+            "linkedin.com/in/ACoAAALhDU4BFnCPUCXff5rBg6n1XbERlJ_N4tw",
+            "linkedin.com/in/yifengy"
+          ]
+        },
+        {
+          "prospect_id": "87a7845a9b728cc81a5beaa5dcbf2fbef23df26f",
+          "professional_email_hashed": null,
+          "first_name": "Sonat",
+          "last_name": "Karakas",
+          "full_name": "Sonat Karakas",
+          "country_name": "united states",
+          "region_name": "california",
+          "city": "san francisco",
+          "linkedin": "linkedin.com/in/ACoAAAMbxj4Bw3_c2LpFRUr4XmrXHIUURZJMw4o",
+          "experience": [
+            "Software engineer",
+            "Senior software engineer",
+            "ios",
+            "Software engineering manager",
+            "Senior mobile applications developer",
+            "Manager of engineering",
+            "ios",
+            "Software engineer",
+            "ios",
+            "Senior software engineer",
+            "ios",
+            "Senior software engineer",
+            "Senior software engineer",
+            "ios",
+            "System administrator - software developer",
+            "Senior software engineer",
+            "ios"
+          ],
+          "skills": [
+            "C#",
+            "Objective-c",
+            "Powerbuilder",
+            "J2ee application development",
+            "Java",
+            "Ocp",
+            "Sybase adaptive server",
+            "Mobile applications",
+            "Sql",
+            "Software engineering",
+            "Sun certified java programmer",
+            "Core java",
+            "Oracle certified professional",
+            "Design patterns",
+            "Databases",
+            "Ios development",
+            "Pl/sql",
+            "Telecommunications",
+            "Rest",
+            ".net",
+            "Mobile devices",
+            "Sybase sql anywhere",
+            "Project management",
+            "Database design",
+            "Iphone application development",
+            "Android",
+            "Ios development",
+            "Java enterprise edition",
+            "Software development"
+          ],
+          "interests": null,
+          "company_name": "Apple",
+          "company_website": "apple.com",
+          "company_linkedin": "linkedin.com/company/apple",
+          "job_department": "Engineering",
+          "job_department_array": [
+            "engineering"
+          ],
+          "job_department_main": "Engineering",
+          "job_seniority_level": [
+            "manager"
+          ],
+          "job_level_array": [
+            "manager"
+          ],
+          "job_level_main": "manager",
+          "job_title": "Software engineering manager",
+          "business_id": "8adce3ca1cef0c986b22310e369a0793",
+          "linkedin_url_array": [
+            "linkedin.com/in/ACoAAAMbxj4Bw3_c2LpFRUr4XmrXHIUURZJMw4o",
+            "linkedin.com/in/sonatkarakas"
+          ]
+        },
+        {
+          "prospect_id": "c4a91c228230c867d85299156d4e396be61690bd",
+          "professional_email_hashed": null,
+          "first_name": "Mahmoud",
+          "last_name": "Nouby",
+          "full_name": "Mahmoud Nouby",
+          "country_name": "united states",
+          "region_name": "michigan",
+          "city": "canton",
+          "linkedin": "linkedin.com/in/ACoAAAa4WoABGUcCbuXTursx27Arn2kfE54bFZ0",
+          "experience": [
+            "Software development intern",
+            "Software engineer",
+            "Software development engineer ii",
+            "Software developer",
+            "Software development engineer ii",
+            "Rf material planner",
+            "Freelance instructor",
+            "Software engineer",
+            "Network engineer",
+            "Software engineer",
+            "Co-founder"
+          ],
+          "skills": [
+            "C#",
+            "Java",
+            "Javascript",
+            "Oop",
+            "Algorithms",
+            "Design patterns",
+            "Data structures",
+            "Programming",
+            "Shell scripting",
+            "Ios development",
+            "Agile methodologies",
+            "Machine learning",
+            "Android development",
+            ".net",
+            "C++",
+            "Html 5",
+            "Asp.net",
+            "Angularjs",
+            "Bootstrap",
+            "Linq",
+            "Html",
+            "Jquery",
+            "C",
+            "Ado.net",
+            "Uml",
+            "Xml",
+            "Sharepoint",
+            "Wpf",
+            "Databases",
+            "Microsoft sql server",
+            "Asp.net mvc",
+            "Visual studio",
+            "Css",
+            "Wcf",
+            "Linux",
+            "Xcode",
+            "Servlets",
+            "Jsp",
+            "Cryptography",
+            "Cyber-security",
+            "Wcf services",
+            "Ccna",
+            "Mvvm",
+            "Mef",
+            "Wpf development",
+            "Mac os",
+            "Event driven programming",
+            "Gulp.js",
+            "Tensorflow",
+            ".net framework"
+          ],
+          "interests": null,
+          "company_name": "Apple",
+          "company_website": "apple.com",
+          "company_linkedin": "linkedin.com/company/apple",
+          "job_department": "Engineering",
+          "job_department_array": [
+            "engineering"
+          ],
+          "job_department_main": "Engineering",
+          "job_seniority_level": [
+            "non-managerial"
+          ],
+          "job_level_array": [
+            "non-managerial"
+          ],
+          "job_level_main": "non-managerial",
+          "job_title": "Software engineer",
+          "business_id": "8adce3ca1cef0c986b22310e369a0793",
+          "linkedin_url_array": [
+            "linkedin.com/in/ACoAAAa4WoABGUcCbuXTursx27Arn2kfE54bFZ0",
+            "linkedin.com/in/nouby"
+          ]
+        },
+        {
+          "prospect_id": "16dfd7a8b73e6969531bfa1dd0548f437fa21f7f",
+          "professional_email_hashed": null,
+          "first_name": "David",
+          "last_name": "Ho",
+          "full_name": "David Ho",
+          "country_name": "united states",
+          "region_name": "california",
+          "city": "los angeles",
+          "linkedin": "linkedin.com/in/ACoAAB-7dqoBpzZDFr8MI4CUfvLUaGMcIHMHGdM",
+          "experience": [
+            "Software engineering manager",
+            "Ios developer",
+            "Staff software engineer",
+            "Ios software engineer ii",
+            "Senior software engineer",
+            "Ios software engineer",
+            "Intern",
+            "Technology intern",
+            "Editor",
+            "Computer science teaching assistant",
+            "Ios software engineer level three",
+            "Ios software engineer intern"
+          ],
+          "skills": [
+            "Swift (programming language)",
+            "Python (programming language)",
+            "Sql",
+            "Python",
+            "Objective-c",
+            "Java",
+            "Leadership",
+            "Microsoft office",
+            "Customer service",
+            "Management",
+            "Microsoft excel",
+            "Microsoft word",
+            "Project management",
+            "Microsoft powerpoint",
+            "Research",
+            "Public speaking",
+            "Computer science",
+            "Swift",
+            "Html",
+            "Programming",
+            "Data analysis",
+            "C++",
+            "Teamwork",
+            "Sketch",
+            "Algorithms",
+            "Node",
+            "Databases",
+            "Software development",
+            "Social media"
+          ],
+          "interests": null,
+          "company_name": "Apple",
+          "company_website": "apple.com",
+          "company_linkedin": "linkedin.com/company/apple",
+          "job_department": "Engineering",
+          "job_department_array": [
+            "engineering"
+          ],
+          "job_department_main": "Engineering",
+          "job_seniority_level": [
+            "manager"
+          ],
+          "job_level_array": [
+            "manager"
+          ],
+          "job_level_main": "manager",
+          "job_title": "Software engineering manager",
+          "business_id": "8adce3ca1cef0c986b22310e369a0793",
+          "linkedin_url_array": [
+            "linkedin.com/in/ACoAAB-7dqoBpzZDFr8MI4CUfvLUaGMcIHMHGdM",
+            "linkedin.com/in/davidhho"
+          ]
+        },
+        {
+          "prospect_id": "04e6faa31206ec8c5e9028a54a700105d455ed48",
+          "professional_email_hashed": null,
+          "first_name": "Mark",
+          "last_name": "Laney",
+          "full_name": "Mark Laney",
+          "country_name": "united states",
+          "region_name": "texas",
+          "city": "cedar park",
+          "linkedin": "linkedin.com/in/ACoAAAXzBB8BKmqbu0gNwQftaZqunGT3WgNMcyc",
+          "experience": [
+            "Software engineer intern",
+            "Software engineer",
+            "full-stack - chemical engineering department",
+            "Senior software engineer",
+            "Software engineer intern",
+            "Software engineering manager",
+            "Software engineer",
+            "Big data intern"
+          ],
+          "skills": [
+            "Typescript",
+            "Radar",
+            "Back-end development",
+            "Amazon web services (aws)",
+            "Apache spark",
+            "Java",
+            "Programming",
+            "Html",
+            "Object-oriented programming (oop)",
+            "Service-oriented architecture (soa)",
+            "Object oriented design",
+            "Technical documentation",
+            "Web development",
+            "Agile methodologies",
+            "Front-end development",
+            "Css",
+            "Spring framework",
+            "Sql",
+            "Git",
+            "Mysql",
+            "Maven",
+            "Javascript",
+            "Junit",
+            "Unified modeling language (uml)",
+            "Mongodb",
+            "Nosql",
+            "Core java",
+            "Representational state transfer (rest)",
+            "Cascading style sheets (css)",
+            "Graphql",
+            "Node.js",
+            "Docker",
+            "Public speaking",
+            "Team leadership",
+            "Customer service",
+            "Leadership",
+            "Spanish",
+            "Full-stack development",
+            "Cassandra",
+            "Message oriented middleware",
+            "Testng",
+            "Mockito",
+            "Agile application development",
+            "Technical presentations",
+            "Software design patterns",
+            "Express.js",
+            "React",
+            "Software architecture",
+            "React.js",
+            "Com",
+            "Accessibility"
+          ],
+          "interests": null,
+          "company_name": "Apple",
+          "company_website": "apple.com",
+          "company_linkedin": "linkedin.com/company/apple",
+          "job_department": "Engineering",
+          "job_department_array": [
+            "engineering"
+          ],
+          "job_department_main": "Engineering",
+          "job_seniority_level": [
+            "manager"
+          ],
+          "job_level_array": [
+            "manager"
+          ],
+          "job_level_main": "manager",
+          "job_title": "Software engineering manager",
+          "business_id": "8adce3ca1cef0c986b22310e369a0793",
+          "linkedin_url_array": [
+            "linkedin.com/in/ACoAAAXzBB8BKmqbu0gNwQftaZqunGT3WgNMcyc",
+            "linkedin.com/in/markjlaney"
+          ]
+        },
+        {
+          "prospect_id": "f2ca9427a9ef3178c5da5853a12e27d0a0651802",
+          "professional_email_hashed": null,
+          "first_name": "Tarif",
+          "last_name": "K",
+          "full_name": "Tarif K.",
+          "country_name": "united states",
+          "region_name": "florida",
+          "city": "winter park",
+          "linkedin": "linkedin.com/in/ACoAAAa1AZEBl6gMxvAct035eMsqSGqwjckEYLM",
+          "experience": [
+            "Software development intern",
+            "Software engineer",
+            "Intern",
+            "Senior software engineer",
+            "Senior software engineer",
+            "Senior software engineer",
+            "Staff software engineer",
+            "Security supervisor",
+            "Software engineering manager",
+            "Mobile web developer",
+            "Software engineer"
+          ],
+          "skills": [
+            "Full-stack development",
+            "Backbone.js",
+            "Mentoring",
+            "Angularjs",
+            "Ember.js",
+            "Product development",
+            "Leadership",
+            "Team leadership",
+            "Project management",
+            "Web components",
+            "Vue.js",
+            "Javascript",
+            "Software development",
+            "User experience",
+            "Web development",
+            "Web applications",
+            "Programming",
+            "Usability",
+            "User interface",
+            "Front-end",
+            "Node.js",
+            "Swift",
+            "Ios",
+            "Css",
+            "Python",
+            "Git",
+            "Javascript frameworks",
+            "C (programming language)",
+            "Objective-c",
+            "C++",
+            "Swift (programming language)",
+            "Html",
+            "Typescript",
+            "Unix utilities"
+          ],
+          "interests": null,
+          "company_name": "Apple",
+          "company_website": "apple.com",
+          "company_linkedin": "linkedin.com/company/apple",
+          "job_department": "Engineering",
+          "job_department_array": [
+            "engineering"
+          ],
+          "job_department_main": "Engineering",
+          "job_seniority_level": [
+            "manager"
+          ],
+          "job_level_array": [
+            "manager"
+          ],
+          "job_level_main": "manager",
+          "job_title": "Software engineering manager",
+          "business_id": "8adce3ca1cef0c986b22310e369a0793",
+          "linkedin_url_array": [
+            "linkedin.com/in/ACoAAAa1AZEBl6gMxvAct035eMsqSGqwjckEYLM",
+            "linkedin.com/in/tarif-k-06982731"
+          ]
+        },
+        {
+          "prospect_id": "0a48b12d25abfc597d92a8a626697198202bc3bc",
+          "professional_email_hashed": null,
+          "first_name": "Nikitha",
+          "last_name": "Lakshmanan",
+          "full_name": "Nikitha Lakshmanan",
+          "country_name": "united states",
+          "region_name": null,
+          "city": "san francisco bay area",
+          "linkedin": "linkedin.com/in/ACoAAB_PD-QB8ChlFofVGx6sezeUUk32eAy7EBo",
+          "experience": [
+            "Student research assistant",
+            "usc shm lab",
+            "Mobile application developer",
+            "Senior software engineering manager",
+            "Senior software engineer",
+            "Software engineer",
+            "Software engineering intern",
+            "Staff software engineer"
+          ],
+          "skills": [
+            "Java",
+            "C++",
+            "C",
+            "Microsoft office",
+            "Programming",
+            "Python",
+            "Ios",
+            "Swift",
+            "Unix",
+            "Sql",
+            "Matlab",
+            "Linux",
+            "Start-up environment"
+          ],
+          "interests": null,
+          "company_name": "Apple",
+          "company_website": "apple.com",
+          "company_linkedin": "linkedin.com/company/apple",
+          "job_department": "Engineering",
+          "job_department_array": [
+            "engineering"
+          ],
+          "job_department_main": "Engineering",
+          "job_seniority_level": [
+            "manager"
+          ],
+          "job_level_array": [
+            "manager"
+          ],
+          "job_level_main": "manager",
+          "job_title": "Senior software engineering manager",
+          "business_id": "8adce3ca1cef0c986b22310e369a0793",
+          "linkedin_url_array": [
+            "linkedin.com/in/ACoAAB_PD-QB8ChlFofVGx6sezeUUk32eAy7EBo",
+            "linkedin.com/in/nikitha-lakshmanan"
+          ]
+        }
+      ],
+      "total_results": 10,
+      "page": 1,
+      "total_pages": 1
+    }
+    ```
+  </Accordion>
+
+  <Accordion title="Best Practices">
+    - Use refined filters to retrieve the most relevant prospects.
+    - Batch requests efficiently to optimize API performance.
+    - Monitor pagination settings to avoid missing data.
+    - Ensure data freshness by running regular queries to keep prospect information up-to-date.
+    - Be mindful of filter coverage – some filters may return fewer results due to lower data availability, while broader filters may yield larger result sets.
+    - If you are not certain about the exact job title, it’s recommended to set `include_related_job_titles=true` to expand and include semantically  related roles.
+  </Accordion>
+
+  <Accordion title="Fetch Prospects Output Signal">
+    The response returns a `data` array of prospect records matching your filters, along with pagination metadata. Each prospect record contains the following signals (`mode: full`):
+
+    | Signal API | Name | Description | Data Type |
+    | :-- | :-- | :-- | :-- |
+    | prospect\_id | Explorium prospect ID | Explorium's 40-character unique prospect ID associated with the individual. Use this ID for all subsequent prospect enrichment calls. | string |
+    | first\_name | First name | The prospect's first name. | string |
+    | last\_name | Last name | The prospect's last name. | string |
+    | full\_name | Full name | The prospect's full name. | string |
+    | professional\_email\_hashed | Professional email (hashed) | Hashed representation of the prospect's professional email address. Use the Contacts Information enrichment to retrieve actual contact details. | string |
+    | country\_name | Country | The country where the prospect is located. Note this is the prospect's location, which may differ from the company headquarters location. | string |
+    | region\_name | Region | State or region where the prospect is located. | string |
+    | city | City | The city where the prospect is located. | string |
+    | linkedin | LinkedIn® profile | The prospect's primary LinkedIn® profile URL. | string |
+    | linkedin\_url\_array | LinkedIn® URL variations | All LinkedIn® profile URL variations associated with the prospect. | array\<string\> |
+    | job\_title | Job title | The prospect's current job title. | string |
+    | job\_level\_main | Main job level | The primary job level classification of the prospect's current role (e.g., `director`, `manager`, `c-suite`). | string |
+    | job\_level\_array | Job levels | All job level classifications associated with the prospect's current role. | array\<string\> |
+    | job\_department\_main | Main job department | The primary department classification of the prospect's current role (e.g., `Engineering`, `Sales`). | string |
+    | job\_department\_array | Job departments | All department classifications associated with the prospect's current role. | array\<string\> |
+    | job\_department | Job department (legacy) | Single-value department classification. May be `null`; prefer `job_department_main` and `job_department_array`. | string |
+    | job\_seniority\_level | Job seniority level (legacy) | Seniority level classification. May contain `null`; prefer `job_level_main` and `job_level_array`. | array\<string\> |
+    | experience | Experience | List of positions from the prospect's work history. | array\<string\> |
+    | skills | Skills | Professional skills listed by the prospect. | array\<string\> |
+    | interests | Interests | Personal and professional interests listed by the prospect. | array\<string\> |
+    | company\_name | Company name | The name of the prospect's current employer. | string |
+    | company\_website | Company website | The website of the prospect's current employer. | string |
+    | company\_linkedin | Company LinkedIn® | The LinkedIn® page of the prospect's current employer. | string |
+    | business\_id | Explorium entity ID | Explorium's 32-character unique entity ID of the prospect's current employer. Use this to join prospect records with business enrichments. | string |
+
+    In addition to `data`, the response includes pagination metadata:
+
+    | Signal API | Name | Description | Data Type |
+    | :-- | :-- | :-- | :-- |
+    | response\_context | Response context | Metadata about the request, including `correlation_id`, `request_status`, and `time_took_in_seconds`. | object |
+    | total\_results | Total results | The total number of prospects that match the filters. | integer |
+    | page | Page | The page number of the response. When using cursor pagination, this is an object containing `size` and `next_cursor` instead. | integer / object |
+    | total\_pages | Total pages | The total number of pages (page-based pagination only). | integer |
+  </Accordion>
+</AccordionGroup>
+
+## Body Params - Try Me Example
+
+```text
+mode: full
+size: 100
+page_size: 100,
+page: 1
+filters:
+    job_level:
+      values: director, manager
+    has_email:
+      value: true
+```

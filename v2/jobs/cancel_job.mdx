@@ -4,4 +4,21 @@ sidebarTitle: "Cancel job"
 openapi: "post /v2/jobs/cancel/{job_id}"
 ---
 
-Cancel an async job that is queued or running.
+## Description
+
+The **Cancel Job** endpoint stops an asynchronous job that is queued or still running. Use it to release capacity and avoid consuming credits on a run you no longer need.
+
+<AccordionGroup>
+  <Accordion title="How It Works">
+    - **Input:** Provide the `job_id` of the job you want to stop.
+    - **Processing:** The system marks the job as cancelled and stops further work on it.
+    - **Output:** The job's status record, in the same shape returned by [Get job status](/v2/jobs/get_job_status).
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **Cancel superseded jobs** when you resubmit with corrected input, rather than leaving both running.
+    - **Confirm the outcome** by calling [Get job status](/v2/jobs/get_job_status) after cancelling.
+    - **Cancelling a completed job has no effect** — check the status first if you are unsure.
+  </Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" iconType="solid" color="red" /> **See [async jobs](/v2/async-jobs) for the full job lifecycle.**

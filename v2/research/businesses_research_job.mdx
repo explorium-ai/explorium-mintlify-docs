@@ -4,6 +4,25 @@ sidebarTitle: "Businesses research"
 openapi: "post /v2/businesses/research/job"
 ---
 
-Asynchronous variant of businesses research.
+## Description
 
-This is the asynchronous variant. It submits a job through the [async job infrastructure](/v2/async-jobs); poll [job status](/v2/jobs/get_job_status) for progress and results. Limits: max 10,000 input records, max 24-hour run time.
+The asynchronous variant of **Businesses Research**. It submits a custom, AI-powered research task over a list of businesses as a job, rather than returning results in the response.
+
+<Info>
+  **Beta.** Request/response shape and the credit model may change before GA. During the beta, research runs in **sync mode only** — use [Businesses research](/v2/research/businesses_research_enrich) until the async variant is enabled.
+</Info>
+
+<AccordionGroup>
+  <Accordion title="How It Works">
+    - **Input:** Provide business IDs plus either a natural-language `query` or a `prompt_template` and a caller-defined `output_schema`.
+    - **Processing:** The job runs through the [async job infrastructure](/v2/async-jobs), optionally grounded in real-time web data.
+    - **Output:** A job reference; poll [job status](/v2/jobs/get_job_status) for progress and results.
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **Use the async variant for long lists** — sync is capped per request, async allows up to 10,000 records.
+    - **Keep `output_schema` tight** so results stay consistent and cheap to parse.
+    - **Poll rather than re-submit** — resubmitting duplicates credit usage.
+  </Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" iconType="solid" color="red" /> **Jobs run for a maximum of 24 hours. See [Research (GenAI)](/v2/endpoints/research) for the full overview.**

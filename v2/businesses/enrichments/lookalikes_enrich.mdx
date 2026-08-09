@@ -4,6 +4,114 @@ sidebarTitle: "Lookalikes"
 openapi: "post /v2/businesses/lookalikes/enrich"
 ---
 
-Synchronous `lookalikes` enrichment for businesses. Results are returned in the response.
+## **Description**
 
-This endpoint accepts either a single ID (a string) or a list of IDs — see [v2 conventions](/v2/conventions).
+This enrichment is powered by Ocean.io, a provider of lookalike companies based on advanced similarity analysis.
+
+<img
+  src="/images/reference/0bfdc090de99b88acc7276e2d8af4455a5e88453f8c36d2a038b5dab173d8655-image.png"
+  alt="0bfdc090de99b88acc7276e2d8af4455a5e88453f8c36d2a038b5dab173d8655 Image Pn"
+  title="0bfdc090de99b88acc7276e2d8af4455a5e88453f8c36d2a038b5dab173d8655 Image Pn"
+  style={{ width:"62%" }}
+/>
+
+The **Lookalike Companies Enrichment** identifies and returns businesses that closely resemble a given company across key dimensions such as industry, size, geography, and online presence. This enrichment is powered by an external API provided by Ocean.io, which uses its own similarity engine to surface relevant company lookalikes.
+
+Similarity scores are calculated based on a combination of structured business attributes (e.g., number of employees, revenue range, industry classification, and country), semantic similarity of company descriptions, digital footprint overlap (such as website content and web signals), and additional contextual indicators sourced from Ocean.io’s data graph.
+
+For each input company (business_id), the enrichment returns up to 3 lookalike companies, including their firmographic attributes and a similarity score indicating the strength of the match (e.g., Medium or High).
+
+This enrichment provides a powerful signal for identifying companies that “look like” your target ideal for use cases such as lead generation, market expansion, competitive intelligence, and segmentation strategies.
+
+<Note>
+  **v2:** this endpoint accepts either a single ID (a string) or a list of up to 50 IDs — the separate `/bulk_enrich` route is gone. See [v2 conventions](/v2/conventions).
+</Note>
+
+<AccordionGroup>
+  <Accordion title="How It Works">
+    - **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
+    - **Processing:** The system identifies businesses with high similarity scores based on business attributes, descriptions, and digital footprint.
+    - **Output:** A list of lookalike companies with attributes such as name, website, industry, size, revenue range, and similarity score.
+  </Accordion>
+  <Accordion title="Example Request (cURL)">
+    ```bash Bash
+    {
+    "request_context": {
+    "seller_id": "sample_id"
+    },
+    "business_id": "9664930a34aa8e59f9b994b70e8bc15e"
+    }
+    ```
+  </Accordion>
+  <Accordion title="Example Response">
+    ```json JSON expandable
+    {
+    "response_context": {
+    "correlation_id": "fe2bade7db0640d0887aebc6d0e2e3f3",
+    "request_status": "success",
+    "time_took_in_seconds": 3.071
+    },
+    "data": [
+    {
+        "business_id": "9664930a34aa8e59f9b994b70e8bc15e",
+        "lookalike_business_id": "443fbc49b4ab9988d64065d7e2fddf1a",
+        "lookalike_business_name": "centrify",
+        "lookalike_website": "https://delinea.com",
+        "lookalike_description": "Please follow Delinea on Linkedin! Centrify is now Delinea....",
+        "lookalike_number_of_employees_range": "501-1000",
+        "lookalike_revenue_range": "75M-200M",
+        "lookalike_naics_description": "Software Publishers",
+        "lookalike_country_location": "us",
+        "similarity_score": "High"
+    },
+    {
+        "business_id": "9664930a34aa8e59f9b994b70e8bc15e",
+        "lookalike_business_id": "b5bff70c7cd89e7677a6863751678f30",
+        "lookalike_business_name": "innskill",
+        "lookalike_website": "https://innskill.com",
+        "lookalike_description": "INNSKILL - Empowering Businesses with IAM and Cybersecurity Solutions At INNSKILL, we specialize in providing comprehensive Identity and Access Management (IAM) .....",
+        "lookalike_number_of_employees_range": "51-200",
+        "lookalike_revenue_range": "10M-25M",
+        "lookalike_naics_description": "Computer Systems Design and Related Services",
+        "lookalike_country_location": "nl",
+        "similarity_score": "High"
+    },
+    {
+        "business_id": "9664930a34aa8e59f9b994b70e8bc15e",
+        "lookalike_business_id": "0c9e2098799d2d7ac37eba0c7aac5060",
+        "lookalike_business_name": "saviynt",
+        "lookalike_website": "https://saviynt.com",
+        "lookalike_description": "About Us At Saviynt, we are pioneers in intelligent identity security solutions....",
+        "lookalike_number_of_employees_range": "1001-5000",
+        "lookalike_revenue_range": "500M-1B",
+        "lookalike_naics_description": "Software Publishers",
+        "lookalike_country_location": "us",
+        "similarity_score": "High"
+    }
+    ]
+    }
+    ```
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **`Always use a validbusiness_id`** obtained via the **Match Businesses** API.
+    - **Interpret similarity scores** to prioritize the strongest matches for your use case (e.g. focus on “High” similarity for precise lookalikes).
+    - **Combine lookalike insights** with other enrichment signals (e.g. firmographics, technographics) for deeper segmentation.
+    - **Re-run lookalike queries periodically** to capture changes in the business landscape and discover new similar companies.
+  </Accordion>
+  <Accordion title="Lookalike Companies Output Signals">
+    | SignalAPI                           | Name                                | Description                                                                                    | Data Type |
+    | :---------------------------------- | :---------------------------------- | :--------------------------------------------------------------------------------------------- | :-------- |
+    | comparable_business_id              | Comparable Business ID              | The Explorium ID of the requested company.                                                     | string    |
+    | lookalike_business_id               | Lookalike Business ID               | The Explorium ID of the lookalike company.                                                     | string    |
+    | lookalike_business_name             | Lookalike Business Name             | Name of the lookalike company.                                                                 | string    |
+    | lookalike_website                   | Lookalike Website                   | Website URL of the lookalike.                                                                  | string    |
+    | lookalike_description               | Lookalike Description               | Description of the lookalike company.                                                          | string    |
+    | lookalike_number_of_employees_range | Lookalike Number of Employees Range | Employee range for the lookalike.                                                              | string    |
+    | lookalike_revenue_range             | Lookalike Revenue Range             | Revenue range for the lookalike.                                                               | string    |
+    | lookalike_naics_description         | Lookalike NAICS Description         | NAICS (North American Industry Classification System) description for the lookalike.           | string    |
+    | lookalike_country_location          | Lookalike Country Location          | The country of operation for the lookalike.                                                    | string    |
+    | similarity_score                    | Similarity Score                    | Similarity score of the lookalike to the requested company. Medium (0.95–0.975), High (0.975+) | string    |
+  </Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" iconType="solid" color="red" /> _For additional enrichment options, explore related API endpoints below._

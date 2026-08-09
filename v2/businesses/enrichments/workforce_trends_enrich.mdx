@@ -4,6 +4,79 @@ sidebarTitle: "Workforce trends"
 openapi: "post /v2/businesses/workforce_trends/enrich"
 ---
 
-Synchronous `workforce_trends` enrichment for businesses. Results are returned in the response.
+## Description
 
-This endpoint accepts either a single ID (a string) or a list of IDs — see [v2 conventions](/v2/conventions).
+The **Workforce Trends Enrichment** endpoint provides insights into **employee distribution, departmental growth, and workforce shifts** within a company. This dataset is valuable for **HR strategists, investors, and business analysts** looking to assess organizational trends over time.
+
+The data includes:
+
+- **Percentage distribution** of employees across various departments.
+- **Quarterly workforce change rates**, indicating hiring or downsizing trends.
+- **Aggregated workforce data** providing a comprehensive view of company employment trends.
+
+This information is sourced from **employment records, job postings, and public workforce data** to provide **real-time visibility into corporate workforce dynamics**.
+
+<Note>
+  **v2:** this endpoint accepts either a single ID (a string) or a list of up to 50 IDs — the separate `/bulk_enrich` route is gone. See [v2 conventions](/v2/conventions).
+</Note>
+
+<AccordionGroup>
+  <Accordion title="How It Works">
+    - **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
+    - **Processing:** The system analyzes workforce composition, department trends, and hiring activity over time.
+    - **Output:** A structured response summarizing workforce distribution and hiring/firing trends.
+  </Accordion>
+
+  <Accordion title="Workforce trends Output Signal">
+    | SignalAPI | Name | Description | Data Type |
+    | :-- | :-- | :-- | :-- |
+    | change\_in\_real\_estate\_roles | QoQ real estate roles | QoQ stands for quarter over quarter and is the rate of change in the percentage of employees working in real estate related positions in the quarter prior to the current quarter, compared to the current quarter. Calculation: (% Current Quarter / % Previous Quarter)-1. | float |
+    | perc\_design\_roles | Percentage of design roles | Percentage out of employee profiles that disclose the employee’s role who listed a design related position. This calculation is relevant to the current timeframe. Designer roles include product designers, web designers, and graphic designers. | float |
+    | profiles\_found\_per\_quarter | Number of profiles | Number of detected profiles containing information on the employee | float |
+    | perc\_sales\_roles | Percentage of sales roles | Percentage out of employee profiles that disclose the employee’s role who listed a sales related position. This calculation is relevant to the current quarter. | float |
+    | perc\_hr\_roles | Percentage of human resources roles | Percentage out of employee profiles that disclose the employee’s role who listed a human resources related position. This calculation refers to the current quarter. Health related positions include sanitarians, nurses, and doctors. | float |
+    | perc\_operations\_roles | Percentage of operations roles | Percentage out of employee profiles that disclose the employee’s role who listed an operations position. This calculation is relevant to the current quarter. | float |
+    | perc\_pr\_roles | Percentage of public relations roles | Percentage out of employee profiles that disclose the employee’s role who listed a PR position. This calculation is relevant to the current quarter. | float |
+    | perc\_health\_roles | Percentage of health roles | Percentage out of employee profiles that disclose the employee’s role who listed a health related position. This calculation refers to the current quarter. Health related positions include sanitarians, nurses, and doctors. | float |
+    | perc\_trades\_roles | Percentage of professional trades roles | Percentage out of employee profiles that disclose the employee’s role who listed a professional trades position. This calculation is relevant to the current quarter. Professional trades roles include plumbers, construction workers, and electricians. | float |
+    | perc\_engineering\_roles | Percentage of engineering roles | Percentage out of employee profiles that disclose the employee’s role who listed an engineering related position. This calculation refers to the current quarter. Engineering roles include data, devops, electrical, mechanical, network, information technology, project engineering, quality assurance, security, software, systems and web roles. This calculation refers to the current quarter. | float |
+    | perc\_finance\_roles | Percentage of finance roles | Percentage out of employee profiles that disclose the employee’s role who listed a finance related position. This calculation refers to the current quarter. | float |
+    | perc\_customer\_service\_roles | Percentage of customer service roles | Percentage out of employee profiles that disclose the employee’s role who listed a customer service position. This calculation is relevant to the current timeframe. | float |
+    | perc\_legal\_roles | Percentage of legal roles | Percentage out of employee profiles that disclose the employee’s role who listed a legal related position. This calculation refers to the current quarter. | float |
+    | perc\_media\_roles | Percentage of media roles | Percentage out of employee profiles that disclose the employee’s role who listed a marketing position. This calculation is relevant to the current quarter. | float |
+    | perc\_marketing\_roles | Percentage of marketing roles | Percentage out of employee profiles that disclose the employee’s role who listed a marketing position. This calculation is relevant to the current quarter. | float |
+    | change\_in\_real\_estate\_roles | Percentage of real estate roles | Percentage out of employee profiles that disclose the employee’s role who listed a real estate position. This calculation is relevant to the current quarter. | float |
+    | perc\_education\_roles | Percentage of education roles | The percentage out of employee profiles that disclose the employee’s role who listed an education related position. Education roles include teachers, researchers, professors, and education administrators. This calculation refers to the current quarter. | float |
+    | change\_in\_design\_roles | QoQ design roles | QoQ stands for quarter over quarter and is the rate of change in the percentage of employees working in design roles in the quarter prior to the current quarter compared to the current quarter. Calculation: (% Current Quarter / % Previous Quarter)-1. Designer roles include product designers, web designers, and graphic designers. | float |
+    | change\_in\_education\_roles | QoQ education roles | QoQ stands for quarter over quarter and is the rate of change in the percentage of employees working in education related roles in the quarter prior to the current quarter, compared to the current quarter. Calculation: (% Current Quarter / % Previous Quarter)-1. Education roles include teachers, researchers, professors, and education administrators. | float |
+    | change\_in\_pr\_roles | QoQ public relation roles | QoQ stands for quarter over quarter and is the rate of change in the percentage of employees working in public relations related positions in the quarter prior to the current quarter, compared to the current quarter. Calculation: (% Current Quarter / % Previous Quarter)-1. | float |
+    | change\_in\_trades\_roles | QoQ professional trades roles | QoQ stands for quarter over quarter and is the rate of change in the percentage of employees working in trades related positions in the quarter prior to the current quarter, compared to the current quarter. Calculation: (% Current Quarter / % Previous Quarter)-1. | float |
+    | change\_in\_customer\_service\_roles | QoQ customer service roles | QoQ stands for quarter over quarter and is the rate of change in the percentage of employees working in customer service roles in the quarter prior to the current quarter, compared to the current quarter. Calculation: (% Current Quarter / % Previous Quarter)-1. | float |
+    | change\_in\_health\_roles | QoQ health roles | QoQ stands for quarter over quarter and is the rate of change in the percentage of employees working in health roles in the quarter prior to the current quarter, compared to the current quarter. Calculation: (% Current Quarter / % Previous Quarter)-1. Health roles include sanitarians, nurses, and doctors. | float |
+    | change\_in\_operations\_roles | QoQ operations roles | QoQ stands for quarter over quarter and is the rate of change in the percentage of employees working in operations related positions in the quarter prior to the current quarter, compared to the current quarter. Calculation: (% Current Quarter / % Previous Quarter)-1. | float |
+    | change\_in\_sales\_roles | QoQ sales roles | QoQ stands for quarter over quarter and is the rate of change in the percentage of employees working in sales related positions in the quarter prior to the current quarter, compared to the current quarter. Calculation: (% Current Quarter / % Previous Quarter)-1. | float |
+    | change\_in\_legal\_roles | QoQ legal roles | QoQ stands for quarter over quarter and is the rate of change in the percentage of employees working in legal realted roles in the quarter prior to the current quarter, compared to the current quarter. Calculation: (% Current Quarter / % Previous Quarter)-1. | float |
+    | change\_in\_roles\_divisor | QoQ profiles that disclose employee's role | QoQ stands for quarter over quarter and is the rate of change in the percentage of employee profiles that contain information about the employee’s role or position at the company in the quarter prior to the current quarter, compared to the current quarter. Calculation: (% Current Quarter / % Previous Quarter)-1. | float |
+    | change\_in\_finance\_roles | QoQ finance roles | QoQ stands for quarter over quarter and is the rate of change in the percentage of employees working in finance roles in the quarter prior to the current quarter, compared to the current quarter. Calculation: (% Current Quarter / % Previous Quarter)-1. | float |
+    | change\_in\_media\_roles | QoQ media roles | QoQ stands for quarter over quarter and is the rate of change in the percentage of employees working in media related roles in the quarter prior to the current quarter, compared to the current quarter. Calculation: (% Current Quarter / % Previous Quarter)-1. | float |
+    | change\_in\_hr\_roles | QoQ human resources roles | QoQ stands for quarter over quarter and is the rate of change in the percentage of employees working in human resources roles in the quarter prior to the current quarter, compared to the current quarter. Calculation: (% Current Quarter / % Previous Quarter)-1. | float |
+    | change\_in\_marketing\_roles | QoQ marketing roles | QoQ stands for quarter over quarter and is the rate of change in the percentage of employees working in marketing related roles in the quarter prior to the current quarter, compared to the current quarter. Calculation: (% Current Quarter / % Previous Quarter)-1. | float |
+    | change\_in\_engineering\_roles | QoQ engineering roles | QoQ stands for quarter over quarter and is the rate of change in the percentage of employees working in engineering related positions in the quarter prior to the current quarter, compared to the current quarter. Calculation: (% Current Quarter / % Previous Quarter)-1. Engineering roles include data, devops, electrical, mechanical, network, information technology, project engineering, quality assurance, security, software, systems and web roles. | float |
+    | quarters | Quarter | Cutoff date of the data's quarterly period, e.g. 01/01/2001. | datetime |
+  </Accordion>
+
+  <Accordion title="Best Practices">
+    - **Use workforce distribution insights** to assess company department growth and investment focus.
+    - **Analyze hiring and downsizing trends** to gauge business expansion or contraction.
+    - **Leverage workforce trend data** to benchmark against competitors in the same industry.
+    - **Monitor key roles in engineering, sales, and operations** to understand where a company is investing resources.
+  </Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" iconType="solid" color="red" /> For additional enrichment options, explore related API endpoints below.
+
+## Body Params - Try Me Example
+
+```text
+business_id: 8adce3ca1cef0c986b22310e369a0793
+```
