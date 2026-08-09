@@ -512,6 +512,7 @@
                 "group": "Async jobs",
                 "pages": [
                   "v2/async-jobs",
+                  "v2/async-guide",
                   "v2/jobs/get_job_status",
                   "v2/jobs/cancel_job",
                   "v2/jobs/upload_entity_id_dataset"

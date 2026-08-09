@@ -40,10 +40,14 @@ A single endpoint accepts either one ID (a string) or a list of IDs. The separat
 
 Each enrichment exposes two endpoints:
 
-| Variant | Path | Use when |
-| :--- | :--- | :--- |
-| **Sync** | `.../enrich` | You want results in the response |
-| **Async** | `.../job` | Large runs that should go through the [async job infrastructure](/v2/async-jobs) |
+| Variant | Path | Input | Use when |
+| :--- | :--- | :--- | :--- |
+| **Sync** | `.../enrich` | A single ID or a list of up to 50 | You want results in the response |
+| **Async** | `.../job` | A `list_id` from an uploaded dataset | Large runs, up to 10,000 records |
+
+<Warning>
+  The "single ID or a list of IDs" rule above applies to **sync** endpoints. Async `.../job` endpoints take a `list_id` from the [dataset upload endpoint](/v2/jobs/upload_entity_id_dataset) and do not accept inline IDs — see the [end-to-end guide](/v2/async-guide).
+</Warning>
 
 Both are `POST`. The async variant is subject to the async job limits: **max 10K input records** and a **24-hour maximum run time**.
 

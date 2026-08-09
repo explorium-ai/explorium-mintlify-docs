@@ -14,7 +14,7 @@ Every `.../job` endpoint in v2 runs through a shared async job layer. Instead of
 
 <Steps>
   <Step title="Submit">
-    Call any `.../job` enrichment endpoint — for example [Firmographics (async)](/v2/businesses/enrichments/firmographics_job).
+    Upload a CSV of entity IDs, then call any `.../job` endpoint with the returned `list_id` — for example [Firmographics (async)](/v2/businesses/enrichments/firmographics_job).
   </Step>
   <Step title="Poll">
     Call [Get job status](/v2/jobs/get_job_status) with the returned job ID to check state and retrieve results once complete.
@@ -32,7 +32,7 @@ Every `.../job` endpoint in v2 runs through a shared async job layer. Instead of
 | Cancel a job | `POST /v2/jobs/cancel/{job_id}` |
 | Upload an entity ID dataset as job input | `POST /v2/async/entity-id-datasets/upload` |
 
-For large input lists, [upload a dataset](/v2/jobs/upload_entity_id_dataset) instead of sending every ID inline.
+Async jobs take their input **only** as an uploaded dataset — [upload your IDs](/v2/jobs/upload_entity_id_dataset) and pass the returned `list_id`. Inline IDs are not accepted. The [end-to-end guide](/v2/async-guide) walks through the whole flow.
 
 ## Limits
 
