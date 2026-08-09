@@ -4,11 +4,13 @@ sidebarTitle: "Autocomplete"
 openapi: "get /v2/autocomplete"
 ---
 
-## Endpoint: `GET /v2/businesses/autocomplete`
-
 ## Description
 
-The **Fetch Business Autocomplete** endpoint provides **real-time suggestions** for business-related fields, helping users quickly find relevant categories, locations, and industries based on partial text input. This is useful for creating dynamic search fields and enhancing user experience in filtering interfaces.
+The **Autocomplete** endpoint provides **real-time suggestions** for filter fields, helping users quickly find relevant categories, locations, industries, and job attributes based on partial text input. This is useful for creating dynamic search fields and enhancing user experience in filtering interfaces.
+
+<Note>
+  **One endpoint in v2.** Autocomplete is consolidated into a single `/v2/autocomplete` endpoint serving both business and prospect fields. The v1 split of `/v1/businesses/autocomplete` and `/v1/prospects/autocomplete` is gone — point every autocomplete call at `/v2/autocomplete` and select what you want with the `field` parameter.
+</Note>
 
 <AccordionGroup>
   <Accordion title="Coverage">
@@ -34,13 +36,13 @@ The **Fetch Business Autocomplete** endpoint provides **real-time suggestions** 
     Example with contry field. 
     ```shell Bash
     curl -X GET \
-      "https://api.explorium.ai/v2/businesses/autocomplete?field=country&query=unit" \
+      "https://api.explorium.ai/v2/autocomplete?field=country&query=unit" \
       -H "API_KEY: your_api_key_here"
     ```
    Example with business_intent_topics field. 
     ```shell Bash
     curl -X GET \
-      'https://api.explorium.ai/v2/businesses/autocomplete?query=cloude&semantic_search=true&field=business_intent_topics' \
+      'https://api.explorium.ai/v2/autocomplete?query=cloude&semantic_search=true&field=business_intent_topics' \
       -H "API_KEY: your_api_key_here"
     ```
 
