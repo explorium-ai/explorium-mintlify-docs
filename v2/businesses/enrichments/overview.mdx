@@ -1,0 +1,131 @@
+---
+title: "Business enrichments"
+sidebarTitle: "Overview"
+description: "The 17 business enrichments in AgentSource v2, each with a synchronous /enrich and an asynchronous /job variant."
+---
+
+Every enrichment ships both a **sync** (`.../enrich`) and an **async** (`.../job`) variant. Sync accepts a single ID or a list of up to 50; async runs through the [async job infrastructure](/v2/async-jobs) with a 10,000-record limit. See [v2 conventions](/v2/conventions).
+
+All enrichment endpoints are `POST`.
+
+## Available business enrichments (17)
+
+| Enrichment | Key | Sync | Async |
+| :--- | :--- | :--- | :--- |
+| Firmographics | `firmographics` | [Sync](/v2/businesses/enrichments/firmographics_enrich) | [Async](/v2/businesses/enrichments/firmographics_job) |
+| Technographics | `technographics` | [Sync](/v2/businesses/enrichments/technographics_enrich) | [Async](/v2/businesses/enrichments/technographics_job) |
+| LinkedIn posts | `linkedin_posts` | [Sync](/v2/businesses/enrichments/linkedin_posts_enrich) | [Async](/v2/businesses/enrichments/linkedin_posts_job) |
+| Company ratings by employees | `company_ratings_by_employees` | [Sync](/v2/businesses/enrichments/company_ratings_by_employees_enrich) | [Async](/v2/businesses/enrichments/company_ratings_by_employees_job) |
+| Company website keywords | `company_website_keywords` | [Sync](/v2/businesses/enrichments/company_website_keywords_enrich) | [Async](/v2/businesses/enrichments/company_website_keywords_job) |
+| Financial indicators | `financial_indicators` | [Sync](/v2/businesses/enrichments/financial_indicators_enrich) | [Async](/v2/businesses/enrichments/financial_indicators_job) |
+| Funding and acquisition | `funding_and_acquisition` | [Sync](/v2/businesses/enrichments/funding_and_acquisition_enrich) | [Async](/v2/businesses/enrichments/funding_and_acquisition_job) |
+| Business challenges (10-K) | `pc_business_challenges_10k` | [Sync](/v2/businesses/enrichments/pc_business_challenges_10k_enrich) | [Async](/v2/businesses/enrichments/pc_business_challenges_10k_job) |
+| Competitive landscape (10-K) | `pc_competitive_landscape_10k` | [Sync](/v2/businesses/enrichments/pc_competitive_landscape_10k_enrich) | [Async](/v2/businesses/enrichments/pc_competitive_landscape_10k_job) |
+| Strategy (10-K) | `pc_strategy_10k` | [Sync](/v2/businesses/enrichments/pc_strategy_10k_enrich) | [Async](/v2/businesses/enrichments/pc_strategy_10k_job) |
+| Website changes | `website_changes` | [Sync](/v2/businesses/enrichments/website_changes_enrich) | [Async](/v2/businesses/enrichments/website_changes_job) |
+| Workforce trends | `workforce_trends` | [Sync](/v2/businesses/enrichments/workforce_trends_enrich) | [Async](/v2/businesses/enrichments/workforce_trends_job) |
+| Lookalikes | `lookalikes` | [Sync](/v2/businesses/enrichments/lookalikes_enrich) | [Async](/v2/businesses/enrichments/lookalikes_job) |
+| Webstack | `webstack` | [Sync](/v2/businesses/enrichments/webstack_enrich) | [Async](/v2/businesses/enrichments/webstack_job) |
+| Company hierarchies | `company_hierarchies` | [Sync](/v2/businesses/enrichments/company_hierarchies_enrich) | [Async](/v2/businesses/enrichments/company_hierarchies_job) |
+| Website traffic | `website_traffic` | [Sync](/v2/businesses/enrichments/website_traffic_enrich) | [Async](/v2/businesses/enrichments/website_traffic_job) |
+| Bombora intent | `bombora_intent` | [Sync](/v2/businesses/enrichments/bombora_intent_enrich) | [Async](/v2/businesses/enrichments/bombora_intent_job) |
+
+## Response changes in v2
+
+- `entity_id` is no longer returned.
+- `display_name` is removed from the `linkedin_posts` response.
+- Address signals (`company_city`, `company_country_code`, `company_region`, `company_street`, `company_zip_code`) are removed from `company_ratings_by_employees`.
+
+See [What's new](/v2/whats-new) for the full list.
+
+---
+
+## Overview
+
+### **Introduction**
+
+The **Businesses Enrichments** API suite provides a comprehensive set of **data enrichment capabilities** that empower organizations to extract **deep business insights**. These enrichments allow businesses to **augment, analyze, and track** company information across various domains, including **firmographics, financials, workforce trends, market positioning, and website content changes**.
+
+By leveraging Explorium’s **global datasets and AI-driven insights**, users can:
+
+* Enhance **lead scoring and segmentation**.
+* Track **company growth, funding, and workforce shifts**.
+* Analyze **competitive landscapes and market trends**.
+* Monitor **website content updates and keyword presence**.
+
+This document provides an **overview of all available enrichments**, their use cases, and best practices for **maximizing business intelligence.**
+
+## **How to Use Businesses Enrichments**
+
+1. **Obtain a Business ID:** Use the **Match Businesses API** to retrieve a unique identifier for the target company.
+2. **Select the Desired Enrichment:** Choose the enrichment endpoint that aligns with your business needs.
+3. **Submit an API Request:** Send a `POST` request with the `business_id` to retrieve relevant data.
+4. **Analyze and Act:** Integrate the enriched data into your workflows for advanced decision-making.
+
+### **Best Practices**
+
+* **Combine multiple enrichments** for a holistic company profile.
+* **Use historical insights** to track trends over time.
+* **Leverage workforce data** to anticipate hiring trends and business expansions.
+* **Monitor competitive intelligence** to adapt strategies effectively.
+
+
+## **Key Enrichments & Capabilities**
+
+### **Firmographics Enrichment**
+
+* Essential company details: revenue, employee count, industry classification.
+* Use case: **Lead scoring, B2B marketing segmentation, sales intelligence.**
+
+### **Technographics Enrichment**
+
+* Insights into the internal tech stack of companies.
+* Use case: **Competitive analysis, sales targeting, and software vendor tracking.**
+
+### **Financial Metrics Enrichment**
+
+* Historical and real-time financial indicators for publicly traded companies.
+* Use case: **Investment research, risk assessment, financial modeling.**
+
+### **Funding & Acquisitions Enrichment**
+
+* Data on funding rounds, investors, M\&A activity.
+* Use case: **VC investment analysis, startup tracking, competitive benchmarking.**
+
+### **Strategic Insights & Competitive Landscape Enrichment**
+
+* Insights into business strategies, operational focus, and competitive positioning.
+* Use case: **Competitive intelligence, strategic business planning.**
+
+### **Workforce Trends Enrichment**
+
+* Analysis of department-level workforce changes and hiring trends.
+* Use case: **HR analytics, market expansion strategies.**
+
+### **Company Ratings Enrichment**
+
+* Employee reviews, job satisfaction scores, and workplace ratings.
+* Use case: **Employer branding, HR benchmarking, recruitment strategy.**
+
+### **Business Challenges Enrichment**
+
+* Identification of key risks, legal challenges, and operational issues faced by public companies.
+* Use case: **Risk analysis, due diligence, financial modeling.**
+
+### **Company’s Website Content Changes Enrichment**
+
+* Detects **real-time updates** in company website content.
+* Use case: **Brand monitoring, compliance tracking, competitive research.**
+
+### **Keyword Search on Websites Enrichment**
+
+* Searches for **specific keywords** across company websites.
+* Use case: **Brand monitoring, product mentions, regulatory compliance.**
+
+### **Company’s Social Media Presence Enrichment**
+
+* Extracts insights from corporate social media activity.
+* Use case: **Brand perception analysis, PR monitoring.**
+
+
+<Icon icon="thumbtack"  color="red" iconType="solid"/> **For detailed API specifications and request examples, refer to each enrichment endpoint in this documentation.**

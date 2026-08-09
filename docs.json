@@ -421,7 +421,7 @@
               {
                 "group": "Business enrichments",
                 "pages": [
-                  "v2/endpoints/enrichments",
+                  "v2/businesses/enrichments/overview",
                   {
                     "group": "Sync",
                     "pages": [
@@ -479,6 +479,7 @@
               {
                 "group": "Prospect enrichments",
                 "pages": [
+                  "v2/prospects/enrichments/overview",
                   {
                     "group": "Sync",
                     "pages": [
