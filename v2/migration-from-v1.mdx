@@ -40,7 +40,7 @@ v2 ships alongside v1. v1 keeps running in parallel and is wound down in stages,
     Rename `contacts_information` to `contact_information`, and update the corrected [signal field names](/v2/whats-new#signal-fixes).
   </Step>
   <Step title="Handle removed response fields">
-    Stop reading `entity_id`, `display_name` on business LinkedIn posts, the nested `emails` / `phones` contact fields, and the address signals on `company_ratings_by_employees`.
+    Stop reading `entity_id`, `display_name` on business LinkedIn posts, and the address signals on `company_ratings_by_employees`.
   </Step>
   <Step title="Check changed fetch defaults">
     Remove the `size` pagination parameter, and set `include_operating_locations` explicitly if you relied on the old default.
@@ -69,7 +69,6 @@ v2 ships alongside v1. v1 keeps running in parallel and is wound down in stages,
 - [ ] `professions_email` → `professional_email`
 - [ ] `entity_id` no longer read
 - [ ] `display_name` no longer read from business LinkedIn posts
-- [ ] Nested `emails` / `phones` contact fields no longer read
 - [ ] Address signals no longer read from `company_ratings_by_employees`
 - [ ] `size` pagination parameter removed
 - [ ] `include_operating_locations` set explicitly
