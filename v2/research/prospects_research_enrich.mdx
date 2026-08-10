@@ -65,68 +65,114 @@ What sets Research apart from standard enrichments is that the engine can **grou
   <Accordion title="The `record` context">
     When rendering a `prompt_template` (and when the model composes a prompt from a `query`), each entity is represented by a `record` object. The `record` contains:
 
-    - **Explorium profile fields** resolved from the identifier. For **businesses**, fields such as `record['OrganizationName']` and `record['Description']`. For **prospects**, fields such as `record['FullName']`, `record['JobTitle']`, and `record['OrganizationName']`.
+    - **Explorium profile fields** resolved from the identifier. For **businesses**, fields such as `record['organization_name']` and `record['description']`. For **prospects**, fields such as `record['full_name']`, `record['job_title']`, and `record['organization_name']`.
     - **Any `custom_fields`** you supplied for that entity — for example `record['campaign_name']`.
 
-    Reference these in a `prompt_template` using `{{ record['FieldName'] }}`. Custom fields are merged into the same `record` namespace as the profile fields, so they're referenced the same way. See [Record fields](#record-fields) for the full list of supported fields per entity type.
+    Reference these in a `prompt_template` using `{{ record['field_name'] }}`. Custom fields are merged into the same `record` namespace as the profile fields, so they're referenced the same way. See [Record fields](#record-fields) for the full list of supported fields per entity type.
   </Accordion>
 </AccordionGroup>
 
 ## Record fields
 
-Inside a `prompt_template`, reference any of the fields below with `{{ record['FieldName'] }}`. When you pass a `query` instead, these same fields are made available to the prompt generator as the entity's context. The available fields depend on the endpoint you call.
+Inside a `prompt_template`, reference any of the fields below with `{{ record['field_name'] }}`. When you pass a `query` instead, these same fields are made available to the prompt generator as the entity's context.
 
-### Businesses
+There are three sources of `record` data:
 
-Available on the `businesses` endpoint.
+- **Base profile fields** — always present after the entity is resolved. No fetch parameters involved.
+- **Catalog fields** — **businesses only**, and hydrated *only* when you reference them in the prompt.
+- **Custom fields** — any keys you attach per entity in `custom_fields`.
 
-| Field | Description |
+### Base fields — businesses
+
+Always available on a business record.
+
+| Field | Notes |
 | :-- | :-- |
-| `OrganizationName` | The company's full organization name. |
-| `name` | The company's common or display name. |
-| `Url` | The company's website URL. |
-| `Description` | A free-text description of the company and what it does. |
-| `LinkedInIndustry` | The company's industry as classified on LinkedIn. |
-| `GoogleCategory` | The company's business category as classified by Google. |
-| `EmployeeRange` | The company's employee headcount range (e.g. `51-200`). |
-| `RevenueRange` | The company's estimated annual revenue range. |
-| `OperationalStatus` | Whether the company is currently active or operational. |
-| `FoundingYear` | The year the company was founded. |
-| `NaicsDescription` | The company's NAICS industry classification, as a text description. |
-| `Specialties` | The company's stated areas of focus or specialties. |
-| `Location` | The company's primary or headquarters location. |
+| `business_id` | Entity ID |
+| `organization_name` | Company name |
+| `url` | Website |
+| `description` | Truncated at 500 characters |
+| `linkedin_industry` | |
+| `google_category` | |
+| `employee_range` | |
+| `revenue_range` | |
+| `operational_status` | |
+| `founding_year` | |
+| `naics_description` | |
+| `specialties` | |
+| `location` | Locality + region + country |
 
-### Prospects
+### Base fields — prospects
 
-Available on the `prospects` endpoint.
+Always available on a prospect record. Prospects have **no catalog fields**.
 
-| Field | Description |
+| Field | Notes |
 | :-- | :-- |
-| `FullName` | The prospect's full name. |
-| `JobTitle` | The prospect's current job title. |
-| `JobTitleLevel` | The seniority level of the prospect's role (e.g. Manager, Director, VP, C-Suite). |
-| `JobDepartment` | The department or function the prospect works in (e.g. Sales, Engineering). |
-| `Summary` | A short professional summary or bio for the prospect. |
-| `OrganizationName` | The name of the company the prospect currently works at. |
-| `Url` | The website URL of the prospect's current company. |
-| `JobCompanyIndustry` | The industry of the prospect's current company. |
-| `JobCompanySize` | The employee-size range of the prospect's current company. |
-| `JobCompanyDescription` | A description of the prospect's current company. |
-| `LocationName` | The prospect's location (city, region, and/or country). |
-| `LinkedInUrl` | The URL of the prospect's LinkedIn profile. |
-| `Skills` | The prospect's listed skills. |
+| `full_name` | |
+| `job_title` | |
+| `job_title_level` | |
+| `job_department` | |
+| `summary` | Truncated at 1,000 characters |
+| `organization_name` | From the job company name |
+| `url` | Job company website |
+| `job_company_industry` | |
+| `job_company_size` | |
+| `job_company_description` | Truncated at 500 characters |
+| `location_name` | |
+| `linkedin_url` | |
+| `skills` | |
+| `education` | Truncated at 1,000 characters |
+| `experience` | Truncated at 1,000 characters |
+
+### Catalog fields — businesses only
+
+These are **not** on the record by default. Each one hydrates only when the prompt references it, so pull in what you need and nothing more.
+
+| Source | Fields | Fetch defaults |
+| :-- | :-- | :-- |
+| `technographics` | `full_tech_stack`, `marketing_techs`, `sales_techs`, `it_security_techs` | None — `full_tech_stack` is truncated at 1,000 characters |
+| `company_ratings_by_employees` | `ratings_overall`, `ratings_culture_values`, `ratings_compensation_benefits`, `ratings_work_life_balance`, `ratings_senior_management`, `ratings_ceo_approval`, `total_reviews_count` | None |
+| `funding_and_acquisition` | `funding_summary`, `number_of_funding_rounds`, `known_funding_total_value`, `last_funding_round_date`, `last_funding_round_type`, `last_funding_round_value_usd`, `investors` | None |
+| `financial_indicators` | `revenue_yearly`, `ebitda`, `cagr`, `price_earnings_ratio`, `enterprise_value_over_ebitda`, `roa`, `roc` | `date: null` → latest quarter (`date_in_q <= today`, ordered descending) |
+| `company_hierarchies` | `parent_company`, `ultimate_parent_name`, `subsidiaries` | None |
+| `webstack` | `ecommerce`, `number_of_premium_technologies` | None |
+| `linkedin_posts` | `recent_linkedin_posts` | `lookback_days: 90`, `max_posts: 5` |
+| `sec10k` | `sec10k_competitive_excerpt`, `sec10k_strategy_excerpt`, `sec10k_risk_excerpt` | None |
+
+<Note>
+  Fetch defaults apply to `linkedin_posts` and `financial_indicators` only. Every other catalog source takes no fetch parameters.
+</Note>
 
 ### Custom fields
 
-Any key you attach in `custom_fields` is merged into the same `record` object and can be referenced exactly like a profile field — for example `{{ record['campaign_name'] }}`. There is no fixed list: use whatever keys you send per entity. Values are treated as strings.
+Any key you attach in `custom_fields` is merged into the same `record` object and referenced exactly like a profile field — for example `{{ record['campaign_name'] }}`. There is no fixed list: use whatever keys you send per entity. Values are treated as strings.
+
+### Not available
+
+These are deliberately not exposed on the record:
+
+| Not available | Use instead |
+| :-- | :-- |
+| Bombora / `intent_topics` | — |
+| `name` | `organization_name` |
+| `workforce_trends`: `quarters`, `profiles_found_per_quarter` | — |
+
+### Corrected field names
+
+Two fields are spelled correctly on the public record even though the underlying data has a typo. Use the public spelling:
+
+| Underlying data | Public field |
+| :-- | :-- |
+| `ratings_cutlure_values` | `ratings_culture_values` |
+| `enterprise_value_over_ebdita` | `enterprise_value_over_ebitda` |
 
 <Note>
-  Profile fields are populated from the entity's resolved Explorium profile, so a given field may be empty when that attribute isn't available for the entity. Write prompts that degrade gracefully when a field is missing, and instruct the model to use web research to fill gaps where appropriate.
+  The record carries **no per-field default values** — missing data is `null` or absent entirely. Write prompts that degrade gracefully when a field is empty, and instruct the model to use web research to fill gaps where appropriate.
 </Note>
 
 ## Research functions
 
-Inside a `prompt_template`, you can call **research functions** to ground the analysis in live web data. Render them with `{{ ... }}` just like a record field: the function runs first, and its output — SERP results or scraped page text — is injected into the prompt as context before the model reasons over it. Their arguments are typically built from `record` fields (e.g. `record['OrganizationName']`, `record['Url']`).
+Inside a `prompt_template`, you can call **research functions** to ground the analysis in live web data. Render them with `{{ ... }}` just like a record field: the function runs first, and its output — SERP results or scraped page text — is injected into the prompt as context before the model reasons over it. Their arguments are typically built from `record` fields (e.g. `record['organization_name']`, `record['url']`).
 
 You can use **up to two** research functions in a single `prompt_template`.
 
@@ -139,7 +185,7 @@ You can use **up to two** research functions in a single `prompt_template`.
 Runs a SERP search for `query` and scrapes the top `max_results` result pages, injecting their combined content into the prompt as grounding context. Use it when the company or person isn't well described by the resolved profile alone and you want fresh, broad web context.
 
 <ParamField query="query" type="string" required>
-  The search query to run. Commonly built from a record field, e.g. `record['OrganizationName']`.
+  The search query to run. Commonly built from a record field, e.g. `record['organization_name']`.
 </ParamField>
 
 <ParamField query="max_results" type="integer">
@@ -147,7 +193,7 @@ Runs a SERP search for `query` and scrapes the top `max_results` result pages, i
 </ParamField>
 
 ```text
-{{ ReadMostRelevantLinks(query=record['OrganizationName'], max_results=4) }}
+{{ ReadMostRelevantLinks(query=record['organization_name'], max_results=4) }}
 ```
 
 <CodeGroup>
@@ -156,7 +202,7 @@ Runs a SERP search for `query` and scrapes the top `max_results` result pages, i
 {
   "business_id": "8adce3ca1cef0c986b22310e369a0793",
   "parameters": {
-    "prompt_template": "{{ ReadMostRelevantLinks(query=record['OrganizationName'], max_results=4) }}\n\nUsing the company description {{ record['Description'] }} and website {{ record['Url'] }}, classify whether {{ record['OrganizationName'] }} primarily sells to businesses (B2B) or consumers (B2C). Explain your reasoning.",
+    "prompt_template": "{{ ReadMostRelevantLinks(query=record['organization_name'], max_results=4) }}\n\nUsing the company description {{ record['description'] }} and website {{ record['url'] }}, classify whether {{ record['organization_name'] }} primarily sells to businesses (B2B) or consumers (B2C). Explain your reasoning.",
     "output_schema": {
       "type": "object",
       "properties": {
@@ -180,14 +226,14 @@ Runs a SERP search for `query` and scrapes the top `max_results` result pages, i
 
 ### `ReadUrlText`
 
-Scrapes the text content of a single URL and injects it into the prompt as grounding context. Use it when you already know the exact page to read — most often the entity's own website via `record['Url']`.
+Scrapes the text content of a single URL and injects it into the prompt as grounding context. Use it when you already know the exact page to read — most often the entity's own website via `record['url']`.
 
 <ParamField query="url" type="string" required>
-  The URL of the page to scrape, e.g. `record['Url']`.
+  The URL of the page to scrape, e.g. `record['url']`.
 </ParamField>
 
 ```text
-{{ ReadUrlText(url=record['Url']) }}
+{{ ReadUrlText(url=record['url']) }}
 ```
 
 <CodeGroup>
@@ -196,7 +242,7 @@ Scrapes the text content of a single URL and injects it into the prompt as groun
 {
   "prospect_id": "5d86c0d8eae6bdd60515685670a4a2ad49981945",
   "parameters": {
-    "prompt_template": "{{ ReadUrlText(url=record['Url']) }}\n\nEvaluate whether {{ record['FullName'] }} ({{ record['JobTitle'] }} at {{ record['OrganizationName'] }}) is a strong fit for an enterprise data platform. Use summary {{ record['Summary'] }}, skills {{ record['Skills'] }}, and company website content from {{ record['Url'] }}.",
+    "prompt_template": "{{ ReadUrlText(url=record['url']) }}\n\nEvaluate whether {{ record['full_name'] }} ({{ record['job_title'] }} at {{ record['organization_name'] }}) is a strong fit for an enterprise data platform. Use summary {{ record['summary'] }}, skills {{ record['skills'] }}, and company website content from {{ record['url'] }}.",
     "output_schema": {
       "type": "object",
       "properties": {
@@ -229,7 +275,7 @@ You can combine both functions in one `prompt_template` (the two-function maximu
 {
   "business_id": "8adce3ca1cef0c986b22310e369a0793",
   "parameters": {
-    "prompt_template": "{{ ReadUrlText(url=record['Url']) }}\n\n{{ ReadMostRelevantLinks(query=record['OrganizationName'], max_results=3) }}\n\nUsing the company's own website and the most relevant web results, summarize what {{ record['OrganizationName'] }} does and identify its primary target market.",
+    "prompt_template": "{{ ReadUrlText(url=record['url']) }}\n\n{{ ReadMostRelevantLinks(query=record['organization_name'], max_results=3) }}\n\nUsing the company's own website and the most relevant web results, summarize what {{ record['organization_name'] }} does and identify its primary target market.",
     "output_schema": {
       "type": "object",
       "properties": {
@@ -295,7 +341,7 @@ The entity list key depends on the endpoint:
     </ParamField>
 
     <ParamField body="prompt_template" type="string">
-      A prompt used directly by the engine, with no modification. Reference `record` fields with `{{ record['FieldName'] }}`, and invoke [research functions](#research-functions) inline as needed (up to two per template). **Mutually exclusive with `query`** — provide exactly one.
+      A prompt used directly by the engine, with no modification. Reference `record` fields with `{{ record['field_name'] }}`, and invoke [research functions](#research-functions) inline as needed (up to two per template). **Mutually exclusive with `query`** — provide exactly one.
     </ParamField>
 
     <ParamField body="output_schema" type="object">
@@ -329,7 +375,7 @@ The entity list key depends on the endpoint:
         }
       ],
       "parameters": {
-        "prompt_template": "For {{ record['OrganizationName'] }}, write a one-sentence segment for campaign {{ record['campaign_name'] }}. Use description: {{ record['Description'] }}.",
+        "prompt_template": "For {{ record['organization_name'] }}, write a one-sentence segment for campaign {{ record['campaign_name'] }}. Use description: {{ record['description'] }}.",
         "output_schema": {
           "type": "object",
           "properties": {
@@ -395,7 +441,7 @@ The entity list key depends on the endpoint:
         }
       ],
       "parameters": {
-        "prompt_template": "Write a one-line personalized opener for {{ record['FullName'] }}, {{ record['JobTitle'] }} at {{ record['OrganizationName'] }}, for campaign {{ record['campaign_name'] }}.",
+        "prompt_template": "Write a one-line personalized opener for {{ record['full_name'] }}, {{ record['job_title'] }} at {{ record['organization_name'] }}, for campaign {{ record['campaign_name'] }}.",
         "output_schema": {
           "type": "object",
           "properties": {
