@@ -4,15 +4,11 @@ sidebarTitle: "Prospects research"
 openapi: "post /v2/prospects/research/enrich"
 ---
 
-<Note>
-  **Beta.** The Research endpoint is currently in beta. The request/response shape and credit model may change before general availability. Pin your integration to the examples below and watch the changelog for updates.
-</Note>
-
 ## Overview
 
 The **Research** endpoint runs a **custom, AI-powered analysis** over a list of entities. Instead of returning a fixed enrichment schema, you describe the task — either as a natural-language **`query`** or as a **`prompt_template`** — and define the exact shape of the result with an **`output_schema`**. For each entity, the engine resolves its profile, optionally performs **real-time web research**, and returns structured JSON that conforms to your schema.
 
-Research runs on **two entity types**, each with its own endpoint that follows the standard bulk-enrichment convention:
+Research runs on **two entity types**, each with its own sync and async endpoints:
 
 | Entity | Endpoint |
 | :-- | :-- |
@@ -598,7 +594,7 @@ Each successful result contains the entity identifier (`business_id` or `prospec
 
 ## Per-call credit usage
 
-The Research endpoints support the opt-in [Per-Call Credit Usage](/reference/credits/per-call-credit-usage) header. Send `credit-usage: true` to receive a `credit_usage` object alongside the response, reporting the exact credits deducted for the call. This is the recommended way to track research costs while you tune prompts and schemas during the beta.
+The Research endpoints support the opt-in [Per-Call Credit Usage](/reference/credits/per-call-credit-usage) header. Send `credit-usage: true` to receive a `credit_usage` object alongside the response, reporting the exact credits deducted for the call. This is the recommended way to track research costs while you tune prompts and schemas.
 
 ```bash
 credit-usage: true

@@ -19,7 +19,7 @@ v2 is a redesign of the AgentSource API surface rather than a new product. The s
 - **One path prefix.** Every endpoint moves under `/v2`, replacing its `/v1` equivalent.
 - **No separate bulk routes.** A single endpoint takes either one ID or a list of IDs, so `/bulk_enrich` disappears.
 - **Sync and async for every enrichment.** Each enrichment exposes `.../enrich` for immediate results and `.../job` for large runs through the async job infrastructure.
-- **New Research (GenAI) endpoints.** Run a custom, AI-powered research task over a list of businesses or prospects, with your own output schema. Currently in beta.
+- **New Research (GenAI) endpoints.** Run a custom, AI-powered research task over a list of businesses or prospects, with your own output schema.
 
 See [Conventions](/v2/conventions) for the rules that apply across every endpoint.
 

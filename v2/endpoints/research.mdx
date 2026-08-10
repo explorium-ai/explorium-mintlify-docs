@@ -4,10 +4,6 @@ sidebarTitle: "Research (GenAI)"
 description: "Run a custom, AI-powered research task over a list of businesses or prospects using a natural-language query or prompt template plus your own output schema."
 ---
 
-<Info>
-  **Beta.** Research is open to all, but the request/response shape and the credit model may change before GA.
-</Info>
-
 ## Overview
 
 Research runs a custom, AI-powered research task over a list of businesses or prospects. You supply either:
@@ -24,20 +20,7 @@ Results can optionally be grounded in real-time web data.
 | Businesses | [`/v2/businesses/research/enrich`](/v2/research/businesses_research_enrich) | [`/v2/businesses/research/job`](/v2/research/businesses_research_job) |
 | Prospects | [`/v2/prospects/research/enrich`](/v2/research/prospects_research_enrich) | [`/v2/prospects/research/job`](/v2/research/prospects_research_job) |
 
-Both are `POST` and follow the standard [v2 conventions](/v2/conventions) — no `/bulk_enrich` suffix, and a single endpoint accepts one ID or a list of IDs.
-
-<Note>
-  During the beta, Research runs in **sync mode only**, even though the `.../job` variants are already present in the spec. The async variants follow the standard sync/async pairing via the [async job infrastructure](/v2/async-jobs).
-</Note>
-
-## Availability today
-
-Research is already released as an early beta under v1, at:
-
-- `POST /v1/businesses/research/bulk_enrich`
-- `POST /v1/prospects/research/bulk_enrich`
-
-In v2 these become the paths in the table above. The `/bulk_enrich` suffix is dropped, in line with the [no-bulk-endpoints convention](/v2/conventions#no-more-bulk-endpoints).
+All are `POST`. Sync endpoints accept a single ID or a list of IDs; async endpoints take a `list_id` from an uploaded dataset — see [v2 conventions](/v2/conventions) and [async jobs](/v2/async-jobs).
 
 ## Parameters
 

@@ -8,11 +8,11 @@ description: "AgentSource v2 ships in two phases: the full v2 API surface first,
   **Draft.** Scope and timing are subject to change.
 </Info>
 
-v2 is delivered in two phases: the full v2 API surface first — including the new Research (GenAI) endpoints, currently in beta — followed by an improvements pass.
+v2 is delivered in two phases: the full v2 API surface first — including the new Research (GenAI) endpoints — followed by an improvements pass.
 
 | Phase | Focus | What ships |
 | :--- | :--- | :--- |
-| **Phase 1** | Full v2 release | The full v2 surface: Research (GenAI) endpoints (beta), async job infrastructure, sync + async enrichments, autocomplete consolidation, match/fetch/stats, events, webhooks, credits, signal fixes, and cleanup. Ships with full documentation. |
+| **Phase 1** | Full v2 release | The full v2 surface: Research (GenAI) endpoints, async job infrastructure, sync + async enrichments, autocomplete consolidation, match/fetch/stats, events, webhooks, credits, signal fixes, and cleanup. Ships with full documentation. |
 | **Phase 2** | Improvements | `max_per_company` support. More to come. |
 
 ## Phase 1 — Full v2 release
@@ -21,7 +21,7 @@ Everything below lands together.
 
 | Area | Summary |
 | :--- | :--- |
-| [Research (GenAI)](/v2/endpoints/research) | Custom AI-powered research over businesses or prospects. Beta; sync only for now. |
+| [Research (GenAI)](/v2/endpoints/research) | Custom AI-powered research over businesses or prospects, sync and async. |
 | [Async job infrastructure](/v2/async-jobs) | Job submission plus status and result endpoints behind every `.../job` route. |
 | [Autocomplete](/v2/autocomplete) | Consolidated to a single `/v2/autocomplete` endpoint. |
 | [Business](/v2/businesses/enrichments/overview) and [prospect](/v2/prospects/enrichments/overview) enrichments | 17 business and 3 prospect enrichments, each sync and async. |

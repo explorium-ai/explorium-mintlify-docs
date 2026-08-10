@@ -53,8 +53,8 @@ v2 ships alongside v1. v1 keeps running in parallel and is wound down in stages,
 | :--- | :--- | :--- |
 | `/v1/businesses/{enrichment}/bulk_enrich` | `/v2/businesses/{enrichment}/enrich`<br />`/v2/businesses/{enrichment}/job` | Bulk route removed; pick sync or async |
 | `/v1/prospects/contacts_information/bulk_enrich` | `/v2/prospects/contact_information/enrich`<br />`/v2/prospects/contact_information/job` | Also renamed |
-| `/v1/businesses/research/bulk_enrich` | `/v2/businesses/research/enrich` | Async variant follows post-beta |
-| `/v1/prospects/research/bulk_enrich` | `/v2/prospects/research/enrich` | Async variant follows post-beta |
+| `/v1/businesses/research/bulk_enrich` | `/v2/businesses/research/enrich`<br />`/v2/businesses/research/job` | Bulk route removed; pick sync or async |
+| `/v1/prospects/research/bulk_enrich` | `/v2/prospects/research/enrich`<br />`/v2/prospects/research/job` | Bulk route removed; pick sync or async |
 | Business / prospect autocomplete routes | `/v2/autocomplete` | Consolidated into one endpoint |
 | `/v1/businesses/match`, `/v1/businesses`, `/v1/businesses/stats` | `/v2/...` equivalents | Path change only |
 | `/v1/prospects/match`, `/v1/prospects`, `/v1/prospects/stats` | `/v2/...` equivalents | Path change only |
