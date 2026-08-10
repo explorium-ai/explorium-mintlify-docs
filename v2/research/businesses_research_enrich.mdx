@@ -74,100 +74,90 @@ What sets Research apart from standard enrichments is that the engine can **grou
 
 ## Record fields
 
-Inside a `prompt_template`, reference any of the fields below with `{{ record['field_name'] }}`. When you pass a `query` instead, these same fields are made available to the prompt generator as the entity's context.
+Inside a `prompt_template`, reference any of the fields below with `{{ record['field_name'] }}`. When you pass a `query` instead, these same fields are made available to the prompt generator as the entity's context. The available fields depend on the endpoint you call.
 
-There are three sources of `record` data:
+### Businesses
 
-- **Base profile fields** — always present after the entity is resolved. No fetch parameters involved.
-- **Catalog fields** — **businesses only**, and hydrated *only* when you reference them in the prompt.
-- **Custom fields** — any keys you attach per entity in `custom_fields`.
+Available on the `businesses` endpoint.
 
-### Base fields — businesses
-
-Always available on a business record.
-
-| Field | Notes |
+| Field | Description |
 | :-- | :-- |
-| `business_id` | Entity ID |
-| `organization_name` | Company name |
-| `url` | Website |
-| `description` | Truncated at 500 characters |
-| `linkedin_industry` | |
-| `google_category` | |
-| `employee_range` | |
-| `revenue_range` | |
-| `operational_status` | |
-| `founding_year` | |
-| `naics_description` | |
-| `specialties` | |
-| `location` | Locality + region + country |
+| `business_id` | Explorium's unique entity ID for the company. |
+| `organization_name` | The company's name. |
+| `url` | The company's website URL. |
+| `description` | A free-text description of the company and what it does. Truncated at 500 characters. |
+| `linkedin_industry` | The company's industry as classified on LinkedIn. |
+| `google_category` | The company's business category as classified by Google. |
+| `employee_range` | The company's employee headcount range (e.g. `51-200`). |
+| `revenue_range` | The company's estimated annual revenue range. |
+| `operational_status` | Whether the company is currently active or operational. |
+| `founding_year` | The year the company was founded. |
+| `naics_description` | The company's NAICS industry classification, as a text description. |
+| `specialties` | The company's stated areas of focus or specialties. |
+| `location` | The company's primary location — locality, region, and country. |
+| `full_tech_stack` | The technologies detected across the company's web presence. Truncated at 1,000 characters. |
+| `marketing_techs` | Marketing technologies the company uses. |
+| `sales_techs` | Sales technologies the company uses. |
+| `it_security_techs` | IT and security technologies the company uses. |
+| `ecommerce` | Whether the company runs e-commerce, and the platforms detected. |
+| `number_of_premium_technologies` | How many premium technologies were detected in the company's stack. |
+| `ratings_overall` | Overall employee rating of the company. |
+| `ratings_culture_values` | Employee rating for culture and values. |
+| `ratings_compensation_benefits` | Employee rating for compensation and benefits. |
+| `ratings_work_life_balance` | Employee rating for work-life balance. |
+| `ratings_senior_management` | Employee rating for senior management. |
+| `ratings_ceo_approval` | Employee approval rating for the CEO. |
+| `total_reviews_count` | How many employee reviews the ratings are based on. |
+| `funding_summary` | A summary of the company's funding history. |
+| `number_of_funding_rounds` | How many funding rounds the company has raised. |
+| `known_funding_total_value` | Total known funding the company has raised. |
+| `last_funding_round_date` | Date of the most recent funding round. |
+| `last_funding_round_type` | Type of the most recent funding round (e.g. Series B). |
+| `last_funding_round_value_usd` | Value of the most recent funding round, in USD. |
+| `investors` | Investors associated with the company. |
+| `revenue_yearly` | Reported yearly revenue. Reflects the latest available quarter. |
+| `ebitda` | Earnings before interest, taxes, depreciation, and amortization. |
+| `cagr` | Compound annual growth rate. |
+| `price_earnings_ratio` | Price-to-earnings ratio. |
+| `enterprise_value_over_ebitda` | Enterprise value divided by EBITDA. |
+| `roa` | Return on assets. |
+| `roc` | Return on capital. |
+| `parent_company` | The company's immediate parent company. |
+| `ultimate_parent_name` | The topmost parent in the company's ownership chain. |
+| `subsidiaries` | Companies owned by this company. |
+| `recent_linkedin_posts` | Recent public LinkedIn posts from the company — the last 90 days, up to 5 posts. |
+| `sec10k_competitive_excerpt` | Competitive-landscape excerpt from the company's 10-K filing. |
+| `sec10k_strategy_excerpt` | Strategy excerpt from the company's 10-K filing. |
+| `sec10k_risk_excerpt` | Risk-factors excerpt from the company's 10-K filing. |
 
-### Base fields — prospects
+### Prospects
 
-Always available on a prospect record. Prospects have **no catalog fields**.
+Available on the `prospects` endpoint.
 
-| Field | Notes |
+| Field | Description |
 | :-- | :-- |
-| `full_name` | |
-| `job_title` | |
-| `job_title_level` | |
-| `job_department` | |
-| `summary` | Truncated at 1,000 characters |
-| `organization_name` | From the job company name |
-| `url` | Job company website |
-| `job_company_industry` | |
-| `job_company_size` | |
-| `job_company_description` | Truncated at 500 characters |
-| `location_name` | |
-| `linkedin_url` | |
-| `skills` | |
-| `education` | Truncated at 1,000 characters |
-| `experience` | Truncated at 1,000 characters |
-
-### Catalog fields — businesses only
-
-These are **not** on the record by default. Each one hydrates only when the prompt references it, so pull in what you need and nothing more.
-
-| Source | Fields | Fetch defaults |
-| :-- | :-- | :-- |
-| `technographics` | `full_tech_stack`, `marketing_techs`, `sales_techs`, `it_security_techs` | None — `full_tech_stack` is truncated at 1,000 characters |
-| `company_ratings_by_employees` | `ratings_overall`, `ratings_culture_values`, `ratings_compensation_benefits`, `ratings_work_life_balance`, `ratings_senior_management`, `ratings_ceo_approval`, `total_reviews_count` | None |
-| `funding_and_acquisition` | `funding_summary`, `number_of_funding_rounds`, `known_funding_total_value`, `last_funding_round_date`, `last_funding_round_type`, `last_funding_round_value_usd`, `investors` | None |
-| `financial_indicators` | `revenue_yearly`, `ebitda`, `cagr`, `price_earnings_ratio`, `enterprise_value_over_ebitda`, `roa`, `roc` | `date: null` → latest quarter (`date_in_q <= today`, ordered descending) |
-| `company_hierarchies` | `parent_company`, `ultimate_parent_name`, `subsidiaries` | None |
-| `webstack` | `ecommerce`, `number_of_premium_technologies` | None |
-| `linkedin_posts` | `recent_linkedin_posts` | `lookback_days: 90`, `max_posts: 5` |
-| `sec10k` | `sec10k_competitive_excerpt`, `sec10k_strategy_excerpt`, `sec10k_risk_excerpt` | None |
-
-<Note>
-  Fetch defaults apply to `linkedin_posts` and `financial_indicators` only. Every other catalog source takes no fetch parameters.
-</Note>
+| `full_name` | The prospect's full name. |
+| `job_title` | The prospect's current job title. |
+| `job_title_level` | The seniority level of the prospect's role (e.g. Manager, Director, VP, C-Suite). |
+| `job_department` | The department or function the prospect works in (e.g. Sales, Engineering). |
+| `summary` | A short professional summary or bio for the prospect. Truncated at 1,000 characters. |
+| `organization_name` | The name of the company the prospect currently works at. |
+| `url` | The website URL of the prospect's current company. |
+| `job_company_industry` | The industry of the prospect's current company. |
+| `job_company_size` | The employee-size range of the prospect's current company. |
+| `job_company_description` | A description of the prospect's current company. Truncated at 500 characters. |
+| `location_name` | The prospect's location — city, region, and/or country. |
+| `linkedin_url` | The URL of the prospect's LinkedIn profile. |
+| `skills` | The prospect's listed skills. |
+| `education` | The prospect's education history. Truncated at 1,000 characters. |
+| `experience` | The prospect's work experience history. Truncated at 1,000 characters. |
 
 ### Custom fields
 
-Any key you attach in `custom_fields` is merged into the same `record` object and referenced exactly like a profile field — for example `{{ record['campaign_name'] }}`. There is no fixed list: use whatever keys you send per entity. Values are treated as strings.
-
-### Not available
-
-These are deliberately not exposed on the record:
-
-| Not available | Use instead |
-| :-- | :-- |
-| Bombora / `intent_topics` | — |
-| `name` | `organization_name` |
-| `workforce_trends`: `quarters`, `profiles_found_per_quarter` | — |
-
-### Corrected field names
-
-Two fields are spelled correctly on the public record even though the underlying data has a typo. Use the public spelling:
-
-| Underlying data | Public field |
-| :-- | :-- |
-| `ratings_cutlure_values` | `ratings_culture_values` |
-| `enterprise_value_over_ebdita` | `enterprise_value_over_ebitda` |
+Any key you attach in `custom_fields` is merged into the same `record` object and can be referenced exactly like a profile field — for example `{{ record['campaign_name'] }}`. There is no fixed list: use whatever keys you send per entity. Values are treated as strings.
 
 <Note>
-  The record carries **no per-field default values** — missing data is `null` or absent entirely. Write prompts that degrade gracefully when a field is empty, and instruct the model to use web research to fill gaps where appropriate.
+  Record fields are populated from the entity's resolved Explorium profile, so a given field may be empty when that attribute isn't available for the entity. Write prompts that degrade gracefully when a field is missing, and instruct the model to use web research to fill gaps where appropriate.
 </Note>
 
 ## Research functions

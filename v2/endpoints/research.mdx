@@ -49,20 +49,16 @@ In v2 these become the paths in the table above. The `/bulk_enrich` suffix is dr
 
 ## Record fields
 
-Each entity is exposed to the prompt as a `record` object, referenced as `{{ record['field_name'] }}`. There are three sources:
+Each entity is exposed to the prompt as a `record` object, referenced as `{{ record['field_name'] }}`. Fields are populated from the entity's resolved Explorium profile, and any keys you attach per entity via `custom_fields` are merged into the same object.
 
-- **Base profile fields** — always present once the entity is resolved.
-- **Catalog fields** — **businesses only**, hydrated only when the prompt references them.
-- **Custom fields** — any keys you attach per entity via `custom_fields`.
-
-For the full list — base fields per entity type, the eight business catalog sources and their fetch defaults, and the fields that are deliberately not exposed — see the record fields reference on the endpoint pages:
+For the full field list per entity type, see the record fields reference on the endpoint pages:
 
 <Columns cols={2}>
   <Card title="Businesses record fields" icon="building" href="/v2/research/businesses_research_enrich#record-fields">
-    Base fields plus the business-only catalog sources
+    Fields available on the businesses endpoint
   </Card>
   <Card title="Prospects record fields" icon="user" href="/v2/research/prospects_research_enrich#record-fields">
-    Base fields only — prospects have no catalog fields
+    Fields available on the prospects endpoint
   </Card>
 </Columns>
 
