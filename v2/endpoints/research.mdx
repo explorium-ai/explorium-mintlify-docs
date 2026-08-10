@@ -8,15 +8,6 @@ description: "Run a custom, AI-powered research task over businesses or prospect
 
 The **Research** endpoint runs a **custom, AI-powered analysis** over a list of entities. Instead of returning a fixed enrichment schema, you describe the task — either as a natural-language **`query`** or as a **`prompt_template`** — and define the exact shape of the result with an **`output_schema`**. For each entity, the engine resolves its profile, optionally performs **real-time web research**, and returns structured JSON that conforms to your schema.
 
-Research runs on **two entity types**, each with its own sync and async endpoints:
-
-| Entity | Endpoint |
-| :-- | :-- |
-| **Businesses** | `POST /v2/businesses/research/enrich` |
-| **Prospects** | `POST /v2/prospects/research/enrich` |
-
-Both endpoints accept the same `parameters` (`query` / `prompt_template` \+ `output_schema`); they differ only in the entity list and identifier (`business_id` vs `prospect_id`).
-
 This is ideal when an off-the-shelf enrichment doesn't exist for your use case, for example:
 
 - **Custom classification** — e.g. B2B vs B2C, ICP fit, seniority or buying-role inference.
