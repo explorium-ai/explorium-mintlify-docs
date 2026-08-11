@@ -20,6 +20,10 @@ The **Contact details enrichments** API provides detailed information about indi
   **v2:** this endpoint accepts either a single ID (a string) or a list of up to 50 IDs — the separate `/bulk_enrich` route is gone. See [v2 conventions](/v2/conventions).
 </Note>
 
+<Note>
+  **Need higher coverage?** The [asynchronous variant](/v2/prospects/enrichments/contact_information_job) supports **waterfall enrichment** — prospects that Explorium data cannot enrich are retried against a verified external provider. The `waterfall` parameter is available **only** on the async endpoint; passing it here returns a validation error.
+</Note>
+
 <AccordionGroup>
   <Accordion title="How It Works">
     1. **Input:** Provide a `prospect_id` (retrieved from the **Match Prospects** endpoint) to retrieve enrichment details.
