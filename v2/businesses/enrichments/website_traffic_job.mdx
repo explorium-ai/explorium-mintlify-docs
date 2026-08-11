@@ -1,0 +1,181 @@
+---
+title: "Website traffic (async)"
+sidebarTitle: "Website traffic"
+openapi: "post /v2/businesses/website_traffic/job"
+---
+
+### **Description**
+
+The **Business Website Traffic Enrichment** provides detailed insights into a company’s online presence by surfacing **monthly web traffic metrics** sourced from SEMrush’s a leading provider of digital analytics.
+
+For each input company (`business_id`), the enrichment resolves the associated domain and returns a set of standardized signals such as **total visits, users, traffic sources (search, social, referral, direct, paid), device breakdown (desktop vs. mobile), bounce rate, time on site, and more**.
+
+Data is available from **January 2017** through the **start of the previous month**, and is provided in raw form directly from SEMrush.
+
+Raw traffic data is powered by SEMrush.
+
+This signal is particularly useful for:
+
+- Evaluating **digital reach** and engagement.
+- Comparing **marketing effectiveness** across companies.
+- Enriching **lead profiles** with behavioral indicators..
+
+---
+
+<Note>
+  **Asynchronous variant.** This submits a job through the [async job infrastructure](/v2/async-jobs) — poll [job status](/v2/jobs/get_job_status) for progress and results. Input comes from an uploaded dataset (`list_id`); limits are 10,000 rows and a 24-hour run time.
+
+  For the full output signal reference, see [the synchronous endpoint](/v2/businesses/enrichments/website_traffic_enrich).
+</Note>
+
+<AccordionGroup>
+  <Accordion title="How It Works">
+    - **Input:** Provide a `business_id` obtained from the **Match Businesses** API and `month_period`
+    - **Processing:** The system resolves the company’s domain and queries SEMrush’s `traffic_summary` API for the most recent monthly traffic metrics.
+    - **Output:** Standardized traffic data including sessions, users, traffic source distribution, device usage, bounce rate, and engagement metrics.
+  </Accordion>
+  <Accordion title="Example Request (cURL)">
+    ```bash
+    curl -X 'POST' \
+    'https://api.explorium.ai/v2/businesses/website_traffic/job' \
+    -H 'accept: application/json' \
+    -H 'api_key: your_api_key' \
+    -H 'Content-Type: application/json' \
+    -d '{
+    "request_context": {},
+    "parameters": {
+      "month_period": "2025-07"
+    },
+    "business_ids": [
+      "8adce3ca1cef0c986b22310e369a0793", "b197ffdef2ddc3308584dce7afa3661b"
+    ]
+    }'
+    ```
+  </Accordion>
+  <Accordion title="Example Response">
+    ```json
+    {
+    "response_context": {
+      "correlation_id": "6cbb9f51dd624e2bba1e8e6a333e30e0",
+      "request_status": "success",
+      "time_took_in_seconds": 1.675
+    },
+    "data": [
+      {
+        "business_id": "8adce3ca1cef0c986b22310e369a0793",
+        "data": {
+          "business_id": "8adce3ca1cef0c986b22310e369a0793",
+          "accuracy": 3,
+          "bounced_visits": null,
+          "bounce_rate": 0.6144,
+          "channel": null,
+          "desktop_share": 0,
+          "device_type": "all",
+          "direct": 457694910,
+          "display_ad": 822032,
+          "mail": 418780,
+          "mobile_bounce_rate": 0,
+          "mobile_hits": 898405066,
+          "mobile_pages_per_visit": 2,
+          "mobile_share": 0,
+          "mobile_users": 245528032,
+          "mobile_visits": 402005428,
+          "pages_per_visit": 3,
+          "paid": 2198872,
+          "referral": 80711907,
+          "rank": 49,
+          "search": 172090501,
+          "search_organic": 172090501,
+          "social_paid": 137644,
+          "target": "apple.com",
+          "time_on_site": 508,
+          "unknown_channel": 0,
+          "users": 397949074,
+          "visits": 728778992,
+          "month_period": "2025-07"
+        }
+      },
+      {
+        "business_id": "b197ffdef2ddc3308584dce7afa3661b",
+        "data": {
+          "business_id": "b197ffdef2ddc3308584dce7afa3661b",
+          "accuracy": 3,
+          "bounced_visits": null,
+          "bounce_rate": 0.376,
+          "channel": null,
+          "desktop_share": 0,
+          "device_type": "all",
+          "direct": 96570574099,
+          "display_ad": 26719878,
+          "mail": 257936305,
+          "mobile_bounce_rate": 0,
+          "mobile_hits": 242044539965,
+          "mobile_pages_per_visit": 3,
+          "mobile_share": 0,
+          "mobile_users": 4549983641,
+          "mobile_visits": 74145442283,
+          "pages_per_visit": 5,
+          "paid": 4062160,
+          "referral": 3171546695,
+          "rank": 1,
+          "search": 369052002,
+          "search_organic": 369052002,
+          "social_paid": 7098698,
+          "target": "google.com",
+          "time_on_site": 789,
+          "unknown_channel": 0,
+          "users": 5814204983,
+          "visits": 101348173032,
+          "month_period": "2025-07"
+        }
+      }
+    ],
+    "total_results": 2
+    }
+    ```
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **`Always use a validbusiness_id`** from the **Match Businesses** API.
+    - **`Specifymonth_period`** (YYYY-MM) when you want to retrieve metrics for a specific month.
+    - **Check for null values** — if SEMrush has no data for a given domain, the response will contain null fields.
+    - **Use rank, visits, and users together** for benchmarking against competitors.
+    - **Combine traffic metrics with firmographics** to build a richer business profile.
+  </Accordion>
+  <Accordion title="Website Traffic Output Signals">
+    | Signal                 | API Name               | Description                                                                           | Data Type |
+    | ---------------------- | ---------------------- | ------------------------------------------------------------------------------------- | --------- |
+    | accuracy               | Accuracy               | Data accuracy, with values of 1, 2, or 3. 3 is the most accurate.                     | CATEGORY  |
+    | bounced_visits         | Bounced Visits         | The number of single-page sessions.                                                   | NUMERIC   |
+    | bounce_rate            | Bounce Rate            | The percentage of single-page sessions.                                               | NUMERIC   |
+    | channel                | Channel                | The channel type, which can be direct, referral, search, social, mail, or display_ad. | CATEGORY  |
+    | desktop_share          | Desktop Share          | The proportion of total traffic that comes from desktops.                             | NUMERIC   |
+    | device_type            | Device Type            | The type of device used by the user, such as desktop or mobile.                       | CATEGORY  |
+    | direct                 | Direct                 | Traffic from users typing in the URL or using bookmarks.                              | NUMERIC   |
+    | display_ad             | Display Ad             | Traffic from banner or display advertising.                                           | NUMERIC   |
+    | mail                   | Mail                   | Traffic from email campaigns.                                                         | NUMERIC   |
+    | mobile_bounce_rate     | Mobile Bounce Rate     | The bounce rate specific to users on mobile devices.                                  | NUMERIC   |
+    | mobile_hits            | Mobile Hits            | The number of pageviews from mobile devices.                                          | NUMERIC   |
+    | mobile_pages_per_visit | Mobile Pages Per Visit | The number of pages viewed per session from mobile devices.                           | NUMERIC   |
+    | mobile_share           | Mobile Share           | The proportion of total traffic that comes from mobile devices.                       | NUMERIC   |
+    | mobile_users           | Mobile Users           | The number of unique users on mobile devices.                                         | NUMERIC   |
+    | mobile_visits          | Mobile Visits          | The total number of sessions from mobile devices.                                     | NUMERIC   |
+    | pages_per_visit        | Pages Per Visit        | The number of pages viewed per session.                                               | NUMERIC   |
+    | paid                   | Paid                   | Traffic from all paid sources, including ads.                                         | NUMERIC   |
+    | referral               | Referral               | Referral traffic.                                                                     | NUMERIC   |
+    | rank                   | Rank                   | The ranking of the target based on traffic volume, where 1 is the highest traffic.    | NUMERIC   |
+    | search                 | Search                 | Total search engine traffic (organic and paid).                                       | NUMERIC   |
+    | search_organic         | Search Organic         | Traffic from unpaid search results.                                                   | NUMERIC   |
+    | search_paid            | Search Paid            | Traffic from paid search ads.                                                         | NUMERIC   |
+    | social                 | Social                 | Traffic from all social media sources.                                                | NUMERIC   |
+    | social_organic         | Social Organic         | Unpaid traffic from social platforms.                                                 | NUMERIC   |
+    | social_paid            | Social Paid            | Paid traffic from social media advertising.                                           | NUMERIC   |
+    | target                 | Target                 | The domain being analyzed, such as example.com.                                       | URL       |
+    | time_on_site           | Time On Site           | The average time spent on the site per session.                                       | NUMERIC   |
+    | unknown_channel        | Unknown Channel        | Traffic for which the source could not be determined.                                 | NUMERIC   |
+    | users                  | Users                  | The total number of users.                                                            | NUMERIC   |
+    | visits                 | Visits                 | The total number of sessions.                                                         | NUMERIC   |
+    | month_period           | Month period           | Reference month for cumulative data (default: previous month)                         | DATETIME  |
+  </Accordion>
+</AccordionGroup>
+
+📌 _For additional enrichment options, explore related API endpoints below._

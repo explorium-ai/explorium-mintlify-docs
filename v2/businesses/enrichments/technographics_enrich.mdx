@@ -1,0 +1,64 @@
+---
+title: "Technographics"
+sidebarTitle: "Technographics"
+openapi: "post /v2/businesses/technographics/enrich"
+---
+
+## Description
+
+The **Technographics Enrichment** endpoint provides insights into the internal technologies used by companies. This data is valuable for **lead scoring, competitive analysis, and sales prospecting** by identifying the software, platforms, and tools adopted by businesses.
+
+Technographic data is sourced from **multiple data vendors and public records**, combined with Explorium's proprietary data inference models for maximum accuracy. The dataset is **updated quarterly** to ensure fresh and relevant insights.
+
+<Note>
+  **v2:** this endpoint accepts either a single ID (a string) or a list of up to 50 IDs — the separate `/bulk_enrich` route is gone. See [v2 conventions](/v2/conventions).
+</Note>
+
+<AccordionGroup>
+  <Accordion title="How It Works">
+    - **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
+    - **Processing:** The system retrieves relevant technology stacks, including software, cloud providers, and infrastructure details.
+    - **Output:** A structured response with categorized insights into a company's technology usage.
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **`Ensure you retrieve thebusiness_id`** using the **Match Businesses** API before making technographic enrichment requests.
+    - **Leverage technographic insights** to personalize outreach and improve targeting for tech-related products.
+    - **Combine firmographic and technographic data** for deeper analysis and refined audience segmentation.
+    - **Use regular updates** to keep up with rapidly changing technology adoption trends.
+  </Accordion>
+  <Accordion title="Technographics Output Signal">
+    | SignalAPI                   | Name                                            | Description                                                                      | Data Type |
+    | :-------------------------- | :---------------------------------------------- | :------------------------------------------------------------------------------- | :-------- |
+    | full_tech_stack             | Company's full tech stack                       | Full list of technologies used by the company in all categories.                 | array     |
+    | full_nested_tech_stack      | Company's full nested tech stack                | Full nested list of technologies used by the company.                            | array     |
+    | testing_and_qa              | Testing and QA tech stack                       | List of testing and QA technologies used by the company.                         | array     |
+    | sales                       | Sales tech stack                                | List of sales technologies used by the company.                                  | array     |
+    | prog_langs_and_frameworks   | Programming languages and frameworks tech stack | List of programming, languages, and frameworks technologies used by the company. | array     |
+    | productivity_and_operations | Productivity and operations tech stack          | List of productivity and operations technologies used by the company.            | array     |
+    | product_and_design          | Product and design tech stack                   | List of product and design technologies used by the company.                     | array     |
+    | platform_and_storage        | Platform and storage tech stack                 | List of platform and storage technologies used by the company.                   | array     |
+    | operations_software         | Operations software tech stack                  | List of operations software technologies used by the company.                    | array     |
+    | operations_management       | Operations management tech stack                | List of operations management technologies used by the company.                  | array     |
+    | marketing                   | Marketing tech stack                            | List of marketing technologies used by the company.                              | array     |
+    | it_security                 | IT security tech stack                          | List of IT security technologies used by the company.                            | array     |
+    | it_management               | IT management tech stack                        | List of IT management technologies used by the company.                          | array     |
+    | hr                          | HR tech stack                                   | List of HR technologies used by the company.                                     | array     |
+    | health_tech                 | Health tech tech stack                          | List of health tech technologies used by the company.                            | array     |
+    | finance_and_accounting      | Finance and accounting tech stack               | List of finance and accounting technologies used by the company.                 | array     |
+    | ecommerce                   | Ecommerce tech stack                            | List of ecommerce technologies used by the company.                              | array     |
+    | devops_and_development      | Devops and development tech stack               | List of devops and development technologies used by the company.                 | array     |
+    | customer_management         | Customer management tech stack                  | List of customer management technologies used by the company.                    | array     |
+    | computer_networks           | Computer networks tech stack                    | List of computer networks technologies used by the company.                      | array     |
+    | communications              | Communications tech stack                       | List of communications technologies used by the company.                         | array     |
+    | collaboration               | Collaboration tech stack                        | List of collaboration technologies used by the company.                          | array     |
+    | bi_and_analytics            | Business intelligence and analytics tech stack  | List of business, intelligence, and analytics technologies used by the company.  | array     |
+  </Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" iconType="solid" color="red" /> For additional enrichment options, explore related API endpoints below.
+
+## Body Params - Try Me Example
+
+```
+business_id: 8adce3ca1cef0c986b22310e369a0793
+```

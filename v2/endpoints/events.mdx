@@ -1,0 +1,48 @@
+---
+title: "Events"
+sidebarTitle: "Events"
+description: "Business and prospect events are currently served by the v1 endpoints. The v2 events endpoints arrive before GA."
+---
+
+<Info>
+  **Events are currently available in v1 only.** The v2 events endpoints will be added before GA. v1 runs in parallel with v2, so use the v1 endpoints below — they work unchanged alongside your other v2 calls.
+</Info>
+
+## Business events
+
+| Purpose | v1 endpoint |
+| :--- | :--- |
+| Fetch events | [`POST /v1/businesses/events`](/reference/businesses/events/fetch_businesses_events) |
+| Enrollments — Add | [`/v1/businesses/events/enrollments`](/reference/businesses/events/add_businesses_enrollments) |
+| Enrollments — Update | [`/v1/businesses/events/enrollments`](/reference/businesses/events/update_businesses_enrollments) |
+| Enrollments — Delete | [`/v1/businesses/events/enrollments`](/reference/businesses/events/delete_businesses_enrollments) |
+| Enrollments — Get | [`/v1/businesses/events/enrollments`](/reference/businesses/events/get_businesses_enrollments) |
+
+The [Fetch business events](/reference/businesses/events/fetch_businesses_events) page also documents every available event type, from IPO announcements to hiring trends.
+
+## Prospect events
+
+| Purpose | v1 endpoint |
+| :--- | :--- |
+| Fetch events | [`POST /v1/prospects/events`](/reference/prospects/events/fetch_prospects_events) |
+| Enrollments — Add | [`/v1/prospects/events/enrollments`](/reference/prospects/events/add_prospects_enrollments) |
+| Enrollments — Update | [`/v1/prospects/events/enrollments`](/reference/prospects/events/update_prospects_enrollments) |
+| Enrollments — Delete | [`/v1/prospects/events/enrollments`](/reference/prospects/events/delete_prospects_enrollments) |
+| Enrollments — Get | [`/v1/prospects/events/enrollments`](/reference/prospects/events/get_prospects_enrollments) |
+
+## What changes in v2
+
+When the v2 events endpoints ship, the paths move under `/v2` and the `new_funding_round` event payload corrects two field names:
+
+| v1 field | v2 field |
+| :--- | :--- |
+| `founding_stage` | `funding_stage` |
+| `founding_date` | `funding_date` |
+
+See [What's new](/v2/whats-new#signal-fixes). This page will be replaced with the full v2 reference when the endpoints are released.
+
+## Related
+
+<Card title="Webhooks" icon="webhook" href="/v2/endpoints/webhooks">
+  Deliver events to your own endpoints — also currently served by v1
+</Card>

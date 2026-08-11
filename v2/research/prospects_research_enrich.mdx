@@ -1,0 +1,197 @@
+---
+title: "Prospects research"
+sidebarTitle: "Prospects research"
+openapi: "post /v2/prospects/research/enrich"
+---
+
+Run a custom, AI-powered research task over a list of prospects. Describe the task as a natural-language `query` or a `prompt_template`, define the result shape with an `output_schema`, and the engine returns structured JSON for each person.
+
+<Note>
+  How Research works — `query` vs `prompt_template`, the `record` context, real-time web research and its functions, credit usage, and error handling — is documented once on the [Research (GenAI) overview](/v2/endpoints/research). This page covers what is specific to the **prospects** endpoint.
+</Note>
+
+## Record fields
+
+Reference any of these with `{{ record['field_name'] }}` in a `prompt_template`. When you pass a `query` instead, the same fields are made available to the prompt generator as the entity's context.
+
+| Field | Description |
+| :-- | :-- |
+| `full_name` | The prospect's full name. |
+| `job_title` | The prospect's current job title. |
+| `job_title_level` | The seniority level of the prospect's role (e.g. Manager, Director, VP, C-Suite). |
+| `job_department` | The department or function the prospect works in (e.g. Sales, Engineering). |
+| `summary` | A short professional summary or bio for the prospect. Truncated at 1,000 characters. |
+| `organization_name` | The name of the company the prospect currently works at. |
+| `url` | The website URL of the prospect's current company. |
+| `job_company_industry` | The industry of the prospect's current company. |
+| `job_company_size` | The employee-size range of the prospect's current company. |
+| `job_company_description` | A description of the prospect's current company. Truncated at 500 characters. |
+| `location_name` | The prospect's location — city, region, and/or country. |
+| `linkedin_url` | The URL of the prospect's LinkedIn profile. |
+| `skills` | The prospect's listed skills. |
+| `education` | The prospect's education history. Truncated at 1,000 characters. |
+| `experience` | The prospect's work experience history. Truncated at 1,000 characters. |
+
+### Custom fields
+
+Any key you attach in `custom_fields` is merged into the same `record` object and can be referenced exactly like a profile field — for example `{{ record['campaign_name'] }}`. There is no fixed list: use whatever keys you send per entity. Values are treated as strings.
+
+<Note>
+  Record fields are populated from the entity's resolved Explorium profile, so a given field may be empty when that attribute isn't available for the entity. Write prompts that degrade gracefully when a field is missing, and instruct the model to use web research to fill gaps where appropriate.
+</Note>
+
+## Request
+
+The request body has two top-level keys:
+
+- **`prospects`** — the list of entities to research. Each item has a **`prospect_id`** and may include an optional `custom_fields` object.
+- **`parameters`** — controls how the analysis is generated and what shape the result takes. Identical on both endpoints; see the [overview](/v2/endpoints/research#how-it-works).
+
+<ParamField body="prospects" type="object[]" required>
+  The list of entities to research. Each entity is processed independently, and results are returned in the same order.
+
+  <Expandable title="entity object">
+    <ParamField body="prospect_id" type="string" required>
+      The Explorium identifier to research. Obtain IDs from [Match Prospects](/v2/prospects/match_prospects) or [Fetch Prospects](/v2/prospects/fetch_prospects).
+    </ParamField>
+
+    <ParamField body="custom_fields" type="object">
+      Optional key–value pairs to attach to this entity. Each key is merged into the `record` context and can be referenced from a `prompt_template` (e.g. `{{ record['campaign_name'] }}`).
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField body="parameters" type="object" required>
+  Provide **either** `query` **or** `prompt_template`, never both and never neither — see [`query` vs `prompt_template`](/v2/endpoints/research#how-it-works). `output_schema` is required with `prompt_template` and optional with `query`.
+</ParamField>
+
+## Examples
+
+<CodeGroup>
+
+```json Using a prompt_template
+{
+  "prospects": [
+    {
+      "prospect_id": "ee936e451b50c70e068e1b54e106cb89173198c4",
+      "custom_fields": { "campaign_name": "Q1 enterprise push" }
+    }
+  ],
+  "parameters": {
+    "prompt_template": "Write a one-line personalized opener for {{ record['full_name'] }}, {{ record['job_title'] }} at {{ record['organization_name'] }}, for campaign {{ record['campaign_name'] }}.",
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "opener": { "type": "string", "description": "One-line personalized outreach opener" },
+        "angle": { "type": "string", "description": "The hook or angle the opener leans on" }
+      },
+      "required": ["opener", "angle"]
+    }
+  }
+}
+```
+
+```json Using a query (decision-maker check)
+{
+  "prospects": [
+    { "prospect_id": "ee936e451b50c70e068e1b54e106cb89173198c4" }
+  ],
+  "parameters": {
+    "query": "Based on this person's role and company, assess whether they are likely a decision-maker for purchasing sales software. Explain your reasoning.",
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "decision_maker": { "type": "string", "enum": ["Yes", "No", "Influencer"], "description": "Whether the prospect is a decision-maker, a non-decision-maker, or an influencer" },
+        "reasoning": { "type": "string", "description": "Brief explanation for the assessment" }
+      },
+      "required": ["decision_maker", "reasoning"]
+    }
+  }
+}
+```
+
+</CodeGroup>
+
+### Example request (cURL)
+
+```bash
+curl --request POST \
+  --url https://api.explorium.ai/v2/prospects/research/enrich \
+  --header 'accept: application/json' \
+  --header 'api_key: your_api_key_here' \
+  --header 'content-type: application/json' \
+  --data '{
+    "prospects": [
+      { "prospect_id": "ee936e451b50c70e068e1b54e106cb89173198c4" }
+    ],
+    "parameters": {
+      "query": "Assess whether this person is likely a decision-maker for purchasing sales software. Explain your reasoning.",
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "decision_maker": { "type": "string", "enum": ["Yes", "No", "Influencer"], "description": "Whether the prospect is a decision-maker, a non-decision-maker, or an influencer" },
+          "reasoning": { "type": "string", "description": "Brief explanation for the assessment" }
+        },
+        "required": ["decision_maker", "reasoning"]
+      }
+    }
+  }'
+```
+
+## Response
+
+A successful request returns a `200` with a `data` array — one entry per input entity, in input order — plus a `total_results` count.
+
+Each successful result contains the `prospect_id` and the generated fields defined by the `output_schema`. Rows that fail carry an `_error` field instead of the generated fields, rather than being dropped.
+
+<ResponseField name="data" type="object[]">
+  One result per input entity, in input order.
+
+  <Expandable title="result object">
+    <ResponseField name="prospect_id" type="string">
+      The identifier this result corresponds to.
+    </ResponseField>
+
+    <ResponseField name="<output_schema fields>" type="varies">
+      The generated fields, conforming to the `output_schema` — the one supplied in the request, or the auto-generated one when using `query` without a schema.
+    </ResponseField>
+
+    <ResponseField name="_error" type="string">
+      Present only when the row failed. Describes the failure; the generated fields are omitted for this row.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="total_results" type="integer">
+  The total number of results returned in `data`.
+</ResponseField>
+
+### Example response
+
+```json
+{
+  "data": [
+    {
+      "prospect_id": "ee936e451b50c70e068e1b54e106cb89173198c4",
+      "decision_maker": "Yes",
+      "reasoning": "Their title indicates ownership of the sales function, with budget authority over tooling."
+    }
+  ],
+  "total_results": 1
+}
+```
+
+### Example failed row
+
+```json
+{
+  "prospect_id": "f12c9a77b0e34d51a9c0b8e2d7f4a6c3",
+  "_error": "Unable to resolve a profile for this identifier."
+}
+```
+
+## Researching businesses instead
+
+This endpoint researches prospects and exposes the prospect record fields above. To research businesses — with businesse fields such as `organization_name`, `revenue_range`, and `full_tech_stack` — use [Businesses research](/v2/research/businesses_research_enrich).
+
+For lists larger than a single request, use [the asynchronous variant](/v2/research/prospects_research_job).

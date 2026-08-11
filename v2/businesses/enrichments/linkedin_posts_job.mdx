@@ -1,0 +1,48 @@
+---
+title: "LinkedIn posts (async)"
+sidebarTitle: "LinkedIn posts"
+openapi: "post /v2/businesses/linkedin_posts/job"
+---
+
+<Note>
+  **Asynchronous variant.** This submits a job through the [async job infrastructure](/v2/async-jobs) — poll [job status](/v2/jobs/get_job_status) for progress and results. Input comes from an uploaded dataset (`list_id`); limits are 10,000 rows and a 24-hour run time.
+
+  For the full output signal reference, see [the synchronous endpoint](/v2/businesses/enrichments/linkedin_posts_enrich).
+</Note>
+
+<AccordionGroup>
+  <Accordion title="How It Works">
+    - **Input:** Provide a `list_id` from the [dataset upload endpoint](/v2/jobs/upload_entity_id_dataset). Async endpoints do not accept inline IDs.
+    - **Processing:** The system retrieves social media engagement metrics for all submitted businesses in a **single request**.
+    - **Output:** A structured response summarizing social media activity and trends.
+  </Accordion>
+  <Accordion title="Example Request (cURL)">
+    ```shell Bash
+    curl --request POST \
+         --url https://api.explorium.ai/v2/businesses/linkedin_posts/job \
+         --header 'accept: application/json' \
+         --header 'api_key: your_api_key_here' \
+         --header 'content-type: application/json' \
+         --data '{
+      "business_ids": [
+        "8adce3ca1cef0c986b22310e369a0793",
+        "a34bacf839b923770b2c360eefa26748"
+      ]
+    }'
+    ```
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **Track social media activity** to analyze company messaging trends.
+    - **Compare engagement metrics** with competitors.
+    - **Use social media insights** to refine branding strategies.
+  </Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" iconType="solid" color="red" /> **For additional enrichment options, explore related API endpoints below.**
+
+## Body Params - Try Me Example
+
+```
+business_ids: ["8adce3ca1cef0c986b22310e369a0793",
+               "a34bacf839b923770b2c360eefa26748"]
+```

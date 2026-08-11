@@ -1,0 +1,377 @@
+---
+title: "Running an async enrichment end to end"
+sidebarTitle: "End-to-end guide"
+description: "A complete walkthrough of the AgentSource v2 async flow: upload a CSV of entity IDs, submit an enrichment job, poll for status, and download the results."
+---
+
+<Info>
+  **Beta.** AgentSource v2 is in beta. Details may still change before GA.
+</Info>
+
+## When to use async
+
+Every enrichment in v2 comes in two variants:
+
+| | Sync (`.../enrich`) | Async (`.../job`) |
+| :--- | :--- | :--- |
+| Input | A single ID or a list of **up to 50** | A **dataset** of up to **10,000** IDs |
+| How you pass input | IDs in the request body | A `list_id` from the upload endpoint |
+| Results | Returned in the response | Downloaded from a URL when the job finishes |
+| Best for | Interactive lookups, small batches | Large batches, scheduled jobs |
+
+<Warning>
+  Async endpoints **do not accept inline IDs**. Every `.../job` request takes a `list_id` and nothing else (some enrichments also take a `parameters` object). You must upload your IDs first — that is step 1 below.
+</Warning>
+
+## The flow
+
+<Steps>
+  <Step title="Upload a CSV of entity IDs">
+    `POST /v2/async/entity-id-datasets/upload` returns a `list_id`.
+  </Step>
+  <Step title="Submit the job">
+    `POST /v2/{entity}/{enrichment}/job` with that `list_id` returns a `job_id`.
+  </Step>
+  <Step title="Poll for status">
+    `GET /v2/jobs/status/{job_id}` until the job finishes.
+  </Step>
+  <Step title="Download the results">
+    The finished job exposes `results.download_url` — a CSV.
+  </Step>
+</Steps>
+
+---
+
+## Step 1 — Prepare your CSV
+
+The upload endpoint takes a CSV of entity IDs. Start from a sample:
+
+<CardGroup cols={2}>
+  <Card title="sample-business-ids.csv" icon="file-csv" href="/images/sample-business-ids.csv">
+    Six business IDs — download and use as-is
+  </Card>
+  <Card title="sample-prospect-ids.csv" icon="file-csv" href="/images/sample-prospect-ids.csv">
+    Three prospect IDs
+  </Card>
+</CardGroup>
+
+```csv sample-business-ids.csv
+business_id
+e11943a6031a0e6114ae69c257617980
+c17a9b84c3c3ade4cdce7373958ccb9c
+8adce3ca1cef0c986b22310e369a0793
+6eebb2af6bb0fb54b7ef435a98bb66d9
+c5bfcfde8643f8870b5c5cbecb75cd22
+d9ee9a9c0773759f16e6e458cbe14670
+```
+
+Get IDs of your own from [Match businesses](/v2/businesses/match_businesses) or [Fetch businesses](/v2/businesses/fetch_businesses) — or [Match prospects](/v2/prospects/match_prospects) and [Fetch prospects](/v2/prospects/fetch_prospects) for people.
+
+<Note>
+  Keep the file within the **10,000-row** async limit. The upload response echoes a `rowCount` so you can confirm every row was ingested.
+</Note>
+
+## Step 2 — Upload the dataset
+
+Send the file as `multipart/form-data`. All four fields are required.
+
+| Field | Value |
+| :--- | :--- |
+| `file` | Your CSV |
+| `entity_type` | `business` or `prospect` |
+| `name` | A short label for the dataset |
+| `description` | What the dataset contains |
+
+<CodeGroup>
+```bash cURL
+curl --request POST \
+  --url https://api.explorium.ai/v2/async/entity-id-datasets/upload \
+  --header 'api_key: YOUR_API_KEY' \
+  --form 'file=@sample-business-ids.csv' \
+  --form 'entity_type=business' \
+  --form 'name=Q1 target accounts' \
+  --form 'description=Business IDs for the Q1 firmographics refresh'
+```
+
+```python Python
+import requests
+
+BASE = "https://api.explorium.ai"
+HEADERS = {"api_key": "YOUR_API_KEY"}
+
+with open("sample-business-ids.csv", "rb") as f:
+    resp = requests.post(
+        f"{BASE}/v2/async/entity-id-datasets/upload",
+        headers=HEADERS,
+        files={"file": ("sample-business-ids.csv", f, "text/csv")},
+        data={
+            "entity_type": "business",
+            "name": "Q1 target accounts",
+            "description": "Business IDs for the Q1 firmographics refresh",
+        },
+    )
+resp.raise_for_status()
+dataset = resp.json()
+
+list_id = dataset["list_id"]
+print(f"uploaded {dataset['rowCount']} rows -> list_id={list_id}")
+print(f"dataset expires at {dataset['expiresAt']}")
+```
+</CodeGroup>
+
+The response gives you the handle you need for step 2:
+
+```json Response
+{
+  "list_id": "b8f2c1d4-...",
+  "name": "Q1 target accounts",
+  "description": "Business IDs for the Q1 firmographics refresh",
+  "rowCount": 6,
+  "entityType": "business",
+  "tenantId": "...",
+  "expiresAt": "2026-09-06T00:00:00Z"
+}
+```
+
+<Warning>
+  Datasets expire. Note `expiresAt` and re-upload before running a job against a stale list.
+</Warning>
+
+## Step 3 — Submit the job
+
+Post the `list_id` to any `.../job` endpoint. This example uses [Firmographics (async)](/v2/businesses/enrichments/firmographics_job).
+
+<CodeGroup>
+```bash cURL
+curl --request POST \
+  --url https://api.explorium.ai/v2/businesses/firmographics/job \
+  --header 'api_key: YOUR_API_KEY' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "list_id": "b8f2c1d4-..."
+  }'
+```
+
+```python Python
+resp = requests.post(
+    f"{BASE}/v2/businesses/firmographics/job",
+    headers={**HEADERS, "Content-Type": "application/json"},
+    json={"list_id": list_id},
+)
+resp.raise_for_status()
+job_id = resp.json()["job_id"]
+print(f"submitted job {job_id}")
+```
+</CodeGroup>
+
+<Note>
+  **A few enrichments need a `parameters` object as well.** `company_website_keywords` requires `keywords`, and both research endpoints take `query` or `prompt_template` plus an `output_schema`:
+
+  ```json
+  {
+    "list_id": "b8f2c1d4-...",
+    "parameters": { "keywords": ["cloud migration", "data platform"] }
+  }
+  ```
+</Note>
+
+## Step 4 — Poll for status
+
+Call the status endpoint until the job finishes. A finished job carries a `results` object.
+
+<CodeGroup>
+```bash cURL
+curl --request GET \
+  --url https://api.explorium.ai/v2/jobs/status/JOB_ID \
+  --header 'api_key: YOUR_API_KEY'
+```
+
+```python Python
+import time
+
+while True:
+    resp = requests.get(f"{BASE}/v2/jobs/status/{job_id}", headers=HEADERS)
+    resp.raise_for_status()
+    job = resp.json()
+
+    if job.get("error"):
+        raise RuntimeError(f"job failed: {job['error']}")
+    if job.get("results", {}).get("download_url"):
+        break
+
+    print(f"status={job['status']} ... waiting")
+    time.sleep(30)
+
+results = job["results"]
+usage = job.get("credit_usage", {})
+print(f"done — {usage.get('total_results')} results, {usage.get('total_credits')} credits")
+print(f"download ({results['format']}) expires at {results['expires_at']}")
+```
+</CodeGroup>
+
+A completed response looks like this:
+
+```json Response
+{
+  "job_id": "3f9a...",
+  "status": "...",
+  "input": { "list_id": "b8f2c1d4-...", "row_count": 6, "entity_type": "business" },
+  "timing": {
+    "created_at": "2026-08-09T10:00:00Z",
+    "started_at": "2026-08-09T10:00:04Z",
+    "finished_at": "2026-08-09T10:02:11Z"
+  },
+  "credit_usage": { "total_credits": 6, "total_results": 6 },
+  "results": {
+    "format": "csv",
+    "download_url": "https://...",
+    "expires_at": "2026-08-16T10:02:11Z"
+  }
+}
+```
+
+<Note>
+  The spec types `status` as a free-form string and does not enumerate its values, so the sample above keys off `results.download_url` and `error` rather than matching on specific status text. That is the more robust pattern regardless.
+</Note>
+
+## Step 5 — Download the results
+
+`results.download_url` points at a CSV. It expires — fetch it promptly.
+
+<CodeGroup>
+```bash cURL
+curl --location --output firmographics.csv "PASTE_DOWNLOAD_URL"
+```
+
+```python Python
+csv_bytes = requests.get(results["download_url"]).content
+with open("firmographics.csv", "wb") as f:
+    f.write(csv_bytes)
+print(f"wrote {len(csv_bytes):,} bytes to firmographics.csv")
+```
+</CodeGroup>
+
+---
+
+## Complete script
+
+Everything above, end to end:
+
+```python async_enrich.py
+import time
+import requests
+
+BASE = "https://api.explorium.ai"
+API_KEY = "YOUR_API_KEY"
+HEADERS = {"api_key": API_KEY}
+
+CSV_PATH = "sample-business-ids.csv"
+ENRICHMENT = "firmographics"      # any business enrichment
+POLL_SECONDS = 30
+
+
+def upload(path: str) -> str:
+    """Upload a CSV of entity IDs and return its list_id."""
+    with open(path, "rb") as f:
+        r = requests.post(
+            f"{BASE}/v2/async/entity-id-datasets/upload",
+            headers=HEADERS,
+            files={"file": (path, f, "text/csv")},
+            data={
+                "entity_type": "business",
+                "name": "async guide demo",
+                "description": "Business IDs uploaded by the end-to-end guide",
+            },
+        )
+    r.raise_for_status()
+    d = r.json()
+    print(f"uploaded {d['rowCount']} rows -> {d['list_id']}")
+    return d["list_id"]
+
+
+def submit(list_id: str, enrichment: str) -> str:
+    """Submit an async enrichment job and return its job_id."""
+    r = requests.post(
+        f"{BASE}/v2/businesses/{enrichment}/job",
+        headers={**HEADERS, "Content-Type": "application/json"},
+        json={"list_id": list_id},
+    )
+    r.raise_for_status()
+    job_id = r.json()["job_id"]
+    print(f"submitted job {job_id}")
+    return job_id
+
+
+def wait_for(job_id: str) -> dict:
+    """Poll until the job produces results or fails."""
+    while True:
+        r = requests.get(f"{BASE}/v2/jobs/status/{job_id}", headers=HEADERS)
+        r.raise_for_status()
+        job = r.json()
+
+        if job.get("error"):
+            raise RuntimeError(f"job failed: {job['error']}")
+        if job.get("results", {}).get("download_url"):
+            return job
+
+        print(f"  status={job['status']} — checking again in {POLL_SECONDS}s")
+        time.sleep(POLL_SECONDS)
+
+
+def download(job: dict, out_path: str) -> None:
+    content = requests.get(job["results"]["download_url"]).content
+    with open(out_path, "wb") as f:
+        f.write(content)
+    print(f"wrote {len(content):,} bytes to {out_path}")
+
+
+if __name__ == "__main__":
+    list_id = upload(CSV_PATH)
+    job_id = submit(list_id, ENRICHMENT)
+    job = wait_for(job_id)
+
+    usage = job.get("credit_usage", {})
+    print(f"{usage.get('total_results')} results for {usage.get('total_credits')} credits")
+    download(job, f"{ENRICHMENT}.csv")
+```
+
+## Cancelling a job
+
+If you submitted the wrong list or no longer need a run, cancel it rather than letting it finish and consume credits:
+
+```bash cURL
+curl --request POST \
+  --url https://api.explorium.ai/v2/jobs/cancel/JOB_ID \
+  --header 'api_key: YOUR_API_KEY'
+```
+
+## Limits and gotchas
+
+| | |
+| :--- | :--- |
+| Max rows per dataset | 10,000 |
+| Max job run time | 24 hours |
+| Result format | CSV, via a URL that expires |
+| Dataset lifetime | Bounded — see `expiresAt` on upload |
+
+- **Async never takes inline IDs.** If you send `business_ids` to a `/job` endpoint it will be rejected; upload first and send `list_id`.
+- **Match `entity_type` to the endpoint.** A `business` dataset belongs to `/v2/businesses/...`, a `prospect` dataset to `/v2/prospects/...`.
+- **Poll on an interval**, not in a tight loop — jobs can run for a long time.
+- **Reuse one dataset across enrichments.** Upload once, then submit several jobs against the same `list_id`.
+
+## Related
+
+<Columns cols={2}>
+  <Card title="Async jobs" icon="clock" href="/v2/async-jobs">
+    Concepts and endpoint reference
+  </Card>
+  <Card title="Upload dataset" icon="upload" href="/v2/jobs/upload_entity_id_dataset">
+    Full request and response schema
+  </Card>
+  <Card title="Get job status" icon="magnifying-glass" href="/v2/jobs/get_job_status">
+    Status fields and playground
+  </Card>
+  <Card title="Business enrichments" icon="layer-group" href="/v2/businesses/enrichments/overview">
+    Every enrichment and its async variant
+  </Card>
+</Columns>

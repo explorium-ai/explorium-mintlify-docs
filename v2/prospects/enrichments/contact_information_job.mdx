@@ -1,0 +1,154 @@
+---
+title: "Contact information (async) — waterfall"
+sidebarTitle: "Contact information"
+openapi: "post /v2/prospects/contact_information/job"
+---
+
+## Description
+
+The **Asynchronous Contact Information Enrichment** retrieves verified **emails, phone numbers, and mobile numbers** for up to 10,000 prospects per job — and, unlike the [synchronous endpoint](/v2/prospects/enrichments/contact_information_enrich), it supports **waterfall enrichment**: prospects that Explorium data cannot enrich are automatically retried against a verified **external provider**, increasing overall contact coverage.
+
+<Icon icon="thumbtack" iconType="solid" color="red" /> **Key Benefits:**
+
+- **Asynchronous retrieval** of enriched contact data for up to 10,000 prospects per job.
+- **Higher coverage** — the optional waterfall falls back to an external provider for prospects with no Explorium contact data.
+- **Source transparency** — every result is tagged with where its email and phone came from.
+
+<Note>
+  **Asynchronous variant.** This submits a job through the [async job infrastructure](/v2/async-jobs) — poll [job status](/v2/jobs/get_job_status) for progress and results. Input comes from an uploaded dataset (`list_id`); limits are 10,000 rows and a 24-hour run time.
+
+  For the output signal reference shared with the sync endpoint, see [Contact information](/v2/prospects/enrichments/contact_information_enrich).
+</Note>
+
+## Parameters
+
+| Parameter | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `waterfall` | enum: `explorium_only` / `full` | `explorium_only` | Controls which data sources are used. `explorium_only` enriches with Explorium contact data only — identical to today's behavior. `full` runs the waterfall: Explorium first, then the external provider for prospects Explorium could not enrich. |
+| `contact_types` | array of enum: `email` / `phone` | both | Which contact types to query — email, phone, or both. |
+
+<Warning>
+  **`waterfall` is only available on this asynchronous endpoint.** Passing it to the synchronous `/enrich` endpoint returns a validation error.
+</Warning>
+
+## How the waterfall works
+
+With `waterfall: "full"`, each job runs five steps:
+
+<Steps>
+  <Step title="Explorium enrichment">
+    All prospects in the dataset are enriched with Explorium contact data. A prospect counts as enriched if at least one email **or** phone number is returned.
+  </Step>
+  <Step title="Identify gaps">
+    Prospects with no email **and** no phone from Explorium are collected.
+  </Step>
+  <Step title="External fallback">
+    The unenriched prospects are sent to the external provider, and its results are mapped onto the same contact schema (`emails`, `phone_numbers`, `mobile_phone`, `professional_email_status`).
+  </Step>
+  <Step title="Merge and return">
+    One unified result set covers all prospects, with `email_source` and `phone_source` tagging where each value came from.
+  </Step>
+  <Step title="Credits charged by source">
+    Explorium-sourced and externally-sourced results are charged at different rates — see [Credit charging](#credit-charging).
+  </Step>
+</Steps>
+
+## Example request
+
+<CodeGroup>
+```bash cURL
+curl --request POST \
+  --url https://api.explorium.ai/v2/prospects/contact_information/job \
+  --header 'api_key: YOUR_API_KEY' \
+  --header 'content-type: application/json' \
+  --data '{
+    "list_id": "b8f2c1d4-...",
+    "parameters": {
+      "waterfall": "full",
+      "contact_types": ["email", "phone"]
+    }
+  }'
+```
+
+```python Python
+import requests
+
+resp = requests.post(
+    "https://api.explorium.ai/v2/prospects/contact_information/job",
+    headers={"api_key": "YOUR_API_KEY", "content-type": "application/json"},
+    json={
+        "list_id": list_id,   # from the dataset upload endpoint
+        "parameters": {
+            "waterfall": "full",
+            "contact_types": ["email", "phone"],
+        },
+    },
+)
+resp.raise_for_status()
+job_id = resp.json()["job_id"]
+```
+</CodeGroup>
+
+The `list_id` comes from the [dataset upload endpoint](/v2/jobs/upload_entity_id_dataset) — see the [end-to-end guide](/v2/async-guide) for the full flow.
+
+## Response
+
+Poll [job status](/v2/jobs/get_job_status) with the returned `job_id`. A finished waterfall job reports per-source totals under `additional_data`, alongside the usual credit usage:
+
+```json Job status (completed)
+{
+  "job_id": "6a79d925cad807e21132019e",
+  "status": "succeeded",
+  "started": "2026-08-10T13:59:01.832000+00:00",
+  "finished": "2026-08-10T14:10:21.560000+00:00",
+  "credit_usage": {
+    "total_credits": 35,
+    "total_results": 15
+  },
+  "additional_data": {
+    "total_external_emails": 0,
+    "total_external_phones": 0,
+    "total_explorium_emails": 10,
+    "total_explorium_phones": 5
+  },
+  "error": null
+}
+```
+
+### Result fields
+
+Results are downloaded as a CSV from `results.download_url`. Each row carries the contact data plus its source tags:
+
+| Column | Description |
+| :--- | :--- |
+| `entity_ids` | The prospect identifier(s) the row corresponds to |
+| `emails` | All email addresses found, each with an `address` and a `type` (e.g. `current_professional`, `personal`) |
+| `professional_email` | The current professional email address |
+| `professional_email_status` | Validity status of the professional email: `valid`, `catch_all`, or `invalid` |
+| `phone_numbers` | All phone numbers found |
+| `mobile_phone` | The prospect's direct-dial mobile number |
+| `email_source` | Where the email came from: `explorium`, `external_source`, or empty when no email was found |
+| `phone_source` | Where the phone came from: `explorium`, `external_source`, or empty when no phone was found |
+
+Prospects that neither source could enrich are still returned, with the contact columns empty — and cost nothing.
+
+## Credit charging
+
+Credits are charged per result, according to the source that produced it:
+
+| Data source | Email | Phone |
+| :--- | :--- | :--- |
+| Explorium | 2 credits | 5 credits |
+| External provider | 3 credits | 24 credits |
+| No data returned | 0 credits | 0 credits |
+
+For example, a prospect whose email came from Explorium and whose phone came from the external provider costs 2 + 24 = 26 credits.
+
+With `waterfall: "explorium_only"` (or the parameter omitted), behavior, response contract, and credit charging are identical to the endpoint as it works today — the waterfall adds cost only when the external provider actually returns data.
+
+## Best practices
+
+- **Start with `explorium_only`** to see your Explorium-native coverage, then rerun the gaps with `full` if you need more.
+- **Use `contact_types`** to control spend — externally-sourced phones cost significantly more than emails, so request only what you need.
+- **Check `additional_data`** on the job status to see how many results each source contributed before downloading.
+- **Filter by `email_source` / `phone_source`** downstream if you track data provenance per record.

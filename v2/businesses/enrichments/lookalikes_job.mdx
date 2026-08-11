@@ -1,0 +1,126 @@
+---
+title: "Lookalikes (async)"
+sidebarTitle: "Lookalikes"
+openapi: "post /v2/businesses/lookalikes/job"
+---
+
+## **Description**
+
+This enrichment is powered by Ocean.io, a provider of lookalike companies based on advanced similarity analysis.
+
+<Frame>
+  ![ocean.io - logo](/images/reference/0bfdc090de99b88acc7276e2d8af4455a5e88453f8c36d2a038b5dab173d8655-image.png)
+</Frame>
+
+The **Lookalike Companies Enrichment** identifies and returns businesses that closely resemble a given company across key dimensions such as industry, size, geography, and online presence. This enrichment is powered by an external API provided by Ocean.io, which uses its own similarity engine to surface relevant company lookalikes.
+
+Similarity scores are calculated based on a combination of structured business attributes (e.g., number of employees, revenue range, industry classification, and country), semantic similarity of company descriptions, digital footprint overlap (such as website content and web signals), and additional contextual indicators sourced from Ocean.io’s data graph.
+
+For each input company (business_id), the enrichment returns up to 3 lookalike companies, including their firmographic attributes and a similarity score indicating the strength of the match (e.g., Medium or High).
+
+This enrichment provides a powerful signal for identifying companies that “look like” your target ideal for use cases such as lead generation, market expansion, competitive intelligence, and segmentation strategies.
+
+<Note>
+  **Asynchronous variant.** This submits a job through the [async job infrastructure](/v2/async-jobs) — poll [job status](/v2/jobs/get_job_status) for progress and results. Input comes from an uploaded dataset (`list_id`); limits are 10,000 rows and a 24-hour run time.
+
+  For the full output signal reference, see [the synchronous endpoint](/v2/businesses/enrichments/lookalikes_enrich).
+</Note>
+
+<AccordionGroup>
+  <Accordion title="How It Works">
+    - **Input:** Provide a `business_id` obtained from the **Match Businesses** API.
+    - **Processing:** The system identifies businesses with high similarity scores based on business attributes, descriptions, and digital footprint.
+    - **Output:** A list of lookalike companies with attributes such as name, website, industry, size, revenue range, and similarity score.
+  </Accordion>
+  <Accordion title="Example Request (cURL)">
+    ```bash Bash
+    {
+    "request_context": {
+    "seller_id": "sample_id"
+    },
+    "business_ids": ["9664930a34aa8e59f9b994b70e8bc15e"]
+    }
+    ```
+  </Accordion>
+  <Accordion title="Example Response">
+    ```json JSON expandable
+    {
+      "response_context": {
+        "correlation_id": "be542cecda9b40c8af830adc25b71b0c",
+        "request_status": "success",
+        "time_took_in_seconds": 2.317
+      },
+      "data": [
+        {
+          "business_id": "9664930a34aa8e59f9b994b70e8bc15e",
+          "data": {
+            "business_id": "9664930a34aa8e59f9b994b70e8bc15e",
+            "lookalike_business_id": "443fbc49b4ab9988d64065d7e2fddf1a",
+            "lookalike_business_name": "centrify",
+            "lookalike_website": "https://delinea.com",
+            "lookalike_description": "Please follow Delinea on Linkedin! Centrify is now Delinea, a leading provider of privileged access management (PAM) solutions that make security seamless for the modern, hybrid enterprise. Our solutions empower organizations to secure critical data, devices, code, and cloud infrastructure to help reduce risk, ensure compliance, and simplify security. Delinea removes complexity and defines the boundaries of access for thousands of customers worldwide. Our customers range from small businesses to the world's largest financial institutions, intelligence agencies, and critical infrastructure companies.",
+            "lookalike_number_of_employees_range": "501-1000",
+            "lookalike_revenue_range": "75M-200M",
+            "lookalike_naics_description": "Software Publishers",
+            "lookalike_country_location": "us",
+            "similarity_score": "High"
+          }
+        },
+        {
+          "business_id": "9664930a34aa8e59f9b994b70e8bc15e",
+          "data": {
+            "business_id": "9664930a34aa8e59f9b994b70e8bc15e",
+            "lookalike_business_id": "0230a888e8196d7b94ddd866d2e4d9fc",
+            "lookalike_business_name": "beyondtrust",
+            "lookalike_website": "https://beyondtrust.com",
+            "lookalike_description": "BeyondTrust is a global leader in Privileged Access Management (PAM), offering advanced solutions to secure and manage privileges across traditional, cloud, and hybrid environments. Their Universal Privilege Management approach protects privileges related to passwords, endpoints, and access, enhancing visibility and control for organizations to reduce risk, ensure compliance, and improve operational performance. Trusted by 20,000 customers, including 78 of the Fortune 100, BeyondTrust's platform empowers organizations to shrink their attack surface and mitigate security blind spots through intelligent identity threat detection and privilege control.",
+            "lookalike_number_of_employees_range": "1001-5000",
+            "lookalike_revenue_range": "500M-1B",
+            "lookalike_naics_description": "Computer Systems Design Services",
+            "lookalike_country_location": "us",
+            "similarity_score": "High"
+          }
+        },
+        {
+          "business_id": "9664930a34aa8e59f9b994b70e8bc15e",
+          "data": {
+            "business_id": "9664930a34aa8e59f9b994b70e8bc15e",
+            "lookalike_business_id": "21d52ef9535ea4e6d0872a8c15dc2b59",
+            "lookalike_business_name": "cyberi3secure",
+            "lookalike_website": "https://cyberi3secure.com",
+            "lookalike_description": "Cyberi3Secure is uniquely qualified to help companies improve efficiency, strengthen compliance, and protecting data and assets by addressing privilege access management. Our specialized focus on PAM practice, combined with our deep knowledge and experience, we can deliver and deploy customized privilege access management solutions for every customer.",
+            "lookalike_number_of_employees_range": "11-50",
+            "lookalike_revenue_range": "5M-10M",
+            "lookalike_naics_description": "Computer Systems Design and Related Services",
+            "lookalike_country_location": "in",
+            "similarity_score": "High"
+          }
+        }
+      ],
+      "total_results": 3
+    }
+    ```
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **`Always use a validbusiness_id`** obtained via the **Match Businesses** API.
+    - **Interpret similarity scores** to prioritize the strongest matches for your use case (e.g. focus on “High” similarity for precise lookalikes).
+    - **Combine lookalike insights** with other enrichment signals (e.g. firmographics, technographics) for deeper segmentation.
+    - **Re-run lookalike queries periodically** to capture changes in the business landscape and discover new similar companies.
+  </Accordion>
+  <Accordion title="Lookalike Companies Output Signals">
+    | SignalAPI                           | Name                                | Description                                                                                    | Data Type |
+    | :---------------------------------- | :---------------------------------- | :--------------------------------------------------------------------------------------------- | :-------- |
+    | comparable_business_id              | Comparable Business ID              | The Explorium ID of the requested company.                                                     | string    |
+    | lookalike_business_id               | Lookalike Business ID               | The Explorium ID of the lookalike company.                                                     | string    |
+    | lookalike_business_name             | Lookalike Business Name             | Name of the lookalike company.                                                                 | string    |
+    | lookalike_website                   | Lookalike Website                   | Website URL of the lookalike.                                                                  | string    |
+    | lookalike_description               | Lookalike Description               | Description of the lookalike company.                                                          | string    |
+    | lookalike_number_of_employees_range | Lookalike Number of Employees Range | Employee range for the lookalike.                                                              | string    |
+    | lookalike_revenue_range             | Lookalike Revenue Range             | Revenue range for the lookalike.                                                               | string    |
+    | lookalike_naics_description         | Lookalike NAICS Description         | NAICS (North American Industry Classification System) description for the lookalike.           | string    |
+    | lookalike_country_location          | Lookalike Country Location          | The country of operation for the lookalike.                                                    | string    |
+    | similarity_score                    | Similarity Score                    | Similarity score of the lookalike to the requested company. Medium (0.95–0.975), High (0.975+) | string    |
+  </Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" iconType="solid" color="red" /> _For additional enrichment options, explore related API endpoints below._

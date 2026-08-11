@@ -1,0 +1,52 @@
+---
+title: "Async job infrastructure"
+sidebarTitle: "Overview"
+description: "How AgentSource v2 async endpoints work: job submission, status polling, cancellation, dataset upload, and the input and runtime limits."
+---
+
+<Info>
+  **Beta.** AgentSource v2 is in beta. Details may still change before GA.
+</Info>
+
+## Overview
+
+Every `.../job` endpoint in v2 runs through a shared async job layer. Instead of returning results inline, a job endpoint accepts your input and returns a job reference. You then poll for state and collect results.
+
+<Steps>
+  <Step title="Submit">
+    Upload a CSV of entity IDs, then call any `.../job` endpoint with the returned `list_id` — for example [Firmographics (async)](/v2/businesses/enrichments/firmographics_job).
+  </Step>
+  <Step title="Poll">
+    Call [Get job status](/v2/jobs/get_job_status) with the returned job ID to check state and retrieve results once complete.
+  </Step>
+  <Step title="Cancel (optional)">
+    Call [Cancel job](/v2/jobs/cancel_job) to stop a job that is queued or running.
+  </Step>
+</Steps>
+
+## Endpoints
+
+| Purpose | Endpoint |
+| :--- | :--- |
+| Job status and results | `GET /v2/jobs/status/{job_id}` |
+| Cancel a job | `POST /v2/jobs/cancel/{job_id}` |
+| Upload an entity ID dataset as job input | `POST /v2/async/entity-id-datasets/upload` |
+
+Async jobs take their input **only** as an uploaded dataset — [upload your IDs](/v2/jobs/upload_entity_id_dataset) and pass the returned `list_id`. Inline IDs are not accepted. The [end-to-end guide](/v2/async-guide) walks through the whole flow.
+
+## Limits
+
+| Limit | Value |
+| :--- | :--- |
+| Maximum input size per async enrichment | 10,000 records |
+| Maximum job run time | 24 hours |
+
+## Which endpoints are async
+
+Every enrichment has an async variant — see the **Async** groups under Business enrichments and Prospect enrichments in the sidebar, or the [business](/v2/businesses/enrichments/overview) and [prospect](/v2/prospects/enrichments/overview) enrichment overviews.
+
+These are **sync only**:
+
+- Match, fetch, and stats for [businesses](/v2/businesses/fetch_businesses) and [prospects](/v2/prospects/fetch_prospects)
+- [Autocomplete](/v2/autocomplete)
+- [Credits](/v2/credits/get_credits)

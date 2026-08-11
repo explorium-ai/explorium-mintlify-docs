@@ -1,0 +1,33 @@
+---
+title: "Webhooks"
+sidebarTitle: "Webhooks"
+description: "Webhooks are currently served by the v1 endpoints. The v2 webhooks endpoints arrive before GA."
+---
+
+<Info>
+  **Webhooks are currently available in v1 only.** The v2 webhooks endpoints will be added before GA. v1 runs in parallel with v2, so use the v1 endpoints below — they work unchanged alongside your other v2 calls.
+</Info>
+
+Webhooks push [events](/v2/endpoints/events) to your own endpoints as they happen. Start with the [webhooks guide](/reference/webhooks/webhooks), which covers registration, payload formats, delivery, and retries.
+
+| Purpose | v1 endpoint |
+| :--- | :--- |
+| Add a webhook | [`POST /v1/webhooks`](/reference/webhooks/add_webhook) |
+| Get a webhook | [`GET /v1/webhooks/{partner_id}`](/reference/webhooks/get_webhook) |
+| Delete a webhook | [`DELETE /v1/webhooks/{partner_id}`](/reference/webhooks/delete_webhook) |
+| Check connectivity | [`POST /v1/webhooks/check_connectivity`](/reference/webhooks/check_webhook_connectivity) |
+
+## What changes in v2
+
+When the v2 webhooks endpoints ship, only the path prefix moves to `/v2` — payload shape, delivery, and retries are unchanged in scope. This page will be replaced with the full v2 reference when the endpoints are released.
+
+## Related
+
+<Columns cols={2}>
+  <Card title="Events" icon="calendar" href="/v2/endpoints/events">
+    The events delivered to your webhooks
+  </Card>
+  <Card title="Webhooks guide (v1)" icon="book" href="/reference/webhooks/webhooks">
+    Registration, payload formats, and delivery
+  </Card>
+</Columns>

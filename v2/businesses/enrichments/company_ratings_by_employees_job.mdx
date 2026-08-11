@@ -1,0 +1,48 @@
+---
+title: "Company ratings by employees (async)"
+sidebarTitle: "Company ratings by employees"
+openapi: "post /v2/businesses/company_ratings_by_employees/job"
+---
+
+<Note>
+  **Asynchronous variant.** This submits a job through the [async job infrastructure](/v2/async-jobs) — poll [job status](/v2/jobs/get_job_status) for progress and results. Input comes from an uploaded dataset (`list_id`); limits are 10,000 rows and a 24-hour run time.
+
+  For the full output signal reference, see [the synchronous endpoint](/v2/businesses/enrichments/company_ratings_by_employees_enrich).
+</Note>
+
+<AccordionGroup>
+  <Accordion title="How It Works">
+    - **Input:** Provide a `list_id` from the [dataset upload endpoint](/v2/jobs/upload_entity_id_dataset). Async endpoints do not accept inline IDs.
+    - **Processing:** The system retrieves company rating data for all submitted businesses in a **single request**.
+    - **Output:** A structured response with employer reputation and employee satisfaction metrics.
+  </Accordion>
+  <Accordion title="Example Request (cURL)">
+    ```shell Bash
+    curl --request POST \
+         --url https://api.explorium.ai/v2/businesses/company_ratings_by_employees/job \
+         --header 'accept: application/json' \
+         --header 'api_key: your_api_key_here' \
+         --header 'content-type: application/json' \
+         --data '{
+      "business_ids": [
+        "8adce3ca1cef0c986b22310e369a0793",
+        "a34bacf839b923770b2c360eefa26748"
+      ]
+    }'
+    ```
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **Assess workplace culture and employee satisfaction.**
+    - **Compare company ratings across industries.**
+    - **Track trends in employer reputation over time.**
+  </Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" iconType="solid" color="red" /> **For additional enrichment options, explore related API endpoints below.**
+
+## Body Params - Try Me Example
+
+```
+business_ids: ["8adce3ca1cef0c986b22310e369a0793",
+               "a34bacf839b923770b2c360eefa26748"]
+```

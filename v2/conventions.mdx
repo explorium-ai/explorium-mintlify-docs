@@ -1,0 +1,63 @@
+---
+title: "v2 conventions"
+sidebarTitle: "Conventions"
+description: "Rules that apply across every AgentSource v2 endpoint: path versioning, single endpoints instead of bulk routes, and the sync/async pairing."
+---
+
+<Info>
+  **Beta.** AgentSource v2 is in beta. Details may still change before GA.
+</Info>
+
+These rules hold across the whole v2 surface, so they are not repeated on individual endpoint pages.
+
+## Path versioning
+
+Every endpoint moves under the `/v2` path, replacing its `/v1` equivalent.
+
+```
+POST /v1/businesses/firmographics/bulk_enrich   →   POST /v2/businesses/firmographics/enrich
+```
+
+## No more bulk endpoints
+
+A single endpoint accepts either one ID (a string) or a list of IDs. The separate `/bulk_enrich` routes are removed.
+
+<CodeGroup>
+```json Single ID
+{ "business_id": "a34bacf839b923770b2c360eefa26748" }
+```
+
+```json List of IDs
+{ "business_id": ["a34bacf839b923770b2c360eefa26748", "8adce3ca1cef0c986b22310e369a0793"] }
+```
+</CodeGroup>
+
+<Note>
+  Request and response schemas are still being finalized. The example above shows the calling pattern, not the confirmed field names.
+</Note>
+
+## Sync vs. async pairing
+
+Each enrichment exposes two endpoints:
+
+| Variant | Path | Input | Use when |
+| :--- | :--- | :--- | :--- |
+| **Sync** | `.../enrich` | A single ID or a list of up to 50 | You want results in the response |
+| **Async** | `.../job` | A `list_id` from an uploaded dataset | Large runs, up to 10,000 records |
+
+<Warning>
+  The "single ID or a list of IDs" rule above applies to **sync** endpoints. Async `.../job` endpoints take a `list_id` from the [dataset upload endpoint](/v2/jobs/upload_entity_id_dataset) and do not accept inline IDs — see the [end-to-end guide](/v2/async-guide).
+</Warning>
+
+Both are `POST`. The async variant is subject to the async job limits: **max 10K input records** and a **24-hour maximum run time**.
+
+## Related
+
+<Columns cols={2}>
+  <Card title="Async jobs" icon="clock" href="/v2/async-jobs">
+    How job submission, polling, and retrieval work
+  </Card>
+  <Card title="Migrating from v1" icon="arrow-right-arrow-left" href="/v2/migration-from-v1">
+    Apply these conventions to your existing calls
+  </Card>
+</Columns>

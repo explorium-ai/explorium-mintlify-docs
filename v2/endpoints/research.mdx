@@ -1,0 +1,252 @@
+---
+title: "Research (GenAI)"
+sidebarTitle: "Overview"
+description: "Run a custom, AI-powered research task over businesses or prospects: describe the task in natural language or a prompt template, define your own output schema, and optionally ground the analysis in real-time web data."
+---
+
+## What Research does
+
+The **Research** endpoint runs a **custom, AI-powered analysis** over a list of entities. Instead of returning a fixed enrichment schema, you describe the task — either as a natural-language **`query`** or as a **`prompt_template`** — and define the exact shape of the result with an **`output_schema`**. For each entity, the engine resolves its profile, optionally performs **real-time web research**, and returns structured JSON that conforms to your schema.
+
+This is ideal when an off-the-shelf enrichment doesn't exist for your use case, for example:
+
+- **Custom classification** — e.g. B2B vs B2C, ICP fit, seniority or buying-role inference.
+- **Fit scoring with reasoning** — score each account or contact against a value proposition and explain why.
+- **Campaign-ready copy** — one-line segments or personalized openers tailored per entity. Each entity is processed independently against your prompt and schema, so a single request can research many records at once.
+
+## Endpoints
+
+Research runs on two entity types. The concepts on this page apply to both; each endpoint page documents its own record fields, request shape, and examples.
+
+| Entity | Sync | Async |
+| :--- | :--- | :--- |
+| Businesses | [`/v2/businesses/research/enrich`](/v2/research/businesses_research_enrich) | [`/v2/businesses/research/job`](/v2/research/businesses_research_job) |
+| Prospects | [`/v2/prospects/research/enrich`](/v2/research/prospects_research_enrich) | [`/v2/prospects/research/job`](/v2/research/prospects_research_job) |
+
+All are `POST`. Sync endpoints accept a single ID or a list of IDs; async endpoints take a `list_id` from an uploaded dataset — see [v2 conventions](/v2/conventions) and [async jobs](/v2/async-jobs).
+
+Authenticate with your API key in the `api_key` header. See [Getting your API key](/reference/setup/getting_your_api_key).
+
+## How it works
+
+<AccordionGroup>
+  <Accordion title="How It Works">
+    - **Input:** A list of entities (each identified by a `business_id` or `prospect_id`, with optional `custom_fields`) plus a `parameters` object containing **either** a `query` **or** a `prompt_template`, and an `output_schema` (required with `prompt_template`, optional with `query`).
+    - **Processing:** For each entity, Explorium resolves the profile and builds a `record` context. When you pass a `query`, an internal LLM first generates an optimized prompt from your instruction, the available `record` fields, and the available research functions — and, if you didn't supply an `output_schema`, generates one as well. When you pass a `prompt_template`, your prompt is used as-is. The engine then runs the prompt — performing web research where instructed — and produces structured output constrained to the schema.
+    - **Output:** One result row per input entity, returned under `data`. Each successful row contains the generated fields defined by the `output_schema`; failed rows are returned with an `_error` field rather than being dropped.
+  </Accordion>
+
+  <Accordion title="`query` vs `prompt_template`">
+    You must provide **exactly one** of `query` or `prompt_template`. Sending both, or neither, returns a validation error.
+
+    |  | `query` | `prompt_template` |
+    | :-- | :-- | :-- |
+    | **What you write** | A natural-language instruction describing the insight you want | A prompt with placeholders that reference fields on the `record` |
+    | **Prompt construction** | An internal LLM composes an optimized prompt from your instruction, the available `record` fields, and the available research functions | Your prompt is passed to the engine as-is, with no modification |
+    | **Best for** | End-user-facing flows (VP chat, Hub) and quick, general instructions | Precise, repeatable prompts; power users; programmatic/MCP access where the caller builds the prompt itself |
+    | **Research functions** | Selected automatically by the prompt generator | Invoked inline by the prompt author — up to two per template (see [Research functions](#research-functions)) |
+    | **Custom fields** | Available to the model as part of the entity context | Referenced explicitly, e.g. `{{ record['campaign_name'] }}` |
+    | **`output_schema`** | Optional — generated automatically from your instruction if omitted | Required — omitting it returns a validation error |
+  </Accordion>
+
+  <Accordion title="The `record` context">
+    When rendering a `prompt_template` (and when the model composes a prompt from a `query`), each entity is represented by a `record` object. The `record` contains:
+
+    - **Explorium profile fields** resolved from the identifier. For **businesses**, fields such as `record['organization_name']` and `record['description']`. For **prospects**, fields such as `record['full_name']`, `record['job_title']`, and `record['organization_name']`.
+    - **Any `custom_fields`** you supplied for that entity — for example `record['campaign_name']`.
+
+    Reference these in a `prompt_template` using `{{ record['field_name'] }}`. Custom fields are merged into the same `record` namespace as the profile fields, so they're referenced the same way. The full field list lives on each endpoint page: [businesses](/v2/research/businesses_research_enrich#record-fields) and [prospects](/v2/research/prospects_research_enrich#record-fields).
+  </Accordion>
+</AccordionGroup>
+
+## Real-time web research
+
+What sets Research apart from standard enrichments is that the engine can **ground its analysis in live web data**, not just the data already on file. Per entity, it can:
+
+- **Run a SERP search** and use the top results as context for the model.
+- **Search and scrape** the most relevant web pages and pass that content to the model as grounding context. You steer this directly from your instruction — for example, _"…use web search to validate if the description is insufficient"_ or _"…use web search to supplement missing context."_ When the resolved profile is enough, the model can answer from it; when it isn't, the model can reach out to the web.
+
+<Note>
+  Because some rows trigger live web lookups, per-entity latency varies and can take several seconds. Size your batches and set client timeouts accordingly.
+</Note>
+
+<Note>
+  **v2:** this endpoint accepts either a single ID (a string) or a list of IDs — the separate `/bulk_enrich` route is gone. See [v2 conventions](/v2/conventions).
+</Note>
+
+## Research functions
+
+Inside a `prompt_template`, you can call **research functions** to ground the analysis in live web data. Render them with `{{ ... }}` just like a record field: the function runs first, and its output — SERP results or scraped page text — is injected into the prompt as context before the model reasons over it. Their arguments are typically built from `record` fields (e.g. `record['organization_name']`, `record['url']`).
+
+You can use **up to two** research functions in a single `prompt_template`.
+
+<Note>
+  These functions apply to `prompt_template` only. When you pass a `query`, the prompt generator selects and invokes the appropriate research functions automatically based on your instruction — you don't call them explicitly.
+</Note>
+
+### `ReadMostRelevantLinks`
+
+Runs a SERP search for `query` and scrapes the top `max_results` result pages, injecting their combined content into the prompt as grounding context. Use it when the company or person isn't well described by the resolved profile alone and you want fresh, broad web context.
+
+<ParamField query="query" type="string" required>
+  The search query to run. Commonly built from a record field, e.g. `record['organization_name']`.
+</ParamField>
+
+<ParamField query="max_results" type="integer">
+  The number of top SERP results to fetch and scrape.
+</ParamField>
+
+```text
+{{ ReadMostRelevantLinks(query=record['organization_name'], max_results=4) }}
+```
+
+<CodeGroup>
+
+```json Businesses — SERP search + scrape
+{
+  "business_id": "8adce3ca1cef0c986b22310e369a0793",
+  "parameters": {
+    "prompt_template": "{{ ReadMostRelevantLinks(query=record['organization_name'], max_results=4) }}\n\nUsing the company description {{ record['description'] }} and website {{ record['url'] }}, classify whether {{ record['organization_name'] }} primarily sells to businesses (B2B) or consumers (B2C). Explain your reasoning.",
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "btb_btc": {
+          "type": "string",
+          "enum": ["B2B", "B2C", "Both"],
+          "description": "Whether the company is primarily B2B, B2C, or both"
+        },
+        "reasoning": {
+          "type": "string",
+          "description": "Brief explanation for the classification"
+        }
+      },
+      "required": ["btb_btc", "reasoning"]
+    }
+  }
+}
+```
+
+</CodeGroup>
+
+### `ReadUrlText`
+
+Scrapes the text content of a single URL and injects it into the prompt as grounding context. Use it when you already know the exact page to read — most often the entity's own website via `record['url']`.
+
+<ParamField query="url" type="string" required>
+  The URL of the page to scrape, e.g. `record['url']`.
+</ParamField>
+
+```text
+{{ ReadUrlText(url=record['url']) }}
+```
+
+<CodeGroup>
+
+```json Prospects — scrape a specific URL
+{
+  "prospect_id": "5d86c0d8eae6bdd60515685670a4a2ad49981945",
+  "parameters": {
+    "prompt_template": "{{ ReadUrlText(url=record['url']) }}\n\nEvaluate whether {{ record['full_name'] }} ({{ record['job_title'] }} at {{ record['organization_name'] }}) is a strong fit for an enterprise data platform. Use summary {{ record['summary'] }}, skills {{ record['skills'] }}, and company website content from {{ record['url'] }}.",
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "fit_score": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10,
+          "description": "Prospect fit score from 1 to 10"
+        },
+        "reasoning": {
+          "type": "string",
+          "description": "Brief explanation for the score"
+        }
+      },
+      "required": ["fit_score", "reasoning"]
+    }
+  }
+}
+```
+
+</CodeGroup>
+
+### Using two functions together
+
+You can combine both functions in one `prompt_template` (the two-function maximum). Here the model reads the company's own site with `ReadUrlText` and supplements it with broader web results from `ReadMostRelevantLinks` before answering.
+
+<CodeGroup>
+
+```json Businesses — scrape site + SERP search
+{
+  "business_id": "8adce3ca1cef0c986b22310e369a0793",
+  "parameters": {
+    "prompt_template": "{{ ReadUrlText(url=record['url']) }}\n\n{{ ReadMostRelevantLinks(query=record['organization_name'], max_results=3) }}\n\nUsing the company's own website and the most relevant web results, summarize what {{ record['organization_name'] }} does and identify its primary target market.",
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "summary": {
+          "type": "string",
+          "description": "One-paragraph summary of what the company does"
+        },
+        "target_market": {
+          "type": "string",
+          "description": "The company's primary target market"
+        }
+      },
+      "required": ["summary", "target_market"]
+    }
+  }
+}
+```
+
+</CodeGroup>
+
+<Warning>
+  A `prompt_template` may reference **at most two** research functions. Adding a third returns a validation error. Each function that runs performs live web I/O, so it adds latency to that row — prefer `ReadUrlText` when you know the exact page, and reserve `ReadMostRelevantLinks` for cases that need broader discovery.
+</Warning>
+
+## Per-call credit usage
+
+The Research endpoints support the opt-in [Per-Call Credit Usage](/reference/credits/per-call-credit-usage) header. Send `credit-usage: true` to receive a `credit_usage` object alongside the response, reporting the exact credits deducted for the call. This is the recommended way to track research costs while you tune prompts and schemas.
+
+```bash
+credit-usage: true
+```
+
+## Best practices
+
+- **Be explicit in your schema.** Use clear field `description`s, and `enum` / `minimum` / `maximum` constraints, so the model returns consistent, parseable values.
+- **Keep outputs focused.** Smaller, well-scoped schemas produce more reliable results than large free-form objects.
+- **Tell the model when to use the web.** If a task may need information beyond the resolved profile, say so in your instruction (e.g. _"use web search to supplement missing context"_).
+- **Prefer `prompt_template` for repeatable pipelines** where you need full control over wording, injected fields, and inline research functions; use `query` for quick, natural-language instructions.
+- **Resolve identifiers first** with [Match Businesses](/v2/businesses/match_businesses) or [Match Prospects](/v2/prospects/match_prospects) so the engine has a profile to work from.
+- **Attach context with `custom_fields`** (e.g. campaign name, segment) rather than hard-coding it into every prompt.
+- **Handle `_error` rows.** Iterate over `data` and check for `_error` before reading the generated fields.
+
+<Warning>
+  **Rate limits are counted per query, not per request.** Each entity in the `businesses` / `prospects` array counts as a separate query toward your [rate limit](/reference/rate-limit). A single request that researches 50 entities consumes **50 queries** from your 200-queries-per-minute limit — not 1. Batching reduces HTTP/network overhead, but it does **not** reduce the number of queries counted against your rate limit. Size your batches accordingly.
+</Warning>
+
+## Errors
+
+<ResponseField name="422 Validation Error" type="object">
+  Returned when the request body is invalid — for example when both `query` and `prompt_template` are provided, when neither is provided, when `prompt_template` is used without an `output_schema`, or when the `output_schema` is malformed.
+
+  <Expandable title="properties">
+    <ResponseField name="detail" type="object[]">
+      A list of validation errors, each with `loc` (location of the error), `msg` (human-readable message), and `type`.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+See [Error Handling](/reference/error-handling) for the full list of status codes and retry guidance.
+
+## Endpoint reference
+
+<Columns cols={2}>
+  <Card title="Businesses research" icon="building" href="/v2/research/businesses_research_enrich">
+    Business record fields, request shape, and examples
+  </Card>
+  <Card title="Prospects research" icon="user" href="/v2/research/prospects_research_enrich">
+    Prospect record fields, request shape, and examples
+  </Card>
+</Columns>

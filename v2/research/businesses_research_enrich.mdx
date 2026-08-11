@@ -1,0 +1,259 @@
+---
+title: "Businesses research"
+sidebarTitle: "Businesses research"
+openapi: "post /v2/businesses/research/enrich"
+---
+
+Run a custom, AI-powered research task over a list of businesses. Describe the task as a natural-language `query` or a `prompt_template`, define the result shape with an `output_schema`, and the engine returns structured JSON for each company.
+
+<Note>
+  How Research works — `query` vs `prompt_template`, the `record` context, real-time web research and its functions, credit usage, and error handling — is documented once on the [Research (GenAI) overview](/v2/endpoints/research). This page covers what is specific to the **businesses** endpoint.
+</Note>
+
+## Record fields
+
+Reference any of these with `{{ record['field_name'] }}` in a `prompt_template`. When you pass a `query` instead, the same fields are made available to the prompt generator as the entity's context.
+
+| Field | Description |
+| :-- | :-- |
+| `business_id` | Explorium's unique entity ID for the company. |
+| `organization_name` | The company's name. |
+| `url` | The company's website URL. |
+| `description` | A free-text description of the company and what it does. Truncated at 500 characters. |
+| `linkedin_industry` | The company's industry as classified on LinkedIn. |
+| `google_category` | The company's business category as classified by Google. |
+| `employee_range` | The company's employee headcount range (e.g. `51-200`). |
+| `revenue_range` | The company's estimated annual revenue range. |
+| `operational_status` | Whether the company is currently active or operational. |
+| `founding_year` | The year the company was founded. |
+| `naics_description` | The company's NAICS industry classification, as a text description. |
+| `specialties` | The company's stated areas of focus or specialties. |
+| `location` | The company's primary location — locality, region, and country. |
+| `full_tech_stack` | The technologies detected across the company's web presence. Truncated at 1,000 characters. |
+| `marketing_techs` | Marketing technologies the company uses. |
+| `sales_techs` | Sales technologies the company uses. |
+| `it_security_techs` | IT and security technologies the company uses. |
+| `ecommerce` | Whether the company runs e-commerce, and the platforms detected. |
+| `number_of_premium_technologies` | How many premium technologies were detected in the company's stack. |
+| `ratings_overall` | Overall employee rating of the company. |
+| `ratings_culture_values` | Employee rating for culture and values. |
+| `ratings_compensation_benefits` | Employee rating for compensation and benefits. |
+| `ratings_work_life_balance` | Employee rating for work-life balance. |
+| `ratings_senior_management` | Employee rating for senior management. |
+| `ratings_ceo_approval` | Employee approval rating for the CEO. |
+| `total_reviews_count` | How many employee reviews the ratings are based on. |
+| `funding_summary` | A summary of the company's funding history. |
+| `number_of_funding_rounds` | How many funding rounds the company has raised. |
+| `known_funding_total_value` | Total known funding the company has raised. |
+| `last_funding_round_date` | Date of the most recent funding round. |
+| `last_funding_round_type` | Type of the most recent funding round (e.g. Series B). |
+| `last_funding_round_value_usd` | Value of the most recent funding round, in USD. |
+| `investors` | Investors associated with the company. |
+| `revenue_yearly` | Reported yearly revenue. Reflects the latest available quarter. |
+| `ebitda` | Earnings before interest, taxes, depreciation, and amortization. |
+| `cagr` | Compound annual growth rate. |
+| `price_earnings_ratio` | Price-to-earnings ratio. |
+| `enterprise_value_over_ebitda` | Enterprise value divided by EBITDA. |
+| `roa` | Return on assets. |
+| `roc` | Return on capital. |
+| `parent_company` | The company's immediate parent company. |
+| `ultimate_parent_name` | The topmost parent in the company's ownership chain. |
+| `subsidiaries` | Companies owned by this company. |
+| `recent_linkedin_posts` | Recent public LinkedIn posts from the company — the last 90 days, up to 5 posts. |
+| `sec10k_competitive_excerpt` | Competitive-landscape excerpt from the company's 10-K filing. |
+| `sec10k_strategy_excerpt` | Strategy excerpt from the company's 10-K filing. |
+| `sec10k_risk_excerpt` | Risk-factors excerpt from the company's 10-K filing. |
+
+### Custom fields
+
+Any key you attach in `custom_fields` is merged into the same `record` object and can be referenced exactly like a profile field — for example `{{ record['campaign_name'] }}`. There is no fixed list: use whatever keys you send per entity. Values are treated as strings.
+
+<Note>
+  Record fields are populated from the entity's resolved Explorium profile, so a given field may be empty when that attribute isn't available for the entity. Write prompts that degrade gracefully when a field is missing, and instruct the model to use web research to fill gaps where appropriate.
+</Note>
+
+## Request
+
+The request body has two top-level keys:
+
+- **`businesses`** — the list of entities to research. Each item has a **`business_id`** and may include an optional `custom_fields` object.
+- **`parameters`** — controls how the analysis is generated and what shape the result takes. Identical on both endpoints; see the [overview](/v2/endpoints/research#how-it-works).
+
+<ParamField body="businesses" type="object[]" required>
+  The list of entities to research. Each entity is processed independently, and results are returned in the same order.
+
+  <Expandable title="entity object">
+    <ParamField body="business_id" type="string" required>
+      The Explorium identifier to research. Obtain IDs from [Match Businesses](/v2/businesses/match_businesses) or [Fetch Businesses](/v2/businesses/fetch_businesses).
+    </ParamField>
+
+    <ParamField body="custom_fields" type="object">
+      Optional key–value pairs to attach to this entity. Each key is merged into the `record` context and can be referenced from a `prompt_template` (e.g. `{{ record['campaign_name'] }}`).
+    </ParamField>
+  </Expandable>
+</ParamField>
+
+<ParamField body="parameters" type="object" required>
+  Provide **either** `query` **or** `prompt_template`, never both and never neither — see [`query` vs `prompt_template`](/v2/endpoints/research#how-it-works). `output_schema` is required with `prompt_template` and optional with `query`.
+</ParamField>
+
+## Examples
+
+<CodeGroup>
+
+```json Using a prompt_template
+{
+  "businesses": [
+    {
+      "business_id": "8adce3ca1cef0c986b22310e369a0793",
+      "custom_fields": { "campaign_name": "Q1 enterprise push" }
+    },
+    {
+      "business_id": "340c8040bd50cbab9c7df718bbe51cc9",
+      "custom_fields": { "campaign_name": "SMB awareness" }
+    }
+  ],
+  "parameters": {
+    "prompt_template": "For {{ record['organization_name'] }}, write a one-sentence segment for campaign {{ record['campaign_name'] }}. Use description: {{ record['description'] }}.",
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "segment": { "type": "string", "description": "One-sentence campaign segment" },
+        "campaign_fit": { "type": "string", "description": "Brief assessment of campaign fit" }
+      },
+      "required": ["segment", "campaign_fit"]
+    }
+  }
+}
+```
+
+```json Using a query (B2B / B2C classifier)
+{
+  "businesses": [
+    { "business_id": "8adce3ca1cef0c986b22310e369a0793" },
+    { "business_id": "340c8040bd50cbab9c7df718bbe51cc9" }
+  ],
+  "parameters": {
+    "query": "Using the company profile, classify whether this company primarily sells to businesses (B2B) or consumers (B2C). Explain your reasoning.",
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "btb_btc": { "type": "string", "enum": ["B2B", "B2C", "Both"], "description": "Whether the company is primarily B2B, B2C, or both" },
+        "reasoning": { "type": "string", "description": "Brief explanation for the classification" }
+      },
+      "required": ["btb_btc", "reasoning"]
+    }
+  }
+}
+```
+
+```json Using a query (company fit scorer)
+{
+  "businesses": [
+    { "business_id": "8adce3ca1cef0c986b22310e369a0793" }
+  ],
+  "parameters": {
+    "query": "Based on the company profile, score how well this company fits the following value proposition on a scale of 1-10 and explain why: 'A B2B SaaS tool that helps mid-market sales teams automate outbound prospecting.' Use web search to supplement missing context.",
+    "output_schema": {
+      "type": "object",
+      "properties": {
+        "fit_score": { "type": "integer", "minimum": 1, "maximum": 10, "description": "How well the company fits the value proposition (1 = poor fit, 10 = perfect fit)" },
+        "fit_reasoning": { "type": "string", "description": "2-3 sentence explanation of the score" }
+      },
+      "required": ["fit_score", "fit_reasoning"]
+    }
+  }
+}
+```
+
+</CodeGroup>
+
+### Example request (cURL)
+
+```bash
+curl --request POST \
+  --url https://api.explorium.ai/v2/businesses/research/enrich \
+  --header 'accept: application/json' \
+  --header 'api_key: your_api_key_here' \
+  --header 'content-type: application/json' \
+  --data '{
+    "businesses": [
+      { "business_id": "8adce3ca1cef0c986b22310e369a0793" },
+      { "business_id": "340c8040bd50cbab9c7df718bbe51cc9" }
+    ],
+    "parameters": {
+      "query": "Classify whether this company primarily sells to businesses (B2B) or consumers (B2C). Explain your reasoning.",
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "btb_btc": { "type": "string", "enum": ["B2B", "B2C", "Both"], "description": "Whether the company is primarily B2B, B2C, or both" },
+          "reasoning": { "type": "string", "description": "Brief explanation for the classification" }
+        },
+        "required": ["btb_btc", "reasoning"]
+      }
+    }
+  }'
+```
+
+## Response
+
+A successful request returns a `200` with a `data` array — one entry per input entity, in input order — plus a `total_results` count.
+
+Each successful result contains the `business_id` and the generated fields defined by the `output_schema`. Rows that fail carry an `_error` field instead of the generated fields, rather than being dropped.
+
+<ResponseField name="data" type="object[]">
+  One result per input entity, in input order.
+
+  <Expandable title="result object">
+    <ResponseField name="business_id" type="string">
+      The identifier this result corresponds to.
+    </ResponseField>
+
+    <ResponseField name="<output_schema fields>" type="varies">
+      The generated fields, conforming to the `output_schema` — the one supplied in the request, or the auto-generated one when using `query` without a schema.
+    </ResponseField>
+
+    <ResponseField name="_error" type="string">
+      Present only when the row failed. Describes the failure; the generated fields are omitted for this row.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="total_results" type="integer">
+  The total number of results returned in `data`.
+</ResponseField>
+
+### Example response
+
+```json
+{
+  "data": [
+    {
+      "business_id": "8adce3ca1cef0c986b22310e369a0793",
+      "btb_btc": "B2B",
+      "reasoning": "The company sells software and services to enterprise organizations rather than individual consumers."
+    },
+    {
+      "business_id": "340c8040bd50cbab9c7df718bbe51cc9",
+      "btb_btc": "B2C",
+      "reasoning": "Its products are marketed and sold directly to individual end users."
+    }
+  ],
+  "total_results": 2
+}
+```
+
+### Example failed row
+
+```json
+{
+  "business_id": "f12c9a77b0e34d51a9c0b8e2d7f4a6c3",
+  "_error": "Unable to resolve a profile for this identifier."
+}
+```
+
+## Researching prospects instead
+
+This endpoint researches businesses and exposes the businesse record fields above. To research prospects — with prospect fields such as `full_name`, `job_title`, and `skills` — use [Prospects research](/v2/research/prospects_research_enrich).
+
+For lists larger than a single request, use [the asynchronous variant](/v2/research/businesses_research_job).
