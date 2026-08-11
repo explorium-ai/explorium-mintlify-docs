@@ -532,7 +532,7 @@
                 ]
               },
               {
-                "group": "Planned for v2",
+                "group": "Events & Webhooks",
                 "pages": [
                   "v2/endpoints/events",
                   "v2/endpoints/webhooks"
