@@ -1,0 +1,29 @@
+---
+title: "List jobs"
+sidebarTitle: "List jobs"
+openapi: "get /v2/jobs"
+---
+
+## Description
+
+The **List Jobs** endpoint returns your async jobs, most useful for monitoring several runs at once or finding a `job_id` you didn't store.
+
+<AccordionGroup>
+  <Accordion title="How It Works">
+    - **Input:** Optionally filter by `status` and paginate with `skip`.
+    - **Processing:** The system returns your jobs with their current state.
+    - **Output:** A `jobs` array plus a `total` count. Each job carries the same fields as [Get job status](/v2/jobs/get_job_status).
+  </Accordion>
+  <Accordion title="Query Parameters">
+    | Parameter | Type | Description |
+    | :--- | :--- | :--- |
+    | `status` | enum | Filter by job state: `queued`, `running`, `succeeded`, `failed`, `cancelled`, or `expired` |
+    | `skip` | integer | Number of jobs to skip, for pagination |
+  </Accordion>
+  <Accordion title="Best Practices">
+    - **Filter by `status=running`** to see what is currently consuming capacity.
+    - **Use [Get job status](/v2/jobs/get_job_status)** for polling a single job — this endpoint is for overviews, not tight loops.
+  </Accordion>
+</AccordionGroup>
+
+<Icon icon="thumbtack" iconType="solid" color="red" /> **See [async jobs](/v2/async-jobs) for the full job lifecycle.**

@@ -231,7 +231,7 @@ A completed response looks like this:
 ```
 
 <Note>
-  The spec types `status` as a free-form string and does not enumerate its values, so the sample above keys off `results.download_url` and `error` rather than matching on specific status text. That is the more robust pattern regardless.
+  Job states are `queued`, `running`, `succeeded`, `failed`, `cancelled`, and `expired`. The sample above keys off `results.download_url` and `error` rather than matching status text — the more robust pattern either way.
 </Note>
 
 ## Step 5 — Download the results
