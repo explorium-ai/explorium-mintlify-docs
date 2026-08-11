@@ -394,7 +394,7 @@
       },
       {
         "version": "v2",
-        "tag": "Preview",
+        "tag": "Beta",
         "tabs": [
           {
             "tab": "API Reference",
