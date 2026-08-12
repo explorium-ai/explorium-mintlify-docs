@@ -22,7 +22,11 @@ The **Get Job Status** endpoint returns the current state of an asynchronous job
     | `input`           | object | Summary of the input the job was submitted with (required)                  |
     | `timing`          | object | Submission and completion timestamps (required)                             |
     | `credit_usage`    | object | Credits consumed by the job                                                 |
-    | `results`         | object | Job output, present once the job has completed                              |
+    | `results`         | object | Job output, present once the job has completed — see below                  |
+    | `results.format`  | string | Format of the result file (`csv`)                                           |
+    | `results.download_url` | string | Signed URL for downloading the result file                             |
+    | `results.expires_at` | string | When the **download link** expires (about an hour after it is issued). Call this endpoint again to get a fresh link — see the note below. |
+    | `results.file_expires_at` | string | When the **result file itself** expires (7 days after the job finishes). After this, results are no longer retrievable. |
     | `additional_data` | object | Any supplementary information about the run                                 |
     | `error`           | object | Error detail, present when the job failed                                   |
   </Accordion>
@@ -30,6 +34,7 @@ The **Get Job Status** endpoint returns the current state of an asynchronous job
     - **Poll at a sensible interval** rather than continuously — large jobs can run for a long time.
     - **Store the `job_id`** returned at submission; it is the only handle on the run.
     - **Check `status` before reading `results`** — results are only populated once the job has completed.
+    - **Expired download link?** Just call this endpoint again — each call returns a freshly signed `download_url`. The link (`expires_at`) lasts about an hour; the file itself (`file_expires_at`) is kept for 7 days after the job finishes.
     - **Read `credit_usage`** to track consumption per job.
     - **Cancel jobs you no longer need** with [Cancel job](/v2/jobs/cancel_job) rather than letting them run to completion.
   </Accordion>

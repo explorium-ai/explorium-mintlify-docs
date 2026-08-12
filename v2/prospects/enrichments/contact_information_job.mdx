@@ -111,13 +111,19 @@ Poll [job status](/v2/jobs/get_job_status) with the returned `job_id`. A finishe
     "total_explorium_emails": 10,
     "total_explorium_phones": 5
   },
+  "results": {
+    "format": "csv",
+    "download_url": "https://...",
+    "expires_at": "2026-08-10T15:10:21Z",
+    "file_expires_at": "2026-08-17T14:10:21Z"
+  },
   "error": null
 }
 ```
 
 ### Result fields
 
-Results are downloaded as a CSV from `results.download_url`. Each row carries the contact data plus its source tags:
+Results are downloaded as a CSV from `results.download_url`. The link is valid for about an hour (`expires_at`) — re-poll [job status](/v2/jobs/get_job_status) for a fresh one; the file itself is kept for 7 days (`file_expires_at`). Each row carries the contact data plus its source tags:
 
 | Column | Description |
 | :--- | :--- |

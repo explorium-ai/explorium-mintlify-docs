@@ -225,7 +225,8 @@ A completed response looks like this:
   "results": {
     "format": "csv",
     "download_url": "https://...",
-    "expires_at": "2026-08-16T10:02:11Z"
+    "expires_at": "2026-08-09T11:02:11Z",
+    "file_expires_at": "2026-08-16T10:02:11Z"
   }
 }
 ```
@@ -236,7 +237,14 @@ A completed response looks like this:
 
 ## Step 5 — Download the results
 
-`results.download_url` points at a CSV. It expires — fetch it promptly.
+`results.download_url` points at a CSV. Two expirations apply:
+
+| Field | What expires | Lifetime |
+| :--- | :--- | :--- |
+| `expires_at` | The **download link** | About an hour after it is issued |
+| `file_expires_at` | The **result file** | 7 days after the job finishes |
+
+An expired link is not a problem — call the [status endpoint](/v2/jobs/get_job_status) again and it returns a freshly signed `download_url`. Once `file_expires_at` passes, though, the results are gone: download anything you want to keep within 7 days.
 
 <CodeGroup>
 ```bash cURL
@@ -351,7 +359,9 @@ curl --request POST \
 | :--- | :--- |
 | Max rows per dataset | 10,000 |
 | Max job run time | 24 hours |
-| Result format | CSV, via a URL that expires |
+| Result format | CSV, via a signed URL |
+| Download link lifetime | ~1 hour — re-poll [job status](/v2/jobs/get_job_status) for a fresh link |
+| Result file retention | 7 days after the job finishes (`file_expires_at`) |
 | Dataset lifetime | Bounded — see `expiresAt` on upload |
 
 - **Async never takes inline IDs.** If you send `business_ids` to a `/job` endpoint it will be rejected; upload first and send `list_id`.
