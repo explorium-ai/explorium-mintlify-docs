@@ -33,6 +33,17 @@ Every `.../job` endpoint in v2 runs through a shared async job layer. Instead of
 | Cancel a job | `POST /v2/jobs/cancel/{job_id}` |
 | Upload an entity ID dataset as job input | `POST /v2/async/entity-id-datasets/upload` |
 
+Every `.../job` request also accepts an optional `notifications` object for email updates instead of polling:
+
+```json
+{
+  "list_id": "b8f2c1d4-...",
+  "notifications": { "email": { "enabled": true, "on": ["success", "failure"] } }
+}
+```
+
+The `on` list picks which terminal states trigger an email — `success`, `failure`, or both.
+
 Async jobs take their input **only** as an uploaded dataset — [upload your IDs](/v2/jobs/upload_entity_id_dataset) and pass the returned `list_id`. Inline IDs are not accepted. The [end-to-end guide](/v2/async-guide) walks through the whole flow.
 
 ## Limits
