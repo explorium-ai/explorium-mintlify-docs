@@ -175,6 +175,19 @@ print(f"submitted job {job_id}")
   ```
 </Note>
 
+<Note>
+  **Prefer an email over polling?** Every job request accepts an optional `notifications` object:
+
+  ```json
+  {
+    "list_id": "b8f2c1d4-...",
+    "notifications": { "email": { "enabled": true, "on": ["success", "failure"] } }
+  }
+  ```
+
+  You still poll [job status](/v2/jobs/get_job_status) to collect the download link, but the email tells you when it is worth doing.
+</Note>
+
 ## Step 4 — Poll for status
 
 Call the status endpoint until the job finishes. A finished job carries a `results` object.
