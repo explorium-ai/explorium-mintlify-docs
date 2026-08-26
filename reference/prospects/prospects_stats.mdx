@@ -41,8 +41,9 @@ The **Prospects Statistics** API provides aggregated insights and distributions 
 
   | Filter             | Description                  | Example           |
   | ------------------ | ---------------------------- | ----------------- |
-  | `has_email`        | Filter by email availability | `{"value": true}` |
-  | `has_phone_number` | Filter by phone availability | `{"value": true}` |
+  | `has_contact_details` | Filter by email and phone availability | `{"value": "email_or_phone"}` — values: `email`, `phone`, `email_or_phone`, `email_and_phone` |
+  | `has_email`        | Filter by email availability *(deprecated — use `has_contact_details`; removed in v2)* | `{"value": true}` |
+  | `has_phone_number` | Filter by phone availability *(deprecated — use `has_contact_details`; removed in v2)* | `{"value": true}` |
 
   ### **Professional Filters**
 
@@ -176,7 +177,7 @@ The **Prospects Statistics** API provides aggregated insights and distributions 
   ### **Campaign Targeting**
 
   * Size your total addressable market using industry filters (`naics_category`, `linkedin_category`)
-  * Validate contact availability with `has_email` and `has_phone_number`
+  * Validate contact availability with `has_contact_details` (`has_email` and `has_phone_number` are deprecated)
   * Focus on new decision-makers using `current_role_months` filter
 
   ### **Market Intelligence**

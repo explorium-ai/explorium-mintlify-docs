@@ -191,7 +191,7 @@ Having the `business_id` fields, Alex can now find **prospects** (contacts) at t
 
   * `business_id` to specify which companies
   * `job_department` = `"marketing"`, `"sales"`, etc.
-  * `has_email` = `true` if you need contacts with an email address
+  * `has_contact_details` = `email` if you need contacts with an email address — or `email_or_phone` for any contact method
 
 #### **Sample Request (Python)**
 
@@ -213,9 +213,8 @@ Having the `business_id` fields, Alex can now find **prospects** (contacts) at t
               "type": "includes",
               "values": ["marketing", "sales"]
           },
-          "has_email": {
-              "type": "exists",
-              "value": True
+          "has_contact_details": {
+              "value": "email"
           }
       }
   }

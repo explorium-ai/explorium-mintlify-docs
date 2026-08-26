@@ -74,8 +74,8 @@ The **Fetch Prospects** endpoint allows users to retrieve a list of prospect rec
         "job_level": {
           "values": ["director", "manager"]
         },
-        "has_email": {
-          "value": "true"
+        "has_contact_details": {
+          "value": "email_or_phone"
         }
       }
     }
@@ -107,8 +107,9 @@ The **Fetch Prospects** endpoint allows users to retrieve a list of prospect rec
 
     | Parameter | Description | Notes / Best Practices |
     | --- | --- | --- |
-    | has\_email | Filter prospects by whether they have an email. Categories: \[True, False\] | Enter `true` to find only prospects with email addresses, or `false` to exclude them. Uses a single `value` (true/false). Logic is based on checking the existence of a value in the email field. |
-    | has\_phone\_number | Filter prospects by whether they have a phone number. Categories: \[True, False\] | Use `true` to get only prospects with phone numbers. Useful when planning outreach via phone. Uses a single `value`. Logic checks whether the phone field is populated. |
+    | has\_contact\_details | Filter prospects by email and phone availability. Values: \[email, phone, email\_or\_phone, email\_and\_phone\] | The unified contact-availability filter. Uses a single `value`: `email` — has an email; `phone` — has a phone number; `email_or_phone` — has at least one of the two; `email_and_phone` — has both. Replaces has\_email and has\_phone\_number; if the legacy filters are sent in the same request, has\_contact\_details takes precedence and they are ignored. |
+    | has\_email | Filter prospects by whether they have an email. Categories: \[True, False\] | **Deprecated** — use has\_contact\_details with `"value": "email"`; this filter is removed in v2. Enter `true` to find only prospects with email addresses, or `false` to exclude them. Uses a single `value` (true/false). Logic is based on checking the existence of a value in the email field. |
+    | has\_phone\_number | Filter prospects by whether they have a phone number. Categories: \[True, False\] | **Deprecated** — use has\_contact\_details with `"value": "phone"`; this filter is removed in v2. Use `true` to get only prospects with phone numbers. Useful when planning outreach via phone. Uses a single `value`. Logic checks whether the phone field is populated. |
     | job\_title | Filter prospects by their job titles. Example: \[Sales Representative, SEO specialist, Technical Support Engineer\] | Enter one or more job titles as free text. The filter matches prospects whose title includes all the words. For more consistent results, prefer using job\_level and job\_department. Uses a single `value` with flexible keyword matching. Logic ensures all words appear in the target field, regardless of order. |
     | include\_related\_job\_titles<br />(Used inside job\_title filter) | Expand filtering results to include related job titles. | When set to `true`, the system broadens the search to include job titles that are semantically or hierarchically related to the provided title(s). Default is `false`. Useful for retrieving a wider range of relevant roles. |
     | job\_level | Filter prospects by their job level. **Examples Categories**: manager, president, senior manager, owner, advisor, freelancer, junior, director, c-suite, board member, senior non-managerial, non-managerial, partner, vice president, founder, training, unpaid | Use autocomplete to search and select job levels. You can choose one or more values. The response fields (`job_level_array`, `job_level_main`) provide enriched  context. Examples of new levels: manager, president, senior manager, owner, advisor, freelancer, junior, director, c-suite, board member, senior non-managerial, non-managerial, partner, vice president, founder, training, unpaid |
@@ -181,11 +182,8 @@ The **Fetch Prospects** endpoint allows users to retrieve a list of prospect rec
         "a5fbfab4d7221b144efecbe83e55cbf80b64bd50"
       ],
       "filters": {
-        "has_email": {
-          "value": true
-        },
-        "has_phone_number": {
-          "value": true
+        "has_contact_details": {
+          "value": "email_and_phone"
         },
         "job_level": {
           "values": [
@@ -1153,6 +1151,6 @@ page: 1
 filters:
     job_level:
       values: director, manager
-    has_email:
-      value: true
+    has_contact_details:
+      value: email_or_phone
 ```
