@@ -42,6 +42,9 @@ v2 ships alongside v1. v1 keeps running in parallel and is wound down in stages,
   <Step title="Handle removed response fields">
     Stop reading `entity_id`, `display_name` on business LinkedIn posts, and the address signals on `company_ratings_by_employees`.
   </Step>
+  <Step title="Replace contact-availability filters">
+    `has_email` and `has_phone_number` are removed from prospects fetch and stats. Use `has_contact_details` — `email`, `phone`, or `email_and_phone` to reproduce the old behavior, or `email_or_phone` for at-least-one. See [Removed filters](/v2/whats-new#removed-filters).
+  </Step>
   <Step title="Check changed fetch defaults">
     Remove the `size` pagination parameter, and set `include_operating_locations` explicitly if you relied on the old default.
   </Step>
@@ -71,6 +74,7 @@ v2 ships alongside v1. v1 keeps running in parallel and is wound down in stages,
 - [ ] `entity_id` no longer read
 - [ ] `display_name` no longer read from business LinkedIn posts
 - [ ] Address signals no longer read from `company_ratings_by_employees`
+- [ ] `has_email` / `has_phone_number` replaced with `has_contact_details`
 - [ ] `size` pagination parameter removed
 - [ ] `include_operating_locations` set explicitly
 - [ ] Async payloads within the 10K record limit
