@@ -68,7 +68,7 @@ Returns a JSON object containing aggregated credit consumption data:
     <ResponseField name="request_status" type="string">
       Status of the request (`success` or `failure`)
     </ResponseField>
-    <ResponseField name="time_took_in_seconds" type="number">
+    <ResponseField name="time_taken_in_seconds" type="number">
       Request processing time in seconds
     </ResponseField>
   </Expandable>
@@ -226,7 +226,7 @@ curl --request POST \
   "response_context": {
     "correlation_id": "5618d686ecb849fda660c3023acf3120",
     "request_status": "success",
-    "time_took_in_seconds": 0.245
+    "time_taken_in_seconds": 0.245
   },
   "from_date": "2025-08-23T00:00:00Z",
   "to_date": "2025-08-24T00:00:00Z",
@@ -262,7 +262,7 @@ curl --request POST \
   "response_context": {
     "correlation_id": "a7b8c9d0e1f2g3h4i5j6k7l8m9n0o1p2",
     "request_status": "success",
-    "time_took_in_seconds": 0.189
+    "time_taken_in_seconds": 0.189
   },
   "from_date": "2025-08-17T00:00:00Z",
   "to_date": "2025-08-24T00:00:00Z",
@@ -301,7 +301,7 @@ curl --request POST \
   "response_context": {
     "correlation_id": "q2r3s4t5u6v7w8x9y0z1a2b3c4d5e6f7",
     "request_status": "success",
-    "time_took_in_seconds": 0.312
+    "time_taken_in_seconds": 0.312
   },
   "from_date": "2025-01-01T00:00:00Z",
   "to_date": "2025-07-01T00:00:00Z",
@@ -348,7 +348,7 @@ curl --request POST \
   "response_context": {
     "correlation_id": "error123456789",
     "request_status": "failure",
-    "time_took_in_seconds": 0.012
+    "time_taken_in_seconds": 0.012
   },
   "error": {
     "code": "INVALID_DATE_RANGE",
@@ -367,7 +367,7 @@ curl --request POST \
   "response_context": {
     "correlation_id": "auth987654321",
     "request_status": "failure",
-    "time_took_in_seconds": 0.008
+    "time_taken_in_seconds": 0.008
   },
   "error": {
     "code": "UNAUTHORIZED",
@@ -382,7 +382,7 @@ curl --request POST \
   "response_context": {
     "correlation_id": "error456789123",
     "request_status": "failure",
-    "time_took_in_seconds": 0.010
+    "time_taken_in_seconds": 0.010
   },
   "error": {
     "code": "INVALID_RESOLUTION",
