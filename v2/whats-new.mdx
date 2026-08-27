@@ -21,7 +21,7 @@ description: "Every change in AgentSource v2: structural conventions, new Resear
 
 - **[Research (GenAI) endpoints](/v2/endpoints/research)** — custom AI-powered research over businesses or prospects, with a caller-defined `output_schema` and optional real-time web grounding.
 - **[Async job infrastructure](/v2/async-jobs)** — shared job submission, status, and result retrieval behind every `.../job` endpoint, with optional email notifications on job success or failure.
-- **Multi-webhook, tenant-scoped webhook management** *(arrives before GA)* — up to 10 webhooks per tenant, addressed by a server-generated `webhook_id`, each with its own rotatable secret; enrollments bind to a webhook explicitly. Replaces v1's single partner-level webhook and its silent overrides. See [Webhooks](/v2/endpoints/webhooks).
+- **Multi-webhook, tenant-scoped webhook management** — up to 10 webhooks per tenant, addressed by a server-generated `webhook_id`, each with its own rotatable secret; enrollments bind to a webhook explicitly. Replaces v1's single partner-level webhook and its silent overrides. See [Webhooks](/v2/endpoints/webhooks).
 - **Unified contact-availability filter** — prospects [fetch](/v2/prospects/fetch_prospects) and [stats](/v2/prospects/fetch_prospects_statistics) gain `has_contact_details` (`email`, `phone`, `email_or_phone`, `email_and_phone`), including the previously impossible "at least one of email or phone".
 - **[Contact information waterfall](/v2/prospects/enrichments/contact_information_job)** — the async contact endpoint can fall back to a verified external provider for prospects Explorium data cannot enrich, with per-result source tagging.
 

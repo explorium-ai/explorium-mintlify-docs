@@ -1,61 +1,31 @@
 ---
-title: "Webhooks"
-sidebarTitle: "Webhooks"
-description: "Webhooks are currently served by the v1 endpoints. v2 replaces the single partner-level webhook with multiple, tenant-scoped webhooks managed by webhook_id — arriving before GA."
+title: "Webhooks: Receiving Real-Time Events"
+sidebarTitle: "Overview"
+description: "Set up v2 webhooks to receive push notifications for business and prospect events — multiple tenant-scoped webhooks, addressed by webhook_id, each with its own rotatable secret."
 ---
 
-<Info>
-  **Webhooks are currently available in v1 only.** The v2 endpoints described below are built and arrive **before GA** — they are not yet live. v1 runs in parallel with v2, so use the v1 endpoints for anything you ship today.
-</Info>
+## Overview
 
-Webhooks push [events](/v2/endpoints/events) to your own endpoints as they happen. Start with the [webhooks guide](/reference/webhooks/webhooks), which covers registration, payload formats, delivery, and retries.
+Webhooks enable you to receive real-time notifications when important events occur in Explorium's data ecosystem. This guide walks you through setting up v2 webhooks to receive push notifications for the business and prospect events you monitor.
 
-| Purpose | v1 endpoint (use today) |
-| :--- | :--- |
-| Add a webhook | [`POST /v1/webhooks`](/reference/webhooks/add_webhook) |
-| Get a webhook | [`GET /v1/webhooks/{partner_id}`](/reference/webhooks/get_webhook) |
-| Delete a webhook | [`DELETE /v1/webhooks/{partner_id}`](/reference/webhooks/delete_webhook) |
-| Check connectivity | [`POST /v1/webhooks/check_connectivity`](/reference/webhooks/check_webhook_connectivity) |
+Unlike v1's single partner-level webhook, v2 webhooks are **first-class, addressable resources**:
 
-## What changes in v2
+- **Multiple webhooks** — up to 10 per tenant. Creating one never overrides another.
+- **Tenant-scoped** — resolved from your API key; you never pass a tenant or partner ID.
+- **Addressed by `webhook_id`** — server-generated and immutable (e.g. `wh_9f2c81ab`). [Event enrollments](#step-4-enroll-for-events) bind to it explicitly.
+- **Per-webhook secrets** — each webhook has its own HMAC secret, rotatable independently.
 
-v1 supports a **single webhook per partner ID** — every tenant shares it, and re-registering silently overrides it. In v2, webhooks become **first-class, addressable resources**:
+## Quick Start
 
-- **Multiple webhooks** — up to 10 per tenant. Creating a webhook **never overrides** an existing one.
-- **Tenant-scoped by default** — each tenant manages its own webhooks independently. The tenant is resolved from your API key; you never pass a tenant ID.
-- **Addressed by `webhook_id`** — a server-generated, immutable ID (e.g. `wh_9f2c81ab`). Event enrollments reference it explicitly.
-- **Per-webhook secrets** — each webhook has its own HMAC secret; rotating or deleting one never affects the others.
+1. **Register a webhook** — create a destination for event deliveries
+2. **Implement a secure receiver** — validate and process incoming events
+3. **Test connectivity** — verify the webhook is configured correctly
+4. **Enroll for events** — subscribe entities, binding each enrollment to a webhook
+5. **Process events** — receive and handle real-time events as they occur
 
-### The webhook resource
+## Step 1: Register Your Webhook
 
-| Field | Type | Description |
-| :--- | :--- | :--- |
-| `webhook_id` | string | Server-generated, immutable — e.g. `wh_9f2c81ab` |
-| `scope` | object | `{"type": "tenant" \| "organization" \| "partner", "id": "..."}`. For `tenant`, the ID is derived from the API key — never supplied by the caller. `organization` is reserved for the future; `partner` is deprecated at launch. |
-| `name` | string | Human-readable label, unique within the scope (e.g. `"crm-sync-prod"`) |
-| `description` | string, optional | Free text |
-| `webhook_url` | string (HTTPS) | Delivery destination |
-| `headers` | string[], optional | Custom headers sent with every delivery (`"Header-Name: value"`) — unchanged from v1 |
-| `payload_format` | string | `json` (default) or `stringified_json` — unchanged from v1 |
-| `status` | string | `active` or `disabled`. Disabled webhooks are retained but receive no deliveries. |
-| `webhook_secret` | string | Per-webhook HMAC secret. **Returned only on create and rotate — never on read.** |
-| `created_at` / `last_modified_time` | timestamp | Audit fields |
-
-### v2 endpoints (arriving before GA)
-
-| Purpose | Endpoint | Notes |
-| :--- | :--- | :--- |
-| Register | `POST /v2/webhooks` | Returns `201` with the full resource including `webhook_secret`. Never overrides an existing webhook. |
-| List | `GET /v2/webhooks` | All webhooks in your scope; optional `status` filter. Secrets are never returned. |
-| Get | `GET /v2/webhooks/{webhook_id}` | |
-| Update | `PATCH /v2/webhooks/{webhook_id}` | Any mutable field: `name`, `description`, `webhook_url`, `headers`, `payload_format`, `status` |
-| Delete | `DELETE /v2/webhooks/{webhook_id}` | `409 Conflict` if active enrollments reference it — see below |
-| Rotate secret | `POST /v2/webhooks/{webhook_id}/rotate_secret` | Returns a new secret for that webhook only. Replaces v1's re-register-to-rotate pattern. |
-| Check connectivity | `POST /v2/webhooks/{webhook_id}/check_connectivity` | Same semantics as v1, targeted at one webhook. Optional `simulation` block: `event_name`, `number_of_events`, `event_time` |
-
-### Registering a webhook
-
-Only `name` and `webhook_url` are required; `description`, `headers`, and `payload_format` are optional.
+[`POST /v2/webhooks`](/v2/webhooks/register_webhook) — only `name` and `webhook_url` are required.
 
 ```json Request
 {
@@ -87,36 +57,322 @@ Only `name` and `webhook_url` are required; `description`, `headers`, and `paylo
 ```
 
 <Warning>
-  **Store the `webhook_secret` when you create or rotate** — it is never returned by any read endpoint. Signature verification is unchanged from v1 (HMAC over `timestamp.payload`), computed with the secret of the **delivering** webhook.
+  **Store the `webhook_secret` now** — it verifies event authenticity and is returned only on create and [rotate](/v2/webhooks/rotate_webhook_secret), never on read. Store one secret per `webhook_id`.
 </Warning>
 
-### Deleting a webhook that enrollments depend on
+### Optional Registration Parameters
 
-`DELETE` fails with `409 Conflict` while active [event enrollments](/v2/endpoints/events) reference the webhook. Passing `?force=true` deletes it anyway: the affected enrollments are set to `status: "paused"` — delivery stops, entity lists are preserved, and the affected enrollment IDs are returned. Enrollments are **never silently re-pointed**; a paused enrollment can be re-pointed to another webhook via `PATCH` without re-enrolling entities.
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `description` | `string` | Free-text label for your team |
+| `headers` | `string[]` | Custom HTTP headers Explorium sends with **every** delivery, in `"Header-Name: value"` format — e.g. a bearer token your receiver requires |
+| `payload_format` | `string` | `json` (default) sends the event object as-is. `stringified_json` wraps the event so it can be consumed by destinations that expect a single text field — see [Using Webhooks with Claude Code Routines](#using-webhooks-with-claude-code-routines). |
 
-### Scope model
+### Webhook Limits
 
-```text
-organization   (future — new enum value, no schema break)
-└── tenant     (default and recommended in v2)
-    └── partner (v1 legacy — deprecated at launch)
+- Up to **10 webhooks per tenant**; `name` must be unique within your scope
+- Creating a webhook **never overrides** an existing one — that v1 behavior survives only on the v1 endpoint
+- Your legacy v1 partner-level webhook appears read-only in [List webhooks](/v2/webhooks/list_webhooks), flagged `legacy: true`; v1 enrollments keep delivering to it with no action required
+
+## Step 2: Implement Your Webhook Handler
+
+Your webhook handler needs to:
+
+- Accept **HTTP POST** requests
+- Validate the signature to ensure event authenticity
+- Process incoming event data based on the event type and enrollment key
+
+### Example Implementation (Python with FastAPI)
+
+```python Python expandable
+import base64
+import hashlib
+import hmac
+import time
+from fastapi import FastAPI, Request, HTTPException
+
+app = FastAPI()
+
+# One secret per webhook_id — store securely
+WEBHOOK_SECRETS = {
+    "wh_9f2c81ab": "generated_secret_key",
+}
+TIME_WINDOW_SECONDS = 300  # 5 minutes
+
+def verify_signature(secret, payload, received_signature, received_timestamp):
+    try:
+        request_time = int(received_timestamp)
+    except ValueError:
+        return False  # Invalid timestamp
+
+    # Check if timestamp is within the acceptable window
+    current_time = int(time.time())
+    if abs(current_time - request_time) > TIME_WINDOW_SECONDS:
+        return False  # Reject old requests
+
+    hmac_key = base64.urlsafe_b64decode(secret.encode('utf-8'))
+
+    # Recreate message with timestamp + Payload
+    message = f"{received_timestamp}.{payload.decode('utf-8')}".encode("utf-8")
+
+    computed_hmac = hmac.new(hmac_key, message, hashlib.sha256)
+    computed_signature_b64 = base64.urlsafe_b64encode(computed_hmac.digest()).decode('utf-8')
+    return hmac.compare_digest(computed_signature_b64, received_signature)
+
+@app.post("/webhook-handler")
+async def receive_event(request: Request):
+    """Receive and validate webhook events."""
+    payload = await request.body()
+    received_signature = request.headers.get("X-Signature")
+    received_timestamp = request.headers.get('X-Timestamp')
+
+    # Ensure Content-Type is application/json
+    content_type = request.headers.get('Content-Type', '')
+    if not content_type.startswith('application/json'):
+        raise HTTPException(status_code=415, detail="Content-Type must be application/json")
+
+    event_data = await request.json()
+
+    # The payload names its delivering webhook — verify with that webhook's secret
+    secret = WEBHOOK_SECRETS.get(event_data.get('webhook_id', ''))
+    if not secret or not received_signature or not received_timestamp or \
+            not verify_signature(secret, payload, received_signature, received_timestamp):
+        raise HTTPException(status_code=400, detail="Invalid signature")
+
+    # Route based on enrollment_key, event_name, and entity id
+    enrollment_key = event_data.get('enrollment_key')
+    event_name = event_data.get('event_name')
+    # ...
+
+    return {"message": "Webhook processed successfully"}
 ```
 
-Scope is **not supplied by the caller** — the create request has no `scope` field; every webhook you create is tenant-scoped automatically. `partner` appears only on the legacy v1 webhook surfaced in listings (`legacy: true`), and `organization` is a reserved future value.
+**Security Implementation:** The signature is an HMAC over `timestamp.payload`, computed with the secret of the **delivering** webhook — the payload's `webhook_id` tells you which secret to verify with. This prevents unauthorized systems from sending fake events to your endpoint.
 
-### Backward compatibility
+## Step 3: Test Webhook Connectivity
 
-- **v1 endpoints keep working unchanged** during the migration window, including v1's register-overrides behavior — that behavior survives only on the v1 endpoint.
-- Your existing partner-level webhook appears **read-only** in `GET /v2/webhooks`, flagged `legacy: true`.
-- **v1 enrollments have no `webhook_id`** and keep delivering to the legacy partner-level webhook with zero action required.
+[`POST /v2/webhooks/{webhook_id}/check_connectivity`](/v2/webhooks/check_webhook_connectivity) — targeted at one webhook; no request body is needed for a basic check.
 
-## Related
+```json Response
+{
+  "response_context": {
+    "correlation_id": "7f53fa0b79fd4edf9fce50d1e530aac7",
+    "request_status": "success",
+    "time_took_in_seconds": 0.563
+  }
+}
+```
 
-<Columns cols={2}>
-  <Card title="Events" icon="calendar" href="/v2/endpoints/events">
-    The events delivered to your webhooks — and how enrollments bind to a `webhook_id` in v2
-  </Card>
-  <Card title="Webhooks guide (v1)" icon="book" href="/reference/webhooks/webhooks">
-    Registration, payload formats, and delivery — the endpoints to use today
-  </Card>
-</Columns>
+The system sends a test event to the webhook and returns the outcome from your handler.
+
+### Advanced Testing
+
+Add a `simulation` block to push realistic mock events — useful for validating your event handling logic end to end:
+
+```json Request
+{
+  "simulation": {
+    "event_name": "new_funding_round",
+    "number_of_events": 3
+  }
+}
+```
+
+- `event_name` — the event type to simulate
+- `number_of_events` — how many simulated events to deliver
+- `event_time` (optional) — the event timestamp to stamp on the simulated events
+
+## Step 4: Enroll for Events
+
+Once a webhook is set up, enroll entities for monitoring — every v2 enrollment **binds to a webhook explicitly** via `webhook_id`.
+
+- Businesses: [`POST /v2/businesses/events/enrollments`](/v2/businesses/events/create_enrollment)
+- Prospects: [`POST /v2/prospects/events/enrollments`](/v2/prospects/events/create_enrollment)
+
+```json Request
+{
+  "enrollment_key": "my_b2b_saas_monitor",
+  "webhook_id": "wh_9f2c81ab",
+  "event_types": ["ipo_announcement", "new_funding_round"],
+  "business_ids": ["8adce3ca1cef0c986b22310e369a0793"]
+}
+```
+
+```json Response (201)
+{
+  "response_context": { "correlation_id": "…", "request_status": "success", "time_took_in_seconds": 0.2 },
+  "enrollment_key": "my_b2b_saas_monitor",
+  "enrollment_id": "en_7b429a01",
+  "webhook_id": "wh_9f2c81ab",
+  "status": "active"
+}
+```
+
+### Key Enrollment Parameters
+
+- `webhook_id`: the delivery destination. The binding is **strict** — the webhook must exist in your scope and be `active`. Unknown IDs return `404`; a missing `webhook_id` or wrong scope/status returns `422`. Events are never silently delivered elsewhere.
+- `enrollment_key`: a custom identifier included in every event notification — use it to group enrollments by customer, campaign, or business process and route events accordingly.
+- `business_ids` / `prospect_ids`: entities to monitor, up to **20 per request**. There is no limit on the total enrolled across multiple requests.
+
+### Managing enrollments
+
+Each enrollment has a server-generated `enrollment_id` and a `status` — `active` (delivering) or `paused` (retained, delivering nothing; set when its webhook is force-deleted). [`PATCH .../enrollments/{enrollment_id}`](/v2/businesses/events/update_enrollment) updates `webhook_id`, `enrollment_key`, `event_types`, or the entity list — re-pointing a paused enrollment to an active webhook reactivates it without re-enrolling entities.
+
+### Event Payload Structure
+
+Delivered payloads name their delivery source — `webhook_id`, `tenant_id`, `partner_id`, and `enrollment_id` — so a shared handler can route without relying on `enrollment_key` alone:
+
+```json JSON
+{
+  "webhook_id": "wh_9f2c81ab",
+  "tenant_id": "con_dJJUz1jfqdwzfM4t",
+  "partner_id": "ExpTest",
+  "event_id": "691377c2df80547c70e26a13216a3944",
+  "event_name": "new_funding_round",
+  "enrollment_key": "my_b2b_saas_monitor",
+  "enrollment_id": "en_7b429a01",
+  "entity_type": "business",
+  "business_id": "57e7fd862b2ac1c9358bccf8e90faeb1",
+  "event_time": "2026-07-28T09:41:55Z",
+  "data": { "…": "…" }
+}
+```
+
+### Key Fields
+
+`webhook_id`: the webhook this event was delivered through — also selects the secret for signature verification\
+`enrollment_key`: the identifier you provided during enrollment\
+`enrollment_id`: the enrollment that triggered this delivery\
+`event_id`: a unique identifier for this specific event\
+`event_name`: the type of event that was triggered\
+`entity_type`: either "business" or "prospect"\
+`data`: event-specific data (varies by event type)
+
+## Using Webhooks with Claude Code Routines
+
+[Claude Code routines](https://docs.claude.com/en/docs/claude-code/routines) can run automatically in response to an external HTTP request through an **API trigger**. You can point an Explorium webhook directly at a routine's trigger URL so that every Explorium event fires the routine — and, with the right `payload_format`, the event data is delivered straight into the routine for processing. No relay or intermediate service is required.
+
+### How it works
+
+A routine's API trigger exposes a _fire_ URL of the form:
+
+```text
+POST https://api.anthropic.com/v1/claude_code/routines/{trigger_id}/fire
+```
+
+This endpoint:
+
+- Requires an `Authorization: Bearer <token>` header (generated when you create the routine) and an `anthropic-version: 2023-06-01` header.
+- Injects the request body's `text` field into the routine as its input, and ignores other top-level fields.
+
+Because the routine only reads a `text` field, Explorium's default event object isn't consumed by the routine on its own. Setting `payload_format` to `stringified_json` tells Explorium to deliver the event in a routine-compatible shape:
+
+```json
+{
+  "text": "{\"event_name\": \"new_funding_round\", \"data\": { ... }, \"business_id\": \"...\", ...}"
+}
+```
+
+The `text` value is the complete Explorium event object serialized as a JSON string, so the routine can parse it and act on the event.
+
+### Step 1 — Create the routine
+
+In **claude.ai → Code → Routines**, create a routine and choose the **API** trigger ("Trigger from your own code by sending a POST request"). Copy:
+
+- the trigger's **fire URL**, and
+- the **token** generated for the trigger.
+
+In the routine instructions, tell Claude that each run will receive an Explorium event payload and describe what it should do with it (for example, summarize the event, enrich the entity, or alert a channel).
+
+### Step 2 — Register the webhook
+
+Register the routine's fire URL as a dedicated webhook, supplying the required headers and `payload_format: "stringified_json"`:
+
+```json
+{
+  "name": "claude-routine-events",
+  "webhook_url": "https://api.anthropic.com/v1/claude_code/routines/{trigger_id}/fire",
+  "headers": [
+    "Authorization: Bearer sk-ant-oat01-...",
+    "anthropic-version: 2023-06-01"
+  ],
+  "payload_format": "stringified_json"
+}
+```
+
+Because v2 supports multiple webhooks, the routine can be **one of several destinations** — keep your CRM sync on its own webhook and bind each enrollment to the right one via `webhook_id`.
+
+<Note>
+  The `anthropic-version` header is required — without it the routine endpoint rejects the delivery with a `400` error. Each event is delivered as a separate POST, so one routine run is triggered per event.
+</Note>
+
+### Step 3 — Test it
+
+Use the [connectivity endpoint](#step-3-test-webhook-connectivity) to push simulated events to your routine:
+
+```json
+{
+  "simulation": {
+    "event_name": "new_funding_round",
+    "number_of_events": 3
+  }
+}
+```
+
+A `"request_status": "success"` response means the routine accepted the events. Open the routine's sessions in claude.ai to see each event rendered and processed.
+
+<Warning>
+  The token stored in `headers` can trigger your routine. Treat it as a secret, and rotate it if it may have been exposed.
+</Warning>
+
+## Managing Your Webhooks
+
+| Operation | Endpoint |
+| :--- | :--- |
+| List (incl. legacy v1 webhook) | [`GET /v2/webhooks`](/v2/webhooks/list_webhooks) |
+| Get details | [`GET /v2/webhooks/{webhook_id}`](/v2/webhooks/get_webhook) |
+| Update | [`PATCH /v2/webhooks/{webhook_id}`](/v2/webhooks/update_webhook) |
+| Delete | [`DELETE /v2/webhooks/{webhook_id}`](/v2/webhooks/delete_webhook) |
+| Rotate secret | [`POST /v2/webhooks/{webhook_id}/rotate_secret`](/v2/webhooks/rotate_webhook_secret) |
+
+Deleting a webhook that active enrollments reference fails with a conflict unless you pass `?force=true` — then the affected enrollments are set to `paused` (entity lists preserved, IDs returned in `affected_enrollment_ids`) and can be re-pointed to another webhook later. Enrollments are never silently re-pointed.
+
+## Best Practices
+
+1. **One webhook per destination or use case** — CRM sync, ops alerts, and automation each get their own webhook, secret, and enrollments.
+2. **Use the `enrollment_key` effectively**: structure keys to match your internal systems and use cases.
+3. **Validate all signatures**: verify every event with the secret of the `webhook_id` it arrived through.
+4. **Set up monitoring**: detect delivery failures on your endpoint, and use `status: "disabled"` to pause a destination without deleting it.
+5. **Use proper Content-Type**: accept and respond with `application/json`.
+
+## Frequently Asked Questions
+
+<AccordionGroup>
+  <Accordion title="How many webhooks can I register?">
+    Up to 10 per tenant. Each is addressed by its own `webhook_id`, and creating a new one never overrides an existing one.
+  </Accordion>
+
+  <Accordion title="What happened to the v1 single-webhook model?">
+    The v1 endpoints keep working unchanged, including their register-overrides behavior. Your existing partner-level webhook appears read-only in `GET /v2/webhooks` flagged `legacy: true`, and v1 enrollments keep delivering to it with zero action required.
+  </Accordion>
+
+  <Accordion title="How do I rotate a webhook secret?">
+    `POST /v2/webhooks/{webhook_id}/rotate_secret` — it returns a new secret for that webhook only. In v1 you had to re-register; in v2 rotation never touches other webhooks.
+  </Accordion>
+
+  <Accordion title="Is there a limit to how many businesses or prospects I can enroll?">
+    Each enrollment request is limited to 20 IDs, but there's no limit on the total enrolled across multiple requests.
+  </Accordion>
+
+  <Accordion title="What happens to enrollments when I delete their webhook?">
+    The delete fails with a conflict unless you pass `?force=true`. Forced deletion pauses the affected enrollments — delivery stops, entity lists are preserved — and you can re-point them to another webhook via `PATCH` without re-enrolling.
+  </Accordion>
+
+  <Accordion title="How do I differentiate between different monitoring use cases?">
+    Two levers: separate webhooks per destination, and the `enrollment_key` on each enrollment. Both arrive in every event payload, alongside `webhook_id` and `enrollment_id`.
+  </Accordion>
+
+  <Accordion title="Can I trigger a Claude Code routine from a webhook?">
+    Yes. Register a dedicated webhook pointing at the routine's API-trigger fire URL, pass the routine's `Authorization` and `anthropic-version: 2023-06-01` headers via `headers`, and set `payload_format` to `stringified_json`. See [Using Webhooks with Claude Code Routines](#using-webhooks-with-claude-code-routines).
+  </Accordion>
+</AccordionGroup>

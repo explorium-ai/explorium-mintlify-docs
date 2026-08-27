@@ -1,0 +1,7 @@
+---
+title: "Update prospect enrollment"
+sidebarTitle: "Update enrollment"
+openapi: "patch /v2/prospects/events/enrollments/{enrollment_id}"
+---
+
+Updates any mutable field — `webhook_id`, `enrollment_key`, `event_types`, or the entity ID list. Re-pointing a `paused` enrollment to an active webhook reactivates it without re-enrolling entities.
