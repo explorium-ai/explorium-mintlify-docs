@@ -51,9 +51,11 @@ v1 supports a **single webhook per partner ID** — every tenant shares it, and 
 | Update | `PATCH /v2/webhooks/{webhook_id}` | Any mutable field: `name`, `description`, `webhook_url`, `headers`, `payload_format`, `status` |
 | Delete | `DELETE /v2/webhooks/{webhook_id}` | `409 Conflict` if active enrollments reference it — see below |
 | Rotate secret | `POST /v2/webhooks/{webhook_id}/rotate_secret` | Returns a new secret for that webhook only. Replaces v1's re-register-to-rotate pattern. |
-| Check connectivity | `POST /v2/webhooks/{webhook_id}/check_connectivity` | Same semantics as v1, including the `simulation` block, targeted at one webhook |
+| Check connectivity | `POST /v2/webhooks/{webhook_id}/check_connectivity` | Same semantics as v1, targeted at one webhook. Optional `simulation` block: `event_name`, `number_of_events`, `event_time` |
 
 ### Registering a webhook
+
+Only `name` and `webhook_url` are required; `description`, `headers`, and `payload_format` are optional.
 
 ```json Request
 {
@@ -70,7 +72,7 @@ v1 supports a **single webhook per partner ID** — every tenant shares it, and 
   "response_context": {
     "correlation_id": "f6bf2bf8c0e34f3d9fa000f83398c97b",
     "request_status": "success",
-    "time_taken_in_seconds": 0.2
+    "time_took_in_seconds": 0.2
   },
   "webhook_id": "wh_9f2c81ab",
   "scope": { "type": "tenant", "id": "con_dJJUz1jfqdwzfM4t" },
@@ -100,7 +102,7 @@ organization   (future — new enum value, no schema break)
     └── partner (v1 legacy — deprecated at launch)
 ```
 
-`"scope": {"type": "partner"}` is accepted during the compatibility window (admin-level keys only) and creates a partner-scoped webhook equivalent to v1 behavior.
+Scope is **not supplied by the caller** — the create request has no `scope` field; every webhook you create is tenant-scoped automatically. `partner` appears only on the legacy v1 webhook surfaced in listings (`legacy: true`), and `organization` is a reserved future value.
 
 ### Backward compatibility
 

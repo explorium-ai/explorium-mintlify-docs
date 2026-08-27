@@ -61,7 +61,16 @@ Enrollments also gain a server-generated `enrollment_id` and a `status`:
 - `active` — delivering normally
 - `paused` — retained but delivering nothing (set when the referenced webhook is force-deleted)
 
-`PATCH /v2/{entity}/events/enrollments/{enrollment_id}` re-points an enrollment to a different `webhook_id` — reactivating it if paused — without re-enrolling entities.
+The v2 enrollment endpoints (in the spec, arriving with the webhooks release):
+
+| Operation | Endpoint |
+| :--- | :--- |
+| Create | `POST /v2/{entity}/events/enrollments` |
+| List | `GET /v2/{entity}/events/enrollments` |
+| Update | `PATCH /v2/{entity}/events/enrollments/{enrollment_id}` |
+| Delete | `DELETE /v2/{entity}/events/enrollments/{enrollment_id}` |
+
+`PATCH` updates any mutable field — `webhook_id`, `enrollment_key`, `event_types`, or the entity ID list. Re-pointing a paused enrollment to an active webhook reactivates it, without re-enrolling entities. List responses return each enrollment with its `enrollment_id`, `webhook_id`, `status`, `event_types`, and entity IDs.
 
 ### Delivered payloads carry their source
 
