@@ -39,7 +39,35 @@ When the v2 events endpoints ship, the paths move under `/v2` and the `new_fundi
 | `founding_stage` | `funding_stage` |
 | `founding_date` | `funding_date` |
 
-See [What's new](/v2/whats-new#signal-fixes). This page will be replaced with the full v2 reference when the endpoints are released.
+See [What's new](/v2/whats-new#signal-fixes).
+
+### Enrollments bind to a webhook
+
+v2 enrollments gain a **required `webhook_id`**, referencing a [v2 webhook](/v2/endpoints/webhooks) explicitly:
+
+```json Create enrollment
+{
+  "enrollment_key": "my_b2b_saas_monitor",
+  "webhook_id": "wh_9f2c81ab",
+  "event_types": ["ipo_announcement", "new_funding_round"],
+  "business_ids": ["8adce3ca1cef0c986b22310e369a0793"]
+}
+```
+
+The binding is **strict** — the referenced webhook must exist in your scope and be `active`. Unknown IDs return `404`; a missing `webhook_id` or a webhook with the wrong scope or status returns `422`. The system **never silently substitutes** another webhook. (v1 enrollments have no `webhook_id` and keep delivering to the legacy partner-level webhook unchanged.)
+
+Enrollments also gain a server-generated `enrollment_id` and a `status`:
+
+- `active` — delivering normally
+- `paused` — retained but delivering nothing (set when the referenced webhook is force-deleted)
+
+`PATCH /v2/{entity}/events/enrollments/{enrollment_id}` re-points an enrollment to a different `webhook_id` — reactivating it if paused — without re-enrolling entities.
+
+### Delivered payloads carry their source
+
+Event payloads add delivery-source fields so a shared handler can route without relying on `enrollment_key` alone: `webhook_id`, `tenant_id`, `partner_id`, and `enrollment_id`, alongside the existing event fields. Signature verification is unchanged — HMAC over `timestamp.payload`, computed with the secret of the delivering webhook.
+
+This page will be replaced with the full v2 reference when the endpoints are released.
 
 ## Related
 
