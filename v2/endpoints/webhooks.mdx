@@ -1,16 +1,16 @@
 ---
 title: "Webhooks"
 sidebarTitle: "Webhooks"
-description: "Webhooks are currently served by the v1 endpoints. The v2 webhooks endpoints arrive before GA."
+description: "Webhooks are currently served by the v1 endpoints. v2 replaces the single partner-level webhook with multiple, tenant-scoped webhooks managed by webhook_id — arriving before GA."
 ---
 
 <Info>
-  **Webhooks are currently available in v1 only.** The v2 webhooks endpoints will be added before GA. v1 runs in parallel with v2, so use the v1 endpoints below — they work unchanged alongside your other v2 calls.
+  **Webhooks are currently available in v1 only.** The v2 endpoints described below are built and arrive **before GA** — they are not yet live. v1 runs in parallel with v2, so use the v1 endpoints for anything you ship today.
 </Info>
 
 Webhooks push [events](/v2/endpoints/events) to your own endpoints as they happen. Start with the [webhooks guide](/reference/webhooks/webhooks), which covers registration, payload formats, delivery, and retries.
 
-| Purpose | v1 endpoint |
+| Purpose | v1 endpoint (use today) |
 | :--- | :--- |
 | Add a webhook | [`POST /v1/webhooks`](/reference/webhooks/add_webhook) |
 | Get a webhook | [`GET /v1/webhooks/{partner_id}`](/reference/webhooks/get_webhook) |
@@ -19,15 +19,102 @@ Webhooks push [events](/v2/endpoints/events) to your own endpoints as they happe
 
 ## What changes in v2
 
-When the v2 webhooks endpoints ship, only the path prefix moves to `/v2` — payload shape, delivery, and retries are unchanged in scope. This page will be replaced with the full v2 reference when the endpoints are released.
+v1 supports a **single webhook per partner ID** — every tenant shares it, and re-registering silently overrides it. In v2, webhooks become **first-class, addressable resources**:
+
+- **Multiple webhooks** — up to 10 per tenant. Creating a webhook **never overrides** an existing one.
+- **Tenant-scoped by default** — each tenant manages its own webhooks independently. The tenant is resolved from your API key; you never pass a tenant ID.
+- **Addressed by `webhook_id`** — a server-generated, immutable ID (e.g. `wh_9f2c81ab`). Event enrollments reference it explicitly.
+- **Per-webhook secrets** — each webhook has its own HMAC secret; rotating or deleting one never affects the others.
+
+### The webhook resource
+
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `webhook_id` | string | Server-generated, immutable — e.g. `wh_9f2c81ab` |
+| `scope` | object | `{"type": "tenant" \| "organization" \| "partner", "id": "..."}`. For `tenant`, the ID is derived from the API key — never supplied by the caller. `organization` is reserved for the future; `partner` is deprecated at launch. |
+| `name` | string | Human-readable label, unique within the scope (e.g. `"crm-sync-prod"`) |
+| `description` | string, optional | Free text |
+| `webhook_url` | string (HTTPS) | Delivery destination |
+| `headers` | string[], optional | Custom headers sent with every delivery (`"Header-Name: value"`) — unchanged from v1 |
+| `payload_format` | string | `json` (default) or `stringified_json` — unchanged from v1 |
+| `status` | string | `active` or `disabled`. Disabled webhooks are retained but receive no deliveries. |
+| `webhook_secret` | string | Per-webhook HMAC secret. **Returned only on create and rotate — never on read.** |
+| `created_at` / `last_modified_time` | timestamp | Audit fields |
+
+### v2 endpoints (arriving before GA)
+
+| Purpose | Endpoint | Notes |
+| :--- | :--- | :--- |
+| Register | `POST /v2/webhooks` | Returns `201` with the full resource including `webhook_secret`. Never overrides an existing webhook. |
+| List | `GET /v2/webhooks` | All webhooks in your scope; optional `status` filter. Secrets are never returned. |
+| Get | `GET /v2/webhooks/{webhook_id}` | |
+| Update | `PATCH /v2/webhooks/{webhook_id}` | Any mutable field: `name`, `description`, `webhook_url`, `headers`, `payload_format`, `status` |
+| Delete | `DELETE /v2/webhooks/{webhook_id}` | `409 Conflict` if active enrollments reference it — see below |
+| Rotate secret | `POST /v2/webhooks/{webhook_id}/rotate_secret` | Returns a new secret for that webhook only. Replaces v1's re-register-to-rotate pattern. |
+| Check connectivity | `POST /v2/webhooks/{webhook_id}/check_connectivity` | Same semantics as v1, including the `simulation` block, targeted at one webhook |
+
+### Registering a webhook
+
+```json Request
+{
+  "name": "crm-sync-prod",
+  "description": "Delivers funding events to our CRM ingestion service",
+  "webhook_url": "https://your-domain.com/webhook-handler",
+  "headers": ["Authorization: Bearer your_token"],
+  "payload_format": "json"
+}
+```
+
+```json Response (201)
+{
+  "response_context": {
+    "correlation_id": "f6bf2bf8c0e34f3d9fa000f83398c97b",
+    "request_status": "success",
+    "time_taken_in_seconds": 0.2
+  },
+  "webhook_id": "wh_9f2c81ab",
+  "scope": { "type": "tenant", "id": "con_dJJUz1jfqdwzfM4t" },
+  "name": "crm-sync-prod",
+  "webhook_url": "https://your-domain.com/webhook-handler",
+  "payload_format": "json",
+  "status": "active",
+  "webhook_secret": "generated_secret_key",
+  "created_at": "2026-07-28T09:00:00Z",
+  "last_modified_time": "2026-07-28T09:00:00Z"
+}
+```
+
+<Warning>
+  **Store the `webhook_secret` when you create or rotate** — it is never returned by any read endpoint. Signature verification is unchanged from v1 (HMAC over `timestamp.payload`), computed with the secret of the **delivering** webhook.
+</Warning>
+
+### Deleting a webhook that enrollments depend on
+
+`DELETE` fails with `409 Conflict` while active [event enrollments](/v2/endpoints/events) reference the webhook. Passing `?force=true` deletes it anyway: the affected enrollments are set to `status: "paused"` — delivery stops, entity lists are preserved, and the affected enrollment IDs are returned. Enrollments are **never silently re-pointed**; a paused enrollment can be re-pointed to another webhook via `PATCH` without re-enrolling entities.
+
+### Scope model
+
+```text
+organization   (future — new enum value, no schema break)
+└── tenant     (default and recommended in v2)
+    └── partner (v1 legacy — deprecated at launch)
+```
+
+`"scope": {"type": "partner"}` is accepted during the compatibility window (admin-level keys only) and creates a partner-scoped webhook equivalent to v1 behavior.
+
+### Backward compatibility
+
+- **v1 endpoints keep working unchanged** during the migration window, including v1's register-overrides behavior — that behavior survives only on the v1 endpoint.
+- Your existing partner-level webhook appears **read-only** in `GET /v2/webhooks`, flagged `legacy: true`.
+- **v1 enrollments have no `webhook_id`** and keep delivering to the legacy partner-level webhook with zero action required.
 
 ## Related
 
 <Columns cols={2}>
   <Card title="Events" icon="calendar" href="/v2/endpoints/events">
-    The events delivered to your webhooks
+    The events delivered to your webhooks — and how enrollments bind to a `webhook_id` in v2
   </Card>
   <Card title="Webhooks guide (v1)" icon="book" href="/reference/webhooks/webhooks">
-    Registration, payload formats, and delivery
+    Registration, payload formats, and delivery — the endpoints to use today
   </Card>
 </Columns>
