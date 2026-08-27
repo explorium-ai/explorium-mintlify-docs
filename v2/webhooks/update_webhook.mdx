@@ -1,0 +1,7 @@
+---
+title: "Update webhook"
+sidebarTitle: "Update webhook"
+openapi: "patch /v2/webhooks/{webhook_id}"
+---
+
+Any mutable field: `name`, `description`, `webhook_url`, `headers`, `payload_format`, `status`. Setting `status: "disabled"` retains the webhook but stops deliveries.

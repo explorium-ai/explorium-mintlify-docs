@@ -1,0 +1,7 @@
+---
+title: "Register webhook"
+sidebarTitle: "Register webhook"
+openapi: "post /v2/webhooks"
+---
+
+Only `name` and `webhook_url` are required. The response includes the `webhook_secret` — **store it now; it is never returned by any read endpoint**. Creating a webhook never overrides an existing one; each tenant can hold up to 10.

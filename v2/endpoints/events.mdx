@@ -1,11 +1,11 @@
 ---
 title: "Events"
 sidebarTitle: "Events"
-description: "Business and prospect events are currently served by the v1 endpoints. The v2 events endpoints arrive before GA."
+description: "Fetching events is currently served by the v1 endpoints; v2 event enrollments and webhooks are live, with enrollments bound to a webhook_id."
 ---
 
 <Info>
-  **Events are currently available in v1 only.** The v2 events endpoints will be added before GA. v1 runs in parallel with v2, so use the v1 endpoints below — they work unchanged alongside your other v2 calls.
+  **Fetching events is currently v1-only** — the pull endpoints below arrive in v2 before GA and work unchanged alongside your other v2 calls. **Event enrollments and [webhooks](/v2/endpoints/webhooks) are live in v2** with their own reference pages and playgrounds.
 </Info>
 
 ## Business events
@@ -61,14 +61,14 @@ Enrollments also gain a server-generated `enrollment_id` and a `status`:
 - `active` — delivering normally
 - `paused` — retained but delivering nothing (set when the referenced webhook is force-deleted)
 
-The v2 enrollment endpoints (in the spec, arriving with the webhooks release):
+The v2 enrollment endpoints:
 
-| Operation | Endpoint |
-| :--- | :--- |
-| Create | `POST /v2/{entity}/events/enrollments` |
-| List | `GET /v2/{entity}/events/enrollments` |
-| Update | `PATCH /v2/{entity}/events/enrollments/{enrollment_id}` |
-| Delete | `DELETE /v2/{entity}/events/enrollments/{enrollment_id}` |
+| Operation | Businesses | Prospects |
+| :--- | :--- | :--- |
+| Create | [`POST .../events/enrollments`](/v2/businesses/events/create_enrollment) | [create](/v2/prospects/events/create_enrollment) |
+| List | [`GET .../events/enrollments`](/v2/businesses/events/list_enrollments) | [list](/v2/prospects/events/list_enrollments) |
+| Update | [`PATCH .../enrollments/{enrollment_id}`](/v2/businesses/events/update_enrollment) | [update](/v2/prospects/events/update_enrollment) |
+| Delete | [`DELETE .../enrollments/{enrollment_id}`](/v2/businesses/events/delete_enrollment) | [delete](/v2/prospects/events/delete_enrollment) |
 
 `PATCH` updates any mutable field — `webhook_id`, `enrollment_key`, `event_types`, or the entity ID list. Re-pointing a paused enrollment to an active webhook reactivates it, without re-enrolling entities. List responses return each enrollment with its `enrollment_id`, `webhook_id`, `status`, `event_types`, and entity IDs.
 
@@ -76,7 +76,7 @@ The v2 enrollment endpoints (in the spec, arriving with the webhooks release):
 
 Event payloads add delivery-source fields so a shared handler can route without relying on `enrollment_key` alone: `webhook_id`, `tenant_id`, `partner_id`, and `enrollment_id`, alongside the existing event fields. Signature verification is unchanged — HMAC over `timestamp.payload`, computed with the secret of the delivering webhook.
 
-This page will be replaced with the full v2 reference when the endpoints are released.
+The event-fetch endpoints get their full v2 reference when they are released.
 
 ## Related
 

@@ -1,0 +1,7 @@
+---
+title: "Delete webhook"
+sidebarTitle: "Delete webhook"
+openapi: "delete /v2/webhooks/{webhook_id}"
+---
+
+Fails with a conflict while active [enrollments](/v2/endpoints/events) reference the webhook. Pass `?force=true` to delete anyway: affected enrollments are set to `paused` (delivery stops, entity lists preserved) and returned in `affected_enrollment_ids`. Enrollments are never silently re-pointed.

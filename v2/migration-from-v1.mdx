@@ -62,7 +62,9 @@ v2 ships alongside v1. v1 keeps running in parallel and is wound down in stages,
 | `/v1/businesses/match`, `/v1/businesses`, `/v1/businesses/stats` | `/v2/...` equivalents | Path change only |
 | `/v1/prospects/match`, `/v1/prospects`, `/v1/prospects/stats` | `/v2/...` equivalents | Path change only |
 | Credits | `/v2/...` equivalents | Path change only |
-| Events, enrollments, webhooks | Stay on `/v1` for now | v2 endpoints arrive before GA — see [Events](/v2/endpoints/events) and [Webhooks](/v2/endpoints/webhooks) |
+| `/v1/webhooks` (single, partner-level) | [`/v2/webhooks`](/v2/endpoints/webhooks) — multiple, tenant-scoped, by `webhook_id` | Not a path rename: register per destination, store each secret; the legacy webhook appears as `legacy: true` |
+| `/v1/{entity}/events/enrollments` | `/v2/{entity}/events/enrollments` | v2 enrollments require a `webhook_id` binding |
+| Event fetch (`/v1/{entity}/events`) | Stays on `/v1` for now | v2 equivalents arrive before GA — see [Events](/v2/endpoints/events) |
 
 ## Breaking changes checklist
 

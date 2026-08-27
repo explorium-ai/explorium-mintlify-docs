@@ -1,0 +1,7 @@
+---
+title: "Create business enrollment"
+sidebarTitle: "Create enrollment"
+openapi: "post /v2/businesses/events/enrollments"
+---
+
+Requires a `webhook_id` of an **active** [v2 webhook](/v2/endpoints/webhooks) in your scope — unknown IDs return `404`, a missing `webhook_id` or wrong scope/status returns `422`; delivery is never silently re-pointed. Up to **20 IDs per request**, unlimited total across requests.

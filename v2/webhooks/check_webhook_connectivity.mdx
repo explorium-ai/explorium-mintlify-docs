@@ -1,0 +1,7 @@
+---
+title: "Check webhook connectivity"
+sidebarTitle: "Check connectivity"
+openapi: "post /v2/webhooks/{webhook_id}/check_connectivity"
+---
+
+Sends a test event to this webhook and returns the outcome. Add the optional `simulation` block (`event_name`, `number_of_events`, `event_time`) to push realistic mock events — see the [webhooks guide](/v2/endpoints/webhooks#step-3-test-webhook-connectivity).
