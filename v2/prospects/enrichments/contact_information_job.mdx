@@ -150,7 +150,10 @@ Credits are charged per result, according to the source that produced it:
 
 For example, a prospect whose email came from Explorium and whose phone came from the external provider costs 2 + 24 = 26 credits.
 
-With `waterfall: "explorium_only"` (or the parameter omitted), behavior, response contract, and credit charging are identical to the endpoint as it works today — the waterfall adds cost only when the external provider actually returns data.
+Which rates can apply depends on the `waterfall` mode:
+
+- **`explorium_only`** (the default) — only Explorium data is used, so only Explorium rates apply. External-provider charges are impossible in this mode.
+- **`full`** — Explorium rates apply to Explorium-sourced results, and external-provider rates apply only to prospects the external provider actually enriched. A prospect that neither source could enrich costs nothing.
 
 ## Best practices
 
