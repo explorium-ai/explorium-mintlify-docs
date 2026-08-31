@@ -536,6 +536,8 @@
                 "group": "Events & Webhooks",
                 "pages": [
                   "v2/endpoints/events",
+                  "v2/businesses/events/fetch_events",
+                  "v2/prospects/events/fetch_events",
                   {
                     "group": "Event enrollments",
                     "pages": [

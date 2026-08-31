@@ -42,7 +42,7 @@ Unlike v1's single partner-level webhook, v2 webhooks are **first-class, address
   "response_context": {
     "correlation_id": "f6bf2bf8c0e34f3d9fa000f83398c97b",
     "request_status": "success",
-    "time_took_in_seconds": 0.2
+    "time_taken_in_seconds": 0.2
   },
   "webhook_id": "wh_9f2c81ab",
   "scope": { "type": "tenant", "id": "con_dJJUz1jfqdwzfM4t" },
@@ -158,7 +158,7 @@ async def receive_event(request: Request):
   "response_context": {
     "correlation_id": "7f53fa0b79fd4edf9fce50d1e530aac7",
     "request_status": "success",
-    "time_took_in_seconds": 0.563
+    "time_taken_in_seconds": 0.563
   }
 }
 ```
@@ -200,7 +200,7 @@ Once a webhook is set up, enroll entities for monitoring — every v2 enrollment
 
 ```json Response (201)
 {
-  "response_context": { "correlation_id": "…", "request_status": "success", "time_took_in_seconds": 0.2 },
+  "response_context": { "correlation_id": "…", "request_status": "success", "time_taken_in_seconds": 0.2 },
   "enrollment_key": "my_b2b_saas_monitor",
   "enrollment_id": "en_7b429a01",
   "webhook_id": "wh_9f2c81ab",
@@ -212,7 +212,7 @@ Once a webhook is set up, enroll entities for monitoring — every v2 enrollment
 
 - `webhook_id`: the delivery destination. The binding is **strict** — the webhook must exist in your scope and be `active`. Unknown IDs return `404`; a missing `webhook_id` or wrong scope/status returns `422`. Events are never silently delivered elsewhere.
 - `enrollment_key`: a custom identifier included in every event notification — use it to group enrollments by customer, campaign, or business process and route events accordingly.
-- `business_ids` / `prospect_ids`: entities to monitor, up to **20 per request**. There is no limit on the total enrolled across multiple requests.
+- `business_ids` / `prospect_ids`: entities to monitor, up to **1,000 per request**. There is no limit on the total enrolled across multiple requests.
 
 ### Managing enrollments
 
@@ -361,7 +361,7 @@ Deleting a webhook that active enrollments reference fails with a conflict unles
   </Accordion>
 
   <Accordion title="Is there a limit to how many businesses or prospects I can enroll?">
-    Each enrollment request is limited to 20 IDs, but there's no limit on the total enrolled across multiple requests.
+    Each enrollment request is limited to 1,000 IDs, but there's no limit on the total enrolled across multiple requests.
   </Accordion>
 
   <Accordion title="What happens to enrollments when I delete their webhook?">
