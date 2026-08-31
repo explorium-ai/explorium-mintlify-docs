@@ -1,38 +1,31 @@
 ---
 title: "Events"
 sidebarTitle: "Events"
-description: "Fetching events is currently served by the v1 endpoints; v2 event enrollments and webhooks are live, with enrollments bound to a webhook_id."
+description: "Fetch business and prospect events, enroll entities for monitoring, and receive deliveries through tenant-scoped webhooks — all live in v2."
 ---
 
 <Info>
-  **Fetching events is currently v1-only** — the pull endpoints below arrive in v2 before GA and work unchanged alongside your other v2 calls. **Event enrollments and [webhooks](/v2/endpoints/webhooks) are live in v2** with their own reference pages and playgrounds.
+  The full v2 events surface is live: [fetch events](/v2/businesses/events/fetch_events) on demand, or enroll entities and receive pushes through [webhooks](/v2/endpoints/webhooks).
 </Info>
 
-## Business events
+## Two ways to consume events
 
-| Purpose | v1 endpoint |
-| :--- | :--- |
-| Fetch events | [`POST /v1/businesses/events`](/reference/businesses/events/fetch_businesses_events) |
-| Enrollments — Add | [`/v1/businesses/events/enrollments`](/reference/businesses/events/add_businesses_enrollments) |
-| Enrollments — Update | [`/v1/businesses/events/enrollments`](/reference/businesses/events/update_businesses_enrollments) |
-| Enrollments — Delete | [`/v1/businesses/events/enrollments`](/reference/businesses/events/delete_businesses_enrollments) |
-| Enrollments — Get | [`/v1/businesses/events/enrollments`](/reference/businesses/events/get_businesses_enrollments) |
+- **Pull** — [fetch business events](/v2/businesses/events/fetch_events) or [fetch prospect events](/v2/prospects/events/fetch_events) on demand, up to 40 IDs per request. The fetch pages also catalog every available event type, from IPO announcements to hiring trends.
+- **Push** — enroll entities once and receive deliveries as events happen: create an enrollment bound to a [webhook](/v2/endpoints/webhooks) via `webhook_id`.
 
-The [Fetch business events](/reference/businesses/events/fetch_businesses_events) page also documents every available event type, from IPO announcements to hiring trends.
+## Endpoints
 
-## Prospect events
+| Purpose | Businesses | Prospects |
+| :--- | :--- | :--- |
+| Fetch events | [`POST /v2/businesses/events`](/v2/businesses/events/fetch_events) | [`POST /v2/prospects/events`](/v2/prospects/events/fetch_events) |
+| Create enrollment | [create](/v2/businesses/events/create_enrollment) | [create](/v2/prospects/events/create_enrollment) |
+| List enrollments | [list](/v2/businesses/events/list_enrollments) | [list](/v2/prospects/events/list_enrollments) |
+| Update enrollment | [update](/v2/businesses/events/update_enrollment) | [update](/v2/prospects/events/update_enrollment) |
+| Delete enrollment | [delete](/v2/businesses/events/delete_enrollment) | [delete](/v2/prospects/events/delete_enrollment) |
 
-| Purpose | v1 endpoint |
-| :--- | :--- |
-| Fetch events | [`POST /v1/prospects/events`](/reference/prospects/events/fetch_prospects_events) |
-| Enrollments — Add | [`/v1/prospects/events/enrollments`](/reference/prospects/events/add_prospects_enrollments) |
-| Enrollments — Update | [`/v1/prospects/events/enrollments`](/reference/prospects/events/update_prospects_enrollments) |
-| Enrollments — Delete | [`/v1/prospects/events/enrollments`](/reference/prospects/events/delete_prospects_enrollments) |
-| Enrollments — Get | [`/v1/prospects/events/enrollments`](/reference/prospects/events/get_prospects_enrollments) |
+## Changed from v1
 
-## What changes in v2
-
-When the v2 events endpoints ship, the paths move under `/v2` and the `new_funding_round` event payload corrects two field names:
+The `new_funding_round` event payload corrects two field names:
 
 | v1 field | v2 field |
 | :--- | :--- |
@@ -61,22 +54,11 @@ Enrollments also gain a server-generated `enrollment_id` and a `status`:
 - `active` — delivering normally
 - `paused` — retained but delivering nothing (set when the referenced webhook is force-deleted)
 
-The v2 enrollment endpoints:
-
-| Operation | Businesses | Prospects |
-| :--- | :--- | :--- |
-| Create | [`POST .../events/enrollments`](/v2/businesses/events/create_enrollment) | [create](/v2/prospects/events/create_enrollment) |
-| List | [`GET .../events/enrollments`](/v2/businesses/events/list_enrollments) | [list](/v2/prospects/events/list_enrollments) |
-| Update | [`PATCH .../enrollments/{enrollment_id}`](/v2/businesses/events/update_enrollment) | [update](/v2/prospects/events/update_enrollment) |
-| Delete | [`DELETE .../enrollments/{enrollment_id}`](/v2/businesses/events/delete_enrollment) | [delete](/v2/prospects/events/delete_enrollment) |
-
 `PATCH` updates any mutable field — `webhook_id`, `enrollment_key`, `event_types`, or the entity ID list. Re-pointing a paused enrollment to an active webhook reactivates it, without re-enrolling entities. List responses return each enrollment with its `enrollment_id`, `webhook_id`, `status`, `event_types`, and entity IDs.
 
 ### Delivered payloads carry their source
 
 Event payloads add delivery-source fields so a shared handler can route without relying on `enrollment_key` alone: `webhook_id`, `tenant_id`, `partner_id`, and `enrollment_id`, alongside the existing event fields. Signature verification is unchanged — HMAC over `timestamp.payload`, computed with the secret of the delivering webhook.
-
-The event-fetch endpoints get their full v2 reference when they are released.
 
 ## Related
 
