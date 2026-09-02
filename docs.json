@@ -3,9 +3,9 @@
   "theme": "mint",
   "name": "Explorium docs",
   "colors": {
-    "primary": "#004349",
-    "light": "#d0ee70",
-    "dark": "#004349"
+    "primary": "#668DF7",
+    "light": "#B1CEFF",
+    "dark": "#102B51"
   },
   "favicon": "/favicon.svg",
   "appearance": {
@@ -13,8 +13,12 @@
   },
   "background": {
     "color": {
-      "light": "#ffffff"
+      "light": "#ffffff",
+      "dark": "#102B51"
     }
+  },
+  "fonts": {
+    "family": "Plus Jakarta Sans"
   },
   "api": {
    "playground": {
