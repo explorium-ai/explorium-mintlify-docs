@@ -539,6 +539,39 @@
                   "v2/businesses/events/fetch_events",
                   "v2/prospects/events/fetch_events",
                   {
+                    "group": "Event types",
+                    "pages": [
+                      {
+                        "group": "Businesses",
+                        "pages": [
+                          "v2/businesses/events/types/ipo-announcement",
+                          "v2/businesses/events/types/new-product-launch",
+                          "v2/businesses/events/types/new-funding-round",
+                          "v2/businesses/events/types/new-investment",
+                          "v2/businesses/events/types/office-closing",
+                          "v2/businesses/events/types/new-office-opening",
+                          "v2/businesses/events/types/companys-award-event",
+                          "v2/businesses/events/types/new-partnership",
+                          "v2/businesses/events/types/hiring-by-department",
+                          "v2/businesses/events/types/department-trend",
+                          "v2/businesses/events/types/employee-joined-company",
+                          "v2/businesses/events/types/lawsuits-and-legal-issues",
+                          "v2/businesses/events/types/outages-and-security-breaches",
+                          "v2/businesses/events/types/cost-cutting",
+                          "v2/businesses/events/types/merger-and-acquisitions"
+                        ]
+                      },
+                      {
+                        "group": "Prospects",
+                        "pages": [
+                          "v2/prospects/events/types/recently_changed_company",
+                          "v2/prospects/events/types/employee_workplace_anniversary",
+                          "v2/prospects/events/types/employee_job_changes"
+                        ]
+                      }
+                    ]
+                  },
+                  {
                     "group": "Event enrollments",
                     "pages": [
                       {

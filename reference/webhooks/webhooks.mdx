@@ -270,8 +270,8 @@ Once your webhook is set up, you can enroll entities (businesses or prospects) f
   - Segment by monitoring campaign or use case
   - Differentiate between different business processes
   - This key will be included in each event notification, allowing you to route events appropriately
-- `business_ids/prospect_ids`: Business or prospect IDs to monitor (up to 20 per request)
-  - While each request is limited to 20 IDs, there's no limit on the total number of IDs you can enroll across multiple requests
+- `business_ids/prospect_ids`: Business or prospect IDs to monitor (up to 1,000 per request)
+  - While each request is limited to 1,000 IDs, there's no limit on the total number of IDs you can enroll across multiple requests
   - You can enroll thousands of entities by making multiple enrollment requests
 
 ### Event Payload Structure
@@ -414,7 +414,7 @@ A `"request_status": "success"` response means the routine accepted the events. 
   </Accordion>
 
   <Accordion title="Is there a limit to how many businesses or prospects I can enroll?">
-    While each enrollment request is limited to 20 IDs, there's no limit on the total number of IDs you can enroll across multiple requests.
+    While each enrollment request is limited to 1,000 IDs, there's no limit on the total number of IDs you can enroll across multiple requests.
   </Accordion>
 
   <Accordion title="How do I differentiate between different monitoring use cases?">
