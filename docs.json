@@ -59,8 +59,7 @@
                   "v2/overview",
                   "v2/whats-new",
                   "v2/migration-from-v1",
-                  "v2/conventions",
-                  "v2/release-plan"
+                  "v2/conventions"
                 ]
               },
               {
@@ -1084,6 +1083,10 @@
     {
       "source": "/reference/zapier",
       "destination": "/integrations/zapier/zapier"
+    },
+    {
+      "source": "/v2/release-plan",
+      "destination": "/v2/whats-new"
     }
   ],
   "integrations": {
