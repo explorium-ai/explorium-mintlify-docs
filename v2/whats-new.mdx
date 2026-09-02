@@ -25,6 +25,15 @@ description: "Every change in AgentSource v2: structural conventions, new Resear
 - **Unified contact-availability filter** — prospects [fetch](/v2/prospects/fetch_prospects) and [stats](/v2/prospects/fetch_prospects_statistics) gain `has_contact_details` (`email`, `phone`, `email_or_phone`, `email_and_phone`), including the previously impossible "at least one of email or phone".
 - **[Contact information waterfall](/v2/prospects/enrichments/contact_information_job)** — the async contact endpoint can fall back to a verified external provider for prospects Explorium data cannot enrich, with per-result source tagging.
 
+## Coming before GA
+
+Two v2-only breaking changes land before GA — announced here ahead of time; the API and playgrounds still show the current behavior:
+
+| Change | Detail |
+| :--- | :--- |
+| `emails` removed from `contact_information` | The `emails` array leaves every v2 contact response — sync, async, and the result CSV. `professional_email`, `professional_email_status`, `phone_numbers`, `mobile_phone`, and the source fields are unaffected. |
+| `employee_joined_company` → `executive_joined_company` | The event is renamed across every v2 surface: fetch filters, enrollment `event_types`, webhook simulation, and the `event_name` in delivered payloads. |
+
 ## Signal fixes
 
 Misspelled field names corrected in v2:
