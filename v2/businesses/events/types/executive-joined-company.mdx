@@ -2,10 +2,6 @@
 title: "New executive level hires"
 ---
 
-<Warning>
-  **Upcoming (before GA):** this event is being renamed to `executive_joined_company` across every v2 surface — fetch filters, enrollment `event_types`, webhook simulation, and the `event_name` in delivered payloads. See [Coming before GA](/v2/whats-new#coming-before-ga).
-</Warning>
-
 ## Description
 
 A **New Executive Level Hire** event tracks when a new employee is hired and officially joins an organization. This data provides insights into workforce expansion, company growth, and industry hiring trends.
@@ -23,7 +19,7 @@ A **New Executive Level Hire** event tracks when a new employee is hired and off
 
 ## Data Schema
 
-**Event Name: "employee_joined_company" (Use this value in the event_types parameter when querying this event.)**
+**Event Name: "executive_joined_company" (Use this value in the event_types parameter when querying this event.)**
 
 | Signal                             | API Name         | Description                                                                                                                                       | Data Type |
 | :--------------------------------- | :--------------- | :------------------------------------------------------------------------------------------------------------------------------------------------ | :-------- |
@@ -45,7 +41,7 @@ curl -X POST \
   -H "Content-Type: application/json" \
   -d '{
   "event_types": [
-    "employee_joined_company"
+    "executive_joined_company"
   ],
   "business_ids": [
     "8adce3ca1cef0c986b22310e369a0793"
@@ -63,10 +59,10 @@ curl -X POST \
 ## Related Events
 
 <Columns cols={2}>
-  <Card title="Hiring (per department)" icon="users" horizontal href="/reference/businesses/events/types/hiring-by-department">
+  <Card title="Hiring (per department)" icon="users" horizontal href="/v2/businesses/events/types/hiring-by-department">
     Hiring by Department
   </Card>
-  <Card title="Department trend (per department)" icon="user-plus" horizontal href="/reference/businesses/events/types/department-trend">
+  <Card title="Department trend (per department)" icon="user-plus" horizontal href="/v2/businesses/events/types/department-trend">
     Workforce Changes by Department
   </Card>
 </Columns>

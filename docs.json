@@ -554,7 +554,7 @@
                           "v2/businesses/events/types/new-partnership",
                           "v2/businesses/events/types/hiring-by-department",
                           "v2/businesses/events/types/department-trend",
-                          "v2/businesses/events/types/employee-joined-company",
+                          "v2/businesses/events/types/executive-joined-company",
                           "v2/businesses/events/types/lawsuits-and-legal-issues",
                           "v2/businesses/events/types/outages-and-security-breaches",
                           "v2/businesses/events/types/cost-cutting",

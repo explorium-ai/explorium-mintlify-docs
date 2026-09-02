@@ -6,7 +6,7 @@ openapi: "post /v2/prospects/contact_information/job"
 
 ## Description
 
-The **Asynchronous Contact Information Enrichment** retrieves verified **emails, phone numbers, and mobile numbers** for up to 10,000 prospects per job — and, unlike the [synchronous endpoint](/v2/prospects/enrichments/contact_information_enrich), it supports **waterfall enrichment**: prospects that Explorium data cannot enrich are automatically retried against a verified **external provider**, increasing overall contact coverage.
+The **Asynchronous Contact Information Enrichment** retrieves verified **professional emails, phone numbers, and mobile numbers** for up to 10,000 prospects per job — and, unlike the [synchronous endpoint](/v2/prospects/enrichments/contact_information_enrich), it supports **waterfall enrichment**: prospects that Explorium data cannot enrich are automatically retried against a verified **external provider**, increasing overall contact coverage.
 
 <Icon icon="thumbtack" iconType="solid" color="red" /> **Key Benefits:**
 
@@ -43,7 +43,7 @@ With `waterfall: "full"`, each job runs five steps:
     Prospects with no email **and** no phone from Explorium are collected.
   </Step>
   <Step title="External fallback">
-    The unenriched prospects are sent to the external provider, and its results are mapped onto the same contact schema (`emails`, `phone_numbers`, `mobile_phone`, `professional_email_status`).
+    The unenriched prospects are sent to the external provider, and its results are mapped onto the same contact schema (`professional_email`, `phone_numbers`, `mobile_phone`, `professional_email_status`).
   </Step>
   <Step title="Merge and return">
     One unified result set covers all prospects, with `email_source` and `phone_source` tagging where each value came from.
@@ -128,7 +128,6 @@ Results are downloaded as a CSV from `results.download_url`. The link is valid f
 | Column | Description |
 | :--- | :--- |
 | `entity_ids` | The prospect identifier(s) the row corresponds to |
-| `emails` | All email addresses found, each with an `address` and a `type` (e.g. `current_professional`, `personal`). **Removed before GA** — see [Coming before GA](/v2/whats-new#coming-before-ga); use `professional_email`. |
 | `professional_email` | The current professional email address |
 | `professional_email_status` | Validity status of the professional email: `valid`, `catch_all`, or `invalid` |
 | `phone_numbers` | All phone numbers found |
