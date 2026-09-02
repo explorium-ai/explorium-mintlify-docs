@@ -4,10 +4,6 @@ sidebarTitle: "Overview"
 description: "How AgentSource v2 async endpoints work: job submission, status polling, cancellation, dataset upload, and the input and runtime limits."
 ---
 
-<Info>
-  **Beta.** AgentSource v2 is in beta. Details may still change before GA.
-</Info>
-
 ## Overview
 
 Every `.../job` endpoint in v2 runs through a shared async job layer. Instead of returning results inline, a job endpoint accepts your input and returns a job reference. You then poll for state and collect results.
