@@ -1,0 +1,84 @@
+---
+title: "Generate: build and download lists without code"
+sidebarTitle: "Generate"
+description: "A UI tool in the AgentSource admin panel for generating and downloading business and prospect lists — filter your audience, preview a sample with stats, and download an enriched CSV."
+---
+
+**Generate** is a point-and-click way to get Explorium data without writing any code. Build an audience with the same filters the API exposes, preview a sample of matching records, and download up to **60,000 records** as a CSV — businesses with firmographics, or prospects optionally enriched with contact details (professional email and phone).
+
+Everything Generate does runs on the same public API your integrations use — [fetch](/v2/prospects/fetch_prospects), [statistics](/v2/prospects/fetch_prospects_statistics), [autocomplete](/v2/autocomplete), and [contact enrichment](/v2/prospects/enrichments/contact_information_enrich) — billed to an API key you pick per run.
+
+## Where to find it
+
+Open the **AgentSource admin panel** and pick **Generate** under **Build & Manage**.
+
+<Frame caption="Generate lives in the admin panel sidebar, under Build & Manage.">
+  <img src="/images/generate/admin-panel-generate-nav.png" alt="The AgentSource admin panel sidebar with the Generate entry highlighted" width="315" />
+</Frame>
+
+<Note>
+  Generate is being rolled out gradually and may not be visible on every account yet. If you don't see it in your admin panel, reach out to your Explorium contact.
+</Note>
+
+## Generating a list
+
+<Steps>
+  <Step title="Pick an API key">
+    Choose which of your account's API keys the run should use — it defaults to your platform key. Every call Generate makes (fetch, stats, enrichment, download) is billed against the selected key.
+  </Step>
+  <Step title="Choose Prospects or Businesses">
+    The toggle at the top switches the audience type — and with it, the filter set and the columns you get in the preview and the CSV.
+  </Step>
+  <Step title="Build your audience criteria">
+    Add filters in the left panel. Every filter supported by the [Fetch prospects](/v2/prospects/fetch_prospects) and [Fetch businesses](/v2/businesses/fetch_businesses) APIs is available, and value suggestions are powered by the same [autocomplete](/v2/autocomplete) the API exposes.
+
+    <Frame caption="The prospects filter builder — location, industry, revenue, employees, management level, job title, and more.">
+      <img src="/images/generate/generate-prospects-filters.png" alt="Generate with the Prospects tab active and the audience criteria filter panel open" />
+    </Frame>
+
+    <Frame caption="Filter values suggest themselves as you type — here, LinkedIn industry categories matching 'software'.">
+      <img src="/images/generate/generate-autocomplete.png" alt="Industry filter with autocomplete suggestions for the term software" />
+    </Frame>
+  </Step>
+  <Step title="Preview before you commit">
+    Click **Preview** to fetch a **20-record sample** — it never downloads anything, and the credits consumed for the sample are shown at the bottom of the filter panel. The header shows the **total number of matching records** for your criteria.
+
+    <Frame caption="Preview: a 20-record sample plus the total match count (here 1,971,743 prospects).">
+      <img src="/images/generate/generate-preview-table.png" alt="Preview table of prospects with name, job title, company, business ID, department, and level columns" />
+    </Frame>
+
+    Switch to the **Stats** view for a distribution breakdown of the full matching audience — powered by the free [statistics endpoints](/v2/prospects/fetch_prospects_statistics), so exploring your audience shape costs nothing.
+
+    <Frame caption="The Stats view breaks the full audience down — no credits charged.">
+      <img src="/images/generate/generate-preview-stats.png" alt="Stats view showing the total number of prospects per location as a bar chart" />
+    </Frame>
+  </Step>
+  <Step title="Download the CSV">
+    Click **Download CSV**, choose how many records to download (up to **60,000**), and hit **Generate**. The pipeline fetches the records, enriches prospects with contact details where available, builds the CSV, and downloads it — showing progress along the way and the **total credits consumed** when it finishes.
+
+    <Frame caption="Pick the record count for the download — previewing stays separate and free of downloads.">
+      <img src="/images/generate/generate-download-modal.png" alt="Generate CSV modal asking how many records to download, with a maximum of 60,000" />
+    </Frame>
+  </Step>
+</Steps>
+
+## What you get
+
+| Audience | Columns in the CSV |
+| :--- | :--- |
+| **Businesses** | Firmographics — name, website, country, city, number of employees, revenue range, and the Explorium business ID |
+| **Prospects** | Full name, job title, company, department, seniority level, the Explorium IDs — plus **contact details** (professional email and phone numbers) where available |
+
+<Frame caption="Businesses mode: same flow, firmographic columns.">
+  <img src="/images/generate/generate-businesses-preview.png" alt="Businesses preview table with name, website, country, city, employees, revenue, and business ID columns" />
+</Frame>
+
+## Credits
+
+- **Stats are free.** The Stats view and total match counts never consume credits — use them to validate filters before committing.
+- **Previews are small.** A preview always fetches exactly 20 records; the credits it consumed are shown under the filter panel.
+- **Downloads are billed like the API.** Records fetched and contact details enriched are charged to the selected API key at the standard rates, and the total is displayed when the run completes. If credits run out mid-download, Generate stops and tells you.
+
+## Generate or the API?
+
+Generate is the fastest way to pull a one-off list or to explore audience shapes visually. For recurring or automated list-building, use the same building blocks directly: [fetch](/v2/prospects/fetch_prospects) with your filters, [statistics](/v2/prospects/fetch_prospects_statistics) to size audiences, and the [async jobs infrastructure](/v2/async-guide) for large enriched batches.
