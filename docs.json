@@ -317,6 +317,18 @@
                 ]
               }
             ]
+          },
+          {
+            "tab": "Generate",
+            "icon": "table-list",
+            "groups": [
+              {
+                "group": "Generate",
+                "pages": [
+                  "generate/overview"
+                ]
+              }
+            ]
           }
         ]
       },
@@ -578,6 +590,18 @@
                     ]
                   },
                   "integrations/zapier/zapier"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Generate",
+            "icon": "table-list",
+            "groups": [
+              {
+                "group": "Generate",
+                "pages": [
+                  "generate/overview"
                 ]
               }
             ]
