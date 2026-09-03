@@ -262,6 +262,61 @@
                 ]
               }
             ]
+          },
+          {
+            "tab": "Explorium MCP",
+            "icon": "message-code",
+            "groups": [
+              {
+                "group": "AgentSource MCP",
+                "pages": [
+                  "mcp-docs/agentsource-mcp",
+                  {
+                    "group": "Developers Implementation Guides",
+                    "pages": [
+                      "mcp-docs/developers-implementation-guides",
+                      "mcp-docs/implement-with-langgraph",
+                      "mcp-docs/implement-with-openai",
+                      "mcp-docs/python-sdk-implementation-guide"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Integrations",
+            "icon": "circles-overlap",
+            "groups": [
+              {
+                "group": "MCP Integrations",
+                "pages": [
+                  "integrations/mcp-integrations",
+                  "integrations/claude/claude-desktop-integration",
+                  "integrations/cursor/cursor-integration",
+                  "integrations/n8n/integrate-with-n8n",
+                  "integrations/zapier/integrate-with-zapier",
+                  "integrations/base44/integrate-with-base44"
+                ]
+              },
+              {
+                "group": "Integrations templates",
+                "pages": [
+                  {
+                    "group": "n8n",
+                    "pages": [
+                      "integrations/n8n/n8n",
+                      "integrations/n8n/explorium-event-triggered-outreach",
+                      "integrations/n8n/google-sheets-company-enrichment-with-explorium-mcp",
+                      "integrations/n8n/explorium-prospects-search-chatbot",
+                      "integrations/n8n/salesforce-data-enrichment-workflow",
+                      "integrations/n8n/hubspot-contact-enrichment"
+                    ]
+                  },
+                  "integrations/zapier/zapier"
+                ]
+              }
+            ]
           }
         ]
       },
