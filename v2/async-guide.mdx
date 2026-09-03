@@ -44,33 +44,44 @@ The upload endpoint takes a CSV of entity IDs. Start from a sample:
 
 <CardGroup cols={2}>
   <Card title="sample-business-ids.csv" icon="file-csv">
-    Six business IDs — use as-is.
+    Ten business IDs — use as-is.
 
-    <a href="data:text/csv;charset=utf-8,business_id%0Ae11943a6031a0e6114ae69c257617980%0Ac17a9b84c3c3ade4cdce7373958ccb9c%0A8adce3ca1cef0c986b22310e369a0793%0A6eebb2af6bb0fb54b7ef435a98bb66d9%0Ac5bfcfde8643f8870b5c5cbecb75cd22%0Ad9ee9a9c0773759f16e6e458cbe14670%0A" download="sample-business-ids.csv">**Download CSV ↓**</a>
+    <a href="data:text/csv;charset=utf-8,business_id%0Ad8ff7fac1286c561cb0dac48429d00b0%0A17e22afed8b7d1fb9e19bc0633466339%0A21a68e428d5053f9758bd6983cefaa3a%0A7e038b4d0b2d7f900ef37c6dab7f375f%0A5d44e43bcc66ba56e5b41e8dd76a11a1%0Ac5c1cb0bebd56ae38817b251ad72bedb%0Ad812273cc7fa60a19a36fc87b0502576%0Ae81f1e4fe5b85be7a6619d0b33427e01%0A3c937ad70cc096afaad00ba8a67fbafb%0A03e6c61603f6c550ab49ab6a2d83f793%0A" download="sample-business-ids.csv">**Download CSV ↓**</a>
   </Card>
   <Card title="sample-prospect-ids.csv" icon="file-csv">
-    Three prospect IDs.
+    Ten prospect IDs.
 
-    <a href="data:text/csv;charset=utf-8,prospect_id%0Aee936e451b50c70e068e1b54e106cb89173198c4%0A4c485f009d59e319dc039cdf3e935b85014e6a33%0A20ae6cbf564ee683e66685e429844a5ff8ffc30f%0A" download="sample-prospect-ids.csv">**Download CSV ↓**</a>
+    <a href="data:text/csv;charset=utf-8,prospect_id%0A6b39e11efd690384ed593ef9bcacfecaf6ed51b7%0Aee936e451b50c70e068e1b54e106cb89173198c4%0Ae3a215816e8b544a2e2b1765dc20ee0bcfaadb05%0A1fdc4b2fcf6d988575babfe3838ae4bf7d35d172%0A2187a6858fc2083a1e466f54540af5f167012335%0A398865d997673dd0fd26188bd5a57018fde6795f%0A4a0e66b4fcb78673d39b4d993ef329187016654b%0A43cba106c62403b408fab17bc16c774713f6f0cb%0A38485a991ed30c2ed57da37a8de6175c2440c73f%0A3b75cbb5e296afb847a448ad65ff569a4d7c960c%0A" download="sample-prospect-ids.csv">**Download CSV ↓**</a>
   </Card>
 </CardGroup>
 
 <CodeGroup>
 ```csv sample-business-ids.csv
 business_id
-e11943a6031a0e6114ae69c257617980
-c17a9b84c3c3ade4cdce7373958ccb9c
-8adce3ca1cef0c986b22310e369a0793
-6eebb2af6bb0fb54b7ef435a98bb66d9
-c5bfcfde8643f8870b5c5cbecb75cd22
-d9ee9a9c0773759f16e6e458cbe14670
+d8ff7fac1286c561cb0dac48429d00b0
+17e22afed8b7d1fb9e19bc0633466339
+21a68e428d5053f9758bd6983cefaa3a
+7e038b4d0b2d7f900ef37c6dab7f375f
+5d44e43bcc66ba56e5b41e8dd76a11a1
+c5c1cb0bebd56ae38817b251ad72bedb
+d812273cc7fa60a19a36fc87b0502576
+e81f1e4fe5b85be7a6619d0b33427e01
+3c937ad70cc096afaad00ba8a67fbafb
+03e6c61603f6c550ab49ab6a2d83f793
 ```
 
 ```csv sample-prospect-ids.csv
 prospect_id
+6b39e11efd690384ed593ef9bcacfecaf6ed51b7
 ee936e451b50c70e068e1b54e106cb89173198c4
-4c485f009d59e319dc039cdf3e935b85014e6a33
-20ae6cbf564ee683e66685e429844a5ff8ffc30f
+e3a215816e8b544a2e2b1765dc20ee0bcfaadb05
+1fdc4b2fcf6d988575babfe3838ae4bf7d35d172
+2187a6858fc2083a1e466f54540af5f167012335
+398865d997673dd0fd26188bd5a57018fde6795f
+4a0e66b4fcb78673d39b4d993ef329187016654b
+43cba106c62403b408fab17bc16c774713f6f0cb
+38485a991ed30c2ed57da37a8de6175c2440c73f
+3b75cbb5e296afb847a448ad65ff569a4d7c960c
 ```
 </CodeGroup>
 
@@ -135,7 +146,7 @@ The response gives you the handle you need for step 2:
   "list_id": "b8f2c1d4-...",
   "name": "Q1 target accounts",
   "description": "Business IDs for the Q1 firmographics refresh",
-  "rowCount": 6,
+  "rowCount": 10,
   "entityType": "business",
   "tenantId": "...",
   "expiresAt": "2026-09-06T00:00:00Z"
