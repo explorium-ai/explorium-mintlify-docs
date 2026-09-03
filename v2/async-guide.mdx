@@ -43,14 +43,19 @@ Every enrichment in v2 comes in two variants:
 The upload endpoint takes a CSV of entity IDs. Start from a sample:
 
 <CardGroup cols={2}>
-  <Card title="sample-business-ids.csv" icon="file-csv" href="https://raw.githubusercontent.com/explorium-ai/explorium-mintlify-docs/main/images/sample-business-ids.csv">
-    Six business IDs — download and use as-is
+  <Card title="sample-business-ids.csv" icon="file-csv">
+    Six business IDs — use as-is.
+
+    <a href="data:text/csv;charset=utf-8,business_id%0Ae11943a6031a0e6114ae69c257617980%0Ac17a9b84c3c3ade4cdce7373958ccb9c%0A8adce3ca1cef0c986b22310e369a0793%0A6eebb2af6bb0fb54b7ef435a98bb66d9%0Ac5bfcfde8643f8870b5c5cbecb75cd22%0Ad9ee9a9c0773759f16e6e458cbe14670%0A" download="sample-business-ids.csv">**Download CSV ↓**</a>
   </Card>
-  <Card title="sample-prospect-ids.csv" icon="file-csv" href="https://raw.githubusercontent.com/explorium-ai/explorium-mintlify-docs/main/images/sample-prospect-ids.csv">
-    Three prospect IDs
+  <Card title="sample-prospect-ids.csv" icon="file-csv">
+    Three prospect IDs.
+
+    <a href="data:text/csv;charset=utf-8,prospect_id%0Aee936e451b50c70e068e1b54e106cb89173198c4%0A4c485f009d59e319dc039cdf3e935b85014e6a33%0A20ae6cbf564ee683e66685e429844a5ff8ffc30f%0A" download="sample-prospect-ids.csv">**Download CSV ↓**</a>
   </Card>
 </CardGroup>
 
+<CodeGroup>
 ```csv sample-business-ids.csv
 business_id
 e11943a6031a0e6114ae69c257617980
@@ -60,6 +65,14 @@ c17a9b84c3c3ade4cdce7373958ccb9c
 c5bfcfde8643f8870b5c5cbecb75cd22
 d9ee9a9c0773759f16e6e458cbe14670
 ```
+
+```csv sample-prospect-ids.csv
+prospect_id
+ee936e451b50c70e068e1b54e106cb89173198c4
+4c485f009d59e319dc039cdf3e935b85014e6a33
+20ae6cbf564ee683e66685e429844a5ff8ffc30f
+```
+</CodeGroup>
 
 Get IDs of your own from [Match businesses](/v2/businesses/match_businesses) or [Fetch businesses](/v2/businesses/fetch_businesses) — or [Match prospects](/v2/prospects/match_prospects) and [Fetch prospects](/v2/prospects/fetch_prospects) for people.
 
