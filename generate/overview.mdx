@@ -41,13 +41,13 @@ Open the **AgentSource admin panel** and pick **Generate** under **Build & Manag
     </Frame>
   </Step>
   <Step title="Preview before you commit">
-    Click **Preview** to fetch a **20-record sample** — it never downloads anything, and the credits consumed for the sample are shown at the bottom of the filter panel. The header shows the **total number of matching records** for your criteria.
+    Click **Preview** to fetch a **20-record sample** — it never downloads anything. The sample is billed like any fetch: **1 credit per returned record**, so a full preview costs **20 credits**; the exact amount consumed is shown at the bottom of the filter panel. The header shows the **total number of matching records** for your criteria.
 
-    <Frame caption="Preview: a 20-record sample plus the total match count (here 1,971,743 prospects).">
+    <Frame caption="Preview: a 20-record sample at 1 credit per record — hence 'Credits consumed: 20' under the filters. The total match count (here 1,971,743) is free.">
       <img src="/images/generate/generate-preview-table.png" alt="Preview table of prospects with name, job title, company, business ID, department, and level columns" />
     </Frame>
 
-    Switch to the **Stats** view for a distribution breakdown of the full matching audience — powered by the free [statistics endpoints](/v2/prospects/fetch_prospects_statistics), so exploring your audience shape costs nothing.
+    Switch to the **Stats** view for a distribution breakdown of the full matching audience. Unlike the sample, stats are powered by the free [statistics endpoints](/v2/prospects/fetch_prospects_statistics) — the Stats view and the total match count consume **no credits**, so use them freely while shaping your filters.
 
     <Frame caption="The Stats view breaks the full audience down — no credits charged.">
       <img src="/images/generate/generate-preview-stats.png" alt="Stats view showing the total number of prospects per location as a bar chart" />
@@ -76,7 +76,7 @@ Open the **AgentSource admin panel** and pick **Generate** under **Build & Manag
 ## Credits
 
 - **Stats are free.** The Stats view and total match counts never consume credits — use them to validate filters before committing.
-- **Previews are small.** A preview always fetches exactly 20 records; the credits it consumed are shown under the filter panel.
+- **Previews cost 1 credit per result.** A preview fetches a 20-record sample, billed at **1 credit per returned record** — so a full preview costs **20 credits**. The amount consumed is shown under the filter panel after each preview.
 - **Downloads are billed like the API.** Records fetched and contact details enriched are charged to the selected API key at the standard rates, and the total is displayed when the run completes. If credits run out mid-download, Generate stops and tells you.
 
 ## Generate or the API?
