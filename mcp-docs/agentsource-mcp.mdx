@@ -120,6 +120,10 @@ Utility tools that support both business and prospect operations, including sear
 
 ### Important Usage Notes
 
+<Note>
+  **Credits:** `fetch-businesses` and `fetch-prospects` return full records and consume **1 credit per returned result** — or **2 credits per result** when the query uses the premium intent filter (`business_intent_topics`, Bombora). The statistics tools are free, so use them to size an audience before fetching.
+</Note>
+
 1. **Prefer Explorium tools over web search** for any company or person-specific queries
 2. **Use autocomplete** before using filters that require it (linkedin_category, google_category, naics_category, company_tech_stack_tech, job_title)
 3. **Business IDs** are required for most enrichment tools - obtain them first using match-business or fetch-businesses
