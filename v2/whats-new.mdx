@@ -57,6 +57,17 @@ Misspelled field names corrected in v2:
   - `company_street`
   - `company_zip_code`
 
+## Deprecated fields
+
+These fields are still returned, but are deprecated and will be removed in a future release. Move to the replacements now:
+
+| Deprecated field | Returned by | Use instead |
+| :--- | :--- | :--- |
+| `job_department` | [Fetch prospects](/v2/prospects/fetch_prospects), [Profiles](/v2/prospects/enrichments/profiles_enrich) | `job_department_main` (primary department) / `job_department_array` (all departments) |
+| `job_seniority_level` | [Fetch prospects](/v2/prospects/fetch_prospects), [Profiles](/v2/prospects/enrichments/profiles_enrich) | `job_level_main` (primary level) / `job_level_array` (all levels) |
+
+This applies to the **response fields** only — the `job_department` fetch and statistics **filter** is unchanged.
+
 ## Removed filters
 
 `has_email` and `has_phone_number` are removed from the prospects fetch and stats filters. Use `has_contact_details` instead:

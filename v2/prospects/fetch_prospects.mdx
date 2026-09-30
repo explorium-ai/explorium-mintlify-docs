@@ -4,6 +4,10 @@ sidebarTitle: "Fetch prospects"
 openapi: "post /v2/prospects"
 ---
 
+<Warning>
+  **Deprecated response fields:** `job_department` and `job_seniority_level` are deprecated and will be removed in a future release. Read `job_department_main` / `job_department_array` and `job_level_main` / `job_level_array` instead. (The `job_department` **filter** is not affected.)
+</Warning>
+
 ### Introduction
 
 The **Fetch Prospects** endpoint allows users to retrieve a list of prospect records based on filtering criteria such as job level, department, or other professional attributes. This API is essential for sales intelligence, lead enrichment, and prospecting workflows.
@@ -1115,8 +1119,8 @@ The **Fetch Prospects** endpoint allows users to retrieve a list of prospect rec
     | job\_level\_array | Job levels | All job level classifications associated with the prospect's current role. | array\<string\> |
     | job\_department\_main | Main job department | The primary department classification of the prospect's current role (e.g., `Engineering`, `Sales`). | string |
     | job\_department\_array | Job departments | All department classifications associated with the prospect's current role. | array\<string\> |
-    | job\_department | Job department (legacy) | Single-value department classification. May be `null`; prefer `job_department_main` and `job_department_array`. | string |
-    | job\_seniority\_level | Job seniority level (legacy) | Seniority level classification. May contain `null`; prefer `job_level_main` and `job_level_array`. | array\<string\> |
+    | job\_department | Job department (deprecated) | Single-value department classification. May be `null`. **Deprecated** — use `job_department_main` / `job_department_array` instead. | string |
+    | job\_seniority\_level | Job seniority level (deprecated) | Seniority level classification. May contain `null`. **Deprecated** — use `job_level_main` / `job_level_array` instead. | array\<string\> |
     | experience | Experience | List of positions from the prospect's work history. | array\<string\> |
     | skills | Skills | Professional skills listed by the prospect. | array\<string\> |
     | interests | Interests | Personal and professional interests listed by the prospect. | array\<string\> |

@@ -86,6 +86,7 @@ v2 ships alongside v1. v1 keeps running in parallel and is wound down in stages,
 - [ ] Autocomplete calls pointed at `/v2/autocomplete`
 - [ ] Stop reading `emails` from contact responses — use `professional_email`
 - [ ] `employee_joined_company` → `executive_joined_company` in event filters, enrollments, and payload handling
+- [ ] Stop reading the deprecated `job_department` and `job_seniority_level` response fields (fetch prospects, profiles) — use `job_department_main` / `job_department_array` and `job_level_main` / `job_level_array`
 
 ## Related
 
