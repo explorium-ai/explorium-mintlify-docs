@@ -22,7 +22,13 @@ All exported data appears in the Hub with:
 - Entity count
 - Export date
 - Credit cost
-- Status (ready, processing, error)
+- Status (running, ready, failed)
+
+**Live Status**
+
+Some exports run in the background, such as [Increase Coverage](/vibe-prospecting/increase-coverage) exports, which can take a few minutes. These datasets appear in the Hub right away with the status **running**, and the status updates on its own to **ready** or **failed**. You don't need to refresh the page.
+
+**Download** and **View** become available only once a dataset is **ready**, so you never open a partial file.
 
 **Re-Import Previous Searches**
 
