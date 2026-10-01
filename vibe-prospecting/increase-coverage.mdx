@@ -1,0 +1,67 @@
+---
+title: "Increase Coverage"
+sidebarTitle: "Increase Coverage"
+tag: "Beta"
+description: "Get contact details for more of your prospects. Increase Coverage retries the contacts Explorium can't fill against multiple external providers, so more rows in your export come back with an email or phone number."
+---
+
+<Info>
+  **Increase Coverage is in beta.** Try it on real lists and send feedback to [support@explorium.ai](mailto:support@explorium.ai).
+</Info>
+
+When you export prospects with contact details, some of them won't have an email or phone number in Explorium's data. **Increase Coverage** fills that gap with a *waterfall*: Explorium's own contact data is used first, and every prospect still missing contact details is retried against multiple external contact providers. The result is one dataset with noticeably higher contact coverage.
+
+## How it works
+
+<Steps>
+  <Step title="Search for prospects with contact details">
+    Ask for prospects the way you normally do — for example, *"Find me 200 VPs of Sales at US SaaS companies with email addresses."* Vibe Prospecting runs the search and shows a sample.
+  </Step>
+  <Step title="Turn on Increase Coverage">
+    In the **Show Sample** widget, switch on the **Increase Coverage** toggle, right above **Export**. With the toggle off, the standard Explorium-only export runs exactly as before.
+  </Step>
+  <Step title="Check the cost estimate">
+    The cost estimate next to **Export** updates as you flip the toggle, switching between the standard price and the Increase Coverage price. It shows the **maximum** you can be charged, so you know your worst case before you export.
+  </Step>
+  <Step title="Export and pick it up in the Hub">
+    Increase Coverage exports take longer than standard ones, so they run in the background. Instead of download buttons, the export widget links to the [Hub](/vibe-prospecting/hub), where the dataset appears as **running** and switches to **ready** once it's done. You don't need to keep the chat open.
+  </Step>
+</Steps>
+
+### Reaching your requested count
+
+If you ask for more prospects than Explorium has contact details for, Increase Coverage tops up the list: it adds more prospects that match your criteria, up to the number you asked for, and runs them through the external providers to find their contact details. You get closer to the size you requested instead of a short list.
+
+## Credits
+
+- **You only pay for contacts that are found.** Each email or phone number is charged once it's actually delivered. A prospect with no contact found by any source costs nothing for contact data.
+- **Explorium contacts cost the standard rate.** Prospects that Explorium enriches are charged exactly as in a standard export.
+- **Externally sourced contacts cost more**, and phone numbers cost more than emails. The live estimate next to **Export** reflects these rates.
+- **The estimate is a ceiling, not a bill.** Because you're charged per contact found, the final cost is usually lower than the estimate.
+
+<Tip>
+  Need only emails? Say so in your query. Asking for just the contact type you need keeps the estimate and the final cost down, especially since external phone numbers are the most expensive item.
+</Tip>
+
+## Availability
+
+Increase Coverage is available on **paid plans**. On the free tier, turning on the toggle opens an upgrade prompt: you can buy a plan right away, or continue and export with the standard Explorium-only flow.
+
+## When to use it
+
+| Use Increase Coverage when… | Stick with the standard export when… |
+| :--- | :--- |
+| Contact details are the point of the list, such as outbound sequences or dialer campaigns | You need firmographics or profiles more than contact details |
+| The sample shows many rows without an email or phone | Coverage in the sample already looks good enough |
+| You need close to the full requested count with contact data | You need the file immediately rather than in a few minutes |
+
+## Related
+
+<Columns cols={2}>
+  <Card title="The Hub" icon="table-columns" href="/vibe-prospecting/hub">
+    Where Increase Coverage exports are delivered, with live status
+  </Card>
+  <Card title="Best Practices" icon="lightbulb" href="/vibe-prospecting/best-practices">
+    Credit usage and how costs are estimated
+  </Card>
+</Columns>
