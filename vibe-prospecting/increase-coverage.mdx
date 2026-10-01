@@ -17,26 +17,34 @@ When you export prospects with contact details, some of them won't have an email
   <Step title="Search for prospects with contact details">
     Ask for prospects the way you normally do — for example, *"Find me 200 VPs of Sales at US SaaS companies with email addresses."* Vibe Prospecting runs the search and shows a sample.
   </Step>
-  <Step title="Turn on Increase Coverage">
-    In the **Show Sample** widget, switch on the **Increase Coverage** toggle, right above **Export**. With the toggle off, the standard Explorium-only export runs exactly as before.
+  <Step title="Turn on Increase contact detail coverage">
+    At the bottom of the **Show Sample** widget, switch on **Increase contact detail coverage**, next to **Export CSV**. With the toggle off, the standard Explorium-only export runs exactly as before.
   </Step>
   <Step title="Check the cost estimate">
-    The cost estimate next to **Export** updates as you flip the toggle, switching between the standard price and the Increase Coverage price. It shows the **maximum** you can be charged, so you know your worst case before you export.
+    With the toggle on, the estimate shows two parts: the standard cost of the export, plus **up to** a maximum number of credits for the coverage increase. That maximum is your worst case. You're only charged for contacts that are actually found, so the final cost is usually lower.
+
+    <Frame caption="The toggle is on, and the estimate shows the standard cost plus a maximum for the coverage increase. Only 90 of the 200 requested prospects have Explorium contact details, which is exactly the gap Increase Coverage fills.">
+      <img src="/images/vibe-prospecting/increase-coverage-toggle.png" alt="Show Sample widget with the Increase contact detail coverage toggle switched on and an estimated cost of 60 credits plus up to 330 credits for waterfall coverage increase" />
+    </Frame>
   </Step>
-  <Step title="Export and pick it up in the Hub">
-    Increase Coverage exports take longer than standard ones, so they run in the background. Instead of download buttons, the export widget links to the [Hub](/vibe-prospecting/hub), where the dataset appears as **running** and switches to **ready** once it's done. You don't need to keep the chat open.
+  <Step title="Export, then pick it up in Vibe Prospecting">
+    Click **Export CSV**. Increase Coverage exports take longer than standard ones, so they run in the background: the widget shows **Your list is being prepared**, and you'll get an email when it's ready. Click **Open in Vibe Prospecting** to follow it in the [Hub](/vibe-prospecting/hub), where the dataset appears as **running** and switches to **ready** once it's done. You don't need to keep the chat open.
+
+    <Frame caption="The export runs in the background. You'll get an email when it's ready, and you can follow it in the Hub.">
+      <img src="/images/vibe-prospecting/increase-coverage-processing.png" alt="Export widget showing Your list is being prepared, a note that an email will be sent when it's ready, an Open in Vibe Prospecting button, and an Increased contact detail coverage checkmark" />
+    </Frame>
   </Step>
 </Steps>
 
 ### Reaching your requested count
 
-If you ask for more prospects than Explorium has contact details for, Increase Coverage tops up the list: it adds more prospects that match your criteria, up to the number you asked for, and runs them through the external providers to find their contact details. You get closer to the size you requested instead of a short list.
+If you ask for more prospects than Explorium has contact details for, the widget shows the gap, for example **Export 90 rows (out of 200)**. With Increase Coverage on, Vibe Prospecting tops up the list: it adds more prospects that match your criteria, up to the number you asked for, and runs them through the external providers to find their contact details. You get closer to the size you requested instead of a short list.
 
 ## Credits
 
 - **You only pay for contacts that are found.** Each email or phone number is charged once it's actually delivered. A prospect with no contact found by any source costs nothing for contact data.
 - **Explorium contacts cost the standard rate.** Prospects that Explorium enriches are charged exactly as in a standard export.
-- **Externally sourced contacts cost more**, and phone numbers cost more than emails. The live estimate next to **Export** reflects these rates.
+- **Externally sourced contacts cost more**, and phone numbers cost more than emails. The estimate in the widget reflects these rates.
 - **The estimate is a ceiling, not a bill.** Because you're charged per contact found, the final cost is usually lower than the estimate.
 
 <Tip>
@@ -45,7 +53,11 @@ If you ask for more prospects than Explorium has contact details for, Increase C
 
 ## Availability
 
-Increase Coverage is available on **paid plans**. On the free tier, turning on the toggle opens an upgrade prompt: you can buy a plan right away, or continue and export with the standard Explorium-only flow.
+Increase Coverage is available with **any package**. On the free tier the toggle is locked, and clicking it explains that a package is required, with a **See packages** link. You can buy a package right away, or leave the toggle off and export with the standard Explorium-only flow.
+
+<Frame caption="On the free tier, the toggle is locked and links to the available packages.">
+  <img src="/images/vibe-prospecting/increase-coverage-upgrade.png" alt="Locked Increase contact detail coverage toggle with a popup reading Available with any package and a See packages link" />
+</Frame>
 
 ## When to use it
 
