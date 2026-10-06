@@ -165,6 +165,11 @@
         "summary": "Fetch Businesses",
         "description": "Filters businesses by country, company size, revenue, and more.\nReturns minimal data needed for further filtering, deduplication, or record previews.",
         "operationId": "fetch_businesses",
+        "x-mint": {
+          "playground": {
+            "expand": false
+          }
+        },
         "requestBody": {
           "content": {
             "application/json": {
@@ -343,6 +348,11 @@
         "summary": "Fetch Stats",
         "description": "Fetch stats for businesses.",
         "operationId": "fetch_stats",
+        "x-mint": {
+          "playground": {
+            "expand": false
+          }
+        },
         "requestBody": {
           "content": {
             "application/json": {
@@ -626,6 +636,11 @@
         ],
         "summary": "Fetch Prospects",
         "operationId": "fetch_prospects",
+        "x-mint": {
+          "playground": {
+            "expand": false
+          }
+        },
         "requestBody": {
           "content": {
             "application/json": {
@@ -684,6 +699,11 @@
         "summary": "Prospect Fetch Stats",
         "description": "Fetch stats for businesses.",
         "operationId": "prospect_fetch_stats",
+        "x-mint": {
+          "playground": {
+            "expand": false
+          }
+        },
         "requestBody": {
           "content": {
             "application/json": {
@@ -1800,6 +1820,11 @@
         ],
         "summary": "Fetch Businesses",
         "operationId": "v2_businesses_fetch",
+        "x-mint": {
+          "playground": {
+            "expand": false
+          }
+        },
         "requestBody": {
           "content": {
             "application/json": {
@@ -1898,6 +1923,11 @@
         ],
         "summary": "Fetch Stats",
         "operationId": "v2_businesses_stats",
+        "x-mint": {
+          "playground": {
+            "expand": false
+          }
+        },
         "requestBody": {
           "content": {
             "application/json": {
@@ -1996,6 +2026,11 @@
         ],
         "summary": "Fetch Prospects",
         "operationId": "v2_prospects_fetch",
+        "x-mint": {
+          "playground": {
+            "expand": false
+          }
+        },
         "requestBody": {
           "content": {
             "application/json": {
@@ -2094,6 +2129,11 @@
         ],
         "summary": "Fetch Stats",
         "operationId": "v2_prospects_stats",
+        "x-mint": {
+          "playground": {
+            "expand": false
+          }
+        },
         "requestBody": {
           "content": {
             "application/json": {
