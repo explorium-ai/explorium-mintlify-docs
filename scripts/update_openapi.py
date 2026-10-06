@@ -19,6 +19,12 @@ import urllib.request
 
 DEFAULT_URL = "https://api.explorium.ai/openapi.json"
 FRONTMATTER = re.compile(r'^openapi:\s*"?(\w+)\s+(\S+?)"?\s*$', re.M)
+LARGE_FILTER_OPERATIONS = {
+    ("post", f"/v{version}/{entity}{suffix}")
+    for version in (1, 2)
+    for entity in ("businesses", "prospects")
+    for suffix in ("", "/stats")
+}
 
 
 def replace_marked_fields(obj):
@@ -37,6 +43,16 @@ def replace_marked_fields(obj):
     elif isinstance(obj, list):
         return [replace_marked_fields(item) for item in obj]
     return obj
+
+
+def collapse_large_filter_playgrounds(spec):
+    """Keep large fetch filter trees interactive without expanding them all at once."""
+    for method, path in LARGE_FILTER_OPERATIONS:
+        operation = spec["paths"].get(path, {}).get(method)
+        if operation is None:
+            continue
+        operation.setdefault("x-mint", {}).setdefault("playground", {})["expand"] = False
+    return spec
 
 
 def documented_operations():
@@ -66,7 +82,7 @@ def main():
 
     with urllib.request.urlopen(args.url, timeout=60) as r:
         raw = json.load(r)
-    new = replace_marked_fields(raw)
+    new = collapse_large_filter_playgrounds(replace_marked_fields(raw))
 
     try:
         old = json.load(open(args.output))
