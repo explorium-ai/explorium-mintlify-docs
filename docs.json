@@ -271,14 +271,14 @@
               {
                 "group": "AgentSource MCP",
                 "pages": [
-                  "mcp-docs/agentsource-mcp",
+                  "mcp-docs/v2/agentsource-mcp",
                   {
                     "group": "Developers Implementation Guides",
                     "pages": [
-                      "mcp-docs/developers-implementation-guides",
-                      "mcp-docs/implement-with-langgraph",
-                      "mcp-docs/implement-with-openai",
-                      "mcp-docs/python-sdk-implementation-guide"
+                      "mcp-docs/v2/developers-implementation-guides",
+                      "mcp-docs/v2/implement-with-langgraph",
+                      "mcp-docs/v2/implement-with-openai",
+                      "mcp-docs/v2/python-sdk-implementation-guide"
                     ]
                   }
                 ]

@@ -26,7 +26,7 @@ Cursor's built-in AI features can leverage AgentSource data for research while c
   "mcpServers": {
     "explorium-mcp": {
       "type": "sse",
-      "url": "https://mcp.explorium.ai/sse",
+      "url": "https://mcp-v2.explorium.ai/sse",
       "headers": {
         "api_key": "<Your explorium api key>"
       }
@@ -34,6 +34,10 @@ Cursor's built-in AI features can leverage AgentSource data for research while c
   }
 }
 ```
+
+<Note>
+  Using AgentSource v1? The v1 server at `https://mcp.explorium.ai/sse` still works but is deprecated and will be retired together with AgentSource v1 — see the [deprecation timeline](/v2/migration-from-v1#v1-deprecation-timeline).
+</Note>
 </Step>
 
 <Step title="Enable Auto-Run Mode (Optional)">

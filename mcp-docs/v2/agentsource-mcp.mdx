@@ -3,13 +3,13 @@ title: "AgentSource MCP"
 sidebarTitle: "Overview"
 ---
 
-<Warning>
-  **AgentSource MCP v1 is deprecated.** This server (`mcp.explorium.ai`) will be retired together with AgentSource v1. See the [v1 deprecation timeline](/v2/migration-from-v1#v1-deprecation-timeline). New integrations should use [AgentSource MCP v2](/mcp-docs/v2/agentsource-mcp) at `https://mcp-v2.explorium.ai/mcp`.
-</Warning>
-
 ## AgentSource MCP
 
 Access Explorium's comprehensive business and contact data through the Model Context Protocol (MCP) - a standardized interface for AI assistants and applications.
+
+<Info>
+  **This is AgentSource MCP v2**, served at `https://mcp-v2.explorium.ai/mcp` and built on the [AgentSource v2 API](/v2/overview). Moving from the v1 server at `mcp.explorium.ai`? Point your MCP client at the new address. The v1 server will be deprecated together with AgentSource v1. See the [deprecation timeline](/v2/migration-from-v1#v1-deprecation-timeline).
+</Info>
 
 ### Overview
 
@@ -24,7 +24,7 @@ Explorium offers three ways to reach the same underlying B2B data. The differenc
 | **Runs in**      | Claude.ai, Claude Desktop, Gemini CLI, Cursor, and other MCP clients that support OAuth                 | Claude Code, OpenAI Codex                                                                           | Any MCP client or custom agent — Claude Desktop, Cursor, n8n, Base44, or your own code       |
 | **Best for**     | Conversational prospecting, research, quick lists                                                       | File-based workflows, CSV enrichment, repeatable automations                                        | Building your own agents, data pipelines, and product features                               |
 | **How it works** | An Explorium AI agent turns a plain-English request into the right filters                              | The same agent, driven from your terminal so it can read and write local files                      | You call the 11 MCP tools directly and control every filter                                  |
-| **Setup**        | One-click connect + OAuth in the browser — no API key                                                   | CLI install + OAuth login                                                                           | API key + MCP endpoint (`https://mcp.explorium.ai/mcp`)                                      |
+| **Setup**        | One-click connect + OAuth in the browser — no API key                                                   | CLI install + OAuth login                                                                           | API key + MCP endpoint (`https://mcp-v2.explorium.ai/mcp`)                                      |
 | **Output**       | In-chat results and Hub exports                                                                         | CSV/JSON files                                                                   | Structured JSON tool responses you handle in your own code                                   |
 
 <Tip>
@@ -54,19 +54,19 @@ Explorium offers three ways to reach the same underlying B2B data. The differenc
 
 Use our MCP server:
 
-- `https://mcp.explorium.ai/mcp` (streamable http)
-- `https://mcp.explorium.ai/sse` (sse)
+- `https://mcp-v2.explorium.ai/mcp` (streamable http, recommended)
+- `https://mcp-v2.explorium.ai/sse` (sse, for clients that only support SSE)
 
 Choose your path based on your needs:
 
 <Columns cols={2}>
-  <Card title="Implementation Guides" icon="book" href="/mcp-docs/developers-implementation-guides">
+  <Card title="Implementation Guides" icon="book" href="/mcp-docs/v2/developers-implementation-guides">
     Step-by-step tutorials for different programming environments
   </Card>
   <Card title="Integrations" icon="link" href="/integrations/n8n/n8n">
     Connect with popular platforms like n8n and Base44
   </Card>
-  <Card title="API Reference" icon="code" href="/reference/quick-starts/introduction">
+  <Card title="API Reference" icon="code" href="/v2/overview">
     Complete technical documentation for all tools
   </Card>
 </Columns>
@@ -163,8 +163,8 @@ I found 15 software companies in New York matching your criteria:
 
 | Method                                                  | Best For                    | Key Benefits                                                            |
 | :------------------------------------------------------ | :-------------------------- | :---------------------------------------------------------------------- |
-| [OpenAI](/mcp-docs/implement-with-openai)               | AI agents & chatbots        | • Automatic tool discovery • Natural language interface • Minimal setup |
-| [Python SDK](/mcp-docs/python-sdk-implementation-guide) | Data pipelines & automation | • Full control • Async operations • Custom workflows                    |
+| [OpenAI](/mcp-docs/v2/implement-with-openai)               | AI agents & chatbots        | • Automatic tool discovery • Natural language interface • Minimal setup |
+| [Python SDK](/mcp-docs/v2/python-sdk-implementation-guide) | Data pipelines & automation | • Full control • Async operations • Custom workflows                    |
 
 ### Platform Integrations
 
@@ -177,7 +177,7 @@ Connect AgentSource MCP with your favorite platforms:
 ### Additional Resources
 
 <Columns cols={2}>
-  <Card title="Explorium AgentSource API Documentation" icon="book" href="/reference/quick-starts/quick-starts">
+  <Card title="Explorium AgentSource API Documentation" icon="book" href="/v2/overview">
     Explorium AgentSource API Documentation
   </Card>
   <Card title="MCP Protocol Specification" icon="book" href="https://github.com/modelcontextprotocol">
@@ -186,7 +186,7 @@ Connect AgentSource MCP with your favorite platforms:
   <Card title="Community Forum" icon="link">
     Coming soon...
   </Card>
-  <Card title="Support" icon="headset" href="/mcp-docs/agentsource-mcp">
+  <Card title="Support" icon="headset" href="/mcp-docs/v2/agentsource-mcp">
     Support
   </Card>
 </Columns>
@@ -194,7 +194,7 @@ Connect AgentSource MCP with your favorite platforms:
 ### Next Steps
 
 1. [Get your API key](/reference/setup/getting_your_api_key)
-2. [Choose an implementation guide](/mcp-docs/developers-implementation-guides)
+2. [Choose an implementation guide](/mcp-docs/v2/developers-implementation-guides)
 3. **Join our community** (Coming soon)
 
-[[_Ready to build? Start with our implementation guides or explore platform integrations._](/integrations/n8n/n8n)](/mcp-docs/developers-implementation-guides)
+[[_Ready to build? Start with our implementation guides or explore platform integrations._](/integrations/n8n/n8n)](/mcp-docs/v2/developers-implementation-guides)

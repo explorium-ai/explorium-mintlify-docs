@@ -4,17 +4,13 @@ sidebarTitle: "Overview"
 description: "Choose the right implementation method for integrating AgentSource MCP into your applications and workflows."
 ---
 
-<Warning>
-  **AgentSource MCP v1 is deprecated.** This server (`mcp.explorium.ai`) will be retired together with AgentSource v1. See the [v1 deprecation timeline](/v2/migration-from-v1#v1-deprecation-timeline). New integrations should use [AgentSource MCP v2](/mcp-docs/v2/developers-implementation-guides) at `https://mcp-v2.explorium.ai/mcp`.
-</Warning>
-
 ## Overview
 
 AgentSource MCP (Model Context Protocol) provides a standardized way to access Explorium's comprehensive business and contact data. Whether you're building AI agents, data pipelines, or custom applications, we offer multiple implementation paths to suit your needs.
 
 ## Available Implementation Methods
 
-### <Icon icon="robot" size={24} /> [OpenAI Integration](/mcp-docs/implement-with-openai)
+### <Icon icon="robot" size={24} /> [OpenAI Integration](/mcp-docs/v2/implement-with-openai)
 
 **Best for:** AI-powered applications and conversational agents
 
@@ -35,11 +31,11 @@ Build intelligent agents that can automatically discover and use AgentSource too
 - Interactive data exploration
 
 <Columns cols={2}>
-  <Card title="Get Started with OpenAI" icon="rocket-launch" horizontal href="/mcp-docs/implement-with-openai">
+  <Card title="Get Started with OpenAI" icon="rocket-launch" horizontal href="/mcp-docs/v2/implement-with-openai">
   </Card>
 </Columns>
 
-### <Icon icon="snake" size={24} /> [Python SDK](/mcp-docs/python-sdk-implementation-guide)
+### <Icon icon="snake" size={24} /> [Python SDK](/mcp-docs/v2/python-sdk-implementation-guide)
 
 **Best for:** Direct programmatic access and custom applications
 
@@ -60,7 +56,7 @@ Native Python implementation for developers who need fine-grained control over d
 - Integration with existing Python applications
 
 <Columns cols={2}>
-  <Card title="Get Started with Python SDK" icon="rocket-launch" horizontal href="/mcp-docs/python-sdk-implementation-guide">
+  <Card title="Get Started with Python SDK" icon="rocket-launch" horizontal href="/mcp-docs/v2/python-sdk-implementation-guide">
   </Card>
 </Columns>
 
@@ -78,7 +74,7 @@ Build sophisticated AI agents with state management and complex decision trees u
 - Tool chaining
 
 <Columns cols={2}>
-  <Card title="Get Started with LangGraph" icon="rocket-launch" horizontal href="/mcp-docs/implement-with-langgraph">
+  <Card title="Get Started with LangGraph" icon="rocket-launch" horizontal href="/mcp-docs/v2/implement-with-langgraph">
   </Card>
 </Columns>
 
@@ -423,7 +419,7 @@ The cap is doing its job — it stops a model that kept calling tools without pr
 ### <Icon icon="book" size={24} /> Resources
 
 <Columns cols={2}>
-  <Card title="AgentSource MCP API Reference" icon="book" horizontal href="/reference/quick-starts/introduction">
+  <Card title="AgentSource MCP API Reference" icon="book" horizontal href="/v2/overview">
   </Card>
 </Columns>
 
@@ -439,4 +435,4 @@ The cap is doing its job — it stops a model that kept calling tools without pr
 3. **Start with simple queries** and gradually increase complexity
 4. **Join our community** to share experiences and get help
 
-[_Ready to get started? Choose an implementation guide above orcontact our team for personalized recommendations._](/reference/)
+[_Ready to get started? Choose an implementation guide above orcontact our team for personalized recommendations._](/v2/overview)
