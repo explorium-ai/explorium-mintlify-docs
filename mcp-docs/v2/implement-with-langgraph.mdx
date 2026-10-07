@@ -3,10 +3,6 @@ title: "LangGraph Integration with Explorium MCP"
 description: "Learn how to integrate AgentSource MCP with LangGraph framework to build AI agents that can access real-time business and contact data."
 ---
 
-<Warning>
-  **AgentSource MCP v1 is deprecated.** This server (`mcp.explorium.ai`) will be retired together with AgentSource v1. See the [v1 deprecation timeline](/v2/migration-from-v1#v1-deprecation-timeline). New integrations should use [AgentSource MCP v2](/mcp-docs/v2/implement-with-langgraph) at `https://mcp-v2.explorium.ai/mcp`.
-</Warning>
-
 ## Overview
 
 This guide demonstrates how to integrate Explorium's MCP (Model Context Protocol) server with LangGraph to build intelligent AI agents that can access Explorium's business data enrichment capabilities. LangGraph provides a framework for building stateful, multi-actor applications with LLMs, making it perfect for creating sophisticated business intelligence workflows.
@@ -56,7 +52,7 @@ async def quick_start():
     client = MultiServerMCPClient({
         "explorium": {
             "transport": "streamable_http",
-            "url": "https://mcp.explorium.ai/mcp",
+            "url": "https://mcp-v2.explorium.ai/mcp",
             "headers": {
                 "api_key": "your-explorium-api-key"
             }
@@ -162,7 +158,7 @@ async def run_explorium_agent(config: RunnableConfig):
         {
             "explorium": {
                 "transport": "streamable_http",
-                "url": "https://mcp.explorium.ai/mcp",
+                "url": "https://mcp-v2.explorium.ai/mcp",
                 "headers": {
                     "api_key": explorium_api_key
                 }
@@ -408,7 +404,7 @@ async def run_with_error_handling():
         client = MultiServerMCPClient({
             "explorium": {
                 "transport": "streamable_http",
-                "url": "https://mcp.explorium.ai/mcp",
+                "url": "https://mcp-v2.explorium.ai/mcp",
                 "headers": {"api_key": "your-api-key"}
             }
         })
@@ -442,7 +438,7 @@ async def process_batch_queries(queries: list[str], config: dict):
     client = MultiServerMCPClient({
         "explorium": {
             "transport": "streamable_http",
-            "url": "https://mcp.explorium.ai/mcp",
+            "url": "https://mcp-v2.explorium.ai/mcp",
             "headers": {"api_key": config["explorium_api_key"]}
         }
     })
@@ -539,7 +535,7 @@ The search found 1,000 total product managers at Microsoft, so there are many mo
 **Solution:**
 
 1. Verify your Explorium API key is correct
-2. Check the endpoint URL is exactly: `https://mcp.explorium.ai/mcp`
+2. Check the endpoint URL is exactly: `https://mcp-v2.explorium.ai/mcp`
 3. Test your network connectivity
 4. Ensure firewall rules allow HTTPS connections
 
@@ -580,7 +576,7 @@ async def parallel_tool_execution(tools, queries):
 
 ### MCP Configuration
 
-- **Endpoint:** `https://mcp.explorium.ai/mcp`
+- **Endpoint:** `https://mcp-v2.explorium.ai/mcp`
 - **Transport:** Streamable HTTP
 - **Authentication:** API key in headers
 - **Headers Format:** `{"api_key": "your-api-key"}`

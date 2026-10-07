@@ -3,10 +3,6 @@ title: "Python SDK Implementation Guide"
 description: "Learn how to integrate AgentSource MCP using the official Python MCP SDK for direct, programmatic access to Explorium's business and contact data."
 ---
 
-<Warning>
-  **AgentSource MCP v1 is deprecated.** This server (`mcp.explorium.ai`) will be retired together with AgentSource v1. See the [v1 deprecation timeline](/v2/migration-from-v1#v1-deprecation-timeline). New integrations should use [AgentSource MCP v2](/mcp-docs/v2/python-sdk-implementation-guide) at `https://mcp-v2.explorium.ai/mcp`.
-</Warning>
-
 ## Overview
 
 This guide demonstrates how to use AgentSource MCP with the Python MCP SDK. The SDK provides a native Python interface for connecting to MCP servers, making it ideal for building custom applications, data pipelines, and automation tools.
@@ -56,7 +52,7 @@ async def connect_to_agentsource():
 
     # Connect to the MCP endpoint
     async with sse_client(
-        url="https://mcp.explorium.ai/sse",
+        url="https://mcp-v2.explorium.ai/sse",
         headers=headers
     ) as streams:
         read_stream, write_stream = streams
@@ -88,7 +84,7 @@ async def match_businesses_example():
     headers = {"Authorization": f"Bearer {api_key}"}
 
     async with sse_client(
-        url="https://mcp.explorium.ai/sse",
+        url="https://mcp-v2.explorium.ai/sse",
         headers=headers
     ) as streams:
         read_stream, write_stream = streams
@@ -128,7 +124,7 @@ async def find_prospects_example():
     headers = {"Authorization": f"Bearer {api_key}"}
 
     async with sse_client(
-        url="https://mcp.explorium.ai/sse",
+        url="https://mcp-v2.explorium.ai/sse",
         headers=headers
     ) as streams:
         read_stream, write_stream = streams
@@ -183,7 +179,7 @@ async def enrich_contacts_example():
     headers = {"Authorization": f"Bearer {api_key}"}
 
     async with sse_client(
-        url="https://mcp.explorium.ai/sse",
+        url="https://mcp-v2.explorium.ai/sse",
         headers=headers
     ) as streams:
         read_stream, write_stream = streams
@@ -223,7 +219,7 @@ async def search_with_autocomplete():
     headers = {"Authorization": f"Bearer {api_key}"}
 
     async with sse_client(
-        url="https://mcp.explorium.ai/sse",
+        url="https://mcp-v2.explorium.ai/sse",
         headers=headers
     ) as streams:
         read_stream, write_stream = streams
@@ -274,7 +270,7 @@ async def comprehensive_company_analysis():
     headers = {"Authorization": f"Bearer {api_key}"}
 
     async with sse_client(
-        url="https://mcp.explorium.ai/sse",
+        url="https://mcp-v2.explorium.ai/sse",
         headers=headers
     ) as streams:
         read_stream, write_stream = streams
@@ -328,7 +324,7 @@ async def safe_mcp_call():
 
     try:
         async with sse_client(
-            url="https://mcp.explorium.ai/sse",
+            url="https://mcp-v2.explorium.ai/sse",
             headers=headers
         ) as streams:
             read_stream, write_stream = streams
@@ -446,8 +442,8 @@ logger.debug(f"Arguments: {json.dumps(arguments, indent=2)}")
 
 ## Next Steps
 
-- Explore the [complete AgentSource MCP documentation](/mcp-docs/agentsource-mcp)
-- Check out the [OpenAI implementation guide](/mcp-docs/implement-with-openai) for AI agent integration
+- Explore the [complete AgentSource MCP documentation](/mcp-docs/v2/agentsource-mcp)
+- Check out the [OpenAI implementation guide](/mcp-docs/v2/implement-with-openai) for AI agent integration
 - Learn about advanced filtering and search capabilities
 - Build production-ready data pipelines with MCP
 
@@ -455,7 +451,7 @@ logger.debug(f"Arguments: {json.dumps(arguments, indent=2)}")
 
 If you encounter any issues or have questions:
 
-- Check the [AgentSource MCP reference](/mcp-docs/agentsource-mcp)
+- Check the [AgentSource MCP reference](/mcp-docs/v2/agentsource-mcp)
 - Contact our support team at [support@explorium.ai](mailto:support@explorium.ai)
 
  <Note>

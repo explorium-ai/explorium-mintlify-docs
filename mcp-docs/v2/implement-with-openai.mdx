@@ -3,10 +3,6 @@ title: "OpenAI Implementation Guide"
 description: "Learn how to integrate AgentSource MCP with OpenAI's API  to build AI agents that can access real-time business and contact data."
 ---
 
-<Warning>
-  **AgentSource MCP v1 is deprecated.** This server (`mcp.explorium.ai`) will be retired together with AgentSource v1. See the [v1 deprecation timeline](/v2/migration-from-v1#v1-deprecation-timeline). New integrations should use [AgentSource MCP v2](/mcp-docs/v2/implement-with-openai) at `https://mcp-v2.explorium.ai/mcp`.
-</Warning>
-
 ## Overview
 
 This guide demonstrates how to use AgentSource MCP (Model Context Protocol) with OpenAI's API. MCP enables your AI agents to seamlessly access Explorium's data through a standardized protocol, allowing for dynamic tool discovery and execution.
@@ -48,7 +44,7 @@ response = client.responses.create(
         "type": "mcp",
         "require_approval": "never",
         "server_label": "explorium",
-        "server_url": "https://mcp.explorium.ai/mcp",
+        "server_url": "https://mcp-v2.explorium.ai/mcp",
         "headers": {
             "api_key": "YOUR_AGENTSOURCE_API_KEY"
         }
@@ -74,7 +70,7 @@ response = client.responses.create(
         "type": "mcp",
         "require_approval": "never",
         "server_label": "explorium",
-        "server_url": "https://mcp.explorium.ai/mcp",
+        "server_url": "https://mcp-v2.explorium.ai/mcp",
         "headers": {
             "api_key": "YOUR_AGENTSOURCE_API_KEY"
         }
@@ -98,7 +94,7 @@ response = client.responses.create(
         "type": "mcp",
         "require_approval": "never",
         "server_label": "explorium",
-        "server_url": "https://mcp.explorium.ai/mcp",
+        "server_url": "https://mcp-v2.explorium.ai/mcp",
         "headers": {
             "api_key": "YOUR_AGENTSOURCE_API_KEY"
         }
@@ -117,7 +113,7 @@ response = client.responses.create(
         "type": "mcp",
         "require_approval": "never",
         "server_label": "explorium",
-        "server_url": "https://mcp.explorium.ai/mcp",
+        "server_url": "https://mcp-v2.explorium.ai/mcp",
         "headers": {
             "api_key": "YOUR_AGENTSOURCE_API_KEY"
         }
@@ -136,7 +132,7 @@ response = client.responses.create(
         "type": "mcp",
         "require_approval": "never",
         "server_label": "explorium",
-        "server_url": "https://mcp.explorium.ai/mcp",
+        "server_url": "https://mcp-v2.explorium.ai/mcp",
         "headers": {
             "api_key": "YOUR_AGENTSOURCE_API_KEY"
         }
@@ -170,7 +166,7 @@ response1 = client.responses.create(
         "type": "mcp",
         "require_approval": "never",
         "server_label": "explorium",
-        "server_url": "https://mcp.explorium.ai/mcp",
+        "server_url": "https://mcp-v2.explorium.ai/mcp",
         "headers": {
             "api_key": "YOUR_AGENTSOURCE_API_KEY"
         }
@@ -185,7 +181,7 @@ response2 = client.responses.create(
         "type": "mcp",
         "require_approval": "never",
         "server_label": "explorium",
-        "server_url": "https://mcp.explorium.ai/mcp",
+        "server_url": "https://mcp-v2.explorium.ai/mcp",
         "headers": {
             "api_key": "YOUR_AGENTSOURCE_API_KEY"
         }
@@ -264,7 +260,7 @@ try:
             "type": "mcp",
             "require_approval": "never",
             "server_label": "explorium",
-            "server_url": "https://mcp.explorium.ai/mcp",
+            "server_url": "https://mcp-v2.explorium.ai/mcp",
             "headers": {
                 "api_key": "YOUR_AGENTSOURCE_API_KEY"
             }
@@ -277,7 +273,7 @@ except Exception as e:
 
 ## Next Steps
 
-- Explore the [complete AgentSource MCP documentation](/mcp-docs/agentsource-mcp)
+- Explore the [complete AgentSource MCP documentation](/mcp-docs/v2/agentsource-mcp)
 - Check out implementations using other frameworks (LangGraph, Python SDK)
 - Learn about advanced filtering and search capabilities
 - Understand rate limits and quotas
