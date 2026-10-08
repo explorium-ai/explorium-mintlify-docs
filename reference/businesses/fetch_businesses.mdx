@@ -88,6 +88,10 @@ The **Fetch Businesses** endpoint allows users to retrieve business records base
     | :-- | :-- |
     | `full` | Returns the complete data object for each result. Use this when full detail is required for processing or display — and always when filtering by intent: **only `full` mode returns the actual intent topics** each business is researching. |
 
+    <Warning>
+      **`preview` mode is restricted.** It's blocked by default and available only to paying customers on a **custom plan**. Use `mode: "full"`. To get preview access, see [pricing and plans](https://admin.explorium.ai/pricing).
+    </Warning>
+
     ### Best Practices
 
     - Always use `page_size` to control payload size for better performance.
@@ -155,7 +159,7 @@ The **Fetch Businesses** endpoint allows users to retrieve business records base
     </Tip>
 
     <Warning>
-      **`business_intent_topics` is a premium filter — 2 credits per returned result**, unlike other fetch filters, which are free.
+      **`business_intent_topics` is a premium filter — 2 credits per returned result** instead of the standard 1 credit per result.
 
       Always fetch with `mode: "full"` when filtering by intent — only full mode returns the **actual intent topics** each business is researching.
     </Warning>

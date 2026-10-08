@@ -24,6 +24,11 @@ It fetches the prod export, applies the required transformations, and refuses to
 | `added: [...]` | Each new operation needs a reference page + `docs.json` nav entry, following the existing per-group pattern |
 | `removed: [...]` | Confirm intentional; remove/repoint the affected pages |
 | `BLOCKED` | A documented operation vanished from the export — investigate before considering `--force` |
+| `overlay: WARNING ...` | A schema targeted by `apply_doc_overlays` was renamed or removed upstream — update `FETCH_MODE_SCHEMAS` so the playground's `mode` remark (preview restricted to custom plans) isn't silently lost |
+
+## Docs overlays
+
+`apply_doc_overlays` in the script rewrites a few descriptions after each pull — currently the fetch `mode` parameter (preview is restricted to custom plans) and the `BaseFetchMode` enum. Expect those lines to differ from the raw export; that is intended. Drop an overlay once the service spec carries the same wording itself.
 
 ## After it writes
 
