@@ -39,6 +39,36 @@ def replace_marked_fields(obj):
     return obj
 
 
+# Docs-only wording layered onto the fetched spec. Each entry should eventually move into the
+# service's own OpenAPI annotations; until then this keeps it from being lost on every pull.
+FETCH_MODE_SCHEMAS = ("BusinessesFetchRequest", "ProspectsFetchRequest",
+                      "V2BusinessesFetchRequest", "V2ProspectsFetchRequest")
+FETCH_MODE_DESCRIPTION = (
+    "Level of detail in the returned records. Use `full`.\n\n"
+    "**`preview` is restricted: blocked by default and available only to paying customers on a "
+    "custom plan. See [pricing and plans](https://admin.explorium.ai/pricing).**"
+)
+BASE_FETCH_MODE_DESCRIPTION = "Fetch mode: `full` returns complete records; `preview` is restricted to custom plans."
+
+
+def apply_doc_overlays(spec):
+    schemas = spec["components"]["schemas"]
+    missing = []
+    for name in FETCH_MODE_SCHEMAS:
+        mode = schemas.get(name, {}).get("properties", {}).get("mode")
+        if mode is None:
+            missing.append(name)
+        else:
+            mode["description"] = FETCH_MODE_DESCRIPTION
+    if "BaseFetchMode" in schemas:
+        schemas["BaseFetchMode"]["description"] = BASE_FETCH_MODE_DESCRIPTION
+    else:
+        missing.append("BaseFetchMode")
+    if missing:
+        print(f"overlay  : WARNING — schemas not found, mode remark not applied: {missing}", file=sys.stderr)
+    return spec
+
+
 def documented_operations():
     """Every (method, path) referenced by page frontmatter across the docs."""
     ops = set()
@@ -66,7 +96,7 @@ def main():
 
     with urllib.request.urlopen(args.url, timeout=60) as r:
         raw = json.load(r)
-    new = replace_marked_fields(raw)
+    new = apply_doc_overlays(replace_marked_fields(raw))
 
     try:
         old = json.load(open(args.output))

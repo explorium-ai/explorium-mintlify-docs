@@ -7668,7 +7668,7 @@
           "preview"
         ],
         "title": "BaseFetchMode",
-        "description": "The `BaseFetchMode` class is an enumeration that defines the modes for fetching data.\n\nThis enum is used to specify whether the fetch operation should retrieve the full data\nor just a preview of the data. It ensures consistent handling of fetch modes across\nthe application.\n\nAttributes:\n    FULL: Fetch the complete data.\n    PREVIEW: Fetch a preview or partial data."
+        "description": "Fetch mode: `full` returns complete records; `preview` is restricted to custom plans."
       },
       "Body_v2_entity_id_lists_upload": {
         "properties": {
@@ -10420,7 +10420,7 @@
                 "$ref": "#/components/schemas/BaseFetchMode"
               }
             ],
-            "description": "The mode of fetching businesses.",
+            "description": "Level of detail in the returned records. Use `full`.\n\n**`preview` is restricted: blocked by default and available only to paying customers on a custom plan. See [pricing and plans](https://admin.explorium.ai/pricing).**",
             "example": "full"
           },
           "size": {
@@ -14441,7 +14441,7 @@
                 "$ref": "#/components/schemas/BaseFetchMode"
               }
             ],
-            "description": "The mode of fetching prospects.",
+            "description": "Level of detail in the returned records. Use `full`.\n\n**`preview` is restricted: blocked by default and available only to paying customers on a custom plan. See [pricing and plans](https://admin.explorium.ai/pricing).**",
             "example": "full"
           },
           "size": {
@@ -16982,7 +16982,7 @@
                 "$ref": "#/components/schemas/BaseFetchMode"
               }
             ],
-            "description": "The mode of fetching businesses.",
+            "description": "Level of detail in the returned records. Use `full`.\n\n**`preview` is restricted: blocked by default and available only to paying customers on a custom plan. See [pricing and plans](https://admin.explorium.ai/pricing).**",
             "example": "full"
           },
           "page_size": {
@@ -18889,7 +18889,7 @@
                 "$ref": "#/components/schemas/BaseFetchMode"
               }
             ],
-            "description": "The mode of fetching prospects.",
+            "description": "Level of detail in the returned records. Use `full`.\n\n**`preview` is restricted: blocked by default and available only to paying customers on a custom plan. See [pricing and plans](https://admin.explorium.ai/pricing).**",
             "example": "full"
           },
           "page_size": {

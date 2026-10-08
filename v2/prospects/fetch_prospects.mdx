@@ -97,6 +97,10 @@ The **Fetch Prospects** endpoint allows users to retrieve a list of prospect rec
     | --- | --- |
     | `full` | Returns the complete data object for each prospect.   Use this when full detail is required for processing or display. |
 
+    <Warning>
+      **`preview` mode is restricted.** It's blocked by default and available only to paying customers on a **custom plan**. Use `mode: "full"`. To get preview access, see [pricing and plans](https://admin.explorium.ai/pricing).
+    </Warning>
+
     #### Best Practices
 
     - Always use `page_size` to control payload size for better performance.
