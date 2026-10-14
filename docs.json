@@ -182,7 +182,8 @@
                 "group": "Credits",
                 "pages": [
                   "v2/credits/get_credits",
-                  "v2/credits/credits_aggregation"
+                  "v2/credits/credits_aggregation",
+                  "v2/credits/per-call-credit-usage"
                 ]
               },
               {
