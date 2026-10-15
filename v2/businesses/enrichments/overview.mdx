@@ -1,14 +1,14 @@
 ---
 title: "Business enrichments"
 sidebarTitle: "Overview"
-description: "The 17 business enrichments in AgentSource v2, each with a synchronous /enrich and an asynchronous /job variant."
+description: "The 16 business enrichments in AgentSource v2, each with a synchronous /enrich and an asynchronous /job variant."
 ---
 
 Every enrichment ships both a **sync** (`.../enrich`) and an **async** (`.../job`) variant. Sync accepts a single ID or a list of up to 50; async runs through the [async job infrastructure](/v2/async-jobs) with a 10,000-record limit. See [v2 conventions](/v2/conventions).
 
 All enrichment endpoints are `POST`.
 
-## Available business enrichments (17)
+## Available business enrichments (16)
 
 | Enrichment | Key | Sync | Async |
 | :--- | :--- | :--- | :--- |
@@ -27,7 +27,6 @@ All enrichment endpoints are `POST`.
 | Lookalikes | `lookalikes` | [Sync](/v2/businesses/enrichments/lookalikes_enrich) | [Async](/v2/businesses/enrichments/lookalikes_job) |
 | Webstack | `webstack` | [Sync](/v2/businesses/enrichments/webstack_enrich) | [Async](/v2/businesses/enrichments/webstack_job) |
 | Company hierarchies | `company_hierarchies` | [Sync](/v2/businesses/enrichments/company_hierarchies_enrich) | [Async](/v2/businesses/enrichments/company_hierarchies_job) |
-| Website traffic — **deprecated**, slated for removal | `website_traffic` | [Sync](/v2/businesses/enrichments/website_traffic_enrich) | [Async](/v2/businesses/enrichments/website_traffic_job) |
 | Bombora intent | `bombora_intent` | [Sync](/v2/businesses/enrichments/bombora_intent_enrich) | [Async](/v2/businesses/enrichments/bombora_intent_job) |
 
 ## Response changes in v2
