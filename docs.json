@@ -93,7 +93,6 @@
                       "v2/businesses/enrichments/lookalikes_enrich",
                       "v2/businesses/enrichments/webstack_enrich",
                       "v2/businesses/enrichments/company_hierarchies_enrich",
-                      "v2/businesses/enrichments/website_traffic_enrich",
                       "v2/businesses/enrichments/bombora_intent_enrich"
                     ]
                   },
@@ -115,7 +114,6 @@
                       "v2/businesses/enrichments/lookalikes_job",
                       "v2/businesses/enrichments/webstack_job",
                       "v2/businesses/enrichments/company_hierarchies_job",
-                      "v2/businesses/enrichments/website_traffic_job",
                       "v2/businesses/enrichments/bombora_intent_job"
                     ]
                   }
@@ -431,7 +429,6 @@
                           "reference/businesses/enrichments/lookalike-companies",
                           "reference/businesses/enrichments/webstack",
                           "reference/businesses/enrichments/company-hierarchy",
-                          "reference/businesses/enrichments/business_website_traffic",
                           "reference/businesses/enrichments/business_intent_topics_bombora"
                         ]
                       },
@@ -454,7 +451,6 @@
                           "reference/businesses/enrichments/bulk/lookalike_companies_bulk_enrich",
                           "reference/businesses/enrichments/bulk/webstack_bulk_enrich",
                           "reference/businesses/enrichments/bulk/company_hierarchy_bulk_enrich",
-                          "reference/businesses/enrichments/bulk/business_website_traffic_bulk_enrich",
                           "reference/businesses/enrichments/bulk/business_intent_topics_bombora_bulk"
                         ]
                       }
@@ -944,7 +940,7 @@
     },
     {
       "source": "/reference/business-website-traffic",
-      "destination": "/reference/businesses/enrichments/business_website_traffic"
+      "destination": "/v2/businesses/enrichments/overview"
     },
     {
       "source": "/reference/company-hierarchy",
@@ -1004,7 +1000,7 @@
     },
     {
       "source": "/reference/business-website-traffic-1",
-      "destination": "/reference/businesses/enrichments/bulk/business_website_traffic_bulk_enrich"
+      "destination": "/v2/businesses/enrichments/overview"
     },
     {
       "source": "/reference/prospects_api",
@@ -1169,6 +1165,22 @@
     {
       "source": "/v2/release-plan",
       "destination": "/v2/whats-new"
+    },
+    {
+      "source": "/reference/businesses/enrichments/bulk/business_website_traffic_bulk_enrich",
+      "destination": "/v2/businesses/enrichments/overview"
+    },
+    {
+      "source": "/reference/businesses/enrichments/business_website_traffic",
+      "destination": "/v2/businesses/enrichments/overview"
+    },
+    {
+      "source": "/v2/businesses/enrichments/website_traffic_enrich",
+      "destination": "/v2/businesses/enrichments/overview"
+    },
+    {
+      "source": "/v2/businesses/enrichments/website_traffic_job",
+      "destination": "/v2/businesses/enrichments/overview"
     }
   ],
   "integrations": {
