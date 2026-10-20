@@ -89,6 +89,8 @@ The **Fetch Businesses** endpoint allows users to retrieve business records base
 
     <Warning>
       **`preview` mode is restricted.** It's blocked by default and available only to paying customers on a **custom plan**. Use `mode: "full"`. To get preview access, see [pricing and plans](https://admin.explorium.ai/pricing).
+
+      **What preview returns:** each record keeps every field name, but only `business_id`, `name`, `domain`, `website`, `logo`, and `country_name` have values. All other fields are returned as `null`.
     </Warning>
 
     ### Best Practices
