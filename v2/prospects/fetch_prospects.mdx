@@ -36,8 +36,9 @@ The **Fetch Prospects** endpoint allows users to retrieve a list of prospect rec
     | Field | Type | Description |
     | --- | --- | --- |
     | `mode` | String | `full` |
-    | `page_size` | Number | Max number of records per page - up to 100 |
-    | `page` | Number | Page number to retrieve |
+    | `page_size` | Number | Required. Max number of records per page, from 1 to 500 |
+    | `page` | Number | Optional. Page number to fetch; omit for cursor pagination |
+    | `next_cursor` | String | Optional. Cursor from the previous response, for cursor pagination |
     | `filters` | Object | Filter object (see Filters Object below) |
   </Accordion>
 
@@ -52,12 +53,16 @@ The **Fetch Prospects** endpoint allows users to retrieve a list of prospect rec
 
     | Parameter | Type | Description |
     | --- | --- | --- |
-    | `page_size` | Number | Number of records to return per page.   Maximum value: 100. |
-    | `page` | Number | The page number to retrieve (1-based index).   Defaults to 1 if not specified. |
+    | `page_size` | Number | **Required.** Number of records to return per page, from 1 to 500. |
+    | `page` | Number | Optional. The page number to fetch (1-based), to jump straight to a specific page. Omit it, or send `null`, to use cursor pagination instead. |
+    | `next_cursor` | String | Optional. For cursor pagination: the `page.next_cursor` value from the previous response. Omit it, or send `null`, to start from the first page. |
 
     **Behavior Notes:**
 
-        - If pagination parameters are omitted, the API may return a default page size (implementation-specific).
+    Choose one of two pagination styles:
+
+    - **Page numbers** — send `page`. The response's `page` object is `{"size", "number", "total_pages"}`, so you can jump to any page.
+    - **Cursor** (used when `page` is omitted) — the response's `page` object is `{"size", "next_cursor"}`. Pass `next_cursor` in the next request to get the following page.
 
     #### Filtering
 
@@ -1145,8 +1150,7 @@ The **Fetch Prospects** endpoint allows users to retrieve a list of prospect rec
     | :-- | :-- | :-- | :-- |
     | response\_context | Response context | Metadata about the request, including `correlation_id`, `request_status`, and `time_taken_in_seconds`. | object |
     | total\_results | Total results | The total number of prospects that match the filters. | integer |
-    | page | Page | The page number of the response. When using cursor pagination, this is an object containing `size` and `next_cursor` instead. | integer / object |
-    | total\_pages | Total pages | The total number of pages (page-based pagination only). | integer |
+    | page | Page | Pagination details. With page numbers (`page` sent in the request): `size`, `number`, and `total_pages`. With cursor pagination: `size` and `next_cursor`. | object |
   </Accordion>
 </AccordionGroup>
 
