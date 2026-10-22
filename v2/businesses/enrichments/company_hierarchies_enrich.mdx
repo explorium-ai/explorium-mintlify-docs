@@ -20,6 +20,49 @@ By surfacing these connections, the enrichment helps to:
   **v2:** this endpoint accepts either a single ID (a string) or a list of up to 50 IDs — the separate `/bulk_enrich` route is gone. See [v2 conventions](/v2/conventions).
 </Note>
 
+## Enrich by company details instead of IDs
+
+`business_ids` is the primary way to call this endpoint. If you don't have Explorium IDs yet, you can send `businesses_to_match` instead: up to 50 companies, described with the same fields the [Match businesses](/v2/businesses/match_businesses) endpoint accepts (`name`, `domain`, `url`, `linkedin_url`). Each company is matched and enriched in the same call. Send **either** `business_ids` **or** `businesses_to_match`, never both (that returns a `422`). Any `parameters` the endpoint takes work the same either way.
+
+<CodeGroup>
+```json Request body
+{
+  "businesses_to_match": [
+    { "name": "Explorium", "domain": "explorium.ai" },
+    { "name": "Unknown Co", "domain": "unknown-co.example" }
+  ]
+}
+```
+
+```json Response (data shortened)
+{
+  "response_context": {
+    "correlation_id": "ebe38f2b99ad423e84f93d2be5e75b20",
+    "request_status": "success",
+    "time_taken_in_seconds": 5.38
+  },
+  "data": [
+    {
+      "input": { "name": "Explorium", "domain": "explorium.ai", "url": null, "linkedin_url": null },
+      "business_id": "340c8040bd50cbab9c7df718bbe51cc9",
+      "data": { "business_id": "340c8040bd50cbab9c7df718bbe51cc9", "...": "same fields as an ID-based request" },
+      "warnings": []
+    },
+    {
+      "input": { "name": "Unknown Co", "domain": "unknown-co.example", "url": null, "linkedin_url": null },
+      "business_id": null,
+      "data": null,
+      "warnings": []
+    }
+  ],
+  "total_results": 1,
+  "total_matches": 1
+}
+```
+</CodeGroup>
+
+Each row echoes its `input` and returns the matched `business_id`. Companies that don't match come back with `business_id: null` and `data: null`, and aren't charged. `total_matches` counts the matched rows.
+
 <AccordionGroup>
   <Accordion title="How It Works">
     - **Input:** Provide a `business_id` obtained from the **Match Businesses** API.

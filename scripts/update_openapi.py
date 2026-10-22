@@ -51,9 +51,45 @@ FETCH_MODE_DESCRIPTION = (
 BASE_FETCH_MODE_DESCRIPTION = "Fetch mode: `full` returns complete records; `preview` is restricted to custom plans."
 
 
+SAMPLE_IDS = {"business_ids": "8adce3ca1cef0c986b22310e369a0793",
+              "prospect_ids": "ee936e451b50c70e068e1b54e106cb89173198c4"}
+REQUIRED_PARAMETER_EXAMPLES = {
+    "V2BusinessCompanyWebsiteKeywordsEnrichRequest": {"keywords": ["cloud migration", "data platform"]},
+}
+
+
+def _ids_first_enrich_examples(spec):
+    """v2 sync enrichments accept IDs *or* *_to_match inputs (never both). Without an explicit
+    example, the playground's generated code sample sends both fields and gets a 422, and the
+    200 sample shows the match-style response because the spec lists it first."""
+    schemas = spec["components"]["schemas"]
+    fixed = 0
+    for path, item in spec["paths"].items():
+        if not (path.startswith("/v2/") and path.endswith("/enrich")) or "post" not in item:
+            continue
+        op = item["post"]
+        media = op["requestBody"]["content"]["application/json"]
+        name = media["schema"].get("$ref", "").split("/")[-1]
+        props = schemas.get(name, {}).get("properties", {})
+        id_field = next((k for k in SAMPLE_IDS if k in props), None)
+        if not id_field or not any(k.endswith("_to_match") for k in props):
+            continue
+        example = {id_field: [SAMPLE_IDS[id_field]]}
+        if name in REQUIRED_PARAMETER_EXAMPLES:
+            example["parameters"] = REQUIRED_PARAMETER_EXAMPLES[name]
+        media["example"] = example
+        ok = op["responses"].get("200", {}).get("content", {}).get("application/json", {}).get("schema", {})
+        variants = schemas.get(ok.get("$ref", "").split("/")[-1], {}).get("anyOf", [])
+        variants.sort(key=lambda v: "MatchEnrichResponse" in v.get("$ref", ""))
+        fixed += 1
+    return fixed
+
+
 def apply_doc_overlays(spec):
     schemas = spec["components"]["schemas"]
     missing = []
+    if _ids_first_enrich_examples(spec) == 0:
+        missing.append("v2 sync enrich operations with *_to_match")
     for name in FETCH_MODE_SCHEMAS:
         mode = schemas.get(name, {}).get("properties", {}).get("mode")
         if mode is None:

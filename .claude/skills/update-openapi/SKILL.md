@@ -28,7 +28,7 @@ It fetches the prod export, applies the required transformations, and refuses to
 
 ## Docs overlays
 
-`apply_doc_overlays` in the script rewrites a few descriptions after each pull — currently the fetch `mode` parameter (preview is restricted to custom plans) and the `BaseFetchMode` enum. Expect those lines to differ from the raw export; that is intended. Drop an overlay once the service spec carries the same wording itself.
+`apply_doc_overlays` in the script rewrites a few things after each pull — the fetch `mode` parameter (preview is restricted to custom plans), the `BaseFetchMode` enum, and the v2 sync enrichments: an ID-only request example (otherwise the generated code sample sends both IDs and `*_to_match` and gets a 422) and the ID-based 200 response listed first. Required `parameters` for that example live in `REQUIRED_PARAMETER_EXAMPLES` — add one when a new enrichment requires parameters. Expect those lines to differ from the raw export; that is intended. Drop an overlay once the service spec carries the same wording itself.
 
 ## After it writes
 
