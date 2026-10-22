@@ -25,7 +25,7 @@ The **Asynchronous Contact Information Enrichment** retrieves verified **profess
 | Parameter | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
 | `waterfall` | enum: `explorium_only` / `full` | `explorium_only` | Controls which data sources are used. `explorium_only` enriches with Explorium contact data only — identical to today's behavior. `full` runs the waterfall: Explorium first, then the external provider for prospects Explorium could not enrich. |
-| `contact_types` | array of enum: `email` / `phone` | both | Which contact types to query — email, phone, or both. |
+| `contact_types` | array of enum: `email` / `phone` / `hashed_identifiers` | email and phone | Which contact types to query. `hashed_identifiers` adds SHA256-hashed email identifiers for ABM; it's returned only when requested. See [Hashed identifiers](/v2/prospects/enrichments/contact_information_enrich#hashed-identifiers-for-abm). |
 
 <Warning>
   **`waterfall` is only available on this asynchronous endpoint.** Passing it to the synchronous `/enrich` endpoint returns a validation error.
@@ -134,6 +134,8 @@ Results are downloaded as a CSV from `results.download_url`. The link is valid f
 | `mobile_phone` | The prospect's direct-dial mobile number |
 | `email_source` | Where the email came from: `explorium`, `external_source`, or empty when no email was found |
 | `phone_source` | Where the phone came from: `explorium`, `external_source`, or empty when no phone was found |
+| `hashed_professional_emails` | With `hashed_identifiers`: a JSON array of SHA256 hashes of the prospect's professional emails, or empty when none |
+| `hashed_personal_emails` | With `hashed_identifiers`: a JSON array of SHA256 hashes of the prospect's personal emails, or empty when none |
 
 Prospects that neither source could enrich are still returned, with the contact columns empty — and cost nothing.
 
@@ -146,6 +148,8 @@ Credits are charged per result, according to the source that produced it:
 | Explorium | 2 credits | 5 credits |
 | External provider | 2 credits | 15 credits |
 | No data returned | 0 credits | 0 credits |
+
+Hashed identifiers, when requested, cost **1 credit per prospect** returned with them, on top of any email or phone charges.
 
 For example, a prospect whose email came from Explorium and whose phone came from the external provider costs 2 + 15 = 17 credits.
 

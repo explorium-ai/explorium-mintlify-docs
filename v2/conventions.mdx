@@ -20,17 +20,19 @@ A single endpoint accepts either one ID (a string) or a list of IDs. The separat
 
 <CodeGroup>
 ```json Single ID
-{ "business_id": "a34bacf839b923770b2c360eefa26748" }
+{ "business_ids": "a34bacf839b923770b2c360eefa26748" }
 ```
 
 ```json List of IDs
-{ "business_id": ["a34bacf839b923770b2c360eefa26748", "8adce3ca1cef0c986b22310e369a0793"] }
+{ "business_ids": ["a34bacf839b923770b2c360eefa26748", "8adce3ca1cef0c986b22310e369a0793"] }
 ```
 </CodeGroup>
 
-<Note>
-  Request and response schemas are still being finalized. The example above shows the calling pattern, not the confirmed field names.
-</Note>
+IDs are the primary way to call a sync enrichment. As an alternative, every sync enrichment except Research also accepts up to 50 `businesses_to_match` or `prospects_to_match` (the same inputs as the match endpoints) and matches and enriches them in one call. Send either the IDs or the match inputs, never both. Each enrichment page shows an example.
+
+```json Match inputs instead of IDs
+{ "businesses_to_match": [{ "name": "Explorium", "domain": "explorium.ai" }] }
+```
 
 ## Sync vs. async pairing
 
@@ -38,7 +40,7 @@ Each enrichment exposes two endpoints:
 
 | Variant | Path | Input | Use when |
 | :--- | :--- | :--- | :--- |
-| **Sync** | `.../enrich` | A single ID or a list of up to 50 | You want results in the response |
+| **Sync** | `.../enrich` | A single ID or a list of up to 50 (or up to 50 match inputs) | You want results in the response |
 | **Async** | `.../job` | A `list_id` from an uploaded dataset | Large runs, up to 10,000 records |
 
 <Warning>

@@ -26,6 +26,49 @@ The **Professional Profile Contact and Workplace Enrichments** API provides comp
   **v2:** this endpoint accepts either a single ID (a string) or a list of up to 50 IDs — the separate `/bulk_enrich` route is gone. See [v2 conventions](/v2/conventions).
 </Note>
 
+## Enrich by prospect details instead of IDs
+
+`prospect_ids` is the primary way to call this endpoint. If you don't have Explorium IDs yet, you can send `prospects_to_match` instead: up to 50 people, described with the same fields the [Match prospects](/v2/prospects/match_prospects) endpoint accepts (`full_name`, `company_name`, `email`, `phone_number`, `linkedin`, `business_id`). Each person is matched and enriched in the same call. Send **either** `prospect_ids` **or** `prospects_to_match`, never both (that returns a `422`). Any `parameters` the endpoint takes work the same either way.
+
+<CodeGroup>
+```json Request body
+{
+  "prospects_to_match": [
+    { "full_name": "Jane Doe", "company_name": "Acme Corp" },
+    { "full_name": "John Smith", "company_name": "Unknown Co" }
+  ]
+}
+```
+
+```json Response (data shortened)
+{
+  "response_context": {
+    "correlation_id": "9a1c0e7f4b2d4c6e8f0a1b2c3d4e5f60",
+    "request_status": "success",
+    "time_taken_in_seconds": 1.42
+  },
+  "data": [
+    {
+      "input": { "business_id": null, "full_name": "Jane Doe", "company_name": "Acme Corp", "email": null, "phone_number": null, "linkedin": null },
+      "prospect_id": "4f1d9c2e7a3b5c8d0e6f1a2b3c4d5e6f7a8b9c0d",
+      "data": { "...": "same fields as an ID-based request" },
+      "warnings": []
+    },
+    {
+      "input": { "business_id": null, "full_name": "John Smith", "company_name": "Unknown Co", "email": null, "phone_number": null, "linkedin": null },
+      "prospect_id": null,
+      "data": null,
+      "warnings": []
+    }
+  ],
+  "total_results": 1,
+  "total_matches": 1
+}
+```
+</CodeGroup>
+
+Each row echoes its `input` and returns the matched `prospect_id`. People who don't match come back with `prospect_id: null` and `data: null`, and aren't charged. `total_matches` counts the matched rows.
+
 <AccordionGroup>
   <Accordion title="How It Works">
     1. **Input:** Provide a `prospect_id` (retrieved from the **Match Prospects** endpoint) to fetch professional details.
@@ -77,5 +120,5 @@ The **Professional Profile Contact and Workplace Enrichments** API provides comp
 ## Body Params - Try Me Example
 
 ```
-prospect_id: ee936e451b50c70e068e1b54e106cb89173198c4
+prospect_ids: ee936e451b50c70e068e1b54e106cb89173198c4
 ```

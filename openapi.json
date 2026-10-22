@@ -6132,6 +6132,11 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/V2BusinessBomboraIntentEnrichRequest"
+              },
+              "example": {
+                "business_ids": [
+                  "8adce3ca1cef0c986b22310e369a0793"
+                ]
               }
             }
           },
@@ -6181,6 +6186,11 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/V2BusinessEnrichRequest"
+              },
+              "example": {
+                "business_ids": [
+                  "8adce3ca1cef0c986b22310e369a0793"
+                ]
               }
             }
           },
@@ -6230,6 +6240,11 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/V2BusinessEnrichRequest"
+              },
+              "example": {
+                "business_ids": [
+                  "8adce3ca1cef0c986b22310e369a0793"
+                ]
               }
             }
           },
@@ -6279,6 +6294,17 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/V2BusinessCompanyWebsiteKeywordsEnrichRequest"
+              },
+              "example": {
+                "business_ids": [
+                  "8adce3ca1cef0c986b22310e369a0793"
+                ],
+                "parameters": {
+                  "keywords": [
+                    "cloud migration",
+                    "data platform"
+                  ]
+                }
               }
             }
           },
@@ -6328,6 +6354,11 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/V2BusinessFinancialIndicatorsEnrichRequest"
+              },
+              "example": {
+                "business_ids": [
+                  "8adce3ca1cef0c986b22310e369a0793"
+                ]
               }
             }
           },
@@ -6377,6 +6408,11 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/V2BusinessEnrichRequest"
+              },
+              "example": {
+                "business_ids": [
+                  "8adce3ca1cef0c986b22310e369a0793"
+                ]
               }
             }
           },
@@ -6426,6 +6462,11 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/V2BusinessEnrichRequest"
+              },
+              "example": {
+                "business_ids": [
+                  "8adce3ca1cef0c986b22310e369a0793"
+                ]
               }
             }
           },
@@ -6475,6 +6516,11 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/V2BusinessLinkedinPostsEnrichRequest"
+              },
+              "example": {
+                "business_ids": [
+                  "8adce3ca1cef0c986b22310e369a0793"
+                ]
               }
             }
           },
@@ -6524,6 +6570,11 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/V2BusinessEnrichRequest"
+              },
+              "example": {
+                "business_ids": [
+                  "8adce3ca1cef0c986b22310e369a0793"
+                ]
               }
             }
           },
@@ -6573,6 +6624,11 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/V2BusinessEnrichRequest"
+              },
+              "example": {
+                "business_ids": [
+                  "8adce3ca1cef0c986b22310e369a0793"
+                ]
               }
             }
           },
@@ -6622,6 +6678,11 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/V2BusinessEnrichRequest"
+              },
+              "example": {
+                "business_ids": [
+                  "8adce3ca1cef0c986b22310e369a0793"
+                ]
               }
             }
           },
@@ -6671,6 +6732,11 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/V2BusinessEnrichRequest"
+              },
+              "example": {
+                "business_ids": [
+                  "8adce3ca1cef0c986b22310e369a0793"
+                ]
               }
             }
           },
@@ -6720,6 +6786,11 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/V2BusinessEnrichRequest"
+              },
+              "example": {
+                "business_ids": [
+                  "8adce3ca1cef0c986b22310e369a0793"
+                ]
               }
             }
           },
@@ -6769,6 +6840,11 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/V2BusinessEnrichRequest"
+              },
+              "example": {
+                "business_ids": [
+                  "8adce3ca1cef0c986b22310e369a0793"
+                ]
               }
             }
           },
@@ -6818,6 +6894,11 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/V2BusinessWebsiteTrafficEnrichRequest"
+              },
+              "example": {
+                "business_ids": [
+                  "8adce3ca1cef0c986b22310e369a0793"
+                ]
               }
             }
           },
@@ -6867,6 +6948,11 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/V2BusinessEnrichRequest"
+              },
+              "example": {
+                "business_ids": [
+                  "8adce3ca1cef0c986b22310e369a0793"
+                ]
               }
             }
           },
@@ -6916,6 +7002,11 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/V2BusinessEnrichRequest"
+              },
+              "example": {
+                "business_ids": [
+                  "8adce3ca1cef0c986b22310e369a0793"
+                ]
               }
             }
           },
@@ -6965,6 +7056,11 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/V2ProspectContactInformationEnrichRequest"
+              },
+              "example": {
+                "prospect_ids": [
+                  "ee936e451b50c70e068e1b54e106cb89173198c4"
+                ]
               }
             }
           },
@@ -7014,6 +7110,11 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/V2ProspectLinkedinPostsEnrichRequest"
+              },
+              "example": {
+                "prospect_ids": [
+                  "ee936e451b50c70e068e1b54e106cb89173198c4"
+                ]
               }
             }
           },
@@ -7063,6 +7164,11 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/V2ProspectEnrichRequest"
+              },
+              "example": {
+                "prospect_ids": [
+                  "ee936e451b50c70e068e1b54e106cb89173198c4"
+                ]
               }
             }
           },
@@ -15507,10 +15613,10 @@
       "V2BusinessEnrichEndpointResponse_BomboraIntentOutputSchema_": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_BomboraIntentOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessEnrichResponse_BomboraIntentOutputSchema_"
           },
           {
-            "$ref": "#/components/schemas/V2BusinessEnrichResponse_BomboraIntentOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_BomboraIntentOutputSchema_"
           }
         ],
         "title": "V2BusinessEnrichEndpointResponse[BomboraIntentOutputSchema]"
@@ -15518,10 +15624,10 @@
       "V2BusinessEnrichEndpointResponse_CompanyHierarchiesOutputSchema_": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_CompanyHierarchiesOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessEnrichResponse_CompanyHierarchiesOutputSchema_"
           },
           {
-            "$ref": "#/components/schemas/V2BusinessEnrichResponse_CompanyHierarchiesOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_CompanyHierarchiesOutputSchema_"
           }
         ],
         "title": "V2BusinessEnrichEndpointResponse[CompanyHierarchiesOutputSchema]"
@@ -15529,10 +15635,10 @@
       "V2BusinessEnrichEndpointResponse_CompanyWebsiteKeywordsOutputSchema_": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_CompanyWebsiteKeywordsOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessEnrichResponse_CompanyWebsiteKeywordsOutputSchema_"
           },
           {
-            "$ref": "#/components/schemas/V2BusinessEnrichResponse_CompanyWebsiteKeywordsOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_CompanyWebsiteKeywordsOutputSchema_"
           }
         ],
         "title": "V2BusinessEnrichEndpointResponse[CompanyWebsiteKeywordsOutputSchema]"
@@ -15540,10 +15646,10 @@
       "V2BusinessEnrichEndpointResponse_FinancialIndicatorsOutputSchema_": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_FinancialIndicatorsOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessEnrichResponse_FinancialIndicatorsOutputSchema_"
           },
           {
-            "$ref": "#/components/schemas/V2BusinessEnrichResponse_FinancialIndicatorsOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_FinancialIndicatorsOutputSchema_"
           }
         ],
         "title": "V2BusinessEnrichEndpointResponse[FinancialIndicatorsOutputSchema]"
@@ -15551,10 +15657,10 @@
       "V2BusinessEnrichEndpointResponse_FirmographicsOutputSchema_": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_FirmographicsOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessEnrichResponse_FirmographicsOutputSchema_"
           },
           {
-            "$ref": "#/components/schemas/V2BusinessEnrichResponse_FirmographicsOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_FirmographicsOutputSchema_"
           }
         ],
         "title": "V2BusinessEnrichEndpointResponse[FirmographicsOutputSchema]"
@@ -15562,10 +15668,10 @@
       "V2BusinessEnrichEndpointResponse_LookalikesOutputSchema_": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_LookalikesOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessEnrichResponse_LookalikesOutputSchema_"
           },
           {
-            "$ref": "#/components/schemas/V2BusinessEnrichResponse_LookalikesOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_LookalikesOutputSchema_"
           }
         ],
         "title": "V2BusinessEnrichEndpointResponse[LookalikesOutputSchema]"
@@ -15573,10 +15679,10 @@
       "V2BusinessEnrichEndpointResponse_PCBusinessChallenges10kOutputSchema_": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_PCBusinessChallenges10kOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessEnrichResponse_PCBusinessChallenges10kOutputSchema_"
           },
           {
-            "$ref": "#/components/schemas/V2BusinessEnrichResponse_PCBusinessChallenges10kOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_PCBusinessChallenges10kOutputSchema_"
           }
         ],
         "title": "V2BusinessEnrichEndpointResponse[PCBusinessChallenges10kOutputSchema]"
@@ -15584,10 +15690,10 @@
       "V2BusinessEnrichEndpointResponse_PCCompetitiveLandscape10kOutputSchema_": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_PCCompetitiveLandscape10kOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessEnrichResponse_PCCompetitiveLandscape10kOutputSchema_"
           },
           {
-            "$ref": "#/components/schemas/V2BusinessEnrichResponse_PCCompetitiveLandscape10kOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_PCCompetitiveLandscape10kOutputSchema_"
           }
         ],
         "title": "V2BusinessEnrichEndpointResponse[PCCompetitiveLandscape10kOutputSchema]"
@@ -15595,10 +15701,10 @@
       "V2BusinessEnrichEndpointResponse_PCStrategy10kOutputSchema_": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_PCStrategy10kOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessEnrichResponse_PCStrategy10kOutputSchema_"
           },
           {
-            "$ref": "#/components/schemas/V2BusinessEnrichResponse_PCStrategy10kOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_PCStrategy10kOutputSchema_"
           }
         ],
         "title": "V2BusinessEnrichEndpointResponse[PCStrategy10kOutputSchema]"
@@ -15606,10 +15712,10 @@
       "V2BusinessEnrichEndpointResponse_TechnographicsOutputSchema_": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_TechnographicsOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessEnrichResponse_TechnographicsOutputSchema_"
           },
           {
-            "$ref": "#/components/schemas/V2BusinessEnrichResponse_TechnographicsOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_TechnographicsOutputSchema_"
           }
         ],
         "title": "V2BusinessEnrichEndpointResponse[TechnographicsOutputSchema]"
@@ -15617,10 +15723,10 @@
       "V2BusinessEnrichEndpointResponse_V2CompanyRatingsByEmployeesOutputSchema_": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_V2CompanyRatingsByEmployeesOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessEnrichResponse_V2CompanyRatingsByEmployeesOutputSchema_"
           },
           {
-            "$ref": "#/components/schemas/V2BusinessEnrichResponse_V2CompanyRatingsByEmployeesOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_V2CompanyRatingsByEmployeesOutputSchema_"
           }
         ],
         "title": "V2BusinessEnrichEndpointResponse[V2CompanyRatingsByEmployeesOutputSchema]"
@@ -15628,10 +15734,10 @@
       "V2BusinessEnrichEndpointResponse_V2FundingAndAcquisitionOutputSchema_": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_V2FundingAndAcquisitionOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessEnrichResponse_V2FundingAndAcquisitionOutputSchema_"
           },
           {
-            "$ref": "#/components/schemas/V2BusinessEnrichResponse_V2FundingAndAcquisitionOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_V2FundingAndAcquisitionOutputSchema_"
           }
         ],
         "title": "V2BusinessEnrichEndpointResponse[V2FundingAndAcquisitionOutputSchema]"
@@ -15639,10 +15745,10 @@
       "V2BusinessEnrichEndpointResponse_V2LinkedinCompaniesPostsOutputSchema_": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_V2LinkedinCompaniesPostsOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessEnrichResponse_V2LinkedinCompaniesPostsOutputSchema_"
           },
           {
-            "$ref": "#/components/schemas/V2BusinessEnrichResponse_V2LinkedinCompaniesPostsOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_V2LinkedinCompaniesPostsOutputSchema_"
           }
         ],
         "title": "V2BusinessEnrichEndpointResponse[V2LinkedinCompaniesPostsOutputSchema]"
@@ -15650,10 +15756,10 @@
       "V2BusinessEnrichEndpointResponse_V2WebstackOutputSchema_": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_V2WebstackOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessEnrichResponse_V2WebstackOutputSchema_"
           },
           {
-            "$ref": "#/components/schemas/V2BusinessEnrichResponse_V2WebstackOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_V2WebstackOutputSchema_"
           }
         ],
         "title": "V2BusinessEnrichEndpointResponse[V2WebstackOutputSchema]"
@@ -15661,10 +15767,10 @@
       "V2BusinessEnrichEndpointResponse_WebsiteChangesOutputSchema_": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_WebsiteChangesOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessEnrichResponse_WebsiteChangesOutputSchema_"
           },
           {
-            "$ref": "#/components/schemas/V2BusinessEnrichResponse_WebsiteChangesOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_WebsiteChangesOutputSchema_"
           }
         ],
         "title": "V2BusinessEnrichEndpointResponse[WebsiteChangesOutputSchema]"
@@ -15672,10 +15778,10 @@
       "V2BusinessEnrichEndpointResponse_WebsiteTrafficOutputSchema_": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_WebsiteTrafficOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessEnrichResponse_WebsiteTrafficOutputSchema_"
           },
           {
-            "$ref": "#/components/schemas/V2BusinessEnrichResponse_WebsiteTrafficOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_WebsiteTrafficOutputSchema_"
           }
         ],
         "title": "V2BusinessEnrichEndpointResponse[WebsiteTrafficOutputSchema]"
@@ -15683,10 +15789,10 @@
       "V2BusinessEnrichEndpointResponse_WorkforceTrendsOutputSchema_": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_WorkforceTrendsOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessEnrichResponse_WorkforceTrendsOutputSchema_"
           },
           {
-            "$ref": "#/components/schemas/V2BusinessEnrichResponse_WorkforceTrendsOutputSchema_"
+            "$ref": "#/components/schemas/V2BusinessMatchEnrichResponse_WorkforceTrendsOutputSchema_"
           }
         ],
         "title": "V2BusinessEnrichEndpointResponse[WorkforceTrendsOutputSchema]"
@@ -19950,10 +20056,10 @@
       "V2ProspectEnrichEndpointResponse_LinkedinProspectsPostsOutputSchema_": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/V2ProspectMatchEnrichResponse_LinkedinProspectsPostsOutputSchema_"
+            "$ref": "#/components/schemas/V2ProspectEnrichResponse_LinkedinProspectsPostsOutputSchema_"
           },
           {
-            "$ref": "#/components/schemas/V2ProspectEnrichResponse_LinkedinProspectsPostsOutputSchema_"
+            "$ref": "#/components/schemas/V2ProspectMatchEnrichResponse_LinkedinProspectsPostsOutputSchema_"
           }
         ],
         "title": "V2ProspectEnrichEndpointResponse[LinkedinProspectsPostsOutputSchema]"
@@ -19961,10 +20067,10 @@
       "V2ProspectEnrichEndpointResponse_ProfilesOutputSchema_": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/V2ProspectMatchEnrichResponse_ProfilesOutputSchema_"
+            "$ref": "#/components/schemas/V2ProspectEnrichResponse_ProfilesOutputSchema_"
           },
           {
-            "$ref": "#/components/schemas/V2ProspectEnrichResponse_ProfilesOutputSchema_"
+            "$ref": "#/components/schemas/V2ProspectMatchEnrichResponse_ProfilesOutputSchema_"
           }
         ],
         "title": "V2ProspectEnrichEndpointResponse[ProfilesOutputSchema]"
@@ -19972,10 +20078,10 @@
       "V2ProspectEnrichEndpointResponse_V2ContactsInformationOutputSchema_": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/V2ProspectMatchEnrichResponse_V2ContactsInformationOutputSchema_"
+            "$ref": "#/components/schemas/V2ProspectEnrichResponse_V2ContactsInformationOutputSchema_"
           },
           {
-            "$ref": "#/components/schemas/V2ProspectEnrichResponse_V2ContactsInformationOutputSchema_"
+            "$ref": "#/components/schemas/V2ProspectMatchEnrichResponse_V2ContactsInformationOutputSchema_"
           }
         ],
         "title": "V2ProspectEnrichEndpointResponse[V2ContactsInformationOutputSchema]"
